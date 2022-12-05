@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="53ead072-71b5-47bd-860c-096234903bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ksyun/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ksyun/__init__.py" afterDir="false" />
-    </list>
+    <list default="true" id="53ead072-71b5-47bd-860c-096234903bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650437876673</updated>
       <workItem from="1650437882768" duration="577000" />
+      <workItem from="1658738059367" duration="500000" />
     </task>
     <servers />
   </component>
@@ -58,5 +57,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

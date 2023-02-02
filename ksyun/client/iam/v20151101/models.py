@@ -8,7 +8,7 @@ class CreateUserRequest(AbstractModel):
         r"""新建IAM子用户
         :param UserName: 待创建的IAM用户的用户名
         :type PathPrefix: String
-        :param RealName: 待创建的IAM用户的用户名
+        :param RealName: 待创建的IAM用户的真实姓名
         :type PathPrefix: String
         :param Phone: 手机号码
         :type PathPrefix: String
@@ -204,8 +204,9 @@ class ListPolicyVersionsRequest(AbstractModel):
 
     def __init__(self):
         r"""查询策略版本列表
-        :param PolicyKrn: 待查询的策略的krn标识
-格式：krn:ksc:iam::account-id:policy/policy-name
+        :param PolicyKrn: 待查询策略版本列表的策略的唯一标识
+
+格式：krn:ksc:iam::account-id:policy/policy-name	
         :type PathPrefix: String
         """
         self.PolicyKrn = None
@@ -597,6 +598,100 @@ class DeleteAccessKeyRequest(AbstractModel):
             self.AccessKeyId = params.get("AccessKeyId")
 
 
+class ListVirtualMFADevicesRequest(AbstractModel):
+    """ListVirtualMFADevices请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询虚拟设备列表
+        :param AssignmentStatus: AssignmentStatus
+        :type PathPrefix: String
+        :param Marker: Marker
+        :type PathPrefix: String
+        :param MaxItems: MaxItems
+        :type PathPrefix: Int
+        """
+        self.AssignmentStatus = None
+        self.Marker = None
+        self.MaxItems = None
+
+    def _deserialize(self, params):
+        if params.get("AssignmentStatus"):
+            self.AssignmentStatus = params.get("AssignmentStatus")
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxItems"):
+            self.MaxItems = params.get("MaxItems")
+
+
+class EnableMFADeviceRequest(AbstractModel):
+    """EnableMFADevice请求参数结构体
+    """
+
+    def __init__(self):
+        r"""激活虚拟设备
+        :param AuthenticationCode1: AuthenticationCode1
+        :type PathPrefix: String
+        :param AuthenticationCode2: AuthenticationCode2
+        :type PathPrefix: String
+        :param SerialNumber: SerialNumber
+        :type PathPrefix: String
+        :param UserName: UserName
+        :type PathPrefix: String
+        """
+        self.AuthenticationCode1 = None
+        self.AuthenticationCode2 = None
+        self.SerialNumber = None
+        self.UserName = None
+
+    def _deserialize(self, params):
+        if params.get("AuthenticationCode1"):
+            self.AuthenticationCode1 = params.get("AuthenticationCode1")
+        if params.get("AuthenticationCode2"):
+            self.AuthenticationCode2 = params.get("AuthenticationCode2")
+        if params.get("SerialNumber"):
+            self.SerialNumber = params.get("SerialNumber")
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+
+
+class DeactivateMFADeviceRequest(AbstractModel):
+    """DeactivateMFADevice请求参数结构体
+    """
+
+    def __init__(self):
+        r"""解绑虚拟设备
+        :param SerialNumber: krn
+        :type PathPrefix: String
+        :param UserName: UserName
+        :type PathPrefix: String
+        """
+        self.SerialNumber = None
+        self.UserName = None
+
+    def _deserialize(self, params):
+        if params.get("SerialNumber"):
+            self.SerialNumber = params.get("SerialNumber")
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+
+
+class GetVirtualMFADeviceRequest(AbstractModel):
+    """GetVirtualMFADevice请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取虚拟设备
+        :param UserName: UserName
+        :type PathPrefix: String
+        """
+        self.UserName = None
+
+    def _deserialize(self, params):
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+
+
 class CreateRoleRequest(AbstractModel):
     """CreateRole请求参数结构体
     """
@@ -765,32 +860,6 @@ class UpdateRoleTrustAccountsRequest(AbstractModel):
             self.NewTrustAccounts = params.get("NewTrustAccounts")
 
 
-class ListEntityForPolicyRequest(AbstractModel):
-    """ListEntityForPolicy请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询策略关联对象
-        :param PolicyKrn: 待查询的策略krn
-        :type PathPrefix: String
-        :param Marker: 当返回结果被截断时，使用本次返回的Marker值用于标示下次调用查询关联实体操作的起始点
-        :type PathPrefix: String
-        :param MaxItems: 用于限制本次查询结果返回的关联实体数量，如果仍有额外关联实体未显示，则返回元素中的IsTruncated的值会被设置为true，同时返回下次查询的起始点Marker值
-        :type PathPrefix: Int
-        """
-        self.PolicyKrn = None
-        self.Marker = None
-        self.MaxItems = None
-
-    def _deserialize(self, params):
-        if params.get("PolicyKrn"):
-            self.PolicyKrn = params.get("PolicyKrn")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxItems"):
-            self.MaxItems = params.get("MaxItems")
-
-
 class CreateProjectRequest(AbstractModel):
     """CreateProject请求参数结构体
     """
@@ -810,6 +879,80 @@ class CreateProjectRequest(AbstractModel):
             self.ProjectName = params.get("ProjectName")
         if params.get("ProjectDesc"):
             self.ProjectDesc = params.get("ProjectDesc")
+
+
+class GetAccountAllProjectListRequest(AbstractModel):
+    """GetAccountAllProjectList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取主/子用户项目列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class GetProjectInstanceListRequest(AbstractModel):
+    """GetProjectInstanceList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取项目资源列表
+        :param ProjectId: 项目id
+        :type PathPrefix: Int
+        :param ProductLine: 资源类型标识
+        :type PathPrefix: String
+        :param Ps: 每页条数，默认10, 最大100条
+        :type PathPrefix: Int
+        :param Pn: 页码。默认1
+        :type PathPrefix: Int
+        """
+        self.ProjectId = None
+        self.ProductLine = None
+        self.Ps = None
+        self.Pn = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ProductLine"):
+            self.ProductLine = params.get("ProductLine")
+        if params.get("Ps"):
+            self.Ps = params.get("Ps")
+        if params.get("Pn"):
+            self.Pn = params.get("Pn")
+
+
+class UpdateInstanceProjectIdRequest(AbstractModel):
+    """UpdateInstanceProjectId请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新实例项目
+        :param ProjectId: ProjectId
+        :type PathPrefix: Int
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param Action: Action
+        :type PathPrefix: String
+        :param Version: Version
+        :type PathPrefix: String
+        """
+        self.ProjectId = None
+        self.InstanceId = None
+        self.Action = None
+        self.Version = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Action"):
+            self.Action = params.get("Action")
+        if params.get("Version"):
+            self.Version = params.get("Version")
 
 
 class ListEntitiesForPolicyRequest(AbstractModel):
@@ -990,9 +1133,10 @@ class DetachGroupPolicyRequest(AbstractModel):
 
     def __init__(self):
         r"""从用户组分离策略
-        :param GroupName: 要分离的策略krn
+        :param GroupName: 用户组名
         :type PathPrefix: String
-        :param PolicyKrn: 用户组名
+        :param PolicyKrn: 要分离的策略krn
+
         :type PathPrefix: String
         """
         self.GroupName = None
@@ -1165,5 +1309,17 @@ class RemoveUserFromGroupRequest(AbstractModel):
             self.GroupName = params.get("GroupName")
         if params.get("UserName"):
             self.UserName = params.get("UserName")
+
+
+class ListAllUserAccessKeysRequest(AbstractModel):
+    """ListAllUserAccessKeys请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取子用户ak最后使用时间
+        """
+
+    def _deserialize(self, params):
+        return
 
 

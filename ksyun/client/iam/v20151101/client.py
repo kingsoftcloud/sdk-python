@@ -537,6 +537,98 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def ListVirtualMFADevices(self, request):
+        """查询虚拟设备列表
+        :param request: Request instance for ListVirtualMFADevices.
+        :type request: :class:`ksyun.client.iam.v20151101.models.ListVirtualMFADevicesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("ListVirtualMFADevices", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def EnableMFADevice(self, request):
+        """激活虚拟设备
+        :param request: Request instance for EnableMFADevice.
+        :type request: :class:`ksyun.client.iam.v20151101.models.EnableMFADeviceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("EnableMFADevice", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeactivateMFADevice(self, request):
+        """解绑虚拟设备
+        :param request: Request instance for DeactivateMFADevice.
+        :type request: :class:`ksyun.client.iam.v20151101.models.DeactivateMFADeviceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DeactivateMFADevice", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetVirtualMFADevice(self, request):
+        """获取虚拟设备
+        :param request: Request instance for GetVirtualMFADevice.
+        :type request: :class:`ksyun.client.iam.v20151101.models.GetVirtualMFADeviceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("GetVirtualMFADevice", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def CreateRole(self, request):
         """创建角色
         :param request: Request instance for CreateRole.
@@ -721,14 +813,14 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def ListEntityForPolicy(self, request):
-        """查询策略关联对象
-        :param request: Request instance for ListEntityForPolicy.
-        :type request: :class:`ksyun.client.iam.v20151101.models.ListEntityForPolicyRequest`
+    def CreateProject(self, request):
+        """创建项目
+        :param request: Request instance for CreateProject.
+        :type request: :class:`ksyun.client.iam.v20151101.models.CreateProjectRequest`
         """
         try:
             params = request._serialize()
-            body = self.call("ListEntityForPolicy", params)
+            body = self.call("CreateProject", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -744,14 +836,60 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def CreateProject(self, request):
-        """创建项目
-        :param request: Request instance for CreateProject.
-        :type request: :class:`ksyun.client.iam.v20151101.models.CreateProjectRequest`
+    def GetAccountAllProjectList(self, request):
+        """获取主/子用户项目列表
+        :param request: Request instance for GetAccountAllProjectList.
+        :type request: :class:`ksyun.client.iam.v20151101.models.GetAccountAllProjectListRequest`
         """
         try:
             params = request._serialize()
-            body = self.call("CreateProject", params)
+            body = self.call("GetAccountAllProjectList", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetProjectInstanceList(self, request):
+        """获取项目资源列表
+        :param request: Request instance for GetProjectInstanceList.
+        :type request: :class:`ksyun.client.iam.v20151101.models.GetProjectInstanceListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("GetProjectInstanceList", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UpdateInstanceProjectId(self, request):
+        """更新实例项目
+        :param request: Request instance for UpdateInstanceProjectId.
+        :type request: :class:`ksyun.client.iam.v20151101.models.UpdateInstanceProjectIdRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("UpdateInstanceProjectId", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1120,6 +1258,29 @@ class IamClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call("RemoveUserFromGroup", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ListAllUserAccessKeys(self, request):
+        """获取子用户ak最后使用时间
+        :param request: Request instance for ListAllUserAccessKeys.
+        :type request: :class:`ksyun.client.iam.v20151101.models.ListAllUserAccessKeysRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("ListAllUserAccessKeys", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body

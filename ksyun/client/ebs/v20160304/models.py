@@ -510,3 +510,39 @@ class ValidateAttachInstanceRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
 
 
+class DescribeCreateVolumePriceRequest(AbstractModel):
+    """DescribeCreateVolumePrice请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询云盘新建时的价格
+        :param VolumeType: 云盘类型，ESSD_PL0/ESSD_PL1/ESSD_PL2/ESSD_PL3/SSD3.0/EHDD
+        :type PathPrefix: String
+        :param Size: 磁盘容量大小，单位GB，步长：1GB
+        :type PathPrefix: Int
+        :param AvailabilityZone: 购买云硬盘所处的可用区
+        :type PathPrefix: String
+        :param ChargeType: 计费类型，如Monthly、Daily、HourlyInstantSettlement
+        :type PathPrefix: String
+        :param PurchaseTime: 预付费计费类型必填字段；有效值为1-36，单位月
+        :type PathPrefix: Int
+        """
+        self.VolumeType = None
+        self.Size = None
+        self.AvailabilityZone = None
+        self.ChargeType = None
+        self.PurchaseTime = None
+
+    def _deserialize(self, params):
+        if params.get("VolumeType"):
+            self.VolumeType = params.get("VolumeType")
+        if params.get("Size"):
+            self.Size = params.get("Size")
+        if params.get("AvailabilityZone"):
+            self.AvailabilityZone = params.get("AvailabilityZone")
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
+
+

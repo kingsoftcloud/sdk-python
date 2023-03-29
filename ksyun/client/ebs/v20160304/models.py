@@ -10,7 +10,7 @@ class CreateVolumeRequest(AbstractModel):
 长度2-50个字符，包括字母、数字、-、_
 不传自动生成
         :type PathPrefix: String
-        :param VolumeType: 硬盘类型，4种，SSD2.0/SSD3.0/EHDD/SATA2.0
+        :param VolumeType: 硬盘类型，SSD3.0/EHDD/ESSD_PL0/ESSD_PL1/ESSD_PL2/ESSD_PL3
         :type PathPrefix: String
         :param VolumeDesc: 硬盘描述信息
 长度1-128字符
@@ -18,9 +18,16 @@ class CreateVolumeRequest(AbstractModel):
 不能以 http:// 和 https:// 开头
         :type PathPrefix: String
         :param Size: 磁盘容量大小，单位GB
-取值范围：【10，32000】，步长：1GB
+SSD3.0取值范围：【10，32000】，步长：1GB
+EHDD取值范围：【10，32000】，步长：1GB
+ESSD_PL0取值范围：【40，32768】，步长：1GB
+ESSD_PL1取值范围：【40，32768】，步长：1GB
+ESSD_PL2取值范围：【461，32768】，步长：1GB
+ESSD_PL3取值范围：【1761，32768】，步长：1GB
+
         :type PathPrefix: Int
         :param AvailabilityZone: 购买云硬盘所处的可用区
+如 cn-beijing-6a，cn-shanghai-2a
         :type PathPrefix: String
         :param ChargeType: 计费类型
 - Monthly（预付费，包年包月）
@@ -31,7 +38,7 @@ class CreateVolumeRequest(AbstractModel):
         :type PathPrefix: Int
         :param ProjectId: 硬盘项目组id，不传该参数将使用默认项目组id
         :type PathPrefix: String
-        :param SubOrderId: 子订单ID
+        :param SubOrderId: 子订单ID（内部使用）
         :type PathPrefix: String
         """
         self.VolumeName = None
@@ -145,11 +152,11 @@ class ResizeVolumeRequest(AbstractModel):
         r"""ResizeVolume
         :param VolumeId: 待扩容的云硬盘ID，云硬盘和云主机必须在同一可用区。长度36个字符，包括字母、数字、-、_
         :type PathPrefix: String
-        :param Size: 云硬盘扩容后的大小，单位GB。区间是：10 ~ 32000，单位GB，且必须比原Size大。步长：10GB
+        :param Size: 云硬盘扩容后的大小，单位GB。区间必须比原云盘容量大，单盘容量不可大于32TB。
         :type PathPrefix: String
         :param OnlineResize: 云硬盘扩容的方式：
 ● false（默认）：离线扩容；扩容后，必须经过控制台重启或者调用API重启实例使操作生效
-● true：在线扩容，无需重启实例即可完成扩容
+● true：在线扩容（仅部分操作系统支持），无需重启实例即可完成扩容
         :type PathPrefix: Boolean
         :param SubOrderId: 子订单ID
         :type PathPrefix: String
@@ -183,7 +190,7 @@ class DescribeVolumesRequest(AbstractModel):
         :type PathPrefix: String
         :param VolumeStatus: 云硬盘状态，八种creating、available、attaching、inuse、detaching、extending、deleting、error
         :type PathPrefix: String
-        :param VolumeType: 云磁盘类型，三种，SSD2.0/SSD3.0/EHDD
+        :param VolumeType: 云硬盘类型，SSD3.0/EHDD/ESSD_PL0/ESSD_PL1/ESSD_PL2/ESSD_PL3
         :type PathPrefix: String
         :param VolumeCreateDate: 云硬盘创建日期，格式：yyyy-MM-dd，可查出当日创建硬盘信息
         :type PathPrefix: String
@@ -260,7 +267,7 @@ class DescribeEbsInstancesRequest(AbstractModel):
         r"""DescribeEbsInstances
         :param AvailabilityZone: 指定获取某个AZ的可用主机
         :type PathPrefix: String
-        :param VolumeType: 硬盘类型，三种，SSD2.0/SSD3.0/EHDD
+        :param VolumeType: 硬盘类型，SSD3.0/EHDD/ESSD_PL0/ESSD_PL1/ESSD_PL2/ESSD_PL3
         :type PathPrefix: String
         """
         self.AvailabilityZone = None
@@ -495,7 +502,7 @@ class ValidateAttachInstanceRequest(AbstractModel):
 
     def __init__(self):
         r"""ValidateAttachInstance
-        :param VolumeType: 硬盘类型，有效值SSD2.0/SSD3.0/EHDD
+        :param VolumeType: 硬盘类型，有效值SSD3.0/EHDD/ESSD_PL0/ESSD_PL1/ESSD_PL2/ESSD_PL3
         :type PathPrefix: String
         :param InstanceId: 需要校验的主机实例ID，长度为36个字符，包括字母，数字，-
         :type PathPrefix: String
@@ -522,7 +529,10 @@ class DescribeCreateVolumePriceRequest(AbstractModel):
         :type PathPrefix: Int
         :param AvailabilityZone: 购买云硬盘所处的可用区
         :type PathPrefix: String
-        :param ChargeType: 计费类型，如Monthly、Daily、HourlyInstantSettlement
+        :param ChargeType: 计费类型
+Monthly（预付费，包年包月）
+HourlyInstantSettlement（后付费，按小时实时结算）
+Daily（后付费，按日月结）
         :type PathPrefix: String
         :param PurchaseTime: 预付费计费类型必填字段；有效值为1-36，单位月
         :type PathPrefix: Int

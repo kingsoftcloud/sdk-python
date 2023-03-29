@@ -4,3 +4,4 @@ dist/
 .python-version
 .tox/
 .idea
+.DS_Store

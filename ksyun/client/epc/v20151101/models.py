@@ -68,10 +68,9 @@ Raid5：数据盘的数量必须大于等于3
 Raid10：数据盘数量必须是4的倍数
 Raid50：数据盘的数量必须大于6且是2的倍数
 SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+与RaidId必填其一，RaidId优先级高
         :type PathPrefix: String
         :param RaidId: Raid模板Id
-        :type PathPrefix: String
-        :param RaidInfo: Raid模板详情
         :type PathPrefix: String
         :param ImageId: 镜像资源ID,参见DescribeImages
         :type PathPrefix: String
@@ -124,8 +123,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param Description: 描述信息
         :type PathPrefix: String
-        :param HostId: 云物理主机ID
-        :type PathPrefix: String
         :param AddressBandWidth: 弹性IP的带宽
         :type PathPrefix: String
         :param LineId: 弹性IP的链路类型的ID
@@ -138,10 +135,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param AddressProjectId: 弹性IP项目的ID
         :type PathPrefix: String
-        :param ContainerInfo: 容器扩展信息
-        :type PathPrefix: String
-        :param LimitDay: 限制删除天数 limitDay=180表示 从购买起180天后才能删除
-        :type PathPrefix: Int
         :param SystemFileType: 系统盘文件格式
         :type PathPrefix: String
         :param DataFileType: 数据盘文件格式
@@ -181,7 +174,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.AvailabilityZone = None
         self.Raid = None
         self.RaidId = None
-        self.RaidInfo = None
         self.ImageId = None
         self.NetworkInterfaceMode = None
         self.SubnetId = None
@@ -203,15 +195,12 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.ExtensionDNS1 = None
         self.ExtensionDNS2 = None
         self.Description = None
-        self.HostId = None
         self.AddressBandWidth = None
         self.LineId = None
         self.BandWidthShareId = None
         self.AddressChargeType = None
         self.AddressPurchaseTime = None
         self.AddressProjectId = None
-        self.ContainerInfo = None
-        self.LimitDay = None
         self.SystemFileType = None
         self.DataFileType = None
         self.DataDiskCatalogue = None
@@ -239,8 +228,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.Raid = params.get("Raid")
         if params.get("RaidId"):
             self.RaidId = params.get("RaidId")
-        if params.get("RaidInfo"):
-            self.RaidInfo = params.get("RaidInfo")
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("NetworkInterfaceMode"):
@@ -283,8 +270,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.ExtensionDNS2 = params.get("ExtensionDNS2")
         if params.get("Description"):
             self.Description = params.get("Description")
-        if params.get("HostId"):
-            self.HostId = params.get("HostId")
         if params.get("AddressBandWidth"):
             self.AddressBandWidth = params.get("AddressBandWidth")
         if params.get("LineId"):
@@ -297,10 +282,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.AddressPurchaseTime = params.get("AddressPurchaseTime")
         if params.get("AddressProjectId"):
             self.AddressProjectId = params.get("AddressProjectId")
-        if params.get("ContainerInfo"):
-            self.ContainerInfo = params.get("ContainerInfo")
-        if params.get("LimitDay"):
-            self.LimitDay = params.get("LimitDay")
         if params.get("SystemFileType"):
             self.SystemFileType = params.get("SystemFileType")
         if params.get("DataFileType"):
@@ -415,14 +396,11 @@ Raid5：数据盘的数量必须大于等于3
 Raid10：数据盘数量必须是4的倍数
 Raid50：数据盘的数量必须大于6且是2的倍数
 SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+与RaidId必填其一，RaidId优先级高
         :type PathPrefix: String
         :param RaidId: Raid模板Id
         :type PathPrefix: String
-        :param ReserveDisk: 是否保留DISK：Yes|No
-        :type PathPrefix: String
         :param HostName: 云物理主机名称
-        :type PathPrefix: String
-        :param ContainerInfo: 容器扩展信息
         :type PathPrefix: String
         :param SystemFileType: 系统盘文件格式
         :type PathPrefix: String
@@ -441,8 +419,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :param NvmeDataDiskCatalogueSuffix: NVME数据盘目录后缀属性
         :type PathPrefix: String
         :param bondAttribute: 网卡bond的属性
-        :type PathPrefix: String
-        :param Region: 机房信息
         :type PathPrefix: String
         :param KesAgent: kes组件类型
         :type PathPrefix: String
@@ -468,9 +444,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.CloudMonitorAgent = None
         self.Raid = None
         self.RaidId = None
-        self.ReserveDisk = None
         self.HostName = None
-        self.ContainerInfo = None
         self.SystemFileType = None
         self.DataFileType = None
         self.DataDiskCatalogue = None
@@ -480,7 +454,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.NvmeDataDiskCatalogue = None
         self.NvmeDataDiskCatalogueSuffix = None
         self.bondAttribute = None
-        self.Region = None
         self.KesAgent = None
         self.KmrAgent = None
         self.ComputerName = None
@@ -508,12 +481,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.Raid = params.get("Raid")
         if params.get("RaidId"):
             self.RaidId = params.get("RaidId")
-        if params.get("ReserveDisk"):
-            self.ReserveDisk = params.get("ReserveDisk")
         if params.get("HostName"):
             self.HostName = params.get("HostName")
-        if params.get("ContainerInfo"):
-            self.ContainerInfo = params.get("ContainerInfo")
         if params.get("SystemFileType"):
             self.SystemFileType = params.get("SystemFileType")
         if params.get("DataFileType"):
@@ -532,8 +501,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.NvmeDataDiskCatalogueSuffix = params.get("NvmeDataDiskCatalogueSuffix")
         if params.get("bondAttribute"):
             self.bondAttribute = params.get("bondAttribute")
-        if params.get("Region"):
-            self.Region = params.get("Region")
         if params.get("KesAgent"):
             self.KesAgent = params.get("KesAgent")
         if params.get("KmrAgent"):

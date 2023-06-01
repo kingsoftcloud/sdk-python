@@ -2101,6 +2101,52 @@ class KecClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def PreMigrateInstance(self, request):
+        """创建预迁移
+        :param request: Request instance for PreMigrateInstance.
+        :type request: :class:`ksyun.client.kec.v20160304.models.PreMigrateInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("PreMigrateInstance", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CancelPreMigrateInstance(self, request):
+        """取消预迁移
+        :param request: Request instance for CancelPreMigrateInstance.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CancelPreMigrateInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("CancelPreMigrateInstance", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DescribeInstanceKmr(self, request):
         """DescribeInstanceKmr
         :param request: Request instance for DescribeInstanceKmr.
@@ -2109,75 +2155,6 @@ class KecClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call("DescribeInstanceKmr", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def ValidatedDiskEncrypt(self, request):
-        """ValidatedDiskEncrypt
-        :param request: Request instance for ValidatedDiskEncrypt.
-        :type request: :class:`ksyun.client.kec.v20160304.models.ValidatedDiskEncryptRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("ValidatedDiskEncrypt", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DistributeKmsPermission(self, request):
-        """DistributeKmsPermission
-        :param request: Request instance for DistributeKmsPermission.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DistributeKmsPermissionRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DistributeKmsPermission", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeEntrySnapshots(self, request):
-        """DescribeEntrySnapshots
-        :param request: Request instance for DescribeEntrySnapshots.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeEntrySnapshotsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeEntrySnapshots", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body

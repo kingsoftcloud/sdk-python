@@ -19,7 +19,10 @@ class DescribeInstancesRequest(AbstractModel):
 
         :type PathPrefix: Filter
         :param Filter: 待返回实例信息的项目ID列表，N的范围为1-100
-支持如下过滤器名称<br>instance-id 实例ID<br>subnet-id 子网ID<br>vpc-id vpc ID<br>instance-name 实例名称<br>instance-type 实例类型<br>private-ip-address 内网IP<br>image-id 镜像ID<br>charge-type 计费模式（Monthly（包年包月）、Daily（按量付费（按日月结））、HourlyInstantSettlement（按量付费）、Spot（竞价型实例））<br>ProjectId.N 所属项目<br>network-interface.subnet-id 网络接口关联的子网ID<br>network-interface.network-interface-id 网卡的ID<br>network-interface.group-id 网络接口关联的安全组ID<br>instance-state.name [实例状态](https://docs.ksyun.com/documents/836)<br>availability-zone-name [可用区（AvailabilityZone）](https://docs.ksyun.com/documents/67)
+支持如下过滤器名称<br>instance-id 实例ID<br>subnet-id 子网ID<br>vpc-id vpc ID<br>instance-name 实例名称<br>instance-type 实例类型<br>private-ip-address 内网IP<br>image-id 镜像ID<br>charge-type 计费模式（1（包年包月）、5（按量付费（按日月结））、87（按量付费）、810（竞价型实例））2（按小时计费）, 
+
+84（PostPaidByHour)
+<br>ProjectId.N 所属项目<br>network-interface.subnet-id 网络接口关联的子网ID<br>network-interface.network-interface-id 网卡的ID<br>network-interface.group-id 网络接口关联的安全组ID<br>instance-state.name [实例状态](https://docs.ksyun.com/documents/836)<br>availability-zone-name [可用区（AvailabilityZone）](https://docs.ksyun.com/documents/67)
         :type PathPrefix: Filter
         :param Sort: 筛选器
 支持如下筛选器名称：<br>InstanceName –主机名称<br>CreationDate –创建时间<br>PrivateIpAddress - 主机内网IP（主网卡）
@@ -97,6 +100,12 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param NetworkInterface: 辅网卡
         :type PathPrefix: Filter
+        :param Userdata: 用户自定义数据
+        :type PathPrefix: String
+        :param SystemDisk.DiskType: 系统盘类型
+        :type PathPrefix: String
+        :param SystemDisk.DiskSize: 系统盘大小
+        :type PathPrefix: Int
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -117,6 +126,9 @@ class RunInstancesRequest(AbstractModel):
         self.ProjectId = None
         self.DataDisk = None
         self.NetworkInterface = None
+        self.Userdata = None
+        self.SystemDisk.DiskType = None
+        self.SystemDisk.DiskSize = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -157,6 +169,12 @@ class RunInstancesRequest(AbstractModel):
             self.DataDisk = params.get("DataDisk")
         if params.get("NetworkInterface"):
             self.NetworkInterface = params.get("NetworkInterface")
+        if params.get("Userdata"):
+            self.Userdata = params.get("Userdata")
+        if params.get("SystemDisk.DiskType"):
+            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -287,7 +305,7 @@ class ModifyInstanceTypeRequest(AbstractModel):
         :param CrossInstanceMigrate: 当前操作是否为变更实例套餐类型，若当前操作变更实例类型必须指定为true。（变更过程中必须保持云服务器关机状态；变更完成后启动云服务器生效；涉及本地盘类型的机型变更需加白名单）
 true/false
         :type PathPrefix: Boolean
-        :param SystemDisk.DiskType: 目标套餐系统盘类型（当本地盘机型变更为云盘机型时才需填写此参数）
+        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
         :type PathPrefix: String
         :param DataDisk: 目标套餐数据盘类型（当本地盘机型变更为云盘机型时才需填写此参数，此参数仅对源本地数据盘生效）
 
@@ -296,6 +314,10 @@ true/false
         :type PathPrefix: Boolean
         :param AutoRestart: 变更实例类型后是否自动重启: 是-true，否-false(默认)
         :type PathPrefix: Boolean
+        :param SystemDisk.DiskSize: 系统盘大小，最大值500，最小值0
+        :type PathPrefix: Int
+        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
+        :type PathPrefix: String
         """
         self.InstanceId = None
         self.InstanceType = None
@@ -307,6 +329,8 @@ true/false
         self.DataDisk = None
         self.StopInstance = None
         self.AutoRestart = None
+        self.SystemDisk.DiskSize = None
+        self.SystemDisk.ResizeType = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -329,6 +353,10 @@ true/false
             self.StopInstance = params.get("StopInstance")
         if params.get("AutoRestart"):
             self.AutoRestart = params.get("AutoRestart")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+        if params.get("SystemDisk.ResizeType"):
+            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
 
 
 class TerminateInstancesRequest(AbstractModel):
@@ -420,9 +448,9 @@ class ModifyInstanceImageRequest(AbstractModel):
         :param ImageId: 待更换的镜像ID；如果缺省，表明无需改变镜像，只需重新安装实例的操作系统。
 标准UUID格式，形如`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
         :type PathPrefix: String
-        :param SystemDisk: 云主机系统盘配置参数。若不指定该参数，则按照系统默认值进行分配。通用型N2、N3主机支持更换操作系统时指定系统盘大小。
+        :param SystemDisk.DiskSize: 云主机系统盘配置参数。若不指定该参数，则按照系统默认值进行分配。通用型N2、N3主机支持更换操作系统时指定系统盘大小。
 [SystemDisk](https://docs.ksyun.com/documents/5866)
-        :type PathPrefix: String
+        :type PathPrefix: Int
         :param InstancePassword: 实例开机密码
 最短8字符，最长32字符，必须包含大小写英文字符和数字，支持其他可见字符
         :type PathPrefix: String
@@ -431,27 +459,37 @@ class ModifyInstanceImageRequest(AbstractModel):
         :param KeepImageLogin: 保留镜像设置登录。该参数只对使用自定义镜像有效。当该值填写为true，默认InstancePassword参数无效。该参数与InstancePassword必须填写一个。
 true/false,默认false
         :type PathPrefix: Boolean
+        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
+        :type PathPrefix: String
+        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
+        :type PathPrefix: String
         """
         self.InstanceId = None
         self.ImageId = None
-        self.SystemDisk = None
+        self.SystemDisk.DiskSize = None
         self.InstancePassword = None
         self.KeyId = None
         self.KeepImageLogin = None
+        self.SystemDisk.DiskType = None
+        self.SystemDisk.ResizeType = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-        if params.get("SystemDisk"):
-            self.SystemDisk = params.get("SystemDisk")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("InstancePassword"):
             self.InstancePassword = params.get("InstancePassword")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
         if params.get("KeepImageLogin"):
             self.KeepImageLogin = params.get("KeepImageLogin")
+        if params.get("SystemDisk.DiskType"):
+            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+        if params.get("SystemDisk.ResizeType"):
+            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
 
 
 class CreateImageRequest(AbstractModel):
@@ -1028,9 +1066,8 @@ class CreateScalingConfigurationRequest(AbstractModel):
         :param DataDisk: 云盘数据盘类型 
  
         :type PathPrefix: Filter
-        :param SystemDisk: 系统盘类型 
- Local_SSD：本地SSD硬盘；SSD2.0：SSD云硬盘2.0；SATA2.0：普通云硬盘2.0；SSD3.0：SSD云硬盘3.0
-        :type PathPrefix: Filter
+        :param SystemDisk.DiskSize: 系统盘大小，最小值为0，最大值为500
+        :type PathPrefix: String
         :param AddressBandWidth: 弹性IP的带宽 
  
         :type PathPrefix: Int
@@ -1058,6 +1095,10 @@ class CreateScalingConfigurationRequest(AbstractModel):
         :param Tag:  启动配置创建的ECS实例的标签键 
  支持1-128个字符，仅支持中英文字符、数字及±=._/@:
         :type PathPrefix: Filter
+        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
+        :type PathPrefix: String
+        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
+        :type PathPrefix: String
         """
         self.ScalingConfigurationName = None
         self.ImageId = None
@@ -1069,7 +1110,7 @@ class CreateScalingConfigurationRequest(AbstractModel):
         self.KeepImageLogin = None
         self.KeyId = None
         self.DataDisk = None
-        self.SystemDisk = None
+        self.SystemDisk.DiskSize = None
         self.AddressBandWidth = None
         self.BandWidthShareId = None
         self.LineId = None
@@ -1079,6 +1120,8 @@ class CreateScalingConfigurationRequest(AbstractModel):
         self.UserData = None
         self.InstanceNameTimeSuffix = None
         self.Tag = None
+        self.SystemDisk.DiskType = None
+        self.SystemDisk.ResizeType = None
 
     def _deserialize(self, params):
         if params.get("ScalingConfigurationName"):
@@ -1101,8 +1144,8 @@ class CreateScalingConfigurationRequest(AbstractModel):
             self.KeyId = params.get("KeyId")
         if params.get("DataDisk"):
             self.DataDisk = params.get("DataDisk")
-        if params.get("SystemDisk"):
-            self.SystemDisk = params.get("SystemDisk")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("AddressBandWidth"):
             self.AddressBandWidth = params.get("AddressBandWidth")
         if params.get("BandWidthShareId"):
@@ -1121,6 +1164,10 @@ class CreateScalingConfigurationRequest(AbstractModel):
             self.InstanceNameTimeSuffix = params.get("InstanceNameTimeSuffix")
         if params.get("Tag"):
             self.Tag = params.get("Tag")
+        if params.get("SystemDisk.DiskType"):
+            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+        if params.get("SystemDisk.ResizeType"):
+            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
 
 
 class DeleteScalingConfigurationRequest(AbstractModel):
@@ -2355,7 +2402,7 @@ class CreateModelRequest(AbstractModel):
         :param InstanceType: 实例套餐类型，如果调用时未指定实例套餐类型，默认值为I1.1A
 [实例套餐类型有效值](https://docs.ksyun.com/documents/40858) <br>具体套餐信息参考[实例套餐类型定义](https://docs.ksyun.com/documents/705)
         :type PathPrefix: String
-        :param SystemDisk: 云主机系统盘配置参数。若不指定该参数，则按照系统默认值进行分配。通用型N2、N3主机支持更换操作系统时指定系统盘大小。
+        :param SystemDisk.DiskSize: 系统盘内存大小，最小值为0，最大值为500
         :type PathPrefix: String
         :param DataDiskGb: 数据卷容量，单位GB，容量限制依据[实例套餐类型定义](https://docs.ksyun.com/documents/705)变化，如果调用时未指定，则为相应实例套餐类型最小值。InstanceType为通用型主机时，此参数不生效。
         :type PathPrefix: Int
@@ -2409,10 +2456,14 @@ Monthly(包年包月）、Daily（按量付费（按日月结）)、 HourlyInsta
         :param ModelName: 实例启动模版名称，不允许重复
 ModelTest001
         :type PathPrefix: String
+        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
+        :type PathPrefix: String
+        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.InstanceType = None
-        self.SystemDisk = None
+        self.SystemDisk.DiskSize = None
         self.DataDiskGb = None
         self.SubnetId = None
         self.DataDisk = None
@@ -2433,14 +2484,16 @@ ModelTest001
         self.AddressPurchaseTime = None
         self.AddressProjectId = None
         self.ModelName = None
+        self.SystemDisk.DiskType = None
+        self.SystemDisk.ResizeType = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
-        if params.get("SystemDisk"):
-            self.SystemDisk = params.get("SystemDisk")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("DataDiskGb"):
             self.DataDiskGb = params.get("DataDiskGb")
         if params.get("SubnetId"):
@@ -2481,6 +2534,10 @@ ModelTest001
             self.AddressProjectId = params.get("AddressProjectId")
         if params.get("ModelName"):
             self.ModelName = params.get("ModelName")
+        if params.get("SystemDisk.DiskType"):
+            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+        if params.get("SystemDisk.ResizeType"):
+            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
 
 
 class TerminateModelsRequest(AbstractModel):
@@ -2711,9 +2768,9 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         :param DataDisk: 云盘数据盘类型 
  
         :type PathPrefix: Filter
-        :param SystemDisk: 系统盘类型 
+        :param SystemDisk.DiskSize: 系统盘大小，最小值为0，最大值为500
  
-        :type PathPrefix: Filter
+        :type PathPrefix: Int
         :param AddressBandWidth: 弹性IP的带宽 
  
         :type PathPrefix: Int
@@ -2747,6 +2804,10 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param InstanceNameRandom: 实例名称随机生成
         :type PathPrefix: Boolean
+        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
+        :type PathPrefix: String
+        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
+        :type PathPrefix: String
         """
         self.ScalingConfigurationId = None
         self.ScalingConfigurationName = None
@@ -2759,7 +2820,7 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         self.KeepImageLogin = None
         self.KeyId = None
         self.DataDisk = None
-        self.SystemDisk = None
+        self.SystemDisk.DiskSize = None
         self.AddressBandWidth = None
         self.BandWidthShareId = None
         self.LineId = None
@@ -2772,6 +2833,8 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         self.LoginSetAfter = None
         self.IpBindAfter = None
         self.InstanceNameRandom = None
+        self.SystemDisk.DiskType = None
+        self.SystemDisk.ResizeType = None
 
     def _deserialize(self, params):
         if params.get("ScalingConfigurationId"):
@@ -2796,8 +2859,8 @@ class ModifyScalingConfigurationRequest(AbstractModel):
             self.KeyId = params.get("KeyId")
         if params.get("DataDisk"):
             self.DataDisk = params.get("DataDisk")
-        if params.get("SystemDisk"):
-            self.SystemDisk = params.get("SystemDisk")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("AddressBandWidth"):
             self.AddressBandWidth = params.get("AddressBandWidth")
         if params.get("BandWidthShareId"):
@@ -2822,6 +2885,10 @@ class ModifyScalingConfigurationRequest(AbstractModel):
             self.IpBindAfter = params.get("IpBindAfter")
         if params.get("InstanceNameRandom"):
             self.InstanceNameRandom = params.get("InstanceNameRandom")
+        if params.get("SystemDisk.DiskType"):
+            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+        if params.get("SystemDisk.ResizeType"):
+            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
 
 
 class DescribeSpotPriceHistoryRequest(AbstractModel):
@@ -2998,52 +3065,63 @@ class DetachInstancesIamRoleRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
 
 
+class PreMigrateInstanceRequest(AbstractModel):
+    """PreMigrateInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建预迁移
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param InstanceType: 目标实例类型
+        :type PathPrefix: String
+        :param SystemDiskType: 云盘系统盘的类型。
+
+有效值：SSD3.0，EHDD
+        :type PathPrefix: String
+        :param DataDiskType: 云盘数据盘的类型。
+
+有效值：SSD3.0，EHDD
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.InstanceType = None
+        self.SystemDiskType = None
+        self.DataDiskType = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("InstanceType"):
+            self.InstanceType = params.get("InstanceType")
+        if params.get("SystemDiskType"):
+            self.SystemDiskType = params.get("SystemDiskType")
+        if params.get("DataDiskType"):
+            self.DataDiskType = params.get("DataDiskType")
+
+
+class CancelPreMigrateInstanceRequest(AbstractModel):
+    """CancelPreMigrateInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""取消预迁移
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
 class DescribeInstanceKmrRequest(AbstractModel):
     """DescribeInstanceKmr请求参数结构体
     """
 
     def __init__(self):
         r"""DescribeInstanceKmr
-        """
-
-    def _deserialize(self, params):
-        return
-
-
-class ValidatedDiskEncryptRequest(AbstractModel):
-    """ValidatedDiskEncrypt请求参数结构体
-    """
-
-    def __init__(self):
-        r"""ValidatedDiskEncrypt
-        :param AccountId: 用户id
-        :type PathPrefix: String
-        """
-        self.AccountId = None
-
-    def _deserialize(self, params):
-        if params.get("AccountId"):
-            self.AccountId = params.get("AccountId")
-
-
-class DistributeKmsPermissionRequest(AbstractModel):
-    """DistributeKmsPermission请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DistributeKmsPermission
-        """
-
-    def _deserialize(self, params):
-        return
-
-
-class DescribeEntrySnapshotsRequest(AbstractModel):
-    """DescribeEntrySnapshots请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DescribeEntrySnapshots
         """
 
     def _deserialize(self, params):

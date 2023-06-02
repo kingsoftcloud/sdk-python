@@ -773,7 +773,7 @@ class DeleteLocalVolumeSnapshotRequest(AbstractModel):
     def __init__(self):
         r"""删除本地盘快照
         :param LocalVolumeSnapshotId: 快照Id，支持批量删除，格式为LocalVolumeSnapshotId.N=XXX，N=1,2,3…100。
-        :type PathPrefix: Array
+        :type PathPrefix: Filter
         """
         self.LocalVolumeSnapshotId = None
 

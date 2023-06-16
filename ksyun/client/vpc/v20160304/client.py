@@ -1595,6 +1595,121 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def CreateHaVip(self, request):
+        """创建HaVip
+        :param request: Request instance for CreateHaVip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateHaVipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("CreateHaVip", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteHaVip(self, request):
+        """删除HaVip
+        :param request: Request instance for DeleteHaVip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteHaVipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DeleteHaVip", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AssociateHaVip(self, request):
+        """绑定HaVip
+        :param request: Request instance for AssociateHaVip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AssociateHaVipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("AssociateHaVip", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UnAssociateHaVip(self, request):
+        """解绑HaVip
+        :param request: Request instance for UnAssociateHaVip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.UnAssociateHaVipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("UnAssociateHaVip", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeHaVip(self, request):
+        """查询HaVip
+        :param request: Request instance for DescribeHaVip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeHaVipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DescribeHaVip", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DeleteDirectConnectGatewayRoute(self, request):
         """删除边界网关路由
         :param request: Request instance for DeleteDirectConnectGatewayRoute.

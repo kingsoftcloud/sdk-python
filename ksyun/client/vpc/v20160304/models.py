@@ -1980,6 +1980,116 @@ class ModifyNetworkInterfaceRequest(AbstractModel):
             self.NetworkInterfaceId = params.get("NetworkInterfaceId")
 
 
+class CreateHaVipRequest(AbstractModel):
+    """CreateHaVip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建HaVip
+        :param SubnetId: 子网的ID
+        :type PathPrefix: String
+        :param IpAddress: 高可用虚拟IP的IP地址
+        :type PathPrefix: String
+        """
+        self.SubnetId = None
+        self.IpAddress = None
+
+    def _deserialize(self, params):
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("IpAddress"):
+            self.IpAddress = params.get("IpAddress")
+
+
+class DeleteHaVipRequest(AbstractModel):
+    """DeleteHaVip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除HaVip
+        :param HaVipId: 高可用虚拟IP的ID
+        :type PathPrefix: String
+        """
+        self.HaVipId = None
+
+    def _deserialize(self, params):
+        if params.get("HaVipId"):
+            self.HaVipId = params.get("HaVipId")
+
+
+class AssociateHaVipRequest(AbstractModel):
+    """AssociateHaVip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""绑定HaVip
+        :param NetworkInterfaceId: 网卡的ID
+        :type PathPrefix: String
+        :param HaVipId: 高可用虚拟IP的ID
+        :type PathPrefix: String
+        """
+        self.NetworkInterfaceId = None
+        self.HaVipId = None
+
+    def _deserialize(self, params):
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("HaVipId"):
+            self.HaVipId = params.get("HaVipId")
+
+
+class UnAssociateHaVipRequest(AbstractModel):
+    """UnAssociateHaVip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""解绑HaVip
+        :param NetworkInterfaceId: 网卡的ID
+        :type PathPrefix: String
+        :param HaVipId: 高可用虚拟IP的ID
+        :type PathPrefix: String
+        """
+        self.NetworkInterfaceId = None
+        self.HaVipId = None
+
+    def _deserialize(self, params):
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("HaVipId"):
+            self.HaVipId = params.get("HaVipId")
+
+
+class DescribeHaVipRequest(AbstractModel):
+    """DescribeHaVip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询HaVip
+        :param HaVipId: 多个高可用虚拟IP的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.HaVipId = None
+        self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("HaVipId"):
+            self.HaVipId = params.get("HaVipId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
 class DeleteDirectConnectGatewayRouteRequest(AbstractModel):
     """DeleteDirectConnectGatewayRoute请求参数结构体
     """

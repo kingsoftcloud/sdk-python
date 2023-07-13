@@ -169,6 +169,13 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param SystemVolumeSize: 云硬盘系统盘大小
         :type PathPrefix: String
+        :param RoceNetwork: roce网络
+有效值： Open：开启  Close：关闭 
+
+
+
+
+        :type PathPrefix: String
         """
         self.HostType = None
         self.AvailabilityZone = None
@@ -218,6 +225,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.GpuImageDriverId = None
         self.SystemVolumeType = None
         self.SystemVolumeSize = None
+        self.RoceNetwork = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -316,6 +324,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.SystemVolumeType = params.get("SystemVolumeType")
         if params.get("SystemVolumeSize"):
             self.SystemVolumeSize = params.get("SystemVolumeSize")
+        if params.get("RoceNetwork"):
+            self.RoceNetwork = params.get("RoceNetwork")
 
 
 class StartEpcRequest(AbstractModel):
@@ -1074,6 +1084,27 @@ class DeleteRemoteManagementRequest(AbstractModel):
         return
 
 
+class ResetPasswordRequest(AbstractModel):
+    """ResetPassword请求参数结构体
+    """
+
+    def __init__(self):
+        r"""重置密码
+        :param HostId: 裸金属服务器资源ID
+        :type PathPrefix: String
+        :param Password: 云物理主机的root密码
+        :type PathPrefix: String
+        """
+        self.HostId = None
+        self.Password = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+
+
 class ModifyHyperThreadingRequest(AbstractModel):
     """ModifyHyperThreading请求参数结构体
     """
@@ -1500,7 +1531,7 @@ class ModifyOverclockingAttributeRequest(AbstractModel):
         r"""修改超频
         :param HostId: 裸金属服务器资源ID
         :type PathPrefix: String
-        :param OverclockingAttribute: 超频属性，open|close
+        :param OverclockingAttribute: 超频属性，Open|Close
         :type PathPrefix: String
         """
         self.HostId = None

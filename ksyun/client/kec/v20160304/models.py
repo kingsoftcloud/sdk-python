@@ -112,6 +112,8 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: Int
         :param AssembledImageDataDiskType: 整机镜像所开云盘数据盘的类型
         :type PathPrefix: String
+        :param AutoCreateEbs: 整机镜像是否展开镜像中的数据盘
+        :type PathPrefix: Boolean
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -138,6 +140,7 @@ class RunInstancesRequest(AbstractModel):
         self.ModelId = None
         self.ModelVersion = None
         self.AssembledImageDataDiskType = None
+        self.AutoCreateEbs = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -190,6 +193,8 @@ class RunInstancesRequest(AbstractModel):
             self.ModelVersion = params.get("ModelVersion")
         if params.get("AssembledImageDataDiskType"):
             self.AssembledImageDataDiskType = params.get("AssembledImageDataDiskType")
+        if params.get("AutoCreateEbs"):
+            self.AutoCreateEbs = params.get("AutoCreateEbs")
 
 
 class StartInstancesRequest(AbstractModel):

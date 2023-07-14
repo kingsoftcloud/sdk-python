@@ -106,6 +106,12 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param SystemDisk.DiskSize: 系统盘大小
         :type PathPrefix: Int
+        :param ModelId: 实例启动模版ID，如填写了此项，则RunInstances其他参数只有MaxCount、MinCount生效，其他不生效，如果批量创建，实例名称后缀依然存在。【传modelId，使用默认版本。传modelId和modelVersion，使用传递的版本】
+        :type PathPrefix: String
+        :param ModelVersion: 实例启动模板版本号。如不指定，则采用默认版本号
+        :type PathPrefix: Int
+        :param AssembledImageDataDiskType: 整机镜像所开云盘数据盘的类型
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -129,6 +135,9 @@ class RunInstancesRequest(AbstractModel):
         self.Userdata = None
         self.SystemDisk.DiskType = None
         self.SystemDisk.DiskSize = None
+        self.ModelId = None
+        self.ModelVersion = None
+        self.AssembledImageDataDiskType = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -175,6 +184,12 @@ class RunInstancesRequest(AbstractModel):
             self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.DiskSize"):
             self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("ModelVersion"):
+            self.ModelVersion = params.get("ModelVersion")
+        if params.get("AssembledImageDataDiskType"):
+            self.AssembledImageDataDiskType = params.get("AssembledImageDataDiskType")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -463,6 +478,8 @@ true/false,默认false
         :type PathPrefix: String
         :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
         :type PathPrefix: String
+        :param UserData: 用户自定义数据，必须是base64编码
+        :type PathPrefix: String
         """
         self.InstanceId = None
         self.ImageId = None
@@ -472,6 +489,7 @@ true/false,默认false
         self.KeepImageLogin = None
         self.SystemDisk.DiskType = None
         self.SystemDisk.ResizeType = None
+        self.UserData = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -490,6 +508,8 @@ true/false,默认false
             self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
             self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
 
 
 class CreateImageRequest(AbstractModel):
@@ -2460,6 +2480,8 @@ ModelTest001
         :type PathPrefix: String
         :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
         :type PathPrefix: String
+        :param VersionDetail: 模板描述
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.InstanceType = None
@@ -2486,6 +2508,7 @@ ModelTest001
         self.ModelName = None
         self.SystemDisk.DiskType = None
         self.SystemDisk.ResizeType = None
+        self.VersionDetail = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -2538,6 +2561,8 @@ ModelTest001
             self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
             self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+        if params.get("VersionDetail"):
+            self.VersionDetail = params.get("VersionDetail")
 
 
 class TerminateModelsRequest(AbstractModel):
@@ -2546,14 +2571,19 @@ class TerminateModelsRequest(AbstractModel):
 
     def __init__(self):
         r"""删除实例启动模版
-        :param ModelId: 预删除的实例启动模板ID
-        :type PathPrefix: Filter
+        :param ModelId: 只传ModelId删除模板以及模板下对应的版本
+        :type PathPrefix: String
+        :param ModelVersion: 传ModelId和ModelVersion，删除某个模板下的版本
+        :type PathPrefix: Int
         """
         self.ModelId = None
+        self.ModelVersion = None
 
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
+        if params.get("ModelVersion"):
+            self.ModelVersion = params.get("ModelVersion")
 
 
 class DescribeModelsRequest(AbstractModel):

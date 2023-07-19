@@ -2101,35 +2101,6 @@ share，cancel；share为共享，cancel为取消共享
             self.Permission = params.get("Permission")
 
 
-class DescribeImageSharePermissionRequest(AbstractModel):
-    """DescribeImageSharePermission请求参数结构体
-    """
-
-    def __init__(self):
-        r"""镜像共享的账户列表
-        :param ImageId: 共享的镜像ID。
-标准UUID格式，形如^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        :type PathPrefix: String
-        """
-        self.ImageId = None
-
-    def _deserialize(self, params):
-        if params.get("ImageId"):
-            self.ImageId = params.get("ImageId")
-
-
-class DescribeRegionsRequest(AbstractModel):
-    """DescribeRegions请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用户有权限机房
-        """
-
-    def _deserialize(self, params):
-        return
-
-
 class AttachKeyRequest(AbstractModel):
     """AttachKey请求参数结构体
     """
@@ -2184,18 +2155,6 @@ class DetachKeyRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
-
-
-class DescribeAvailabilityZonesRequest(AbstractModel):
-    """DescribeAvailabilityZones请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询可用区列表
-        """
-
-    def _deserialize(self, params):
-        return
 
 
 class DescribeInstanceTypeConfigsRequest(AbstractModel):
@@ -3149,41 +3108,5 @@ class CancelPreMigrateInstanceRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
-
-
-class DescribeInstanceKmrRequest(AbstractModel):
-    """DescribeInstanceKmr请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DescribeInstanceKmr
-        """
-
-    def _deserialize(self, params):
-        return
-
-
-class DescribeMinFlavorCountRequest(AbstractModel):
-    """DescribeMinFlavorCount请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DescribeMinFlavorCount
-        """
-
-    def _deserialize(self, params):
-        return
-
-
-class DescribeProjectMaxNumRequest(AbstractModel):
-    """DescribeProjectMaxNum请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询项目制最大数量限制
-        """
-
-    def _deserialize(self, params):
-        return
 
 

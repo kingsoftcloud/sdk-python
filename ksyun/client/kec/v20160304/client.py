@@ -1342,52 +1342,6 @@ class KecClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DescribeImageSharePermission(self, request):
-        """镜像共享的账户列表
-        :param request: Request instance for DescribeImageSharePermission.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeImageSharePermissionRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeImageSharePermission", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeRegions(self, request):
-        """用户有权限机房
-        :param request: Request instance for DescribeRegions.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeRegionsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeRegions", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
     def AttachKey(self, request):
         """主机绑定密钥
         :param request: Request instance for AttachKey.
@@ -1419,29 +1373,6 @@ class KecClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call("DetachKey", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeAvailabilityZones(self, request):
-        """查询可用区列表
-        :param request: Request instance for DescribeAvailabilityZones.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeAvailabilityZonesRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeAvailabilityZones", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2132,75 +2063,6 @@ class KecClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call("CancelPreMigrateInstance", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeInstanceKmr(self, request):
-        """DescribeInstanceKmr
-        :param request: Request instance for DescribeInstanceKmr.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeInstanceKmrRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeInstanceKmr", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeMinFlavorCount(self, request):
-        """DescribeMinFlavorCount
-        :param request: Request instance for DescribeMinFlavorCount.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeMinFlavorCountRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeMinFlavorCount", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeProjectMaxNum(self, request):
-        """查询项目制最大数量限制
-        :param request: Request instance for DescribeProjectMaxNum.
-        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeProjectMaxNumRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeProjectMaxNum", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body

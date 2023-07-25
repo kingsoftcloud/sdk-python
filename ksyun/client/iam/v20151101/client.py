@@ -123,6 +123,29 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DetachUserPolicy(self, request):
+        """解绑IAM用户策略
+        :param request: Request instance for DetachUserPolicy.
+        :type request: :class:`ksyun.client.iam.v20151101.models.DetachUserPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DetachUserPolicy", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ListAttachedUserPolicies(self, request):
         """查询用户附加策略列表
         :param request: Request instance for ListAttachedUserPolicies.
@@ -1281,6 +1304,52 @@ class IamClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call("ListAllUserAccessKeys", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def InsertInstanceToES(self, request):
+        """非标实例插入es
+        :param request: Request instance for InsertInstanceToES.
+        :type request: :class:`ksyun.client.iam.v20151101.models.InsertInstanceToESRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("InsertInstanceToES", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DelInstanceFromES(self, request):
+        """删除非标实例
+        :param request: Request instance for DelInstanceFromES.
+        :type request: :class:`ksyun.client.iam.v20151101.models.DelInstanceFromESRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DelInstanceFromES", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body

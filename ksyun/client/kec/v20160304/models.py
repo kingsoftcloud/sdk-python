@@ -967,6 +967,27 @@ class CreateDedicatedHostsRequest(AbstractModel):
             self.Tag = params.get("Tag")
 
 
+class DeleteDedicatedHostRequest(AbstractModel):
+    """DeleteDedicatedHost请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除专属宿主机
+        :param DedicatedHostId: 专属宿主机id
+        :type PathPrefix: Filter
+        :param IsRefund: 是否退订(默认true）
+        :type PathPrefix: Boolean
+        """
+        self.DedicatedHostId = None
+        self.IsRefund = None
+
+    def _deserialize(self, params):
+        if params.get("DedicatedHostId"):
+            self.DedicatedHostId = params.get("DedicatedHostId")
+        if params.get("IsRefund"):
+            self.IsRefund = params.get("IsRefund")
+
+
 class RenameDedicatedHostRequest(AbstractModel):
     """RenameDedicatedHost请求参数结构体
     """
@@ -2101,6 +2122,35 @@ share，cancel；share为共享，cancel为取消共享
             self.Permission = params.get("Permission")
 
 
+class DescribeImageSharePermissionRequest(AbstractModel):
+    """DescribeImageSharePermission请求参数结构体
+    """
+
+    def __init__(self):
+        r"""镜像共享的账户列表
+        :param ImageId: 共享的镜像ID。
+标准UUID格式，形如^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+
+
+class DescribeRegionsRequest(AbstractModel):
+    """DescribeRegions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""用户有权限机房
+        """
+
+    def _deserialize(self, params):
+        return
+
+
 class AttachKeyRequest(AbstractModel):
     """AttachKey请求参数结构体
     """
@@ -2155,6 +2205,18 @@ class DetachKeyRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
+
+
+class DescribeAvailabilityZonesRequest(AbstractModel):
+    """DescribeAvailabilityZones请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询可用区列表
+        """
+
+    def _deserialize(self, params):
+        return
 
 
 class DescribeInstanceTypeConfigsRequest(AbstractModel):
@@ -2697,6 +2759,37 @@ class ModifyDedicatedClusterNameRequest(AbstractModel):
             self.DedicatedClusterName = params.get("DedicatedClusterName")
 
 
+class InstanceMigrateRequest(AbstractModel):
+    """InstanceMigrate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""专属虚机迁移
+        :param DedicatedHostId: 专属宿主机id
+        :type PathPrefix: String
+        :param InstanceId: 虚拟机ID
+        :type PathPrefix: String
+        :param InstanceType: 套餐类型
+        :type PathPrefix: String
+        :param DataDisk: 数据盘id
+        :type PathPrefix: Filter
+        """
+        self.DedicatedHostId = None
+        self.InstanceId = None
+        self.InstanceType = None
+        self.DataDisk = None
+
+    def _deserialize(self, params):
+        if params.get("DedicatedHostId"):
+            self.DedicatedHostId = params.get("DedicatedHostId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("InstanceType"):
+            self.InstanceType = params.get("InstanceType")
+        if params.get("DataDisk"):
+            self.DataDisk = params.get("DataDisk")
+
+
 class ModifyInstanceAutoDeleteTimeRequest(AbstractModel):
     """ModifyInstanceAutoDeleteTime请求参数结构体
     """
@@ -3108,5 +3201,17 @@ class CancelPreMigrateInstanceRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
+
+
+class DescribeMinFlavorCountRequest(AbstractModel):
+    """DescribeMinFlavorCount请求参数结构体
+    """
+
+    def __init__(self):
+        r"""DescribeMinFlavorCount
+        """
+
+    def _deserialize(self, params):
+        return
 
 

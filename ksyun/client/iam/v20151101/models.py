@@ -170,6 +170,28 @@ class DeleteUserRequest(AbstractModel):
             self.UserName = params.get("UserName")
 
 
+class DetachUserPolicyRequest(AbstractModel):
+    """DetachUserPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""解绑IAM用户策略
+        :param PolicyKrn: 需要解绑的策略的krn标识
+格式：krn:ksc:iam::account-id:policy/policy-name
+        :type PathPrefix: String
+        :param UserName: 需要解绑的策略的目标用户名
+        :type PathPrefix: String
+        """
+        self.PolicyKrn = None
+        self.UserName = None
+
+    def _deserialize(self, params):
+        if params.get("PolicyKrn"):
+            self.PolicyKrn = params.get("PolicyKrn")
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+
+
 class ListAttachedUserPoliciesRequest(AbstractModel):
     """ListAttachedUserPolicies请求参数结构体
     """
@@ -511,12 +533,17 @@ class GetLoginProfileRequest(AbstractModel):
         r"""查询登录配置信息
         :param UserName: 要查询的IAM子用户名称
         :type PathPrefix: String
+        :param NotCheckPassword: 
+        :type PathPrefix: Int
         """
         self.UserName = None
+        self.NotCheckPassword = None
 
     def _deserialize(self, params):
         if params.get("UserName"):
             self.UserName = params.get("UserName")
+        if params.get("NotCheckPassword"):
+            self.NotCheckPassword = params.get("NotCheckPassword")
 
 
 class CreateAccessKeyRequest(AbstractModel):
@@ -1321,5 +1348,72 @@ class ListAllUserAccessKeysRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+
+class InsertInstanceToESRequest(AbstractModel):
+    """InsertInstanceToES请求参数结构体
+    """
+
+    def __init__(self):
+        r"""非标实例插入es
+        :param ProjectId: 
+        :type PathPrefix: Int
+        :param ProductLine: 
+        :type PathPrefix: String
+        :param ProductGroup: 
+        :type PathPrefix: Int
+        :param ResourceType: 
+        :type PathPrefix: String
+        :param InstanceId: 
+        :type PathPrefix: String
+        :param RegionEn: 
+        :type PathPrefix: String
+        :param InstanceName: 
+        :type PathPrefix: String
+        """
+        self.ProjectId = None
+        self.ProductLine = None
+        self.ProductGroup = None
+        self.ResourceType = None
+        self.InstanceId = None
+        self.RegionEn = None
+        self.InstanceName = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ProductLine"):
+            self.ProductLine = params.get("ProductLine")
+        if params.get("ProductGroup"):
+            self.ProductGroup = params.get("ProductGroup")
+        if params.get("ResourceType"):
+            self.ResourceType = params.get("ResourceType")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("RegionEn"):
+            self.RegionEn = params.get("RegionEn")
+        if params.get("InstanceName"):
+            self.InstanceName = params.get("InstanceName")
+
+
+class DelInstanceFromESRequest(AbstractModel):
+    """DelInstanceFromES请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除非标实例
+        :param ProductLine: 
+        :type PathPrefix: String
+        :param InstanceId: 
+        :type PathPrefix: String
+        """
+        self.ProductLine = None
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("ProductLine"):
+            self.ProductLine = params.get("ProductLine")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
 
 

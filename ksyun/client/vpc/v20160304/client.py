@@ -1894,3 +1894,118 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeVpnGatewayRoutes(self, request):
+        """查询VPN网关路由
+        :param request: Request instance for DescribeVpnGatewayRoutes.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeVpnGatewayRoutesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DescribeVpnGatewayRoutes", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateVpnGatewayRoute(self, request):
+        """创建VPN网关下的路由
+        :param request: Request instance for CreateVpnGatewayRoute.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateVpnGatewayRouteRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("CreateVpnGatewayRoute", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteVpnGatewayRoute(self, request):
+        """删除VPN网关下的路由
+        :param request: Request instance for DeleteVpnGatewayRoute.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteVpnGatewayRouteRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DeleteVpnGatewayRoute", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeVpnTunnelIpsecStatus(self, request):
+        """查询VPN通道ipsec status状态
+        :param request: Request instance for DescribeVpnTunnelIpsecStatus.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeVpnTunnelIpsecStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("DescribeVpnTunnelIpsecStatus", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def QueryNatTopVifMonitor(self, request):
+        """查询NAT下流量排名的TOP 50的网卡
+        :param request: Request instance for QueryNatTopVifMonitor.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.QueryNatTopVifMonitorRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("QueryNatTopVifMonitor", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

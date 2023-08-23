@@ -2258,3 +2258,143 @@ class UnassignPrivateIpAddressRequest(AbstractModel):
             self.PrivateIpAddress = params.get("PrivateIpAddress")
 
 
+class DescribeVpnGatewayRoutesRequest(AbstractModel):
+    """DescribeVpnGatewayRoutes请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询VPN网关路由
+        :param vpnGatewayId: VPN网关id
+        :type PathPrefix: String
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param maxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param nextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.vpnGatewayId = None
+        self.Filter = None
+        self.maxResults = None
+        self.nextToken = None
+
+    def _deserialize(self, params):
+        if params.get("vpnGatewayId"):
+            self.vpnGatewayId = params.get("vpnGatewayId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("maxResults"):
+            self.maxResults = params.get("maxResults")
+        if params.get("nextToken"):
+            self.nextToken = params.get("nextToken")
+
+
+class CreateVpnGatewayRouteRequest(AbstractModel):
+    """CreateVpnGatewayRoute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建VPN网关下的路由
+        :param VpnGatewayId: VPN网关id
+        :type PathPrefix: String
+        :param DestinationCidrBlock: 目标网段
+        :type PathPrefix: String
+        :param NextHopType: 下一条类型(vpn_tunnel|vpc)
+        :type PathPrefix: String
+        :param NextHopInstanceId: 下一跳的实例id
+        :type PathPrefix: String
+        """
+        self.VpnGatewayId = None
+        self.DestinationCidrBlock = None
+        self.NextHopType = None
+        self.NextHopInstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("VpnGatewayId"):
+            self.VpnGatewayId = params.get("VpnGatewayId")
+        if params.get("DestinationCidrBlock"):
+            self.DestinationCidrBlock = params.get("DestinationCidrBlock")
+        if params.get("NextHopType"):
+            self.NextHopType = params.get("NextHopType")
+        if params.get("NextHopInstanceId"):
+            self.NextHopInstanceId = params.get("NextHopInstanceId")
+
+
+class DeleteVpnGatewayRouteRequest(AbstractModel):
+    """DeleteVpnGatewayRoute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除VPN网关下的路由
+        :param VpnGatewayRouteId: VPN网关路由id
+        :type PathPrefix: String
+        """
+        self.VpnGatewayRouteId = None
+
+    def _deserialize(self, params):
+        if params.get("VpnGatewayRouteId"):
+            self.VpnGatewayRouteId = params.get("VpnGatewayRouteId")
+
+
+class DescribeVpnTunnelIpsecStatusRequest(AbstractModel):
+    """DescribeVpnTunnelIpsecStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询VPN通道ipsec status状态
+        :param IsMaster: 是否是主备机状态(1-隧道1的状态,0-隧道2的状态)
+        :type PathPrefix: Int
+        :param VpnTunnelId: 多个Vpn通道的ID
+        :type PathPrefix: Filter
+        """
+        self.IsMaster = None
+        self.VpnTunnelId = None
+
+    def _deserialize(self, params):
+        if params.get("IsMaster"):
+            self.IsMaster = params.get("IsMaster")
+        if params.get("VpnTunnelId"):
+            self.VpnTunnelId = params.get("VpnTunnelId")
+
+
+class QueryNatTopVifMonitorRequest(AbstractModel):
+    """QueryNatTopVifMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询NAT下流量排名的TOP 50的网卡
+        :param natId: Nat的ID
+        :type PathPrefix: String
+        :param startTime: 开始时间，时间格式例如:2023-08-08T18:00:00
+        :type PathPrefix: String
+        :param endTime: 结束时间，时间格式例如：2023-08-08T18:08:00
+        :type PathPrefix: String
+        :param sortType: 排序类型，只能传入两种：OUT/IN
+        :type PathPrefix: String
+        :param instanceType: 实例类型，只包含两种：kec/epc
+        :type PathPrefix: String
+        :param ip: 筛选ip
+        :type PathPrefix: String
+        """
+        self.natId = None
+        self.startTime = None
+        self.endTime = None
+        self.sortType = None
+        self.instanceType = None
+        self.ip = None
+
+    def _deserialize(self, params):
+        if params.get("natId"):
+            self.natId = params.get("natId")
+        if params.get("startTime"):
+            self.startTime = params.get("startTime")
+        if params.get("endTime"):
+            self.endTime = params.get("endTime")
+        if params.get("sortType"):
+            self.sortType = params.get("sortType")
+        if params.get("instanceType"):
+            self.instanceType = params.get("instanceType")
+        if params.get("ip"):
+            self.ip = params.get("ip")
+
+

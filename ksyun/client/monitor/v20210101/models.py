@@ -128,7 +128,7 @@ class DeleteAlarmReceivesRequest(AbstractModel):
     def __init__(self):
         r"""删除告警策略关联的接收人
         :param PolicyId: 告警策略ID，详见[查询告警策略](https://docs.ksyun.com/documents/40346)
-        :type PathPrefix: String
+        :type PathPrefix: Int
         :param ContactFlag: 告警联系人类型。取值：
 - 1: 联系组
 - 2: 联系人
@@ -184,39 +184,26 @@ class GetAlertUserRequest(AbstractModel):
             self.UserGrpId = params.get("UserGrpId")
 
 
-class ListMetricsRequest(AbstractModel):
-    """ListMetrics请求参数结构体
+class UpdateAlertUserStatusRequest(AbstractModel):
+    """UpdateAlertUserStatus请求参数结构体
     """
 
     def __init__(self):
-        r"""获取指标接口
-        :param Namespace: 表示一类云产品，指定命名空间。
-        :type PathPrefix: String
-        :param InstanceID: 监控实例的ID
-        :type PathPrefix: String
-        :param MetricName: 监控项名称，传入该参数将返回对应监控项的详细信息。
-        :type PathPrefix: String
-        :param PageIndex: 返回列表的分页索引
-        :type PathPrefix: Int
-        :param PageSize: 返回列表显示的对象数量
+        r"""启用或禁用联系人
+        :param UserId: 联系人ID，支持多个。
+        :type PathPrefix: Array
+        :param UserStatus: 告警联系人状态。取值：
+- 1：启用
+- 2：禁用
         :type PathPrefix: Int
         """
-        self.Namespace = None
-        self.InstanceID = None
-        self.MetricName = None
-        self.PageIndex = None
-        self.PageSize = None
+        self.UserId = None
+        self.UserStatus = None
 
     def _deserialize(self, params):
-        if params.get("Namespace"):
-            self.Namespace = params.get("Namespace")
-        if params.get("InstanceID"):
-            self.InstanceID = params.get("InstanceID")
-        if params.get("MetricName"):
-            self.MetricName = params.get("MetricName")
-        if params.get("PageIndex"):
-            self.PageIndex = params.get("PageIndex")
-        if params.get("PageSize"):
-            self.PageSize = params.get("PageSize")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("UserStatus"):
+            self.UserStatus = params.get("UserStatus")
 
 

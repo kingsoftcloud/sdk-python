@@ -47,3 +47,41 @@ class GetMetricStatisticsRequest(AbstractModel):
             self.Period = params.get("Period")
 
 
+class ListMetricsRequest(AbstractModel):
+    """ListMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看实例对应的监控指标
+        :param Namespace: 表示一类云产品，指定命名空间。
+        :type PathPrefix: String
+        :param InstanceID: 实例ID。
+        :type PathPrefix: String
+        :param MetricName: 监控项。
+        :type PathPrefix: String
+        :param PageIndex: 页号，起始值：1
+        :type PathPrefix: Int
+        :param PageSize: 分页时每页显示的数据行数。
+
+> 默认值：获取实例下所有监控项
+        :type PathPrefix: Int
+        """
+        self.Namespace = None
+        self.InstanceID = None
+        self.MetricName = None
+        self.PageIndex = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("InstanceID"):
+            self.InstanceID = params.get("InstanceID")
+        if params.get("MetricName"):
+            self.MetricName = params.get("MetricName")
+        if params.get("PageIndex"):
+            self.PageIndex = params.get("PageIndex")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+

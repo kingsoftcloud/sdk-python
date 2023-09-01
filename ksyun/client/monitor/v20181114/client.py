@@ -9,7 +9,7 @@ class MonitorClient(AbstractClient):
     _endpoint = 'monitor.api.ksyun.com'
     _service = 'monitor'
     def GetMetricStatisticsBatch(self, request):
-        """批量获取监控数据V2
+        """批量获取监控数据
         :param request: Request instance for GetMetricStatisticsBatch.
         :type request: :class:`ksyun.client.monitor.v20181114.models.GetMetricStatisticsBatchRequest`
         """

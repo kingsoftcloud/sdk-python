@@ -192,14 +192,14 @@ class MonitorClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def ListMetrics(self, request):
-        """获取指标接口
-        :param request: Request instance for ListMetrics.
-        :type request: :class:`ksyun.client.monitor.v20210101.models.ListMetricsRequest`
+    def UpdateAlertUserStatus(self, request):
+        """启用或禁用联系人
+        :param request: Request instance for UpdateAlertUserStatus.
+        :type request: :class:`ksyun.client.monitor.v20210101.models.UpdateAlertUserStatusRequest`
         """
         try:
             params = request._serialize()
-            body = self.call("ListMetrics", params)
+            body = self.call("UpdateAlertUserStatus", params)
             response = json.loads(body)
             if "Error" not in response:
                 return body

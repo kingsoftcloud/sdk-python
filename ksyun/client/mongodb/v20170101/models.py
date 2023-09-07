@@ -206,12 +206,17 @@ class DescribeMongoDBInstanceNodeRequest(AbstractModel):
         r"""查询副本集实例节点信息
         :param InstanceId: 实例ID。
         :type PathPrefix: String
+        :param NodeId: 分片集群的shard节点的ID。暂不支持批量查询。
+        :type PathPrefix: String
         """
         self.InstanceId = None
+        self.NodeId = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
+        if params.get("NodeId"):
+            self.NodeId = params.get("NodeId")
 
 
 class RenameMongoDBInstanceRequest(AbstractModel):
@@ -1025,5 +1030,26 @@ class UpdateMongoDBInstanceClusterRequest(AbstractModel):
             self.NodeId = params.get("NodeId")
         if params.get("Storage"):
             self.Storage = params.get("Storage")
+
+
+class DescribeClusterForRestoreRequest(AbstractModel):
+    """DescribeClusterForRestore请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询分片集群可恢复配置
+        :param InstanceId: MongoDB分片集群实例ID。
+        :type PathPrefix: String
+        :param ResetTimePoint: 恢复时间点。
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.ResetTimePoint = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ResetTimePoint"):
+            self.ResetTimePoint = params.get("ResetTimePoint")
 
 

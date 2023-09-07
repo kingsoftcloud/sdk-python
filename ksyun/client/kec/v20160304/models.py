@@ -100,7 +100,7 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param NetworkInterface: 辅网卡
         :type PathPrefix: Filter
-        :param Userdata: 用户自定义数据
+        :param UserData: 用户自定义数据
         :type PathPrefix: String
         :param SystemDisk.DiskType: 系统盘类型
         :type PathPrefix: String
@@ -114,6 +114,16 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param AutoCreateEbs: 整机镜像是否展开镜像中的数据盘
         :type PathPrefix: Boolean
+        :param LineId: 弹性IP的链路类型的ID 
+        :type PathPrefix: String
+        :param AddressBandWidth: 弹性IP的带宽，1，如果购买EIP，AddressBandWidth、LineId、AddressChargeType三个接口参数必须同时存在，如有其中任意一个接口参数，判断是否存在其他两个参数；2，如果选择预付费计费方式，必须有购买时长参数； |
+        :type PathPrefix: Int
+        :param AddressChargeType: PrePaidByMonth ：包年包月，有到期时间，只能升带宽；PostPaidByPeak：按峰值月结，无到期时间，可升降带宽；PostPaidByDay：按日月结，无到期时间，可升降带宽；PostPaidByTransfer：按流量月结，无到期时间，可升降带宽；PostPaidByHour：按小时月结，无到期时间，可升降带宽
+        :type PathPrefix: String
+        :param AddressProjectId: 弹性IP项目的ID,默认值为0
+        :type PathPrefix: String
+        :param AddressPurchaseTime: 购买时长
+        :type PathPrefix: Int
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -134,13 +144,18 @@ class RunInstancesRequest(AbstractModel):
         self.ProjectId = None
         self.DataDisk = None
         self.NetworkInterface = None
-        self.Userdata = None
+        self.UserData = None
         self.SystemDisk.DiskType = None
         self.SystemDisk.DiskSize = None
         self.ModelId = None
         self.ModelVersion = None
         self.AssembledImageDataDiskType = None
         self.AutoCreateEbs = None
+        self.LineId = None
+        self.AddressBandWidth = None
+        self.AddressChargeType = None
+        self.AddressProjectId = None
+        self.AddressPurchaseTime = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -181,8 +196,8 @@ class RunInstancesRequest(AbstractModel):
             self.DataDisk = params.get("DataDisk")
         if params.get("NetworkInterface"):
             self.NetworkInterface = params.get("NetworkInterface")
-        if params.get("Userdata"):
-            self.Userdata = params.get("Userdata")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
         if params.get("SystemDisk.DiskType"):
             self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.DiskSize"):
@@ -195,6 +210,16 @@ class RunInstancesRequest(AbstractModel):
             self.AssembledImageDataDiskType = params.get("AssembledImageDataDiskType")
         if params.get("AutoCreateEbs"):
             self.AutoCreateEbs = params.get("AutoCreateEbs")
+        if params.get("LineId"):
+            self.LineId = params.get("LineId")
+        if params.get("AddressBandWidth"):
+            self.AddressBandWidth = params.get("AddressBandWidth")
+        if params.get("AddressChargeType"):
+            self.AddressChargeType = params.get("AddressChargeType")
+        if params.get("AddressProjectId"):
+            self.AddressProjectId = params.get("AddressProjectId")
+        if params.get("AddressPurchaseTime"):
+            self.AddressPurchaseTime = params.get("AddressPurchaseTime")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -338,6 +363,9 @@ true/false
         :type PathPrefix: Int
         :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
         :type PathPrefix: String
+        :param InstantAccess: 	
+支持快速开盘/快速变更，该参数仅对本地盘/本地盘机型/本地盘快照生效
+        :type PathPrefix: Boolean
         """
         self.InstanceId = None
         self.InstanceType = None
@@ -351,6 +379,7 @@ true/false
         self.AutoRestart = None
         self.SystemDisk.DiskSize = None
         self.SystemDisk.ResizeType = None
+        self.InstantAccess = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -377,6 +406,8 @@ true/false
             self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("SystemDisk.ResizeType"):
             self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+        if params.get("InstantAccess"):
+            self.InstantAccess = params.get("InstantAccess")
 
 
 class TerminateInstancesRequest(AbstractModel):
@@ -538,12 +569,15 @@ LocalImage 和 CommonImage
         :param SnapshotIds: 实例需要制作镜像的快照ID，里面必须包含一个系统盘快照ID。
 标准UUID格式，形如[2]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
         :type PathPrefix: Filter
+        :param InstantAccess: 支持快速开盘/快速变更，该参数仅对本地盘/本地盘机型/本地盘快照生效
+        :type PathPrefix: Boolean
         """
         self.InstanceId = None
         self.Name = None
         self.Type = None
         self.DataDiskIds = None
         self.SnapshotIds = None
+        self.InstantAccess = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -556,6 +590,8 @@ LocalImage 和 CommonImage
             self.DataDiskIds = params.get("DataDiskIds")
         if params.get("SnapshotIds"):
             self.SnapshotIds = params.get("SnapshotIds")
+        if params.get("InstantAccess"):
+            self.InstantAccess = params.get("InstantAccess")
 
 
 class RemoveImagesRequest(AbstractModel):
@@ -728,10 +764,13 @@ class CreateLocalVolumeSnapshotRequest(AbstractModel):
         :type PathPrefix: String
         :param LocalVolumeSnapshotDesc: 快照详情描述。
         :type PathPrefix: String
+        :param InstantAccess: 支持快速开盘/快速变更，该参数仅对本地盘/本地盘机型/本地盘快照生效
+        :type PathPrefix: Boolean
         """
         self.LocalVolumeId = None
         self.LocalVolumeSnapshotName = None
         self.LocalVolumeSnapshotDesc = None
+        self.InstantAccess = None
 
     def _deserialize(self, params):
         if params.get("LocalVolumeId"):
@@ -740,6 +779,8 @@ class CreateLocalVolumeSnapshotRequest(AbstractModel):
             self.LocalVolumeSnapshotName = params.get("LocalVolumeSnapshotName")
         if params.get("LocalVolumeSnapshotDesc"):
             self.LocalVolumeSnapshotDesc = params.get("LocalVolumeSnapshotDesc")
+        if params.get("InstantAccess"):
+            self.InstantAccess = params.get("InstantAccess")
 
 
 class DescribeLocalVolumeSnapshotsRequest(AbstractModel):
@@ -3170,11 +3211,14 @@ class PreMigrateInstanceRequest(AbstractModel):
 
 有效值：SSD3.0，EHDD
         :type PathPrefix: String
+        :param InstantAccess: 支持快速开盘/快速变更，该参数仅对本地盘/本地盘机型/本地盘快照生效
+        :type PathPrefix: Boolean
         """
         self.InstanceId = None
         self.InstanceType = None
         self.SystemDiskType = None
         self.DataDiskType = None
+        self.InstantAccess = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -3185,6 +3229,8 @@ class PreMigrateInstanceRequest(AbstractModel):
             self.SystemDiskType = params.get("SystemDiskType")
         if params.get("DataDiskType"):
             self.DataDiskType = params.get("DataDiskType")
+        if params.get("InstantAccess"):
+            self.InstantAccess = params.get("InstantAccess")
 
 
 class CancelPreMigrateInstanceRequest(AbstractModel):
@@ -3213,5 +3259,21 @@ class DescribeMinFlavorCountRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+
+class GetVNCAddressRequest(AbstractModel):
+    """GetVNCAddress请求参数结构体
+    """
+
+    def __init__(self):
+        r"""OpenAPI获取浏览器可用的VNC地址
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
 
 

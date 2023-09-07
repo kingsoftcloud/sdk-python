@@ -2216,3 +2216,26 @@ class KecClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def GetVNCAddress(self, request):
+        """OpenAPI获取浏览器可用的VNC地址
+        :param request: Request instance for GetVNCAddress.
+        :type request: :class:`ksyun.client.kec.v20160304.models.GetVNCAddressRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call("GetVNCAddress", params)
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

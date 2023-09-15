@@ -219,7 +219,7 @@ class ModifyInstancesWithListenerRequest(AbstractModel):
 
     def __init__(self):
         r"""修改真实服务器信息
-        :param RegisterId: 绑定服务器组的注册ID
+        :param RegisterId: 后端服务器的ID
         :type PathPrefix: String
         :param Weight: 实例的权重
         :type PathPrefix: Int
@@ -307,7 +307,7 @@ class DeregisterInstancesFromListenerRequest(AbstractModel):
 
     def __init__(self):
         r"""解绑真实服务器
-        :param RegisterId: 绑定服务器组的注册ID
+        :param RegisterId: 后端服务器的ID
         :type PathPrefix: String
         """
         self.RegisterId = None
@@ -323,7 +323,7 @@ class DescribeInstancesWithListenerRequest(AbstractModel):
 
     def __init__(self):
         r"""描述监听器中的真实服务器
-        :param RegisterId: 多个绑定服务器组的注册ID
+        :param RegisterId: 多个后端服务器的ID
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
@@ -1637,5 +1637,52 @@ class RemovePrivateLinkRequest(AbstractModel):
             self.PrivateLinkServerId = params.get("PrivateLinkServerId")
         if params.get("PrivateLinkId"):
             self.PrivateLinkId = params.get("PrivateLinkId")
+
+
+class SetEnableAlbAccessLogRequest(AbstractModel):
+    """SetEnableAlbAccessLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""SetEnableAlbAccessLog
+        :param AlbId: 应用型负载均衡的ID
+        :type PathPrefix: String
+        :param EnabledLog: 是否开启日志服务
+        :type PathPrefix: Boolean
+        """
+        self.AlbId = None
+        self.EnabledLog = None
+
+    def _deserialize(self, params):
+        if params.get("AlbId"):
+            self.AlbId = params.get("AlbId")
+        if params.get("EnabledLog"):
+            self.EnabledLog = params.get("EnabledLog")
+
+
+class SetAlbAccessLogRequest(AbstractModel):
+    """SetAlbAccessLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""SetAlbAccessLog
+        :param AlbId: 应用型负载均衡的ID
+        :type PathPrefix: String
+        :param ProjectName: 访问日志投递的日志库
+        :type PathPrefix: String
+        :param LogpoolName: 访问日志投递的日志池
+        :type PathPrefix: String
+        """
+        self.AlbId = None
+        self.ProjectName = None
+        self.LogpoolName = None
+
+    def _deserialize(self, params):
+        if params.get("AlbId"):
+            self.AlbId = params.get("AlbId")
+        if params.get("ProjectName"):
+            self.ProjectName = params.get("ProjectName")
+        if params.get("LogpoolName"):
+            self.LogpoolName = params.get("LogpoolName")
 
 

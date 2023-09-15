@@ -15,7 +15,7 @@ class KadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateForwardConf", params)
+            body = self.call_judge("CreateForwardConf", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class KadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteForwardConf", params)
+            body = self.call_judge("DeleteForwardConf", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class KadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeForwardConf", params)
+            body = self.call_judge("DescribeForwardConf", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class KadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateForwardSource", params)
+            body = self.call_judge("CreateForwardSource", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class KadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteForwardSource", params)
+            body = self.call_judge("DeleteForwardSource", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class KadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeForwardSource", params)
+            body = self.call_judge("DescribeForwardSource", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

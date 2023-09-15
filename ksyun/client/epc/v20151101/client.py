@@ -15,7 +15,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateEpc", params)
+            body = self.call_judge("CreateEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("StartEpc", params)
+            body = self.call_judge("StartEpc", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RebootEpc", params)
+            body = self.call_judge("RebootEpc", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteEpc", params)
+            body = self.call_judge("DeleteEpc", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ReinstallEpc", params)
+            body = self.call_judge("ReinstallEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,53 +130,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifySecurityGroup", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def ImportKey(self, request):
-        """ImportKey
-        :param request: Request instance for ImportKey.
-        :type request: :class:`ksyun.client.epc.v20151101.models.ImportKeyRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("ImportKey", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DeleteKey(self, request):
-        """DeleteKey
-        :param request: Request instance for DeleteKey.
-        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteKeyRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DeleteKey", params)
+            body = self.call_judge("ModifySecurityGroup", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,30 +153,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateKey", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeKeys(self, request):
-        """DescribeKeys
-        :param request: Request instance for DescribeKeys.
-        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeKeysRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("DescribeKeys", params)
+            body = self.call_judge("CreateKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +176,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEpcs", params)
+            body = self.call_judge("DescribeEpcs", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +199,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetDynamicCode", params)
+            body = self.call_judge("GetDynamicCode", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +222,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpns", params)
+            body = self.call_judge("DescribeVpns", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +245,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateImage", params)
+            body = self.call_judge("CreateImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +268,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyImage", params)
+            body = self.call_judge("ModifyImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +291,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteImage", params)
+            body = self.call_judge("DeleteImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +314,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeImages", params)
+            body = self.call_judge("DescribeImages", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +337,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyDns", params)
+            body = self.call_judge("ModifyDns", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +360,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyNetworkInterfaceAttribute", params)
+            body = self.call_judge("ModifyNetworkInterfaceAttribute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +383,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribePhysicalMonitor", params)
+            body = self.call_judge("DescribePhysicalMonitor", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +406,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEpcManagements", params)
+            body = self.call_judge("DescribeEpcManagements", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +429,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeRemoteManagements", params)
+            body = self.call_judge("DescribeRemoteManagements", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +452,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("StopEpc", params)
+            body = self.call_judge("StopEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +475,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyEpc", params)
+            body = self.call_judge("ModifyEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +498,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyRemoteManagement", params)
+            body = self.call_judge("ModifyRemoteManagement", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -590,7 +521,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateRemoteManagement", params)
+            body = self.call_judge("CreateRemoteManagement", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -613,7 +544,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ReinstallCustomerEpc", params)
+            body = self.call_judge("ReinstallCustomerEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +567,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteRemoteManagement", params)
+            body = self.call_judge("DeleteRemoteManagement", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -659,7 +590,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ResetPassword", params)
+            body = self.call_judge("ResetPassword", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +613,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyHyperThreading", params)
+            body = self.call_judge("ModifyHyperThreading", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +636,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateCluster", params)
+            body = self.call_judge("AssociateCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +659,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisassociateCluster", params)
+            body = self.call_judge("DisassociateCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,7 +682,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInspections", params)
+            body = self.call_judge("DescribeInspections", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -774,7 +705,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEpcStocks", params)
+            body = self.call_judge("DescribeEpcStocks", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -797,7 +728,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEpcDeviceAttributes", params)
+            body = self.call_judge("DescribeEpcDeviceAttributes", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -820,7 +751,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeProcesses", params)
+            body = self.call_judge("DescribeProcesses", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -843,7 +774,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateProcess", params)
+            body = self.call_judge("CreateProcess", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -866,7 +797,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteProcess", params)
+            body = self.call_judge("DeleteProcess", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -889,7 +820,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ReplyProcess", params)
+            body = self.call_judge("ReplyProcess", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -912,7 +843,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEpcTrashes", params)
+            body = self.call_judge("DescribeEpcTrashes", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -935,7 +866,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ReturnEpc", params)
+            body = self.call_judge("ReturnEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -958,7 +889,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateResourceRequirement", params)
+            body = self.call_judge("CreateResourceRequirement", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -981,7 +912,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachVolume", params)
+            body = self.call_judge("AttachVolume", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1004,7 +935,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachVolume", params)
+            body = self.call_judge("DetachVolume", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1027,7 +958,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribePrice", params)
+            body = self.call_judge("DescribePrice", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1050,7 +981,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyOverclockingAttribute", params)
+            body = self.call_judge("ModifyOverclockingAttribute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1073,7 +1004,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CopyImage", params)
+            body = self.call_judge("CopyImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1096,7 +1027,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEpcRaidAttributes", params)
+            body = self.call_judge("DescribeEpcRaidAttributes", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1119,7 +1050,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeGpuImageDriver", params)
+            body = self.call_judge("DescribeGpuImageDriver", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1142,7 +1073,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateShareImage", params)
+            body = self.call_judge("CreateShareImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1165,7 +1096,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteShareImage", params)
+            body = self.call_judge("DeleteShareImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1188,7 +1119,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeShareImageAccountList", params)
+            body = self.call_judge("DescribeShareImageAccountList", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1211,7 +1142,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeShareImage", params)
+            body = self.call_judge("DescribeShareImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1234,7 +1165,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AcceptShareImage", params)
+            body = self.call_judge("AcceptShareImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1257,7 +1188,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RejectShareImage", params)
+            body = self.call_judge("RejectShareImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

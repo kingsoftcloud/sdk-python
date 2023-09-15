@@ -124,6 +124,8 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param AddressPurchaseTime: 购买时长
         :type PathPrefix: Int
+        :param KeyId: 秘钥ID
+        :type PathPrefix: Filter
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -156,6 +158,7 @@ class RunInstancesRequest(AbstractModel):
         self.AddressChargeType = None
         self.AddressProjectId = None
         self.AddressPurchaseTime = None
+        self.KeyId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -220,6 +223,8 @@ class RunInstancesRequest(AbstractModel):
             self.AddressProjectId = params.get("AddressProjectId")
         if params.get("AddressPurchaseTime"):
             self.AddressPurchaseTime = params.get("AddressPurchaseTime")
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -3255,10 +3260,14 @@ class DescribeMinFlavorCountRequest(AbstractModel):
 
     def __init__(self):
         r"""DescribeMinFlavorCount
+        :param ProductType: 商品类型id
+        :type PathPrefix: Int
         """
+        self.ProductType = None
 
     def _deserialize(self, params):
-        return
+        if params.get("ProductType"):
+            self.ProductType = params.get("ProductType")
 
 
 class GetVNCAddressRequest(AbstractModel):

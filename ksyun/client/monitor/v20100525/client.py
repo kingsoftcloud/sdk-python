@@ -15,7 +15,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetMetricStatistics", params)
+            body = self.call_judge("GetMetricStatistics", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListMetrics", params)
+            body = self.call_judge("ListMetrics", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

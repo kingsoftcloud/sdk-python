@@ -15,7 +15,7 @@ class BillClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetMonthBill", params)
+            body = self.call_judge("GetMonthBill", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,30 +38,7 @@ class BillClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetPostpayDetailBill", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def GetPostpayDetailBillCSV(self, request):
-        """导出账单明细
-        :param request: Request instance for GetPostpayDetailBillCSV.
-        :type request: :class:`ksyun.client.bill.v20180601.models.GetPostpayDetailBillCSVRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("GetPostpayDetailBillCSV", params)
+            body = self.call_judge("GetPostpayDetailBill", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,53 +61,7 @@ class BillClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetProductCode", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def getMonthConsume(self, request):
-        """获取日耗月账单
-        :param request: Request instance for getMonthConsume.
-        :type request: :class:`ksyun.client.bill.v20180601.models.getMonthConsumeRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("getMonthConsume", params)
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def getPostpayDetailConsume(self, request):
-        """获取日耗账单明细
-        :param request: Request instance for getPostpayDetailConsume.
-        :type request: :class:`ksyun.client.bill.v20180601.models.getPostpayDetailConsumeRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call("getPostpayDetailConsume", params)
+            body = self.call_judge("GetProductCode", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

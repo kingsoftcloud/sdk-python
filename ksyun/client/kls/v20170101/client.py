@@ -15,7 +15,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListStreamDurations", params)
+            body = self.call_judge("ListStreamDurations", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListHistoryPubStreamsErrInfo", params)
+            body = self.call_judge("ListHistoryPubStreamsErrInfo", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListHistoryPubStreamsInfo", params)
+            body = self.call_judge("ListHistoryPubStreamsInfo", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ForbidStream", params)
+            body = self.call_judge("ForbidStream", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ResumeStream", params)
+            body = self.call_judge("ResumeStream", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetBlacklist", params)
+            body = self.call_judge("GetBlacklist", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CheckBlacklist", params)
+            body = self.call_judge("CheckBlacklist", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class KlsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListRealtimeStreamsInfo", params)
+            body = self.call_judge("ListRealtimeStreamsInfo", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

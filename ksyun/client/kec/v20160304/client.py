@@ -15,7 +15,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstances", params)
+            body = self.call_judge("DescribeInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RunInstances", params)
+            body = self.call_judge("RunInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("StartInstances", params)
+            body = self.call_judge("StartInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("StopInstances", params)
+            body = self.call_judge("StopInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RebootInstances", params)
+            body = self.call_judge("RebootInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyInstanceAttribute", params)
+            body = self.call_judge("ModifyInstanceAttribute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyInstanceType", params)
+            body = self.call_judge("ModifyInstanceType", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("TerminateInstances", params)
+            body = self.call_judge("TerminateInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeImages", params)
+            body = self.call_judge("DescribeImages", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyImageAttribute", params)
+            body = self.call_judge("ModifyImageAttribute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyInstanceImage", params)
+            body = self.call_judge("ModifyInstanceImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateImage", params)
+            body = self.call_judge("CreateImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RemoveImages", params)
+            body = self.call_judge("RemoveImages", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyNetworkInterfaceAttribute", params)
+            body = self.call_judge("ModifyNetworkInterfaceAttribute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachNetworkInterface", params)
+            body = self.call_judge("AttachNetworkInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachNetworkInterface", params)
+            body = self.call_judge("DetachNetworkInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeLocalVolumes", params)
+            body = self.call_judge("DescribeLocalVolumes", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateLocalVolumeSnapshot", params)
+            body = self.call_judge("CreateLocalVolumeSnapshot", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeLocalVolumeSnapshots", params)
+            body = self.call_judge("DescribeLocalVolumeSnapshots", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +452,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RollbackLocalVolume", params)
+            body = self.call_judge("RollbackLocalVolume", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +475,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteLocalVolumeSnapshot", params)
+            body = self.call_judge("DeleteLocalVolumeSnapshot", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +498,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyDataGuardGroups", params)
+            body = self.call_judge("ModifyDataGuardGroups", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +521,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDataGuardCapacity", params)
+            body = self.call_judge("DescribeDataGuardCapacity", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +544,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateDataGuardGroup", params)
+            body = self.call_judge("CreateDataGuardGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +567,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteDataGuardGroups", params)
+            body = self.call_judge("DeleteDataGuardGroups", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -590,7 +590,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDataGuardGroup", params)
+            body = self.call_judge("DescribeDataGuardGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -613,7 +613,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RemoveVmFromDataGuard", params)
+            body = self.call_judge("RemoveVmFromDataGuard", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +636,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateDedicatedHosts", params)
+            body = self.call_judge("CreateDedicatedHosts", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -659,7 +659,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteDedicatedHost", params)
+            body = self.call_judge("DeleteDedicatedHost", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +682,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RenameDedicatedHost", params)
+            body = self.call_judge("RenameDedicatedHost", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +705,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDedicatedHosts", params)
+            body = self.call_judge("DescribeDedicatedHosts", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +728,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScalingConfiguration", params)
+            body = self.call_judge("DescribeScalingConfiguration", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,7 +751,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateScalingConfiguration", params)
+            body = self.call_judge("CreateScalingConfiguration", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -774,7 +774,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteScalingConfiguration", params)
+            body = self.call_judge("DeleteScalingConfiguration", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -797,7 +797,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateScalingGroup", params)
+            body = self.call_judge("CreateScalingGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -820,7 +820,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScalingGroup", params)
+            body = self.call_judge("DescribeScalingGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -843,7 +843,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyScalingGroup", params)
+            body = self.call_judge("ModifyScalingGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -866,7 +866,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("SetKvmProtectedDetach", params)
+            body = self.call_judge("SetKvmProtectedDetach", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -889,7 +889,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScalingInstance", params)
+            body = self.call_judge("DescribeScalingInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -912,7 +912,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachInstance", params)
+            body = self.call_judge("AttachInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -935,7 +935,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachInstance", params)
+            body = self.call_judge("DetachInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -958,7 +958,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScalingActivity", params)
+            body = self.call_judge("DescribeScalingActivity", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -981,7 +981,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteScalingGroup", params)
+            body = self.call_judge("DeleteScalingGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1004,7 +1004,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisableScalingGroup", params)
+            body = self.call_judge("DisableScalingGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1027,7 +1027,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("EnableScalingGroup", params)
+            body = self.call_judge("EnableScalingGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1050,7 +1050,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScalingNotification", params)
+            body = self.call_judge("DescribeScalingNotification", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1073,7 +1073,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateScalingNotification", params)
+            body = self.call_judge("CreateScalingNotification", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1096,7 +1096,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyScalingNotification", params)
+            body = self.call_judge("ModifyScalingNotification", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1119,7 +1119,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateScheduledTask", params)
+            body = self.call_judge("CreateScheduledTask", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1142,7 +1142,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScheduledTask", params)
+            body = self.call_judge("DescribeScheduledTask", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1165,7 +1165,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyScheduledTask", params)
+            body = self.call_judge("ModifyScheduledTask", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1188,7 +1188,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteScheduledTask", params)
+            body = self.call_judge("DeleteScheduledTask", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1211,7 +1211,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateScalingPolicy", params)
+            body = self.call_judge("CreateScalingPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1234,7 +1234,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeScalingPolicy", params)
+            body = self.call_judge("DescribeScalingPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1257,7 +1257,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyScalingPolicy", params)
+            body = self.call_judge("ModifyScalingPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1280,7 +1280,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteScalingPolicy", params)
+            body = self.call_judge("DeleteScalingPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1303,7 +1303,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ImportImage", params)
+            body = self.call_judge("ImportImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1326,7 +1326,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CopyImage", params)
+            body = self.call_judge("CopyImage", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1349,7 +1349,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyImageSharePermission", params)
+            body = self.call_judge("ModifyImageSharePermission", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1372,7 +1372,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeImageSharePermission", params)
+            body = self.call_judge("DescribeImageSharePermission", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1395,7 +1395,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeRegions", params)
+            body = self.call_judge("DescribeRegions", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1418,7 +1418,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachKey", params)
+            body = self.call_judge("AttachKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1441,7 +1441,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachKey", params)
+            body = self.call_judge("DetachKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1464,7 +1464,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeAvailabilityZones", params)
+            body = self.call_judge("DescribeAvailabilityZones", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1487,7 +1487,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstanceTypeConfigs", params)
+            body = self.call_judge("DescribeInstanceTypeConfigs", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1510,7 +1510,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstanceFamilys", params)
+            body = self.call_judge("DescribeInstanceFamilys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1533,7 +1533,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddVmIntoDataGuard", params)
+            body = self.call_judge("AddVmIntoDataGuard", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1556,7 +1556,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateFileSystem", params)
+            body = self.call_judge("CreateFileSystem", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1579,7 +1579,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteFileSystem", params)
+            body = self.call_judge("DeleteFileSystem", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1602,7 +1602,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeFileSystems", params)
+            body = self.call_judge("DescribeFileSystems", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1625,7 +1625,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyFileSystem", params)
+            body = self.call_judge("ModifyFileSystem", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1648,7 +1648,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateMountTarget", params)
+            body = self.call_judge("CreateMountTarget", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1671,7 +1671,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteMountTarget", params)
+            body = self.call_judge("DeleteMountTarget", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1694,7 +1694,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMountTargets", params)
+            body = self.call_judge("DescribeMountTargets", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1717,7 +1717,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateModel", params)
+            body = self.call_judge("CreateModel", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1740,7 +1740,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("TerminateModels", params)
+            body = self.call_judge("TerminateModels", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1763,7 +1763,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeModels", params)
+            body = self.call_judge("DescribeModels", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1786,7 +1786,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDedicatedCluster", params)
+            body = self.call_judge("DescribeDedicatedCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1809,7 +1809,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateDedicatedCluster", params)
+            body = self.call_judge("CreateDedicatedCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1832,7 +1832,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteDedicatedCluster", params)
+            body = self.call_judge("DeleteDedicatedCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1855,7 +1855,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("SetvCPU", params)
+            body = self.call_judge("SetvCPU", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1878,7 +1878,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DedicatedHostMigrate", params)
+            body = self.call_judge("DedicatedHostMigrate", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1901,7 +1901,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyDedicatedClusterName", params)
+            body = self.call_judge("ModifyDedicatedClusterName", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1924,7 +1924,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("InstanceMigrate", params)
+            body = self.call_judge("InstanceMigrate", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1947,7 +1947,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyInstanceAutoDeleteTime", params)
+            body = self.call_judge("ModifyInstanceAutoDeleteTime", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1970,7 +1970,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyScalingConfiguration", params)
+            body = self.call_judge("ModifyScalingConfiguration", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1993,7 +1993,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSpotPriceHistory", params)
+            body = self.call_judge("DescribeSpotPriceHistory", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2016,7 +2016,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribePrice", params)
+            body = self.call_judge("DescribePrice", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2039,7 +2039,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("EnableImageCaching", params)
+            body = self.call_judge("EnableImageCaching", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2062,7 +2062,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisableImageCaching", params)
+            body = self.call_judge("DisableImageCaching", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2085,7 +2085,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyLoadBalancers", params)
+            body = self.call_judge("ModifyLoadBalancers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2108,7 +2108,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachInstancesIamRole", params)
+            body = self.call_judge("AttachInstancesIamRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2131,7 +2131,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachInstancesIamRole", params)
+            body = self.call_judge("DetachInstancesIamRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2154,7 +2154,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("PreMigrateInstance", params)
+            body = self.call_judge("PreMigrateInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2177,7 +2177,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CancelPreMigrateInstance", params)
+            body = self.call_judge("CancelPreMigrateInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2200,7 +2200,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMinFlavorCount", params)
+            body = self.call_judge("DescribeMinFlavorCount", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2223,7 +2223,7 @@ class KecClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetVNCAddress", params)
+            body = self.call_judge("GetVNCAddress", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

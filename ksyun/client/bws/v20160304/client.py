@@ -15,7 +15,7 @@ class BwsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateBandWidthShare", params)
+            body = self.call_judge("CreateBandWidthShare", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class BwsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBandWidthShares", params)
+            body = self.call_judge("DescribeBandWidthShares", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class BwsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateBandWidthShare", params)
+            body = self.call_judge("AssociateBandWidthShare", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class BwsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisassociateBandWidthShare", params)
+            body = self.call_judge("DisassociateBandWidthShare", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class BwsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyBandWidthShare", params)
+            body = self.call_judge("ModifyBandWidthShare", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class BwsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteBandWidthShare", params)
+            body = self.call_judge("DeleteBandWidthShare", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

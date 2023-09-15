@@ -2363,38 +2363,59 @@ class QueryNatTopVifMonitorRequest(AbstractModel):
 
     def __init__(self):
         r"""查询NAT下流量排名的TOP 50的网卡
-        :param natId: Nat的ID
+        :param NatId: Nat的ID
         :type PathPrefix: String
-        :param startTime: 开始时间，时间格式例如:2023-08-08T18:00:00
+        :param StartTime: 开始时间，开始时间和结束时间相差10分钟,例如：2023-09-14T13:30:01
         :type PathPrefix: String
-        :param endTime: 结束时间，时间格式例如：2023-08-08T18:08:00
+        :param EndTime: 结束时间，开始时间和结束时间相差10分钟，例如：2023-09-14T13:40:01
         :type PathPrefix: String
-        :param sortType: 排序类型，只能传入两种：OUT/IN
+        :param SortType: 排序顺序，默认是OUT，可选IN/OUT,区分大小写，填写其他的字符按OUT排序
         :type PathPrefix: String
-        :param instanceType: 实例类型，只包含两种：kec/epc
+        :param InstanceType: 查询实例类型，不填默认是kec，epc/kec
         :type PathPrefix: String
-        :param ip: 筛选ip
+        :param ip: ip
         :type PathPrefix: String
         """
-        self.natId = None
-        self.startTime = None
-        self.endTime = None
-        self.sortType = None
-        self.instanceType = None
+        self.NatId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.SortType = None
+        self.InstanceType = None
         self.ip = None
 
     def _deserialize(self, params):
-        if params.get("natId"):
-            self.natId = params.get("natId")
-        if params.get("startTime"):
-            self.startTime = params.get("startTime")
-        if params.get("endTime"):
-            self.endTime = params.get("endTime")
-        if params.get("sortType"):
-            self.sortType = params.get("sortType")
-        if params.get("instanceType"):
-            self.instanceType = params.get("instanceType")
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("SortType"):
+            self.SortType = params.get("SortType")
+        if params.get("InstanceType"):
+            self.InstanceType = params.get("InstanceType")
         if params.get("ip"):
             self.ip = params.get("ip")
+
+
+class ModifyNatIpStatusRequest(AbstractModel):
+    """ModifyNatIpStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改NatIp的禁用/启用
+        :param NatIpId: NatIp的ID
+        :type PathPrefix: String
+        :param Enabled: NatIp的禁用状态
+        :type PathPrefix: Boolean
+        """
+        self.NatIpId = None
+        self.Enabled = None
+
+    def _deserialize(self, params):
+        if params.get("NatIpId"):
+            self.NatIpId = params.get("NatIpId")
+        if params.get("Enabled"):
+            self.Enabled = params.get("Enabled")
 
 

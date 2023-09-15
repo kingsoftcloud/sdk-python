@@ -15,7 +15,7 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBillSummaryByPayMode", params)
+            body = self.call_judge("DescribeBillSummaryByPayMode", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBillSummaryByProduct", params)
+            body = self.call_judge("DescribeBillSummaryByProduct", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBillSummaryByProject", params)
+            body = self.call_judge("DescribeBillSummaryByProject", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstanceSummaryBills", params)
+            body = self.call_judge("DescribeInstanceSummaryBills", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeProductCode", params)
+            body = self.call_judge("DescribeProductCode", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,30 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSplitItemBillDetails", params)
+            body = self.call_judge("DescribeSplitItemBillDetails", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSplitItemDayBillDetails(self, request):
+        """分页查询分拆项账单明细
+        :param request: Request instance for DescribeSplitItemDayBillDetails.
+        :type request: :class:`ksyun.client.bill_union.v20200101.models.DescribeSplitItemDayBillDetailsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSplitItemDayBillDetails", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

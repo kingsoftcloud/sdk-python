@@ -553,48 +553,6 @@ class ModifySecurityGroupRequest(AbstractModel):
             self.SecurityGroupId = params.get("SecurityGroupId")
 
 
-class ImportKeyRequest(AbstractModel):
-    """ImportKey请求参数结构体
-    """
-
-    def __init__(self):
-        r"""ImportKey
-        :param KeyName: 密钥名称
-        :type PathPrefix: String
-        :param PublicKey: 公钥信息
-        :type PathPrefix: String
-        :param Description: 描述
-        :type PathPrefix: String
-        """
-        self.KeyName = None
-        self.PublicKey = None
-        self.Description = None
-
-    def _deserialize(self, params):
-        if params.get("KeyName"):
-            self.KeyName = params.get("KeyName")
-        if params.get("PublicKey"):
-            self.PublicKey = params.get("PublicKey")
-        if params.get("Description"):
-            self.Description = params.get("Description")
-
-
-class DeleteKeyRequest(AbstractModel):
-    """DeleteKey请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DeleteKey
-        :param KeyId: 密钥Id
-        :type PathPrefix: String
-        """
-        self.KeyId = None
-
-    def _deserialize(self, params):
-        if params.get("KeyId"):
-            self.KeyId = params.get("KeyId")
-
-
 class CreateKeyRequest(AbstractModel):
     """CreateKey请求参数结构体
     """
@@ -614,29 +572,6 @@ class CreateKeyRequest(AbstractModel):
             self.KeyName = params.get("KeyName")
         if params.get("Description"):
             self.Description = params.get("Description")
-
-
-class DescribeKeysRequest(AbstractModel):
-    """DescribeKeys请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DescribeKeys
-        :param KeyId: 
-- 用户密钥对的资源ID，可查询多个ID的实例信息，查看详细[ID.N](https://docs.ksyun.com/documents/5755)使用方式	
-- 类型：String
-- 是否必填：否
-- 缺省值：查询region下所有的密钥信息
-
-
-#### 
-        :type PathPrefix: Filter
-        """
-        self.KeyId = None
-
-    def _deserialize(self, params):
-        if params.get("KeyId"):
-            self.KeyId = params.get("KeyId")
 
 
 class DescribeEpcsRequest(AbstractModel):
@@ -843,10 +778,34 @@ class ModifyNetworkInterfaceAttributeRequest(AbstractModel):
 
     def __init__(self):
         r"""ModifyNetworkInterfaceAttribute
+        :param NetworkInterfaceId: 网卡ID
+        :type PathPrefix: String
+        :param HostId: 物理机实例ID
+        :type PathPrefix: String
+        :param SubnetId: SubnetId
+        :type PathPrefix: String
+        :param IpAddress: ip地址
+        :type PathPrefix: String
+        :param SecurityGroupIdList: 云物理主机关联的安全组ID，一个云物理主机最多可以支持3个安全组
+        :type PathPrefix: Array
         """
+        self.NetworkInterfaceId = None
+        self.HostId = None
+        self.SubnetId = None
+        self.IpAddress = None
+        self.SecurityGroupIdList = None
 
     def _deserialize(self, params):
-        return
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("IpAddress"):
+            self.IpAddress = params.get("IpAddress")
+        if params.get("SecurityGroupIdList"):
+            self.SecurityGroupIdList = params.get("SecurityGroupIdList")
 
 
 class DescribePhysicalMonitorRequest(AbstractModel):
@@ -1078,10 +1037,14 @@ class DeleteRemoteManagementRequest(AbstractModel):
 
     def __init__(self):
         r"""DeleteRemoteManagement
+        :param RemoteManagementId: 带外管理的ID
+        :type PathPrefix: String
         """
+        self.RemoteManagementId = None
 
     def _deserialize(self, params):
-        return
+        if params.get("RemoteManagementId"):
+            self.RemoteManagementId = params.get("RemoteManagementId")
 
 
 class ResetPasswordRequest(AbstractModel):
@@ -1381,10 +1344,19 @@ class DescribeEpcTrashesRequest(AbstractModel):
 
     def __init__(self):
         r"""DescribeEpcTrashes
+        :param MaxResults: 单次调用可返回的最大条目数量. 传入返回的 NextToken 值可以获取剩余的其它条目. 这个值可以允许的范围是 5- 1000
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token
+        :type PathPrefix: String
         """
+        self.MaxResults = None
+        self.NextToken = None
 
     def _deserialize(self, params):
-        return
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
 
 
 class ReturnEpcRequest(AbstractModel):

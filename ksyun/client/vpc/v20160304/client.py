@@ -15,7 +15,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateVpc", params)
+            body = self.call_judge("CreateVpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteVpc", params)
+            body = self.call_judge("DeleteVpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpcs", params)
+            body = self.call_judge("DescribeVpcs", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateSubnet", params)
+            body = self.call_judge("CreateSubnet", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteSubnet", params)
+            body = self.call_judge("DeleteSubnet", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSubnets", params)
+            body = self.call_judge("DescribeSubnets", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateNetworkAcl", params)
+            body = self.call_judge("AssociateNetworkAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisassociateNetworkAcl", params)
+            body = self.call_judge("DisassociateNetworkAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateRoute", params)
+            body = self.call_judge("CreateRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteRoute", params)
+            body = self.call_judge("DeleteRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeRoutes", params)
+            body = self.call_judge("DescribeRoutes", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateNetworkAcl", params)
+            body = self.call_judge("CreateNetworkAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteNetworkAcl", params)
+            body = self.call_judge("DeleteNetworkAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateNetworkAclEntry", params)
+            body = self.call_judge("CreateNetworkAclEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteNetworkAclEntry", params)
+            body = self.call_judge("DeleteNetworkAclEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeNetworkAcls", params)
+            body = self.call_judge("DescribeNetworkAcls", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateSecurityGroup", params)
+            body = self.call_judge("CreateSecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteSecurityGroup", params)
+            body = self.call_judge("DeleteSecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AuthorizeSecurityGroupEntry", params)
+            body = self.call_judge("AuthorizeSecurityGroupEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +452,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RevokeSecurityGroupEntry", params)
+            body = self.call_judge("RevokeSecurityGroupEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +475,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSecurityGroups", params)
+            body = self.call_judge("DescribeSecurityGroups", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +498,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateNat", params)
+            body = self.call_judge("CreateNat", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +521,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteNat", params)
+            body = self.call_judge("DeleteNat", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +544,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeNats", params)
+            body = self.call_judge("DescribeNats", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +567,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateNat", params)
+            body = self.call_judge("AssociateNat", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -590,7 +590,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisassociateNat", params)
+            body = self.call_judge("DisassociateNat", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -613,7 +613,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInternetGateways", params)
+            body = self.call_judge("DescribeInternetGateways", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +636,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateVpcPeeringConnection", params)
+            body = self.call_judge("CreateVpcPeeringConnection", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -659,7 +659,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteVpcPeeringConnection", params)
+            body = self.call_judge("DeleteVpcPeeringConnection", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +682,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpcPeeringConnections", params)
+            body = self.call_judge("DescribeVpcPeeringConnections", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +705,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyNetworkAcl", params)
+            body = self.call_judge("ModifyNetworkAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +728,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifySecurityGroup", params)
+            body = self.call_judge("ModifySecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,7 +751,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifySubnet", params)
+            body = self.call_judge("ModifySubnet", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -774,7 +774,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyNat", params)
+            body = self.call_judge("ModifyNat", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -797,7 +797,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeNetworkInterfaces", params)
+            body = self.call_judge("DescribeNetworkInterfaces", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -820,7 +820,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSubnetAvailableAddresses", params)
+            body = self.call_judge("DescribeSubnetAvailableAddresses", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -843,7 +843,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyVpc", params)
+            body = self.call_judge("ModifyVpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -866,7 +866,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AcceptVpcPeeringConnection", params)
+            body = self.call_judge("AcceptVpcPeeringConnection", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -889,7 +889,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RejectVpcPeeringConnection", params)
+            body = self.call_judge("RejectVpcPeeringConnection", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -912,7 +912,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyVpcPeeringConnection", params)
+            body = self.call_judge("ModifyVpcPeeringConnection", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -935,7 +935,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeAvailabilityZones", params)
+            body = self.call_judge("DescribeAvailabilityZones", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -958,7 +958,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDirectConnects", params)
+            body = self.call_judge("DescribeDirectConnects", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -981,7 +981,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateDirectConnectInterface", params)
+            body = self.call_judge("CreateDirectConnectInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1004,7 +1004,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteDirectConnectInterface", params)
+            body = self.call_judge("DeleteDirectConnectInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1027,7 +1027,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDirectConnectInterfaces", params)
+            body = self.call_judge("DescribeDirectConnectInterfaces", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1050,7 +1050,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateDirectConnectGateway", params)
+            body = self.call_judge("CreateDirectConnectGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1073,7 +1073,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteDirectConnectGateway", params)
+            body = self.call_judge("DeleteDirectConnectGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1096,7 +1096,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDirectConnectGateways", params)
+            body = self.call_judge("DescribeDirectConnectGateways", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1119,7 +1119,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachDirectConnectGateway", params)
+            body = self.call_judge("AttachDirectConnectGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1142,7 +1142,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachDirectConnectGateway", params)
+            body = self.call_judge("DetachDirectConnectGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1165,7 +1165,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyDirectConnectInterface", params)
+            body = self.call_judge("ModifyDirectConnectInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1188,7 +1188,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyDirectConnectGateway", params)
+            body = self.call_judge("ModifyDirectConnectGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1211,7 +1211,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateVpnGateway", params)
+            body = self.call_judge("CreateVpnGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1234,7 +1234,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyVpnGateway", params)
+            body = self.call_judge("ModifyVpnGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1257,7 +1257,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteVpnGateway", params)
+            body = self.call_judge("DeleteVpnGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1280,7 +1280,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpnGateways", params)
+            body = self.call_judge("DescribeVpnGateways", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1303,7 +1303,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateVpnTunnel", params)
+            body = self.call_judge("CreateVpnTunnel", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1326,7 +1326,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyVpnTunnel", params)
+            body = self.call_judge("ModifyVpnTunnel", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1349,7 +1349,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteVpnTunnel", params)
+            body = self.call_judge("DeleteVpnTunnel", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1372,7 +1372,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpnTunnels", params)
+            body = self.call_judge("DescribeVpnTunnels", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1395,7 +1395,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateCustomerGateway", params)
+            body = self.call_judge("CreateCustomerGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1418,7 +1418,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyCustomerGateway", params)
+            body = self.call_judge("ModifyCustomerGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1441,7 +1441,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteCustomerGateway", params)
+            body = self.call_judge("DeleteCustomerGateway", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1464,7 +1464,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyDirectConnect", params)
+            body = self.call_judge("ModifyDirectConnect", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1487,7 +1487,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeCustomerGateways", params)
+            body = self.call_judge("DescribeCustomerGateways", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1510,7 +1510,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSubnetAllocatedIpAddresses", params)
+            body = self.call_judge("DescribeSubnetAllocatedIpAddresses", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1533,7 +1533,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteNetworkInterface", params)
+            body = self.call_judge("DeleteNetworkInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1556,7 +1556,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateNetworkInterface", params)
+            body = self.call_judge("CreateNetworkInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1579,7 +1579,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyNetworkInterface", params)
+            body = self.call_judge("ModifyNetworkInterface", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1602,7 +1602,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateHaVip", params)
+            body = self.call_judge("CreateHaVip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1625,7 +1625,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteHaVip", params)
+            body = self.call_judge("DeleteHaVip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1648,7 +1648,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateHaVip", params)
+            body = self.call_judge("AssociateHaVip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1671,7 +1671,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UnAssociateHaVip", params)
+            body = self.call_judge("UnAssociateHaVip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1694,7 +1694,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeHaVip", params)
+            body = self.call_judge("DescribeHaVip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1717,7 +1717,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteDirectConnectGatewayRoute", params)
+            body = self.call_judge("DeleteDirectConnectGatewayRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1740,7 +1740,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeDirectConnectGatewayRoute", params)
+            body = self.call_judge("DescribeDirectConnectGatewayRoute", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1763,7 +1763,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("PublishDirectConnectRoute", params)
+            body = self.call_judge("PublishDirectConnectRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1786,7 +1786,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UnpublishDirectConnectRoute", params)
+            body = self.call_judge("UnpublishDirectConnectRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1809,7 +1809,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddSecondaryCidrBlock", params)
+            body = self.call_judge("AddSecondaryCidrBlock", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1832,7 +1832,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteSecondaryCidrBlock", params)
+            body = self.call_judge("DeleteSecondaryCidrBlock", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1855,7 +1855,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssignPrivateIpAddress", params)
+            body = self.call_judge("AssignPrivateIpAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1878,7 +1878,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UnassignPrivateIpAddress", params)
+            body = self.call_judge("UnassignPrivateIpAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1901,7 +1901,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpnGatewayRoutes", params)
+            body = self.call_judge("DescribeVpnGatewayRoutes", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1924,7 +1924,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateVpnGatewayRoute", params)
+            body = self.call_judge("CreateVpnGatewayRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1947,7 +1947,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteVpnGatewayRoute", params)
+            body = self.call_judge("DeleteVpnGatewayRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1970,7 +1970,7 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVpnTunnelIpsecStatus", params)
+            body = self.call_judge("DescribeVpnTunnelIpsecStatus", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1993,7 +1993,30 @@ class VpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("QueryNatTopVifMonitor", params)
+            body = self.call_judge("QueryNatTopVifMonitor", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyNatIpStatus(self, request):
+        """修改NatIp的禁用/启用
+        :param request: Request instance for ModifyNatIpStatus.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyNatIpStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyNatIpStatus", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

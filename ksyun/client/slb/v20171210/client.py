@@ -15,7 +15,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeLoadBalancers", params)
+            body = self.call_judge("DescribeLoadBalancers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

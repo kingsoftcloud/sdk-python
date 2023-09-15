@@ -15,7 +15,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetLines", params)
+            body = self.call_judge("GetLines", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeAddresses", params)
+            body = self.call_judge("DescribeAddresses", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AllocateAddress", params)
+            body = self.call_judge("AllocateAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ReleaseAddress", params)
+            body = self.call_judge("ReleaseAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateAddress", params)
+            body = self.call_judge("AssociateAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisassociateAddress", params)
+            body = self.call_judge("DisassociateAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class EipClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyAddress", params)
+            body = self.call_judge("ModifyAddress", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

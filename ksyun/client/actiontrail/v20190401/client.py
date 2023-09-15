@@ -15,7 +15,7 @@ class ActiontrailClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListOperateLogs", params)
+            body = self.call_judge("ListOperateLogs", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

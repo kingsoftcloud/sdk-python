@@ -15,7 +15,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateFolder", params)
+            body = self.call_judge("CreateFolder", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteFolder", params)
+            body = self.call_judge("DeleteFolder", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateFolder", params)
+            body = self.call_judge("UpdateFolder", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAccountsForParent", params)
+            body = self.call_judge("ListAccountsForParent", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("MoveAccount", params)
+            body = self.call_judge("MoveAccount", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateAccount", params)
+            body = self.call_judge("UpdateAccount", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAccounts", params)
+            body = self.call_judge("ListAccounts", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class ResourcemanagerClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListFolders", params)
+            body = self.call_judge("ListFolders", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

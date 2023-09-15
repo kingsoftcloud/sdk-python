@@ -15,7 +15,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAlarmPolicy", params)
+            body = self.call_judge("ListAlarmPolicy", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeAlarmPolicy", params)
+            body = self.call_judge("DescribeAlarmPolicy", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribePolicyObject", params)
+            body = self.call_judge("DescribePolicyObject", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeAlarmReceives", params)
+            body = self.call_judge("DescribeAlarmReceives", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddAlarmReceives", params)
+            body = self.call_judge("AddAlarmReceives", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteAlarmReceives", params)
+            body = self.call_judge("DeleteAlarmReceives", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetUserGroup", params)
+            body = self.call_judge("GetUserGroup", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetAlertUser", params)
+            body = self.call_judge("GetAlertUser", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateAlertUserStatus", params)
+            body = self.call_judge("UpdateAlertUserStatus", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

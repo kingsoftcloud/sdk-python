@@ -15,7 +15,7 @@ class SksClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateKey", params)
+            body = self.call_judge("CreateKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class SksClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ImportKey", params)
+            body = self.call_judge("ImportKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class SksClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteKey", params)
+            body = self.call_judge("DeleteKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class SksClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyKey", params)
+            body = self.call_judge("ModifyKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class SksClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeKeys", params)
+            body = self.call_judge("DescribeKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

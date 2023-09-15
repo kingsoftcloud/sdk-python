@@ -15,7 +15,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateUser", params)
+            body = self.call_judge("CreateUser", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListUsers", params)
+            body = self.call_judge("ListUsers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateUser", params)
+            body = self.call_judge("UpdateUser", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetUser", params)
+            body = self.call_judge("GetUser", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteUser", params)
+            body = self.call_judge("DeleteUser", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachUserPolicy", params)
+            body = self.call_judge("DetachUserPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAttachedUserPolicies", params)
+            body = self.call_judge("ListAttachedUserPolicies", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListPolicyVersions", params)
+            body = self.call_judge("ListPolicyVersions", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("SetDefaultPolicyVersion", params)
+            body = self.call_judge("SetDefaultPolicyVersion", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachUserPolicy", params)
+            body = self.call_judge("AttachUserPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeletePolicyVersion", params)
+            body = self.call_judge("DeletePolicyVersion", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetPolicyVersion", params)
+            body = self.call_judge("GetPolicyVersion", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreatePolicyVersion", params)
+            body = self.call_judge("CreatePolicyVersion", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListPolicies", params)
+            body = self.call_judge("ListPolicies", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetPolicy", params)
+            body = self.call_judge("GetPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeletePolicy", params)
+            body = self.call_judge("DeletePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreatePolicy", params)
+            body = self.call_judge("CreatePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ChangePassword", params)
+            body = self.call_judge("ChangePassword", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateLoginProfile", params)
+            body = self.call_judge("UpdateLoginProfile", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +452,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetLoginProfile", params)
+            body = self.call_judge("GetLoginProfile", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +475,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateAccessKey", params)
+            body = self.call_judge("CreateAccessKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +498,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAccessKeys", params)
+            body = self.call_judge("ListAccessKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +521,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateAccessKey", params)
+            body = self.call_judge("UpdateAccessKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +544,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteAccessKey", params)
+            body = self.call_judge("DeleteAccessKey", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +567,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListVirtualMFADevices", params)
+            body = self.call_judge("ListVirtualMFADevices", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -590,7 +590,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("EnableMFADevice", params)
+            body = self.call_judge("EnableMFADevice", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -613,7 +613,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeactivateMFADevice", params)
+            body = self.call_judge("DeactivateMFADevice", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +636,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetVirtualMFADevice", params)
+            body = self.call_judge("GetVirtualMFADevice", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -659,7 +659,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateRole", params)
+            body = self.call_judge("CreateRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +682,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteRole", params)
+            body = self.call_judge("DeleteRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +705,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetRole", params)
+            body = self.call_judge("GetRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +728,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListRoles", params)
+            body = self.call_judge("ListRoles", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,7 +751,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachRolePolicy", params)
+            body = self.call_judge("AttachRolePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -774,7 +774,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachRolePolicy", params)
+            body = self.call_judge("DetachRolePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -797,7 +797,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAttachedRolePolicies", params)
+            body = self.call_judge("ListAttachedRolePolicies", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -820,7 +820,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateRoleTrustAccounts", params)
+            body = self.call_judge("UpdateRoleTrustAccounts", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -843,7 +843,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateProject", params)
+            body = self.call_judge("CreateProject", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -866,7 +866,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetAccountAllProjectList", params)
+            body = self.call_judge("GetAccountAllProjectList", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -889,7 +889,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetProjectInstanceList", params)
+            body = self.call_judge("GetProjectInstanceList", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -912,7 +912,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateInstanceProjectId", params)
+            body = self.call_judge("UpdateInstanceProjectId", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -935,7 +935,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListEntitiesForPolicy", params)
+            body = self.call_judge("ListEntitiesForPolicy", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -958,7 +958,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListProjectMember", params)
+            body = self.call_judge("ListProjectMember", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -981,7 +981,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteProjectMember", params)
+            body = self.call_judge("DeleteProjectMember", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1004,7 +1004,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddProjectMember", params)
+            body = self.call_judge("AddProjectMember", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1027,7 +1027,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateRole", params)
+            body = self.call_judge("UpdateRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1050,7 +1050,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdatePolicy", params)
+            body = self.call_judge("UpdatePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1073,7 +1073,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateGroup", params)
+            body = self.call_judge("CreateGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1096,7 +1096,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteGroup", params)
+            body = self.call_judge("DeleteGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1119,7 +1119,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachGroupPolicy", params)
+            body = self.call_judge("DetachGroupPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1142,7 +1142,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachGroupPolicy", params)
+            body = self.call_judge("AttachGroupPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1165,7 +1165,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListGroupPolicies", params)
+            body = self.call_judge("ListGroupPolicies", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1188,7 +1188,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddUserToGroup", params)
+            body = self.call_judge("AddUserToGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1211,7 +1211,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetGroup", params)
+            body = self.call_judge("GetGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1234,7 +1234,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListGroupsForUser", params)
+            body = self.call_judge("ListGroupsForUser", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1257,7 +1257,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListGroups", params)
+            body = self.call_judge("ListGroups", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1280,7 +1280,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RemoveUserFromGroup", params)
+            body = self.call_judge("RemoveUserFromGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1303,7 +1303,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListAllUserAccessKeys", params)
+            body = self.call_judge("ListAllUserAccessKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1326,7 +1326,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("InsertInstanceToES", params)
+            body = self.call_judge("InsertInstanceToES", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1349,7 +1349,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DelInstanceFromES", params)
+            body = self.call_judge("DelInstanceFromES", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

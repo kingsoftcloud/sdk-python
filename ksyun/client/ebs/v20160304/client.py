@@ -15,7 +15,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateVolume", params)
+            body = self.call_judge("CreateVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AttachVolume", params)
+            body = self.call_judge("AttachVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachVolume", params)
+            body = self.call_judge("DetachVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteVolume", params)
+            body = self.call_judge("DeleteVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ResizeVolume", params)
+            body = self.call_judge("ResizeVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeVolumes", params)
+            body = self.call_judge("DescribeVolumes", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyVolume", params)
+            body = self.call_judge("ModifyVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeEbsInstances", params)
+            body = self.call_judge("DescribeEbsInstances", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstanceVolumes", params)
+            body = self.call_judge("DescribeInstanceVolumes", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RenewVolume", params)
+            body = self.call_judge("RenewVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateVolumeProject", params)
+            body = self.call_judge("UpdateVolumeProject", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSnapshots", params)
+            body = self.call_judge("DescribeSnapshots", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateSnapshot", params)
+            body = self.call_judge("CreateSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteSnapshot", params)
+            body = self.call_judge("DeleteSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RollbackSnapshot", params)
+            body = self.call_judge("RollbackSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifySnapshot", params)
+            body = self.call_judge("ModifySnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RecoveryVolume", params)
+            body = self.call_judge("RecoveryVolume", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ValidateAttachInstance", params)
+            body = self.call_judge("ValidateAttachInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class EbsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeCreateVolumePrice", params)
+            body = self.call_judge("DescribeCreateVolumePrice", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

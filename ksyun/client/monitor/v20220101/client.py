@@ -15,7 +15,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateAlarmPolicy", params)
+            body = self.call_judge("CreateAlarmPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteAlarmPolicy", params)
+            body = self.call_judge("DeleteAlarmPolicy", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

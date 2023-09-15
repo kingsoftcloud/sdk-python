@@ -15,7 +15,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateMongoDBInstance", params)
+            body = self.call_judge("CreateMongoDBInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteMongoDBInstance", params)
+            body = self.call_judge("DeleteMongoDBInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMongoDBInstance", params)
+            body = self.call_judge("DescribeMongoDBInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMongoDBInstances", params)
+            body = self.call_judge("DescribeMongoDBInstances", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMongoDBInstanceNode", params)
+            body = self.call_judge("DescribeMongoDBInstanceNode", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RenameMongoDBInstance", params)
+            body = self.call_judge("RenameMongoDBInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ResetPasswordMongoDBInstance", params)
+            body = self.call_judge("ResetPasswordMongoDBInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RestartMongoDBInstance", params)
+            body = self.call_judge("RestartMongoDBInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateMongoDBSnapshot", params)
+            body = self.call_judge("CreateMongoDBSnapshot", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("SetMongoDBTimingSnapshot", params)
+            body = self.call_judge("SetMongoDBTimingSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMongoDBSnapshot", params)
+            body = self.call_judge("DescribeMongoDBSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteMongoDBSnapshot", params)
+            body = self.call_judge("DeleteMongoDBSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RenameMongoDBSnapshot", params)
+            body = self.call_judge("RenameMongoDBSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddSecurityGroupRule", params)
+            body = self.call_judge("AddSecurityGroupRule", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListSecurityGroupRules", params)
+            body = self.call_judge("ListSecurityGroupRules", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateMongoDBInstance", params)
+            body = self.call_judge("UpdateMongoDBInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddSecondaryInstance", params)
+            body = self.call_judge("AddSecondaryInstance", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeMongoDBShardNode", params)
+            body = self.call_judge("DescribeMongoDBShardNode", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeValidRegion", params)
+            body = self.call_judge("DescribeValidRegion", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +452,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AllocateEip", params)
+            body = self.call_judge("AllocateEip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +475,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeallocateEip", params)
+            body = self.call_judge("DeallocateEip", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +498,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeRegions", params)
+            body = self.call_judge("DescribeRegions", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +521,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateMongoDBShardInstance", params)
+            body = self.call_judge("CreateMongoDBShardInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +544,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DownloadSnapshot", params)
+            body = self.call_judge("DownloadSnapshot", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +567,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CloneInstance", params)
+            body = self.call_judge("CloneInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -590,7 +590,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeShardNode", params)
+            body = self.call_judge("DescribeShardNode", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -613,7 +613,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstanceStatistic", params)
+            body = self.call_judge("DescribeInstanceStatistic", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +636,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AddClusterNode", params)
+            body = self.call_judge("AddClusterNode", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -659,7 +659,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteClusterNode", params)
+            body = self.call_judge("DeleteClusterNode", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +682,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSlowLogDetail", params)
+            body = self.call_judge("DescribeSlowLogDetail", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +705,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSlowLogStatistics", params)
+            body = self.call_judge("DescribeSlowLogStatistics", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +728,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSlowLogDatabase", params)
+            body = self.call_judge("DescribeSlowLogDatabase", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,7 +751,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeSlowLogLineChart", params)
+            body = self.call_judge("DescribeSlowLogLineChart", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -774,7 +774,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("UpdateMongoDBInstanceCluster", params)
+            body = self.call_judge("UpdateMongoDBInstanceCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -797,7 +797,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeClusterForRestore", params)
+            body = self.call_judge("DescribeClusterForRestore", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

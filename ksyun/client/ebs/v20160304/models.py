@@ -344,11 +344,11 @@ class DescribeSnapshotsRequest(AbstractModel):
 
     def __init__(self):
         r"""DescribeSnapshots
-        :param VolumeId: 云盘ID，传入该参数可获取指定硬盘的所有快照，此时其他三个参数无效
+        :param VolumeId: 云盘ID，传入该参数可获取指定硬盘的所有快照数据，此时其他参数无效
         :type PathPrefix: String
         :param VolumeCategory: 硬盘分类，system（系统盘）或data（数据盘），传入该参数可获取指定类型的快照列表
         :type PathPrefix: String
-        :param SnapshotId: 快照ID，传入该参数可获取指定快照的信息，此时其他三个参数无效
+        :param SnapshotId: 快照ID，传入该参数可获取指定快照的信息，此时其他参数无效
         :type PathPrefix: String
         :param AvailabilityZone: 可用区，传入该参数可获取指定可用区的快照信息
         :type PathPrefix: String
@@ -390,13 +390,13 @@ class CreateSnapshotRequest(AbstractModel):
 
     def __init__(self):
         r"""CreateSnapshot
-        :param VolumeId: 只支持是EBS3.0的硬盘，且状态为使用中或待挂载，使用中时主机状态为运行中或停止。长度36个字符，包括字母、数字、-、_
+        :param VolumeId: 云硬盘创建快照时需为使用中或待挂载状态，使用中时主机状态为运行中或停止。长度36个字符，包括字母、数字、-、_
         :type PathPrefix: String
         :param SnapshotName: 快照名称，长度2-50个字符，包括字母、数字、“-”、“_”。不传自动生成，不能以auto开头
         :type PathPrefix: String
         :param SnapshotDesc: 快照描述，长度0-128字符
         :type PathPrefix: String
-        :param SnapshotType: 快照类型，默认CommonSnapShot
+        :param SnapshotType: 快照类型支持极速可用快照（LocalSnapShot）、普通快照（CommonSnapShot），默认CommonSnapShot
         :type PathPrefix: String
         """
         self.VolumeId = None

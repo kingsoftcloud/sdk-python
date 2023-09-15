@@ -15,7 +15,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeListeners", params)
+            body = self.call_judge("DescribeListeners", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyListeners", params)
+            body = self.call_judge("ModifyListeners", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateListeners", params)
+            body = self.call_judge("CreateListeners", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyInstancesWithListener", params)
+            body = self.call_judge("ModifyInstancesWithListener", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RegisterInstancesWithListener", params)
+            body = self.call_judge("RegisterInstancesWithListener", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeregisterInstancesFromListener", params)
+            body = self.call_judge("DeregisterInstancesFromListener", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeInstancesWithListener", params)
+            body = self.call_judge("DescribeInstancesWithListener", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyHealthCheck", params)
+            body = self.call_judge("ModifyHealthCheck", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeHealthChecks", params)
+            body = self.call_judge("DescribeHealthChecks", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ConfigureHealthCheck", params)
+            body = self.call_judge("ConfigureHealthCheck", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeLoadBalancers", params)
+            body = self.call_judge("DescribeLoadBalancers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyLoadBalancer", params)
+            body = self.call_judge("ModifyLoadBalancer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateLoadBalancer", params)
+            body = self.call_judge("CreateLoadBalancer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateHostHeader", params)
+            body = self.call_judge("CreateHostHeader", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyHostHeader", params)
+            body = self.call_judge("ModifyHostHeader", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteHostHeader", params)
+            body = self.call_judge("DeleteHostHeader", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeHostHeaders", params)
+            body = self.call_judge("DescribeHostHeaders", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteRule", params)
+            body = self.call_judge("DeleteRule", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeRules", params)
+            body = self.call_judge("DescribeRules", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +452,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateBackendServerGroup", params)
+            body = self.call_judge("CreateBackendServerGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +475,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteBackendServerGroup", params)
+            body = self.call_judge("DeleteBackendServerGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +498,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyBackendServerGroup", params)
+            body = self.call_judge("ModifyBackendServerGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +521,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBackendServerGroups", params)
+            body = self.call_judge("DescribeBackendServerGroups", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +544,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RegisterBackendServer", params)
+            body = self.call_judge("RegisterBackendServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +567,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeregisterBackendServer", params)
+            body = self.call_judge("DeregisterBackendServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -590,7 +590,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBackendServers", params)
+            body = self.call_judge("DescribeBackendServers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -613,7 +613,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateLoadBalancerAcl", params)
+            body = self.call_judge("CreateLoadBalancerAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +636,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteLoadBalancerAcl", params)
+            body = self.call_judge("DeleteLoadBalancerAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -659,7 +659,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyLoadBalancerAcl", params)
+            body = self.call_judge("ModifyLoadBalancerAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +682,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateLoadBalancerAclEntry", params)
+            body = self.call_judge("CreateLoadBalancerAclEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +705,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteLoadBalancerAclEntry", params)
+            body = self.call_judge("DeleteLoadBalancerAclEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +728,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociateLoadBalancerAcl", params)
+            body = self.call_judge("AssociateLoadBalancerAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,7 +751,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DisassociateLoadBalancerAcl", params)
+            body = self.call_judge("DisassociateLoadBalancerAcl", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -774,7 +774,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeLoadBalancerAcls", params)
+            body = self.call_judge("DescribeLoadBalancerAcls", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -797,7 +797,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateSlbRule", params)
+            body = self.call_judge("CreateSlbRule", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -820,7 +820,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifySlbRule", params)
+            body = self.call_judge("ModifySlbRule", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -843,7 +843,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreatePrivateLinkServer", params)
+            body = self.call_judge("CreatePrivateLinkServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -866,7 +866,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribePrivateLinkServer", params)
+            body = self.call_judge("DescribePrivateLinkServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -889,7 +889,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeletePrivateLinkServer", params)
+            body = self.call_judge("DeletePrivateLinkServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -912,7 +912,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyPrivateLinkServer", params)
+            body = self.call_judge("ModifyPrivateLinkServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -935,7 +935,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssociatePrivateLinkServer", params)
+            body = self.call_judge("AssociatePrivateLinkServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -958,7 +958,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribePrivateLink", params)
+            body = self.call_judge("DescribePrivateLink", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -981,7 +981,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeletePrivateLink", params)
+            body = self.call_judge("DeletePrivateLink", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1004,7 +1004,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ModifyLoadBalancerAclEntry", params)
+            body = self.call_judge("ModifyLoadBalancerAclEntry", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1027,7 +1027,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AcceptPrivateLink", params)
+            body = self.call_judge("AcceptPrivateLink", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1050,7 +1050,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RejectPrivateLink", params)
+            body = self.call_judge("RejectPrivateLink", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1073,7 +1073,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListPrivateLinkServer", params)
+            body = self.call_judge("ListPrivateLinkServer", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1096,7 +1096,53 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("RemovePrivateLink", params)
+            body = self.call_judge("RemovePrivateLink", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetEnableAlbAccessLog(self, request):
+        """SetEnableAlbAccessLog
+        :param request: Request instance for SetEnableAlbAccessLog.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetEnableAlbAccessLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetEnableAlbAccessLog", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetAlbAccessLog(self, request):
+        """SetAlbAccessLog
+        :param request: Request instance for SetAlbAccessLog.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetAlbAccessLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetAlbAccessLog", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

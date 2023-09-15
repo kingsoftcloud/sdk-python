@@ -42,7 +42,7 @@ class ProxyConnection(object):
                 self.proxy = {"https": proxy}
         self.request_length = 0
 
-    def request(self, method, url, body=None, headers={}):
+    def request(self, method, url, body=None, headers={}, auth=None):
         self.request_length = 0
         headers.setdefault("Host", self.request_host)
         return requests.request(method=method,
@@ -51,7 +51,8 @@ class ProxyConnection(object):
                                 headers=headers,
                                 proxies=self.proxy,
                                 verify=self.certification,
-                                timeout=self.timeout)
+                                timeout=self.timeout,
+                                auth=auth)
 
 
 class ApiRequest(object):
@@ -90,9 +91,13 @@ class ApiRequest(object):
             logger.debug("SendRequest %s" % req_inter)
         if req_inter.method == 'GET':
             req_inter_url = '%s?%s' % (self.host, req_inter.data)
-            return self.conn.request(req_inter.method, req_inter_url, None, req_inter.header)
+            return self.conn.request(req_inter.method, req_inter_url, None, req_inter.header, req_inter.auth)
         elif req_inter.method == 'POST' or req_inter.method == 'PUT' or req_inter.method == 'DELETE':
-            return self.conn.request(req_inter.method, self.host, req_inter.data, req_inter.header)
+            if req_inter.uri_params:
+                req_inter_url = '%s?%s' % (self.host, req_inter.uri_params)
+            else:
+                req_inter_url = self.host
+            return self.conn.request(req_inter.method, req_inter_url, req_inter.data, req_inter.header, req_inter.auth)
         else:
             raise KsyunSDKException("ClientParamsError", 'Method only support (GET, POST, PUT, DELETE)')
 
@@ -110,7 +115,7 @@ class ApiRequest(object):
 
 
 class RequestInternal(object):
-    def __init__(self, host="", method="", uri="", header=None, data=""):
+    def __init__(self, host="", method="", uri="", header=None, data="",auth=None):
         if header is None:
             header = {}
         self.host = host
@@ -118,6 +123,7 @@ class RequestInternal(object):
         self.uri = uri
         self.header = header
         self.data = data
+        self.auth = auth
 
     def __str__(self):
         headers = "\n".join("%s: %s" % (k, v) for k, v in self.header.items())

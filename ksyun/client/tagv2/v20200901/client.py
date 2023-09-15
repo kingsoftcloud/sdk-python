@@ -15,7 +15,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("CreateTag", params)
+            body = self.call_judge("CreateTag", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DeleteTag", params)
+            body = self.call_judge("DeleteTag", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListTags", params)
+            body = self.call_judge("ListTags", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -84,7 +84,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListTagKeys", params)
+            body = self.call_judge("ListTagKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListTagValues", params)
+            body = self.call_judge("ListTagValues", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ListResources", params)
+            body = self.call_judge("ListResources", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("ReplaceResourcesTags", params)
+            body = self.call_judge("ReplaceResourcesTags", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class Tagv2Client(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DetachResourceTags", params)
+            body = self.call_judge("DetachResourceTags", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

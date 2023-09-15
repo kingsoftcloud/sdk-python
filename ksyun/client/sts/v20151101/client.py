@@ -15,7 +15,7 @@ class StsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("AssumeRole", params)
+            body = self.call_judge("AssumeRole", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

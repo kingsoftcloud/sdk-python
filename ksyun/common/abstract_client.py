@@ -33,8 +33,7 @@ from ksyun.common.exception import KsyunSDKException as SDKError
 from ksyun.common.http.request import ApiRequest
 from ksyun.common.http.request import RequestInternal
 from ksyun.common.profile.client_profile import ClientProfile
-from ksyun.common.sign import Sign
-from datetime import datetime, timedelta
+from requests_aws4auth import AWS4Auth
 
 warnings.filterwarnings("ignore")
 
@@ -118,35 +117,27 @@ class AbstractClient(object):
         raise KsyunSDKException("ClientParamsError", "some params type error")
 
     def _build_req_inter(self, action, params, req_inter, options=None):
-        if self.profile.signMethod in ("HMAC-SHA1", "HMAC-SHA256"):
+        if self.profile.signMethod in ("HMAC-SHA1", "HMAC-SHA256", "AWS4-HMAC-SHA256"):
             self._build_req_with_signature(action, params, req_inter, options)
         else:
             raise KsyunSDKException("ClientError", "Invalid signature method.")
 
     def _build_req_with_signature(self, action, params, req, options=None):
+        uri_params = dict()
         params = copy.deepcopy(self._fix_params(params))
         params['Service'] = self._service
         params['Action'] = action[0].upper() + action[1:]
-        params['SdkVersion'] = self._sdkVersion
-        params['SignatureVersion'] = 1.0
-        now_time = datetime.now()
-        utc_time = now_time - timedelta(hours=8)
-        params['Timestamp'] = utc_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+        uri_params['Action'] = params['Action']
         params['Version'] = self._apiVersion
+        uri_params['Version'] = params['Version']
+        params['SdkVersion'] = self._sdkVersion
 
         if self.region:
             params['Region'] = self.region
-        if self.credential.token:
-            params['SecurityToken'] = self.credential.token
         if self.credential.secret_id:
             params['Accesskey'] = self.credential.secret_id
-        if self.profile.signMethod:
-            params['SignatureMethod'] = self.profile.signMethod
         if self.profile.language:
             params['Language'] = self.profile.language
-
-        # 组装签名
-        params['Signature'] = Sign.sign(params, str(self.credential.secret_key), str(self.profile.signMethod))
 
         # 请求头
         req.header["Accept"] = _json_content
@@ -167,6 +158,9 @@ class AbstractClient(object):
         # GET上传文件报错
         if req.method == "GET" and content_type == _multipart_content:
             raise SDKError("ClientError", "Invalid request method GET for multipart.")
+        # 飞get请求在url添加 Action、Version
+        if req.method != "GET":
+            params
 
         # 请求数据转换
         if content_type == _form_urlencoded_content:
@@ -178,6 +172,13 @@ class AbstractClient(object):
             boundary = uuid.uuid4().hex
             req.header["Content-Type"] = content_type + "; boundary=" + boundary
             req.data = self._get_multipart_body(params, boundary, options)
+
+        # 传递url必传参数
+        req.uri_params = urlencode(uri_params)
+
+        # 组装签名
+        auth = AWS4Auth(str(self.credential.secret_id), str(self.credential.secret_key), self.region, self._service)
+        req.auth = auth
 
     # it must return bytes instead of string
     def _get_multipart_body(self, params, boundary, options=None):
@@ -218,6 +219,7 @@ class AbstractClient(object):
         if endpoint is None:
             endpoint = self._get_service_domain()
         return endpoint
+
 
     def call(self, action, params, options=None):
         req = RequestInternal(self._get_endpoint(), self.profile.httpProfile.reqMethod, self._requestPath)
@@ -282,6 +284,11 @@ class AbstractClient(object):
             message = response["Error"]["Message"]
             reqid = response["RequestId"]
             raise KsyunSDKException(code, message, reqid)
+    def call_judge(self, action, params, content_type,options=None):
+        if 'application/json' in content_type:
+            return self.call_json(action, params)
+        else:
+            return self.call(action, params, options)
 
     def set_stream_logger(self, stream=None, level=logging.DEBUG, log_format=None):
         """

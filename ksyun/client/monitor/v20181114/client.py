@@ -15,7 +15,7 @@ class MonitorClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("GetMetricStatisticsBatch", params)
+            body = self.call_judge("GetMetricStatisticsBatch", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

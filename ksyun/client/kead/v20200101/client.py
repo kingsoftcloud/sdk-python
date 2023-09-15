@@ -15,7 +15,7 @@ class KeadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("DescribeBlockIp", params)
+            body = self.call_judge("DescribeBlockIp", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

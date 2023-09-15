@@ -15,7 +15,7 @@ class TradeClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call("SetRenewal", params)
+            body = self.call_judge("SetRenewal", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

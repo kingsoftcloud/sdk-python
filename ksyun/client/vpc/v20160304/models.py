@@ -1912,6 +1912,32 @@ class DescribeSubnetAllocatedIpAddressesRequest(AbstractModel):
             self.NextToken = params.get("NextToken")
 
 
+class ModifyPrivateIpAddressAttributeRequest(AbstractModel):
+    """ModifyPrivateIpAddressAttribute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改内网IP属性
+        :param SubnetId: 子网ID
+        :type PathPrefix: String
+        :param PrivateIpAddress: 私网IP地址
+        :type PathPrefix: String
+        :param Status: IP地址状态
+        :type PathPrefix: String
+        """
+        self.SubnetId = None
+        self.PrivateIpAddress = None
+        self.Status = None
+
+    def _deserialize(self, params):
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("PrivateIpAddress"):
+            self.PrivateIpAddress = params.get("PrivateIpAddress")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+
+
 class DeleteNetworkInterfaceRequest(AbstractModel):
     """DeleteNetworkInterface请求参数结构体
     """

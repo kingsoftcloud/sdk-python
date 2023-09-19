@@ -31,6 +31,29 @@ class SlbClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DeleteListeners(self, request):
+        """删除监听器
+        :param request: Request instance for DeleteListeners.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteListenersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteListeners", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ModifyListeners(self, request):
         """修改监听器配置
         :param request: Request instance for ModifyListeners.
@@ -192,6 +215,29 @@ class SlbClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DeleteHealthCheck(self, request):
+        """删除健康检查
+        :param request: Request instance for DeleteHealthCheck.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteHealthCheckRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteHealthCheck", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DescribeHealthChecks(self, request):
         """描述健康检查
         :param request: Request instance for DescribeHealthChecks.
@@ -261,6 +307,29 @@ class SlbClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DeleteLoadBalancer(self, request):
+        """删除负载均衡
+        :param request: Request instance for DeleteLoadBalancer.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteLoadBalancerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteLoadBalancer", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ModifyLoadBalancer(self, request):
         """修改负载均衡信息
         :param request: Request instance for ModifyLoadBalancer.
@@ -308,7 +377,7 @@ class SlbClient(AbstractClient):
 
 
     def CreateHostHeader(self, request):
-        """创建应用型负载均衡域名
+        """创建经典型负载均衡域名
         :param request: Request instance for CreateHostHeader.
         :type request: :class:`ksyun.client.slb.v20160304.models.CreateHostHeaderRequest`
         """
@@ -331,7 +400,7 @@ class SlbClient(AbstractClient):
 
 
     def ModifyHostHeader(self, request):
-        """修改应用型负载均衡域名
+        """修改经典型负载均衡域名
         :param request: Request instance for ModifyHostHeader.
         :type request: :class:`ksyun.client.slb.v20160304.models.ModifyHostHeaderRequest`
         """
@@ -354,7 +423,7 @@ class SlbClient(AbstractClient):
 
 
     def DeleteHostHeader(self, request):
-        """删除应用型负载均衡域名
+        """删除经典型负载均衡域名
         :param request: Request instance for DeleteHostHeader.
         :type request: :class:`ksyun.client.slb.v20160304.models.DeleteHostHeaderRequest`
         """
@@ -377,7 +446,7 @@ class SlbClient(AbstractClient):
 
 
     def DescribeHostHeaders(self, request):
-        """获取应用型负载均衡域名列表
+        """获取经典型负载均衡域名列表
         :param request: Request instance for DescribeHostHeaders.
         :type request: :class:`ksyun.client.slb.v20160304.models.DescribeHostHeadersRequest`
         """
@@ -400,7 +469,7 @@ class SlbClient(AbstractClient):
 
 
     def DeleteRule(self, request):
-        """删除应用型负载均衡规则
+        """删除经典型负载均衡规则
         :param request: Request instance for DeleteRule.
         :type request: :class:`ksyun.client.slb.v20160304.models.DeleteRuleRequest`
         """
@@ -423,7 +492,7 @@ class SlbClient(AbstractClient):
 
 
     def DescribeRules(self, request):
-        """获取应用型负载均衡规则列表
+        """获取经典型负载均衡规则列表
         :param request: Request instance for DescribeRules.
         :type request: :class:`ksyun.client.slb.v20160304.models.DescribeRulesRequest`
         """
@@ -607,7 +676,7 @@ class SlbClient(AbstractClient):
 
 
     def CreateLoadBalancerAcl(self, request):
-        """创建LoadBalancerAcl
+        """创建负载均衡ACL
         :param request: Request instance for CreateLoadBalancerAcl.
         :type request: :class:`ksyun.client.slb.v20160304.models.CreateLoadBalancerAclRequest`
         """
@@ -630,7 +699,7 @@ class SlbClient(AbstractClient):
 
 
     def DeleteLoadBalancerAcl(self, request):
-        """删除LoadBalancerAcl
+        """删除负载均衡ACL
         :param request: Request instance for DeleteLoadBalancerAcl.
         :type request: :class:`ksyun.client.slb.v20160304.models.DeleteLoadBalancerAclRequest`
         """
@@ -653,7 +722,7 @@ class SlbClient(AbstractClient):
 
 
     def ModifyLoadBalancerAcl(self, request):
-        """修改ACL信息
+        """修改负载均衡ACL名称
         :param request: Request instance for ModifyLoadBalancerAcl.
         :type request: :class:`ksyun.client.slb.v20160304.models.ModifyLoadBalancerAclRequest`
         """
@@ -676,7 +745,7 @@ class SlbClient(AbstractClient):
 
 
     def CreateLoadBalancerAclEntry(self, request):
-        """创建LoadBalancerAcl规则
+        """创建负载均衡ACL规则
         :param request: Request instance for CreateLoadBalancerAclEntry.
         :type request: :class:`ksyun.client.slb.v20160304.models.CreateLoadBalancerAclEntryRequest`
         """
@@ -699,7 +768,7 @@ class SlbClient(AbstractClient):
 
 
     def DeleteLoadBalancerAclEntry(self, request):
-        """删除LoadBalancerAcl规则
+        """删除负载均衡ACL规则
         :param request: Request instance for DeleteLoadBalancerAclEntry.
         :type request: :class:`ksyun.client.slb.v20160304.models.DeleteLoadBalancerAclEntryRequest`
         """
@@ -768,7 +837,7 @@ class SlbClient(AbstractClient):
 
 
     def DescribeLoadBalancerAcls(self, request):
-        """查询LoadBalancerAcl
+        """查询负载均衡ACL
         :param request: Request instance for DescribeLoadBalancerAcls.
         :type request: :class:`ksyun.client.slb.v20160304.models.DescribeLoadBalancerAclsRequest`
         """
@@ -998,7 +1067,7 @@ class SlbClient(AbstractClient):
 
 
     def ModifyLoadBalancerAclEntry(self, request):
-        """修改LoadBalancerAcl规则
+        """修改负载均衡ACL规则
         :param request: Request instance for ModifyLoadBalancerAclEntry.
         :type request: :class:`ksyun.client.slb.v20160304.models.ModifyLoadBalancerAclEntryRequest`
         """
@@ -1097,6 +1166,466 @@ class SlbClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("RemovePrivateLink", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateAlb(self, request):
+        """CreateAlb
+        :param request: Request instance for CreateAlb.
+        :type request: :class:`ksyun.client.slb.v20160304.models.CreateAlbRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAlb", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAlb(self, request):
+        """DeleteAlb
+        :param request: Request instance for DeleteAlb.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteAlbRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAlb", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetAlbName(self, request):
+        """SetAlbName
+        :param request: Request instance for SetAlbName.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetAlbNameRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetAlbName", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetAlbStatus(self, request):
+        """SetAlbStatus
+        :param request: Request instance for SetAlbStatus.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetAlbStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetAlbStatus", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAlbs(self, request):
+        """DescribeAlbs
+        :param request: Request instance for DescribeAlbs.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlbs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateAlbListener(self, request):
+        """CreateAlbListener
+        :param request: Request instance for CreateAlbListener.
+        :type request: :class:`ksyun.client.slb.v20160304.models.CreateAlbListenerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAlbListener", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyAlbListener(self, request):
+        """ModifyAlbListener
+        :param request: Request instance for ModifyAlbListener.
+        :type request: :class:`ksyun.client.slb.v20160304.models.ModifyAlbListenerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAlbListener", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAlbListener(self, request):
+        """DeleteAlbListener
+        :param request: Request instance for DeleteAlbListener.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteAlbListenerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAlbListener", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAlbListeners(self, request):
+        """DescribeAlbListeners
+        :param request: Request instance for DescribeAlbListeners.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbListenersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlbListeners", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateAlbRuleGroup(self, request):
+        """CreateAlbRuleGroup
+        :param request: Request instance for CreateAlbRuleGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.CreateAlbRuleGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAlbRuleGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAlbRuleGroup(self, request):
+        """DeleteAlbRuleGroup
+        :param request: Request instance for DeleteAlbRuleGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteAlbRuleGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAlbRuleGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAlbRuleGroups(self, request):
+        """DescribeAlbRuleGroups
+        :param request: Request instance for DescribeAlbRuleGroups.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbRuleGroupsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlbRuleGroups", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyAlbRuleGroup(self, request):
+        """ModifyAlbRuleGroup
+        :param request: Request instance for ModifyAlbRuleGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.ModifyAlbRuleGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAlbRuleGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AddAlbRule(self, request):
+        """AddAlbRule
+        :param request: Request instance for AddAlbRule.
+        :type request: :class:`ksyun.client.slb.v20160304.models.AddAlbRuleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddAlbRule", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAlbRule(self, request):
+        """DeleteAlbRule
+        :param request: Request instance for DeleteAlbRule.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteAlbRuleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAlbRule", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateAlbListenerCertGroup(self, request):
+        """CreateAlbListenerCertGroup
+        :param request: Request instance for CreateAlbListenerCertGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.CreateAlbListenerCertGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAlbListenerCertGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAlbListenerCertGroup(self, request):
+        """DeleteAlbListenerCertGroup
+        :param request: Request instance for DeleteAlbListenerCertGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteAlbListenerCertGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAlbListenerCertGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAlbListenerCertGroups(self, request):
+        """DescribeAlbListenerCertGroups
+        :param request: Request instance for DescribeAlbListenerCertGroups.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbListenerCertGroupsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlbListenerCertGroups", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AssociateCertificateWithGroup(self, request):
+        """AssociateCertificateWithGroup
+        :param request: Request instance for AssociateCertificateWithGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.AssociateCertificateWithGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AssociateCertificateWithGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DissociateCertificateWithGroup(self, request):
+        """DissociateCertificateWithGroup
+        :param request: Request instance for DissociateCertificateWithGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DissociateCertificateWithGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DissociateCertificateWithGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

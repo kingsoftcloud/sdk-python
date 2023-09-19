@@ -1526,6 +1526,29 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def ModifyPrivateIpAddressAttribute(self, request):
+        """修改内网IP属性
+        :param request: Request instance for ModifyPrivateIpAddressAttribute.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyPrivateIpAddressAttributeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyPrivateIpAddressAttribute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DeleteNetworkInterface(self, request):
         """删除弹性网卡
         :param request: Request instance for DeleteNetworkInterface.

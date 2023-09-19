@@ -2271,10 +2271,14 @@ class DescribeInstanceTypeConfigsRequest(AbstractModel):
 
     def __init__(self):
         r"""查询机型套餐配置信息
+        :param Filter: 
+        :type PathPrefix: Filter
         """
+        self.Filter = None
 
     def _deserialize(self, params):
-        return
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
 
 
 class DescribeInstanceFamilysRequest(AbstractModel):
@@ -3252,22 +3256,6 @@ class CancelPreMigrateInstanceRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
-
-
-class DescribeMinFlavorCountRequest(AbstractModel):
-    """DescribeMinFlavorCount请求参数结构体
-    """
-
-    def __init__(self):
-        r"""DescribeMinFlavorCount
-        :param ProductType: 商品类型id
-        :type PathPrefix: Int
-        """
-        self.ProductType = None
-
-    def _deserialize(self, params):
-        if params.get("ProductType"):
-            self.ProductType = params.get("ProductType")
 
 
 class GetVNCAddressRequest(AbstractModel):

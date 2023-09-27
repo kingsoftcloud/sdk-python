@@ -1920,9 +1920,11 @@ class ModifyPrivateIpAddressAttributeRequest(AbstractModel):
         r"""修改内网IP属性
         :param SubnetId: 子网ID
         :type PathPrefix: String
-        :param PrivateIpAddress: 私网IP地址
+        :param PrivateIpAddress: 私网IP
         :type PathPrefix: String
         :param Status: IP地址状态
+retain：预留
+active：不预留
         :type PathPrefix: String
         """
         self.SubnetId = None
@@ -2395,7 +2397,7 @@ class QueryNatTopVifMonitorRequest(AbstractModel):
         :type PathPrefix: String
         :param EndTime: 结束时间，开始时间和结束时间相差10分钟，例如：2023-09-14T13:40:01
         :type PathPrefix: String
-        :param SortType: 排序顺序，默认是OUT，可选IN/OUT,区分大小写，填写其他的字符按OUT排序
+        :param SortType: 排序顺序，默认是BPS_OUT，可选BPS_IN|BPS_OUT|PEAK_IN|PEAK_OUT,区分大小写，填写其他的字符按BPS_OUT排序
         :type PathPrefix: String
         :param InstanceType: 查询实例类型，不填默认是kec，epc/kec
         :type PathPrefix: String

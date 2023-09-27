@@ -2272,6 +2272,10 @@ class DescribeInstanceTypeConfigsRequest(AbstractModel):
     def __init__(self):
         r"""查询机型套餐配置信息
         :param Filter: 
+支持如下过滤器名称
+instance-family 实例族
+instance-type 实例类型
+availability-zone 可用区
         :type PathPrefix: Filter
         """
         self.Filter = None

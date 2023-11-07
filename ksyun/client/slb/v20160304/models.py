@@ -81,6 +81,8 @@ class ModifyListenersRequest(AbstractModel):
         :type PathPrefix: String
         :param CertificateId: 证书的ID
         :type PathPrefix: String
+        :param RedirectListenerId: 重定向监听器ID
+        :type PathPrefix: String
         """
         self.ListenerId = None
         self.ListenerName = None
@@ -96,6 +98,7 @@ class ModifyListenersRequest(AbstractModel):
         self.CookieType = None
         self.CookieName = None
         self.CertificateId = None
+        self.RedirectListenerId = None
 
     def _deserialize(self, params):
         if params.get("ListenerId"):
@@ -126,6 +129,8 @@ class ModifyListenersRequest(AbstractModel):
             self.CookieName = params.get("CookieName")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
+        if params.get("RedirectListenerId"):
+            self.RedirectListenerId = params.get("RedirectListenerId")
 
 
 class CreateListenersRequest(AbstractModel):
@@ -856,6 +861,8 @@ class CreateBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param Region: Region机房
         :type PathPrefix: String
+        :param Type: 类型(Host|DirectConnect)
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.BackendServerGroupName = None
@@ -868,6 +875,7 @@ class CreateBackendServerGroupRequest(AbstractModel):
         self.UnhealthyThreshold = None
         self.UrlPath = None
         self.Region = None
+        self.Type = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -892,6 +900,8 @@ class CreateBackendServerGroupRequest(AbstractModel):
             self.UrlPath = params.get("UrlPath")
         if params.get("Region"):
             self.Region = params.get("Region")
+        if params.get("Type"):
+            self.Type = params.get("Type")
 
 
 class DeleteBackendServerGroupRequest(AbstractModel):
@@ -1702,6 +1712,7 @@ class CreateAlbRequest(AbstractModel):
         :param VpcId: Vpc的ID
         :type PathPrefix: String
         :param IpVersion: 负载均衡的IP版本
+ipv4 
         :type PathPrefix: String
         :param ProjectId: 项目的ID
         :type PathPrefix: String
@@ -1851,8 +1862,6 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param AlbListenerState: 应用型监听器的状态(start|stop)
         :type PathPrefix: String
-        :param RedirectAlbListenerId: 重定向应用型监听器ID
-        :type PathPrefix: String
         :param SessionState: 会话保持的状态(start|stop)
         :type PathPrefix: String
         :param SessionPersistencePeriod: 会话保持超时时间
@@ -1875,7 +1884,6 @@ class CreateAlbListenerRequest(AbstractModel):
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
         self.AlbListenerState = None
-        self.RedirectAlbListenerId = None
         self.SessionState = None
         self.SessionPersistencePeriod = None
         self.CookieType = None
@@ -1902,8 +1910,6 @@ class CreateAlbListenerRequest(AbstractModel):
             self.AlbListenerAclId = params.get("AlbListenerAclId")
         if params.get("AlbListenerState"):
             self.AlbListenerState = params.get("AlbListenerState")
-        if params.get("RedirectAlbListenerId"):
-            self.RedirectAlbListenerId = params.get("RedirectAlbListenerId")
         if params.get("SessionState"):
             self.SessionState = params.get("SessionState")
         if params.get("SessionPersistencePeriod"):
@@ -2081,6 +2087,11 @@ class CreateAlbRuleGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param AlbRuleSet: 规则的信息
         :type PathPrefix: Array
+        :param RedirectHttpCode: 重定向状态码
+301|302|307
+        :type PathPrefix: String
+        :param RedirectAlbListenerId: 重定向的监听器ID
+        :type PathPrefix: String
         """
         self.AlbRuleGroupName = None
         self.AlbListenerId = None
@@ -2099,6 +2110,8 @@ class CreateAlbRuleGroupRequest(AbstractModel):
         self.UrlPath = None
         self.HostName = None
         self.AlbRuleSet = None
+        self.RedirectHttpCode = None
+        self.RedirectAlbListenerId = None
 
     def _deserialize(self, params):
         if params.get("AlbRuleGroupName"):
@@ -2135,6 +2148,10 @@ class CreateAlbRuleGroupRequest(AbstractModel):
             self.HostName = params.get("HostName")
         if params.get("AlbRuleSet"):
             self.AlbRuleSet = params.get("AlbRuleSet")
+        if params.get("RedirectHttpCode"):
+            self.RedirectHttpCode = params.get("RedirectHttpCode")
+        if params.get("RedirectAlbListenerId"):
+            self.RedirectAlbListenerId = params.get("RedirectAlbListenerId")
 
 
 class DeleteAlbRuleGroupRequest(AbstractModel):
@@ -2224,6 +2241,10 @@ class ModifyAlbRuleGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param AlbRuleSet: 规则的信息
         :type PathPrefix: Array
+        :param RedirectHttpCode: 重定向状态码
+        :type PathPrefix: String
+        :param RedirectAlbListenerId: 重定向的监听器ID
+        :type PathPrefix: String
         """
         self.AlbRuleGroupId = None
         self.AlbRuleGroupName = None
@@ -2242,6 +2263,8 @@ class ModifyAlbRuleGroupRequest(AbstractModel):
         self.UrlPath = None
         self.HostName = None
         self.AlbRuleSet = None
+        self.RedirectHttpCode = None
+        self.RedirectAlbListenerId = None
 
     def _deserialize(self, params):
         if params.get("AlbRuleGroupId"):
@@ -2278,6 +2301,10 @@ class ModifyAlbRuleGroupRequest(AbstractModel):
             self.HostName = params.get("HostName")
         if params.get("AlbRuleSet"):
             self.AlbRuleSet = params.get("AlbRuleSet")
+        if params.get("RedirectHttpCode"):
+            self.RedirectHttpCode = params.get("RedirectHttpCode")
+        if params.get("RedirectAlbListenerId"):
+            self.RedirectAlbListenerId = params.get("RedirectAlbListenerId")
 
 
 class AddAlbRuleRequest(AbstractModel):
@@ -2482,5 +2509,31 @@ class SetAlbAccessLogRequest(AbstractModel):
             self.ProjectName = params.get("ProjectName")
         if params.get("LogpoolName"):
             self.LogpoolName = params.get("LogpoolName")
+
+
+class CloneLoadBalancerRequest(AbstractModel):
+    """CloneLoadBalancer请求参数结构体
+    """
+
+    def __init__(self):
+        r"""克隆负载均衡
+        :param VpcId: Vpc的ID
+        :type PathPrefix: String
+        :param LoadBalancerName: 负载均衡的名称
+        :type PathPrefix: String
+        :param Type: 负载均衡的类型，public 为公网负载均衡，internal 为内网负载均衡
+        :type PathPrefix: String
+        """
+        self.VpcId = None
+        self.LoadBalancerName = None
+        self.Type = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("LoadBalancerName"):
+            self.LoadBalancerName = params.get("LoadBalancerName")
+        if params.get("Type"):
+            self.Type = params.get("Type")
 
 

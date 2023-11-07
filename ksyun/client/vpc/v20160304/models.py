@@ -554,6 +554,10 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
         :type PathPrefix: Int
         :param RuleTag: 安全组规则标签
         :type PathPrefix: String
+        :param Priority: 优先级
+        :type PathPrefix: Int
+        :param Policy: 访问权限
+        :type PathPrefix: String
         """
         self.Description = None
         self.SecurityGroupId = None
@@ -565,6 +569,8 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
         self.PortRangeFrom = None
         self.PortRangeTo = None
         self.RuleTag = None
+        self.Priority = None
+        self.Policy = None
 
     def _deserialize(self, params):
         if params.get("Description"):
@@ -587,6 +593,10 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
             self.PortRangeTo = params.get("PortRangeTo")
         if params.get("RuleTag"):
             self.RuleTag = params.get("RuleTag")
+        if params.get("Priority"):
+            self.Priority = params.get("Priority")
+        if params.get("Policy"):
+            self.Policy = params.get("Policy")
 
 
 class RevokeSecurityGroupEntryRequest(AbstractModel):
@@ -2445,5 +2455,41 @@ class ModifyNatIpStatusRequest(AbstractModel):
             self.NatIpId = params.get("NatIpId")
         if params.get("Enabled"):
             self.Enabled = params.get("Enabled")
+
+
+class QueryPeerTopVifMonitorRequest(AbstractModel):
+    """QueryPeerTopVifMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询对等连接下流量排名的TOP 50的网卡
+        :param VpcId: 虚拟私有网络id, VpcId
+        :type PathPrefix: String
+        :param StartTime: 开始时间，开始时间和结束时间相差10分钟,例如：2023-09-14T13:30:01
+        :type PathPrefix: String
+        :param EndTime: 结束时间，开始时间和结束时间相差10分钟，例如：2023-09-14T13:40:01
+        :type PathPrefix: String
+        :param SortType: 排序顺序，默认是OUT，可选OUT|IN,区分大小写，填写其他的字符按OUT排序
+        :type PathPrefix: String
+        :param Ip: 筛选ip
+        :type PathPrefix: String
+        """
+        self.VpcId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.SortType = None
+        self.Ip = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("SortType"):
+            self.SortType = params.get("SortType")
+        if params.get("Ip"):
+            self.Ip = params.get("Ip")
 
 

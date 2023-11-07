@@ -161,3 +161,39 @@ class DeleteBandWidthShareRequest(AbstractModel):
             self.BandWidthShareId = params.get("BandWidthShareId")
 
 
+class QueryBwsTopEipMonitorRequest(AbstractModel):
+    """QueryBwsTopEipMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询BWS下EIP流量排名的TOP 50的网卡
+        :param BandWidthShareId: 共享带宽的ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间，开始时间和结束时间相差10分钟,例如：2023-09-14T13:30:01
+        :type PathPrefix: String
+        :param EndTime: 结束时间，开始时间和结束时间相差10分钟，例如：2023-09-14T13:40:01
+        :type PathPrefix: String
+        :param SortType: 排序顺序，默认是OUT，可选OUT|IN,区分大小写，填写其他的字符按OUT排序
+        :type PathPrefix: String
+        :param PublicIp: 筛选ip
+        :type PathPrefix: String
+        """
+        self.BandWidthShareId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.SortType = None
+        self.PublicIp = None
+
+    def _deserialize(self, params):
+        if params.get("BandWidthShareId"):
+            self.BandWidthShareId = params.get("BandWidthShareId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("SortType"):
+            self.SortType = params.get("SortType")
+        if params.get("PublicIp"):
+            self.PublicIp = params.get("PublicIp")
+
+

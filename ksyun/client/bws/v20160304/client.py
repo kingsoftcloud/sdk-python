@@ -146,3 +146,26 @@ class BwsClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def QueryBwsTopEipMonitor(self, request):
+        """查询BWS下EIP流量排名的TOP 50的网卡
+        :param request: Request instance for QueryBwsTopEipMonitor.
+        :type request: :class:`ksyun.client.bws.v20160304.models.QueryBwsTopEipMonitorRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryBwsTopEipMonitor", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

@@ -106,7 +106,8 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param SystemDisk.DiskSize: 系统盘大小
         :type PathPrefix: Int
-        :param ModelId: 实例启动模版ID，如填写了此项，则RunInstances其他参数只有MaxCount、MinCount生效，其他不生效，如果批量创建，实例名称后缀依然存在。【传modelId，使用默认版本。传modelId和modelVersion，使用传递的版本】
+        :param ModelId: 实例启动模版ID，如填写了此项，则启动模板中已包含的RunInstances其他参数不生效，启动模板未指定的参数若调用RunInstances时额外传入则可生效，如果批量创建，实例名称后缀依然存在。【传modelId，使用默认版本。传modelId和modelVersion，使用传递的版本】
+示例值：3f0d6229-ed2d-4c9c-8554-b9433517cf8b
         :type PathPrefix: String
         :param ModelVersion: 实例启动模板版本号。如不指定，则采用默认版本号
         :type PathPrefix: Int
@@ -126,6 +127,16 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: Int
         :param KeyId: 秘钥ID
         :type PathPrefix: Filter
+        :param keepImageLogin: 是否保持镜像登录
+        :type PathPrefix: Boolean
+        :param HostName: 操作系统内部的计算机名
+        :type PathPrefix: String
+        :param HostNameSuffix: 创建多台实例时为HostName增加有序后缀，有序后缀从1增加，例如host-1
+        :type PathPrefix: Int
+        :param Password: 开机密码
+        :type PathPrefix: String
+        :param FailureAutoDelete: 开机失败是否对外删除 ，默认值是false
+        :type PathPrefix: Boolean
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -159,6 +170,11 @@ class RunInstancesRequest(AbstractModel):
         self.AddressProjectId = None
         self.AddressPurchaseTime = None
         self.KeyId = None
+        self.keepImageLogin = None
+        self.HostName = None
+        self.HostNameSuffix = None
+        self.Password = None
+        self.FailureAutoDelete = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -225,6 +241,16 @@ class RunInstancesRequest(AbstractModel):
             self.AddressPurchaseTime = params.get("AddressPurchaseTime")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
+        if params.get("keepImageLogin"):
+            self.keepImageLogin = params.get("keepImageLogin")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("HostNameSuffix"):
+            self.HostNameSuffix = params.get("HostNameSuffix")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+        if params.get("FailureAutoDelete"):
+            self.FailureAutoDelete = params.get("FailureAutoDelete")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -749,12 +775,57 @@ class DescribeLocalVolumesRequest(AbstractModel):
         r"""查询本地盘信息
         :param InstanceName: 实例名字
         :type PathPrefix: String
+        :param Marker: 页数
+        :type PathPrefix: Int
+        :param MaxResults: 每页最大条数
+        :type PathPrefix: Int
+        :param LocalVolumeId: 本地盘id
+        :type PathPrefix: String
+        :param InstanceState: 主机状态
+        :type PathPrefix: String
+        :param LocalVolumeCategory: root/data 磁盘的类型：　系统盘／　数据盘
+        :type PathPrefix: String
+        :param LocalVolumeSize: 查询大于等于多少G的磁盘
+        :type PathPrefix: Int
+        :param BindSnapshotPolicy: 硬盘是否绑定了备份策略
+        :type PathPrefix: Boolean
+        :param AutoSnapshotPolicyId: 策略ID
+        :type PathPrefix: String
+        :param InstanceId: 实例id
+        :type PathPrefix: String
         """
         self.InstanceName = None
+        self.Marker = None
+        self.MaxResults = None
+        self.LocalVolumeId = None
+        self.InstanceState = None
+        self.LocalVolumeCategory = None
+        self.LocalVolumeSize = None
+        self.BindSnapshotPolicy = None
+        self.AutoSnapshotPolicyId = None
+        self.InstanceId = None
 
     def _deserialize(self, params):
         if params.get("InstanceName"):
             self.InstanceName = params.get("InstanceName")
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("LocalVolumeId"):
+            self.LocalVolumeId = params.get("LocalVolumeId")
+        if params.get("InstanceState"):
+            self.InstanceState = params.get("InstanceState")
+        if params.get("LocalVolumeCategory"):
+            self.LocalVolumeCategory = params.get("LocalVolumeCategory")
+        if params.get("LocalVolumeSize"):
+            self.LocalVolumeSize = params.get("LocalVolumeSize")
+        if params.get("BindSnapshotPolicy"):
+            self.BindSnapshotPolicy = params.get("BindSnapshotPolicy")
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
 
 
 class CreateLocalVolumeSnapshotRequest(AbstractModel):
@@ -1032,27 +1103,6 @@ class DeleteDedicatedHostRequest(AbstractModel):
             self.DedicatedHostId = params.get("DedicatedHostId")
         if params.get("IsRefund"):
             self.IsRefund = params.get("IsRefund")
-
-
-class RenameDedicatedHostRequest(AbstractModel):
-    """RenameDedicatedHost请求参数结构体
-    """
-
-    def __init__(self):
-        r"""修改专属宿主机名称
-        :param DedicatedHostId: 专属宿主机id
-        :type PathPrefix: String
-        :param NewDedicatedHostName: 专属宿主机新的名称
-        :type PathPrefix: String
-        """
-        self.DedicatedHostId = None
-        self.NewDedicatedHostName = None
-
-    def _deserialize(self, params):
-        if params.get("DedicatedHostId"):
-            self.DedicatedHostId = params.get("DedicatedHostId")
-        if params.get("NewDedicatedHostName"):
-            self.NewDedicatedHostName = params.get("NewDedicatedHostName")
 
 
 class DescribeDedicatedHostsRequest(AbstractModel):
@@ -2334,12 +2384,15 @@ class CreateFileSystemRequest(AbstractModel):
         :type PathPrefix: String
         :param FileSystemName: 文件系统名称，有效值：长度2-64字符，支持中文，字母，数字，以及-_；
         :type PathPrefix: String
+        :param ProjectId: 项目制id
+        :type PathPrefix: Int
         """
         self.AvailabilityZone = None
         self.VpcId = None
         self.StorageType = None
         self.ProtocolType = None
         self.FileSystemName = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("AvailabilityZone"):
@@ -2352,6 +2405,8 @@ class CreateFileSystemRequest(AbstractModel):
             self.ProtocolType = params.get("ProtocolType")
         if params.get("FileSystemName"):
             self.FileSystemName = params.get("FileSystemName")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class DeleteFileSystemRequest(AbstractModel):
@@ -2377,15 +2432,24 @@ class DescribeFileSystemsRequest(AbstractModel):
     def __init__(self):
         r"""查询文件系统信息
         :param FileSystemId: 预查看的文件系统ID
-        :type PathPrefix: String
+        :type PathPrefix: Filter
         :param MaxResults: 单次调用所返回的最大实例数目，取值为5~1000，超过1000记为1000
         :type PathPrefix: Int
         :param Marker: 分页标识，单次调用未返回全部实例时，标记下次调用的返回值的起点，默认值是0
         :type PathPrefix: Int
+        :param ProjectId: 项目制id，默认为0
+        :type PathPrefix: Filter
+        :param IncludeDel: 是否包含删除的，默认为false
+        :type PathPrefix: Boolean
+        :param Filter: 可查询file-system-name和ip-address
+        :type PathPrefix: Filter
         """
         self.FileSystemId = None
         self.MaxResults = None
         self.Marker = None
+        self.ProjectId = None
+        self.IncludeDel = None
+        self.Filter = None
 
     def _deserialize(self, params):
         if params.get("FileSystemId"):
@@ -2394,6 +2458,12 @@ class DescribeFileSystemsRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("Marker"):
             self.Marker = params.get("Marker")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("IncludeDel"):
+            self.IncludeDel = params.get("IncludeDel")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
 
 
 class ModifyFileSystemRequest(AbstractModel):
@@ -2562,6 +2632,8 @@ ModelTest001
         :type PathPrefix: String
         :param VersionDetail: 模板描述
         :type PathPrefix: String
+        :param FailureAutoDelete: 开机失败是否自动删除，默认值是false
+        :type PathPrefix: Boolean
         """
         self.ImageId = None
         self.InstanceType = None
@@ -2589,6 +2661,7 @@ ModelTest001
         self.SystemDisk.DiskType = None
         self.SystemDisk.ResizeType = None
         self.VersionDetail = None
+        self.FailureAutoDelete = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -2643,6 +2716,8 @@ ModelTest001
             self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
         if params.get("VersionDetail"):
             self.VersionDetail = params.get("VersionDetail")
+        if params.get("FailureAutoDelete"):
+            self.FailureAutoDelete = params.get("FailureAutoDelete")
 
 
 class TerminateModelsRequest(AbstractModel):
@@ -3204,6 +3279,37 @@ class DetachInstancesIamRoleRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
+
+
+class CopySnapshotRequest(AbstractModel):
+    """CopySnapshot请求参数结构体
+    """
+
+    def __init__(self):
+        r"""本地盘快照跨region复制
+        :param SnapshotId: CopySnapshot
+        :type PathPrefix: Filter
+        :param DestinationRegion: 目标省区
+        :type PathPrefix: Filter
+        :param DestinationSnapshotName: 快照名称
+        :type PathPrefix: String
+        :param DestinationSnapshotDesc: 快照描述
+        :type PathPrefix: String
+        """
+        self.SnapshotId = None
+        self.DestinationRegion = None
+        self.DestinationSnapshotName = None
+        self.DestinationSnapshotDesc = None
+
+    def _deserialize(self, params):
+        if params.get("SnapshotId"):
+            self.SnapshotId = params.get("SnapshotId")
+        if params.get("DestinationRegion"):
+            self.DestinationRegion = params.get("DestinationRegion")
+        if params.get("DestinationSnapshotName"):
+            self.DestinationSnapshotName = params.get("DestinationSnapshotName")
+        if params.get("DestinationSnapshotDesc"):
+            self.DestinationSnapshotDesc = params.get("DestinationSnapshotDesc")
 
 
 class PreMigrateInstanceRequest(AbstractModel):

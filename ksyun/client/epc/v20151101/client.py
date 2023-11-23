@@ -1204,3 +1204,26 @@ class EpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def AutoDeleteEpc(self, request):
+        """AutoDeleteEpc
+        :param request: Request instance for AutoDeleteEpc.
+        :type request: :class:`ksyun.client.epc.v20151101.models.AutoDeleteEpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AutoDeleteEpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

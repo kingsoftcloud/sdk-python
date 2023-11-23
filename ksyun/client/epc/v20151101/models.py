@@ -444,6 +444,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param GpuImageDriverId: gpu版本
         :type PathPrefix: String
+        :param containerAgent: 容器引擎组件类型
+        :type PathPrefix: String
         """
         self.HostId = None
         self.ImageId = None
@@ -471,6 +473,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.DelayStart = None
         self.AvailabilityZone = None
         self.GpuImageDriverId = None
+        self.containerAgent = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -525,6 +528,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.AvailabilityZone = params.get("AvailabilityZone")
         if params.get("GpuImageDriverId"):
             self.GpuImageDriverId = params.get("GpuImageDriverId")
+        if params.get("containerAgent"):
+            self.containerAgent = params.get("containerAgent")
 
 
 class ModifySecurityGroupRequest(AbstractModel):
@@ -1713,5 +1718,32 @@ class RejectShareImageRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
+
+
+class AutoDeleteEpcRequest(AbstractModel):
+    """AutoDeleteEpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""AutoDeleteEpc
+        :param HostId: 实例ID
+        :type PathPrefix: String
+        :param AutoDeleteTime: 预约删除时间
+        :type PathPrefix: String
+        :param AutoDeleteEip: 是否删除EIP信息
+yes/no 默认no
+        :type PathPrefix: String
+        """
+        self.HostId = None
+        self.AutoDeleteTime = None
+        self.AutoDeleteEip = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("AutoDeleteTime"):
+            self.AutoDeleteTime = params.get("AutoDeleteTime")
+        if params.get("AutoDeleteEip"):
+            self.AutoDeleteEip = params.get("AutoDeleteEip")
 
 

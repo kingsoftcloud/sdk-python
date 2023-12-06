@@ -41,7 +41,7 @@ from ksyun.common import credential
 from ksyun.common.profile.client_profile import ClientProfile
 from ksyun.common.profile.http_profile import HttpProfile
 from ksyun.common.exception.ksyun_sdk_exception import KsyunSDKException
-from ksyun.client.iam.v20151101 import iam_client, models
+from ksyun.client.iam.v20151101 import client, models
 
 try:
     # 实例化一个证书对象，入参需要传入secretId，secretKey
@@ -55,9 +55,8 @@ try:
     httpProfile.reqTimeout = 30  # 请求超时时间，单位为秒(默认60秒)
 
     clientProfile = ClientProfile()
-    # clientProfile.signMethod = "HMAC-SHA256"  # 指定签名算法
     clientProfile.httpProfile = httpProfile
-    client = iam_client.IamClient(cred, "cn-beijing-6", clientProfile)
+    client = client.IamClient(cred, "cn-beijing-6", clientProfile)
 
     # 实例化一个请求对象, 每个接口都会对应一个request对象。
     req = models.CreateUserRequest()

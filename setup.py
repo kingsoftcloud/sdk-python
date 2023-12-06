@@ -12,7 +12,7 @@ ROOT = os.path.dirname(__file__)
 
 setup(
     name='kingsoftcloud-sdk-python',
-    install_requires=["requests==2.27.1"],
+    install_requires=["requests==2.27.1", "requests-aws4auth==1.0.1", "six"],
     version=ksyun.__version__,
     description='Kingsoft Cloud SDK for Python',
     long_description=open('README.rst').read(),

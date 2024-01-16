@@ -137,6 +137,10 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param FailureAutoDelete: 开机失败是否对外删除 ，默认值是false
         :type PathPrefix: Boolean
+        :param Tag: 标签信息
+        :type PathPrefix: Filter
+        :param DataGuardId: 容灾组id
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.DedicatedHostId = None
@@ -175,6 +179,8 @@ class RunInstancesRequest(AbstractModel):
         self.HostNameSuffix = None
         self.Password = None
         self.FailureAutoDelete = None
+        self.Tag = None
+        self.DataGuardId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -251,6 +257,10 @@ class RunInstancesRequest(AbstractModel):
             self.Password = params.get("Password")
         if params.get("FailureAutoDelete"):
             self.FailureAutoDelete = params.get("FailureAutoDelete")
+        if params.get("Tag"):
+            self.Tag = params.get("Tag")
+        if params.get("DataGuardId"):
+            self.DataGuardId = params.get("DataGuardId")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -3382,5 +3392,21 @@ class GetVNCAddressRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
+
+
+class SwitchImageTypeRequest(AbstractModel):
+    """SwitchImageType请求参数结构体
+    """
+
+    def __init__(self):
+        r"""镜像类型转换
+        :param ImageId: 镜像类型转换
+        :type PathPrefix: Filter
+        """
+        self.ImageId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
 
 

@@ -1720,6 +1720,18 @@ class RejectShareImageRequest(AbstractModel):
             self.ImageId = params.get("ImageId")
 
 
+class DescribeManagedAccessoryRequest(AbstractModel):
+    """DescribeManagedAccessory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""托管备件信息查询
+        """
+
+    def _deserialize(self, params):
+        return
+
+
 class AutoDeleteEpcRequest(AbstractModel):
     """AutoDeleteEpc请求参数结构体
     """
@@ -1745,5 +1757,59 @@ yes/no 默认no
             self.AutoDeleteTime = params.get("AutoDeleteTime")
         if params.get("AutoDeleteEip"):
             self.AutoDeleteEip = params.get("AutoDeleteEip")
+
+
+class ExportImageRequest(AbstractModel):
+    """ExportImage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""自定义镜像导出
+        :param ImageId: 
+        :type PathPrefix: String
+        :param Ks3Bucket: 
+        :type PathPrefix: String
+        :param ObjectName: 
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.Ks3Bucket = None
+        self.ObjectName = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("Ks3Bucket"):
+            self.Ks3Bucket = params.get("Ks3Bucket")
+        if params.get("ObjectName"):
+            self.ObjectName = params.get("ObjectName")
+
+
+class QueryBucketsRequest(AbstractModel):
+    """QueryBuckets请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询ks3对象存储bucket桶列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class CancelImageExportRequest(AbstractModel):
+    """CancelImageExport请求参数结构体
+    """
+
+    def __init__(self):
+        r"""取消镜像导出
+        :param ImageId: 
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
 
 

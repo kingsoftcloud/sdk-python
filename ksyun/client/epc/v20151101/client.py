@@ -61,7 +61,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("RebootEpc", params, "application/json")
+            body = self.call_judge("RebootEpc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1204,6 +1204,29 @@ class EpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeManagedAccessory(self, request):
+        """托管备件信息查询
+        :param request: Request instance for DescribeManagedAccessory.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeManagedAccessoryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeManagedAccessory", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def AutoDeleteEpc(self, request):
         """AutoDeleteEpc
         :param request: Request instance for AutoDeleteEpc.
@@ -1212,6 +1235,75 @@ class EpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("AutoDeleteEpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ExportImage(self, request):
+        """自定义镜像导出
+        :param request: Request instance for ExportImage.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ExportImageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ExportImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def QueryBuckets(self, request):
+        """查询ks3对象存储bucket桶列表
+        :param request: Request instance for QueryBuckets.
+        :type request: :class:`ksyun.client.epc.v20151101.models.QueryBucketsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryBuckets", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CancelImageExport(self, request):
+        """取消镜像导出
+        :param request: Request instance for CancelImageExport.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CancelImageExportRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CancelImageExport", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

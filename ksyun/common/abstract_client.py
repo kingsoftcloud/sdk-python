@@ -285,7 +285,8 @@ class AbstractClient(object):
             reqid = response["RequestId"]
             raise KsyunSDKException(code, message, reqid)
     def call_judge(self, action, params, content_type,options=None):
-        if 'application/json' in content_type:
+        method = self.profile.httpProfile.reqMethod
+        if method and method == "POST" and 'application/json' in content_type:
             return self.call_json(action, params)
         else:
             return self.call(action, params, options)

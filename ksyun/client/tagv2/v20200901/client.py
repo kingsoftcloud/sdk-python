@@ -146,6 +146,29 @@ class Tagv2Client(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def ListTagsByResourceIds(self, request):
+        """根据资源ID获取资源标签
+        :param request: Request instance for ListTagsByResourceIds.
+        :type request: :class:`ksyun.client.tagv2.v20200901.models.ListTagsByResourceIdsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListTagsByResourceIds", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ReplaceResourcesTags(self, request):
         """批量替换资源的全部标签
         :param request: Request instance for ReplaceResourcesTags.

@@ -145,4 +145,26 @@ class Bill_unionClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+    def DescribeInstanceSummaryBills(self, request):
+        """实例账单
+        :param request: Request instance for DescribeInstanceSummaryBills.
+        :type request: :class:`ksyun.client.bill_union.v20221222.models.DescribeInstanceSummaryBillsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInstanceSummaryBills", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
 

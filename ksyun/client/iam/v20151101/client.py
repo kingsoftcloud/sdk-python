@@ -1365,3 +1365,72 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def GetAccountAllProjectsByParams(self, request):
+        """根据参数获取账户项目列表
+        :param request: Request instance for GetAccountAllProjectsByParams.
+        :type request: :class:`ksyun.client.iam.v20151101.models.GetAccountAllProjectsByParamsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetAccountAllProjectsByParams", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetUserSsoSettings(self, request):
+        """设置用户SSO身份提供商信息
+        :param request: Request instance for SetUserSsoSettings.
+        :type request: :class:`ksyun.client.iam.v20151101.models.SetUserSsoSettingsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetUserSsoSettings", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetUserSsoSettings(self, request):
+        """查询用户SSO身份提供商信息
+        :param request: Request instance for GetUserSsoSettings.
+        :type request: :class:`ksyun.client.iam.v20151101.models.GetUserSsoSettingsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetUserSsoSettings", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

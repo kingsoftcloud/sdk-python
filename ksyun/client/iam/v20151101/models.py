@@ -1417,3 +1417,74 @@ class DelInstanceFromESRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
 
 
+class GetAccountAllProjectsByParamsRequest(AbstractModel):
+    """GetAccountAllProjectsByParams请求参数结构体
+    """
+
+    def __init__(self):
+        r"""根据参数获取账户项目列表
+        :param Ps: 每页显示条数
+        :type PathPrefix: Int
+        :param Pn: 页码
+        :type PathPrefix: Int
+        :param ParamUserName: 子账号用户名
+        :type PathPrefix: String
+        :param ParamAccessKey: 该主账号下任意一个子账号的AccessKey
+        :type PathPrefix: String
+        """
+        self.Ps = None
+        self.Pn = None
+        self.ParamUserName = None
+        self.ParamAccessKey = None
+
+    def _deserialize(self, params):
+        if params.get("Ps"):
+            self.Ps = params.get("Ps")
+        if params.get("Pn"):
+            self.Pn = params.get("Pn")
+        if params.get("ParamUserName"):
+            self.ParamUserName = params.get("ParamUserName")
+        if params.get("ParamAccessKey"):
+            self.ParamAccessKey = params.get("ParamAccessKey")
+
+
+class SetUserSsoSettingsRequest(AbstractModel):
+    """SetUserSsoSettings请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置用户SSO身份提供商信息
+        :param Status: 是否开启用户 SSO
+0否 1是
+        :type PathPrefix: Int
+        :param Metadata: 	
+元数据文档。经过 Base64 编码
+        :type PathPrefix: String
+        :param Domain: 域名 状态开启时必填
+        :type PathPrefix: String
+        """
+        self.Status = None
+        self.Metadata = None
+        self.Domain = None
+
+    def _deserialize(self, params):
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("Metadata"):
+            self.Metadata = params.get("Metadata")
+        if params.get("Domain"):
+            self.Domain = params.get("Domain")
+
+
+class GetUserSsoSettingsRequest(AbstractModel):
+    """GetUserSsoSettings请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询用户SSO身份提供商信息
+        """
+
+    def _deserialize(self, params):
+        return
+
+

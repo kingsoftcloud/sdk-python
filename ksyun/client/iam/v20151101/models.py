@@ -908,6 +908,32 @@ class CreateProjectRequest(AbstractModel):
             self.ProjectDesc = params.get("ProjectDesc")
 
 
+class UpdateProjectInfoRequest(AbstractModel):
+    """UpdateProjectInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新项目信息
+        :param ProjectId: ProjectId
+        :type PathPrefix: Int
+        :param ProjectName: 项目名称，最多64个字符
+        :type PathPrefix: String
+        :param ProjectDesc: 项目描述，最多64个字符
+        :type PathPrefix: String
+        """
+        self.ProjectId = None
+        self.ProjectName = None
+        self.ProjectDesc = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ProjectName"):
+            self.ProjectName = params.get("ProjectName")
+        if params.get("ProjectDesc"):
+            self.ProjectDesc = params.get("ProjectDesc")
+
+
 class GetAccountAllProjectListRequest(AbstractModel):
     """GetAccountAllProjectList请求参数结构体
     """

@@ -653,7 +653,7 @@ class SlbClient(AbstractClient):
 
 
     def DescribeBackendServers(self, request):
-        """获取后端服务器列表
+        """查询服务器组中后端服务信息
         :param request: Request instance for DescribeBackendServers.
         :type request: :class:`ksyun.client.slb.v20160304.models.DescribeBackendServersRequest`
         """
@@ -1695,6 +1695,259 @@ class SlbClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("CloneLoadBalancer", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetLBDeleteProtection(self, request):
+        """设置删除保护
+        :param request: Request instance for SetLBDeleteProtection.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetLBDeleteProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetLBDeleteProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetLBModificationProtection(self, request):
+        """设置修改保护
+        :param request: Request instance for SetLBModificationProtection.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetLBModificationProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetLBModificationProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyCertificateWithGroup(self, request):
+        """监听器维度更换同域名的证书
+        :param request: Request instance for ModifyCertificateWithGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.ModifyCertificateWithGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyCertificateWithGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateAlbBackendServerGroup(self, request):
+        """创建ALB服务器组
+        :param request: Request instance for CreateAlbBackendServerGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.CreateAlbBackendServerGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAlbBackendServerGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAlbBackendServerGroup(self, request):
+        """删除ALB服务器组
+        :param request: Request instance for DeleteAlbBackendServerGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeleteAlbBackendServerGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAlbBackendServerGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyAlbBackendServerGroup(self, request):
+        """修改ALB服务器组
+        :param request: Request instance for ModifyAlbBackendServerGroup.
+        :type request: :class:`ksyun.client.slb.v20160304.models.ModifyAlbBackendServerGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAlbBackendServerGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAlbBackendServerGroups(self, request):
+        """查询ALB服务器组
+        :param request: Request instance for DescribeAlbBackendServerGroups.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbBackendServerGroupsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlbBackendServerGroups", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def RegisterAlbBackendServer(self, request):
+        """ALB注册服务器到服务器组
+        :param request: Request instance for RegisterAlbBackendServer.
+        :type request: :class:`ksyun.client.slb.v20160304.models.RegisterAlbBackendServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RegisterAlbBackendServer", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeregisterAlbBackendServer(self, request):
+        """ALB从服务器组移除服务器
+        :param request: Request instance for DeregisterAlbBackendServer.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DeregisterAlbBackendServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeregisterAlbBackendServer", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyAlbBackendServer(self, request):
+        """修改ALB服务器信息
+        :param request: Request instance for ModifyAlbBackendServer.
+        :type request: :class:`ksyun.client.slb.v20160304.models.ModifyAlbBackendServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAlbBackendServer", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAlbBackendServers(self, request):
+        """查询ALB服务器信息
+        :param request: Request instance for DescribeAlbBackendServers.
+        :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbBackendServersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlbBackendServers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

@@ -1303,7 +1303,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateAlbListener", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("CreateAlbListener", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

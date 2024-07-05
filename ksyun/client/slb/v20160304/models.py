@@ -85,6 +85,10 @@ class ModifyListenersRequest(AbstractModel):
         :type PathPrefix: String
         :param RedirectListenerId: 重定向监听器ID
         :type PathPrefix: String
+        :param CaCertificateId: 客户端证书，CaEnabled = true，必填
+        :type PathPrefix: String
+        :param CaEnabled: 是否开启双向认证
+        :type PathPrefix: Boolean
         """
         self.ListenerId = None
         self.ListenerName = None
@@ -102,6 +106,8 @@ class ModifyListenersRequest(AbstractModel):
         self.CookieName = None
         self.CertificateId = None
         self.RedirectListenerId = None
+        self.CaCertificateId = None
+        self.CaEnabled = None
 
     def _deserialize(self, params):
         if params.get("ListenerId"):
@@ -136,6 +142,10 @@ class ModifyListenersRequest(AbstractModel):
             self.CertificateId = params.get("CertificateId")
         if params.get("RedirectListenerId"):
             self.RedirectListenerId = params.get("RedirectListenerId")
+        if params.get("CaCertificateId"):
+            self.CaCertificateId = params.get("CaCertificateId")
+        if params.get("CaEnabled"):
+            self.CaEnabled = params.get("CaEnabled")
 
 
 class CreateListenersRequest(AbstractModel):
@@ -182,6 +192,10 @@ class CreateListenersRequest(AbstractModel):
         :type PathPrefix: String
         :param CertificateId: 证书的ID
         :type PathPrefix: String
+        :param CaCertificateId: 客户端证书，CaEnabled = true，必填
+        :type PathPrefix: String
+        :param CaEnabled: 是否开启双向认证
+        :type PathPrefix: Boolean
         """
         self.LoadBalancerId = None
         self.ListenerName = None
@@ -202,6 +216,8 @@ class CreateListenersRequest(AbstractModel):
         self.CookieType = None
         self.CookieName = None
         self.CertificateId = None
+        self.CaCertificateId = None
+        self.CaEnabled = None
 
     def _deserialize(self, params):
         if params.get("LoadBalancerId"):
@@ -242,6 +258,10 @@ class CreateListenersRequest(AbstractModel):
             self.CookieName = params.get("CookieName")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
+        if params.get("CaCertificateId"):
+            self.CaCertificateId = params.get("CaCertificateId")
+        if params.get("CaEnabled"):
+            self.CaEnabled = params.get("CaEnabled")
 
 
 class ModifyInstancesWithListenerRequest(AbstractModel):
@@ -673,15 +693,15 @@ class CreateLoadBalancerRequest(AbstractModel):
         :type PathPrefix: String
         :param PrivateIpAddress: 私网负载均衡的IP，Type 为 Public 时忽略此参数
         :type PathPrefix: String
+        :param DeleteProtection: 删除保护，on开启，off关闭，默认关闭，on/off
+        :type PathPrefix: String
+        :param ModificationProtection: 删除保护，on开启，off关闭，默认关闭，on/off
+        :type PathPrefix: String
         :param IpVersion: 负载均衡的IP版本
         :type PathPrefix: String
         :param LbType: 负载均衡类型(classic|application)
         :type PathPrefix: String
         :param ProjectId: 项目的ID
-        :type PathPrefix: String
-        :param DeleteProtection: 删除保护状态(on|off)
-        :type PathPrefix: String
-        :param ModificationProtection: 修改保护状态(on|off)
         :type PathPrefix: String
         """
         self.VpcId = None
@@ -689,11 +709,11 @@ class CreateLoadBalancerRequest(AbstractModel):
         self.Type = None
         self.SubnetId = None
         self.PrivateIpAddress = None
+        self.DeleteProtection = None
+        self.ModificationProtection = None
         self.IpVersion = None
         self.LbType = None
         self.ProjectId = None
-        self.DeleteProtection = None
-        self.ModificationProtection = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -706,16 +726,16 @@ class CreateLoadBalancerRequest(AbstractModel):
             self.SubnetId = params.get("SubnetId")
         if params.get("PrivateIpAddress"):
             self.PrivateIpAddress = params.get("PrivateIpAddress")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
+        if params.get("ModificationProtection"):
+            self.ModificationProtection = params.get("ModificationProtection")
         if params.get("IpVersion"):
             self.IpVersion = params.get("IpVersion")
         if params.get("LbType"):
             self.LbType = params.get("LbType")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
-        if params.get("DeleteProtection"):
-            self.DeleteProtection = params.get("DeleteProtection")
-        if params.get("ModificationProtection"):
-            self.ModificationProtection = params.get("ModificationProtection")
 
 
 class CreateHostHeaderRequest(AbstractModel):
@@ -1755,6 +1775,14 @@ class CreateAlbRequest(AbstractModel):
         :type PathPrefix: String
         :param ChargeType: 计费类型(PrePaidByHourUsage，按小时用量实时付费（小时结))
         :type PathPrefix: String
+        :param SubnetId: 子网id
+        :type PathPrefix: String
+        :param PrivateIpAddress: 私网ip
+        :type PathPrefix: String
+        :param EnabledQuic: 是否开启QUIC功能
+        :type PathPrefix: Boolean
+        :param EnableHpa: 是否开启弹性伸缩
+        :type PathPrefix: Boolean
         """
         self.AlbName = None
         self.AlbVersion = None
@@ -1764,6 +1792,10 @@ class CreateAlbRequest(AbstractModel):
         self.ProjectId = None
         self.AllocationId = None
         self.ChargeType = None
+        self.SubnetId = None
+        self.PrivateIpAddress = None
+        self.EnabledQuic = None
+        self.EnableHpa = None
 
     def _deserialize(self, params):
         if params.get("AlbName"):
@@ -1782,6 +1814,14 @@ class CreateAlbRequest(AbstractModel):
             self.AllocationId = params.get("AllocationId")
         if params.get("ChargeType"):
             self.ChargeType = params.get("ChargeType")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("PrivateIpAddress"):
+            self.PrivateIpAddress = params.get("PrivateIpAddress")
+        if params.get("EnabledQuic"):
+            self.EnabledQuic = params.get("EnabledQuic")
+        if params.get("EnableHpa"):
+            self.EnableHpa = params.get("EnableHpa")
 
 
 class DeleteAlbRequest(AbstractModel):
@@ -1790,10 +1830,14 @@ class DeleteAlbRequest(AbstractModel):
 
     def __init__(self):
         r"""DeleteAlb
+        :param AlbId: 应用型负载均衡的ID
+        :type PathPrefix: String
         """
+        self.AlbId = None
 
     def _deserialize(self, params):
-        return
+        if params.get("AlbId"):
+            self.AlbId = params.get("AlbId")
 
 
 class SetAlbNameRequest(AbstractModel):
@@ -1854,21 +1898,21 @@ class DescribeAlbsRequest(AbstractModel):
         :type PathPrefix: Filter
         :param TagKV: 多个标签的键
         :type PathPrefix: Filter
+        :param ProjectId: 项目的ID
+        :type PathPrefix: Filter
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
-        :param ProjectId: 项目制ID
-        :type PathPrefix: Filter
         """
         self.AlbId = None
         self.Filter = None
         self.IsContainTag = None
         self.TagKey = None
         self.TagKV = None
+        self.ProjectId = None
         self.MaxResults = None
         self.NextToken = None
-        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("AlbId"):
@@ -1881,12 +1925,12 @@ class DescribeAlbsRequest(AbstractModel):
             self.TagKey = params.get("TagKey")
         if params.get("TagKV"):
             self.TagKV = params.get("TagKV")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
-        if params.get("ProjectId"):
-            self.ProjectId = params.get("ProjectId")
 
 
 class CreateAlbListenerRequest(AbstractModel):
@@ -2580,20 +2624,20 @@ class SetAlbAccessLogRequest(AbstractModel):
         :type PathPrefix: String
         :param ProjectName: 访问日志投递的日志库
         :type PathPrefix: String
-        :param LogPoolName: 访问日志投递的日志池
+        :param LogpoolName: 访问日志投递的日志池
         :type PathPrefix: String
         """
         self.AlbId = None
         self.ProjectName = None
-        self.LogPoolName = None
+        self.LogpoolName = None
 
     def _deserialize(self, params):
         if params.get("AlbId"):
             self.AlbId = params.get("AlbId")
         if params.get("ProjectName"):
             self.ProjectName = params.get("ProjectName")
-        if params.get("LogPoolName"):
-            self.LogPoolName = params.get("LogPoolName")
+        if params.get("LogpoolName"):
+            self.LogpoolName = params.get("LogpoolName")
 
 
 class CloneLoadBalancerRequest(AbstractModel):
@@ -2602,24 +2646,54 @@ class CloneLoadBalancerRequest(AbstractModel):
 
     def __init__(self):
         r"""克隆负载均衡
-        :param VpcId: Vpc的ID
+        :param cloneLoadBalancerId: 克隆的负载均衡ID
         :type PathPrefix: String
-        :param LoadBalancerName: 负载均衡的名称
+        :param LoadBalancerName: 克隆的负载均衡的名称
         :type PathPrefix: String
         :param Type: 负载均衡的类型，public 为公网负载均衡，internal 为内网负载均衡
         :type PathPrefix: String
+        :param SubnetId: 终端子网的 ID，Type 为 public 时忽略此参数，为internal 时此参数必填
+        :type PathPrefix: String
+        :param PrivateIpAddress: 私网负载均衡的IP，Type 为 Public 时忽略此参数
+        :type PathPrefix: String
+        :param IpVersion: 负载均衡的IP版本
+        :type PathPrefix: String
+        :param LbType: 负载均衡类型(classic|application)
+        :type PathPrefix: String
+        :param TagId: tag标签
+        :type PathPrefix: Filter
+        :param ProjectId: 项目的ID
+        :type PathPrefix: String
         """
-        self.VpcId = None
+        self.cloneLoadBalancerId = None
         self.LoadBalancerName = None
         self.Type = None
+        self.SubnetId = None
+        self.PrivateIpAddress = None
+        self.IpVersion = None
+        self.LbType = None
+        self.TagId = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
-        if params.get("VpcId"):
-            self.VpcId = params.get("VpcId")
+        if params.get("cloneLoadBalancerId"):
+            self.cloneLoadBalancerId = params.get("cloneLoadBalancerId")
         if params.get("LoadBalancerName"):
             self.LoadBalancerName = params.get("LoadBalancerName")
         if params.get("Type"):
             self.Type = params.get("Type")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("PrivateIpAddress"):
+            self.PrivateIpAddress = params.get("PrivateIpAddress")
+        if params.get("IpVersion"):
+            self.IpVersion = params.get("IpVersion")
+        if params.get("LbType"):
+            self.LbType = params.get("LbType")
+        if params.get("TagId"):
+            self.TagId = params.get("TagId")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class SetLBDeleteProtectionRequest(AbstractModel):

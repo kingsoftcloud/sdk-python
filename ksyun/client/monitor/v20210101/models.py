@@ -207,3 +207,15 @@ class UpdateAlertUserStatusRequest(AbstractModel):
             self.UserStatus = params.get("UserStatus")
 
 
+class DescribeMonitorProductListRequest(AbstractModel):
+    """DescribeMonitorProductList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""描述监控云服务类别，支持项目
+        """
+
+    def _deserialize(self, params):
+        return
+
+

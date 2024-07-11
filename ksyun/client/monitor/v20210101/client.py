@@ -215,3 +215,26 @@ class MonitorClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeMonitorProductList(self, request):
+        """描述监控云服务类别，支持项目
+        :param request: Request instance for DescribeMonitorProductList.
+        :type request: :class:`ksyun.client.monitor.v20210101.models.DescribeMonitorProductListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMonitorProductList", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

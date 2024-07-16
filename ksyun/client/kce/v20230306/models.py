@@ -483,3 +483,173 @@ ServiceMonitor
             self.MaxResults = params.get("MaxResults")
 
 
+class DescribeAgentStatusRequest(AbstractModel):
+    """DescribeAgentStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询agent状态
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param ClusterId: 集群id
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.ClusterId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+
+
+class CreateMonitorCollectionConfigRequest(AbstractModel):
+    """CreateMonitorCollectionConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建监控采集配置
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param ClusterId: 集群id
+        :type PathPrefix: String
+        :param Type: 监控采集配置类型，有效值：
+RawJob
+PodMonitor
+ServiceMonitor
+        :type PathPrefix: String
+        :param ConfigYaml: 监控采集配置yaml
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.ClusterId = None
+        self.Type = None
+        self.ConfigYaml = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+        if params.get("ConfigYaml"):
+            self.ConfigYaml = params.get("ConfigYaml")
+
+
+class DeleteMonitorCollectionConfigRequest(AbstractModel):
+    """DeleteMonitorCollectionConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除监控采集配置
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param ClusterId: 集群id
+        :type PathPrefix: String
+        :param MonitorName: 监控采集配置名称
+        :type PathPrefix: String
+        :param Type: 	
+监控采集配置类型，有效值：
+RawJob
+PodMonitor
+ServiceMonitor
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.ClusterId = None
+        self.MonitorName = None
+        self.Type = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("MonitorName"):
+            self.MonitorName = params.get("MonitorName")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+
+
+class EnableMetricsRequest(AbstractModel):
+    """EnableMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开启指标
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param ClusterId: 集群id
+        :type PathPrefix: String
+        :param MonitorName: 监控采集配置名称
+        :type PathPrefix: String
+        :param Type: 	
+监控采集配置类型，有效值：
+RawJob
+PodMonitor
+ServiceMonitor
+        :type PathPrefix: String
+        :param MetricsName: 指标名称
+        :type PathPrefix: Filter
+        """
+        self.InstanceId = None
+        self.ClusterId = None
+        self.MonitorName = None
+        self.Type = None
+        self.MetricsName = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("MonitorName"):
+            self.MonitorName = params.get("MonitorName")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+        if params.get("MetricsName"):
+            self.MetricsName = params.get("MetricsName")
+
+
+class DropMetricsRequest(AbstractModel):
+    """DropMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""废弃指标
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param ClusterId: 集群id
+        :type PathPrefix: String
+        :param MonitorName: 监控采集配置名称
+        :type PathPrefix: String
+        :param Type: 	
+监控采集配置类型，有效值：
+RawJob
+PodMonitor
+ServiceMonitor
+        :type PathPrefix: String
+        :param MetricsName: 指标名称
+        :type PathPrefix: Filter
+        """
+        self.InstanceId = None
+        self.ClusterId = None
+        self.MonitorName = None
+        self.Type = None
+        self.MetricsName = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("MonitorName"):
+            self.MonitorName = params.get("MonitorName")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+        if params.get("MetricsName"):
+            self.MetricsName = params.get("MetricsName")
+
+

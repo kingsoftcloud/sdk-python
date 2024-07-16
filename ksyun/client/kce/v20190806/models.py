@@ -5,7 +5,7 @@ class DescribeClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeCluster
+        r"""查询集群列表
         :param ClusterId: 集群id，如不输入，则默认查询该地域下的所有集群。
         :type PathPrefix: String
         :param Marker: 分页标识，单次调用未返回全部实例时，标记下次调用的返回值的起点，默认值是0。
@@ -41,7 +41,7 @@ class DescribeClusterInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeClusterInstance
+        r"""查询集群节点列表
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param MaxResults: 单次调用所返回的最大实例数目，默认10,最大50。
@@ -77,10 +77,13 @@ class DeleteClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DeleteCluster
+        r"""删除集群
         :param ClusterId: 集群id
         :type PathPrefix: String
-        :param InstanceDeleteMode: 节点的删除模式。</br>有效值：</br>Terminate（默认值）-销毁实例（仅针对于按量付费的云服务器，对于包年包月的云服务器和裸金属服务器不生效）</br>Remove-仅把节点移除集群，实例本身不销毁
+        :param InstanceDeleteMode: 节点的删除模式，有效值：
+
+- Terminate（默认值）销毁实例（仅针对于按量付费的云服务器，对于包年包月的云服务器和裸金属服务器不生效）
+- Remove 仅把节点移除集群，实例本身不销毁
         :type PathPrefix: String
         """
         self.ClusterId = None
@@ -98,7 +101,7 @@ class DownloadClusterConfigRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DownloadClusterConfig
+        r"""下载集群配置文件
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param IsPublic: 获取的config类型<br>true：公网访问config文件<br>false：VPC内网config文件<br>默认值：true
@@ -119,7 +122,7 @@ class ModifyClusterInfoRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""ModifyClusterInfo
+        r"""修改集群基本信息
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param ClusterName: 集群名称
@@ -159,15 +162,11 @@ class DescribeInstanceImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeInstanceImage
-        :param ImageId: 镜像id
-        :type PathPrefix: Filter
+        r"""获取容器服务支持的节点操作系统
         """
-        self.ImageId = None
 
     def _deserialize(self, params):
-        if params.get("ImageId"):
-            self.ImageId = params.get("ImageId")
+        return
 
 
 class AddClusterInstancesRequest(AbstractModel):
@@ -175,10 +174,10 @@ class AddClusterInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""AddClusterInstances
+        r"""新增节点
         :param ClusterId: 集群id
         :type PathPrefix: String
-        :param InstanceSet: 节点配置信息<br>NodeRole只能是Worker。
+        :param InstanceSet: 建议仅填写一条InstanceSet数据，不要填写多条。
         :type PathPrefix: Filter
         """
         self.ClusterId = None
@@ -196,12 +195,14 @@ class DeleteClusterInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DeleteClusterInstances
+        r"""移除集群中的节点
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param InstanceId: 需要移除的节点id列表，只允许移除Worker节点（N的范围为1-50）。
         :type PathPrefix: Filter
-        :param InstanceDeleteMode: 节点的删除模式，有效值:<br/>- **Terminate**（默认值）：销毁实例（仅针对于按量付费的云服务器，对于包年包月的云服务器和裸金属服务器不生效）<br/>- **Remove**：仅把节点移除集群，实例本身不销毁。
+        :param InstanceDeleteMode: 节点的删除模式，有效值:
+- **Terminate**（默认值）销毁实例（仅针对于按量付费的云服务器，对于包年包月的云服务器和裸金属服务器不生效）
+- **Remove** 仅把节点移除集群，实例本身不销毁。
         :type PathPrefix: String
         """
         self.ClusterId = None
@@ -222,7 +223,7 @@ class DescribeEpcForClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeEpcForCluster
+        r"""获取支持移入集群的裸金属服务器列表
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param InstanceId: 裸金属服务器实例id
@@ -231,8 +232,8 @@ class DescribeEpcForClusterRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Marker: 分页标识，单次调用未返回全部实例时，标记下次调用的返回值的起点，默认值是0。
         :type PathPrefix: Int
-        :param MaxResults: 单次调用所返回的最大实例数目，默认20， 范围(0-50]。
-        :type PathPrefix: String
+        :param MaxResults: 单次调用所返回的最大实例数目，默认20， 范围(1-50]。
+        :type PathPrefix: Int
         """
         self.ClusterId = None
         self.InstanceId = None
@@ -258,12 +259,14 @@ class AddClusterEpcInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""AddClusterEpcInstances
+        r"""移入裸金属服务器到集群
         :param ClusterId: 集群id
         :type PathPrefix: String
-        :param InstanceId: 移入集群的裸金属服务器实例id <br>注：参数InstanceId.N和EpcPara.N必须填写一个
+        :param InstanceId: 移入集群的裸金属服务器实例id，即HostId
+
+注：参数InstanceId.N和EpcPara.N必须填写一个，不能同时填写，也不能同时为空
         :type PathPrefix: Filter
-        :param EpcPara: 裸金属服务器产品重新安装操作系统的透传参数，json化字符串格式，详见[重装租赁裸金属服务器](https://docs.ksyun.com/documents/631)。<br>注：已兼容InstanceId.N参数，若填写此参数，则InstanceId.N参数无效
+        :param EpcPara: 裸金属服务器产品重新安装操作系统的透传参数，json化字符串格式，详见[重装租赁裸金属服务器](https://apiexplorer.ksyun.com/#/api/44/ReinstallEpc/2015-11-01/1003)。
         :type PathPrefix: Filter
         :param AdvancedSetting: 节点高级设置
         :type PathPrefix: Object
@@ -289,7 +292,7 @@ class DescribeExistedInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""获取KEC实例列表
+        r"""查询已经存在的云服务器
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param InstanceId: 云服务器id
@@ -330,7 +333,7 @@ class AddExistedInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""添加KEC节点到集群
+        r"""添加已有的服务器
         :param ClusterId: 集群id
         :type PathPrefix: String
         :param ExistedInstanceKecSet: 选择已有的虚拟机（包含专属云主机）作为集群的Worker节点，其中NodeRole只能是Worker。<br>N：1-99
@@ -344,27 +347,6 @@ class AddExistedInstancesRequest(AbstractModel):
             self.ClusterId = params.get("ClusterId")
         if params.get("ExistedInstanceKecSet"):
             self.ExistedInstanceKecSet = params.get("ExistedInstanceKecSet")
-
-
-class ForceRemoveClusterInstanceRequest(AbstractModel):
-    """ForceRemoveClusterInstance请求参数结构体
-    """
-
-    def __init__(self):
-        r"""强制删除集群节点
-        :param ClusterId: 集群id
-        :type PathPrefix: String
-        :param InstanceId: 需要强制移除的节点id列表
-        :type PathPrefix: Filter
-        """
-        self.ClusterId = None
-        self.InstanceId = None
-
-    def _deserialize(self, params):
-        if params.get("ClusterId"):
-            self.ClusterId = params.get("ClusterId")
-        if params.get("InstanceId"):
-            self.InstanceId = params.get("InstanceId")
 
 
 class CreateNodePoolRequest(AbstractModel):
@@ -727,7 +709,7 @@ class DescribeEpcImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询EPC镜像
+        r"""获取裸金属服务器支持的系统镜像
         :param ImageId: 镜像id
         :type PathPrefix: Filter
         """
@@ -736,5 +718,45 @@ class DescribeEpcImageRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
+
+
+class EditEventCollectingRequest(AbstractModel):
+    """EditEventCollecting请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开启事件推送
+        :param ClusterId: 
+        :type PathPrefix: String
+        :param EnableEventCollecting: 是否开启推送
+
+- true 开启
+- false 关闭
+        :type PathPrefix: Boolean
+        """
+        self.ClusterId = None
+        self.EnableEventCollecting = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("EnableEventCollecting"):
+            self.EnableEventCollecting = params.get("EnableEventCollecting")
+
+
+class DescribeNodePoolSummaryRequest(AbstractModel):
+    """DescribeNodePoolSummary请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询集群全量节点池的轻量级API
+        :param ClusterId: 集群ID
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
 
 

@@ -15,7 +15,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateNamespace", params, "application/json")
+            body = self.call_judge("CreateNamespace", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -38,7 +38,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeNamespace", params, "application/json")
+            body = self.call_judge("DescribeNamespace", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -61,7 +61,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyNamespaceType", params, "application/json")
+            body = self.call_judge("ModifyNamespaceType", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -107,7 +107,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteNamespace", params, "application/json")
+            body = self.call_judge("DeleteNamespace", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -130,7 +130,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeImages", params, "application/json")
+            body = self.call_judge("DescribeImages", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteImages", params, "application/json")
+            body = self.call_judge("DeleteImages", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -176,7 +176,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteRepoTag", params, "application/json")
+            body = self.call_judge("DeleteRepoTag", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +199,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeRepository", params, "application/json")
+            body = self.call_judge("DescribeRepository", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +222,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyRepoDesc", params, "application/json")
+            body = self.call_judge("ModifyRepoDesc", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -245,7 +245,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteRepository", params, "application/json")
+            body = self.call_judge("DeleteRepository", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -268,7 +268,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("StartImageScan", params, "application/json")
+            body = self.call_judge("StartImageScan", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -291,7 +291,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeImageScan", params, "application/json")
+            body = self.call_judge("DescribeImageScan", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -314,7 +314,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateInstanceToken", params, "application/json")
+            body = self.call_judge("CreateInstanceToken", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeInternalEndpoint", params, "application/json")
+            body = self.call_judge("DescribeInternalEndpoint", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -360,7 +360,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeInstanceToken", params, "application/json")
+            body = self.call_judge("DescribeInstanceToken", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -383,7 +383,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateInternalEndpoint", params, "application/json")
+            body = self.call_judge("CreateInternalEndpoint", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -406,7 +406,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyInstanceTokenStatus", params, "application/json")
+            body = self.call_judge("ModifyInstanceTokenStatus", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -429,7 +429,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteInternalEndpoint", params, "application/json")
+            body = self.call_judge("DeleteInternalEndpoint", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -452,7 +452,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyInstanceTokenInformation", params, "application/json")
+            body = self.call_judge("ModifyInstanceTokenInformation", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -475,7 +475,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeInternalEndpointDns", params, "application/json")
+            body = self.call_judge("DescribeInternalEndpointDns", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -498,7 +498,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteInstanceToken", params, "application/json")
+            body = self.call_judge("DeleteInstanceToken", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -521,7 +521,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateInternalEndpointDns", params, "application/json")
+            body = self.call_judge("CreateInternalEndpointDns", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -544,7 +544,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteInternalEndpointDns", params, "application/json")
+            body = self.call_judge("DeleteInternalEndpointDns", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -567,7 +567,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateInstance", params, "application/json")
+            body = self.call_judge("CreateInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -636,7 +636,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeInstance", params, "application/json")
+            body = self.call_judge("DescribeInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -682,7 +682,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeWebhookTrigger", params, "application/json")
+            body = self.call_judge("DescribeWebhookTrigger", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -705,7 +705,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyWebhookTrigger", params, "application/json")
+            body = self.call_judge("ModifyWebhookTrigger", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -728,7 +728,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeWebhookTriggerLog", params, "application/json")
+            body = self.call_judge("DescribeWebhookTriggerLog", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -751,53 +751,7 @@ class KcrsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteWebhookTrigger", params, "application/json")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DescribeAllRepository(self, request):
-        """查询指定命名空间全部仓库
-        :param request: Request instance for DescribeAllRepository.
-        :type request: :class:`ksyun.client.kcrs.v20211109.models.DescribeAllRepositoryRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeAllRepository", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def GetMetadata(self, request):
-        """获取清理元数据
-        :param request: Request instance for GetMetadata.
-        :type request: :class:`ksyun.client.kcrs.v20211109.models.GetMetadataRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetMetadata", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DeleteWebhookTrigger", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1028,29 +982,6 @@ class KcrsClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("UpdateRetentionTrigger", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def GetNamespacePolicy(self, request):
-        """获取命名空间是否绑定清理规则
-        :param request: Request instance for GetNamespacePolicy.
-        :type request: :class:`ksyun.client.kcrs.v20211109.models.GetNamespacePolicyRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetNamespacePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

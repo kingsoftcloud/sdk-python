@@ -4,18 +4,18 @@ from ksyun.common.exception.ksyun_sdk_exception import KsyunSDKException
 from ksyun.common.abstract_client import AbstractClient
 
 
-class KceClient(AbstractClient):
-    _apiVersion = '2018-03-14'
-    _endpoint = 'kce.api.ksyun.com'
-    _service = 'kce'
-    def CreateRepoNamespace(self, request):
-        """创建命名空间
-        :param request: Request instance for CreateRepoNamespace.
-        :type request: :class:`ksyun.client.kce.v20180314.models.CreateRepoNamespaceRequest`
+class KciClient(AbstractClient):
+    _apiVersion = '2020-07-02'
+    _endpoint = 'kci.api.ksyun.com'
+    _service = 'kci'
+    def CreateContainerGroup(self, request):
+        """创建容器实例组
+        :param request: Request instance for CreateContainerGroup.
+        :type request: :class:`ksyun.client.kci.v20200702.models.CreateContainerGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateRepoNamespace", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("CreateContainerGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -31,14 +31,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DescribeRepoNamespace(self, request):
-        """查询命名空间
-        :param request: Request instance for DescribeRepoNamespace.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DescribeRepoNamespaceRequest`
+    def DescribeContainerGroup(self, request):
+        """查询容器实例组
+        :param request: Request instance for DescribeContainerGroup.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeContainerGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeRepoNamespace", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeContainerGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -54,14 +54,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def ModifyRepoNamespaceType(self, request):
-        """修改命名空间属性
-        :param request: Request instance for ModifyRepoNamespaceType.
-        :type request: :class:`ksyun.client.kce.v20180314.models.ModifyRepoNamespaceTypeRequest`
+    def DescribeContainerGroupList(self, request):
+        """用于控制台查询容器实例组列表
+        :param request: Request instance for DescribeContainerGroupList.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeContainerGroupListRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyRepoNamespaceType", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeContainerGroupList", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -77,14 +77,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def RepoNamespaceExist(self, request):
-        """查询命名空间是否存在
-        :param request: Request instance for RepoNamespaceExist.
-        :type request: :class:`ksyun.client.kce.v20180314.models.RepoNamespaceExistRequest`
+    def DeleteContainerGroup(self, request):
+        """删除容器实例组
+        :param request: Request instance for DeleteContainerGroup.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DeleteContainerGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("RepoNamespaceExist", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DeleteContainerGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -100,14 +100,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def CreateRepository(self, request):
-        """创建镜像仓库
-        :param request: Request instance for CreateRepository.
-        :type request: :class:`ksyun.client.kce.v20180314.models.CreateRepositoryRequest`
+    def DescribeContainerLog(self, request):
+        """查询容器实例组日志
+        :param request: Request instance for DescribeContainerLog.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeContainerLogRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateRepository", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeContainerLog", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -123,14 +123,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DeleteRepository(self, request):
-        """删除镜像仓库
-        :param request: Request instance for DeleteRepository.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DeleteRepositoryRequest`
+    def DescribeRegions(self, request):
+        """查询有权限创建容器实例的机房列表
+        :param request: Request instance for DescribeRegions.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeRegionsRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteRepository", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeRegions", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -146,14 +146,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DescribeRepository(self, request):
-        """查询镜像仓库
-        :param request: Request instance for DescribeRepository.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DescribeRepositoryRequest`
+    def ExecContainerCommand(self, request):
+        """生成执行容器命令的webSocketUri
+        :param request: Request instance for ExecContainerCommand.
+        :type request: :class:`ksyun.client.kci.v20200702.models.ExecContainerCommandRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeRepository", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ExecContainerCommand", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -169,14 +169,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DescribePublicRepository(self, request):
-        """查询ksyun公有镜像仓库列表
-        :param request: Request instance for DescribePublicRepository.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DescribePublicRepositoryRequest`
+    def DescribeContainerGroupCount(self, request):
+        """查询容器实例数量
+        :param request: Request instance for DescribeContainerGroupCount.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeContainerGroupCountRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribePublicRepository", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeContainerGroupCount", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -192,14 +192,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def UpdateRepoDesc(self, request):
-        """更新仓库描述信息
-        :param request: Request instance for UpdateRepoDesc.
-        :type request: :class:`ksyun.client.kce.v20180314.models.UpdateRepoDescRequest`
+    def DescribeContainerGroupEvents(self, request):
+        """查询容器实例事件信息
+        :param request: Request instance for DescribeContainerGroupEvents.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeContainerGroupEventsRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("UpdateRepoDesc", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeContainerGroupEvents", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -215,14 +215,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DescribeTag(self, request):
-        """查询镜像tag列表
-        :param request: Request instance for DescribeTag.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DescribeTagRequest`
+    def DescribeKciPackages(self, request):
+        """查询容器实例在各机房可用区支持的标准规格大小
+        :param request: Request instance for DescribeKciPackages.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeKciPackagesRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeTag", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeKciPackages", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -238,14 +238,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DeleteTags(self, request):
-        """删除镜像tag
-        :param request: Request instance for DeleteTags.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DeleteTagsRequest`
+    def CreateImageCache(self, request):
+        """创建容器实例镜像缓存
+        :param request: Request instance for CreateImageCache.
+        :type request: :class:`ksyun.client.kci.v20200702.models.CreateImageCacheRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteTags", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("CreateImageCache", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -261,14 +261,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def AddFavor(self, request):
-        """添加收藏
-        :param request: Request instance for AddFavor.
-        :type request: :class:`ksyun.client.kce.v20180314.models.AddFavorRequest`
+    def DeleteImageCache(self, request):
+        """删除容器实例镜像缓存
+        :param request: Request instance for DeleteImageCache.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DeleteImageCacheRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("AddFavor", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DeleteImageCache", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -284,14 +284,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DeleteFavor(self, request):
-        """取消收藏
-        :param request: Request instance for DeleteFavor.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DeleteFavorRequest`
+    def DescribeImageCache(self, request):
+        """查询容器实例镜像缓存
+        :param request: Request instance for DescribeImageCache.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeImageCacheRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteFavor", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeImageCache", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -307,14 +307,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def GetFavor(self, request):
-        """查询镜像收藏列表
-        :param request: Request instance for GetFavor.
-        :type request: :class:`ksyun.client.kce.v20180314.models.GetFavorRequest`
+    def MatchImageCache(self, request):
+        """匹配容器实例镜像缓存
+        :param request: Request instance for MatchImageCache.
+        :type request: :class:`ksyun.client.kci.v20200702.models.MatchImageCacheRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("GetFavor", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("MatchImageCache", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -330,60 +330,14 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def RegisterRepositoryAccount(self, request):
-        """注册镜像仓库
-        :param request: Request instance for RegisterRepositoryAccount.
-        :type request: :class:`ksyun.client.kce.v20180314.models.RegisterRepositoryAccountRequest`
+    def DescribeImageCacheEvent(self, request):
+        """查询镜像缓存制作事件
+        :param request: Request instance for DescribeImageCacheEvent.
+        :type request: :class:`ksyun.client.kci.v20200702.models.DescribeImageCacheEventRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("RegisterRepositoryAccount", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def ModifyPassword(self, request):
-        """修改镜像仓库密码
-        :param request: Request instance for ModifyPassword.
-        :type request: :class:`ksyun.client.kce.v20180314.models.ModifyPasswordRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("ModifyPassword", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def DeleteRepoNamespace(self, request):
-        """删除命名空间
-        :param request: Request instance for DeleteRepoNamespace.
-        :type request: :class:`ksyun.client.kce.v20180314.models.DeleteRepoNamespaceRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DeleteRepoNamespace", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeImageCacheEvent", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

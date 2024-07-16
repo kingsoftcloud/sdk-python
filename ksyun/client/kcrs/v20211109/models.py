@@ -138,7 +138,7 @@ class DescribeImagesRequest(AbstractModel):
         r"""查询镜像
         :param InstanceId: 实例id
         :type PathPrefix: String
-        :param Namespace: 命名空间名称
+        :param Namespace: 命名空间名称，只能包含小写字母、数字、和分隔符（“-”，“.”)，不能以分隔符开头或结尾
         :type PathPrefix: String
         :param RepoName: 镜像仓库名称
         :type PathPrefix: String
@@ -179,7 +179,7 @@ class DeleteImagesRequest(AbstractModel):
         r"""删除镜像
         :param InstanceId: 实例id
         :type PathPrefix: String
-        :param Namespace: 命名空间
+        :param Namespace: 命名空间名称，只能包含小写字母、数字、和分隔符（“-”，“.”)，不能以分隔符开头或结尾
         :type PathPrefix: String
         :param RepoName: 镜像仓库名称
         :type PathPrefix: String
@@ -210,7 +210,7 @@ class DeleteRepoTagRequest(AbstractModel):
         r"""删除tag
         :param InstanceId: 实例id
         :type PathPrefix: String
-        :param Namespace: 命名空间
+        :param Namespace: 命名空间名称，只能包含小写字母、数字、和分隔符（“-”，“.”)，不能以分隔符开头或结尾
         :type PathPrefix: String
         :param RepoName: 镜像仓库名称
         :type PathPrefix: String
@@ -734,7 +734,7 @@ class DeleteInstanceRequest(AbstractModel):
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param DeleteBucket: 是否随实例删除关联的KS3 Bucket，有效值：<br />True：是<br />False：否<br />默认值：False
-        :type PathPrefix: String
+        :type PathPrefix: Boolean
         """
         self.InstanceId = None
         self.DeleteBucket = None
@@ -809,32 +809,11 @@ class CreateWebhookTriggerRequest(AbstractModel):
         :param Namespace: 命名空间
         :type PathPrefix: String
         :param Trigger: 触发器参数
-        :type PathPrefix: String
-        :param TriggerName: 触发器名称
-        :type PathPrefix: String
-        :param EventType: 触发动作，有效值：<br/>PushImage<br/>DeleteImage
-        :type PathPrefix: Filter
-        :param TriggerUrl: 触发器URL
-        :type PathPrefix: String
-        :param Header: 自定义Header
-        :type PathPrefix: Filter
-        :param Enabled: 启用触发器，有效值：<br/>True：是<br/>False：否<br/>默认值：True
-        :type PathPrefix: String
-        :param Key: Header Key
-        :type PathPrefix: String
-        :param Value: Header Values
-        :type PathPrefix: Filter
+        :type PathPrefix: Object
         """
         self.InstanceId = None
         self.Namespace = None
         self.Trigger = None
-        self.TriggerName = None
-        self.EventType = None
-        self.TriggerUrl = None
-        self.Header = None
-        self.Enabled = None
-        self.Key = None
-        self.Value = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -843,20 +822,6 @@ class CreateWebhookTriggerRequest(AbstractModel):
             self.Namespace = params.get("Namespace")
         if params.get("Trigger"):
             self.Trigger = params.get("Trigger")
-        if params.get("TriggerName"):
-            self.TriggerName = params.get("TriggerName")
-        if params.get("EventType"):
-            self.EventType = params.get("EventType")
-        if params.get("TriggerUrl"):
-            self.TriggerUrl = params.get("TriggerUrl")
-        if params.get("Header"):
-            self.Header = params.get("Header")
-        if params.get("Enabled"):
-            self.Enabled = params.get("Enabled")
-        if params.get("Key"):
-            self.Key = params.get("Key")
-        if params.get("Value"):
-            self.Value = params.get("Value")
 
 
 class DescribeWebhookTriggerRequest(AbstractModel):
@@ -1023,40 +988,30 @@ class DeleteWebhookTriggerRequest(AbstractModel):
             self.TriggerId = params.get("TriggerId")
 
 
-class DescribeAllRepositoryRequest(AbstractModel):
-    """DescribeAllRepository请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询指定命名空间全部仓库
-        """
-
-    def _deserialize(self, params):
-        return
-
-
-class GetMetadataRequest(AbstractModel):
-    """GetMetadata请求参数结构体
-    """
-
-    def __init__(self):
-        r"""获取清理元数据
-        """
-
-    def _deserialize(self, params):
-        return
-
-
 class CreateRetentionRuleRequest(AbstractModel):
     """CreateRetentionRule请求参数结构体
     """
 
     def __init__(self):
         r"""创建镜像清理规则
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param Rule: 参数实体类
+        :type PathPrefix: Object
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.Rule = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("Rule"):
+            self.Rule = params.get("Rule")
 
 
 class UpdateRetentionRuleRequest(AbstractModel):
@@ -1065,10 +1020,24 @@ class UpdateRetentionRuleRequest(AbstractModel):
 
     def __init__(self):
         r"""更新镜像清理规则
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param Rule: 参数实体类
+        :type PathPrefix: Object
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.Rule = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("Rule"):
+            self.Rule = params.get("Rule")
 
 
 class DeleteRetentionRuleRequest(AbstractModel):
@@ -1077,10 +1046,24 @@ class DeleteRetentionRuleRequest(AbstractModel):
 
     def __init__(self):
         r"""删除镜像清理规则
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param Rule: 参数实体类
+        :type PathPrefix: Object
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.Rule = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("Rule"):
+            self.Rule = params.get("Rule")
 
 
 class DescribeRetentionRuleRequest(AbstractModel):
@@ -1089,10 +1072,19 @@ class DescribeRetentionRuleRequest(AbstractModel):
 
     def __init__(self):
         r"""描述镜像清理规则
+        :param InstanceId: 请求Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
         """
+        self.InstanceId = None
+        self.Namespace = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
 
 
 class RunRetentionPolicyRequest(AbstractModel):
@@ -1101,10 +1093,25 @@ class RunRetentionPolicyRequest(AbstractModel):
 
     def __init__(self):
         r"""运行清理保留规则
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param TestRun: 默认为true,是否为模拟运行
+
+        :type PathPrefix: Boolean
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.TestRun = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("TestRun"):
+            self.TestRun = params.get("TestRun")
 
 
 class GetRetentionPolicyLogsRequest(AbstractModel):
@@ -1113,10 +1120,29 @@ class GetRetentionPolicyLogsRequest(AbstractModel):
 
     def __init__(self):
         r"""获取运行日志列表
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param Page: 分页参数
+        :type PathPrefix: Int
+        :param PageSize: 每页数据大小
+        :type PathPrefix: Int
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.Page = None
+        self.PageSize = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
 
 
 class GetRetentionPolicyLogDetailRequest(AbstractModel):
@@ -1125,10 +1151,34 @@ class GetRetentionPolicyLogDetailRequest(AbstractModel):
 
     def __init__(self):
         r"""获取日志运行详情
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间	
+        :type PathPrefix: String
+        :param ExecutionId: ExecutionId
+        :type PathPrefix: String
+        :param Page: 分页参数
+        :type PathPrefix: Int
+        :param PageSize: 每页数据大小
+        :type PathPrefix: Int
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.ExecutionId = None
+        self.Page = None
+        self.PageSize = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("ExecutionId"):
+            self.ExecutionId = params.get("ExecutionId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
 
 
 class GetRetentionPolicyLogRequest(AbstractModel):
@@ -1137,10 +1187,29 @@ class GetRetentionPolicyLogRequest(AbstractModel):
 
     def __init__(self):
         r"""获取日志保留结果
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param TaskId: taskId
+        :type PathPrefix: Int
+        :param ExecutionId: ExecutionId
+        :type PathPrefix: Int
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.TaskId = None
+        self.ExecutionId = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+        if params.get("ExecutionId"):
+            self.ExecutionId = params.get("ExecutionId")
 
 
 class GetRetentionTriggerRequest(AbstractModel):
@@ -1149,10 +1218,19 @@ class GetRetentionTriggerRequest(AbstractModel):
 
     def __init__(self):
         r"""获取触发器
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
         """
+        self.InstanceId = None
+        self.Namespace = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
 
 
 class UpdateRetentionTriggerRequest(AbstractModel):
@@ -1161,22 +1239,24 @@ class UpdateRetentionTriggerRequest(AbstractModel):
 
     def __init__(self):
         r"""修改触发器
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param Trigger: 执行周期
+        :type PathPrefix: String
         """
+        self.InstanceId = None
+        self.Namespace = None
+        self.Trigger = None
 
     def _deserialize(self, params):
-        return
-
-
-class GetNamespacePolicyRequest(AbstractModel):
-    """GetNamespacePolicy请求参数结构体
-    """
-
-    def __init__(self):
-        r"""获取命名空间是否绑定清理规则
-        """
-
-    def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("Trigger"):
+            self.Trigger = params.get("Trigger")
 
 
 class ScheduleRequest(AbstractModel):
@@ -1185,9 +1265,18 @@ class ScheduleRequest(AbstractModel):
 
     def __init__(self):
         r"""ks3清理
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        :param TestRun: 是否模拟运行
+        :type PathPrefix: Boolean
         """
+        self.InstanceId = None
+        self.TestRun = None
 
     def _deserialize(self, params):
-        return
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("TestRun"):
+            self.TestRun = params.get("TestRun")
 
 

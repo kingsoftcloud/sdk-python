@@ -62,6 +62,7 @@ class AbstractClient(object):
     _service = ''
     _sdkVersion = 'SDK_PYTHON_%s' % ksyun.__version__
     _default_content_type = _form_urlencoded_content
+    paramsFormat = True
     FMT = '%(asctime)s %(process)d %(filename)s L%(lineno)s %(levelname)s %(message)s'
 
     def __init__(self, credential, region, profile=None):
@@ -85,6 +86,9 @@ class AbstractClient(object):
     def _fix_params(self, params):
         if not isinstance(params, (dict,)):
             return params
+        if not self.paramsFormat:
+            return params
+
         return self._format_params(None, params)
 
     def _format_params(self, prefix, params):

@@ -399,3 +399,118 @@ class KceClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeAgentStatus(self, request):
+        """查询agent状态
+        :param request: Request instance for DescribeAgentStatus.
+        :type request: :class:`ksyun.client.kce.v20230306.models.DescribeAgentStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAgentStatus", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateMonitorCollectionConfig(self, request):
+        """创建监控采集配置
+        :param request: Request instance for CreateMonitorCollectionConfig.
+        :type request: :class:`ksyun.client.kce.v20230306.models.CreateMonitorCollectionConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateMonitorCollectionConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteMonitorCollectionConfig(self, request):
+        """删除监控采集配置
+        :param request: Request instance for DeleteMonitorCollectionConfig.
+        :type request: :class:`ksyun.client.kce.v20230306.models.DeleteMonitorCollectionConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteMonitorCollectionConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def EnableMetrics(self, request):
+        """开启指标
+        :param request: Request instance for EnableMetrics.
+        :type request: :class:`ksyun.client.kce.v20230306.models.EnableMetricsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("EnableMetrics", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DropMetrics(self, request):
+        """废弃指标
+        :param request: Request instance for DropMetrics.
+        :type request: :class:`ksyun.client.kce.v20230306.models.DropMetricsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DropMetrics", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

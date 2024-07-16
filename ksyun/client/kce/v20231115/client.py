@@ -5,17 +5,17 @@ from ksyun.common.abstract_client import AbstractClient
 
 
 class KceClient(AbstractClient):
-    _apiVersion = '2020-12-31'
+    _apiVersion = '2023-11-15'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
-    def CreateCluster(self, request):
-        """创建集群（新）
-        :param request: Request instance for CreateCluster.
-        :type request: :class:`ksyun.client.kce.v20201231.models.CreateClusterRequest`
+    def DescribeCluster(self, request):
+        """查询集群列表，只加载集群基本信息，不会加载组件详情等信息
+        :param request: Request instance for DescribeCluster.
+        :type request: :class:`ksyun.client.kce.v20231115.models.DescribeClusterRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateCluster", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

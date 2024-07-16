@@ -162,7 +162,7 @@ class DescribePublicRepositoryRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询ksyun hub镜像仓库
+        r"""查询ksyun公有镜像仓库列表
         :param RepoName: 镜像仓库名称
         :type PathPrefix: Filter
         :param MaxResults: 单次调用所返回的最大实例数目，默认20，最大99。
@@ -214,7 +214,7 @@ class DescribeTagRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询镜像列表
+        r"""查询镜像tag列表
         :param RepoName: 镜像仓库名称
         :type PathPrefix: String
         :param MaxResults: 单次调用所返回的最大实例数目，默认20，最大99。
@@ -245,7 +245,7 @@ class DeleteTagsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除镜像
+        r"""删除镜像tag
         :param RepoName: 镜像仓库名称
         :type PathPrefix: String
         :param Tag: 指定的镜像版本
@@ -266,8 +266,8 @@ class AddFavorRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""收藏镜像
-        :param RepoName: 仓库名称
+        r"""添加收藏
+        :param RepoName: 命名空间/仓库名称，如“mynamespace/myrepo”
         :type PathPrefix: String
         :param RepoType: 收藏的镜像仓库类型，有效值：KSYUN HUB ：收藏的金山云镜像，DOCKER HUB：收藏的docker hub官方镜像
         :type PathPrefix: String
@@ -287,8 +287,8 @@ class DeleteFavorRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""取消收藏镜像
-        :param RepoName: 仓库名称
+        r"""取消收藏
+        :param RepoName: 命名空间/仓库名称，如“mynamespace/myrepo”
         :type PathPrefix: String
         """
         self.RepoName = None
@@ -303,7 +303,7 @@ class GetFavorRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询收藏镜像
+        r"""查询镜像收藏列表
         :param MaxResults: 单次调用所返回的最大实例数目，默认20，最大99。
         :type PathPrefix: Int
         :param Marker: 分页标识，单次调用未返回全部实例时，标记下次调用的返回值的起点，默认值是0。
@@ -329,7 +329,7 @@ class RegisterRepositoryAccountRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户注册镜像仓库
+        r"""注册镜像仓库
         :param Password: 镜像仓库密码，限制：8-32个字符，必须包含字母、数字和特殊字符中至少两项，支持英文特殊字符!$%()*+,-./:;<=>?@[]^_`{&#124;}~
         :type PathPrefix: String
         """
@@ -345,7 +345,7 @@ class ModifyPasswordRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改仓库密码
+        r"""修改镜像仓库密码
         :param Password: 镜像仓库密码，限制：8-32个字符，必须包含字母、数字和特殊字符中至少两项，支持英文特殊字符!$%()*+,-./:;<=>?@[]^_`{
         :type PathPrefix: String
         """

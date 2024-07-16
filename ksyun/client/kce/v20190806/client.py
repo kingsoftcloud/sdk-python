@@ -9,7 +9,7 @@ class KceClient(AbstractClient):
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
     def DescribeCluster(self, request):
-        """DescribeCluster
+        """查询集群列表
         :param request: Request instance for DescribeCluster.
         :type request: :class:`ksyun.client.kce.v20190806.models.DescribeClusterRequest`
         """
@@ -32,7 +32,7 @@ class KceClient(AbstractClient):
 
 
     def DescribeClusterInstance(self, request):
-        """DescribeClusterInstance
+        """查询集群节点列表
         :param request: Request instance for DescribeClusterInstance.
         :type request: :class:`ksyun.client.kce.v20190806.models.DescribeClusterInstanceRequest`
         """
@@ -55,7 +55,7 @@ class KceClient(AbstractClient):
 
 
     def DeleteCluster(self, request):
-        """DeleteCluster
+        """删除集群
         :param request: Request instance for DeleteCluster.
         :type request: :class:`ksyun.client.kce.v20190806.models.DeleteClusterRequest`
         """
@@ -78,7 +78,7 @@ class KceClient(AbstractClient):
 
 
     def DownloadClusterConfig(self, request):
-        """DownloadClusterConfig
+        """下载集群配置文件
         :param request: Request instance for DownloadClusterConfig.
         :type request: :class:`ksyun.client.kce.v20190806.models.DownloadClusterConfigRequest`
         """
@@ -101,7 +101,7 @@ class KceClient(AbstractClient):
 
 
     def ModifyClusterInfo(self, request):
-        """ModifyClusterInfo
+        """修改集群基本信息
         :param request: Request instance for ModifyClusterInfo.
         :type request: :class:`ksyun.client.kce.v20190806.models.ModifyClusterInfoRequest`
         """
@@ -124,7 +124,7 @@ class KceClient(AbstractClient):
 
 
     def DescribeInstanceImage(self, request):
-        """DescribeInstanceImage
+        """获取容器服务支持的节点操作系统
         :param request: Request instance for DescribeInstanceImage.
         :type request: :class:`ksyun.client.kce.v20190806.models.DescribeInstanceImageRequest`
         """
@@ -147,7 +147,7 @@ class KceClient(AbstractClient):
 
 
     def AddClusterInstances(self, request):
-        """AddClusterInstances
+        """新增节点
         :param request: Request instance for AddClusterInstances.
         :type request: :class:`ksyun.client.kce.v20190806.models.AddClusterInstancesRequest`
         """
@@ -170,7 +170,7 @@ class KceClient(AbstractClient):
 
 
     def DeleteClusterInstances(self, request):
-        """DeleteClusterInstances
+        """移除集群中的节点
         :param request: Request instance for DeleteClusterInstances.
         :type request: :class:`ksyun.client.kce.v20190806.models.DeleteClusterInstancesRequest`
         """
@@ -193,7 +193,7 @@ class KceClient(AbstractClient):
 
 
     def DescribeEpcForCluster(self, request):
-        """DescribeEpcForCluster
+        """获取支持移入集群的裸金属服务器列表
         :param request: Request instance for DescribeEpcForCluster.
         :type request: :class:`ksyun.client.kce.v20190806.models.DescribeEpcForClusterRequest`
         """
@@ -216,7 +216,7 @@ class KceClient(AbstractClient):
 
 
     def AddClusterEpcInstances(self, request):
-        """AddClusterEpcInstances
+        """移入裸金属服务器到集群
         :param request: Request instance for AddClusterEpcInstances.
         :type request: :class:`ksyun.client.kce.v20190806.models.AddClusterEpcInstancesRequest`
         """
@@ -239,7 +239,7 @@ class KceClient(AbstractClient):
 
 
     def DescribeExistedInstances(self, request):
-        """获取KEC实例列表
+        """查询已经存在的云服务器
         :param request: Request instance for DescribeExistedInstances.
         :type request: :class:`ksyun.client.kce.v20190806.models.DescribeExistedInstancesRequest`
         """
@@ -262,36 +262,13 @@ class KceClient(AbstractClient):
 
 
     def AddExistedInstances(self, request):
-        """添加KEC节点到集群
+        """添加已有的服务器
         :param request: Request instance for AddExistedInstances.
         :type request: :class:`ksyun.client.kce.v20190806.models.AddExistedInstancesRequest`
         """
         try:
             params = request._serialize()
             body = self.call_judge("AddExistedInstances", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
-    def ForceRemoveClusterInstance(self, request):
-        """强制删除集群节点
-        :param request: Request instance for ForceRemoveClusterInstance.
-        :type request: :class:`ksyun.client.kce.v20190806.models.ForceRemoveClusterInstanceRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("ForceRemoveClusterInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -538,13 +515,59 @@ class KceClient(AbstractClient):
 
 
     def DescribeEpcImage(self, request):
-        """查询EPC镜像
+        """获取裸金属服务器支持的系统镜像
         :param request: Request instance for DescribeEpcImage.
         :type request: :class:`ksyun.client.kce.v20190806.models.DescribeEpcImageRequest`
         """
         try:
             params = request._serialize()
             body = self.call_judge("DescribeEpcImage", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def EditEventCollecting(self, request):
+        """开启事件推送
+        :param request: Request instance for EditEventCollecting.
+        :type request: :class:`ksyun.client.kce.v20190806.models.EditEventCollectingRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("EditEventCollecting", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeNodePoolSummary(self, request):
+        """查询集群全量节点池的轻量级API
+        :param request: Request instance for DescribeNodePoolSummary.
+        :type request: :class:`ksyun.client.kce.v20190806.models.DescribeNodePoolSummaryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeNodePoolSummary", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

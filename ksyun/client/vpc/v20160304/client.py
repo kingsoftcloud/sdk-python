@@ -1526,6 +1526,52 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def AddNatIp(self, request):
+        """增加NAT IP
+        :param request: Request instance for AddNatIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AddNatIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddNatIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteNatIp(self, request):
+        """删除NATIP
+        :param request: Request instance for DeleteNatIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteNatIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteNatIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ModifyPrivateIpAddressAttribute(self, request):
         """修改内网IP属性
         :param request: Request instance for ModifyPrivateIpAddressAttribute.
@@ -1534,6 +1580,121 @@ class VpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("ModifyPrivateIpAddressAttribute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateRouteTable(self, request):
+        """创建路由表
+        :param request: Request instance for CreateRouteTable.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateRouteTableRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateRouteTable", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteRouteTable(self, request):
+        """删除路由表
+        :param request: Request instance for DeleteRouteTable.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteRouteTableRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteRouteTable", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyRouteTable(self, request):
+        """修改路由表信息
+        :param request: Request instance for ModifyRouteTable.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyRouteTableRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyRouteTable", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeRouteTables(self, request):
+        """描述路由表的信息
+        :param request: Request instance for DescribeRouteTables.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeRouteTablesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeRouteTables", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AssociateRouteTable(self, request):
+        """关联路由表
+        :param request: Request instance for AssociateRouteTable.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AssociateRouteTableRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AssociateRouteTable", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1603,6 +1764,98 @@ class VpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("ModifyNetworkInterface", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateNatRateLimit(self, request):
+        """CreateNatRateLimit
+        :param request: Request instance for CreateNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateNatRateLimit", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeNatRateLimit(self, request):
+        """DescribeNatRateLimit
+        :param request: Request instance for DescribeNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeNatRateLimit", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyNatRateLimit(self, request):
+        """ModifyNatRateLimit
+        :param request: Request instance for ModifyNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyNatRateLimit", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteNatRateLimit(self, request):
+        """DeleteNatRateLimit
+        :param request: Request instance for DeleteNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteNatRateLimit", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1718,6 +1971,29 @@ class VpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeHaVip", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateDirectConnectGatewayRoute(self, request):
+        """创建边界网关路由
+        :param request: Request instance for CreateDirectConnectGatewayRoute.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateDirectConnectGatewayRouteRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateDirectConnectGatewayRoute", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1917,6 +2193,75 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def BatchCreateNatRateLimit(self, request):
+        """批量创建Nat限速
+        :param request: Request instance for BatchCreateNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.BatchCreateNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BatchCreateNatRateLimit", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def BatchModifyNatRateLimit(self, request):
+        """批量修改Nat限速
+        :param request: Request instance for BatchModifyNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.BatchModifyNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BatchModifyNatRateLimit", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def BatchDeleteNatRateLimit(self, request):
+        """批量删除Nat限速
+        :param request: Request instance for BatchDeleteNatRateLimit.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.BatchDeleteNatRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BatchDeleteNatRateLimit", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DescribeVpnGatewayRoutes(self, request):
         """查询VPN网关路由
         :param request: Request instance for DescribeVpnGatewayRoutes.
@@ -2063,6 +2408,75 @@ class VpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("QueryPeerTopVifMonitor", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyVpnGatewayRoute(self, request):
+        """修改VPN网关下的路由
+        :param request: Request instance for ModifyVpnGatewayRoute.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyVpnGatewayRouteRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyVpnGatewayRoute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateDcNatIp(self, request):
+        """创建专线Nat
+        :param request: Request instance for CreateDcNatIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateDcNatIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateDcNatIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteDcNatIp(self, request):
+        """删除专线Nat
+        :param request: Request instance for DeleteDcNatIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteDcNatIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteDcNatIp", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

@@ -75,10 +75,11 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :param ImageId: 镜像资源ID,参见DescribeImages
         :type PathPrefix: String
         :param NetworkInterfaceMode: 网卡模式
--有效值：
--bond4：BOND模式
--single ：非BOND模式
--dual：双网卡模式
+有效值：
+bond4：BOND模式
+single：非BOND模式
+dual：双网卡模式
+windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param SubnetId: 云物理主机的子网ID
         :type PathPrefix: String
@@ -104,10 +105,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省。
         :type PathPrefix: Int
         :param Password: 系统的登录密码
-        :type PathPrefix: String
-        :param SecurityAgent: 安全组件类型
-- classic：经典版
-- no：不开启
         :type PathPrefix: String
         :param CloudMonitorAgent: 安全组件类型
 - classic：经典版
@@ -151,7 +148,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param NvmeDataDiskCatalogueSuffix: NVME数据盘目录后缀属性
         :type PathPrefix: String
-        :param bondAttribute: 网卡bond的属性
+        :param BondAttribute: 网卡bond的属性
+有效值： bond0|bond1
         :type PathPrefix: String
         :param ContainerAgent: 容器引擎组件类型
         :type PathPrefix: String
@@ -171,10 +169,14 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param RoceNetwork: roce网络
 有效值： Open：开启  Close：关闭 
+添加白名单的用户为必填项
 
 
 
-
+        :type PathPrefix: String
+        :param ZoneId: 创建pdns所需参数
+        :type PathPrefix: String
+        :param ZoneType: 创建pdns所需参数
         :type PathPrefix: String
         """
         self.HostType = None
@@ -195,7 +197,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.Sn = None
         self.PurchaseTime = None
         self.Password = None
-        self.SecurityAgent = None
         self.CloudMonitorAgent = None
         self.ExtensionSubnetId = None
         self.ExtensionPrivateIpAddress = None
@@ -216,7 +217,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.NvmeDataFileType = None
         self.NvmeDataDiskCatalogue = None
         self.NvmeDataDiskCatalogueSuffix = None
-        self.bondAttribute = None
+        self.BondAttribute = None
         self.ContainerAgent = None
         self.KesAgent = None
         self.KmrAgent = None
@@ -226,6 +227,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.SystemVolumeType = None
         self.SystemVolumeSize = None
         self.RoceNetwork = None
+        self.ZoneId = None
+        self.ZoneType = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -264,8 +267,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.PurchaseTime = params.get("PurchaseTime")
         if params.get("Password"):
             self.Password = params.get("Password")
-        if params.get("SecurityAgent"):
-            self.SecurityAgent = params.get("SecurityAgent")
         if params.get("CloudMonitorAgent"):
             self.CloudMonitorAgent = params.get("CloudMonitorAgent")
         if params.get("ExtensionSubnetId"):
@@ -306,8 +307,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.NvmeDataDiskCatalogue = params.get("NvmeDataDiskCatalogue")
         if params.get("NvmeDataDiskCatalogueSuffix"):
             self.NvmeDataDiskCatalogueSuffix = params.get("NvmeDataDiskCatalogueSuffix")
-        if params.get("bondAttribute"):
-            self.bondAttribute = params.get("bondAttribute")
+        if params.get("BondAttribute"):
+            self.BondAttribute = params.get("BondAttribute")
         if params.get("ContainerAgent"):
             self.ContainerAgent = params.get("ContainerAgent")
         if params.get("KesAgent"):
@@ -326,6 +327,10 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.SystemVolumeSize = params.get("SystemVolumeSize")
         if params.get("RoceNetwork"):
             self.RoceNetwork = params.get("RoceNetwork")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("ZoneType"):
+            self.ZoneType = params.get("ZoneType")
 
 
 class StartEpcRequest(AbstractModel):
@@ -390,11 +395,15 @@ class ReinstallEpcRequest(AbstractModel):
         :type PathPrefix: String
         :param Password: 系统的登录密码
         :type PathPrefix: String
-        :param NetworkInterfaceMode: 是否支持Bond，是：“Yes”；不是:”No”
-        :type PathPrefix: String
-        :param SecurityAgent: 安全组件类型
-- classic：经典版
-- no：不开启
+        :param NetworkInterfaceMode: 网卡模式
+有效值：
+bond4：BOND模式
+single：非BOND模式
+dual：双网卡模式
+1. centos、Debin、Ubuntu重装时，bond选项 限制：
+    a. 若开机为双网卡模式，则只能重装成双网卡模式，无法重装为bond和非bond模式。
+    b. bond/非bond重装时仅可选择bond/非bond 
+2. 重装为window系统时，无法选择网卡类型，默认重装为非bond模式,且无法选择密钥验证。
         :type PathPrefix: String
         :param CloudMonitorAgent: 安全组件类型
 - classic：经典版
@@ -428,7 +437,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param NvmeDataDiskCatalogueSuffix: NVME数据盘目录后缀属性
         :type PathPrefix: String
-        :param bondAttribute: 网卡bond的属性
+        :param BondAttribute: 网卡bond的属性
         :type PathPrefix: String
         :param KesAgent: kes组件类型
         :type PathPrefix: String
@@ -444,7 +453,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :type PathPrefix: String
         :param GpuImageDriverId: gpu版本
         :type PathPrefix: String
-        :param containerAgent: 容器引擎组件类型
+        :param ContainerAgent: 容器引擎组件类型
         :type PathPrefix: String
         """
         self.HostId = None
@@ -452,7 +461,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.keyId = None
         self.Password = None
         self.NetworkInterfaceMode = None
-        self.SecurityAgent = None
         self.CloudMonitorAgent = None
         self.Raid = None
         self.RaidId = None
@@ -465,7 +473,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.NvmeDataFileType = None
         self.NvmeDataDiskCatalogue = None
         self.NvmeDataDiskCatalogueSuffix = None
-        self.bondAttribute = None
+        self.BondAttribute = None
         self.KesAgent = None
         self.KmrAgent = None
         self.ComputerName = None
@@ -473,7 +481,7 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         self.DelayStart = None
         self.AvailabilityZone = None
         self.GpuImageDriverId = None
-        self.containerAgent = None
+        self.ContainerAgent = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -486,8 +494,6 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.Password = params.get("Password")
         if params.get("NetworkInterfaceMode"):
             self.NetworkInterfaceMode = params.get("NetworkInterfaceMode")
-        if params.get("SecurityAgent"):
-            self.SecurityAgent = params.get("SecurityAgent")
         if params.get("CloudMonitorAgent"):
             self.CloudMonitorAgent = params.get("CloudMonitorAgent")
         if params.get("Raid"):
@@ -512,8 +518,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.NvmeDataDiskCatalogue = params.get("NvmeDataDiskCatalogue")
         if params.get("NvmeDataDiskCatalogueSuffix"):
             self.NvmeDataDiskCatalogueSuffix = params.get("NvmeDataDiskCatalogueSuffix")
-        if params.get("bondAttribute"):
-            self.bondAttribute = params.get("bondAttribute")
+        if params.get("BondAttribute"):
+            self.BondAttribute = params.get("BondAttribute")
         if params.get("KesAgent"):
             self.KesAgent = params.get("KesAgent")
         if params.get("KmrAgent"):
@@ -528,8 +534,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
             self.AvailabilityZone = params.get("AvailabilityZone")
         if params.get("GpuImageDriverId"):
             self.GpuImageDriverId = params.get("GpuImageDriverId")
-        if params.get("containerAgent"):
-            self.containerAgent = params.get("containerAgent")
+        if params.get("ContainerAgent"):
+            self.ContainerAgent = params.get("ContainerAgent")
 
 
 class ModifySecurityGroupRequest(AbstractModel):
@@ -1265,6 +1271,8 @@ class CreateProcessRequest(AbstractModel):
         :type PathPrefix: String
         :param ProcessSource: 工单来源，0:客户 1：售后代提
         :type PathPrefix: Int
+        :param autoNocCase: 
+        :type PathPrefix: Int
         """
         self.ProcessId = None
         self.InstanceId = None
@@ -1278,6 +1286,7 @@ class CreateProcessRequest(AbstractModel):
         self.Type = None
         self.Confirm = None
         self.ProcessSource = None
+        self.autoNocCase = None
 
     def _deserialize(self, params):
         if params.get("ProcessId"):
@@ -1304,6 +1313,8 @@ class CreateProcessRequest(AbstractModel):
             self.Confirm = params.get("Confirm")
         if params.get("ProcessSource"):
             self.ProcessSource = params.get("ProcessSource")
+        if params.get("autoNocCase"):
+            self.autoNocCase = params.get("autoNocCase")
 
 
 class DeleteProcessRequest(AbstractModel):

@@ -182,7 +182,7 @@ class CreateListenersRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param RedirectListenerId: 重定向监听器ID
         :type PathPrefix: String
-        :param SessionState: 会话保持的状态
+        :param SessionState: 会话保持的状态(start|stop)
         :type PathPrefix: String
         :param SessionPersistencePeriod: 会话保持超时时间
         :type PathPrefix: Int
@@ -270,10 +270,34 @@ class ModifyInstancesWithListenerRequest(AbstractModel):
 
     def __init__(self):
         r"""修改真实服务器信息
+        :param RegisterId: 后端服务器的ID
+        :type PathPrefix: String
+        :param Weight: 实例的权重
+        :type PathPrefix: Int
+        :param RealServerPort: 后端服务的端口
+        :type PathPrefix: Int
+        :param MasterSlaveType: RealServer的主备类型(Master | Slave)，仅MasterSlave监听器有此参数
+        :type PathPrefix: String
+        :param Tag: 标签
+        :type PathPrefix: String
         """
+        self.RegisterId = None
+        self.Weight = None
+        self.RealServerPort = None
+        self.MasterSlaveType = None
+        self.Tag = None
 
     def _deserialize(self, params):
-        return
+        if params.get("RegisterId"):
+            self.RegisterId = params.get("RegisterId")
+        if params.get("Weight"):
+            self.Weight = params.get("Weight")
+        if params.get("RealServerPort"):
+            self.RealServerPort = params.get("RealServerPort")
+        if params.get("MasterSlaveType"):
+            self.MasterSlaveType = params.get("MasterSlaveType")
+        if params.get("Tag"):
+            self.Tag = params.get("Tag")
 
 
 class RegisterInstancesWithListenerRequest(AbstractModel):
@@ -1470,11 +1494,14 @@ class CreatePrivateLinkServerRequest(AbstractModel):
         :type PathPrefix: String
         :param ProjectId: 项目的ID
         :type PathPrefix: String
+        :param DeleteProtection: 删除保护
+        :type PathPrefix: String
         """
         self.PrivateLinkServerName = None
         self.ListenerId = None
         self.Description = None
         self.ProjectId = None
+        self.DeleteProtection = None
 
     def _deserialize(self, params):
         if params.get("PrivateLinkServerName"):
@@ -1485,6 +1512,8 @@ class CreatePrivateLinkServerRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
 
 
 class DescribePrivateLinkServerRequest(AbstractModel):
@@ -1501,14 +1530,11 @@ class DescribePrivateLinkServerRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
-        :param Fillter.N: 
-        :type PathPrefix: Object
         """
         self.PrivateLinkServerId = None
         self.ProjectId = None
         self.MaxResults = None
         self.NextToken = None
-        self.Fillter.N = None
 
     def _deserialize(self, params):
         if params.get("PrivateLinkServerId"):
@@ -1519,8 +1545,6 @@ class DescribePrivateLinkServerRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
-        if params.get("Fillter.N"):
-            self.Fillter.N = params.get("Fillter.N")
 
 
 class DeletePrivateLinkServerRequest(AbstractModel):
@@ -1551,10 +1575,13 @@ class ModifyPrivateLinkServerRequest(AbstractModel):
         :type PathPrefix: String
         :param Description: 描述
         :type PathPrefix: String
+        :param DeleteProtection: 删除保护
+        :type PathPrefix: String
         """
         self.PrivateLinkServerId = None
         self.PrivateLinkServerName = None
         self.Description = None
+        self.DeleteProtection = None
 
     def _deserialize(self, params):
         if params.get("PrivateLinkServerId"):
@@ -1563,6 +1590,8 @@ class ModifyPrivateLinkServerRequest(AbstractModel):
             self.PrivateLinkServerName = params.get("PrivateLinkServerName")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
 
 
 class AssociatePrivateLinkServerRequest(AbstractModel):
@@ -1579,11 +1608,14 @@ class AssociatePrivateLinkServerRequest(AbstractModel):
         :type PathPrefix: Int
         :param ProjectId: 项目的ID
         :type PathPrefix: String
+        :param DeleteProtection: 删除保护
+        :type PathPrefix: String
         """
         self.PrivateLinkServerId = None
         self.LoadBalancerId = None
         self.ListenerPort = None
         self.ProjectId = None
+        self.DeleteProtection = None
 
     def _deserialize(self, params):
         if params.get("PrivateLinkServerId"):
@@ -1594,6 +1626,8 @@ class AssociatePrivateLinkServerRequest(AbstractModel):
             self.ListenerPort = params.get("ListenerPort")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
 
 
 class DescribePrivateLinkRequest(AbstractModel):
@@ -1610,14 +1644,11 @@ class DescribePrivateLinkRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
-        :param Filter.N: 
-        :type PathPrefix: Object
         """
         self.PrivateLinkId = None
         self.ProjectId = None
         self.MaxResults = None
         self.NextToken = None
-        self.Filter.N = None
 
     def _deserialize(self, params):
         if params.get("PrivateLinkId"):
@@ -1628,8 +1659,6 @@ class DescribePrivateLinkRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
-        if params.get("Filter.N"):
-            self.Filter.N = params.get("Filter.N")
 
 
 class DeletePrivateLinkRequest(AbstractModel):
@@ -1783,6 +1812,10 @@ class CreateAlbRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param EnableHpa: 是否开启弹性伸缩
         :type PathPrefix: Boolean
+        :param DeleteProtection: 是否开启删除保护
+        :type PathPrefix: Boolean
+        :param ModificationProtection: 是否开启修改保护
+        :type PathPrefix: Boolean
         """
         self.AlbName = None
         self.AlbVersion = None
@@ -1796,6 +1829,8 @@ class CreateAlbRequest(AbstractModel):
         self.PrivateIpAddress = None
         self.EnabledQuic = None
         self.EnableHpa = None
+        self.DeleteProtection = None
+        self.ModificationProtection = None
 
     def _deserialize(self, params):
         if params.get("AlbName"):
@@ -1822,6 +1857,10 @@ class CreateAlbRequest(AbstractModel):
             self.EnabledQuic = params.get("EnabledQuic")
         if params.get("EnableHpa"):
             self.EnableHpa = params.get("EnableHpa")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
+        if params.get("ModificationProtection"):
+            self.ModificationProtection = params.get("ModificationProtection")
 
 
 class DeleteAlbRequest(AbstractModel):
@@ -1951,6 +1990,14 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: Int
         :param CertificateId: 证书的ID
         :type PathPrefix: String
+        :param CaCertificateId: 客户端证书的ID
+        :type PathPrefix: String
+        :param CaEnabled: 双向认证是否开启
+        :type PathPrefix: Boolean
+        :param QuicListenerId: QUIC监听器的ID
+        :type PathPrefix: String
+        :param EnableQuicUpgrade: 开启QUIC升级
+        :type PathPrefix: Boolean
         :param TlsCipherPolicy: TLS安全策略
         :type PathPrefix: String
         :param AlbListenerAclId: LoadBalancerAcl的ID
@@ -1982,6 +2029,10 @@ class CreateAlbListenerRequest(AbstractModel):
         self.Protocol = None
         self.Port = None
         self.CertificateId = None
+        self.CaCertificateId = None
+        self.CaEnabled = None
+        self.QuicListenerId = None
+        self.EnableQuicUpgrade = None
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
         self.AlbListenerState = None
@@ -2008,6 +2059,14 @@ class CreateAlbListenerRequest(AbstractModel):
             self.Port = params.get("Port")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
+        if params.get("CaCertificateId"):
+            self.CaCertificateId = params.get("CaCertificateId")
+        if params.get("CaEnabled"):
+            self.CaEnabled = params.get("CaEnabled")
+        if params.get("QuicListenerId"):
+            self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("EnableQuicUpgrade"):
+            self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("TlsCipherPolicy"):
             self.TlsCipherPolicy = params.get("TlsCipherPolicy")
         if params.get("AlbListenerAclId"):
@@ -2050,6 +2109,14 @@ class ModifyAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param CertificateId: 证书的ID
         :type PathPrefix: String
+        :param CaCertificateId: 客户端证书的ID
+        :type PathPrefix: String
+        :param CaEnabled: 双向认证是否开启
+        :type PathPrefix: Boolean
+        :param QuicListenerId: QUIC监听器的ID
+        :type PathPrefix: String
+        :param EnableQuicUpgrade: 开启QUIC升级
+        :type PathPrefix: Boolean
         :param TlsCipherPolicy: TLS安全策略
         :type PathPrefix: String
         :param AlbListenerAclId: LoadBalancerAcl的ID
@@ -2072,6 +2139,10 @@ class ModifyAlbListenerRequest(AbstractModel):
         self.AlbListenerState = None
         self.Method = None
         self.CertificateId = None
+        self.CaCertificateId = None
+        self.CaEnabled = None
+        self.QuicListenerId = None
+        self.EnableQuicUpgrade = None
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
         self.HttpProtocol = None
@@ -2092,6 +2163,14 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.Method = params.get("Method")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
+        if params.get("CaCertificateId"):
+            self.CaCertificateId = params.get("CaCertificateId")
+        if params.get("CaEnabled"):
+            self.CaEnabled = params.get("CaEnabled")
+        if params.get("QuicListenerId"):
+            self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("EnableQuicUpgrade"):
+            self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("TlsCipherPolicy"):
             self.TlsCipherPolicy = params.get("TlsCipherPolicy")
         if params.get("AlbListenerAclId"):
@@ -2970,5 +3049,94 @@ class DescribeAlbBackendServersRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+
+
+class SetPrivateLinkDeleteProtectionRequest(AbstractModel):
+    """SetPrivateLinkDeleteProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置privateLink的删除保护
+        :param InstanceId: 实例的ID
+        :type PathPrefix: String
+        :param DeleteProtection: 删除保护
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.DeleteProtection = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
+
+
+class SetAlbDeleteProtectionRequest(AbstractModel):
+    """SetAlbDeleteProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改ALB删除保护
+        :param albId: alb负载均衡id
+        :type PathPrefix: String
+        :param deleteProtection: 删除保护on/off
+        :type PathPrefix: String
+        """
+        self.albId = None
+        self.deleteProtection = None
+
+    def _deserialize(self, params):
+        if params.get("albId"):
+            self.albId = params.get("albId")
+        if params.get("deleteProtection"):
+            self.deleteProtection = params.get("deleteProtection")
+
+
+class SetAlbModificationProtectionRequest(AbstractModel):
+    """SetAlbModificationProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改ALB修改保护
+        :param albId: alb负载均衡id
+        :type PathPrefix: String
+        :param modificationProtection: 修改保护on/off
+        :type PathPrefix: String
+        """
+        self.albId = None
+        self.modificationProtection = None
+
+    def _deserialize(self, params):
+        if params.get("albId"):
+            self.albId = params.get("albId")
+        if params.get("modificationProtection"):
+            self.modificationProtection = params.get("modificationProtection")
+
+
+class AddAlbRulesRequest(AbstractModel):
+    """AddAlbRules请求参数结构体
+    """
+
+    def __init__(self):
+        r"""AddAlbRules
+        :param AlbRuleGroupId: 转发策月id
+        :type PathPrefix: String
+        :param AlbRuleType: 转发策月规则类型
+        :type PathPrefix: String
+        :param AlbRuleValue: 转发策月规则值
+        :type PathPrefix: String
+        """
+        self.AlbRuleGroupId = None
+        self.AlbRuleType = None
+        self.AlbRuleValue = None
+
+    def _deserialize(self, params):
+        if params.get("AlbRuleGroupId"):
+            self.AlbRuleGroupId = params.get("AlbRuleGroupId")
+        if params.get("AlbRuleType"):
+            self.AlbRuleType = params.get("AlbRuleType")
+        if params.get("AlbRuleValue"):
+            self.AlbRuleValue = params.get("AlbRuleValue")
 
 

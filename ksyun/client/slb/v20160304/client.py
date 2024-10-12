@@ -1963,3 +1963,95 @@ class SlbClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def SetPrivateLinkDeleteProtection(self, request):
+        """设置privateLink的删除保护
+        :param request: Request instance for SetPrivateLinkDeleteProtection.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetPrivateLinkDeleteProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetPrivateLinkDeleteProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetAlbDeleteProtection(self, request):
+        """修改ALB删除保护
+        :param request: Request instance for SetAlbDeleteProtection.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetAlbDeleteProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetAlbDeleteProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetAlbModificationProtection(self, request):
+        """修改ALB修改保护
+        :param request: Request instance for SetAlbModificationProtection.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetAlbModificationProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetAlbModificationProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AddAlbRules(self, request):
+        """AddAlbRules
+        :param request: Request instance for AddAlbRules.
+        :type request: :class:`ksyun.client.slb.v20160304.models.AddAlbRulesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddAlbRules", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

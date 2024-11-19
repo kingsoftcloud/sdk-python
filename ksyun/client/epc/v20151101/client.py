@@ -1319,3 +1319,49 @@ class EpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def UseHotStandByEpc(self, request):
+        """热备机替换
+        :param request: Request instance for UseHotStandByEpc.
+        :type request: :class:`ksyun.client.epc.v20151101.models.UseHotStandByEpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UseHotStandByEpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ActivateHotStandbyEpc(self, request):
+        """激活热备机
+        :param request: Request instance for ActivateHotStandbyEpc.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ActivateHotStandbyEpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ActivateHotStandbyEpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

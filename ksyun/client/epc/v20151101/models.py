@@ -135,14 +135,38 @@ windows创建时，只支持非bond模式。
         :param SystemFileType: 系统盘文件格式
         :type PathPrefix: String
         :param DataFileType: 数据盘文件格式
+有效值：EXT4|XFS
+
         :type PathPrefix: String
         :param DataDiskCatalogue: 数据盘目录
+有效值：
+
+    /DATA/disk：在系统的DATA目录下，系统里展示内容如/DATA/disk1，/DATA/disk2
+    /data：在系统的根目录下，系统里展示内容从/data1开始，如/data1，/data2
+
         :type PathPrefix: String
         :param DataDiskCatalogueSuffix: 数据盘目录后缀属性
+有效值：
+
+    NoSuffix ：不使用后缀，只有在数据盘有一块的时候，可以使用此参数
+    NaturalNumber：后缀从1底层的整数
+    NaturalNumberFromZero：后缀从0递增的整数
+
         :type PathPrefix: String
         :param HyperThreading: 对超线程的变更
+有效值：
+
+    Open：开启
+    Close：关闭
+    NoChange：不改变
+
         :type PathPrefix: String
         :param NvmeDataFileType: NVME数据盘类型
+有效值：
+
+    EXT4
+    XFS
+
         :type PathPrefix: String
         :param NvmeDataDiskCatalogue: NVME数据盘目录
         :type PathPrefix: String
@@ -1822,5 +1846,42 @@ class CancelImageExportRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
+
+
+class UseHotStandByEpcRequest(AbstractModel):
+    """UseHotStandByEpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""热备机替换
+        :param HostId: 裸金属服务器的ID
+        :type PathPrefix: String
+        :param HotStandByHostId: 热备机的ID
+        :type PathPrefix: String
+        """
+        self.HostId = None
+        self.HotStandByHostId = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("HotStandByHostId"):
+            self.HotStandByHostId = params.get("HotStandByHostId")
+
+
+class ActivateHotStandbyEpcRequest(AbstractModel):
+    """ActivateHotStandbyEpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""激活热备机
+        :param HostId: 待激活热备机实例ID
+        :type PathPrefix: String
+        """
+        self.HostId = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
 
 

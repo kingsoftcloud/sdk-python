@@ -128,7 +128,9 @@ class AbstractClient(object):
 
     def _build_req_with_signature(self, action, params, req, options=None):
         uri_params = dict()
-        params = copy.deepcopy(self._fix_params(params))
+        if not (options and options.get("IsPostJson")):
+            params = copy.deepcopy(self._fix_params(params))
+
         params['Service'] = self._service
         params['Action'] = action[0].upper() + action[1:]
         uri_params['Action'] = params['Action']

@@ -5,7 +5,7 @@ class CloudDeskreinstallRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""云电脑重装系统
+        r"""允许用户对一个或多个云电脑实例执行系统重装操作。
         :param instanceId: 云电脑 id
         :type PathPrefix: String
         :param imageId: 镜像 id
@@ -26,14 +26,17 @@ class CloudDeskmanageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""云电脑开机/关机/重启
+        r"""提供对云电脑进行开机、关机、重启、删除、锁定和解锁的操作功能。
         :param instanceIds: 云电脑 id 列表
 
-        :type PathPrefix: String
+        :type PathPrefix: Array
         :param action1: start 开机
 stop 关机
 reboot 重启
-forcedUnbind
+forcedUnbind 强制解绑用户
+delete 删除
+lock 锁定
+unlock 解锁
         :type PathPrefix: String
         """
         self.instanceIds = None
@@ -51,25 +54,20 @@ class CloudDeskeditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""云电脑列表编辑
+        r"""修改云电脑实例的名称
         :param instanceId: 云电脑id
         :type PathPrefix: String
         :param name: 自定义云电脑名称
         :type PathPrefix: String
-        :param id: 
-        :type PathPrefix: Int
         """
         self.instanceId = None
         self.name = None
-        self.id = None
 
     def _deserialize(self, params):
         if params.get("instanceId"):
             self.instanceId = params.get("instanceId")
         if params.get("name"):
             self.name = params.get("name")
-        if params.get("id"):
-            self.id = params.get("id")
 
 
 class CloudDeskcreateRequest(AbstractModel):
@@ -77,7 +75,7 @@ class CloudDeskcreateRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""云电脑创建
+        r"""此接口允许用户通过提供必要的参数（如实例名称、类型、镜像ID等）来创建新的云电脑实例。
         :param instanceName: 云电脑名称
         :type PathPrefix: String
         :param instanceType: 云电脑类型
@@ -165,18 +163,26 @@ class CloudDesklistRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""云电脑列表管理
+        r"""该接口用于获取用户所拥有的所有云电脑实例的列表，支持分页查询，并能根据连接状态过滤结果。
         :param page: 
         :type PathPrefix: Int
         :param size: 
         :type PathPrefix: Int
-        :param connected: on
-off
+        :param connected: 连接状态 on off
+        :type PathPrefix: String
+        :param labelIds: 云电脑已绑定的标签id,多个id使用英文逗号分隔
+        :type PathPrefix: String
+        :param name: 云电脑名称或实例id
+        :type PathPrefix: String
+        :param userName: 云电脑已绑定的用户名
         :type PathPrefix: String
         """
         self.page = None
         self.size = None
         self.connected = None
+        self.labelIds = None
+        self.name = None
+        self.userName = None
 
     def _deserialize(self, params):
         if params.get("page"):
@@ -185,6 +191,12 @@ off
             self.size = params.get("size")
         if params.get("connected"):
             self.connected = params.get("connected")
+        if params.get("labelIds"):
+            self.labelIds = params.get("labelIds")
+        if params.get("name"):
+            self.name = params.get("name")
+        if params.get("userName"):
+            self.userName = params.get("userName")
 
 
 class StrategyruleeditRequest(AbstractModel):
@@ -192,7 +204,7 @@ class StrategyruleeditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改策略组API
+        r"""修改已有的策略安全组规则。
         :param policies: 安全组出站规则
         :type PathPrefix: Object
         :param securityGroupId: 策略组 id
@@ -214,10 +226,10 @@ class StrategyrulecreateRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""新建策略组规则API
-        :param name: 规则名
+        r"""创建一个新的策略安全组规则。
+        :param name: 策略名称
         :type PathPrefix: String
-        :param description: 规则描述
+        :param description: 策略描述
         :type PathPrefix: String
         :param policies: 安全组出站规则
         :type PathPrefix: Array
@@ -240,7 +252,7 @@ class StrategyunboundRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""策略安全组解绑云电脑API
+        r"""解除当前云电脑与安全组的绑定关系。
         :param securityGroupId: 策略组id
         :type PathPrefix: String
         :param instanceId: 云电脑id
@@ -261,7 +273,7 @@ class StrategyboundRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""策略安全组绑定云电脑API
+        r"""将指定云电脑与策略安全组绑定。
         :param securityGroupId: 策略组 id 
 
         :type PathPrefix: String
@@ -283,7 +295,7 @@ class StrategydeleteRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""策略安全组删除API
+        r"""删除指定的策略安全组。
         :param id: 策略组 id 列表
 
         :type PathPrefix: Int
@@ -300,7 +312,7 @@ class StrategyeditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""策略安全组修改API
+        r"""修改现有策略安全组的信息。
         :param securityGroupId: 策略组唯一 id
 
         :type PathPrefix: String
@@ -328,7 +340,7 @@ class StrategycreateRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""策略安全组创建API
+        r"""创建一个新的策略安全组。
         :param name: 策略组名称
         :type PathPrefix: String
         :param description: 描述信息
@@ -349,7 +361,7 @@ class StrategylistRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""策略安全组列表API
+        r"""获取特定云电脑的安全组列表。
         :param size: 每页条数
         :type PathPrefix: Int
         :param page: 页码数
@@ -375,7 +387,7 @@ class RolesdeleteRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""角色删除API
+        r"""删除指定角色。
         :param id: 角色主键 id
         :type PathPrefix: Int
         """
@@ -391,7 +403,7 @@ class RoleseditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""角色修改API
+        r"""更新角色属性。
         :param id: 主键 id
         :type PathPrefix: Int
         :param name: 角色名称
@@ -447,7 +459,7 @@ class RolescreateRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""角色创建API
+        r"""创建新角色，支持配置相应权限。
         :param name: 角色名称
         :type PathPrefix: String
         :param description: 描述信息
@@ -497,7 +509,7 @@ class RoleslistRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""角色管理列表API
+        r"""显示所有角色列表及其详细信息。
         :param size: 每页条数
         :type PathPrefix: Int
         :param page: 页码数
@@ -524,7 +536,7 @@ class ImagedeleteRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""镜像删除API
+        r"""删除指定的镜像。
         :param imageId: 镜像 id
         :type PathPrefix: String
         """
@@ -540,7 +552,7 @@ class ImageeditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""镜像修改API
+        r"""编辑已有镜像的信息。
         :param id: 镜像主键 id
         :type PathPrefix: Int
         :param imageId: 镜像 id
@@ -548,10 +560,13 @@ class ImageeditRequest(AbstractModel):
         :type PathPrefix: String
         :param imageName: 镜像名称
         :type PathPrefix: String
+        :param description: 镜像描述信息
+        :type PathPrefix: String
         """
         self.id = None
         self.imageId = None
         self.imageName = None
+        self.description = None
 
     def _deserialize(self, params):
         if params.get("id"):
@@ -560,6 +575,8 @@ class ImageeditRequest(AbstractModel):
             self.imageId = params.get("imageId")
         if params.get("imageName"):
             self.imageName = params.get("imageName")
+        if params.get("description"):
+            self.description = params.get("description")
 
 
 class ImagecreateRequest(AbstractModel):
@@ -567,7 +584,7 @@ class ImagecreateRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""镜像创建API
+        r"""创建自定义镜像。
         :param imageName: 镜像名称
 
         :type PathPrefix: String
@@ -594,7 +611,7 @@ class ImagelistRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""镜像管理列表API
+        r"""列出所有可用的镜像资源列表。
         :param size: 每条页数
         :type PathPrefix: Int
         :param page: 页码数
@@ -620,9 +637,9 @@ class StrategyrulebatchEditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""批量配置策略组规则API
+        r"""批量删除策略安全组规则。
         :param securityGroupId: 安全组id
-        :type PathPrefix: String
+        :type PathPrefix: Array
         """
         self.securityGroupId = None
 
@@ -636,7 +653,7 @@ class MonitorregionsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""区域列表API
+        r"""返回系统支持的所有地理区域的列表，包括其显示名称和对应的值。
         """
 
     def _deserialize(self, params):
@@ -648,7 +665,7 @@ class UsersinstancebindRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户绑定云电脑
+        r"""将云电脑分配给指定用户。
         :param id: 用户 id
         :type PathPrefix: Int
         :param instanceId: 云电脑 id
@@ -669,7 +686,7 @@ class UserspasswordresetRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户重置密码API
+        r"""重新设置用户密码。
         :param id: 主键 id
         :type PathPrefix: Int
         :param password: base64 加密后的密码
@@ -691,7 +708,7 @@ class UsersdeleteRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户删除API
+        r"""删除指定用户账户。
         :param id: 用户主键 id
         :type PathPrefix: Int
         """
@@ -707,7 +724,7 @@ class UserseditRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户修改API
+        r"""更改相关用户资料。
         :param id: 主键 id
 
         :type PathPrefix: Int
@@ -745,7 +762,7 @@ class UserscreateRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户创建API
+        r"""注册新用户。
         :param name: 用户名
         :type PathPrefix: String
         :param password: 密码，请使用 base64 加密后传输
@@ -776,7 +793,7 @@ class UserslistRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""用户列表API
+        r"""查看所有用户的概览信息。
         :param size: 每页条数
 
         :type PathPrefix: Int
@@ -791,5 +808,310 @@ class UserslistRequest(AbstractModel):
             self.size = params.get("size")
         if params.get("page"):
             self.page = params.get("page")
+
+
+class CloudDeskgetDesktopUrlRequest(AbstractModel):
+    """CloudDeskgetDesktopUrl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""根据授权toen生成一个可以直接进入云电脑的URL
+        :param token: 访问token
+        :type PathPrefix: String
+        :param instanceId: 实例id
+        :type PathPrefix: String
+        """
+        self.token = None
+        self.instanceId = None
+
+    def _deserialize(self, params):
+        if params.get("token"):
+            self.token = params.get("token")
+        if params.get("instanceId"):
+            self.instanceId = params.get("instanceId")
+
+
+class QueryCloudDesksubmitShellRequest(AbstractModel):
+    """QueryCloudDesksubmitShell请求参数结构体
+    """
+
+    def __init__(self):
+        r"""提交一个可执行的脚本，支持ps1,bat脚本,请注意脚本的后缀,".ps1"的后缀会使用powershell 执行
+        :param instanceIds: 
+        :type PathPrefix: Array
+        :param name: 
+        :type PathPrefix: String
+        :param shellContent: 脚本内容需要base64转下
+        :type PathPrefix: String
+        """
+        self.instanceIds = None
+        self.name = None
+        self.shellContent = None
+
+    def _deserialize(self, params):
+        if params.get("instanceIds"):
+            self.instanceIds = params.get("instanceIds")
+        if params.get("name"):
+            self.name = params.get("name")
+        if params.get("shellContent"):
+            self.shellContent = params.get("shellContent")
+
+
+class CreateCloudDeskgetTokenRequest(AbstractModel):
+    """CreateCloudDeskgetToken请求参数结构体
+    """
+
+    def __init__(self):
+        r"""KOP鉴权通过之后，使用此接口可生成一个token用于快速登录云电脑
+        :param username: 已分配的云电脑用户名
+        :type PathPrefix: String
+        :param password: 密码
+        :type PathPrefix: String
+        """
+        self.username = None
+        self.password = None
+
+    def _deserialize(self, params):
+        if params.get("username"):
+            self.username = params.get("username")
+        if params.get("password"):
+            self.password = params.get("password")
+
+
+class QueryShellStatusRequest(AbstractModel):
+    """QueryShellStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询下发的脚本运行状态
+        :param instanceIds: 云电脑 id,多个使用英文逗号分隔
+        :type PathPrefix: String
+        :param planId: 任务id
+        :type PathPrefix: Int
+        """
+        self.instanceIds = None
+        self.planId = None
+
+    def _deserialize(self, params):
+        if params.get("instanceIds"):
+            self.instanceIds = params.get("instanceIds")
+        if params.get("planId"):
+            self.planId = params.get("planId")
+
+
+class SetProxyIpRequest(AbstractModel):
+    """SetProxyIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""支持在云电脑里配置出口代理
+        :param instanceIds: 云电脑id
+        :type PathPrefix: Array
+        :param province: 省份：湖北 湖南 江西 山东 江苏 安徽 浙江 福建 上海 广东 广西 海南 云南 贵州 西藏 重庆 宁夏 新疆 青海 陕西 甘肃 北京 天津 河北 山西 内蒙古 辽宁 吉林 黑龙江 四川 
+        :type PathPrefix: String
+        :param isp: 运营商：电信、联通、移动
+        :type PathPrefix: String
+        :param city: 城市
+        :type PathPrefix: String
+        """
+        self.instanceIds = None
+        self.province = None
+        self.isp = None
+        self.city = None
+
+    def _deserialize(self, params):
+        if params.get("instanceIds"):
+            self.instanceIds = params.get("instanceIds")
+        if params.get("province"):
+            self.province = params.get("province")
+        if params.get("isp"):
+            self.isp = params.get("isp")
+        if params.get("city"):
+            self.city = params.get("city")
+
+
+class GetProxyConfigRequest(AbstractModel):
+    """GetProxyConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询出口代理ip
+        :param instanceId: 云电脑 id
+        :type PathPrefix: String
+        """
+        self.instanceId = None
+
+    def _deserialize(self, params):
+        if params.get("instanceId"):
+            self.instanceId = params.get("instanceId")
+
+
+class QueryRuledetailRequest(AbstractModel):
+    """QueryRuledetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""根据策略组id查询策略规则详情
+        :param securityGroupId: 策略组 id
+        :type PathPrefix: String
+        """
+        self.securityGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("securityGroupId"):
+            self.securityGroupId = params.get("securityGroupId")
+
+
+class QueryUsersinfoRequest(AbstractModel):
+    """QueryUsersinfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询注册时的用户账号信息，不支持模糊查询
+        :param username: 用户名
+        :type PathPrefix: String
+        :param phone: 手机号
+        :type PathPrefix: String
+        :param email: 邮箱
+        :type PathPrefix: String
+        """
+        self.username = None
+        self.phone = None
+        self.email = None
+
+    def _deserialize(self, params):
+        if params.get("username"):
+            self.username = params.get("username")
+        if params.get("phone"):
+            self.phone = params.get("phone")
+        if params.get("email"):
+            self.email = params.get("email")
+
+
+class GetDetailRequest(AbstractModel):
+    """GetDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询云电脑实例详情信息
+        :param instanceId: 实例id
+        :type PathPrefix: String
+        """
+        self.instanceId = None
+
+    def _deserialize(self, params):
+        if params.get("instanceId"):
+            self.instanceId = params.get("instanceId")
+
+
+class ListLabelRequest(AbstractModel):
+    """ListLabel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询所有标签
+        :param name: 标签名
+        :type PathPrefix: String
+        """
+        self.name = None
+
+    def _deserialize(self, params):
+        if params.get("name"):
+            self.name = params.get("name")
+
+
+class CancelInstanceLabelRequest(AbstractModel):
+    """CancelInstanceLabel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""解绑云电脑已绑定的标签
+        :param labelId: 标签id
+        :type PathPrefix: Array
+        :param instanceId: 实例id
+        :type PathPrefix: String
+        """
+        self.labelId = None
+        self.instanceId = None
+
+    def _deserialize(self, params):
+        if params.get("labelId"):
+            self.labelId = params.get("labelId")
+        if params.get("instanceId"):
+            self.instanceId = params.get("instanceId")
+
+
+class UpdateInstanceLabelRequest(AbstractModel):
+    """UpdateInstanceLabel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""绑定标签到云电脑
+        :param labelId: 标签id
+        :type PathPrefix: Array
+        :param instanceId: 云桌面实例id
+        :type PathPrefix: String
+        """
+        self.labelId = None
+        self.instanceId = None
+
+    def _deserialize(self, params):
+        if params.get("labelId"):
+            self.labelId = params.get("labelId")
+        if params.get("instanceId"):
+            self.instanceId = params.get("instanceId")
+
+
+class DeleteLabelRequest(AbstractModel):
+    """DeleteLabel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除一个或多个标签，删除标签后，已绑定过此标签的云桌面上的标签都将被删除
+        :param id: 标签id
+        :type PathPrefix: Array
+        """
+        self.id = None
+
+    def _deserialize(self, params):
+        if params.get("id"):
+            self.id = params.get("id")
+
+
+class UpdateLabelRequest(AbstractModel):
+    """UpdateLabel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改标签名
+        :param id: 标签id
+        :type PathPrefix: Int
+        :param name: 标签名
+        :type PathPrefix: String
+        """
+        self.id = None
+        self.name = None
+
+    def _deserialize(self, params):
+        if params.get("id"):
+            self.id = params.get("id")
+        if params.get("name"):
+            self.name = params.get("name")
+
+
+class CreateLabelRequest(AbstractModel):
+    """CreateLabel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建一个标签，用于分类管理云桌面
+        :param name: 标签名
+        :type PathPrefix: String
+        """
+        self.name = None
+
+    def _deserialize(self, params):
+        if params.get("name"):
+            self.name = params.get("name")
 
 

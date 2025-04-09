@@ -248,6 +248,8 @@ class CreateRouteRequest(AbstractModel):
         :type PathPrefix: String
         :param VpnTunnelId: VPN通道的ID
         :type PathPrefix: String
+        :param VpnGatewayId: VPN网关的ID
+        :type PathPrefix: String
         :param NetworkInterfaceId: 网卡ID
         :type PathPrefix: String
         :param HaVipId: 高可用虚拟IP的ID
@@ -268,6 +270,7 @@ class CreateRouteRequest(AbstractModel):
         self.VpcPeeringConnectionId = None
         self.DirectConnectGatewayId = None
         self.VpnTunnelId = None
+        self.VpnGatewayId = None
         self.NetworkInterfaceId = None
         self.HaVipId = None
         self.HaVipMasterNetworkInterfaceId = None
@@ -290,6 +293,8 @@ class CreateRouteRequest(AbstractModel):
             self.DirectConnectGatewayId = params.get("DirectConnectGatewayId")
         if params.get("VpnTunnelId"):
             self.VpnTunnelId = params.get("VpnTunnelId")
+        if params.get("VpnGatewayId"):
+            self.VpnGatewayId = params.get("VpnGatewayId")
         if params.get("NetworkInterfaceId"):
             self.NetworkInterfaceId = params.get("NetworkInterfaceId")
         if params.get("HaVipId"):
@@ -894,13 +899,13 @@ class CreateVpcPeeringConnectionRequest(AbstractModel):
         :type PathPrefix: String
         :param PeerVpcId: 接受端Vpc的ID
         :type PathPrefix: String
-        :param Region: 发起端region
-        :type PathPrefix: String
         :param PeerRegion: 接受端Vpc的region
         :type PathPrefix: String
         :param PeerAccountId: 接受端账号ID
         :type PathPrefix: String
         :param BandWidth: 对等连接的带宽，同机房时可缺省，带宽值为1000且不可修改，跨机房时不可缺省
+        :type PathPrefix: Int
+        :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省。
         :type PathPrefix: Int
         :param ProjectId: 项目的ID
         :type PathPrefix: String
@@ -910,10 +915,10 @@ class CreateVpcPeeringConnectionRequest(AbstractModel):
         self.VpcId = None
         self.PeeringName = None
         self.PeerVpcId = None
-        self.Region = None
         self.PeerRegion = None
         self.PeerAccountId = None
         self.BandWidth = None
+        self.PurchaseTime = None
         self.ProjectId = None
         self.ChargeType = None
 
@@ -924,14 +929,14 @@ class CreateVpcPeeringConnectionRequest(AbstractModel):
             self.PeeringName = params.get("PeeringName")
         if params.get("PeerVpcId"):
             self.PeerVpcId = params.get("PeerVpcId")
-        if params.get("Region"):
-            self.Region = params.get("Region")
         if params.get("PeerRegion"):
             self.PeerRegion = params.get("PeerRegion")
         if params.get("PeerAccountId"):
             self.PeerAccountId = params.get("PeerAccountId")
         if params.get("BandWidth"):
             self.BandWidth = params.get("BandWidth")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
         if params.get("ChargeType"):
@@ -1136,10 +1141,24 @@ class DescribeSubnetAvailableAddressesRequest(AbstractModel):
 
     def __init__(self):
         r"""描述子网可用IP信息
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
         """
+        self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
 
     def _deserialize(self, params):
-        return
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
 
 
 class ModifyVpcRequest(AbstractModel):
@@ -1293,6 +1312,12 @@ class CreateDirectConnectInterfaceRequest(AbstractModel):
         :type PathPrefix: String
         :param BgpClientToken: BGP 秘钥
         :type PathPrefix: String
+        :param EnableIpv6: 是否开启Ipv6
+        :type PathPrefix: Boolean
+        :param CustomerIpv6PeerIp: 客户侧ipv6互联IP
+        :type PathPrefix: String
+        :param LocalIpv6PeerIp: 金山云侧ipv6互联IP
+        :type PathPrefix: String
         """
         self.DirectConnectId = None
         self.VlanId = None
@@ -1308,6 +1333,9 @@ class CreateDirectConnectInterfaceRequest(AbstractModel):
         self.ReliabilityMethod = None
         self.BfdConfigId = None
         self.BgpClientToken = None
+        self.EnableIpv6 = None
+        self.CustomerIpv6PeerIp = None
+        self.LocalIpv6PeerIp = None
 
     def _deserialize(self, params):
         if params.get("DirectConnectId"):
@@ -1338,6 +1366,12 @@ class CreateDirectConnectInterfaceRequest(AbstractModel):
             self.BfdConfigId = params.get("BfdConfigId")
         if params.get("BgpClientToken"):
             self.BgpClientToken = params.get("BgpClientToken")
+        if params.get("EnableIpv6"):
+            self.EnableIpv6 = params.get("EnableIpv6")
+        if params.get("CustomerIpv6PeerIp"):
+            self.CustomerIpv6PeerIp = params.get("CustomerIpv6PeerIp")
+        if params.get("LocalIpv6PeerIp"):
+            self.LocalIpv6PeerIp = params.get("LocalIpv6PeerIp")
 
 
 class DeleteDirectConnectInterfaceRequest(AbstractModel):
@@ -2054,6 +2088,79 @@ class ModifyPrivateIpAddressAttributeRequest(AbstractModel):
             self.Status = params.get("Status")
         if params.get("AllocateStatus"):
             self.AllocateStatus = params.get("AllocateStatus")
+
+
+class DescribeDirectConnectRoutesRequest(AbstractModel):
+    """DescribeDirectConnectRoutes请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询专线路由
+        :param DirectConnectRouteId: 专线路由的ID
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.DirectConnectRouteId = None
+        self.MaxResults = None
+        self.Filter = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("DirectConnectRouteId"):
+            self.DirectConnectRouteId = params.get("DirectConnectRouteId")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class DetachDirectConnectGatewayWithVpcRequest(AbstractModel):
+    """DetachDirectConnectGatewayWithVpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""边界网关解绑VPC
+        :param DirectConnectGatewayId: 边界网关的ID
+        :type PathPrefix: String
+        :param VpcId: Vpc的ID
+        :type PathPrefix: String
+        """
+        self.DirectConnectGatewayId = None
+        self.VpcId = None
+
+    def _deserialize(self, params):
+        if params.get("DirectConnectGatewayId"):
+            self.DirectConnectGatewayId = params.get("DirectConnectGatewayId")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+
+
+class AttachDirectConnectGatewayWithVpcRequest(AbstractModel):
+    """AttachDirectConnectGatewayWithVpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""边界网关关联VPC
+        :param DirectConnectGatewayId: 边界网关的ID
+        :type PathPrefix: String
+        :param VpcId: Vpc的ID
+        :type PathPrefix: String
+        """
+        self.DirectConnectGatewayId = None
+        self.VpcId = None
+
+    def _deserialize(self, params):
+        if params.get("DirectConnectGatewayId"):
+            self.DirectConnectGatewayId = params.get("DirectConnectGatewayId")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
 
 
 class CreateRouteTableRequest(AbstractModel):
@@ -2928,17 +3035,17 @@ class ModifyVpnGatewayRouteRequest(AbstractModel):
 
     def __init__(self):
         r"""修改VPN网关下的路由
-        :param VpnGatewayId: VPN网关的ID
+        :param VpnGatewayRouteId: VPN网关路由的ID
         :type PathPrefix: String
         :param Description: 描述
         :type PathPrefix: String
         """
-        self.VpnGatewayId = None
+        self.VpnGatewayRouteId = None
         self.Description = None
 
     def _deserialize(self, params):
-        if params.get("VpnGatewayId"):
-            self.VpnGatewayId = params.get("VpnGatewayId")
+        if params.get("VpnGatewayRouteId"):
+            self.VpnGatewayRouteId = params.get("VpnGatewayRouteId")
         if params.get("Description"):
             self.Description = params.get("Description")
 
@@ -2965,5 +3072,184 @@ class DeleteDcNatIpRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+
+class DescribeDirectConnectInterfacesBgpStatusRequest(AbstractModel):
+    """DescribeDirectConnectInterfacesBgpStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询专线通道 BGP邻居状态
+        :param DirectConnectInterfaceId.N: 专线通道id
+        :type PathPrefix: String
+        """
+        self.DirectConnectInterfaceId.N = None
+
+    def _deserialize(self, params):
+        if params.get("DirectConnectInterfaceId.N"):
+            self.DirectConnectInterfaceId.N = params.get("DirectConnectInterfaceId.N")
+
+
+class DeactiveFlowLogRequest(AbstractModel):
+    """DeactiveFlowLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""停止流日志
+        :param FlowLogId: 流日志的ID
+        :type PathPrefix: String
+        """
+        self.FlowLogId = None
+
+    def _deserialize(self, params):
+        if params.get("FlowLogId"):
+            self.FlowLogId = params.get("FlowLogId")
+
+
+class ActiveFlowLogRequest(AbstractModel):
+    """ActiveFlowLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启动流日志
+        :param FlowLogId: 流日志的ID
+        :type PathPrefix: String
+        """
+        self.FlowLogId = None
+
+    def _deserialize(self, params):
+        if params.get("FlowLogId"):
+            self.FlowLogId = params.get("FlowLogId")
+
+
+class DeleteFlowLogRequest(AbstractModel):
+    """DeleteFlowLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除流日志
+        :param FlowLogId: 流日志的Id
+        :type PathPrefix: String
+        """
+        self.FlowLogId = None
+
+    def _deserialize(self, params):
+        if params.get("FlowLogId"):
+            self.FlowLogId = params.get("FlowLogId")
+
+
+class ModifyFlowLogRequest(AbstractModel):
+    """ModifyFlowLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改流日志
+        :param FlowLogId: 流日志的ID
+        :type PathPrefix: String
+        :param FlowLogName: 流日志的名称
+        :type PathPrefix: String
+        :param WindowTime: 采集窗口时间（60s~600s）
+        :type PathPrefix: Int
+        :param Description: 流日志描述
+        :type PathPrefix: String
+        """
+        self.FlowLogId = None
+        self.FlowLogName = None
+        self.WindowTime = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("FlowLogId"):
+            self.FlowLogId = params.get("FlowLogId")
+        if params.get("FlowLogName"):
+            self.FlowLogName = params.get("FlowLogName")
+        if params.get("WindowTime"):
+            self.WindowTime = params.get("WindowTime")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class DescribeFlowLogsRequest(AbstractModel):
+    """DescribeFlowLogs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询流日志
+        :param FlowLogId: 流日志的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.FlowLogId = None
+        self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("FlowLogId"):
+            self.FlowLogId = params.get("FlowLogId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class CreateFlowLogRequest(AbstractModel):
+    """CreateFlowLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建流日志
+        :param FlowLogName: 流日志名称
+        :type PathPrefix: String
+        :param ResourceType: 要捕获流量的资源类型,可选值
+ -NetworkInterface 弹性网卡 
+        :type PathPrefix: String
+        :param ResourceId: 要捕获流量的资源 ID
+        :type PathPrefix: String
+        :param TrafficType: 采集的流量类型,可选值
+ - All 全部流量
+        :type PathPrefix: String
+        :param ProjectName: 管理捕获到的流量的 Project 名称
+        :type PathPrefix: String
+        :param LogPoolName: 存储捕获到的流量的 LogPool 名称
+        :type PathPrefix: String
+        :param WindowTime: 采集窗口时间（60s~600s）
+        :type PathPrefix: Int
+        :param Description: 流日志描述
+        :type PathPrefix: String
+        """
+        self.FlowLogName = None
+        self.ResourceType = None
+        self.ResourceId = None
+        self.TrafficType = None
+        self.ProjectName = None
+        self.LogPoolName = None
+        self.WindowTime = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("FlowLogName"):
+            self.FlowLogName = params.get("FlowLogName")
+        if params.get("ResourceType"):
+            self.ResourceType = params.get("ResourceType")
+        if params.get("ResourceId"):
+            self.ResourceId = params.get("ResourceId")
+        if params.get("TrafficType"):
+            self.TrafficType = params.get("TrafficType")
+        if params.get("ProjectName"):
+            self.ProjectName = params.get("ProjectName")
+        if params.get("LogPoolName"):
+            self.LogPoolName = params.get("LogPoolName")
+        if params.get("WindowTime"):
+            self.WindowTime = params.get("WindowTime")
+        if params.get("Description"):
+            self.Description = params.get("Description")
 
 

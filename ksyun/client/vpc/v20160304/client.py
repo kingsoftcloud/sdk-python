@@ -1595,6 +1595,75 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeDirectConnectRoutes(self, request):
+        """查询专线路由
+        :param request: Request instance for DescribeDirectConnectRoutes.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeDirectConnectRoutesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeDirectConnectRoutes", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DetachDirectConnectGatewayWithVpc(self, request):
+        """边界网关解绑VPC
+        :param request: Request instance for DetachDirectConnectGatewayWithVpc.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DetachDirectConnectGatewayWithVpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DetachDirectConnectGatewayWithVpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AttachDirectConnectGatewayWithVpc(self, request):
+        """边界网关关联VPC
+        :param request: Request instance for AttachDirectConnectGatewayWithVpc.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AttachDirectConnectGatewayWithVpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AttachDirectConnectGatewayWithVpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def CreateRouteTable(self, request):
         """创建路由表
         :param request: Request instance for CreateRouteTable.
@@ -2477,6 +2546,167 @@ class VpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DeleteDcNatIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeDirectConnectInterfacesBgpStatus(self, request):
+        """查询专线通道 BGP邻居状态
+        :param request: Request instance for DescribeDirectConnectInterfacesBgpStatus.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeDirectConnectInterfacesBgpStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeDirectConnectInterfacesBgpStatus", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeactiveFlowLog(self, request):
+        """停止流日志
+        :param request: Request instance for DeactiveFlowLog.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeactiveFlowLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeactiveFlowLog", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ActiveFlowLog(self, request):
+        """启动流日志
+        :param request: Request instance for ActiveFlowLog.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ActiveFlowLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ActiveFlowLog", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteFlowLog(self, request):
+        """删除流日志
+        :param request: Request instance for DeleteFlowLog.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteFlowLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteFlowLog", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyFlowLog(self, request):
+        """修改流日志
+        :param request: Request instance for ModifyFlowLog.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyFlowLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyFlowLog", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeFlowLogs(self, request):
+        """查询流日志
+        :param request: Request instance for DescribeFlowLogs.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeFlowLogsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeFlowLogs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateFlowLog(self, request):
+        """创建流日志
+        :param request: Request instance for CreateFlowLog.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateFlowLogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateFlowLog", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

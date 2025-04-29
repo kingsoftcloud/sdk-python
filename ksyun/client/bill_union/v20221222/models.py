@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class QueryInstanceConsumeRequest(AbstractModel):
     """QueryInstanceConsume请求参数结构体
     """
@@ -189,6 +190,7 @@ class QueryUserConsumeRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("Size"):
             self.Size = params.get("Size")
+
 
 class DescribeInstanceSummaryBillsRequest(AbstractModel):
     """DescribeInstanceSummaryBills请求参数结构体

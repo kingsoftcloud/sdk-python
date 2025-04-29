@@ -8,6 +8,7 @@ class KceClient(AbstractClient):
     _apiVersion = '2019-08-06'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
+
     def DescribeCluster(self, request):
         """查询集群列表
         :param request: Request instance for DescribeCluster.
@@ -29,7 +30,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeClusterInstance(self, request):
         """查询集群节点列表
@@ -53,7 +53,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteCluster(self, request):
         """删除集群
         :param request: Request instance for DeleteCluster.
@@ -75,7 +74,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DownloadClusterConfig(self, request):
         """下载集群配置文件
@@ -99,7 +97,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyClusterInfo(self, request):
         """修改集群基本信息
         :param request: Request instance for ModifyClusterInfo.
@@ -121,7 +118,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstanceImage(self, request):
         """获取容器服务支持的节点操作系统
@@ -145,7 +141,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AddClusterInstances(self, request):
         """新增节点
         :param request: Request instance for AddClusterInstances.
@@ -167,7 +162,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteClusterInstances(self, request):
         """移除集群中的节点
@@ -191,7 +185,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEpcForCluster(self, request):
         """获取支持移入集群的裸金属服务器列表
         :param request: Request instance for DescribeEpcForCluster.
@@ -213,7 +206,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddClusterEpcInstances(self, request):
         """移入裸金属服务器到集群
@@ -237,7 +229,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeExistedInstances(self, request):
         """查询已经存在的云服务器
         :param request: Request instance for DescribeExistedInstances.
@@ -259,7 +250,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddExistedInstances(self, request):
         """添加已有的服务器
@@ -283,7 +273,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateNodePool(self, request):
         """创建节点池
         :param request: Request instance for CreateNodePool.
@@ -305,7 +294,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeNodePool(self, request):
         """查询节点池详细信息
@@ -329,7 +317,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteNodePool(self, request):
         """删除节点池
         :param request: Request instance for DeleteNodePool.
@@ -351,7 +338,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyNodePool(self, request):
         """修改节点池
@@ -375,7 +361,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyNodeTemplate(self, request):
         """修改节点池模板
         :param request: Request instance for ModifyNodeTemplate.
@@ -397,7 +382,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyNodePoolScaleUpPolicy(self, request):
         """修改节点池扩容策略
@@ -421,7 +405,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyNodePoolScaleDownPolicy(self, request):
         """修改节点池缩容策略
         :param request: Request instance for ModifyNodePoolScaleDownPolicy.
@@ -443,7 +426,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddClusterInstanceToNodePool(self, request):
         """将集群内节点移入节点池
@@ -467,7 +449,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ProtectedFromScaleDown(self, request):
         """节点池节点设置缩容保护
         :param request: Request instance for ProtectedFromScaleDown.
@@ -489,7 +470,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteClusterInstancesFromNodePool(self, request):
         """移出节点池节点
@@ -513,7 +493,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEpcImage(self, request):
         """获取裸金属服务器支持的系统镜像
         :param request: Request instance for DescribeEpcImage.
@@ -535,7 +514,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def EditEventCollecting(self, request):
         """开启事件推送
@@ -559,7 +537,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeNodePoolSummary(self, request):
         """查询集群全量节点池的轻量级API
         :param request: Request instance for DescribeNodePoolSummary.
@@ -581,5 +558,3 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

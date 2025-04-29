@@ -8,6 +8,7 @@ class BwsClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'bws.api.ksyun.com'
     _service = 'bws'
+
     def CreateBandWidthShare(self, request):
         """创建共享带宽
         :param request: Request instance for CreateBandWidthShare.
@@ -29,7 +30,6 @@ class BwsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeBandWidthShares(self, request):
         """描述共享带宽
@@ -53,7 +53,6 @@ class BwsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AssociateBandWidthShare(self, request):
         """绑定共享带宽
         :param request: Request instance for AssociateBandWidthShare.
@@ -75,7 +74,6 @@ class BwsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DisassociateBandWidthShare(self, request):
         """解绑共享带宽
@@ -99,7 +97,6 @@ class BwsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyBandWidthShare(self, request):
         """更新共享带宽配置
         :param request: Request instance for ModifyBandWidthShare.
@@ -121,7 +118,6 @@ class BwsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteBandWidthShare(self, request):
         """删除共享带宽
@@ -145,7 +141,6 @@ class BwsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def QueryBwsTopEipMonitor(self, request):
         """查询BWS下EIP流量排名的TOP 50的网卡
         :param request: Request instance for QueryBwsTopEipMonitor.
@@ -167,5 +162,3 @@ class BwsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

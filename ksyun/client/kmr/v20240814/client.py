@@ -8,6 +8,7 @@ class KmrClient(AbstractClient):
     _apiVersion = '2024-08-14'
     _endpoint = 'kmr.api.ksyun.com'
     _service = 'kmr'
+
     def DetailWorkspace(self, request):
         """获取工作空间详情
         :param request: Request instance for DetailWorkspace.
@@ -29,7 +30,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListWorkspaces(self, request):
         """获取工作空间列表
@@ -53,7 +53,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StartJobRun(self, request):
         """提交Spark作业
         :param request: Request instance for StartJobRun.
@@ -75,7 +74,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetJobRun(self, request):
         """获取Spark作业详情
@@ -99,7 +97,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListJobRuns(self, request):
         """获取Spark作业信息列表
         :param request: Request instance for ListJobRuns.
@@ -121,7 +118,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CancelJobRun(self, request):
         """停止Spark作业运行
@@ -145,7 +141,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListExecutor(self, request):
         """获取作业Executor列表
         :param request: Request instance for ListExecutor.
@@ -167,7 +162,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StartRayJobRun(self, request):
         """提交Ray作业
@@ -191,7 +185,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetRayJobRun(self, request):
         """GetRayJobRun
         :param request: Request instance for GetRayJobRun.
@@ -213,7 +206,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListRayJobRuns(self, request):
         """ListRayJobRuns
@@ -237,7 +229,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CancelRayJobRun(self, request):
         """停止Ray作业运行
         :param request: Request instance for CancelRayJobRun.
@@ -259,7 +250,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StartFlinkJobRun(self, request):
         """提交Flink作业
@@ -283,7 +273,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetFlinkJobRun(self, request):
         """获取Flink作业详情
         :param request: Request instance for GetFlinkJobRun.
@@ -305,7 +294,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListFlinkJobRuns(self, request):
         """获取Flink作业列表
@@ -329,7 +317,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CancelFlinkJobRun(self, request):
         """停止Flink作业运行
         :param request: Request instance for CancelFlinkJobRun.
@@ -351,7 +338,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def SuspendFlinkJobRun(self, request):
         """挂起Flink作业
@@ -375,7 +361,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RestartFlinkJobRun(self, request):
         """重启Flink作业
         :param request: Request instance for RestartFlinkJobRun.
@@ -397,5 +382,3 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

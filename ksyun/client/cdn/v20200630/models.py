@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetClientRequestDataRequest(AbstractModel):
     """GetClientRequestData请求参数结构体
     """
@@ -822,5 +823,3 @@ class GetEntryRateDataRequest(AbstractModel):
             self.Province = params.get("Province")
         if params.get("Isp"):
             self.Isp = params.get("Isp")
-
-

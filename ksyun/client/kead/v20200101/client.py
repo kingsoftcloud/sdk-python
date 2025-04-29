@@ -8,6 +8,7 @@ class KeadClient(AbstractClient):
     _apiVersion = '2020-01-01'
     _endpoint = 'kead.api.ksyun.com'
     _service = 'kead'
+
     def DescribeBlockIp(self, request):
         """查询封禁IP
         :param request: Request instance for DescribeBlockIp.
@@ -29,5 +30,3 @@ class KeadClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

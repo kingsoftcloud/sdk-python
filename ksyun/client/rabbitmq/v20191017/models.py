@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateInstanceRequest(AbstractModel):
     """CreateInstance请求参数结构体
     """
@@ -312,5 +313,3 @@ class RenameRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("InstanceName"):
             self.InstanceName = params.get("InstanceName")
-
-

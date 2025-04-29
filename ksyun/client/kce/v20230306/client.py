@@ -8,6 +8,7 @@ class KceClient(AbstractClient):
     _apiVersion = '2023-03-06'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
+
     def CreatePrometheusInstance(self, request):
         """创建Prometheus实例
         :param request: Request instance for CreatePrometheusInstance.
@@ -29,7 +30,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribePrometheusInstance(self, request):
         """查询Prometheus实例
@@ -53,7 +53,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdatePrometheusInstance(self, request):
         """更新Prometheus实例
         :param request: Request instance for UpdatePrometheusInstance.
@@ -75,7 +74,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeletePrometheusInstance(self, request):
         """删除Prometheus实例
@@ -99,7 +97,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def EnableGrafana(self, request):
         """开通/关闭Grafana
         :param request: Request instance for EnableGrafana.
@@ -121,7 +118,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateGrafanaPassword(self, request):
         """更新Grafana密码
@@ -145,7 +141,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def EnableGrafanaInternet(self, request):
         """开启/关闭Grafana公网访问
         :param request: Request instance for EnableGrafanaInternet.
@@ -167,7 +162,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeGrafanaWhiteList(self, request):
         """查询可访问Grafana公网的IP白名单
@@ -191,7 +185,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdateGrafanaWhiteList(self, request):
         """更新可访问Grafana公网的IP白名单
         :param request: Request instance for UpdateGrafanaWhiteList.
@@ -213,7 +206,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AssociateCluster(self, request):
         """关联集群
@@ -237,7 +229,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DisassociateCluster(self, request):
         """解除关联集群
         :param request: Request instance for DisassociateCluster.
@@ -259,7 +250,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeAssociateClusterList(self, request):
         """查询关联集群列表
@@ -283,7 +273,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeMonitorList(self, request):
         """查询监控列表
         :param request: Request instance for DescribeMonitorList.
@@ -305,7 +294,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeMonitorCollectionConfig(self, request):
         """查询监控采集配置
@@ -329,7 +317,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdateMonitorCollectionConfig(self, request):
         """更新监控采集配置
         :param request: Request instance for UpdateMonitorCollectionConfig.
@@ -351,7 +338,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeMonitorMetricsList(self, request):
         """查询监控指标
@@ -375,7 +361,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeTargetsList(self, request):
         """查询采集目标列表
         :param request: Request instance for DescribeTargetsList.
@@ -397,7 +382,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeAgentStatus(self, request):
         """查询agent状态
@@ -421,7 +405,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateMonitorCollectionConfig(self, request):
         """创建监控采集配置
         :param request: Request instance for CreateMonitorCollectionConfig.
@@ -443,7 +426,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteMonitorCollectionConfig(self, request):
         """删除监控采集配置
@@ -467,7 +449,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def EnableMetrics(self, request):
         """开启指标
         :param request: Request instance for EnableMetrics.
@@ -490,7 +471,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DropMetrics(self, request):
         """废弃指标
         :param request: Request instance for DropMetrics.
@@ -512,5 +492,3 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

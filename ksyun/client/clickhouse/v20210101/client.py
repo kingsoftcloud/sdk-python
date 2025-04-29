@@ -8,6 +8,7 @@ class ClickhouseClient(AbstractClient):
     _apiVersion = '2021-01-01'
     _endpoint = 'clickhouse.api.ksyun.com'
     _service = 'clickhouse'
+
     def ListInstance(self, request):
         """Clickhouse查询实例列表
         :param request: Request instance for ListInstance.
@@ -29,7 +30,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstance(self, request):
         """Clickhouse查看实例详情
@@ -53,7 +53,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateInstance(self, request):
         """Clickhouse创建实例
         :param request: Request instance for CreateInstance.
@@ -75,7 +74,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteInstance(self, request):
         """Clickhouse删除实例
@@ -99,7 +97,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RenameInstance(self, request):
         """Clickhouse重命名实例
         :param request: Request instance for RenameInstance.
@@ -121,7 +118,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListSecurityGroup(self, request):
         """Clickhouse查看安全组列表
@@ -145,7 +141,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSecurityGroup(self, request):
         """Clickhouse查看安全组详情
         :param request: Request instance for DescribeSecurityGroup.
@@ -167,7 +162,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateSecurityGroup(self, request):
         """Clickhouse创建安全组
@@ -191,7 +185,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteSecurityGroup(self, request):
         """Clickhouse删除安全组接口
         :param request: Request instance for DeleteSecurityGroup.
@@ -213,7 +206,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RenameSecurityGroup(self, request):
         """Clickhouse重命名安全组
@@ -237,7 +229,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CloneSecurityGroup(self, request):
         """Clickhouse克隆安全组
         :param request: Request instance for CloneSecurityGroup.
@@ -259,7 +250,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def BindSecurityGroup(self, request):
         """Clickhouse绑定安全组
@@ -283,7 +273,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UnbindSecurityGroup(self, request):
         """Clickhouse解绑安全组
         :param request: Request instance for UnbindSecurityGroup.
@@ -305,7 +294,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateSecurityRule(self, request):
         """Clickhouse创建安全规则
@@ -329,7 +317,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteSecurityRule(self, request):
         """Clickhouse删除安全规则
         :param request: Request instance for DeleteSecurityRule.
@@ -351,7 +338,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListSecuredInstance(self, request):
         """Clickhouse查询已绑定安全组的实例列表
@@ -375,7 +361,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListUnsecuredInstance(self, request):
         """Clickhouse查询未绑定安全组的实例列表
         :param request: Request instance for ListUnsecuredInstance.
@@ -397,7 +382,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListRecycledInstance(self, request):
         """Clickhouse查询回收站实例列表
@@ -421,7 +405,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RecoverRecycledInstance(self, request):
         """Clickhouse恢复实例
         :param request: Request instance for RecoverRecycledInstance.
@@ -443,7 +426,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DropRecycledInstance(self, request):
         """Clickhouse彻底删除实例
@@ -467,7 +449,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListRegion(self, request):
         """Clickhouse查询地域列表
         :param request: Request instance for ListRegion.
@@ -489,7 +470,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescRegion(self, request):
         """Clickhouse查询地域详情
@@ -513,7 +493,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdateSecurityRule(self, request):
         """Clickhouse更新安全规则备注
         :param request: Request instance for UpdateSecurityRule.
@@ -535,7 +514,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RebindSecurityGroup(self, request):
         """Clickhouse实例重新绑定安全组
@@ -559,7 +537,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEngineDefaultParameters(self, request):
         """Clickhouse根据版本查询实例默认参数配置
         :param request: Request instance for DescribeEngineDefaultParameters.
@@ -581,7 +558,6 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyDBParameterGroup(self, request):
         """Clickhouse修改实例参数
@@ -605,7 +581,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBInstanceParameters(self, request):
         """Clickhouse查询当前实例参数配置
         :param request: Request instance for DescribeDBInstanceParameters.
@@ -628,7 +603,6 @@ class ClickhouseClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResetDBParameter(self, request):
         """Clickhouse重置实例参数
         :param request: Request instance for ResetDBParameter.
@@ -650,5 +624,3 @@ class ClickhouseClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

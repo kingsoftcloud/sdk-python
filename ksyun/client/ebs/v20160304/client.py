@@ -8,6 +8,7 @@ class EbsClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'ebs.api.ksyun.com'
     _service = 'ebs'
+
     def CreateVolume(self, request):
         """CreateVolume
         :param request: Request instance for CreateVolume.
@@ -29,7 +30,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AttachVolume(self, request):
         """AttachVolume
@@ -53,7 +53,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DetachVolume(self, request):
         """DetachVolume
         :param request: Request instance for DetachVolume.
@@ -75,7 +74,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteVolume(self, request):
         """DeleteVolume
@@ -99,7 +97,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResizeVolume(self, request):
         """ResizeVolume
         :param request: Request instance for ResizeVolume.
@@ -121,7 +118,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeVolumes(self, request):
         """DescribeVolumes
@@ -145,7 +141,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyVolume(self, request):
         """ModifyVolume
         :param request: Request instance for ModifyVolume.
@@ -167,7 +162,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeEbsInstances(self, request):
         """DescribeEbsInstances
@@ -191,7 +185,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeInstanceVolumes(self, request):
         """DescribeInstanceVolumes
         :param request: Request instance for DescribeInstanceVolumes.
@@ -213,7 +206,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RenewVolume(self, request):
         """RenewVolume
@@ -237,7 +229,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdateVolumeProject(self, request):
         """UpdateVolumeProject
         :param request: Request instance for UpdateVolumeProject.
@@ -259,7 +250,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSnapshots(self, request):
         """DescribeSnapshots
@@ -283,7 +273,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateSnapshot(self, request):
         """CreateSnapshot
         :param request: Request instance for CreateSnapshot.
@@ -305,7 +294,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteSnapshot(self, request):
         """DeleteSnapshot
@@ -329,7 +317,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RollbackSnapshot(self, request):
         """RollbackSnapshot
         :param request: Request instance for RollbackSnapshot.
@@ -351,7 +338,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifySnapshot(self, request):
         """ModifySnapshot
@@ -375,7 +361,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RecoveryVolume(self, request):
         """RecoveryVolume
         :param request: Request instance for RecoveryVolume.
@@ -397,7 +382,6 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ValidateAttachInstance(self, request):
         """ValidateAttachInstance
@@ -421,7 +405,6 @@ class EbsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCreateVolumePrice(self, request):
         """查询云盘新建时的价格
         :param request: Request instance for DescribeCreateVolumePrice.
@@ -443,5 +426,3 @@ class EbsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

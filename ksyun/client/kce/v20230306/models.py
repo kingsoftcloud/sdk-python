@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreatePrometheusInstanceRequest(AbstractModel):
     """CreatePrometheusInstance请求参数结构体
     """
@@ -651,5 +652,3 @@ ServiceMonitor
             self.Type = params.get("Type")
         if params.get("MetricsName"):
             self.MetricsName = params.get("MetricsName")
-
-

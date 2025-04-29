@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateSecurityGroupRequest(AbstractModel):
     """CreateSecurityGroup请求参数结构体
     """
@@ -227,5 +228,3 @@ class ModifySecurityGroupRuleNameRequest(AbstractModel):
             self.SecurityGroupRuleId = params.get("SecurityGroupRuleId")
         if params.get("SecurityGroupRuleName"):
             self.SecurityGroupRuleName = params.get("SecurityGroupRuleName")
-
-

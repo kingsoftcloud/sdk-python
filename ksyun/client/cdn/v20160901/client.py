@@ -8,6 +8,7 @@ class CdnClient(AbstractClient):
     _apiVersion = '2016-09-01'
     _endpoint = 'cdn.api.ksyun.com'
     _service = 'cdn'
+
     def GetDomainPidDimensionUsageData(self, request):
         """查询pid维度-计费用量数据
         :param request: Request instance for GetDomainPidDimensionUsageData.
@@ -29,5 +30,3 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

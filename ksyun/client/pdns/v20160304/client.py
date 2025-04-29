@@ -8,6 +8,7 @@ class PdnsClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'pdns.api.ksyun.com'
     _service = 'pdns'
+
     def CreatePrivateDns(self, request):
         """创建内网DNS实例
         :param request: Request instance for CreatePrivateDns.
@@ -29,7 +30,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeletePrivateDns(self, request):
         """删除内网DNS实例
@@ -53,7 +53,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribePrivateDns(self, request):
         """描述内网DNS实例
         :param request: Request instance for DescribePrivateDns.
@@ -75,7 +74,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AssociateVpcs(self, request):
         """关联VPC
@@ -99,7 +97,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DisassociateVpcs(self, request):
         """解绑VPC
         :param request: Request instance for DisassociateVpcs.
@@ -121,7 +118,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateZone(self, request):
         """创建Zone
@@ -145,7 +141,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteZone(self, request):
         """删除Zone
         :param request: Request instance for DeleteZone.
@@ -167,7 +162,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyZone(self, request):
         """修改Zone
@@ -191,7 +185,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeZone(self, request):
         """描述Zone
         :param request: Request instance for DescribeZone.
@@ -213,7 +206,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateRecord(self, request):
         """添加解析记录
@@ -237,7 +229,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteRecord(self, request):
         """删除解析记录
         :param request: Request instance for DeleteRecord.
@@ -259,7 +250,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyRecord(self, request):
         """修改解析记录
@@ -283,7 +273,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeRecord(self, request):
         """描述解析记录
         :param request: Request instance for DescribeRecord.
@@ -305,7 +294,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateRecordData(self, request):
         """添加记录值
@@ -329,7 +317,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteRecordData(self, request):
         """删除记录值
         :param request: Request instance for DeleteRecordData.
@@ -351,7 +338,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreatePdnsZone(self, request):
         """创建内网DNSzone
@@ -375,7 +361,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyPdnsZone(self, request):
         """修改Zone的ttl
         :param request: Request instance for ModifyPdnsZone.
@@ -397,7 +382,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeletePdnsZone(self, request):
         """删除Zone-二期
@@ -421,7 +405,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribePdnsZones(self, request):
         """查询Zone-二期
         :param request: Request instance for DescribePdnsZones.
@@ -443,7 +426,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def BindZoneVpc(self, request):
         """为Zone绑定VPC
@@ -467,7 +449,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UnbindZoneVpc(self, request):
         """Zone解绑VPC
         :param request: Request instance for UnbindZoneVpc.
@@ -489,7 +470,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateZoneRecord(self, request):
         """创建Zone解析记录-二期
@@ -513,7 +493,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteZoneRecord(self, request):
         """删除Zone解析记录
         :param request: Request instance for DeleteZoneRecord.
@@ -535,7 +514,6 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyZoneRecord(self, request):
         """修改Zone解析记录
@@ -559,7 +537,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeZoneRecord(self, request):
         """查询Zone解析记录 - 二期
         :param request: Request instance for DescribeZoneRecord.
@@ -581,5 +558,3 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetMonthConsumeRequest(AbstractModel):
     """GetMonthConsume请求参数结构体
     """
@@ -50,5 +51,3 @@ class GetPostpayDetailConsumeRequest(AbstractModel):
             self.PageNo = params.get("PageNo")
         if params.get("PageSize"):
             self.PageSize = params.get("PageSize")
-
-

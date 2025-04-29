@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateInstanceRequest(AbstractModel):
     """CreateInstance请求参数结构体
     """
@@ -529,5 +530,3 @@ class ListBackupRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("Keyword"):
             self.Keyword = params.get("Keyword")
-
-

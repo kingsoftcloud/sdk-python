@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateCacheClusterRequest(AbstractModel):
     """CreateCacheCluster请求参数结构体
     """
@@ -1707,5 +1708,3 @@ class AnalyzeDailySwitchRequest(AbstractModel):
             self.ServiceLog = params.get("ServiceLog")
         if params.get("SlowLog"):
             self.SlowLog = params.get("SlowLog")
-
-

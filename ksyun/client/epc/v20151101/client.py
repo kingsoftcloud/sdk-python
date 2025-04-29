@@ -8,6 +8,7 @@ class EpcClient(AbstractClient):
     _apiVersion = '2015-11-01'
     _endpoint = 'epc.api.ksyun.com'
     _service = 'epc'
+
     def CreateEpc(self, request):
         """CreateEpc
         :param request: Request instance for CreateEpc.
@@ -29,7 +30,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StartEpc(self, request):
         """StartEpc
@@ -53,7 +53,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RebootEpc(self, request):
         """RebootEpc
         :param request: Request instance for RebootEpc.
@@ -75,7 +74,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteEpc(self, request):
         """DeleteEpc
@@ -99,7 +97,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ReinstallEpc(self, request):
         """ReinstallEpc
         :param request: Request instance for ReinstallEpc.
@@ -121,7 +118,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifySecurityGroup(self, request):
         """ModifySecurityGroup
@@ -145,7 +141,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateKey(self, request):
         """CreateKey
         :param request: Request instance for CreateKey.
@@ -167,7 +162,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeEpcs(self, request):
         """DescribeEpcs
@@ -191,7 +185,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetDynamicCode(self, request):
         """GetDynamicCode
         :param request: Request instance for GetDynamicCode.
@@ -213,7 +206,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeVpns(self, request):
         """DescribeVpns
@@ -237,7 +229,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateImage(self, request):
         """CreateImage
         :param request: Request instance for CreateImage.
@@ -259,7 +250,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyImage(self, request):
         """ModifyImage
@@ -283,7 +273,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteImage(self, request):
         """DeleteImage
         :param request: Request instance for DeleteImage.
@@ -305,7 +294,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeImages(self, request):
         """DescribeImages
@@ -329,7 +317,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDns(self, request):
         """ModifyDns
         :param request: Request instance for ModifyDns.
@@ -351,7 +338,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyNetworkInterfaceAttribute(self, request):
         """ModifyNetworkInterfaceAttribute
@@ -375,7 +361,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribePhysicalMonitor(self, request):
         """DescribePhysicalMonitor
         :param request: Request instance for DescribePhysicalMonitor.
@@ -397,7 +382,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeEpcManagements(self, request):
         """DescribeEpcManagements
@@ -421,7 +405,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeRemoteManagements(self, request):
         """DescribeRemoteManagements
         :param request: Request instance for DescribeRemoteManagements.
@@ -443,7 +426,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StopEpc(self, request):
         """StopEpc
@@ -467,7 +449,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyEpc(self, request):
         """ModifyEpc
         :param request: Request instance for ModifyEpc.
@@ -489,7 +470,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyRemoteManagement(self, request):
         """ModifyRemoteManagement
@@ -513,7 +493,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateRemoteManagement(self, request):
         """CreateRemoteManagement
         :param request: Request instance for CreateRemoteManagement.
@@ -535,7 +514,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ReinstallCustomerEpc(self, request):
         """ReinstallCustomerEpc
@@ -559,7 +537,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteRemoteManagement(self, request):
         """DeleteRemoteManagement
         :param request: Request instance for DeleteRemoteManagement.
@@ -581,7 +558,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ResetPassword(self, request):
         """重置密码
@@ -605,7 +581,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyHyperThreading(self, request):
         """修改超线程
         :param request: Request instance for ModifyHyperThreading.
@@ -627,7 +602,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AssociateCluster(self, request):
         """AssociateCluster
@@ -651,7 +625,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DisassociateCluster(self, request):
         """DisassociateCluster
         :param request: Request instance for DisassociateCluster.
@@ -673,7 +646,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInspections(self, request):
         """DescribeInspections
@@ -697,7 +669,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEpcStocks(self, request):
         """DescribeEpcStocks
         :param request: Request instance for DescribeEpcStocks.
@@ -719,7 +690,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeEpcDeviceAttributes(self, request):
         """DescribeEpcDeviceAttributes
@@ -743,7 +713,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeProcesses(self, request):
         """DescribeProcesses
         :param request: Request instance for DescribeProcesses.
@@ -765,7 +734,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateProcess(self, request):
         """CreateProcess
@@ -789,7 +757,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteProcess(self, request):
         """DeleteProcess
         :param request: Request instance for DeleteProcess.
@@ -811,7 +778,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ReplyProcess(self, request):
         """ReplyProcess
@@ -835,7 +801,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEpcTrashes(self, request):
         """DescribeEpcTrashes
         :param request: Request instance for DescribeEpcTrashes.
@@ -857,7 +822,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ReturnEpc(self, request):
         """ReturnEpc
@@ -881,7 +845,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateResourceRequirement(self, request):
         """创建资源需求工单
         :param request: Request instance for CreateResourceRequirement.
@@ -903,7 +866,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AttachVolume(self, request):
         """EPC挂载EBS
@@ -927,7 +889,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DetachVolume(self, request):
         """EPC卸载EBS
         :param request: Request instance for DetachVolume.
@@ -949,7 +910,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribePrice(self, request):
         """查询价格信息
@@ -973,7 +933,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyOverclockingAttribute(self, request):
         """修改超频
         :param request: Request instance for ModifyOverclockingAttribute.
@@ -995,7 +954,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CopyImage(self, request):
         """复制镜像
@@ -1019,7 +977,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEpcRaidAttributes(self, request):
         """查询多raid信息
         :param request: Request instance for DescribeEpcRaidAttributes.
@@ -1041,7 +998,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeGpuImageDriver(self, request):
         """查询GPU镜像驱动
@@ -1065,7 +1021,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateShareImage(self, request):
         """星曜共享镜像
         :param request: Request instance for CreateShareImage.
@@ -1087,7 +1042,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteShareImage(self, request):
         """星曜取消共享镜像
@@ -1111,7 +1065,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeShareImageAccountList(self, request):
         """星曜获取已共享镜像的账户列表信息
         :param request: Request instance for DescribeShareImageAccountList.
@@ -1133,7 +1086,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeShareImage(self, request):
         """星曜获取共享镜像列表信息
@@ -1157,7 +1109,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AcceptShareImage(self, request):
         """星曜接收共享镜像
         :param request: Request instance for AcceptShareImage.
@@ -1179,7 +1130,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RejectShareImage(self, request):
         """星曜拒绝共享镜像
@@ -1203,7 +1153,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeManagedAccessory(self, request):
         """托管备件信息查询
         :param request: Request instance for DescribeManagedAccessory.
@@ -1225,7 +1174,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AutoDeleteEpc(self, request):
         """AutoDeleteEpc
@@ -1249,7 +1197,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ExportImage(self, request):
         """自定义镜像导出
         :param request: Request instance for ExportImage.
@@ -1271,7 +1218,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def QueryBuckets(self, request):
         """查询ks3对象存储bucket桶列表
@@ -1295,7 +1241,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CancelImageExport(self, request):
         """取消镜像导出
         :param request: Request instance for CancelImageExport.
@@ -1317,7 +1262,6 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UseHotStandByEpc(self, request):
         """热备机替换
@@ -1341,7 +1285,6 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ActivateHotStandbyEpc(self, request):
         """激活热备机
         :param request: Request instance for ActivateHotStandbyEpc.
@@ -1363,5 +1306,3 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

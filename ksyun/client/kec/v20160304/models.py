@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeInstancesRequest(AbstractModel):
     """DescribeInstances请求参数结构体
     """
@@ -3408,5 +3409,3 @@ class SwitchImageTypeRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-
-

@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateForwardConfRequest(AbstractModel):
     """CreateForwardConf请求参数结构体
     """
@@ -125,5 +126,3 @@ class DescribeForwardSourceRequest(AbstractModel):
             self.ForwardConfId = params.get("ForwardConfId")
         if params.get("ForwardSourceId"):
             self.ForwardSourceId = params.get("ForwardSourceId")
-
-

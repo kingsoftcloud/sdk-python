@@ -8,6 +8,7 @@ class KceClient(AbstractClient):
     _apiVersion = '2023-11-15'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
+
     def DescribeCluster(self, request):
         """查询集群列表，只加载集群基本信息，不会加载组件详情等信息
         :param request: Request instance for DescribeCluster.
@@ -29,5 +30,3 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

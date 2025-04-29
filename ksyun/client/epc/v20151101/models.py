@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateEpcRequest(AbstractModel):
     """CreateEpc请求参数结构体
     """
@@ -1883,5 +1884,3 @@ class ActivateHotStandbyEpcRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("HostId"):
             self.HostId = params.get("HostId")
-
-

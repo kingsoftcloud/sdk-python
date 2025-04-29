@@ -8,6 +8,7 @@ class MonitorClient(AbstractClient):
     _apiVersion = '2010-05-25'
     _endpoint = 'monitor.api.ksyun.com'
     _service = 'monitor'
+
     def GetMetricStatistics(self, request):
         """获取监控数据
         :param request: Request instance for GetMetricStatistics.
@@ -30,7 +31,6 @@ class MonitorClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListMetrics(self, request):
         """查看实例对应的监控指标
         :param request: Request instance for ListMetrics.
@@ -52,5 +52,3 @@ class MonitorClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

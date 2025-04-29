@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CloudDeskreinstallRequest(AbstractModel):
     """CloudDeskreinstall请求参数结构体
     """
@@ -1113,5 +1114,3 @@ class CreateLabelRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("name"):
             self.name = params.get("name")
-
-

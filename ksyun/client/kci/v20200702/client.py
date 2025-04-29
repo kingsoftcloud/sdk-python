@@ -8,6 +8,7 @@ class KciClient(AbstractClient):
     _apiVersion = '2020-07-02'
     _endpoint = 'kci.api.ksyun.com'
     _service = 'kci'
+
     def CreateContainerGroup(self, request):
         """创建容器实例组
         :param request: Request instance for CreateContainerGroup.
@@ -29,7 +30,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeContainerGroup(self, request):
         """查询容器实例组
@@ -53,7 +53,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeContainerGroupList(self, request):
         """用于控制台查询容器实例组列表
         :param request: Request instance for DescribeContainerGroupList.
@@ -75,7 +74,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteContainerGroup(self, request):
         """删除容器实例组
@@ -99,7 +97,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeContainerLog(self, request):
         """查询容器实例组日志
         :param request: Request instance for DescribeContainerLog.
@@ -121,7 +118,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeRegions(self, request):
         """查询有权限创建容器实例的机房列表
@@ -145,7 +141,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ExecContainerCommand(self, request):
         """生成执行容器命令的webSocketUri
         :param request: Request instance for ExecContainerCommand.
@@ -167,7 +162,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeContainerGroupCount(self, request):
         """查询容器实例数量
@@ -191,7 +185,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeContainerGroupEvents(self, request):
         """查询容器实例事件信息
         :param request: Request instance for DescribeContainerGroupEvents.
@@ -213,7 +206,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeKciPackages(self, request):
         """查询容器实例在各机房可用区支持的标准规格大小
@@ -237,7 +229,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateImageCache(self, request):
         """创建容器实例镜像缓存
         :param request: Request instance for CreateImageCache.
@@ -259,7 +250,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteImageCache(self, request):
         """删除容器实例镜像缓存
@@ -283,7 +273,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeImageCache(self, request):
         """查询容器实例镜像缓存
         :param request: Request instance for DescribeImageCache.
@@ -305,7 +294,6 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def MatchImageCache(self, request):
         """匹配容器实例镜像缓存
@@ -329,7 +317,6 @@ class KciClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeImageCacheEvent(self, request):
         """查询镜像缓存制作事件
         :param request: Request instance for DescribeImageCacheEvent.
@@ -351,5 +338,3 @@ class KciClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

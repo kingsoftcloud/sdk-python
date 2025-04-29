@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateBandWidthShareRequest(AbstractModel):
     """CreateBandWidthShare请求参数结构体
     """
@@ -195,5 +196,3 @@ class QueryBwsTopEipMonitorRequest(AbstractModel):
             self.SortType = params.get("SortType")
         if params.get("PublicIp"):
             self.PublicIp = params.get("PublicIp")
-
-

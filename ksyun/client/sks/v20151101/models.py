@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateKeyRequest(AbstractModel):
     """CreateKey请求参数结构体
     """
@@ -104,5 +105,3 @@ class DescribeKeysRequest(AbstractModel):
             self.KeyId = params.get("KeyId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
-
-

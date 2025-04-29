@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class ListInstancesRequest(AbstractModel):
     """ListInstances请求参数结构体
     """
@@ -176,5 +177,3 @@ class DeleteAutoScalePolicyRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("PolicyId"):
             self.PolicyId = params.get("PolicyId")
-
-

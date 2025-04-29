@@ -8,6 +8,7 @@ class MongodbClient(AbstractClient):
     _apiVersion = '2017-01-01'
     _endpoint = 'mongodb.api.ksyun.com'
     _service = 'mongodb'
+
     def CreateMongoDBInstance(self, request):
         """创建副本集实例
         :param request: Request instance for CreateMongoDBInstance.
@@ -29,7 +30,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteMongoDBInstance(self, request):
         """删除实例
@@ -53,7 +53,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeMongoDBInstance(self, request):
         """查询实例详情
         :param request: Request instance for DescribeMongoDBInstance.
@@ -75,7 +74,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeMongoDBInstances(self, request):
         """查询账号下实例列表
@@ -99,7 +97,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeMongoDBInstanceNode(self, request):
         """查询副本集实例节点信息
         :param request: Request instance for DescribeMongoDBInstanceNode.
@@ -121,7 +118,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RenameMongoDBInstance(self, request):
         """实例重命名
@@ -145,7 +141,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResetPasswordMongoDBInstance(self, request):
         """修改密码
         :param request: Request instance for ResetPasswordMongoDBInstance.
@@ -167,7 +162,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RestartMongoDBInstance(self, request):
         """重启实例
@@ -191,7 +185,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateMongoDBSnapshot(self, request):
         """创建手动备份
         :param request: Request instance for CreateMongoDBSnapshot.
@@ -213,7 +206,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def SetMongoDBTimingSnapshot(self, request):
         """自动备份设置
@@ -237,7 +229,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeMongoDBSnapshot(self, request):
         """查询实例备份记录列表
         :param request: Request instance for DescribeMongoDBSnapshot.
@@ -259,7 +250,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteMongoDBSnapshot(self, request):
         """删除备份
@@ -283,7 +273,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RenameMongoDBSnapshot(self, request):
         """备份重命名
         :param request: Request instance for RenameMongoDBSnapshot.
@@ -305,7 +294,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddSecurityGroupRule(self, request):
         """添加安全组规则
@@ -329,7 +317,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListSecurityGroupRules(self, request):
         """查询安全组列表
         :param request: Request instance for ListSecurityGroupRules.
@@ -351,7 +338,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateMongoDBInstance(self, request):
         """副本集实例更配
@@ -375,7 +361,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AddSecondaryInstance(self, request):
         """副本集实例添加secondary节点
         :param request: Request instance for AddSecondaryInstance.
@@ -397,7 +382,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeMongoDBShardNode(self, request):
         """分片集群实例shard节点查询
@@ -421,7 +405,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeValidRegion(self, request):
         """查询用户可用机房详情
         :param request: Request instance for DescribeValidRegion.
@@ -443,7 +426,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AllocateEip(self, request):
         """实例绑定外网eip
@@ -467,7 +449,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeallocateEip(self, request):
         """实例解绑外网eip
         :param request: Request instance for DeallocateEip.
@@ -489,7 +470,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeRegions(self, request):
         """查询机房可用区
@@ -513,7 +493,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateMongoDBShardInstance(self, request):
         """创建分片集群实例
         :param request: Request instance for CreateMongoDBShardInstance.
@@ -535,7 +514,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DownloadSnapshot(self, request):
         """下载备份
@@ -559,7 +537,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CloneInstance(self, request):
         """基于备份文件恢复至新实例
         :param request: Request instance for CloneInstance.
@@ -581,7 +558,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeShardNode(self, request):
         """查询分片集群shard节点列表
@@ -605,7 +581,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeInstanceStatistic(self, request):
         """概览页统计接口
         :param request: Request instance for DescribeInstanceStatistic.
@@ -627,7 +602,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddClusterNode(self, request):
         """添加分片集群的节点。支持mongos和shard节点。
@@ -651,7 +625,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteClusterNode(self, request):
         """删除分片集群节点，只支持mongos节点。
         :param request: Request instance for DeleteClusterNode.
@@ -673,7 +646,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSlowLogDetail(self, request):
         """DescribeSlowLogDetail
@@ -697,7 +669,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSlowLogStatistics(self, request):
         """DescribeSlowLogStatistics
         :param request: Request instance for DescribeSlowLogStatistics.
@@ -719,7 +690,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSlowLogDatabase(self, request):
         """DescribeSlowLogDatabase
@@ -743,7 +713,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSlowLogLineChart(self, request):
         """慢查询产生趋势折线图，反映慢查询趋势。
         :param request: Request instance for DescribeSlowLogLineChart.
@@ -765,7 +734,6 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateMongoDBInstanceCluster(self, request):
         """分片集群节点更配
@@ -789,7 +757,6 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeClusterForRestore(self, request):
         """查询分片集群可恢复配置
         :param request: Request instance for DescribeClusterForRestore.
@@ -811,5 +778,3 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

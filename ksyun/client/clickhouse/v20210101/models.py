@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class ListInstanceRequest(AbstractModel):
     """ListInstance请求参数结构体
     """
@@ -807,5 +808,3 @@ class ResetDBParameterRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("ConfigType"):
             self.ConfigType = params.get("ConfigType")
-
-

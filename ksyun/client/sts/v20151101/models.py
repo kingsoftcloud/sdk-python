@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class AssumeRoleRequest(AbstractModel):
     """AssumeRole请求参数结构体
     """
@@ -51,5 +52,3 @@ class AssumeRoleRequest(AbstractModel):
             self.DurationSeconds = params.get("DurationSeconds")
         if params.get("Policy"):
             self.Policy = params.get("Policy")
-
-

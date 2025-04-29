@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateClusterRequest(AbstractModel):
     """CreateCluster请求参数结构体
     """
@@ -126,5 +127,3 @@ False：Master和Etcd组件共享节点部署
             self.Component = params.get("Component")
         if params.get("ControlPlaneLog"):
             self.ControlPlaneLog = params.get("ControlPlaneLog")
-
-

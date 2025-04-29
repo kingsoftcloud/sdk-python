@@ -8,6 +8,7 @@ class KcsClient(AbstractClient):
     _apiVersion = '2016-07-01'
     _endpoint = 'kcs.api.ksyun.com'
     _service = 'kcs'
+
     def CreateCacheCluster(self, request):
         """创建实例
         :param request: Request instance for CreateCacheCluster.
@@ -29,7 +30,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteCacheCluster(self, request):
         """删除实例
@@ -53,7 +53,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCacheCluster(self, request):
         """查询实例详情
         :param request: Request instance for DescribeCacheCluster.
@@ -75,7 +74,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCacheClusters(self, request):
         """查看实例列表
@@ -99,7 +97,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def FlushCacheCluster(self, request):
         """清空缓存
         :param request: Request instance for FlushCacheCluster.
@@ -121,7 +118,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RenameCacheCluster(self, request):
         """修改实例名称
@@ -145,7 +141,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResizeCacheCluster(self, request):
         """更配实例
         :param request: Request instance for ResizeCacheCluster.
@@ -167,7 +162,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCacheParameters(self, request):
         """查询缓存服务参数
@@ -191,7 +185,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SetCacheParameters(self, request):
         """设置缓存服务参数
         :param request: Request instance for SetCacheParameters.
@@ -213,7 +206,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCacheDefaultParameters(self, request):
         """DescribeCacheDefaultParameters
@@ -237,7 +229,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SetCacheParameterGroup(self, request):
         """应用参数组，将参数组中所有的参数的当前值应用到指定的缓存服务对应参数上
         :param request: Request instance for SetCacheParameterGroup.
@@ -259,7 +250,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateCacheParameterGroup(self, request):
         """创建参数组
@@ -283,7 +273,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteCacheParameterGroup(self, request):
         """删除参数组
         :param request: Request instance for DeleteCacheParameterGroup.
@@ -305,7 +294,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyCacheParameterGroup(self, request):
         """修改参数组
@@ -329,7 +317,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCacheParameterGroups(self, request):
         """根据参数组的名称以及ID进行参数组查询
         :param request: Request instance for DescribeCacheParameterGroups.
@@ -351,7 +338,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCacheParameterGroup(self, request):
         """查询参数组详情
@@ -375,7 +361,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SetTimingSnapshot(self, request):
         """设置备份时间
         :param request: Request instance for SetTimingSnapshot.
@@ -397,7 +382,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteSnapshot(self, request):
         """删除备份
@@ -421,7 +405,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RenameSnapshot(self, request):
         """重命名备份
         :param request: Request instance for RenameSnapshot.
@@ -443,7 +426,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RestoreSnapshot(self, request):
         """恢复备份
@@ -467,7 +449,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSnapshots(self, request):
         """获取备份列表
         :param request: Request instance for DescribeSnapshots.
@@ -489,7 +470,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DownloadSnapshot(self, request):
         """下载备份
@@ -513,7 +493,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ExportSnapshot(self, request):
         """ExportSnapshot
         :param request: Request instance for ExportSnapshot.
@@ -535,7 +514,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeRegions(self, request):
         """查询机房
@@ -559,7 +537,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeAvailabilityZones(self, request):
         """查询可用区
         :param request: Request instance for DescribeAvailabilityZones.
@@ -581,7 +558,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCacheByRole(self, request):
         """通过角色查询缓存服务列表接口
@@ -605,7 +581,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StatisticDBInstances(self, request):
         """概览页统计查询
         :param request: Request instance for StatisticDBInstances.
@@ -627,7 +602,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdatePassword(self, request):
         """修改缓存服务密码
@@ -651,7 +625,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RestartCacheCluster(self, request):
         """实例重启
         :param request: Request instance for RestartCacheCluster.
@@ -673,7 +646,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AllocateEip(self, request):
         """申请EIP
@@ -697,7 +669,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeallocateEip(self, request):
         """释放EIP
         :param request: Request instance for DeallocateEip.
@@ -719,7 +690,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstances(self, request):
         """安全组-查询实例信息
@@ -743,7 +713,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteSecurityGroupRule(self, request):
         """删除安全组规则
         :param request: Request instance for DeleteSecurityGroupRule.
@@ -765,7 +734,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateSecurityGroupRule(self, request):
         """创建安全组规则
@@ -789,7 +757,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeallocateSecurityGroup(self, request):
         """解绑安全组
         :param request: Request instance for DeallocateSecurityGroup.
@@ -811,7 +778,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AllocateSecurityGroup(self, request):
         """绑定安全组
@@ -835,7 +801,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSecurityGroup(self, request):
         """查询安全组明细
         :param request: Request instance for DescribeSecurityGroup.
@@ -857,7 +822,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSecurityGroups(self, request):
         """查询安全组列表
@@ -881,7 +845,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifySecurityGroup(self, request):
         """修改安全组
         :param request: Request instance for ModifySecurityGroup.
@@ -903,7 +866,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteSecurityGroup(self, request):
         """删除安全组
@@ -927,7 +889,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CloneSecurityGroup(self, request):
         """克隆安全组
         :param request: Request instance for CloneSecurityGroup.
@@ -949,7 +910,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateSecurityGroup(self, request):
         """创建安全组
@@ -973,7 +933,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeHotKeys(self, request):
         """查询热key列表
         :param request: Request instance for DescribeHotKeys.
@@ -995,7 +954,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AnalyzeHotKeys(self, request):
         """热key分析按钮
@@ -1019,7 +977,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CloseDirectAccessToCluster(self, request):
         """cluster关闭直连
         :param request: Request instance for CloseDirectAccessToCluster.
@@ -1041,7 +998,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def OpenDirectAccessToCluster(self, request):
         """cluster开启直连
@@ -1065,7 +1021,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeParentBackUpsSnapshots(self, request):
         """redis集群备份数据父列表数据
         :param request: Request instance for DescribeParentBackUpsSnapshots.
@@ -1087,7 +1042,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeBackUpsSnapshotsDetail(self, request):
         """redis集群备份数据子列表数据
@@ -1111,7 +1065,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteLevelSnapshots(self, request):
         """redis集群层级备份数据删除
         :param request: Request instance for DeleteLevelSnapshots.
@@ -1133,7 +1086,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DownloadLevelSnapshot(self, request):
         """redis集群层次备份数据下载
@@ -1157,7 +1109,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeBigKeys(self, request):
         """获取大key分析的任务结果列表
         :param request: Request instance for DescribeBigKeys.
@@ -1179,7 +1130,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteBigKeysAnalyseResult(self, request):
         """删除大key分析任务列表数据
@@ -1203,7 +1153,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AnalyzeBigKeys(self, request):
         """获取大key分析的结果
         :param request: Request instance for AnalyzeBigKeys.
@@ -1225,7 +1174,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCreateSnapshotStatus(self, request):
         """创建备份前的备份状态和大key分析状态查询
@@ -1249,7 +1197,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetDailyAnalyzeSwitchState(self, request):
         """慢日志和运行日志分析开关
         :param request: Request instance for GetDailyAnalyzeSwitchState.
@@ -1271,7 +1218,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AnalyzeDaily(self, request):
         """运行日志分析
@@ -1295,7 +1241,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AnalyzeSlowDaily(self, request):
         """慢日志分析
         :param request: Request instance for AnalyzeSlowDaily.
@@ -1318,7 +1263,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AnalyzeDailySwitch(self, request):
         """AnalyzeDailySwitch
         :param request: Request instance for AnalyzeDailySwitch.
@@ -1340,5 +1284,3 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

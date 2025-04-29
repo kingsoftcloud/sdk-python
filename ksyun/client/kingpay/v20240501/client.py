@@ -8,6 +8,7 @@ class KingpayClient(AbstractClient):
     _apiVersion = 'V1'
     _endpoint = 'kingpay.api.ksyun.com'
     _service = 'kingpay'
+
     def QueryCashWalletAction(self, request):
         """获取用户账户余额
         :param request: Request instance for QueryCashWalletAction.
@@ -29,5 +30,3 @@ class KingpayClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

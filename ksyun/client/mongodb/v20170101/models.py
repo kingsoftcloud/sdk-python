@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateMongoDBInstanceRequest(AbstractModel):
     """CreateMongoDBInstance请求参数结构体
     """
@@ -1051,5 +1052,3 @@ class DescribeClusterForRestoreRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("ResetTimePoint"):
             self.ResetTimePoint = params.get("ResetTimePoint")
-
-

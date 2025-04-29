@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreatePrivateDnsRequest(AbstractModel):
     """CreatePrivateDns请求参数结构体
     """
@@ -571,5 +572,3 @@ class DescribeZoneRecordRequest(AbstractModel):
             self.RecordId = params.get("RecordId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
-
-

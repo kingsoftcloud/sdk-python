@@ -8,6 +8,7 @@ class KrdsClient(AbstractClient):
     _apiVersion = '2016-07-01'
     _endpoint = 'krds.api.ksyun.com'
     _service = 'krds'
+
     def RebootDBInstance(self, request):
         """reboot db instance
         :param request: Request instance for RebootDBInstance.
@@ -29,7 +30,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyDBParameterGroup(self, request):
         """modify db parameter group
@@ -53,7 +53,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResetDBParameterGroup(self, request):
         """reset db parameter group
         :param request: Request instance for ResetDBParameterGroup.
@@ -75,7 +74,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBParameterGroup(self, request):
         """describe db parameter group
@@ -99,7 +97,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEngineDefaultParameters(self, request):
         """describe engine default parameters
         :param request: Request instance for DescribeEngineDefaultParameters.
@@ -121,7 +118,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateDBParameterGroup(self, request):
         """create db parameter group
@@ -145,7 +141,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteDBParameterGroup(self, request):
         """delete db parameter group
         :param request: Request instance for DeleteDBParameterGroup.
@@ -167,7 +162,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateDBInstance(self, request):
         """create db instance
@@ -191,7 +185,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RestoreDBInstanceFromDBBackup(self, request):
         """restore db instance from db backup
         :param request: Request instance for RestoreDBInstanceFromDBBackup.
@@ -213,7 +206,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteDBInstance(self, request):
         """delete db instance
@@ -237,7 +229,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateDBInstanceReadReplica(self, request):
         """create db instance read replica
         :param request: Request instance for CreateDBInstanceReadReplica.
@@ -259,7 +250,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RestoreDBInstanceToPointInTime(self, request):
         """restore db instance to point in time
@@ -283,7 +273,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBInstanceRestorableTime(self, request):
         """describe db instance restorable time
         :param request: Request instance for DescribeDBInstanceRestorableTime.
@@ -305,7 +294,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyDBInstance(self, request):
         """modify db instance
@@ -329,7 +317,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBLogFiles(self, request):
         """describe db log files
         :param request: Request instance for DescribeDBLogFiles.
@@ -351,7 +338,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBBackups(self, request):
         """describe db backups
@@ -375,7 +361,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDBInstanceSpec(self, request):
         """modify db instance spec
         :param request: Request instance for ModifyDBInstanceSpec.
@@ -397,7 +382,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBInstances(self, request):
         """describe db instances
@@ -421,7 +405,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def OverrideDBInstance(self, request):
         """基于备份恢复到本实例
         :param request: Request instance for OverrideDBInstance.
@@ -443,7 +426,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBEngineVersions(self, request):
         """describe db engine versions
@@ -467,7 +449,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpgradeDBInstanceEngineVersion(self, request):
         """upgrade db instance engine version
         :param request: Request instance for UpgradeDBInstanceEngineVersion.
@@ -489,7 +470,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyDBInstanceType(self, request):
         """modify db instance type
@@ -513,7 +493,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBInstanceParameters(self, request):
         """查看当前实例数据库参数运行值列表
         :param request: Request instance for DescribeDBInstanceParameters.
@@ -535,7 +514,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteDBBackup(self, request):
         """delete db backup
@@ -559,7 +537,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateDBBackup(self, request):
         """create db backup
         :param request: Request instance for CreateDBBackup.
@@ -581,7 +558,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RenewDBInstance(self, request):
         """renew db instance
@@ -605,7 +581,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SwitchDBInstanceHA(self, request):
         """switch db instance h a
         :param request: Request instance for SwitchDBInstanceHA.
@@ -627,7 +602,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GenerateDBAdminURL(self, request):
         """generate db admin u r l
@@ -651,7 +625,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StatisticDBInstances(self, request):
         """statistic db instances
         :param request: Request instance for StatisticDBInstances.
@@ -673,7 +646,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AllocateDBInstanceEip(self, request):
         """申请外网访问IP地址
@@ -697,7 +669,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ReleaseDBInstanceEip(self, request):
         """释放外网访问IP地址
         :param request: Request instance for ReleaseDBInstanceEip.
@@ -719,7 +690,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyDBInstanceAvailabilityZone(self, request):
         """修改实例备库可用区
@@ -743,7 +713,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBInstanceRegions(self, request):
         """查看机房列表
         :param request: Request instance for DescribeDBInstanceRegions.
@@ -765,7 +734,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBInstancePackages(self, request):
         """查看购买套餐
@@ -789,7 +757,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeLastLog(self, request):
         """DescribeLastLog
         :param request: Request instance for DescribeLastLog.
@@ -811,7 +778,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StartAudit(self, request):
         """开启审计
@@ -835,7 +801,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StopAudit(self, request):
         """关闭审计
         :param request: Request instance for StopAudit.
@@ -857,7 +822,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListAudit(self, request):
         """获取审计结果
@@ -881,7 +845,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AuditStatistic(self, request):
         """获取审计统计数据
         :param request: Request instance for AuditStatistic.
@@ -903,7 +866,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetTableRestorableTime(self, request):
         """获取数据库可恢复时间
@@ -927,7 +889,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetHistoryDatabaseInfo(self, request):
         """获取指定时间点附近或者备份集的库表信息
         :param request: Request instance for GetHistoryDatabaseInfo.
@@ -949,7 +910,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def OverrideDBInstanceByPointInTime(self, request):
         """恢复实例到当前时间点
@@ -973,7 +933,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RestoreToCurInstance(self, request):
         """库表级恢复到当前实例
         :param request: Request instance for RestoreToCurInstance.
@@ -995,7 +954,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RestoreToSgInstance(self, request):
         """库表级恢复到临时实例
@@ -1019,7 +977,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeAuditHotCount(self, request):
         """某时间段SQL执行次数TOP10查询接口
         :param request: Request instance for DescribeAuditHotCount.
@@ -1041,7 +998,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeAuditHotDuration(self, request):
         """某时间段SQL执行耗时TOP10查询接口
@@ -1065,7 +1021,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SqlAuditReport(self, request):
         """某时间段全量SQL统计查询接口
         :param request: Request instance for SqlAuditReport.
@@ -1087,7 +1042,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def SqlAuditLineChart(self, request):
         """某时间段全量SQL折线图查询接口
@@ -1111,7 +1065,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SlowLogReport(self, request):
         """某时间段慢SQL统计查询接口
         :param request: Request instance for SlowLogReport.
@@ -1133,7 +1086,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def SlowLogLineChart(self, request):
         """某时间段慢SQL折线图查询接口
@@ -1157,7 +1109,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SlowLogDetail(self, request):
         """某时间段慢SQL查询接口
         :param request: Request instance for SlowLogDetail.
@@ -1179,7 +1130,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StartAuditDetailExportTask(self, request):
         """创建导出任务
@@ -1203,7 +1153,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListAuditDetailExportTask(self, request):
         """列出历史导出任务
         :param request: Request instance for ListAuditDetailExportTask.
@@ -1225,7 +1174,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstanceAccounts(self, request):
         """DescribeInstanceAccounts
@@ -1249,7 +1197,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyInstanceAccountInfo(self, request):
         """ModifyInstanceAccountInfo
         :param request: Request instance for ModifyInstanceAccountInfo.
@@ -1271,7 +1218,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCollations(self, request):
         """DescribeCollations
@@ -1295,7 +1241,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateInstanceDatabase(self, request):
         """CreateInstanceDatabase
         :param request: Request instance for CreateInstanceDatabase.
@@ -1317,7 +1262,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyInstanceDatabasePrivileges(self, request):
         """ModifyInstanceDatabasePrivileges
@@ -1341,7 +1285,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeInstanceDatabases(self, request):
         """DescribeInstanceDatabases
         :param request: Request instance for DescribeInstanceDatabases.
@@ -1363,7 +1306,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyInstanceDatabaseInfo(self, request):
         """ModifyInstanceDatabaseInfo
@@ -1387,7 +1329,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StartSlowLogDetailExportTask(self, request):
         """StartSlowLogDetailExportTask
         :param request: Request instance for StartSlowLogDetailExportTask.
@@ -1409,7 +1350,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListSlowLogDetailExportTask(self, request):
         """ListSlowLogDetailExportTask
@@ -1433,7 +1373,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateInstanceAccountAction(self, request):
         """CreateInstanceAccountAction
         :param request: Request instance for CreateInstanceAccountAction.
@@ -1455,7 +1394,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyInstanceAccountPrivilegesAction(self, request):
         """ModifyInstanceAccountPrivilegesAction
@@ -1479,7 +1417,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteInstanceAccountAction(self, request):
         """DeleteInstanceAccountAction
         :param request: Request instance for DeleteInstanceAccountAction.
@@ -1501,7 +1438,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteInstanceDatabaseAction(self, request):
         """DeleteInstanceDatabaseAction
@@ -1525,7 +1461,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDBNetwork(self, request):
         """修改ip/vpc
         :param request: Request instance for ModifyDBNetwork.
@@ -1548,7 +1483,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEngineParametersModifyHistory(self, request):
         """参数组历史修改信息查询
         :param request: Request instance for DescribeEngineParametersModifyHistory.
@@ -1570,5 +1504,3 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

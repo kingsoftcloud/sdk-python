@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class ApplyCertificateRequest(AbstractModel):
     """ApplyCertificate请求参数结构体
     """
@@ -220,5 +221,3 @@ class GetCertificateDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
-
-

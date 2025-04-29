@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeListenersRequest(AbstractModel):
     """DescribeListeners请求参数结构体
     """
@@ -1812,10 +1813,10 @@ class CreateAlbRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param EnableHpa: 是否开启弹性伸缩
         :type PathPrefix: Boolean
-        :param DeleteProtection: 是否开启删除保护
-        :type PathPrefix: Boolean
-        :param ModificationProtection: 是否开启修改保护
-        :type PathPrefix: Boolean
+        :param DeleteProtection: 是否开启删除保护on/off
+        :type PathPrefix: String
+        :param ModificationProtection: 是否开启修改保护on/off
+        :type PathPrefix: String
         """
         self.AlbName = None
         self.AlbVersion = None
@@ -1977,7 +1978,7 @@ class CreateAlbListenerRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""CreateAlbListener
+        r"""创建监听器
         :param AlbId: 应用型负载均衡的ID
         :type PathPrefix: String
         :param AlbListenerName: 应用型负载均衡监听器的名称
@@ -1990,14 +1991,6 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: Int
         :param CertificateId: 证书的ID
         :type PathPrefix: String
-        :param CaCertificateId: 客户端证书的ID
-        :type PathPrefix: String
-        :param CaEnabled: 双向认证是否开启
-        :type PathPrefix: Boolean
-        :param QuicListenerId: QUIC监听器的ID
-        :type PathPrefix: String
-        :param EnableQuicUpgrade: 开启QUIC升级
-        :type PathPrefix: Boolean
         :param TlsCipherPolicy: TLS安全策略
         :type PathPrefix: String
         :param AlbListenerAclId: LoadBalancerAcl的ID
@@ -2022,6 +2015,16 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param FixedResponseConfig: 返回固定响应信息
         :type PathPrefix: Object
+        :param RewriteConfig: 返回固定响应信息
+        :type PathPrefix: Object
+        :param CaEnabled: 是否开启双向认证
+        :type PathPrefix: Boolean
+        :param CaCertificateId: 客户端证书
+        :type PathPrefix: String
+        :param EnableQuicUpgrade: 是否开启QUIC
+        :type PathPrefix: Boolean
+        :param QuicListenerId: QUIC监听器id
+        :type PathPrefix: String
         """
         self.AlbId = None
         self.AlbListenerName = None
@@ -2029,10 +2032,6 @@ class CreateAlbListenerRequest(AbstractModel):
         self.Protocol = None
         self.Port = None
         self.CertificateId = None
-        self.CaCertificateId = None
-        self.CaEnabled = None
-        self.QuicListenerId = None
-        self.EnableQuicUpgrade = None
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
         self.AlbListenerState = None
@@ -2045,6 +2044,11 @@ class CreateAlbListenerRequest(AbstractModel):
         self.EnableHttp2 = None
         self.BackendServerGroupId = None
         self.FixedResponseConfig = None
+        self.RewriteConfig = None
+        self.CaEnabled = None
+        self.CaCertificateId = None
+        self.EnableQuicUpgrade = None
+        self.QuicListenerId = None
 
     def _deserialize(self, params):
         if params.get("AlbId"):
@@ -2059,14 +2063,6 @@ class CreateAlbListenerRequest(AbstractModel):
             self.Port = params.get("Port")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
-        if params.get("CaCertificateId"):
-            self.CaCertificateId = params.get("CaCertificateId")
-        if params.get("CaEnabled"):
-            self.CaEnabled = params.get("CaEnabled")
-        if params.get("QuicListenerId"):
-            self.QuicListenerId = params.get("QuicListenerId")
-        if params.get("EnableQuicUpgrade"):
-            self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("TlsCipherPolicy"):
             self.TlsCipherPolicy = params.get("TlsCipherPolicy")
         if params.get("AlbListenerAclId"):
@@ -2091,6 +2087,16 @@ class CreateAlbListenerRequest(AbstractModel):
             self.BackendServerGroupId = params.get("BackendServerGroupId")
         if params.get("FixedResponseConfig"):
             self.FixedResponseConfig = params.get("FixedResponseConfig")
+        if params.get("RewriteConfig"):
+            self.RewriteConfig = params.get("RewriteConfig")
+        if params.get("CaEnabled"):
+            self.CaEnabled = params.get("CaEnabled")
+        if params.get("CaCertificateId"):
+            self.CaCertificateId = params.get("CaCertificateId")
+        if params.get("EnableQuicUpgrade"):
+            self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
+        if params.get("QuicListenerId"):
+            self.QuicListenerId = params.get("QuicListenerId")
 
 
 class ModifyAlbListenerRequest(AbstractModel):
@@ -2109,14 +2115,6 @@ class ModifyAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param CertificateId: 证书的ID
         :type PathPrefix: String
-        :param CaCertificateId: 客户端证书的ID
-        :type PathPrefix: String
-        :param CaEnabled: 双向认证是否开启
-        :type PathPrefix: Boolean
-        :param QuicListenerId: QUIC监听器的ID
-        :type PathPrefix: String
-        :param EnableQuicUpgrade: 开启QUIC升级
-        :type PathPrefix: Boolean
         :param TlsCipherPolicy: TLS安全策略
         :type PathPrefix: String
         :param AlbListenerAclId: LoadBalancerAcl的ID
@@ -2133,16 +2131,20 @@ class ModifyAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param EnableHttp2: 是否启用HTTP/2
         :type PathPrefix: Boolean
+        :param CaEnabled: 是否开启双向认证
+        :type PathPrefix: Boolean
+        :param CaCertificateId: 客户端证书
+        :type PathPrefix: String
+        :param EnableQuicUpgrade: 是否开启QUIC
+        :type PathPrefix: Boolean
+        :param QuicListenerId: QUIC监听器id
+        :type PathPrefix: String
         """
         self.AlbListenerId = None
         self.AlbListenerName = None
         self.AlbListenerState = None
         self.Method = None
         self.CertificateId = None
-        self.CaCertificateId = None
-        self.CaEnabled = None
-        self.QuicListenerId = None
-        self.EnableQuicUpgrade = None
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
         self.HttpProtocol = None
@@ -2151,6 +2153,10 @@ class ModifyAlbListenerRequest(AbstractModel):
         self.CookieType = None
         self.CookieName = None
         self.EnableHttp2 = None
+        self.CaEnabled = None
+        self.CaCertificateId = None
+        self.EnableQuicUpgrade = None
+        self.QuicListenerId = None
 
     def _deserialize(self, params):
         if params.get("AlbListenerId"):
@@ -2163,14 +2169,6 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.Method = params.get("Method")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
-        if params.get("CaCertificateId"):
-            self.CaCertificateId = params.get("CaCertificateId")
-        if params.get("CaEnabled"):
-            self.CaEnabled = params.get("CaEnabled")
-        if params.get("QuicListenerId"):
-            self.QuicListenerId = params.get("QuicListenerId")
-        if params.get("EnableQuicUpgrade"):
-            self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("TlsCipherPolicy"):
             self.TlsCipherPolicy = params.get("TlsCipherPolicy")
         if params.get("AlbListenerAclId"):
@@ -2187,6 +2185,14 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.CookieName = params.get("CookieName")
         if params.get("EnableHttp2"):
             self.EnableHttp2 = params.get("EnableHttp2")
+        if params.get("CaEnabled"):
+            self.CaEnabled = params.get("CaEnabled")
+        if params.get("CaCertificateId"):
+            self.CaCertificateId = params.get("CaCertificateId")
+        if params.get("EnableQuicUpgrade"):
+            self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
+        if params.get("QuicListenerId"):
+            self.QuicListenerId = params.get("QuicListenerId")
 
 
 class DeleteAlbListenerRequest(AbstractModel):
@@ -2284,6 +2290,8 @@ class CreateAlbRuleGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param FixedResponseConfig: 返回固定响应信息
         :type PathPrefix: Object
+        :param RewriteConfig: 重写
+        :type PathPrefix: Object
         """
         self.AlbRuleGroupName = None
         self.AlbListenerId = None
@@ -2306,6 +2314,7 @@ class CreateAlbRuleGroupRequest(AbstractModel):
         self.RedirectAlbListenerId = None
         self.RedirectHttpCode = None
         self.FixedResponseConfig = None
+        self.RewriteConfig = None
 
     def _deserialize(self, params):
         if params.get("AlbRuleGroupName"):
@@ -2350,6 +2359,8 @@ class CreateAlbRuleGroupRequest(AbstractModel):
             self.RedirectHttpCode = params.get("RedirectHttpCode")
         if params.get("FixedResponseConfig"):
             self.FixedResponseConfig = params.get("FixedResponseConfig")
+        if params.get("RewriteConfig"):
+            self.RewriteConfig = params.get("RewriteConfig")
 
 
 class DeleteAlbRuleGroupRequest(AbstractModel):
@@ -3120,16 +3131,31 @@ class AddAlbRulesRequest(AbstractModel):
 
     def __init__(self):
         r"""AddAlbRules
-        :param AlbRuleGroupId: 转发策月id
+        :param AlbRuleGroupId: 转发策略的ID
         :type PathPrefix: String
-        :param AlbRuleType: 转发策月规则类型
+        :param AlbRuleType: 匹配规则类型(domain|url|method|sourceIp|header|query|cookie)
         :type PathPrefix: String
-        :param AlbRuleValue: 转发策月规则值
+        :param AlbRuleValue: 匹配规则的值
         :type PathPrefix: String
+        :param MethodValue: HTTP请求方法
+        :type PathPrefix: Array
+        :param SourceIpValue: SourceIp
+        :type PathPrefix: Array
+        :param HeaderValue: HTTP标头
+        :type PathPrefix: Array
+        :param QueryValue: 查询字符串
+        :type PathPrefix: Array
+        :param CookieValue: Cookie转发条件
+        :type PathPrefix: Array
         """
         self.AlbRuleGroupId = None
         self.AlbRuleType = None
         self.AlbRuleValue = None
+        self.MethodValue = None
+        self.SourceIpValue = None
+        self.HeaderValue = None
+        self.QueryValue = None
+        self.CookieValue = None
 
     def _deserialize(self, params):
         if params.get("AlbRuleGroupId"):
@@ -3138,5 +3164,13 @@ class AddAlbRulesRequest(AbstractModel):
             self.AlbRuleType = params.get("AlbRuleType")
         if params.get("AlbRuleValue"):
             self.AlbRuleValue = params.get("AlbRuleValue")
-
-
+        if params.get("MethodValue"):
+            self.MethodValue = params.get("MethodValue")
+        if params.get("SourceIpValue"):
+            self.SourceIpValue = params.get("SourceIpValue")
+        if params.get("HeaderValue"):
+            self.HeaderValue = params.get("HeaderValue")
+        if params.get("QueryValue"):
+            self.QueryValue = params.get("QueryValue")
+        if params.get("CookieValue"):
+            self.CookieValue = params.get("CookieValue")

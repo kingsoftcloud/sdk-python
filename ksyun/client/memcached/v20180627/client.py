@@ -8,6 +8,7 @@ class MemcachedClient(AbstractClient):
     _apiVersion = '2018-06-27'
     _endpoint = 'memcached.api.ksyun.com'
     _service = 'memcached'
+
     def CreateCacheCluster(self, request):
         """创建缓存服务
         :param request: Request instance for CreateCacheCluster.
@@ -29,7 +30,6 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteCacheCluster(self, request):
         """删除缓存服务
@@ -53,7 +53,6 @@ class MemcachedClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResizeCacheCluster(self, request):
         """更配缓存服务
         :param request: Request instance for ResizeCacheCluster.
@@ -75,7 +74,6 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCacheClusters(self, request):
         """查询缓存服务列表
@@ -99,7 +97,6 @@ class MemcachedClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCacheCluster(self, request):
         """查询缓存服务详情
         :param request: Request instance for DescribeCacheCluster.
@@ -121,7 +118,6 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def FlushCacheCluster(self, request):
         """清空缓存服务
@@ -145,7 +141,6 @@ class MemcachedClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RenameCacheCluster(self, request):
         """重命名缓存服务
         :param request: Request instance for RenameCacheCluster.
@@ -167,7 +162,6 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdatePassword(self, request):
         """修改缓存服务密码
@@ -191,7 +185,6 @@ class MemcachedClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCacheSecurityRules(self, request):
         """缓存服务白名单(安全规则信息)
         :param request: Request instance for DescribeCacheSecurityRules.
@@ -213,7 +206,6 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteCacheSecurityRule(self, request):
         """缓存服务删除安全规则
@@ -237,7 +229,6 @@ class MemcachedClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SetCacheSecurityRules(self, request):
         """缓存服务设置安全规则
         :param request: Request instance for SetCacheSecurityRules.
@@ -259,7 +250,6 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeRegions(self, request):
         """查询机房
@@ -283,7 +273,6 @@ class MemcachedClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeAvailabilityZones(self, request):
         """查询可用区
         :param request: Request instance for DescribeAvailabilityZones.
@@ -305,5 +294,3 @@ class MemcachedClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

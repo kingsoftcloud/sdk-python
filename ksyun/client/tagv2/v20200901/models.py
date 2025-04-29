@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateTagRequest(AbstractModel):
     """CreateTag请求参数结构体
     """
@@ -237,5 +238,3 @@ class DetachResourceTagsRequest(AbstractModel):
             self.ResourceUuid = params.get("ResourceUuid")
         if params.get("TagIds"):
             self.TagIds = params.get("TagIds")
-
-

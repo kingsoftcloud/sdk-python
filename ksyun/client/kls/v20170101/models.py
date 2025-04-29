@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class ListStreamDurationsRequest(AbstractModel):
     """ListStreamDurations请求参数结构体
     """
@@ -316,5 +317,3 @@ class ListRealtimeStreamsInfoRequest(AbstractModel):
             self.PullProtocol = params.get("PullProtocol")
         if params.get("Type"):
             self.Type = params.get("Type")
-
-

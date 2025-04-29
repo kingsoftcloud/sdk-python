@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class SetRenewalRequest(AbstractModel):
     """SetRenewal请求参数结构体
     """
@@ -25,5 +26,3 @@ class SetRenewalRequest(AbstractModel):
             self.RenewStrategy = params.get("RenewStrategy")
         if params.get("RenewDuration"):
             self.RenewDuration = params.get("RenewDuration")
-
-

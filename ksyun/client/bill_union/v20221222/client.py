@@ -8,6 +8,7 @@ class Bill_unionClient(AbstractClient):
     _apiVersion = '2022-12-22'
     _endpoint = 'bill-union.api.ksyun.com'
     _service = 'bill-union'
+
     def QueryInstanceConsume(self, request):
         """查询实例按日汇总账单
         :param request: Request instance for QueryInstanceConsume.
@@ -29,7 +30,6 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def QueryProjectConsume(self, request):
         """项目制按日汇总账单
@@ -53,7 +53,6 @@ class Bill_unionClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def QueryProductConsume(self, request):
         """产品线按日汇总账单
         :param request: Request instance for QueryProductConsume.
@@ -75,7 +74,6 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def QueryFinanceUnitConsume(self, request):
         """财务单元按日汇总账单
@@ -99,7 +97,6 @@ class Bill_unionClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def QueryFinanceUnitConsumeOfMonth(self, request):
         """财务单元按月汇总账单
         :param request: Request instance for QueryFinanceUnitConsumeOfMonth.
@@ -121,7 +118,6 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def QueryUserConsume(self, request):
         """计费类别按日汇总账单
@@ -166,5 +162,3 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

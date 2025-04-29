@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateAlarmPolicyRequest(AbstractModel):
     """CreateAlarmPolicy请求参数结构体
     """
@@ -28,5 +29,3 @@ class DeleteAlarmPolicyRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("PolicyIds"):
             self.PolicyIds = params.get("PolicyIds")
-
-

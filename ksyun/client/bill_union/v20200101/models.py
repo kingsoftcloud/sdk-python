@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeBillSummaryByPayModeRequest(AbstractModel):
     """DescribeBillSummaryByPayMode请求参数结构体
     """
@@ -199,5 +200,3 @@ class DescribeSplitItemDayBillDetailsRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("Size"):
             self.Size = params.get("Size")
-
-

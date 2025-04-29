@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeCacheReadonlyNodeRequest(AbstractModel):
     """DescribeCacheReadonlyNode请求参数结构体
     """
@@ -71,5 +72,3 @@ class DeleteCacheSlaveNodeRequest(AbstractModel):
             self.CacheId = params.get("CacheId")
         if params.get("NodeId"):
             self.NodeId = params.get("NodeId")
-
-

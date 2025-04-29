@@ -8,6 +8,7 @@ class EipClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'eip.api.ksyun.com'
     _service = 'eip'
+
     def GetLines(self, request):
         """获取用户可选链路信息
         :param request: Request instance for GetLines.
@@ -29,7 +30,6 @@ class EipClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeAddresses(self, request):
         """描述EIP
@@ -53,7 +53,6 @@ class EipClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AllocateAddress(self, request):
         """创建EIP
         :param request: Request instance for AllocateAddress.
@@ -75,7 +74,6 @@ class EipClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ReleaseAddress(self, request):
         """删除EIP
@@ -99,7 +97,6 @@ class EipClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AssociateAddress(self, request):
         """绑定弹性IP
         :param request: Request instance for AssociateAddress.
@@ -121,7 +118,6 @@ class EipClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DisassociateAddress(self, request):
         """解绑弹性IP
@@ -145,7 +141,6 @@ class EipClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyAddress(self, request):
         """更新弹性IP配置
         :param request: Request instance for ModifyAddress.
@@ -167,5 +162,3 @@ class EipClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

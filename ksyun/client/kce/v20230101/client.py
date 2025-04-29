@@ -8,6 +8,7 @@ class KceClient(AbstractClient):
     _apiVersion = '2023-01-01'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
+
     def DescribeEventLogs(self, request):
         """查询集群事件日志
         :param request: Request instance for DescribeEventLogs.
@@ -29,7 +30,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateAddonInstance(self, request):
         """创建插件实例
@@ -53,7 +53,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteAddonInstance(self, request):
         """删除插件实例
         :param request: Request instance for DeleteAddonInstance.
@@ -75,7 +74,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeAddonInstances(self, request):
         """查询插件实例
@@ -99,7 +97,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeAddonList(self, request):
         """查询插件列表
         :param request: Request instance for DescribeAddonList.
@@ -121,7 +118,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeComponentParams(self, request):
         """查询组件参数版本
@@ -145,7 +141,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeNetwork(self, request):
         """查询集群网络
         :param request: Request instance for DescribeNetwork.
@@ -167,7 +162,6 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeNodeComponents(self, request):
         """查询节点组件列表
@@ -191,7 +185,6 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeComponentList(self, request):
         """查询可安装的组件列表
         :param request: Request instance for DescribeComponentList.
@@ -213,5 +206,3 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

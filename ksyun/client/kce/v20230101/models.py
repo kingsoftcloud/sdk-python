@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeEventLogsRequest(AbstractModel):
     """DescribeEventLogs请求参数结构体
     """
@@ -255,5 +256,3 @@ class DescribeComponentListRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("K8sVersion"):
             self.K8sVersion = params.get("K8sVersion")
-
-

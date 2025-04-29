@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateProjectRequest(AbstractModel):
     """CreateProject请求参数结构体
     """
@@ -1082,5 +1083,3 @@ class GetClustersByTypeRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
-
-

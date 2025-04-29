@@ -8,6 +8,7 @@ class TidbClient(AbstractClient):
     _apiVersion = '2021-05-20'
     _endpoint = 'tidb.api.ksyun.com'
     _service = 'tidb'
+
     def CreateInstance(self, request):
         """CreateInstance
         :param request: Request instance for CreateInstance.
@@ -29,7 +30,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListInstance(self, request):
         """ListInstance
@@ -53,7 +53,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeInstance(self, request):
         """DescribeInstance
         :param request: Request instance for DescribeInstance.
@@ -75,7 +74,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RenameInstance(self, request):
         """RenameInstance
@@ -99,7 +97,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListRegion(self, request):
         """ListRegion
         :param request: Request instance for ListRegion.
@@ -121,7 +118,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescRegion(self, request):
         """DescRegion
@@ -145,7 +141,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateSecurityGroup(self, request):
         """CreateSecurityGroup
         :param request: Request instance for CreateSecurityGroup.
@@ -167,7 +162,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListSecurityGroup(self, request):
         """ListSecurityGroup
@@ -191,7 +185,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSecurityGroup(self, request):
         """DescribeSecurityGroup
         :param request: Request instance for DescribeSecurityGroup.
@@ -213,7 +206,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateSecurityGroup(self, request):
         """UpdateSecurityGroup
@@ -237,7 +229,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CloneSecurityGroup(self, request):
         """CloneSecurityGroup
         :param request: Request instance for CloneSecurityGroup.
@@ -259,7 +250,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def BindSecurityGroup(self, request):
         """BindSecurityGroup
@@ -283,7 +273,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UnbindSecurityGroup(self, request):
         """UnbindSecurityGroup
         :param request: Request instance for UnbindSecurityGroup.
@@ -305,7 +294,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RebindSecurityGroup(self, request):
         """RebindSecurityGroup
@@ -329,7 +317,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateSecurityRule(self, request):
         """CreateSecurityRule
         :param request: Request instance for CreateSecurityRule.
@@ -351,7 +338,6 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateSecurityRule(self, request):
         """UpdateSecurityRule
@@ -375,7 +361,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListUnsecuredInstance(self, request):
         """ListUnsecuredInstance
         :param request: Request instance for ListUnsecuredInstance.
@@ -398,7 +383,6 @@ class TidbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListBackup(self, request):
         """ListBackup
         :param request: Request instance for ListBackup.
@@ -420,5 +404,3 @@ class TidbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

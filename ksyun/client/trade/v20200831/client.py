@@ -8,6 +8,7 @@ class TradeClient(AbstractClient):
     _apiVersion = '2020-08-31'
     _endpoint = 'trade.api.ksyun.com'
     _service = 'trade'
+
     def SetRenewal(self, request):
         """批量设置实例续费策略
         :param request: Request instance for SetRenewal.
@@ -29,5 +30,3 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

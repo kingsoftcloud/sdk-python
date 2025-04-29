@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class QueryCashWalletActionRequest(AbstractModel):
     """QueryCashWalletAction请求参数结构体
     """
@@ -14,5 +15,3 @@ class QueryCashWalletActionRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("subject"):
             self.subject = params.get("subject")
-
-

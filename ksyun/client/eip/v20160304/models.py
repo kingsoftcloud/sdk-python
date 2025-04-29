@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetLinesRequest(AbstractModel):
     """GetLines请求参数结构体
     """
@@ -193,5 +194,3 @@ class ModifyAddressRequest(AbstractModel):
             self.AllocationId = params.get("AllocationId")
         if params.get("BandWidth"):
             self.BandWidth = params.get("BandWidth")
-
-

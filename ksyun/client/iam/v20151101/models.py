@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateUserRequest(AbstractModel):
     """CreateUser请求参数结构体
     """
@@ -1512,5 +1513,3 @@ class GetUserSsoSettingsRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
-
-

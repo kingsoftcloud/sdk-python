@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateDomainRequest(AbstractModel):
     """CreateDomain请求参数结构体
     """
@@ -394,5 +395,3 @@ class DeleteIpv6ProtectionRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ResourceRecordId"):
             self.ResourceRecordId = params.get("ResourceRecordId")
-
-

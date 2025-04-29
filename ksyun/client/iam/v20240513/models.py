@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetProjectInstanceListNewRequest(AbstractModel):
     """GetProjectInstanceListNew请求参数结构体
     """
@@ -29,5 +30,3 @@ class GetProjectInstanceListNewRequest(AbstractModel):
             self.Ps = params.get("Ps")
         if params.get("Pn"):
             self.Pn = params.get("Pn")
-
-

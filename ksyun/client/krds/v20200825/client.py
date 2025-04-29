@@ -8,6 +8,7 @@ class KrdsClient(AbstractClient):
     _apiVersion = '2020-08-25'
     _endpoint = 'krds.api.ksyun.com'
     _service = 'krds'
+
     def CreateSecurityGroup(self, request):
         """创建安全组
         :param request: Request instance for CreateSecurityGroup.
@@ -29,7 +30,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSecurityGroup(self, request):
         """查看安全组
@@ -53,7 +53,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteSecurityGroup(self, request):
         """删除安全组
         :param request: Request instance for DeleteSecurityGroup.
@@ -75,7 +74,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifySecurityGroup(self, request):
         """修改参数组
@@ -99,7 +97,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CloneSecurityGroup(self, request):
         """复制安全组
         :param request: Request instance for CloneSecurityGroup.
@@ -121,7 +118,6 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifySecurityGroupRule(self, request):
         """修改安全组规则
@@ -145,7 +141,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SecurityGroupRelation(self, request):
         """修改安全组实例绑定关系
         :param request: Request instance for SecurityGroupRelation.
@@ -168,7 +163,6 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifySecurityGroupRuleName(self, request):
         """修改安全组规则名称
         :param request: Request instance for ModifySecurityGroupRuleName.
@@ -190,5 +184,3 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

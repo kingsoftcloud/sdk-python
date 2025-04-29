@@ -8,6 +8,7 @@ class KmrClient(AbstractClient):
     _apiVersion = '2023-12-31'
     _endpoint = 'kmr.api.ksyun.com'
     _service = 'kmr'
+
     def ListInstances(self, request):
         """实例列表
         :param request: Request instance for ListInstances.
@@ -29,7 +30,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetInstanceDetail(self, request):
         """实例信息
@@ -53,7 +53,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListAutoScaleHistory(self, request):
         """查看弹性伸缩策略历史
         :param request: Request instance for ListAutoScaleHistory.
@@ -75,7 +74,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateAutoScalePolicy(self, request):
         """新增弹性伸缩策略
@@ -99,7 +97,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListAutoScalePolicy(self, request):
         """查看弹性伸缩策略
         :param request: Request instance for ListAutoScalePolicy.
@@ -122,7 +119,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteAutoScalePolicy(self, request):
         """删除弹性伸缩策略
         :param request: Request instance for DeleteAutoScalePolicy.
@@ -144,5 +140,3 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

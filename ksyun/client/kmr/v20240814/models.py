@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DetailWorkspaceRequest(AbstractModel):
     """DetailWorkspace请求参数结构体
     """
@@ -474,5 +475,3 @@ class RestartFlinkJobRunRequest(AbstractModel):
             self.WorkspaceId = params.get("WorkspaceId")
         if params.get("JobRunId"):
             self.JobRunId = params.get("JobRunId")
-
-

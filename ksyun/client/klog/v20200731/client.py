@@ -8,6 +8,7 @@ class KlogClient(AbstractClient):
     _apiVersion = '2020-07-31'
     _endpoint = 'klog.api.ksyun.com'
     _service = 'klog'
+
     def CreateProject(self, request):
         """创建项目
         :param request: Request instance for CreateProject.
@@ -29,7 +30,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeProject(self, request):
         """项目详情
@@ -53,7 +53,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdateProject(self, request):
         """更新项目
         :param request: Request instance for UpdateProject.
@@ -75,7 +74,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteProject(self, request):
         """删除项目
@@ -99,7 +97,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListProjects(self, request):
         """查看项目列表
         :param request: Request instance for ListProjects.
@@ -121,7 +118,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateLogPool(self, request):
         """创建日志池
@@ -145,7 +141,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeLogPool(self, request):
         """日志池详情
         :param request: Request instance for DescribeLogPool.
@@ -167,7 +162,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateLogPool(self, request):
         """修个日志池
@@ -191,7 +185,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteLogPool(self, request):
         """删除日志池
         :param request: Request instance for DeleteLogPool.
@@ -213,7 +206,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListLogPools(self, request):
         """获取日志池列表
@@ -237,7 +229,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def PutLogs(self, request):
         """上传日志
         :param request: Request instance for PutLogs.
@@ -259,7 +250,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetLogs(self, request):
         """查询日志
@@ -283,7 +273,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateQuickSearch(self, request):
         """存为快速查询
         :param request: Request instance for CreateQuickSearch.
@@ -305,7 +294,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListQuickSearchs(self, request):
         """获取快速查询列表
@@ -329,7 +317,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetQuickSearch(self, request):
         """获取快速查询列表
         :param request: Request instance for GetQuickSearch.
@@ -351,7 +338,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteQuickSearchs(self, request):
         """删除快速查询
@@ -375,7 +361,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateDashboard(self, request):
         """创建仪表盘
         :param request: Request instance for CreateDashboard.
@@ -397,7 +382,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteDashboard(self, request):
         """删除仪表盘
@@ -421,7 +405,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDashboard(self, request):
         """仪表盘信息
         :param request: Request instance for DescribeDashboard.
@@ -443,7 +426,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListDashboards(self, request):
         """获取仪表盘列表
@@ -467,7 +449,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateChart(self, request):
         """创建图表
         :param request: Request instance for CreateChart.
@@ -489,7 +470,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteChart(self, request):
         """删除图表
@@ -513,7 +493,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetDashboardNamesByIds(self, request):
         """获取仪表盘名称
         :param request: Request instance for GetDashboardNamesByIds.
@@ -535,7 +514,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetChartNamesByIds(self, request):
         """获取图表名称
@@ -559,7 +537,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def UpdateDashboard(self, request):
         """修改仪表盘
         :param request: Request instance for UpdateDashboard.
@@ -581,7 +558,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetUsage(self, request):
         """获取监控
@@ -605,7 +581,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SetIndexTemplate(self, request):
         """配置索引规则
         :param request: Request instance for SetIndexTemplate.
@@ -627,7 +602,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetIndexTemplate(self, request):
         """获取当前用户已经设置的索引配置
@@ -651,7 +625,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateDownloadTask(self, request):
         """创建下载任务
         :param request: Request instance for CreateDownloadTask.
@@ -673,7 +646,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListDownloadTasks(self, request):
         """列举下载任务
@@ -697,7 +669,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetDownloadUrls(self, request):
         """获取下载Url
         :param request: Request instance for GetDownloadUrls.
@@ -719,7 +690,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetMonitorData(self, request):
         """获取监控数据
@@ -743,7 +713,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeLogErrorReason(self, request):
         """获取日志数据错误原因
         :param request: Request instance for DescribeLogErrorReason.
@@ -765,7 +734,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteEtlTask(self, request):
         """删除加工任务
@@ -789,7 +757,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StopEtlTask(self, request):
         """停止加工任务
         :param request: Request instance for StopEtlTask.
@@ -811,7 +778,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StartEtlTask(self, request):
         """开始加工任务
@@ -835,7 +801,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListEtlTasks(self, request):
         """查询加工任务列表
         :param request: Request instance for ListEtlTasks.
@@ -857,7 +822,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeEtlTask(self, request):
         """查询加工任务详情
@@ -881,7 +845,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyEtlTask(self, request):
         """修改加工任务
         :param request: Request instance for ModifyEtlTask.
@@ -903,7 +866,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateEtlTask(self, request):
         """创建加工任务
@@ -927,7 +889,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEtlException(self, request):
         """获取加工任务异常详情
         :param request: Request instance for DescribeEtlException.
@@ -949,7 +910,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeEtlStats(self, request):
         """获取加工任务指标统计
@@ -973,7 +933,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ExecuteEtlDemo(self, request):
         """执行加工函数预览
         :param request: Request instance for ExecuteEtlDemo.
@@ -995,7 +954,6 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetUserRegion(self, request):
         """获取region
@@ -1019,7 +977,6 @@ class KlogClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetClustersByType(self, request):
         """根据类型获取集群列表
         :param request: Request instance for GetClustersByType.
@@ -1041,5 +998,3 @@ class KlogClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

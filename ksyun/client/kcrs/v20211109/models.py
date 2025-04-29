@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateNamespaceRequest(AbstractModel):
     """CreateNamespace请求参数结构体
     """
@@ -1278,5 +1279,3 @@ class ScheduleRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("TestRun"):
             self.TestRun = params.get("TestRun")
-
-

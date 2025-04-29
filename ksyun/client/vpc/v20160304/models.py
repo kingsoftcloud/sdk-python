@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateVpcRequest(AbstractModel):
     """CreateVpc请求参数结构体
     """
@@ -3251,5 +3252,3 @@ class CreateFlowLogRequest(AbstractModel):
             self.WindowTime = params.get("WindowTime")
         if params.get("Description"):
             self.Description = params.get("Description")
-
-

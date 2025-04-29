@@ -8,6 +8,7 @@ class KcsClient(AbstractClient):
     _apiVersion = '2017-04-01'
     _endpoint = 'kcs.api.ksyun.com'
     _service = 'kcs'
+
     def DescribeCacheReadonlyNode(self, request):
         """获取只读实例列表
         :param request: Request instance for DescribeCacheReadonlyNode.
@@ -29,7 +30,6 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddCacheSlaveNode(self, request):
         """AddCacheSlaveNode
@@ -53,7 +53,6 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteCacheSlaveNode(self, request):
         """删除只读实例
         :param request: Request instance for DeleteCacheSlaveNode.
@@ -75,5 +74,3 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

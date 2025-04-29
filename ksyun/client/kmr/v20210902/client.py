@@ -8,6 +8,7 @@ class KmrClient(AbstractClient):
     _apiVersion = '2021-09-02'
     _endpoint = 'kmr.api.ksyun.com'
     _service = 'kmr'
+
     def DescribeCluster(self, request):
         """集群详情
         :param request: Request instance for DescribeCluster.
@@ -29,7 +30,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def LaunchCluster(self, request):
         """创建集群
@@ -53,7 +53,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ScaleInInstanceGroups(self, request):
         """缩容集群
         :param request: Request instance for ScaleInInstanceGroups.
@@ -75,7 +74,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ScaleOutInstanceGroups(self, request):
         """扩容集群
@@ -99,7 +97,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeClusterInfo(self, request):
         """集群详情描述
         :param request: Request instance for DescribeClusterInfo.
@@ -121,7 +118,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListServiceStatus(self, request):
         """查看服务列表
@@ -145,7 +141,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListClusters(self, request):
         """集群列表
         :param request: Request instance for ListClusters.
@@ -167,7 +162,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListClusterVersions(self, request):
         """集群版本列表
@@ -191,7 +185,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeService(self, request):
         """查看服务详情
         :param request: Request instance for DescribeService.
@@ -213,7 +206,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListConfigurations(self, request):
         """配置列表
@@ -237,7 +229,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListConfigurationHistory(self, request):
         """配置历史
         :param request: Request instance for ListConfigurationHistory.
@@ -259,7 +250,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListTagValues(self, request):
         """标签值列表
@@ -283,7 +273,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListTagKeys(self, request):
         """标签列表
         :param request: Request instance for ListTagKeys.
@@ -305,7 +294,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def BindTags(self, request):
         """绑定标签
@@ -329,7 +317,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StartInstances(self, request):
         """启动实例
         :param request: Request instance for StartInstances.
@@ -351,7 +338,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RestartInstances(self, request):
         """重启实例
@@ -375,7 +361,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def StopInstances(self, request):
         """停止实例
         :param request: Request instance for StopInstances.
@@ -397,7 +382,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListScaleStrategy(self, request):
         """弹性策略列表
@@ -421,7 +405,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyScaleStrategy(self, request):
         """弹性策略描述
         :param request: Request instance for ModifyScaleStrategy.
@@ -443,7 +426,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteScaleStrategy(self, request):
         """删除弹性策略
@@ -467,7 +449,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListScaleHistory(self, request):
         """弹性伸缩历史
         :param request: Request instance for ListScaleHistory.
@@ -489,7 +470,6 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def AddLoadBasedScaleStrategy(self, request):
         """添加负载弹性策略
@@ -513,7 +493,6 @@ class KmrClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyLoadBasedScaleStrategy(self, request):
         """修改负载弹性策略
         :param request: Request instance for ModifyLoadBasedScaleStrategy.
@@ -535,5 +514,3 @@ class KmrClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

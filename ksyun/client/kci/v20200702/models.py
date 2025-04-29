@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateContainerGroupRequest(AbstractModel):
     """CreateContainerGroup请求参数结构体
     """
@@ -555,5 +556,3 @@ class DescribeImageCacheEventRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageCacheId"):
             self.ImageCacheId = params.get("ImageCacheId")
-
-

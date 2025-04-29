@@ -8,6 +8,7 @@ class ActiontrailClient(AbstractClient):
     _apiVersion = '2019-04-01'
     _endpoint = 'actiontrail.api.ksyun.com'
     _service = 'actiontrail'
+
     def ListOperateLogs(self, request):
         """获取历史事件记录
         :param request: Request instance for ListOperateLogs.
@@ -29,5 +30,3 @@ class ActiontrailClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateDBInstanceRequest(AbstractModel):
     """CreateDBInstance请求参数结构体
     """
@@ -1275,5 +1276,3 @@ class ModifyDBInstanceExtensionRequest(AbstractModel):
             self.Operation = params.get("Operation")
         if params.get("Extension"):
             self.Extension = params.get("Extension")
-
-

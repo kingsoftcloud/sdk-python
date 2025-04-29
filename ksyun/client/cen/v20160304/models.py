@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateCenRequest(AbstractModel):
     """CreateCen请求参数结构体
     """
@@ -622,5 +623,3 @@ class DescribeCenBandWidthPackageUsageRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("CenBandWidthPackageId"):
             self.CenBandWidthPackageId = params.get("CenBandWidthPackageId")
-
-

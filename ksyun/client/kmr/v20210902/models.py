@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeClusterRequest(AbstractModel):
     """DescribeCluster请求参数结构体
     """
@@ -532,5 +533,3 @@ class ModifyLoadBasedScaleStrategyRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ClusterId"):
             self.ClusterId = params.get("ClusterId")
-
-

@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateVolumeRequest(AbstractModel):
     """CreateVolume请求参数结构体
     """
@@ -554,5 +555,3 @@ Daily（后付费，按日月结）
             self.ChargeType = params.get("ChargeType")
         if params.get("PurchaseTime"):
             self.PurchaseTime = params.get("PurchaseTime")
-
-

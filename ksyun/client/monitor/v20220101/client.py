@@ -8,6 +8,7 @@ class MonitorClient(AbstractClient):
     _apiVersion = '2022-01-01'
     _endpoint = 'monitor.api.ksyun.com'
     _service = 'monitor'
+
     def CreateAlarmPolicy(self, request):
         """创建告警策略
         :param request: Request instance for CreateAlarmPolicy.
@@ -30,7 +31,6 @@ class MonitorClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteAlarmPolicy(self, request):
         """删除告警策略
         :param request: Request instance for DeleteAlarmPolicy.
@@ -52,5 +52,3 @@ class MonitorClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

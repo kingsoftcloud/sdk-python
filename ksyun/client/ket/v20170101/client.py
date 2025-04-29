@@ -8,6 +8,7 @@ class KetClient(AbstractClient):
     _apiVersion = '2017-01-01'
     _endpoint = 'ket.api.ksyun.com'
     _service = 'ket'
+
     def Preset(self, request):
         """add preset
         :param request: Request instance for Preset.
@@ -29,7 +30,6 @@ class KetClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdatePreset(self, request):
         """update preset
@@ -53,7 +53,6 @@ class KetClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DelPreset(self, request):
         """delete preset
         :param request: Request instance for DelPreset.
@@ -75,7 +74,6 @@ class KetClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetPresetList(self, request):
         """get preset list
@@ -99,7 +97,6 @@ class KetClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetPresetDetail(self, request):
         """get preset detail
         :param request: Request instance for GetPresetDetail.
@@ -122,7 +119,6 @@ class KetClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetStreamTranList(self, request):
         """get stream tran list
         :param request: Request instance for GetStreamTranList.
@@ -144,5 +140,3 @@ class KetClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

@@ -8,6 +8,7 @@ class Bill_unionClient(AbstractClient):
     _apiVersion = '2020-01-01'
     _endpoint = 'bill-union.api.ksyun.com'
     _service = 'bill-union'
+
     def DescribeBillSummaryByPayMode(self, request):
         """获取计费类别汇总账单
         :param request: Request instance for DescribeBillSummaryByPayMode.
@@ -29,7 +30,6 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeBillSummaryByProduct(self, request):
         """按产品线获取账单汇总金额
@@ -53,7 +53,6 @@ class Bill_unionClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeBillSummaryByProject(self, request):
         """按项目制获取账单汇总金额
         :param request: Request instance for DescribeBillSummaryByProject.
@@ -75,7 +74,6 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstanceSummaryBills(self, request):
         """按实例ID获取账单汇总金额
@@ -99,7 +97,6 @@ class Bill_unionClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeProductCode(self, request):
         """获取产品线列表
         :param request: Request instance for DescribeProductCode.
@@ -121,7 +118,6 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSplitItemBillDetails(self, request):
         """分页查询分拆项账单明细
@@ -145,7 +141,6 @@ class Bill_unionClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSplitItemDayBillDetails(self, request):
         """分页查询分拆项账单明细
         :param request: Request instance for DescribeSplitItemDayBillDetails.
@@ -167,5 +162,3 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

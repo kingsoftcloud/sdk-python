@@ -4,19 +4,19 @@ from ksyun.common.exception.ksyun_sdk_exception import KsyunSDKException
 from ksyun.common.abstract_client import AbstractClient
 
 
-class KceClient(AbstractClient):
-    _apiVersion = '2020-12-31'
-    _endpoint = 'kce.api.ksyun.com'
-    _service = 'kce'
+class MonitorClient(AbstractClient):
+    _apiVersion = '2025-01-01'
+    _endpoint = 'monitor.api.ksyun.com'
+    _service = 'monitor'
 
-    def CreateCluster(self, request):
-        """创建集群（新）
-        :param request: Request instance for CreateCluster.
-        :type request: :class:`ksyun.client.kce.v20201231.models.CreateClusterRequest`
+    def DescribeAlertingResources(self, request):
+        """正在告警资源列表
+        :param request: Request instance for DescribeAlertingResources.
+        :type request: :class:`ksyun.client.monitor.v20250101.models.DescribeAlertingResourcesRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateCluster", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeAlertingResources", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

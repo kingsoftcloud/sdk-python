@@ -8,6 +8,7 @@ class RabbitmqClient(AbstractClient):
     _apiVersion = '2019-10-17'
     _endpoint = 'rabbitmq.api.ksyun.com'
     _service = 'rabbitmq'
+
     def CreateInstance(self, request):
         """创建实例
         :param request: Request instance for CreateInstance.
@@ -29,7 +30,6 @@ class RabbitmqClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteInstance(self, request):
         """删除实例
@@ -53,7 +53,6 @@ class RabbitmqClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeInstances(self, request):
         """实例列表
         :param request: Request instance for DescribeInstances.
@@ -75,7 +74,6 @@ class RabbitmqClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstance(self, request):
         """实例明细
@@ -99,7 +97,6 @@ class RabbitmqClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeInstanceNodes(self, request):
         """实例节点列表
         :param request: Request instance for DescribeInstanceNodes.
@@ -121,7 +118,6 @@ class RabbitmqClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeValidRegion(self, request):
         """控制台有效机房列表
@@ -145,7 +141,6 @@ class RabbitmqClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeRegions(self, request):
         """客户获取机房列表信息
         :param request: Request instance for DescribeRegions.
@@ -167,7 +162,6 @@ class RabbitmqClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeSecurityGroupRules(self, request):
         """实例白名单列表
@@ -191,7 +185,6 @@ class RabbitmqClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AddSecurityGroupRule(self, request):
         """添加实例白名单
         :param request: Request instance for AddSecurityGroupRule.
@@ -213,7 +206,6 @@ class RabbitmqClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteSecurityGroupRules(self, request):
         """删除实例白名单
@@ -237,7 +229,6 @@ class RabbitmqClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResetPassword(self, request):
         """实例重置密码
         :param request: Request instance for ResetPassword.
@@ -260,7 +251,6 @@ class RabbitmqClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def Rename(self, request):
         """实例修改名称
         :param request: Request instance for Rename.
@@ -282,5 +272,3 @@ class RabbitmqClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

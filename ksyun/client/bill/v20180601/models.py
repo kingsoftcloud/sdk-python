@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetMonthBillRequest(AbstractModel):
     """GetMonthBill请求参数结构体
     """
@@ -62,5 +63,3 @@ class GetProductCodeRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
-
-

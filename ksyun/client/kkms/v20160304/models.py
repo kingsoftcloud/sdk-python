@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateKeyRequest(AbstractModel):
     """CreateKey请求参数结构体
     """
@@ -181,5 +182,3 @@ class GenerateDataKeyRequest(AbstractModel):
             self.KeySpec = params.get("KeySpec")
         if params.get("NumberOfBytes"):
             self.NumberOfBytes = params.get("NumberOfBytes")
-
-

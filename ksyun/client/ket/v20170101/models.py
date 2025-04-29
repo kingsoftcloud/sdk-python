@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class PresetRequest(AbstractModel):
     """Preset请求参数结构体
     """
@@ -179,5 +180,3 @@ class GetStreamTranListRequest(AbstractModel):
             self.App = params.get("App")
         if params.get("StreamID"):
             self.StreamID = params.get("StreamID")
-
-

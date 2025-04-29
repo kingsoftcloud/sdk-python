@@ -8,6 +8,7 @@ class CdnClient(AbstractClient):
     _apiVersion = '2020-09-01'
     _endpoint = 'cdn.api.ksyun.com'
     _service = 'cdn'
+
     def CreateUserUsageDataExportTask(self, request):
         """创建用量导表任务
         :param request: Request instance for CreateUserUsageDataExportTask.
@@ -29,7 +30,6 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetUserUsageDataExportTask(self, request):
         """获取用量导表任务
@@ -53,7 +53,6 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteUserUsageDataExportTask(self, request):
         """删除用量导表任务
         :param request: Request instance for DeleteUserUsageDataExportTask.
@@ -75,7 +74,6 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetDomainUsageData(self, request):
         """用量查询接口
@@ -99,7 +97,6 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateUsageDetailDataExportTask(self, request):
         """创建明细导表任务
         :param request: Request instance for CreateUsageDetailDataExportTask.
@@ -121,7 +118,6 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetUsageDetailDataExportTask(self, request):
         """获取明细导出任务
@@ -145,7 +141,6 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteUsageDetailDataExportTask(self, request):
         """删除明细导表任务
         :param request: Request instance for DeleteUsageDetailDataExportTask.
@@ -167,5 +162,3 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

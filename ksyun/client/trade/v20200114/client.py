@@ -8,6 +8,7 @@ class TradeClient(AbstractClient):
     _apiVersion = '2020-01-14'
     _endpoint = 'trade.api.ksyun.com'
     _service = 'trade'
+
     def DescribeInstances(self, request):
         """实例信息描述
         :param request: Request instance for DescribeInstances.
@@ -29,5 +30,3 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

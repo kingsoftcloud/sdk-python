@@ -8,6 +8,7 @@ class WafClient(AbstractClient):
     _apiVersion = '2020-07-07'
     _endpoint = 'waf.api.ksyun.com'
     _service = 'waf'
+
     def CreateDomain(self, request):
         """创建域名（3.0）
         :param request: Request instance for CreateDomain.
@@ -29,7 +30,6 @@ class WafClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDomains(self, request):
         """描述域名（3.0）
@@ -53,7 +53,6 @@ class WafClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDomain(self, request):
         """修改域名（3.0）
         :param request: Request instance for ModifyDomain.
@@ -75,7 +74,6 @@ class WafClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteDomain(self, request):
         """删除域名（3.0）
@@ -99,7 +97,6 @@ class WafClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateAccessControlRule(self, request):
         """创建访问控制规则（3.0）
         :param request: Request instance for CreateAccessControlRule.
@@ -121,7 +118,6 @@ class WafClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeAccessControlRules(self, request):
         """描述访问控制规则（3.0）
@@ -145,7 +141,6 @@ class WafClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyAccessControlRule(self, request):
         """修改访问控制规则（3.0）
         :param request: Request instance for ModifyAccessControlRule.
@@ -167,7 +162,6 @@ class WafClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteAccessControlRule(self, request):
         """删除访问控制规则（3.0）
@@ -191,7 +185,6 @@ class WafClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCertificates(self, request):
         """描述证书信息（3.0）
         :param request: Request instance for DescribeCertificates.
@@ -213,7 +206,6 @@ class WafClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateIpv6Protection(self, request):
         """开启IPv6防护（3.0）
@@ -237,7 +229,6 @@ class WafClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteIpv6Protection(self, request):
         """关闭IPv6防护（3.0）
         :param request: Request instance for DeleteIpv6Protection.
@@ -259,5 +250,3 @@ class WafClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

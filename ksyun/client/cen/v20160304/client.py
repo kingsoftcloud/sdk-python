@@ -8,6 +8,7 @@ class CenClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'cen.api.ksyun.com'
     _service = 'cen'
+
     def CreateCen(self, request):
         """CreateCen
         :param request: Request instance for CreateCen.
@@ -29,7 +30,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyCen(self, request):
         """ModifyCen
@@ -53,7 +53,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteCen(self, request):
         """DeleteCen
         :param request: Request instance for DeleteCen.
@@ -75,7 +74,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCens(self, request):
         """DescribeCens
@@ -99,7 +97,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AttachCenInstance(self, request):
         """AttachCenInstance
         :param request: Request instance for AttachCenInstance.
@@ -121,7 +118,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DetachCenInstance(self, request):
         """DetachCenInstance
@@ -145,7 +141,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCenInstances(self, request):
         """DescribeCenInstances
         :param request: Request instance for DescribeCenInstances.
@@ -167,7 +162,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreatCenGrant(self, request):
         """CreatCenGrant
@@ -191,7 +185,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteCenGrant(self, request):
         """DeleteCenGrant
         :param request: Request instance for DeleteCenGrant.
@@ -213,7 +206,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCenGrants(self, request):
         """DescribeCenGrants
@@ -237,7 +229,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeRegionGroups(self, request):
         """DescribeRegionGroups
         :param request: Request instance for DescribeRegionGroups.
@@ -259,7 +250,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateCenBandWidthPackage(self, request):
         """CreateCenBandWidthPackage
@@ -283,7 +273,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyCenBandWidthPackage(self, request):
         """ModifyCenBandWidthPackage
         :param request: Request instance for ModifyCenBandWidthPackage.
@@ -305,7 +294,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteCenBandWidthPackage(self, request):
         """DeleteCenBandWidthPackage
@@ -329,7 +317,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AttachCenBandWidthPackage(self, request):
         """AttachCenBandWidthPackage
         :param request: Request instance for AttachCenBandWidthPackage.
@@ -351,7 +338,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DetachCenBandWidthPackage(self, request):
         """DetachCenBandWidthPackage
@@ -375,7 +361,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCenBandWidthPackages(self, request):
         """DescribeCenBandWidthPackages
         :param request: Request instance for DescribeCenBandWidthPackages.
@@ -397,7 +382,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateCenRegionBandwidth(self, request):
         """CreateCenRegionBandwidth
@@ -421,7 +405,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteCenRegionBandwidth(self, request):
         """DeleteCenRegionBandwidth
         :param request: Request instance for DeleteCenRegionBandwidth.
@@ -443,7 +426,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyCenRegionBandwidth(self, request):
         """ModifyCenRegionBandwidth
@@ -467,7 +449,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCenRegionBandwidths(self, request):
         """DescribeCenRegionBandwidths
         :param request: Request instance for DescribeCenRegionBandwidths.
@@ -489,7 +470,6 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeCenRoutes(self, request):
         """DescribeCenRoutes
@@ -513,7 +493,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCenRegions(self, request):
         """DescribeCenRegions
         :param request: Request instance for DescribeCenRegions.
@@ -536,7 +515,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeCenBandWidthPackageUsage(self, request):
         """DescribeCenBandWidthPackageUsage
         :param request: Request instance for DescribeCenBandWidthPackageUsage.
@@ -558,5 +536,3 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

@@ -8,6 +8,7 @@ class KlsClient(AbstractClient):
     _apiVersion = '2017-01-01'
     _endpoint = 'kls.api.ksyun.com'
     _service = 'kls'
+
     def ListStreamDurations(self, request):
         """查询主播流时长接口
         :param request: Request instance for ListStreamDurations.
@@ -29,7 +30,6 @@ class KlsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ListHistoryPubStreamsErrInfo(self, request):
         """查询流历史流错误信息
@@ -53,7 +53,6 @@ class KlsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListHistoryPubStreamsInfo(self, request):
         """查询流历史信息接口
         :param request: Request instance for ListHistoryPubStreamsInfo.
@@ -75,7 +74,6 @@ class KlsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ForbidStream(self, request):
         """禁止单路直播流推送
@@ -99,7 +97,6 @@ class KlsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResumeStream(self, request):
         """恢复单路直播流推送
         :param request: Request instance for ResumeStream.
@@ -121,7 +118,6 @@ class KlsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def GetBlacklist(self, request):
         """查询黑名单列表
@@ -145,7 +141,6 @@ class KlsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CheckBlacklist(self, request):
         """检查流是否在黑名单内
         :param request: Request instance for CheckBlacklist.
@@ -168,7 +163,6 @@ class KlsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListRealtimeStreamsInfo(self, request):
         """获取流实时信息
         :param request: Request instance for ListRealtimeStreamsInfo.
@@ -190,5 +184,3 @@ class KlsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetDomainPidDimensionUsageDataRequest(AbstractModel):
     """GetDomainPidDimensionUsageData请求参数结构体
     """
@@ -10,5 +11,3 @@ class GetDomainPidDimensionUsageDataRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
-
-

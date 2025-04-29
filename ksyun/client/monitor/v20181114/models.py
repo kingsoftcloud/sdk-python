@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class GetMetricStatisticsBatchRequest(AbstractModel):
     """GetMetricStatisticsBatch请求参数结构体
     """
@@ -55,5 +56,3 @@ class GetMetricStatisticsBatchRequest(AbstractModel):
             self.Period = params.get("Period")
         if params.get("Metrics"):
             self.Metrics = params.get("Metrics")
-
-

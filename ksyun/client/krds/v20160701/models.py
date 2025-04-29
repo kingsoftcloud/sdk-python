@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class RebootDBInstanceRequest(AbstractModel):
     """RebootDBInstance请求参数结构体
     """
@@ -390,7 +391,8 @@ class CreateDBInstanceReadReplicaRequest(AbstractModel):
         self.BillType = None
         self.Duration = None
         self.DurationUnit = None
-        self.AvailabilityZone.1 = None
+        self.AvailabilityZone
+        .1 = None
         self.ProjectId = None
         self.Vip = None
         self.Mem = None
@@ -410,7 +412,8 @@ class CreateDBInstanceReadReplicaRequest(AbstractModel):
         if params.get("DurationUnit"):
             self.DurationUnit = params.get("DurationUnit")
         if params.get("AvailabilityZone.1"):
-            self.AvailabilityZone.1 = params.get("AvailabilityZone.1")
+            self.AvailabilityZone
+            .1 = params.get("AvailabilityZone.1")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
         if params.get("Vip"):
@@ -954,16 +957,20 @@ class ModifyDBInstanceAvailabilityZoneRequest(AbstractModel):
         :type PathPrefix: String
         """
         self.DBInstanceIdentifier = None
-        self.AvailabilityZone.1 = None
-        self.AvailabilityZone.2 = None
+        self.AvailabilityZone
+        .1 = None
+        self.AvailabilityZone
+        .2 = None
 
     def _deserialize(self, params):
         if params.get("DBInstanceIdentifier"):
             self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
         if params.get("AvailabilityZone.1"):
-            self.AvailabilityZone.1 = params.get("AvailabilityZone.1")
+            self.AvailabilityZone
+            .1 = params.get("AvailabilityZone.1")
         if params.get("AvailabilityZone.2"):
-            self.AvailabilityZone.2 = params.get("AvailabilityZone.2")
+            self.AvailabilityZone
+            .2 = params.get("AvailabilityZone.2")
 
 
 class DescribeDBInstanceRegionsRequest(AbstractModel):
@@ -2068,5 +2075,3 @@ class DescribeEngineParametersModifyHistoryRequest(AbstractModel):
             self.MaxRecords = params.get("MaxRecords")
         if params.get("Marker"):
             self.Marker = params.get("Marker")
-
-

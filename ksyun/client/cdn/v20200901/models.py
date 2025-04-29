@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateUserUsageDataExportTaskRequest(AbstractModel):
     """CreateUserUsageDataExportTask请求参数结构体
     """
@@ -220,5 +221,3 @@ class DeleteUsageDetailDataExportTaskRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("TaskID"):
             self.TaskID = params.get("TaskID")
-
-

@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class ListAlarmPolicyRequest(AbstractModel):
     """ListAlarmPolicy请求参数结构体
     """
@@ -207,6 +208,63 @@ class UpdateAlertUserStatusRequest(AbstractModel):
             self.UserStatus = params.get("UserStatus")
 
 
+class DescribeSysEventGroupListRequest(AbstractModel):
+    """DescribeSysEventGroupList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询事件分组列表
+        :param Namespace: 表示一类云产品，指定命名空间, 示例值：
+- KEC: 云服务器
+- KS3：对象存储
+        :type PathPrefix: String
+        :param StartTime: 起始时间。
+
+> **Tips**：请注意时间格式为Unix时间戳（毫秒），从1970年1月1日开始所经过的毫秒数。
+        :type PathPrefix: Int
+        :param EndTime: 结束时间。
+        :type PathPrefix: Int
+        :param EventName: 指定事件名称，多个间以逗号分隔。
+        :type PathPrefix: String
+        :param InstanceId: 指定实例ID查询事件，多个间以逗号分隔，最多可查询20个实例
+        :type PathPrefix: Array
+        :param Order: 结果按照事件创建时间排序方式。
+- 0：倒序 
+- 1：正序
+        :type PathPrefix: Boolean
+        :param PageIndex: 页号
+        :type PathPrefix: Int
+        :param PageSize: 每页显示的数据行数
+        :type PathPrefix: Int
+        """
+        self.Namespace = None
+        self.StartTime = None
+        self.EndTime = None
+        self.EventName = None
+        self.InstanceId = None
+        self.Order = None
+        self.PageIndex = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("EventName"):
+            self.EventName = params.get("EventName")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Order"):
+            self.Order = params.get("Order")
+        if params.get("PageIndex"):
+            self.PageIndex = params.get("PageIndex")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
 class DescribeMonitorProductListRequest(AbstractModel):
     """DescribeMonitorProductList请求参数结构体
     """
@@ -217,5 +275,3 @@ class DescribeMonitorProductListRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
-
-

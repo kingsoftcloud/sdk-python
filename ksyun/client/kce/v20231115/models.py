@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeClusterRequest(AbstractModel):
     """DescribeCluster请求参数结构体
     """
@@ -34,5 +35,3 @@ class DescribeClusterRequest(AbstractModel):
             self.Search = params.get("Search")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
-
-

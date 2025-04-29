@@ -8,6 +8,7 @@ class StsClient(AbstractClient):
     _apiVersion = '2015-11-01'
     _endpoint = 'sts.api.ksyun.com'
     _service = 'sts'
+
     def AssumeRole(self, request):
         """获取角色的一个临时安全令牌
         :param request: Request instance for AssumeRole.
@@ -29,5 +30,3 @@ class StsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

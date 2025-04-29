@@ -8,6 +8,7 @@ class PostgresqlClient(AbstractClient):
     _apiVersion = '2018-12-25'
     _endpoint = 'postgresql.api.ksyun.com'
     _service = 'postgresql'
+
     def CreateDBInstance(self, request):
         """create db instance
         :param request: Request instance for CreateDBInstance.
@@ -29,7 +30,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBInstances(self, request):
         """describe db instances
@@ -53,7 +53,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteDBInstance(self, request):
         """delete db instance
         :param request: Request instance for DeleteDBInstance.
@@ -75,7 +74,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def StatisticDBInstances(self, request):
         """statistic db instances
@@ -99,7 +97,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDBInstance(self, request):
         """modify db instance
         :param request: Request instance for ModifyDBInstance.
@@ -121,7 +118,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateSecurityGroup(self, request):
         """create security group
@@ -145,7 +141,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeSecurityGroup(self, request):
         """describe security group
         :param request: Request instance for DescribeSecurityGroup.
@@ -167,7 +162,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteSecurityGroup(self, request):
         """delete security group
@@ -191,7 +185,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifySecurityGroup(self, request):
         """modify security group
         :param request: Request instance for ModifySecurityGroup.
@@ -213,7 +206,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CloneSecurityGroup(self, request):
         """clone security group
@@ -237,7 +229,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifySecurityGroupRule(self, request):
         """modify security grooup rule
         :param request: Request instance for ModifySecurityGroupRule.
@@ -259,7 +250,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def SecurityGroupRelation(self, request):
         """security group relation
@@ -283,7 +273,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifySecurityGroupRuleName(self, request):
         """modify security group rule name
         :param request: Request instance for ModifySecurityGroupRuleName.
@@ -305,7 +294,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBLogFiles(self, request):
         """describe db log files
@@ -329,7 +317,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def CreateDBBackup(self, request):
         """create db backup
         :param request: Request instance for CreateDBBackup.
@@ -351,7 +338,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteDBBackup(self, request):
         """delete db backup
@@ -375,7 +361,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBBackups(self, request):
         """describe db backups
         :param request: Request instance for DescribeDBBackups.
@@ -397,7 +382,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ModifyDBBackupPolicy(self, request):
         """modify db backup policy
@@ -421,7 +405,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def OverrideDBInstance(self, request):
         """override db instance
         :param request: Request instance for OverrideDBInstance.
@@ -443,7 +426,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateDBParameterGroup(self, request):
         """create db parameter group
@@ -467,7 +449,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDBParameterGroup(self, request):
         """modify db parameter group
         :param request: Request instance for ModifyDBParameterGroup.
@@ -489,7 +470,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteDBParameterGroup(self, request):
         """delete db parameter group
@@ -513,7 +493,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ResetDBParameterGroup(self, request):
         """reset db parameter grooup
         :param request: Request instance for ResetDBParameterGroup.
@@ -535,7 +514,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBParameterGroup(self, request):
         """describe db parameter group
@@ -559,7 +537,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeEngineDefaultParameters(self, request):
         """describe engine default parameters
         :param request: Request instance for DescribeEngineDefaultParameters.
@@ -581,7 +558,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBInstanceParameters(self, request):
         """查看实例参数组
@@ -605,7 +581,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def RebootDBInstance(self, request):
         """reboot db instance
         :param request: Request instance for RebootDBInstance.
@@ -627,7 +602,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeDBEngineVersions(self, request):
         """describe db engine version
@@ -651,7 +625,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def AllocateDBInstanceEip(self, request):
         """allocate db instance eip
         :param request: Request instance for AllocateDBInstanceEip.
@@ -673,7 +646,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def ReleaseDBInstanceEip(self, request):
         """release db instance eip
@@ -697,7 +669,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDBInstanceSpec(self, request):
         """modify db instance spec
         :param request: Request instance for ModifyDBInstanceSpec.
@@ -719,7 +690,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def RestoreDBInstanceFromDBBackup(self, request):
         """restore db instance from db backup
@@ -743,7 +713,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def SwitchDBInstanceHA(self, request):
         """switch db instance ha
         :param request: Request instance for SwitchDBInstanceHA.
@@ -765,7 +734,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateDBInstanceReadReplica(self, request):
         """create db instance read replica
@@ -789,7 +757,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyInstanceAccountInfo(self, request):
         """modify instance account info
         :param request: Request instance for ModifyInstanceAccountInfo.
@@ -811,7 +778,6 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DescribeInstanceDatabases(self, request):
         """获取实例数据库列表
@@ -835,7 +801,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeDBInstanceExtensions(self, request):
         """describe db instance extensions
         :param request: Request instance for DescribeDBInstanceExtensions.
@@ -858,7 +823,6 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ModifyDBInstanceExtension(self, request):
         """modify db instance extension
         :param request: Request instance for ModifyDBInstanceExtension.
@@ -880,5 +844,3 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

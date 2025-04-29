@@ -8,6 +8,7 @@ class KcmClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'kcm.api.ksyun.com'
     _service = 'kcm'
+
     def ApplyCertificate(self, request):
         """申请证书
         :param request: Request instance for ApplyCertificate.
@@ -29,7 +30,6 @@ class KcmClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def UpdateCertificate(self, request):
         """更新/补全证书信息
@@ -53,7 +53,6 @@ class KcmClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def ListCertificates(self, request):
         """描述证书
         :param request: Request instance for ListCertificates.
@@ -76,7 +75,6 @@ class KcmClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def GetCertificateDetail(self, request):
         """获取证书详情
         :param request: Request instance for GetCertificateDetail.
@@ -98,5 +96,3 @@ class KcmClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

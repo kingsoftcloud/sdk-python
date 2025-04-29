@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class CreateCacheClusterRequest(AbstractModel):
     """CreateCacheCluster请求参数结构体
     """
@@ -313,5 +314,3 @@ class DescribeAvailabilityZonesRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
-
-

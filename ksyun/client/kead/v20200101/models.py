@@ -1,5 +1,6 @@
 from ksyun.common.abstract_model import AbstractModel
 
+
 class DescribeBlockIpRequest(AbstractModel):
     """DescribeBlockIp请求参数结构体
     """
@@ -52,5 +53,3 @@ class DescribeBlockIpRequest(AbstractModel):
             self.StartTime = params.get("StartTime")
         if params.get("endTime"):
             self.endTime = params.get("endTime")
-
-

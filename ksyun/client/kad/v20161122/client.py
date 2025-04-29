@@ -8,6 +8,7 @@ class KadClient(AbstractClient):
     _apiVersion = '2016-11-22'
     _endpoint = 'kad.api.ksyun.com'
     _service = 'kad'
+
     def CreateForwardConf(self, request):
         """创建四层转发配置
         :param request: Request instance for CreateForwardConf.
@@ -29,7 +30,6 @@ class KadClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def DeleteForwardConf(self, request):
         """删除四层转发配置
@@ -53,7 +53,6 @@ class KadClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeForwardConf(self, request):
         """描述四层转发记录
         :param request: Request instance for DescribeForwardConf.
@@ -75,7 +74,6 @@ class KadClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
 
     def CreateForwardSource(self, request):
         """创建四层转发回源配置
@@ -99,7 +97,6 @@ class KadClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DeleteForwardSource(self, request):
         """删除四层转发回源配置
         :param request: Request instance for DeleteForwardSource.
@@ -122,7 +119,6 @@ class KadClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-
     def DescribeForwardSource(self, request):
         """描述四层转发回源配置
         :param request: Request instance for DescribeForwardSource.
@@ -144,5 +140,3 @@ class KadClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
-
-

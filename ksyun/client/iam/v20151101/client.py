@@ -8,7 +8,6 @@ class IamClient(AbstractClient):
     _apiVersion = '2015-11-01'
     _endpoint = 'iam.api.ksyun.com'
     _service = 'iam'
-
     def CreateUser(self, request):
         """新建IAM子用户
         :param request: Request instance for CreateUser.
@@ -30,6 +29,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListUsers(self, request):
         """查询所有子用户的详细信息
@@ -1381,6 +1381,28 @@ class IamClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("GetUserSsoSettings", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+    def GetEffectivePolicies(self, request):
+        """获取有效的策略信息
+        :param request: Request instance for GetEffectivePolicies.
+        :type request: :class:`ksyun.client.iam.v20151101.models.GetEffectivePoliciesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetEffectivePolicies", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

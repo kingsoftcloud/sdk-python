@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateUserRequest(AbstractModel):
     """CreateUser请求参数结构体
     """
@@ -27,6 +26,8 @@ class CreateUserRequest(AbstractModel):
         :type PathPrefix: Int
         :param ViewAllProject: 子用户查看所有项目
         :type PathPrefix: Int
+        :param AddProjectId: 项目ID，默认项目传0
+        :type PathPrefix: Int
         """
         self.UserName = None
         self.RealName = None
@@ -38,6 +39,7 @@ class CreateUserRequest(AbstractModel):
         self.OpenLoginProtection = None
         self.OpenSecurityProtection = None
         self.ViewAllProject = None
+        self.AddProjectId = None
 
     def _deserialize(self, params):
         if params.get("UserName"):
@@ -60,6 +62,8 @@ class CreateUserRequest(AbstractModel):
             self.OpenSecurityProtection = params.get("OpenSecurityProtection")
         if params.get("ViewAllProject"):
             self.ViewAllProject = params.get("ViewAllProject")
+        if params.get("AddProjectId"):
+            self.AddProjectId = params.get("AddProjectId")
 
 
 class ListUsersRequest(AbstractModel):
@@ -493,7 +497,10 @@ class UpdateLoginProfileRequest(AbstractModel):
         r"""更新子用户登录配置
         :param UserName: 待更新登录配置的IAM用户名
         :type PathPrefix: String
-        :param Password: 新密码
+        :param Password: 新密码，可选参数，注：
+- 当传参且值为空字符串时，关闭子用户控制台登录；
+- 当传参不为空字符串时，启用子用户控制台登录，并设置新密码；
+- 当不传参时，沿用原设置；
         :type PathPrefix: String
         :param PasswordResetRequired: 可选参数，标识用户下次成功登录后是否需要设置新密码,带参数调用即为true，否则不带参数为false
         :type PathPrefix: Boolean
@@ -534,7 +541,7 @@ class GetLoginProfileRequest(AbstractModel):
         r"""查询登录配置信息
         :param UserName: 要查询的IAM子用户名称
         :type PathPrefix: String
-        :param NotCheckPassword: 
+        :param NotCheckPassword: 该字段默认是0，0的情况查询未开启控制台访问的账号会抛出异常"LoginProfileNoSuchEntity"，传1则都可以查看，可通过出参"ConsoleLogin"来判断是否开启了控制台访问和编程API访问。
         :type PathPrefix: Int
         """
         self.UserName = None
@@ -1513,3 +1520,29 @@ class GetUserSsoSettingsRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+
+class GetEffectivePoliciesRequest(AbstractModel):
+    """GetEffectivePolicies请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取有效的策略信息
+        :param PolicyName: 策略名称
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param MaxItems: 每页返回条数，最高500条
+        :type PathPrefix: Int
+        """
+        self.PolicyName = None
+        self.Page = None
+        self.MaxItems = None
+
+    def _deserialize(self, params):
+        if params.get("PolicyName"):
+            self.PolicyName = params.get("PolicyName")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("MaxItems"):
+            self.MaxItems = params.get("MaxItems")

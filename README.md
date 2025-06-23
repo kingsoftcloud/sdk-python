@@ -41,7 +41,7 @@ from ksyun.common import credential
 from ksyun.common.profile.client_profile import ClientProfile
 from ksyun.common.profile.http_profile import HttpProfile
 from ksyun.common.exception.ksyun_sdk_exception import KsyunSDKException
-from ksyun.client.iam.v20151101 import client, models
+from ksyun.client.iam.v20151101 import client as iam_client, models as iam_models
 
 try:
     # 实例化一个证书对象，入参需要传入secretId，secretKey
@@ -55,18 +55,20 @@ try:
     httpProfile.reqTimeout = 30  # 请求超时时间，单位为秒(默认60秒)
 
     clientProfile = ClientProfile()
+    # clientProfile.signMethod = "HMAC-SHA256"  # 指定签名算法
     clientProfile.httpProfile = httpProfile
-    client = client.IamClient(cred, "cn-beijing-6", clientProfile)
+    iamClient = iam_client.IamClient(cred, "cn-beijing-6", clientProfile)
 
     # 实例化一个请求对象, 每个接口都会对应一个request对象。
-    req = models.CreateUserRequest()
+    iamReq = iam_models.CreateUserRequest()
     # 传参
-    req.UserName = "test2_user_name"
+    iamReq.UserName = "test2_user_name"
     # 调用接口返回
-    resp = client.CreateUser(req)
-    print(resp)
+    iamResp = iamClient.CreateUser(iamReq)
+    print(iamResp)
 except KsyunSDKException as err:
     print(err)
+
 ```
 
 **注意，您必须明确知道您调用的接口所需参数，否则可能会调用失败。**

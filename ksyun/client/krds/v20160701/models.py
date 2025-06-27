@@ -355,75 +355,6 @@ class DeleteDBInstanceRequest(AbstractModel):
         if params.get("DBInstanceIdentifier"):
             self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
 
-
-class CreateDBInstanceReadReplicaRequest(AbstractModel):
-    """CreateDBInstanceReadReplica请求参数结构体
-    """
-
-    def __init__(self):
-        r"""create db instance read replica
-        :param DBInstanceIdentifier: 主实例ID。一个主实例最多只能有3个只读实例。
-        :type PathPrefix: String
-        :param DBInstanceName: 实例名称	不超过256个字节，仅支持中文、大小写字母、数字、减号和下划线
-        :type PathPrefix: String
-        :param AttachedVipId: 共享同一主实例下的只读实例IP，默认创建一个新的IP
-        :type PathPrefix: String
-        :param BillType: 计费方式	YEAR_MONTH（包年包月）,DAY（按日计费），默认值：YEAR_MONTH
-        :type PathPrefix: String
-        :param Duration: 购买时长	时长 默认值：1(单位:月) 注：billType=1(包年包月)则必填
-        :type PathPrefix: String
-        :param DurationUnit: 购买时长单位	 取值范围：M（月），默认值：M（区分大小写）
-        :type PathPrefix: String
-        :param AvailabilityZone.1: 可用区	示例(AvailabilityZone.1=cn-beijing-6a)，默认情况下只读实例可用区与主实例一致，如果主实例是跨可用区实例，只读实例会随机分布。
-        :type PathPrefix: String
-        :param ProjectId: 项目ID	可从IAM获取ProjectId
-        :type PathPrefix: Int
-        :param Vip: 只读IP地址	选定的IP地址
-        :type PathPrefix: String
-        :param Mem: 实例内存	实例内存大小
-        :type PathPrefix: Int
-        :param Disk: 实例硬盘	实例硬盘大小
-        :type PathPrefix: Int
-        """
-        self.DBInstanceIdentifier = None
-        self.DBInstanceName = None
-        self.AttachedVipId = None
-        self.BillType = None
-        self.Duration = None
-        self.DurationUnit = None
-        self.AvailabilityZone
-        .1 = None
-        self.ProjectId = None
-        self.Vip = None
-        self.Mem = None
-        self.Disk = None
-
-    def _deserialize(self, params):
-        if params.get("DBInstanceIdentifier"):
-            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
-        if params.get("DBInstanceName"):
-            self.DBInstanceName = params.get("DBInstanceName")
-        if params.get("AttachedVipId"):
-            self.AttachedVipId = params.get("AttachedVipId")
-        if params.get("BillType"):
-            self.BillType = params.get("BillType")
-        if params.get("Duration"):
-            self.Duration = params.get("Duration")
-        if params.get("DurationUnit"):
-            self.DurationUnit = params.get("DurationUnit")
-        if params.get("AvailabilityZone.1"):
-            self.AvailabilityZone
-            .1 = params.get("AvailabilityZone.1")
-        if params.get("ProjectId"):
-            self.ProjectId = params.get("ProjectId")
-        if params.get("Vip"):
-            self.Vip = params.get("Vip")
-        if params.get("Mem"):
-            self.Mem = params.get("Mem")
-        if params.get("Disk"):
-            self.Disk = params.get("Disk")
-
-
 class RestoreDBInstanceToPointInTimeRequest(AbstractModel):
     """RestoreDBInstanceToPointInTime请求参数结构体
     """
@@ -941,37 +872,6 @@ class ReleaseDBInstanceEipRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("DBInstanceIdentifier"):
             self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
-
-
-class ModifyDBInstanceAvailabilityZoneRequest(AbstractModel):
-    """ModifyDBInstanceAvailabilityZone请求参数结构体
-    """
-
-    def __init__(self):
-        r"""修改实例备库可用区
-        :param DBInstanceIdentifier: 实例ID
-        :type PathPrefix: String
-        :param AvailabilityZone.1: 主可用区	主所在可用区不可变
-        :type PathPrefix: String
-        :param AvailabilityZone.2: 备可用区
-        :type PathPrefix: String
-        """
-        self.DBInstanceIdentifier = None
-        self.AvailabilityZone
-        .1 = None
-        self.AvailabilityZone
-        .2 = None
-
-    def _deserialize(self, params):
-        if params.get("DBInstanceIdentifier"):
-            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
-        if params.get("AvailabilityZone.1"):
-            self.AvailabilityZone
-            .1 = params.get("AvailabilityZone.1")
-        if params.get("AvailabilityZone.2"):
-            self.AvailabilityZone
-            .2 = params.get("AvailabilityZone.2")
-
 
 class DescribeDBInstanceRegionsRequest(AbstractModel):
     """DescribeDBInstanceRegions请求参数结构体

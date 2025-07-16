@@ -8,7 +8,6 @@ class CdnClient(AbstractClient):
     _apiVersion = '2020-09-01'
     _endpoint = 'cdn.api.ksyun.com'
     _service = 'cdn'
-
     def CreateUserUsageDataExportTask(self, request):
         """创建用量导表任务
         :param request: Request instance for CreateUserUsageDataExportTask.
@@ -30,6 +29,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetUserUsageDataExportTask(self, request):
         """获取用量导表任务

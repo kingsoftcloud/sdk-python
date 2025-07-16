@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class ListAlarmPolicyRequest(AbstractModel):
     """ListAlarmPolicy请求参数结构体
     """

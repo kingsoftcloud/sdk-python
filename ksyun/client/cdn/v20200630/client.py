@@ -8,7 +8,6 @@ class CdnClient(AbstractClient):
     _apiVersion = '2020-06-30'
     _endpoint = 'cdn.api.ksyun.com'
     _service = 'cdn'
-
     def GetClientRequestData(self, request):
         """访问数据查询接口
         :param request: Request instance for GetClientRequestData.
@@ -30,6 +29,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetServerData(self, request):
         """服务数据查询接口

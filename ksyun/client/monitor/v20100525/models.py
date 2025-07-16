@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class GetMetricStatisticsRequest(AbstractModel):
     """GetMetricStatistics请求参数结构体
     """

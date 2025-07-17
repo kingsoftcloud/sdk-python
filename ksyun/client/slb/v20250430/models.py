@@ -359,7 +359,7 @@ class CreateBackendServerGroupRequest(AbstractModel):
         self.UrlPath = None
         self.HostName = None
         self.HealthCheckConnectPort = None
-        self.HealthProtocol(TCP | ICMP | UDP | HTTP) = None
+        self.HealthProtocol = None
         self.HttpMethod = None
         self.HealthCheckReq = None
         self.HealthCheckExp = None
@@ -402,8 +402,8 @@ class CreateBackendServerGroupRequest(AbstractModel):
             self.HostName = params.get("HostName")
         if params.get("HealthCheckConnectPort"):
             self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
-        if params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)"):
-            self.HealthProtocol(TCP | ICMP | UDP | HTTP) = params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)")
+        if params.get("HealthProtocol"):
+            self.HealthProtocol = params.get("HealthProtocol")
         if params.get("HttpMethod"):
             self.HttpMethod = params.get("HttpMethod")
         if params.get("HealthCheckReq"):

@@ -2779,7 +2779,7 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
         self.UrlPath = None
         self.HostName = None
         self.HealthCheckConnectPort = None
-        self.HealthProtocol(TCP | ICMP | UDP | HTTP) = None
+        self.HealthProtocol = None
         self.HttpMethod = None
         self.HealthCheckReq = None
         self.HealthCheckExp = None
@@ -2823,7 +2823,7 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
         if params.get("HealthCheckConnectPort"):
             self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
         if params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)"):
-            self.HealthProtocol(TCP | ICMP | UDP | HTTP) = params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)")
+            self.HealthProtocol = params.get("HealthProtocol")
         if params.get("HttpMethod"):
             self.HttpMethod = params.get("HttpMethod")
         if params.get("HealthCheckReq"):

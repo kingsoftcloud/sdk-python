@@ -130,12 +130,14 @@ class AbstractClient(object):
         uri_params = dict()
         if not (options and options.get("IsPostJson")):
             params = copy.deepcopy(self._fix_params(params))
+        else:
+            uri_params['Action'] = action[0].upper() + action[1:]
+            uri_params['Version'] = self._apiVersion
+
 
         params['Service'] = self._service
         params['Action'] = action[0].upper() + action[1:]
-        uri_params['Action'] = params['Action']
         params['Version'] = self._apiVersion
-        uri_params['Version'] = params['Version']
         params['SdkVersion'] = self._sdkVersion
 
         if self.region:
@@ -164,7 +166,7 @@ class AbstractClient(object):
         # GET上传文件报错
         if req.method == "GET" and content_type == _multipart_content:
             raise SDKError("ClientError", "Invalid request method GET for multipart.")
-        # 飞get请求在url添加 Action、Version
+        # 非get请求在url添加 Action、Version
         if req.method != "GET":
             params
 
@@ -179,7 +181,6 @@ class AbstractClient(object):
             req.header["Content-Type"] = content_type + "; boundary=" + boundary
             req.data = self._get_multipart_body(params, boundary, options)
 
-        # 传递url必传参数
         req.uri_params = urlencode(uri_params)
 
         # 组装签名

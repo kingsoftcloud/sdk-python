@@ -8,7 +8,6 @@ class SlbClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'slb.api.ksyun.com'
     _service = 'slb'
-
     def DescribeListeners(self, request):
         """描述监听器
         :param request: Request instance for DescribeListeners.
@@ -30,6 +29,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteListeners(self, request):
         """删除监听器
@@ -53,6 +53,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyListeners(self, request):
         """修改监听器配置
         :param request: Request instance for ModifyListeners.
@@ -75,6 +76,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateListeners(self, request):
         """创建监听器
         :param request: Request instance for CreateListeners.
@@ -96,6 +98,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyInstancesWithListener(self, request):
         """修改真实服务器信息
@@ -1132,7 +1135,7 @@ class SlbClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
     def CreateAlb(self, request):
-        """CreateAlb
+        """创建应用型负载均衡
         :param request: Request instance for CreateAlb.
         :type request: :class:`ksyun.client.slb.v20160304.models.CreateAlbRequest`
         """
@@ -1220,7 +1223,7 @@ class SlbClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
     def DescribeAlbs(self, request):
-        """DescribeAlbs
+        """查询应用型负载均衡
         :param request: Request instance for DescribeAlbs.
         :type request: :class:`ksyun.client.slb.v20160304.models.DescribeAlbsRequest`
         """
@@ -1879,6 +1882,30 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+    def RegisterBackendServerGroupWithListener(self, request):
+        """监听器绑定服务器组
+        :param request: Request instance for RegisterBackendServerGroupWithListener.
+        :type request: :class:`ksyun.client.slb.v20160304.models.RegisterBackendServerGroupWithListenerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RegisterBackendServerGroupWithListener", params,
+                                   "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def SetPrivateLinkDeleteProtection(self, request):
         """设置privateLink的删除保护
         :param request: Request instance for SetPrivateLinkDeleteProtection.
@@ -1953,6 +1980,28 @@ class SlbClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("AddAlbRules", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+    def SetLbProtocolLayers(self, request):
+        """设置ALB的实例规格
+        :param request: Request instance for SetLbProtocolLayers.
+        :type request: :class:`ksyun.client.slb.v20160304.models.SetLbProtocolLayersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetLbProtocolLayers", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

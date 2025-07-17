@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class DescribeListenersRequest(AbstractModel):
     """DescribeListeners请求参数结构体
     """
@@ -90,6 +89,8 @@ class ModifyListenersRequest(AbstractModel):
         :type PathPrefix: String
         :param CaEnabled: 是否开启双向认证
         :type PathPrefix: Boolean
+        :param UpstreamKeepalive: 开启后端长连接
+        :type PathPrefix: String
         """
         self.ListenerId = None
         self.ListenerName = None
@@ -109,6 +110,7 @@ class ModifyListenersRequest(AbstractModel):
         self.RedirectListenerId = None
         self.CaCertificateId = None
         self.CaEnabled = None
+        self.UpstreamKeepalive = None
 
     def _deserialize(self, params):
         if params.get("ListenerId"):
@@ -147,6 +149,8 @@ class ModifyListenersRequest(AbstractModel):
             self.CaCertificateId = params.get("CaCertificateId")
         if params.get("CaEnabled"):
             self.CaEnabled = params.get("CaEnabled")
+        if params.get("UpstreamKeepalive"):
+            self.UpstreamKeepalive = params.get("UpstreamKeepalive")
 
 
 class CreateListenersRequest(AbstractModel):
@@ -197,6 +201,8 @@ class CreateListenersRequest(AbstractModel):
         :type PathPrefix: String
         :param CaEnabled: 是否开启双向认证
         :type PathPrefix: Boolean
+        :param UpstreamKeepalive: 开启后端长连接
+        :type PathPrefix: String
         """
         self.LoadBalancerId = None
         self.ListenerName = None
@@ -219,6 +225,7 @@ class CreateListenersRequest(AbstractModel):
         self.CertificateId = None
         self.CaCertificateId = None
         self.CaEnabled = None
+        self.UpstreamKeepalive = None
 
     def _deserialize(self, params):
         if params.get("LoadBalancerId"):
@@ -263,6 +270,8 @@ class CreateListenersRequest(AbstractModel):
             self.CaCertificateId = params.get("CaCertificateId")
         if params.get("CaEnabled"):
             self.CaEnabled = params.get("CaEnabled")
+        if params.get("UpstreamKeepalive"):
+            self.UpstreamKeepalive = params.get("UpstreamKeepalive")
 
 
 class ModifyInstancesWithListenerRequest(AbstractModel):
@@ -934,6 +943,8 @@ class CreateBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param Region: Region机房
         :type PathPrefix: String
+        :param UpstreamKeepalive: 开启后端长连接
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.Protocol = None
@@ -947,6 +958,7 @@ class CreateBackendServerGroupRequest(AbstractModel):
         self.UnhealthyThreshold = None
         self.UrlPath = None
         self.Region = None
+        self.UpstreamKeepalive = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -973,6 +985,8 @@ class CreateBackendServerGroupRequest(AbstractModel):
             self.UrlPath = params.get("UrlPath")
         if params.get("Region"):
             self.Region = params.get("Region")
+        if params.get("UpstreamKeepalive"):
+            self.UpstreamKeepalive = params.get("UpstreamKeepalive")
 
 
 class DeleteBackendServerGroupRequest(AbstractModel):
@@ -1001,15 +1015,20 @@ class ModifyBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param BackendServerGroupName: 服务器组的名称
         :type PathPrefix: String
+        :param UpstreamKeepalive: 开启后端长连接
+        :type PathPrefix: String
         """
         self.BackendServerGroupId = None
         self.BackendServerGroupName = None
+        self.UpstreamKeepalive = None
 
     def _deserialize(self, params):
         if params.get("BackendServerGroupId"):
             self.BackendServerGroupId = params.get("BackendServerGroupId")
         if params.get("BackendServerGroupName"):
             self.BackendServerGroupName = params.get("BackendServerGroupName")
+        if params.get("UpstreamKeepalive"):
+            self.UpstreamKeepalive = params.get("UpstreamKeepalive")
 
 
 class DescribeBackendServerGroupsRequest(AbstractModel):
@@ -1788,7 +1807,7 @@ class CreateAlbRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""CreateAlb
+        r"""创建应用型负载均衡
         :param AlbName: 应用型负载均衡的名称
         :type PathPrefix: String
         :param AlbVersion: 应用型负载均衡支持的版本
@@ -1813,6 +1832,8 @@ class CreateAlbRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param EnableHpa: 是否开启弹性伸缩
         :type PathPrefix: Boolean
+        :param ProtocolLayers: 实例规格,可选 L4 / L7 / L4-L7 ,分别代指4层、7层、4-7层网络协议负载均衡
+        :type PathPrefix: String
         :param DeleteProtection: 是否开启删除保护on/off
         :type PathPrefix: String
         :param ModificationProtection: 是否开启修改保护on/off
@@ -1830,6 +1851,7 @@ class CreateAlbRequest(AbstractModel):
         self.PrivateIpAddress = None
         self.EnabledQuic = None
         self.EnableHpa = None
+        self.ProtocolLayers = None
         self.DeleteProtection = None
         self.ModificationProtection = None
 
@@ -1858,6 +1880,8 @@ class CreateAlbRequest(AbstractModel):
             self.EnabledQuic = params.get("EnabledQuic")
         if params.get("EnableHpa"):
             self.EnableHpa = params.get("EnableHpa")
+        if params.get("ProtocolLayers"):
+            self.ProtocolLayers = params.get("ProtocolLayers")
         if params.get("DeleteProtection"):
             self.DeleteProtection = params.get("DeleteProtection")
         if params.get("ModificationProtection"):
@@ -1927,7 +1951,7 @@ class DescribeAlbsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeAlbs
+        r"""查询应用型负载均衡
         :param AlbId: 多个应用型负载均衡的ID
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
@@ -1983,9 +2007,7 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param AlbListenerName: 应用型负载均衡监听器的名称
         :type PathPrefix: String
-        :param Method: 监听器的转发方式(RoundRobin|LeastConnections)
-        :type PathPrefix: String
-        :param Protocol: 监听器的协议(HTTP|HTTPS)
+        :param Protocol: 监听器的协议(TCP | TCPSSL | UDP | HTTP | HTTPS)
         :type PathPrefix: String
         :param Port: 监听器的协议端口
         :type PathPrefix: Int
@@ -2000,14 +2022,6 @@ class CreateAlbListenerRequest(AbstractModel):
         :param RedirectAlbListenerId: 重定向应用型监听器ID
         :type PathPrefix: String
         :param RedirectHttpCode: 重定向状态码
-        :type PathPrefix: String
-        :param SessionState: 会话保持的状态(start|stop)
-        :type PathPrefix: String
-        :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
-        :param CookieType: 会话类型
-        :type PathPrefix: String
-        :param CookieName: Cookie的名称
         :type PathPrefix: String
         :param EnableHttp2: 是否启用HTTP/2
         :type PathPrefix: Boolean
@@ -2025,10 +2039,11 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param QuicListenerId: QUIC监听器id
         :type PathPrefix: String
+        :param ServerGroupId: 服务器组 ID
+        :type PathPrefix: String
         """
         self.AlbId = None
         self.AlbListenerName = None
-        self.Method = None
         self.Protocol = None
         self.Port = None
         self.CertificateId = None
@@ -2037,10 +2052,6 @@ class CreateAlbListenerRequest(AbstractModel):
         self.AlbListenerState = None
         self.RedirectAlbListenerId = None
         self.RedirectHttpCode = None
-        self.SessionState = None
-        self.SessionPersistencePeriod = None
-        self.CookieType = None
-        self.CookieName = None
         self.EnableHttp2 = None
         self.BackendServerGroupId = None
         self.FixedResponseConfig = None
@@ -2049,14 +2060,13 @@ class CreateAlbListenerRequest(AbstractModel):
         self.CaCertificateId = None
         self.EnableQuicUpgrade = None
         self.QuicListenerId = None
+        self.ServerGroupId = None
 
     def _deserialize(self, params):
         if params.get("AlbId"):
             self.AlbId = params.get("AlbId")
         if params.get("AlbListenerName"):
             self.AlbListenerName = params.get("AlbListenerName")
-        if params.get("Method"):
-            self.Method = params.get("Method")
         if params.get("Protocol"):
             self.Protocol = params.get("Protocol")
         if params.get("Port"):
@@ -2073,14 +2083,6 @@ class CreateAlbListenerRequest(AbstractModel):
             self.RedirectAlbListenerId = params.get("RedirectAlbListenerId")
         if params.get("RedirectHttpCode"):
             self.RedirectHttpCode = params.get("RedirectHttpCode")
-        if params.get("SessionState"):
-            self.SessionState = params.get("SessionState")
-        if params.get("SessionPersistencePeriod"):
-            self.SessionPersistencePeriod = params.get("SessionPersistencePeriod")
-        if params.get("CookieType"):
-            self.CookieType = params.get("CookieType")
-        if params.get("CookieName"):
-            self.CookieName = params.get("CookieName")
         if params.get("EnableHttp2"):
             self.EnableHttp2 = params.get("EnableHttp2")
         if params.get("BackendServerGroupId"):
@@ -2097,6 +2099,8 @@ class CreateAlbListenerRequest(AbstractModel):
             self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("QuicListenerId"):
             self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("ServerGroupId"):
+            self.ServerGroupId = params.get("ServerGroupId")
 
 
 class ModifyAlbListenerRequest(AbstractModel):
@@ -2111,8 +2115,6 @@ class ModifyAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param AlbListenerState: 应用型监听器的状态
         :type PathPrefix: String
-        :param Method: 监听器的转发方式(RoundRobin|LeastConnections)
-        :type PathPrefix: String
         :param CertificateId: 证书的ID
         :type PathPrefix: String
         :param TlsCipherPolicy: TLS安全策略
@@ -2120,14 +2122,6 @@ class ModifyAlbListenerRequest(AbstractModel):
         :param AlbListenerAclId: LoadBalancerAcl的ID
         :type PathPrefix: String
         :param HttpProtocol: 后端协议版本(HTTP1.0|HTTP1.1)
-        :type PathPrefix: String
-        :param SessionState: 会话保持的状态
-        :type PathPrefix: String
-        :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
-        :param CookieType: 会话类型
-        :type PathPrefix: String
-        :param CookieName: Cookie的名称
         :type PathPrefix: String
         :param EnableHttp2: 是否启用HTTP/2
         :type PathPrefix: Boolean
@@ -2139,24 +2133,22 @@ class ModifyAlbListenerRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param QuicListenerId: QUIC监听器id
         :type PathPrefix: String
+        :param ServerGroupId: 服务器组 ID
+        :type PathPrefix: String
         """
         self.AlbListenerId = None
         self.AlbListenerName = None
         self.AlbListenerState = None
-        self.Method = None
         self.CertificateId = None
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
         self.HttpProtocol = None
-        self.SessionState = None
-        self.SessionPersistencePeriod = None
-        self.CookieType = None
-        self.CookieName = None
         self.EnableHttp2 = None
         self.CaEnabled = None
         self.CaCertificateId = None
         self.EnableQuicUpgrade = None
         self.QuicListenerId = None
+        self.ServerGroupId = None
 
     def _deserialize(self, params):
         if params.get("AlbListenerId"):
@@ -2165,8 +2157,6 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.AlbListenerName = params.get("AlbListenerName")
         if params.get("AlbListenerState"):
             self.AlbListenerState = params.get("AlbListenerState")
-        if params.get("Method"):
-            self.Method = params.get("Method")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
         if params.get("TlsCipherPolicy"):
@@ -2175,14 +2165,6 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.AlbListenerAclId = params.get("AlbListenerAclId")
         if params.get("HttpProtocol"):
             self.HttpProtocol = params.get("HttpProtocol")
-        if params.get("SessionState"):
-            self.SessionState = params.get("SessionState")
-        if params.get("SessionPersistencePeriod"):
-            self.SessionPersistencePeriod = params.get("SessionPersistencePeriod")
-        if params.get("CookieType"):
-            self.CookieType = params.get("CookieType")
-        if params.get("CookieName"):
-            self.CookieName = params.get("CookieName")
         if params.get("EnableHttp2"):
             self.EnableHttp2 = params.get("EnableHttp2")
         if params.get("CaEnabled"):
@@ -2193,6 +2175,8 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("QuicListenerId"):
             self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("ServerGroupId"):
+            self.ServerGroupId = params.get("ServerGroupId")
 
 
 class DeleteAlbListenerRequest(AbstractModel):
@@ -2254,33 +2238,7 @@ class CreateAlbRuleGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param BackendServerGroupId: 后端服务器组的ID
         :type PathPrefix: String
-        :param ListenerSync: 是否同步监听器的健康检查、会话保持和转发算法(on|off)
-        :type PathPrefix: String
-        :param Method: 监听器的转发方式(RoundRobin|LeastConnections)
-        :type PathPrefix: String
         :param Type: 转发动作类型
-        :type PathPrefix: String
-        :param SessionState: 会话保持的状态，在ListenerSync为off时有效
-        :type PathPrefix: String
-        :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
-        :param CookieType: 会话类型(ImplantCookie|RewriteCookie)
-        :type PathPrefix: String
-        :param CookieName: Cookie的名称
-        :type PathPrefix: String
-        :param HealthCheckState: 健康检查保持的状态(start|stop)，在ListenerSync为off时有效
-        :type PathPrefix: String
-        :param Timeout: 健康检查超时时间
-        :type PathPrefix: Int
-        :param Interval: 健康检查时间间隔
-        :type PathPrefix: Int
-        :param HealthyThreshold: 健康阈值
-        :type PathPrefix: Int
-        :param UnhealthyThreshold: 不健康阈值
-        :type PathPrefix: Int
-        :param UrlPath: HTTP类型监听器健康检查的链接
-        :type PathPrefix: String
-        :param HostName: HTTP类型健康检查的域名
         :type PathPrefix: String
         :param AlbRuleSet: 规则的信息
         :type PathPrefix: Array
@@ -2296,20 +2254,7 @@ class CreateAlbRuleGroupRequest(AbstractModel):
         self.AlbRuleGroupName = None
         self.AlbListenerId = None
         self.BackendServerGroupId = None
-        self.ListenerSync = None
-        self.Method = None
         self.Type = None
-        self.SessionState = None
-        self.SessionPersistencePeriod = None
-        self.CookieType = None
-        self.CookieName = None
-        self.HealthCheckState = None
-        self.Timeout = None
-        self.Interval = None
-        self.HealthyThreshold = None
-        self.UnhealthyThreshold = None
-        self.UrlPath = None
-        self.HostName = None
         self.AlbRuleSet = None
         self.RedirectAlbListenerId = None
         self.RedirectHttpCode = None
@@ -2323,34 +2268,8 @@ class CreateAlbRuleGroupRequest(AbstractModel):
             self.AlbListenerId = params.get("AlbListenerId")
         if params.get("BackendServerGroupId"):
             self.BackendServerGroupId = params.get("BackendServerGroupId")
-        if params.get("ListenerSync"):
-            self.ListenerSync = params.get("ListenerSync")
-        if params.get("Method"):
-            self.Method = params.get("Method")
         if params.get("Type"):
             self.Type = params.get("Type")
-        if params.get("SessionState"):
-            self.SessionState = params.get("SessionState")
-        if params.get("SessionPersistencePeriod"):
-            self.SessionPersistencePeriod = params.get("SessionPersistencePeriod")
-        if params.get("CookieType"):
-            self.CookieType = params.get("CookieType")
-        if params.get("CookieName"):
-            self.CookieName = params.get("CookieName")
-        if params.get("HealthCheckState"):
-            self.HealthCheckState = params.get("HealthCheckState")
-        if params.get("Timeout"):
-            self.Timeout = params.get("Timeout")
-        if params.get("Interval"):
-            self.Interval = params.get("Interval")
-        if params.get("HealthyThreshold"):
-            self.HealthyThreshold = params.get("HealthyThreshold")
-        if params.get("UnhealthyThreshold"):
-            self.UnhealthyThreshold = params.get("UnhealthyThreshold")
-        if params.get("UrlPath"):
-            self.UrlPath = params.get("UrlPath")
-        if params.get("HostName"):
-            self.HostName = params.get("HostName")
         if params.get("AlbRuleSet"):
             self.AlbRuleSet = params.get("AlbRuleSet")
         if params.get("RedirectAlbListenerId"):
@@ -2422,33 +2341,7 @@ class ModifyAlbRuleGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param BackendServerGroupId: 后端服务器组的ID
         :type PathPrefix: String
-        :param ListenerSync: 是否同步监听器的健康检查、会话保持和转发算法(on | off)
-        :type PathPrefix: String
-        :param Method: 监听器的转发方式(RoundRobin|LeastConnections)
-        :type PathPrefix: String
         :param Type: 转发动作类型
-        :type PathPrefix: String
-        :param SessionState: 会话保持的状态，在ListenerSync为off时有效
-        :type PathPrefix: String
-        :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
-        :param CookieType: 会话类型(ImplantCookie|RewriteCookie)
-        :type PathPrefix: String
-        :param CookieName: Cookie的名称
-        :type PathPrefix: String
-        :param HealthCheckState: 健康检查保持的状态(start|stop)，在ListenerSync为off时有效
-        :type PathPrefix: String
-        :param Timeout: 健康检查超时时间
-        :type PathPrefix: Int
-        :param Interval: 健康检查时间间隔
-        :type PathPrefix: Int
-        :param HealthyThreshold: 健康阈值
-        :type PathPrefix: Int
-        :param UnhealthyThreshold: 不健康阈值
-        :type PathPrefix: Int
-        :param UrlPath: HTTP类型监听器健康检查的链接
-        :type PathPrefix: String
-        :param HostName: HTTP类型健康检查的域名
         :type PathPrefix: String
         :param AlbRuleSet: 规则的信息
         :type PathPrefix: Array
@@ -2462,20 +2355,7 @@ class ModifyAlbRuleGroupRequest(AbstractModel):
         self.AlbRuleGroupId = None
         self.AlbRuleGroupName = None
         self.BackendServerGroupId = None
-        self.ListenerSync = None
-        self.Method = None
         self.Type = None
-        self.SessionState = None
-        self.SessionPersistencePeriod = None
-        self.CookieType = None
-        self.CookieName = None
-        self.HealthCheckState = None
-        self.Timeout = None
-        self.Interval = None
-        self.HealthyThreshold = None
-        self.UnhealthyThreshold = None
-        self.UrlPath = None
-        self.HostName = None
         self.AlbRuleSet = None
         self.RedirectAlbListenerId = None
         self.RedirectHttpCode = None
@@ -2488,34 +2368,8 @@ class ModifyAlbRuleGroupRequest(AbstractModel):
             self.AlbRuleGroupName = params.get("AlbRuleGroupName")
         if params.get("BackendServerGroupId"):
             self.BackendServerGroupId = params.get("BackendServerGroupId")
-        if params.get("ListenerSync"):
-            self.ListenerSync = params.get("ListenerSync")
-        if params.get("Method"):
-            self.Method = params.get("Method")
         if params.get("Type"):
             self.Type = params.get("Type")
-        if params.get("SessionState"):
-            self.SessionState = params.get("SessionState")
-        if params.get("SessionPersistencePeriod"):
-            self.SessionPersistencePeriod = params.get("SessionPersistencePeriod")
-        if params.get("CookieType"):
-            self.CookieType = params.get("CookieType")
-        if params.get("CookieName"):
-            self.CookieName = params.get("CookieName")
-        if params.get("HealthCheckState"):
-            self.HealthCheckState = params.get("HealthCheckState")
-        if params.get("Timeout"):
-            self.Timeout = params.get("Timeout")
-        if params.get("Interval"):
-            self.Interval = params.get("Interval")
-        if params.get("HealthyThreshold"):
-            self.HealthyThreshold = params.get("HealthyThreshold")
-        if params.get("UnhealthyThreshold"):
-            self.UnhealthyThreshold = params.get("UnhealthyThreshold")
-        if params.get("UrlPath"):
-            self.UrlPath = params.get("UrlPath")
-        if params.get("HostName"):
-            self.HostName = params.get("HostName")
         if params.get("AlbRuleSet"):
             self.AlbRuleSet = params.get("AlbRuleSet")
         if params.get("RedirectAlbListenerId"):
@@ -2864,18 +2718,72 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param Name: ALB负载均衡的名称
         :type PathPrefix: String
-        :param BackendServerType: 服务器组的正实服务器类型
+        :param BackendServerType: 服务器组的服务器类型
+        :type PathPrefix: String
+        :param Method: 调度算法（RoundRobin | LeastConnections | MasterSlave | QUIC_CID | IPHash）
+        :type PathPrefix: String
+        :param SessionState: 会话保持的状态(start|stop)
+        :type PathPrefix: String
+        :param SessionPersistencePeriod: 会话保持超时时间
+        :type PathPrefix: Int
+        :param CookieType: 会话类型
+        :type PathPrefix: String
+        :param CookieName: Cookie的名称
         :type PathPrefix: String
         :param UpstreamKeepalive: 后端长连接类型
         :type PathPrefix: String
-        :param Protocol: 后端协议 (HTTP|gRPC)
+        :param Protocol: 后端协议 (TCP | UDP |HTTP | gRPC | HTTPS)
+        :type PathPrefix: String
+        :param HealthCheckState: 健康检查保持的状态(start|stop)
+        :type PathPrefix: String
+        :param Timeout: 健康检查超时时间
+        :type PathPrefix: Int
+        :param Interval: 健康检查时间间隔
+        :type PathPrefix: Int
+        :param HealthyThreshold: 健康阈值
+        :type PathPrefix: Int
+        :param UnhealthyThreshold: 不健康阈值
+        :type PathPrefix: Int
+        :param UrlPath: HTTP类型监听器健康检查的链接
+        :type PathPrefix: String
+        :param HostName: HTTP类型健康检查的域名
+        :type PathPrefix: String
+        :param HealthCheckConnectPort: 健康检查端口
+        :type PathPrefix: Int
+        :param HealthProtocol(TCP | ICMP| UDP | HTTP): 健康检查协议
+        :type PathPrefix: String
+        :param HttpMethod: HTTP请求方式 (GET|HEAD)
+        :type PathPrefix: String
+        :param HealthCheckReq: UDP监听器健康检查的请求串
+        :type PathPrefix: String
+        :param HealthCheckExp: UDP监听器健康检查的响应串
+        :type PathPrefix: String
+        :param HealthCode: 健康状态返回码
         :type PathPrefix: String
         """
         self.VpcId = None
         self.Name = None
         self.BackendServerType = None
+        self.Method = None
+        self.SessionState = None
+        self.SessionPersistencePeriod = None
+        self.CookieType = None
+        self.CookieName = None
         self.UpstreamKeepalive = None
         self.Protocol = None
+        self.HealthCheckState = None
+        self.Timeout = None
+        self.Interval = None
+        self.HealthyThreshold = None
+        self.UnhealthyThreshold = None
+        self.UrlPath = None
+        self.HostName = None
+        self.HealthCheckConnectPort = None
+        self.HealthProtocol(TCP | ICMP | UDP | HTTP) = None
+        self.HttpMethod = None
+        self.HealthCheckReq = None
+        self.HealthCheckExp = None
+        self.HealthCode = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -2884,10 +2792,46 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
             self.Name = params.get("Name")
         if params.get("BackendServerType"):
             self.BackendServerType = params.get("BackendServerType")
+        if params.get("Method"):
+            self.Method = params.get("Method")
+        if params.get("SessionState"):
+            self.SessionState = params.get("SessionState")
+        if params.get("SessionPersistencePeriod"):
+            self.SessionPersistencePeriod = params.get("SessionPersistencePeriod")
+        if params.get("CookieType"):
+            self.CookieType = params.get("CookieType")
+        if params.get("CookieName"):
+            self.CookieName = params.get("CookieName")
         if params.get("UpstreamKeepalive"):
             self.UpstreamKeepalive = params.get("UpstreamKeepalive")
         if params.get("Protocol"):
             self.Protocol = params.get("Protocol")
+        if params.get("HealthCheckState"):
+            self.HealthCheckState = params.get("HealthCheckState")
+        if params.get("Timeout"):
+            self.Timeout = params.get("Timeout")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("HealthyThreshold"):
+            self.HealthyThreshold = params.get("HealthyThreshold")
+        if params.get("UnhealthyThreshold"):
+            self.UnhealthyThreshold = params.get("UnhealthyThreshold")
+        if params.get("UrlPath"):
+            self.UrlPath = params.get("UrlPath")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("HealthCheckConnectPort"):
+            self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
+        if params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)"):
+            self.HealthProtocol(TCP | ICMP | UDP | HTTP) = params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)")
+        if params.get("HttpMethod"):
+            self.HttpMethod = params.get("HttpMethod")
+        if params.get("HealthCheckReq"):
+            self.HealthCheckReq = params.get("HealthCheckReq")
+        if params.get("HealthCheckExp"):
+            self.HealthCheckExp = params.get("HealthCheckExp")
+        if params.get("HealthCode"):
+            self.HealthCode = params.get("HealthCode")
 
 
 class DeleteAlbBackendServerGroupRequest(AbstractModel):
@@ -2918,10 +2862,64 @@ class ModifyAlbBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param UpstreamKeepalive: 后端长连接类型
         :type PathPrefix: String
+        :param Method: 转发方式
+        :type PathPrefix: String
+        :param SessionState: 会话保持的状态(start|stop)
+        :type PathPrefix: String
+        :param SessionPersistencePeriod: 会话保持超时时间
+        :type PathPrefix: Int
+        :param CookieType: 会话类型
+        :type PathPrefix: String
+        :param CookieName: Cookie的名称
+        :type PathPrefix: String
+        :param HealthCheckState: 健康检查保持的状态(start|stop)
+        :type PathPrefix: String
+        :param Timeout: 健康检查超时时间
+        :type PathPrefix: Int
+        :param Interval: 健康检查时间间隔
+        :type PathPrefix: Int
+        :param HealthyThreshold: 健康阈值
+        :type PathPrefix: Int
+        :param UnhealthyThreshold: 不健康阈值
+        :type PathPrefix: Int
+        :param UrlPath: HTTP类型监听器健康检查的链接
+        :type PathPrefix: String
+        :param HostName: HTTP类型健康检查的域名
+        :type PathPrefix: String
+        :param HealthCheckConnectPort: 健康检查端口
+        :type PathPrefix: Int
+        :param HealthProtocol: 健康检查协议(TCP | ICMP| UDP | HTTP)
+        :type PathPrefix: String
+        :param HttpMethod: HTTP请求方式 (GET|HEAD)
+        :type PathPrefix: String
+        :param HealthCode: 健康状态返回码
+        :type PathPrefix: String
+        :param HealthCheckReq: UDP监听器健康检查的请求串
+        :type PathPrefix: String
+        :param HealthCheckExp: UDP监听器健康检查的响应串
+        :type PathPrefix: String
         """
         self.BackendServerGroupId = None
         self.Name = None
         self.UpstreamKeepalive = None
+        self.Method = None
+        self.SessionState = None
+        self.SessionPersistencePeriod = None
+        self.CookieType = None
+        self.CookieName = None
+        self.HealthCheckState = None
+        self.Timeout = None
+        self.Interval = None
+        self.HealthyThreshold = None
+        self.UnhealthyThreshold = None
+        self.UrlPath = None
+        self.HostName = None
+        self.HealthCheckConnectPort = None
+        self.HealthProtocol = None
+        self.HttpMethod = None
+        self.HealthCode = None
+        self.HealthCheckReq = None
+        self.HealthCheckExp = None
 
     def _deserialize(self, params):
         if params.get("BackendServerGroupId"):
@@ -2930,6 +2928,42 @@ class ModifyAlbBackendServerGroupRequest(AbstractModel):
             self.Name = params.get("Name")
         if params.get("UpstreamKeepalive"):
             self.UpstreamKeepalive = params.get("UpstreamKeepalive")
+        if params.get("Method"):
+            self.Method = params.get("Method")
+        if params.get("SessionState"):
+            self.SessionState = params.get("SessionState")
+        if params.get("SessionPersistencePeriod"):
+            self.SessionPersistencePeriod = params.get("SessionPersistencePeriod")
+        if params.get("CookieType"):
+            self.CookieType = params.get("CookieType")
+        if params.get("CookieName"):
+            self.CookieName = params.get("CookieName")
+        if params.get("HealthCheckState"):
+            self.HealthCheckState = params.get("HealthCheckState")
+        if params.get("Timeout"):
+            self.Timeout = params.get("Timeout")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("HealthyThreshold"):
+            self.HealthyThreshold = params.get("HealthyThreshold")
+        if params.get("UnhealthyThreshold"):
+            self.UnhealthyThreshold = params.get("UnhealthyThreshold")
+        if params.get("UrlPath"):
+            self.UrlPath = params.get("UrlPath")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("HealthCheckConnectPort"):
+            self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
+        if params.get("HealthProtocol"):
+            self.HealthProtocol = params.get("HealthProtocol")
+        if params.get("HttpMethod"):
+            self.HttpMethod = params.get("HttpMethod")
+        if params.get("HealthCode"):
+            self.HealthCode = params.get("HealthCode")
+        if params.get("HealthCheckReq"):
+            self.HealthCheckReq = params.get("HealthCheckReq")
+        if params.get("HealthCheckExp"):
+            self.HealthCheckExp = params.get("HealthCheckExp")
 
 
 class DescribeAlbBackendServerGroupsRequest(AbstractModel):
@@ -2940,18 +2974,23 @@ class DescribeAlbBackendServerGroupsRequest(AbstractModel):
         r"""查询ALB服务器组
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
+        :param BackendServerGroupId: 多个服务器组id
+        :type PathPrefix: Filter
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
         """
         self.Filter = None
+        self.BackendServerGroupId = None
         self.MaxResults = None
         self.NextToken = None
 
     def _deserialize(self, params):
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("BackendServerGroupId"):
+            self.BackendServerGroupId = params.get("BackendServerGroupId")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
@@ -2976,6 +3015,8 @@ class RegisterAlbBackendServerRequest(AbstractModel):
         :type PathPrefix: String
         :param DirectConnectGatewayId: 对等连接id
         :type PathPrefix: String
+        :param MasterSlaveType: 真实服务器的主备状态
+        :type PathPrefix: String
         """
         self.BackendServerGroupId = None
         self.BackendServerIp = None
@@ -2983,6 +3024,7 @@ class RegisterAlbBackendServerRequest(AbstractModel):
         self.Weight = None
         self.NetworkInterfaceId = None
         self.DirectConnectGatewayId = None
+        self.MasterSlaveType = None
 
     def _deserialize(self, params):
         if params.get("BackendServerGroupId"):
@@ -2997,6 +3039,8 @@ class RegisterAlbBackendServerRequest(AbstractModel):
             self.NetworkInterfaceId = params.get("NetworkInterfaceId")
         if params.get("DirectConnectGatewayId"):
             self.DirectConnectGatewayId = params.get("DirectConnectGatewayId")
+        if params.get("MasterSlaveType"):
+            self.MasterSlaveType = params.get("MasterSlaveType")
 
 
 class DeregisterAlbBackendServerRequest(AbstractModel):
@@ -3025,15 +3069,25 @@ class ModifyAlbBackendServerRequest(AbstractModel):
         :type PathPrefix: String
         :param Weight: 服务器的权重
         :type PathPrefix: Int
+        :param Port: 服务器端口
+        :type PathPrefix: Int
+        :param MasterSlaveType: 真实服务器的主备状态(Master | Slave)
+        :type PathPrefix: String
         """
         self.BackendServerId = None
         self.Weight = None
+        self.Port = None
+        self.MasterSlaveType = None
 
     def _deserialize(self, params):
         if params.get("BackendServerId"):
             self.BackendServerId = params.get("BackendServerId")
         if params.get("Weight"):
             self.Weight = params.get("Weight")
+        if params.get("Port"):
+            self.Port = params.get("Port")
+        if params.get("MasterSlaveType"):
+            self.MasterSlaveType = params.get("MasterSlaveType")
 
 
 class DescribeAlbBackendServersRequest(AbstractModel):
@@ -3044,22 +3098,48 @@ class DescribeAlbBackendServersRequest(AbstractModel):
         r"""查询ALB服务器信息
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
+        :param BackendServerId: 多个服务器ServerId
+        :type PathPrefix: Filter
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
         """
         self.Filter = None
+        self.BackendServerId = None
         self.MaxResults = None
         self.NextToken = None
 
     def _deserialize(self, params):
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("BackendServerId"):
+            self.BackendServerId = params.get("BackendServerId")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+
+
+class RegisterBackendServerGroupWithListenerRequest(AbstractModel):
+    """RegisterBackendServerGroupWithListener请求参数结构体
+    """
+
+    def __init__(self):
+        r"""监听器绑定服务器组
+        :param ListenerId: 监听器的ID
+        :type PathPrefix: String
+        :param BackendServerGroupId: 后端服务器组的ID
+        :type PathPrefix: String
+        """
+        self.ListenerId = None
+        self.BackendServerGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("ListenerId"):
+            self.ListenerId = params.get("ListenerId")
+        if params.get("BackendServerGroupId"):
+            self.BackendServerGroupId = params.get("BackendServerGroupId")
 
 
 class SetPrivateLinkDeleteProtectionRequest(AbstractModel):
@@ -3174,3 +3254,24 @@ class AddAlbRulesRequest(AbstractModel):
             self.QueryValue = params.get("QueryValue")
         if params.get("CookieValue"):
             self.CookieValue = params.get("CookieValue")
+
+
+class SetLbProtocolLayersRequest(AbstractModel):
+    """SetLbProtocolLayers请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置ALB的实例规格
+        :param AlbId: 负载均衡的ID
+        :type PathPrefix: String
+        :param ProtocolLayers: 实例规格,可选 L4 / L7 / L4-L7
+        :type PathPrefix: String
+        """
+        self.AlbId = None
+        self.ProtocolLayers = None
+
+    def _deserialize(self, params):
+        if params.get("AlbId"):
+            self.AlbId = params.get("AlbId")
+        if params.get("ProtocolLayers"):
+            self.ProtocolLayers = params.get("ProtocolLayers")

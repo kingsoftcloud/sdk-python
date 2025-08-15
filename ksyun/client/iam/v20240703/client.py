@@ -8,7 +8,6 @@ class IamClient(AbstractClient):
     _apiVersion = '2024-07-03'
     _endpoint = 'iam.api.ksyun.com'
     _service = 'iam'
-
     def ProjectsInfoByInstanceIds(self, request):
         """根据实例ID查询所属项目
         :param request: Request instance for ProjectsInfoByInstanceIds.
@@ -30,3 +29,5 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

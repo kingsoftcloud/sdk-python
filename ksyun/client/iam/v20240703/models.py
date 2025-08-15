@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class ProjectsInfoByInstanceIdsRequest(AbstractModel):
     """ProjectsInfoByInstanceIds请求参数结构体
     """
@@ -15,3 +14,5 @@ class ProjectsInfoByInstanceIdsRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+
+

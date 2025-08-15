@@ -954,37 +954,6 @@ class GetAccountAllProjectListRequest(AbstractModel):
         return
 
 
-class GetProjectInstanceListRequest(AbstractModel):
-    """GetProjectInstanceList请求参数结构体
-    """
-
-    def __init__(self):
-        r"""获取项目资源列表
-        :param ProjectId: 项目id
-        :type PathPrefix: Int
-        :param ProductLine: 资源类型标识
-        :type PathPrefix: String
-        :param Ps: 每页条数，默认10, 最大100条
-        :type PathPrefix: Int
-        :param Pn: 页码。默认1
-        :type PathPrefix: Int
-        """
-        self.ProjectId = None
-        self.ProductLine = None
-        self.Ps = None
-        self.Pn = None
-
-    def _deserialize(self, params):
-        if params.get("ProjectId"):
-            self.ProjectId = params.get("ProjectId")
-        if params.get("ProductLine"):
-            self.ProductLine = params.get("ProductLine")
-        if params.get("Ps"):
-            self.Ps = params.get("Ps")
-        if params.get("Pn"):
-            self.Pn = params.get("Pn")
-
-
 class UpdateInstanceProjectIdRequest(AbstractModel):
     """UpdateInstanceProjectId请求参数结构体
     """
@@ -1137,15 +1106,20 @@ class UpdatePolicyRequest(AbstractModel):
         :type PathPrefix: String
         :param NewDescription: 新策略描述
         :type PathPrefix: String
+        :param NewPolicyName: 策略名称
+        :type PathPrefix: String
         """
         self.PolicyKrn = None
         self.NewDescription = None
+        self.NewPolicyName = None
 
     def _deserialize(self, params):
         if params.get("PolicyKrn"):
             self.PolicyKrn = params.get("PolicyKrn")
         if params.get("NewDescription"):
             self.NewDescription = params.get("NewDescription")
+        if params.get("NewPolicyName"):
+            self.NewPolicyName = params.get("NewPolicyName")
 
 
 class CreateGroupRequest(AbstractModel):
@@ -1161,15 +1135,20 @@ class CreateGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param Description: 用户组描述，1-64字符
         :type PathPrefix: String
+        :param GroupRealName: 组别名
+        :type PathPrefix: String
         """
         self.GroupName = None
         self.Description = None
+        self.GroupRealName = None
 
     def _deserialize(self, params):
         if params.get("GroupName"):
             self.GroupName = params.get("GroupName")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("GroupRealName"):
+            self.GroupRealName = params.get("GroupRealName")
 
 
 class DeleteGroupRequest(AbstractModel):
@@ -1372,6 +1351,58 @@ class RemoveUserFromGroupRequest(AbstractModel):
             self.UserName = params.get("UserName")
 
 
+class UpdateGroupRequest(AbstractModel):
+    """UpdateGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新用户组基本信息
+        :param GroupName: 要更新的用户组名称
+        :type PathPrefix: String
+        :param Description: 新用户组描述
+        :type PathPrefix: String
+        :param GroupRealName: 新别名
+        :type PathPrefix: String
+        """
+        self.GroupName = None
+        self.Description = None
+        self.GroupRealName = None
+
+    def _deserialize(self, params):
+        if params.get("GroupName"):
+            self.GroupName = params.get("GroupName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("GroupRealName"):
+            self.GroupRealName = params.get("GroupRealName")
+
+
+class ListUsersForGroupRequest(AbstractModel):
+    """ListUsersForGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取组成员列表
+        :param GroupName: 组名
+        :type PathPrefix: String
+        :param MaxItems: 默认500条，最大1000条
+        :type PathPrefix: Int
+        :param Page: 页码
+        :type PathPrefix: Int
+        """
+        self.GroupName = None
+        self.MaxItems = None
+        self.Page = None
+
+    def _deserialize(self, params):
+        if params.get("GroupName"):
+            self.GroupName = params.get("GroupName")
+        if params.get("MaxItems"):
+            self.MaxItems = params.get("MaxItems")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+
+
 class ListAllUserAccessKeysRequest(AbstractModel):
     """ListAllUserAccessKeys请求参数结构体
     """
@@ -1546,3 +1577,5 @@ class GetEffectivePoliciesRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("MaxItems"):
             self.MaxItems = params.get("MaxItems")
+
+

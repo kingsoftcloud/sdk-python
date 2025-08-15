@@ -53,6 +53,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateUser(self, request):
         """更新用户基本信息
         :param request: Request instance for UpdateUser.
@@ -74,6 +75,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetUser(self, request):
         """查询子用户基本信息
@@ -97,6 +99,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteUser(self, request):
         """删除子用户
         :param request: Request instance for DeleteUser.
@@ -118,6 +121,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachUserPolicy(self, request):
         """解绑IAM用户策略
@@ -141,6 +145,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListAttachedUserPolicies(self, request):
         """查询用户附加策略列表
         :param request: Request instance for ListAttachedUserPolicies.
@@ -162,6 +167,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListPolicyVersions(self, request):
         """查询策略版本列表
@@ -185,6 +191,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SetDefaultPolicyVersion(self, request):
         """设定默认策略版本
         :param request: Request instance for SetDefaultPolicyVersion.
@@ -206,6 +213,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AttachUserPolicy(self, request):
         """附加用户策略
@@ -229,6 +237,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeletePolicyVersion(self, request):
         """删除策略版本内容
         :param request: Request instance for DeletePolicyVersion.
@@ -250,6 +259,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetPolicyVersion(self, request):
         """查询策略版本内容
@@ -273,6 +283,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreatePolicyVersion(self, request):
         """新建策略版本内容
         :param request: Request instance for CreatePolicyVersion.
@@ -294,6 +305,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListPolicies(self, request):
         """查询策略信息列表
@@ -317,6 +329,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetPolicy(self, request):
         """查询策略元数据信息
         :param request: Request instance for GetPolicy.
@@ -338,6 +351,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeletePolicy(self, request):
         """删除策略
@@ -361,6 +375,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreatePolicy(self, request):
         """新建策略
         :param request: Request instance for CreatePolicy.
@@ -382,6 +397,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ChangePassword(self, request):
         """子用户修改密码
@@ -405,6 +421,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateLoginProfile(self, request):
         """更新子用户登录配置
         :param request: Request instance for UpdateLoginProfile.
@@ -426,6 +443,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetLoginProfile(self, request):
         """查询登录配置信息
@@ -449,6 +467,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateAccessKey(self, request):
         """生成访问密钥
         :param request: Request instance for CreateAccessKey.
@@ -470,6 +489,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListAccessKeys(self, request):
         """查询访问密钥列表
@@ -493,6 +513,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateAccessKey(self, request):
         """更新访问密钥
         :param request: Request instance for UpdateAccessKey.
@@ -514,6 +535,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteAccessKey(self, request):
         """删除访问密钥
@@ -537,6 +559,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListVirtualMFADevices(self, request):
         """查询虚拟设备列表
         :param request: Request instance for ListVirtualMFADevices.
@@ -558,6 +581,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def EnableMFADevice(self, request):
         """激活虚拟设备
@@ -581,6 +605,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeactivateMFADevice(self, request):
         """解绑虚拟设备
         :param request: Request instance for DeactivateMFADevice.
@@ -602,6 +627,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetVirtualMFADevice(self, request):
         """获取虚拟设备
@@ -625,6 +651,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateRole(self, request):
         """创建角色
         :param request: Request instance for CreateRole.
@@ -646,6 +673,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRole(self, request):
         """删除角色
@@ -669,6 +697,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetRole(self, request):
         """查询角色基本信息
         :param request: Request instance for GetRole.
@@ -690,6 +719,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListRoles(self, request):
         """查询账号的角色列表
@@ -713,6 +743,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AttachRolePolicy(self, request):
         """附加角色的访问策略
         :param request: Request instance for AttachRolePolicy.
@@ -734,6 +765,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachRolePolicy(self, request):
         """分离角色的访问策略
@@ -757,6 +789,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListAttachedRolePolicies(self, request):
         """查询角色附加的策略列表
         :param request: Request instance for ListAttachedRolePolicies.
@@ -778,6 +811,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateRoleTrustAccounts(self, request):
         """更新角色的信任关系
@@ -801,6 +835,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateProject(self, request):
         """创建项目
         :param request: Request instance for CreateProject.
@@ -822,6 +857,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateProjectInfo(self, request):
         """更新项目信息
@@ -845,6 +881,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetAccountAllProjectList(self, request):
         """获取主/子用户项目列表
         :param request: Request instance for GetAccountAllProjectList.
@@ -867,27 +904,6 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def GetProjectInstanceList(self, request):
-        """获取项目资源列表
-        :param request: Request instance for GetProjectInstanceList.
-        :type request: :class:`ksyun.client.iam.v20151101.models.GetProjectInstanceListRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetProjectInstanceList", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def UpdateInstanceProjectId(self, request):
         """更新实例项目
@@ -911,6 +927,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListEntitiesForPolicy(self, request):
         """查询策略关联实体列表
         :param request: Request instance for ListEntitiesForPolicy.
@@ -918,7 +935,7 @@ class IamClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ListEntitiesForPolicy", params, "application/json")
+            body = self.call_judge("ListEntitiesForPolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -932,6 +949,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListProjectMember(self, request):
         """查询项目成员列表
@@ -955,6 +973,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteProjectMember(self, request):
         """删除项目成员
         :param request: Request instance for DeleteProjectMember.
@@ -976,6 +995,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddProjectMember(self, request):
         """添加项目成员
@@ -999,6 +1019,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateRole(self, request):
         """更新角基本描述
         :param request: Request instance for UpdateRole.
@@ -1020,6 +1041,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdatePolicy(self, request):
         """更新策略描述
@@ -1043,6 +1065,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateGroup(self, request):
         """创建用户组
         :param request: Request instance for CreateGroup.
@@ -1064,6 +1087,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteGroup(self, request):
         """删除用户组
@@ -1087,6 +1111,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DetachGroupPolicy(self, request):
         """从用户组分离策略
         :param request: Request instance for DetachGroupPolicy.
@@ -1108,6 +1133,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AttachGroupPolicy(self, request):
         """附加策略到用户组
@@ -1131,6 +1157,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListGroupPolicies(self, request):
         """获取用户组权限列表
         :param request: Request instance for ListGroupPolicies.
@@ -1152,6 +1179,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddUserToGroup(self, request):
         """添加用户到用户组
@@ -1175,6 +1203,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetGroup(self, request):
         """获取用户组基础信息
         :param request: Request instance for GetGroup.
@@ -1196,6 +1225,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListGroupsForUser(self, request):
         """获取用户所属用户组列表
@@ -1219,6 +1249,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListGroups(self, request):
         """获取用户组列表
         :param request: Request instance for ListGroups.
@@ -1240,6 +1271,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RemoveUserFromGroup(self, request):
         """从用户组删除用户
@@ -1263,6 +1295,53 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
+    def UpdateGroup(self, request):
+        """更新用户组基本信息
+        :param request: Request instance for UpdateGroup.
+        :type request: :class:`ksyun.client.iam.v20151101.models.UpdateGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ListUsersForGroup(self, request):
+        """获取组成员列表
+        :param request: Request instance for ListUsersForGroup.
+        :type request: :class:`ksyun.client.iam.v20151101.models.ListUsersForGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListUsersForGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ListAllUserAccessKeys(self, request):
         """获取子用户ak最后使用时间
         :param request: Request instance for ListAllUserAccessKeys.
@@ -1284,6 +1363,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def InsertInstanceToES(self, request):
         """非标实例插入es
@@ -1307,6 +1387,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DelInstanceFromES(self, request):
         """删除非标实例
         :param request: Request instance for DelInstanceFromES.
@@ -1328,6 +1409,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetAccountAllProjectsByParams(self, request):
         """根据参数获取账户项目列表
@@ -1351,6 +1433,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SetUserSsoSettings(self, request):
         """设置用户SSO身份提供商信息
         :param request: Request instance for SetUserSsoSettings.
@@ -1372,6 +1455,7 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetUserSsoSettings(self, request):
         """查询用户SSO身份提供商信息
@@ -1395,6 +1479,7 @@ class IamClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetEffectivePolicies(self, request):
         """获取有效的策略信息
         :param request: Request instance for GetEffectivePolicies.
@@ -1416,3 +1501,5 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

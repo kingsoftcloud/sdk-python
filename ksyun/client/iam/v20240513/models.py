@@ -29,3 +29,5 @@ class GetProjectInstanceListNewRequest(AbstractModel):
             self.Ps = params.get("Ps")
         if params.get("Pn"):
             self.Pn = params.get("Pn")
+
+

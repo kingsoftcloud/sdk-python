@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class QueryInstanceConsumeRequest(AbstractModel):
     """QueryInstanceConsume请求参数结构体
     """
@@ -192,32 +191,3 @@ class QueryUserConsumeRequest(AbstractModel):
             self.Size = params.get("Size")
 
 
-class DescribeInstanceSummaryBillsRequest(AbstractModel):
-    """DescribeInstanceSummaryBills请求参数结构体
-    """
-
-    def __init__(self):
-        r"""实例账单
-        :param BillMonth: 客户账单月份，YYYY-MM。不支持跨月查询
-        :type PathPrefix: String
-        :param ProductCode: 产品线对应的Code
-        :type PathPrefix: String
-        :param Page: 第几页,默认值为1
-        :type PathPrefix: Int
-        :param Size: 每页条数,默认值20
-        :type PathPrefix: Int
-        """
-        self.BillMonth = None
-        self.ProductCode = None
-        self.Page = None
-        self.Size = None
-
-    def _deserialize(self, params):
-        if params.get("BillMonth"):
-            self.BillMonth = params.get("BillMonth")
-        if params.get("ProductCode"):
-            self.ProductCode = params.get("ProductCode")
-        if params.get("Page"):
-            self.Page = params.get("Page")
-        if params.get("Size"):
-            self.Size = params.get("Size")

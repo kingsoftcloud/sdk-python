@@ -124,13 +124,13 @@ class EpcClient(AbstractClient):
 
 
     def ModifySecurityGroup(self, request):
-        """ModifySecurityGroup
+        """修改安全组
         :param request: Request instance for ModifySecurityGroup.
         :type request: :class:`ksyun.client.epc.v20151101.models.ModifySecurityGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifySecurityGroup", params, "application/json")
+            body = self.call_judge("ModifySecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -144,6 +144,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateKey(self, request):
         """CreateKey
@@ -167,6 +168,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeEpcs(self, request):
         """查看云物理主机列表信息
         :param request: Request instance for DescribeEpcs.
@@ -188,6 +190,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetDynamicCode(self, request):
         """GetDynamicCode
@@ -211,6 +214,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeVpns(self, request):
         """DescribeVpns
         :param request: Request instance for DescribeVpns.
@@ -232,6 +236,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateImage(self, request):
         """CreateImage
@@ -255,6 +260,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyImage(self, request):
         """ModifyImage
         :param request: Request instance for ModifyImage.
@@ -276,6 +282,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteImage(self, request):
         """DeleteImage
@@ -299,8 +306,9 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeImages(self, request):
-        """DescribeImages
+        """查询镜像列表
         :param request: Request instance for DescribeImages.
         :type request: :class:`ksyun.client.epc.v20151101.models.DescribeImagesRequest`
         """
@@ -320,6 +328,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyDns(self, request):
         """ModifyDns
@@ -343,8 +352,9 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyNetworkInterfaceAttribute(self, request):
-        """ModifyNetworkInterfaceAttribute
+        """修改网卡信息
         :param request: Request instance for ModifyNetworkInterfaceAttribute.
         :type request: :class:`ksyun.client.epc.v20151101.models.ModifyNetworkInterfaceAttributeRequest`
         """
@@ -364,6 +374,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribePhysicalMonitor(self, request):
         """DescribePhysicalMonitor
@@ -387,6 +398,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeEpcManagements(self, request):
         """DescribeEpcManagements
         :param request: Request instance for DescribeEpcManagements.
@@ -408,6 +420,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRemoteManagements(self, request):
         """DescribeRemoteManagements
@@ -431,6 +444,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def StopEpc(self, request):
         """StopEpc
         :param request: Request instance for StopEpc.
@@ -452,6 +466,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyEpc(self, request):
         """ModifyEpc
@@ -475,6 +490,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyRemoteManagement(self, request):
         """ModifyRemoteManagement
         :param request: Request instance for ModifyRemoteManagement.
@@ -496,6 +512,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateRemoteManagement(self, request):
         """CreateRemoteManagement
@@ -519,6 +536,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ReinstallCustomerEpc(self, request):
         """ReinstallCustomerEpc
         :param request: Request instance for ReinstallCustomerEpc.
@@ -540,6 +558,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRemoteManagement(self, request):
         """DeleteRemoteManagement
@@ -563,6 +582,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ResetPassword(self, request):
         """重置密码
         :param request: Request instance for ResetPassword.
@@ -584,6 +604,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyHyperThreading(self, request):
         """修改超线程
@@ -607,6 +628,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AssociateCluster(self, request):
         """AssociateCluster
         :param request: Request instance for AssociateCluster.
@@ -628,6 +650,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DisassociateCluster(self, request):
         """DisassociateCluster
@@ -651,6 +674,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInspections(self, request):
         """DescribeInspections
         :param request: Request instance for DescribeInspections.
@@ -672,6 +696,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeEpcStocks(self, request):
         """DescribeEpcStocks
@@ -695,6 +720,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeEpcDeviceAttributes(self, request):
         """DescribeEpcDeviceAttributes
         :param request: Request instance for DescribeEpcDeviceAttributes.
@@ -716,6 +742,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeProcesses(self, request):
         """查询工单信息
@@ -739,6 +766,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateProcess(self, request):
         """创建工单信息
         :param request: Request instance for CreateProcess.
@@ -760,6 +788,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteProcess(self, request):
         """DeleteProcess
@@ -783,6 +812,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ReplyProcess(self, request):
         """ReplyProcess
         :param request: Request instance for ReplyProcess.
@@ -804,6 +834,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeEpcTrashes(self, request):
         """DescribeEpcTrashes
@@ -827,6 +858,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ReturnEpc(self, request):
         """ReturnEpc
         :param request: Request instance for ReturnEpc.
@@ -848,6 +880,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateResourceRequirement(self, request):
         """创建资源需求工单
@@ -871,6 +904,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AttachVolume(self, request):
         """EPC挂载EBS
         :param request: Request instance for AttachVolume.
@@ -892,6 +926,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachVolume(self, request):
         """EPC卸载EBS
@@ -915,6 +950,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribePrice(self, request):
         """查询价格信息
         :param request: Request instance for DescribePrice.
@@ -936,6 +972,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateConfirm(self, request):
         """更新工单重启状态
@@ -982,6 +1019,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CopyImage(self, request):
         """复制镜像
         :param request: Request instance for CopyImage.
@@ -1003,6 +1041,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeEpcRaidAttributes(self, request):
         """查询多raid信息
@@ -1026,6 +1065,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeGpuImageDriver(self, request):
         """查询GPU镜像驱动
         :param request: Request instance for DescribeGpuImageDriver.
@@ -1047,6 +1087,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateShareImage(self, request):
         """星曜共享镜像
@@ -1070,6 +1111,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteShareImage(self, request):
         """星曜取消共享镜像
         :param request: Request instance for DeleteShareImage.
@@ -1092,6 +1134,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeShareImageAccountList(self, request):
         """星曜获取已共享镜像的账户列表信息
         :param request: Request instance for DescribeShareImageAccountList.
@@ -1099,7 +1142,7 @@ class EpcClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeShareImageAccountList", params, "application/json")
+            body = self.call_judge("DescribeShareImageAccountList", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1113,6 +1156,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeShareImage(self, request):
         """星曜获取共享镜像列表信息
@@ -1136,6 +1180,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AcceptShareImage(self, request):
         """星曜接收共享镜像
         :param request: Request instance for AcceptShareImage.
@@ -1157,6 +1202,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RejectShareImage(self, request):
         """星曜拒绝共享镜像
@@ -1180,6 +1226,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeManagedAccessory(self, request):
         """托管备件信息查询
         :param request: Request instance for DescribeManagedAccessory.
@@ -1201,6 +1248,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AutoDeleteEpc(self, request):
         """AutoDeleteEpc
@@ -1224,6 +1272,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ExportImage(self, request):
         """自定义镜像导出
         :param request: Request instance for ExportImage.
@@ -1245,6 +1294,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def QueryBuckets(self, request):
         """查询ks3对象存储bucket桶列表
@@ -1268,6 +1318,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CancelImageExport(self, request):
         """取消镜像导出
         :param request: Request instance for CancelImageExport.
@@ -1289,6 +1340,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UseHotStandByEpc(self, request):
         """热备机替换
@@ -1312,6 +1364,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ActivateHotStandbyEpc(self, request):
         """激活热备机
         :param request: Request instance for ActivateHotStandbyEpc.
@@ -1333,6 +1386,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def BatchCreateEpc(self, request):
         """批量创建云物理主机
@@ -1356,6 +1410,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeUseHotStandbyRecords(self, request):
         """DescribeUseHotStandbyRecords
         :param request: Request instance for DescribeUseHotStandbyRecords.
@@ -1377,6 +1432,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeGpuRoceTopology(self, request):
         """查询拓扑结构接口
@@ -1400,6 +1456,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyProcess(self, request):
         """修改工单信息
         :param request: Request instance for ModifyProcess.
@@ -1421,6 +1478,7 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ConfirmProcess(self, request):
         """客户评价工单
@@ -1444,6 +1502,7 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeModelConfig(self, request):
         """查询AI模型配置
         :param request: Request instance for DescribeModelConfig.
@@ -1466,8 +1525,9 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeRoceEvent(self, request):
-        """查询北斗事件告警
+        """查询Roce事件告警
         :param request: Request instance for DescribeRoceEvent.
         :type request: :class:`ksyun.client.epc.v20151101.models.DescribeRoceEventRequest`
         """
@@ -1488,8 +1548,9 @@ class EpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeRoceEventDetails(self, request):
-        """查询北斗事件告警历史
+        """查询Roce事件告警历史
         :param request: Request instance for DescribeRoceEventDetails.
         :type request: :class:`ksyun.client.epc.v20151101.models.DescribeRoceEventDetailsRequest`
         """
@@ -1509,3 +1570,695 @@ class EpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def BatchCreateProcess(self, request):
+        """批量创建工单
+        :param request: Request instance for BatchCreateProcess.
+        :type request: :class:`ksyun.client.epc.v20151101.models.BatchCreateProcessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BatchCreateProcess", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateInspectHost(self, request):
+        """发起故障检测
+        :param request: Request instance for CreateInspectHost.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateInspectHostRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateInspectHost", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeInspectHostResults(self, request):
+        """查询故障检测结果
+        :param request: Request instance for DescribeInspectHostResults.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeInspectHostResultsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInspectHostResults", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeXidDetails(self, request):
+        """查询Xid事件详情
+        :param request: Request instance for DescribeXidDetails.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeXidDetailsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeXidDetails", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoImages(self, request):
+        """查询星海镜像
+        :param request: Request instance for DescribeSoImages.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoImagesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoImages", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def RebootSoInstance(self, request):
+        """重启星海实例
+        :param request: Request instance for RebootSoInstance.
+        :type request: :class:`ksyun.client.epc.v20151101.models.RebootSoInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RebootSoInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteSoImages(self, request):
+        """删除星海自定义镜像
+        :param request: Request instance for DeleteSoImages.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteSoImagesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSoImages", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteSoVpc(self, request):
+        """删除星海私有网络
+        :param request: Request instance for DeleteSoVpc.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteSoVpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSoVpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoAvailableResource(self, request):
+        """查询可用区资源的库存信息
+        :param request: Request instance for DescribeSoAvailableResource.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoAvailableResourceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoAvailableResource", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoInstances(self, request):
+        """获取星海实例信息
+        :param request: Request instance for DescribeSoInstances.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoInstancesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoInstances", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteSoInstance(self, request):
+        """删除星海实例
+        :param request: Request instance for DeleteSoInstance.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteSoInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSoInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoSecurityGroups(self, request):
+        """查询星海安全组信息
+        :param request: Request instance for DescribeSoSecurityGroups.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoSecurityGroupsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoSecurityGroups", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateSoVpc(self, request):
+        """创建星海私有网络
+        :param request: Request instance for CreateSoVpc.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateSoVpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSoVpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteSoSubnet(self, request):
+        """删除星海子网信息
+        :param request: Request instance for DeleteSoSubnet.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteSoSubnetRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSoSubnet", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoKeyPairs(self, request):
+        """查询星海密钥对
+        :param request: Request instance for DescribeSoKeyPairs.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoKeyPairsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoKeyPairs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def StartSoInstance(self, request):
+        """启动星海实例
+        :param request: Request instance for StartSoInstance.
+        :type request: :class:`ksyun.client.epc.v20151101.models.StartSoInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StartSoInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoInstanceTypes(self, request):
+        """获取实例规格信息
+        :param request: Request instance for DescribeSoInstanceTypes.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoInstanceTypesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoInstanceTypes", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifySoSubnetAttributes(self, request):
+        """修改星海指定子网信息
+        :param request: Request instance for ModifySoSubnetAttributes.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ModifySoSubnetAttributesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifySoSubnetAttributes", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoSubnet(self, request):
+        """查询星海子网信息
+        :param request: Request instance for DescribeSoSubnet.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoSubnetRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoSubnet", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifySoKeyPairAttribute(self, request):
+        """修改星海密钥对信息
+        :param request: Request instance for ModifySoKeyPairAttribute.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ModifySoKeyPairAttributeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifySoKeyPairAttribute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifySoImageAttribute(self, request):
+        """修改星海镜像信息
+        :param request: Request instance for ModifySoImageAttribute.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ModifySoImageAttributeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifySoImageAttribute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifySoVpcAttributes(self, request):
+        """修改星海私有网络
+        :param request: Request instance for ModifySoVpcAttributes.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ModifySoVpcAttributesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifySoVpcAttributes", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ReplaceSoSystemVolume(self, request):
+        """星海更换操作系统
+        :param request: Request instance for ReplaceSoSystemVolume.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ReplaceSoSystemVolumeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ReplaceSoSystemVolume", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateSoSubnet(self, request):
+        """创建星海子网
+        :param request: Request instance for CreateSoSubnet.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateSoSubnetRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSoSubnet", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoVpcs(self, request):
+        """查询星海私有网络
+        :param request: Request instance for DescribeSoVpcs.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoVpcsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoVpcs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def StopSoInstance(self, request):
+        """停止星海实例
+        :param request: Request instance for StopSoInstance.
+        :type request: :class:`ksyun.client.epc.v20151101.models.StopSoInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StopSoInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteSoKeyPairs(self, request):
+        """删除星海密钥对
+        :param request: Request instance for DeleteSoKeyPairs.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteSoKeyPairsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSoKeyPairs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateSoImage(self, request):
+        """创建星海自定义镜像
+        :param request: Request instance for CreateSoImage.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateSoImageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSoImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifySoInstanceAttribute(self, request):
+        """修改指定实例的信息
+        :param request: Request instance for ModifySoInstanceAttribute.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ModifySoInstanceAttributeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifySoInstanceAttribute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateSoKeyPair(self, request):
+        """创建星海密钥对
+        :param request: Request instance for CreateSoKeyPair.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateSoKeyPairRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSoKeyPair", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

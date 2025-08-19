@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class DescribeBillSummaryByPayModeRequest(AbstractModel):
     """DescribeBillSummaryByPayMode请求参数结构体
     """
@@ -11,15 +10,20 @@ class DescribeBillSummaryByPayModeRequest(AbstractModel):
         :type PathPrefix: String
         :param BillEndMonth: 账单结束时间
         :type PathPrefix: String
+        :param SubAccount: 成员账账号Id，非必填
+        :type PathPrefix: Int
         """
         self.BillBeginMonth = None
         self.BillEndMonth = None
+        self.SubAccount = None
 
     def _deserialize(self, params):
         if params.get("BillBeginMonth"):
             self.BillBeginMonth = params.get("BillBeginMonth")
         if params.get("BillEndMonth"):
             self.BillEndMonth = params.get("BillEndMonth")
+        if params.get("SubAccount"):
+            self.SubAccount = params.get("SubAccount")
 
 
 class DescribeBillSummaryByProductRequest(AbstractModel):
@@ -32,15 +36,28 @@ class DescribeBillSummaryByProductRequest(AbstractModel):
         :type PathPrefix: String
         :param BillEndMonth: 账单结束时间
         :type PathPrefix: String
+        :param SubAccount: 成员账号Id
+        :type PathPrefix: Int
+        :param FetchAllFinanceRelationData: 非必传，默认值为 False。
+是否吐出全部财务关系数据。
+值为true时，同时吐出财务管理和财务托管账号数据。
+值为false时或不传该参数，仅吐出财务托管账号数据。
+        :type PathPrefix: Boolean
         """
         self.BillBeginMonth = None
         self.BillEndMonth = None
+        self.SubAccount = None
+        self.FetchAllFinanceRelationData = None
 
     def _deserialize(self, params):
         if params.get("BillBeginMonth"):
             self.BillBeginMonth = params.get("BillBeginMonth")
         if params.get("BillEndMonth"):
             self.BillEndMonth = params.get("BillEndMonth")
+        if params.get("SubAccount"):
+            self.SubAccount = params.get("SubAccount")
+        if params.get("FetchAllFinanceRelationData"):
+            self.FetchAllFinanceRelationData = params.get("FetchAllFinanceRelationData")
 
 
 class DescribeBillSummaryByProjectRequest(AbstractModel):
@@ -53,15 +70,20 @@ class DescribeBillSummaryByProjectRequest(AbstractModel):
         :type PathPrefix: String
         :param BillEndMonth: 账单结束月份
         :type PathPrefix: String
+        :param SubAccount: 成员账号Id
+        :type PathPrefix: Int
         """
         self.BillBeginMonth = None
         self.BillEndMonth = None
+        self.SubAccount = None
 
     def _deserialize(self, params):
         if params.get("BillBeginMonth"):
             self.BillBeginMonth = params.get("BillBeginMonth")
         if params.get("BillEndMonth"):
             self.BillEndMonth = params.get("BillEndMonth")
+        if params.get("SubAccount"):
+            self.SubAccount = params.get("SubAccount")
 
 
 class DescribeInstanceSummaryBillsRequest(AbstractModel):
@@ -153,6 +175,22 @@ class DescribeSplitItemBillDetailsRequest(AbstractModel):
             self.Size = params.get("Size")
 
 
+class DescribeMiItemBillsRequest(AbstractModel):
+    """DescribeMiItemBills请求参数结构体
+    """
+
+    def __init__(self):
+        r"""小米计费项账单
+        :param BillMonth: 
+        :type PathPrefix: String
+        """
+        self.BillMonth = None
+
+    def _deserialize(self, params):
+        if params.get("BillMonth"):
+            self.BillMonth = params.get("BillMonth")
+
+
 class DescribeSplitItemDayBillDetailsRequest(AbstractModel):
     """DescribeSplitItemDayBillDetails请求参数结构体
     """
@@ -200,3 +238,17 @@ class DescribeSplitItemDayBillDetailsRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("Size"):
             self.Size = params.get("Size")
+
+
+class ListProductGroupsRequest(AbstractModel):
+    """ListProductGroups请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取产品线详情列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+

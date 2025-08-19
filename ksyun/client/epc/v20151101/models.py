@@ -87,7 +87,7 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param keyId: 用户密钥对的资源ID
         :type PathPrefix: String
-        :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持3个安全组
+        :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持5个安全组
         :type PathPrefix: Filter
         :param DNS1: DNS1的值，当通过该接口进行修改网络配置时不填写此参数，保持与之前不变
         :type PathPrefix: String
@@ -244,6 +244,10 @@ storage_bond
 类型： String
 是否必填：否
         :type PathPrefix: String
+        :param UserData: base64编码后的自定义脚本
+        :type PathPrefix: String
+        :param StorageRoceNetworkInterfaceMode: 存储网卡bond模式，仅支持bond3(bond)、single(非bond)
+        :type PathPrefix: String
         """
         self.HostType = None
         self.AvailabilityZone = None
@@ -303,6 +307,8 @@ storage_bond
         self.Framework.N = None
         self.Engine.N = None
         self.AiModel.N = None
+        self.UserData = None
+        self.StorageRoceNetworkInterfaceMode = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -421,6 +427,10 @@ storage_bond
             self.Engine.N = params.get("Engine.N")
         if params.get("AiModel.N"):
             self.AiModel.N = params.get("AiModel.N")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
+        if params.get("StorageRoceNetworkInterfaceMode"):
+            self.StorageRoceNetworkInterfaceMode = params.get("StorageRoceNetworkInterfaceMode")
 
 
 class StartEpcRequest(AbstractModel):
@@ -657,12 +667,12 @@ class ModifySecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""ModifySecurityGroup
+        r"""修改安全组
         :param HostId: 裸金属服务器资源ID
         :type PathPrefix: String
         :param NetworkInterfaceId: 网卡的ID
         :type PathPrefix: String
-        :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持3个安全组
+        :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持5个安全组
         :type PathPrefix: Filter
         """
         self.HostId = None
@@ -850,7 +860,7 @@ class DescribeImagesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeImages
+        r"""查询镜像列表
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
@@ -902,7 +912,7 @@ class ModifyNetworkInterfaceAttributeRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""ModifyNetworkInterfaceAttribute
+        r"""修改网卡信息
         :param NetworkInterfaceId: 网卡ID
         :type PathPrefix: String
         :param HostId: 物理机实例ID
@@ -911,14 +921,17 @@ class ModifyNetworkInterfaceAttributeRequest(AbstractModel):
         :type PathPrefix: String
         :param IpAddress: ip地址
         :type PathPrefix: String
-        :param SecurityGroupIdList: 云物理主机关联的安全组ID，一个云物理主机最多可以支持3个安全组
+        :param SecurityGroupIdList: 云物理主机关联的安全组ID，一个云物理主机最多可以支持5个安全组
         :type PathPrefix: Array
+        :param SecurityGroupId: 安全组,更换vpc必填
+        :type PathPrefix: Filter
         """
         self.NetworkInterfaceId = None
         self.HostId = None
         self.SubnetId = None
         self.IpAddress = None
         self.SecurityGroupIdList = None
+        self.SecurityGroupId = None
 
     def _deserialize(self, params):
         if params.get("NetworkInterfaceId"):
@@ -931,6 +944,8 @@ class ModifyNetworkInterfaceAttributeRequest(AbstractModel):
             self.IpAddress = params.get("IpAddress")
         if params.get("SecurityGroupIdList"):
             self.SecurityGroupIdList = params.get("SecurityGroupIdList")
+        if params.get("SecurityGroupId"):
+            self.SecurityGroupId = params.get("SecurityGroupId")
 
 
 class DescribePhysicalMonitorRequest(AbstractModel):
@@ -1782,17 +1797,17 @@ class CreateShareImageRequest(AbstractModel):
         r"""星曜共享镜像
         :param ImageId: 需要共享的镜像ID
         :type PathPrefix: String
-        :param AccountId.N: 接收共享镜像的账号ID列表
-        :type PathPrefix: String
+        :param AccountId: 接收共享镜像的账号ID列表
+        :type PathPrefix: Filter
         """
         self.ImageId = None
-        self.AccountId.N = None
+        self.AccountId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-        if params.get("AccountId.N"):
-            self.AccountId.N = params.get("AccountId.N")
+        if params.get("AccountId"):
+            self.AccountId = params.get("AccountId")
 
 
 class DeleteShareImageRequest(AbstractModel):
@@ -1803,17 +1818,17 @@ class DeleteShareImageRequest(AbstractModel):
         r"""星曜取消共享镜像
         :param ImageId: 需要取消共享的镜像ID
         :type PathPrefix: String
-        :param AccountId.N: 接收共享镜像的账号ID列表
-        :type PathPrefix: String
+        :param AccountId: 接收共享镜像的账号ID列表
+        :type PathPrefix: Filter
         """
         self.ImageId = None
-        self.AccountId.N = None
+        self.AccountId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-        if params.get("AccountId.N"):
-            self.AccountId.N = params.get("AccountId.N")
+        if params.get("AccountId"):
+            self.AccountId = params.get("AccountId")
 
 
 class DescribeShareImageAccountListRequest(AbstractModel):
@@ -2107,7 +2122,7 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param keyId: 用户密钥对的资源ID
         :type PathPrefix: String
-        :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持3个安全组
+        :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持5个安全组
         :type PathPrefix: Filter
         :param DNS1: DNS1的值，当通过该接口进行修改网络配置时不填写此参数，保持与之前不变
         :type PathPrefix: String
@@ -2486,10 +2501,13 @@ class ModifyProcessRequest(AbstractModel):
 有效值：
 • UserClose
         :type PathPrefix: String
+        :param Content: 工单内容
+        :type PathPrefix: String
         """
         self.OperationProcessId = None
         self.Confirm = None
         self.Status = None
+        self.Content = None
 
     def _deserialize(self, params):
         if params.get("OperationProcessId"):
@@ -2498,6 +2516,8 @@ class ModifyProcessRequest(AbstractModel):
             self.Confirm = params.get("Confirm")
         if params.get("Status"):
             self.Status = params.get("Status")
+        if params.get("Content"):
+            self.Content = params.get("Content")
 
 
 class ConfirmProcessRequest(AbstractModel):
@@ -2571,7 +2591,7 @@ class DescribeRoceEventRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询北斗事件告警
+        r"""查询Roce事件告警
         :param MaxResults: 每页大小
         :type PathPrefix: Int
         :param NextToken: 第几条
@@ -2602,7 +2622,7 @@ class DescribeRoceEventDetailsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询北斗事件告警历史
+        r"""查询Roce事件告警历史
         :param EventId: 事件ID
         :type PathPrefix: String
         :param MaxResults: 单次调用可返回的最大条目数量
@@ -2622,3 +2642,1114 @@ class DescribeRoceEventDetailsRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+
+
+class BatchCreateProcessRequest(AbstractModel):
+    """BatchCreateProcess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""批量创建工单
+        :param InstanceId: 发起工单的实例ID
+
+        :type PathPrefix: Filter
+        :param AvailabilityZone: 可用区
+        :type PathPrefix: String
+        :param Attribute: 问题属性
+默认值：Other
+有效值：Move|DevicePort|Network|Disk|Memory|Cpu|Gpu|RaidCard|NetworkInterfaceCard|Other
+        :type PathPrefix: String
+        :param Content: 工单描述
+        :type PathPrefix: String
+        :param LogFileName: 需要客户提供的文件名，需要带文件格式，需要与LogFile.N共同使用
+例如：test.csv、test.log
+        :type PathPrefix: Filter
+        :param LogFile: 工单日志文件，base64编码，需要与LogFileName.N共同使用
+E2LWQxOWU0ZWYwYjk2YSwwN2M4YThiZi0zMThmLTQxNjctYWVhNi1kMTllNGVmMGI5NmEsMjAyMC0wNS0xMiAyMTowNTo1NiwyMDIwLTA1LTEyIDIyOjU1OjQyLCJFUEPN0Lncv827p6Osv827p7j8u7u3/s7xxvfN+L+oo6zW2NDCyrax8E1BQ7Ki1tjG9Lf+zvHG96GjIiwsbnVsbCwsLCwKMjAwMDExNzcwMSwwMDkzNDU3UDIwMDdDMDAwNDIJLGNuLXNoYW5naGFpLTJhLM3QudxFUEO/zbuno6y4/Lu7zfi/qE1BQ7XY1re4/NDCsqLW2Mb0LLK7v8nS1NbYxvQszfi/qCwsLCwsLCw3OTg3YmVmOC0yNzY3LTRiZjktODdlMS01MjJkYjEwZTEyMGQs0tHN6rPJLDI1ZDk5ZDExLWQ0NTgtNDUyYy04ZWU5LTM1Yjk2MDIwNzcyNSwyNWQ5OWQxMS1kNDU4LTQ1MmMtOGVlOS0zNWI5NjAyMDc3MjUsMjAyMC0wNS0xMiAyMTowNTo1NiwyMDIwLTA1LTEyIDIyOjU1OjQyLCJFUEPN0Lncv827p6Osv827p7j8u7u3/s7xxvfN+L+oo6zW2NDCyrax8E1BQ7Ki1tjG9Lf+zvHG96GjIiwsbnVsbCwsLCwK大小：大小低于100MB
+        :type PathPrefix: Filter
+        :param LogUrl: 支持上传已授权给金山云的ks3的bucket的URL
+        :type PathPrefix: Filter
+        :param MachineCount: 服务器数量，数量需与实例id数量一致，单次最大支持50个
+默认值：1
+        :type PathPrefix: Int
+        :param Title: 工单标题
+        :type PathPrefix: String
+        :param Type: 操作类型
+有效值：fix
+        :type PathPrefix: String
+        :param Confirm: 确认是否重启
+有效值：0禁止重启，1可以重启
+        :type PathPrefix: String
+        :param ProcessSource: 工单来源，0：客户自己提 1：售后代提
+默认值：0
+        :type PathPrefix: Int
+        :param AutoNocCase: 是否自动发起NOC工单，0：不发起 1：发起
+默认值：0
+        :type PathPrefix: Int
+        """
+        self.InstanceId = None
+        self.AvailabilityZone = None
+        self.Attribute = None
+        self.Content = None
+        self.LogFileName = None
+        self.LogFile = None
+        self.LogUrl = None
+        self.MachineCount = None
+        self.Title = None
+        self.Type = None
+        self.Confirm = None
+        self.ProcessSource = None
+        self.AutoNocCase = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("AvailabilityZone"):
+            self.AvailabilityZone = params.get("AvailabilityZone")
+        if params.get("Attribute"):
+            self.Attribute = params.get("Attribute")
+        if params.get("Content"):
+            self.Content = params.get("Content")
+        if params.get("LogFileName"):
+            self.LogFileName = params.get("LogFileName")
+        if params.get("LogFile"):
+            self.LogFile = params.get("LogFile")
+        if params.get("LogUrl"):
+            self.LogUrl = params.get("LogUrl")
+        if params.get("MachineCount"):
+            self.MachineCount = params.get("MachineCount")
+        if params.get("Title"):
+            self.Title = params.get("Title")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+        if params.get("Confirm"):
+            self.Confirm = params.get("Confirm")
+        if params.get("ProcessSource"):
+            self.ProcessSource = params.get("ProcessSource")
+        if params.get("AutoNocCase"):
+            self.AutoNocCase = params.get("AutoNocCase")
+
+
+class CreateInspectHostRequest(AbstractModel):
+    """CreateInspectHost请求参数结构体
+    """
+
+    def __init__(self):
+        r"""发起故障检测
+        :param InspectType: 故障检测类型
+• 有效值：
+    ◦ nccl：需要通过NCCL检查异常情况
+    ◦ xid：需要通过XID检查异常情况
+        :type PathPrefix: String
+        :param InspectName: 故障检测名称
+        :type PathPrefix: String
+        :param HostId: 裸金属服务器资源ID，多个ID的实例信息，查看详细ID.N使用方式
+        :type PathPrefix: Filter
+        """
+        self.InspectType = None
+        self.InspectName = None
+        self.HostId = None
+
+    def _deserialize(self, params):
+        if params.get("InspectType"):
+            self.InspectType = params.get("InspectType")
+        if params.get("InspectName"):
+            self.InspectName = params.get("InspectName")
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+
+
+class DescribeInspectHostResultsRequest(AbstractModel):
+    """DescribeInspectHostResults请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询故障检测结果
+        :param InspectId: 故障检测工单ID，可查询多个ID的信息，查看详细ID.N使用方式
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量. 传入返回的 NextToken 值可以获取剩余的其它条目. 这个值可以允许的范围是 5- 1000.
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.InspectId = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("InspectId"):
+            self.InspectId = params.get("InspectId")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class DescribeXidDetailsRequest(AbstractModel):
+    """DescribeXidDetails请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询Xid事件详情
+        :param StartTime: 事件开始时间
+        :type PathPrefix: String
+        :param EndTime: 事件结束时间
+        :type PathPrefix: String
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        :param Name: 事件名称
+XidError
+SXidError
+默认：
+XidError
+        :type PathPrefix: String
+        :param MaxResults: 每页条数
+        :type PathPrefix: Int
+        :param NextToken: 页码偏移量
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.InstanceId = None
+        self.Name = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class DescribeSoImagesRequest(AbstractModel):
+    """DescribeSoImages请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询星海镜像
+        :param ImageId: 镜像的ID，最多支持100个ID。
+• 参数 - N：表示镜像ID的序号。
+• 多个镜像ID之间用&分隔。
+        :type PathPrefix: Filter
+        :param ImageName: 镜像名称。
+        :type PathPrefix: String
+        :param IsSupportCloudInit: 镜像是否支持Cloud-init。取值：
+• true：支持
+• false：不支持
+        :type PathPrefix: Boolean
+        :param MaxResults: 分页查询时设置的每页行数。
+• 取值范围：1 ~ 100
+• 默认值：15
+        :type PathPrefix: Int
+        :param NextToken: 分页查询凭证，用于标记分页的位置，初次调用该接口时无需设置。下次查询时，取值为上一次API调用返回的NextToken参数值。
+        :type PathPrefix: String
+        :param OsType: 操作系统类型。取值：
+• Linux
+• Windows
+        :type PathPrefix: String
+        :param Platform: 镜像操作系统的发行版本。取值：
+• CentOS
+• Debian
+• Windows Server
+• Ubuntu
+        :type PathPrefix: String
+        :param Status: 镜像状态，最多支持10个。取值：
+• available（默认）：可用
+• creating：创建中
+• error：错误
+说明
+• 参数 - N：表示镜像状态的序号。
+• 多个镜像状态之间用&分隔。
+        :type PathPrefix: Filter
+        :param Visibility: 镜像的可见性。取值：
+• public：公共镜像
+• private：自定义镜像
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.ImageName = None
+        self.IsSupportCloudInit = None
+        self.MaxResults = None
+        self.NextToken = None
+        self.OsType = None
+        self.Platform = None
+        self.Status = None
+        self.Visibility = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("ImageName"):
+            self.ImageName = params.get("ImageName")
+        if params.get("IsSupportCloudInit"):
+            self.IsSupportCloudInit = params.get("IsSupportCloudInit")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("OsType"):
+            self.OsType = params.get("OsType")
+        if params.get("Platform"):
+            self.Platform = params.get("Platform")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("Visibility"):
+            self.Visibility = params.get("Visibility")
+
+
+class RebootSoInstanceRequest(AbstractModel):
+    """RebootSoInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""重启星海实例
+        :param ForceStop: 重启实例前是否强制关机，取值：
+• true：强制关机。相当于典型的断电操作，所有未写入存储设备的缓存数据会丢失。
+• false（默认）：正常关机。
+说明
+以下类型的实例，ForceStop无论取值为true还是false，实例均会执行强制关机。
+• 弹性裸金属实例。
+• 高性能计算GPU型ebmhpcpni2l 、ebmhpcpni2、ebmhpchfpni2实例。
+示例值：false
+
+        :type PathPrefix: Boolean
+        :param InstanceIds: 实例ID，最多支持100个ID。
+• 参数 - N：表示实例的序号。
+• 多个Instance ID之间用&分隔。
+示例值：InstanceIds.1=8981d45e-b3dc-44c6-b02f-2d1969551316&InstanceIds.2=8981d45e-b3dc-44c6-b02f-2d1969551318
+        :type PathPrefix: Filter
+        """
+        self.ForceStop = None
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("ForceStop"):
+            self.ForceStop = params.get("ForceStop")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+
+
+class DeleteSoImagesRequest(AbstractModel):
+    """DeleteSoImages请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除星海自定义镜像
+        :param ImageIds: 自定义镜像ID，最多支持100个ID。
+• 参数 -N：表示镜像的序号。
+• 多个Image ID之间用&分隔。
+        :type PathPrefix: Filter
+        """
+        self.ImageIds = None
+
+    def _deserialize(self, params):
+        if params.get("ImageIds"):
+            self.ImageIds = params.get("ImageIds")
+
+
+class DeleteSoVpcRequest(AbstractModel):
+    """DeleteSoVpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除星海私有网络
+        :param VpcId: 待删除VPC的ID。
+        :type PathPrefix: String
+        """
+        self.VpcId = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+
+
+class DescribeSoAvailableResourceRequest(AbstractModel):
+    """DescribeSoAvailableResource请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询可用区资源的库存信息
+        :param InstanceChargeType: 资源的计费类型。取值：
+• 包年包月Monthly
+• 按日月结Daily
+• 试用Trial
+示例值：Daily
+
+        :type PathPrefix: String
+        :param InstanceTypeId: 指定一个要查询的实例规格。
+示例值：SO-GM404-I
+        :type PathPrefix: String
+        :param ZoneId: 可用区ID。
+说明：默认为空，表示返回当前地域（RegionId）下的所有可用区中所有符合条件的资源。
+示例值：cn-beijing-6a
+        :type PathPrefix: String
+        """
+        self.InstanceChargeType = None
+        self.InstanceTypeId = None
+        self.ZoneId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceChargeType"):
+            self.InstanceChargeType = params.get("InstanceChargeType")
+        if params.get("InstanceTypeId"):
+            self.InstanceTypeId = params.get("InstanceTypeId")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+
+
+class DescribeSoInstancesRequest(AbstractModel):
+    """DescribeSoInstances请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取星海实例信息
+        :param InstanceChargeType: 实例的计费方式，取值：
+• PostPaid：按量计费
+• PrePaid：包年包月
+示例值：PostPaid
+        :type PathPrefix: String
+        :param InstanceTypeId: 根据规格过滤实例，最多支持100个实例规格。
+• 参数 - N：表示实例的序号。
+undefined多个实例规格之间用&分隔
+        :type PathPrefix: Filter
+        :param KeyPairName: 密钥对的名称。
+        :type PathPrefix: String
+        :param MaxResults: 分页查询时设置的每页行数。
+        :type PathPrefix: Int
+        :param NextToken: 分页查询凭证。
+        :type PathPrefix: String
+        :param PrimaryIpAddress: 实例的私网IP地址，例如主网卡或辅助网卡IP地址。
+        :type PathPrefix: String
+        :param Status: 实例的状态，取值：
+• CREATING：创建中
+• RUNNING：运行中
+• STOPPING：停止中
+• STOPPED：已停止
+• REBOOTING: 重启中
+• STARTING：启动中
+• REBUILDING：重装中
+• RESIZING：更配中
+• ERROR：错误
+• DELETING：删除中
+        :type PathPrefix: String
+        :param VpcId: 私有网络ID。
+        :type PathPrefix: String
+        :param ZoneId: 实例所属可用区ID。
+        :type PathPrefix: String
+        :param InstanceIds: 实例ID，最多支持100个。
+• 参数 - N：表示实例的序号。
+• 多个Instance ID之间用&分隔。
+        :type PathPrefix: Filter
+        """
+        self.InstanceChargeType = None
+        self.InstanceTypeId = None
+        self.KeyPairName = None
+        self.MaxResults = None
+        self.NextToken = None
+        self.PrimaryIpAddress = None
+        self.Status = None
+        self.VpcId = None
+        self.ZoneId = None
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceChargeType"):
+            self.InstanceChargeType = params.get("InstanceChargeType")
+        if params.get("InstanceTypeId"):
+            self.InstanceTypeId = params.get("InstanceTypeId")
+        if params.get("KeyPairName"):
+            self.KeyPairName = params.get("KeyPairName")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("PrimaryIpAddress"):
+            self.PrimaryIpAddress = params.get("PrimaryIpAddress")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+
+
+class DeleteSoInstanceRequest(AbstractModel):
+    """DeleteSoInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除星海实例
+        :param InstanceIds: 实例ID，最多支持100个ID。
+• 参数 - N：表示实例的序号。
+• 多个Instance ID之间用&分隔。
+        :type PathPrefix: Filter
+        """
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+
+
+class DescribeSoSecurityGroupsRequest(AbstractModel):
+    """DescribeSoSecurityGroups请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询星海安全组信息
+        :param VpcId: 安全组所属VPC的ID。
+        :type PathPrefix: String
+        :param SecurityGroupIds: 安全组的ID列表。
+• 参数 - N：表示安全组ID的序号，单次调用数量上限为100个。
+• 多个安全组用&分隔。
+        :type PathPrefix: Filter
+        :param NextToken: 分页查询凭证，用于标记分页的位置。
+• 不填则从头开始查询。
+• 传入之前调用本API返回的NextToken，则从该次API调用标记分页的位置往后开始查询。
+        :type PathPrefix: String
+        :param MaxResults: 查询的数量，默认为 10，最大为100。
+        :type PathPrefix: Int
+        """
+        self.VpcId = None
+        self.SecurityGroupIds = None
+        self.NextToken = None
+        self.MaxResults = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("SecurityGroupIds"):
+            self.SecurityGroupIds = params.get("SecurityGroupIds")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+
+
+class CreateSoVpcRequest(AbstractModel):
+    """CreateSoVpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建星海私有网络
+        :param VpcName: VPC的名称。
+        :type PathPrefix: String
+        :param Description: VPC的描述信息。
+        :type PathPrefix: String
+        :param CidrBlock: VPC的IPv4网段。可以使用以下网段或其子集作为VPC的IPv4网段：
+• 192.168.0.0/16 ~ 24
+• 10.0.0.0/8 ~ 24
+• 172.16.0.0/12 ~ 24
+        :type PathPrefix: String
+        :param DnsServers: VPC的DNS服务器地址。
+• 参数 - N：表示DNS服务器地址的序号，单次调用数量上限为5个，每个DnsServer必须以合法IP形式给出。
+• 多个IP之间用&分隔。
+• 不填则配置为默认DNS服务器地址。
+        :type PathPrefix: Filter
+        :param AttachVpcId: 关联的VPC ID
+        :type PathPrefix: String
+        """
+        self.VpcName = None
+        self.Description = None
+        self.CidrBlock = None
+        self.DnsServers = None
+        self.AttachVpcId = None
+
+    def _deserialize(self, params):
+        if params.get("VpcName"):
+            self.VpcName = params.get("VpcName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("CidrBlock"):
+            self.CidrBlock = params.get("CidrBlock")
+        if params.get("DnsServers"):
+            self.DnsServers = params.get("DnsServers")
+        if params.get("AttachVpcId"):
+            self.AttachVpcId = params.get("AttachVpcId")
+
+
+class DeleteSoSubnetRequest(AbstractModel):
+    """DeleteSoSubnet请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除星海子网信息
+        :param SubnetId: 待删除子网的ID。
+        :type PathPrefix: String
+        """
+        self.SubnetId = None
+
+    def _deserialize(self, params):
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+
+
+class DescribeSoKeyPairsRequest(AbstractModel):
+    """DescribeSoKeyPairs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询星海密钥对
+        :param FingerPrint: 密钥对的指纹。根据RFC4716定义的公钥指纹格式，采用MD5信息摘要算法。
+        :type PathPrefix: String
+        :param KeyPairIds: 密钥对ID，最多支持100个。
+• 参数 - N：表示密钥对ID的序号。
+• 多个密钥对ID之间用&分隔。
+示例值：KeyPairIds.1=2c67be69-b508-48e4-a460-fe491e8d49ba
+        :type PathPrefix: Filter
+        :param KeyPairName: 密钥对名称，支持模糊搜索。
+        :type PathPrefix: String
+        :param KeyPairNames: 密钥对名称，最多支持100个。
+• 参数 - N：表示密钥对的序号。
+• 多个密钥对之间用&分隔。
+        :type PathPrefix: Filter
+        :param MaxResults: 分页查询时设置的每页行数。
+• 最大值：500
+• 默认值：10
+        :type PathPrefix: Int
+        :param NextToken: 分页查询凭证，用于标记分页的位置，初次调用该接口时无需设置。下次查询时，取值为上一次API调用返回的NextToken参数值。
+        :type PathPrefix: String
+        """
+        self.FingerPrint = None
+        self.KeyPairIds = None
+        self.KeyPairName = None
+        self.KeyPairNames = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("FingerPrint"):
+            self.FingerPrint = params.get("FingerPrint")
+        if params.get("KeyPairIds"):
+            self.KeyPairIds = params.get("KeyPairIds")
+        if params.get("KeyPairName"):
+            self.KeyPairName = params.get("KeyPairName")
+        if params.get("KeyPairNames"):
+            self.KeyPairNames = params.get("KeyPairNames")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class StartSoInstanceRequest(AbstractModel):
+    """StartSoInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启动星海实例
+        :param InstanceIds: 实例ID。
+        :type PathPrefix: Filter
+        """
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+
+
+class DescribeSoInstanceTypesRequest(AbstractModel):
+    """DescribeSoInstanceTypes请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取实例规格信息
+        :param ImageId: 镜像ID，查询该镜像可创建的实例规格
+        :type PathPrefix: String
+        :param InstanceTypeId: 指定查询的实例规格
+• 参数 - N：表示实例规格的序号，取值范围：1～100。N大于100时，仅前100个生效。
+• 多个InstanceTypeId 之间用&分隔。
+说明：不传则默认查询所有实例规格的信息。
+        :type PathPrefix: Filter
+        """
+        self.ImageId = None
+        self.InstanceTypeId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("InstanceTypeId"):
+            self.InstanceTypeId = params.get("InstanceTypeId")
+
+
+class ModifySoSubnetAttributesRequest(AbstractModel):
+    """ModifySoSubnetAttributes请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改星海指定子网信息
+        :param SubnetId: 待修改信息的子网的ID。
+        :type PathPrefix: String
+        :param SubnetName: 子网的名称。
+        :type PathPrefix: String
+        :param Description: 子网的描述信息。
+        :type PathPrefix: String
+        """
+        self.SubnetId = None
+        self.SubnetName = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("SubnetName"):
+            self.SubnetName = params.get("SubnetName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class DescribeSoSubnetRequest(AbstractModel):
+    """DescribeSoSubnet请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询星海子网信息
+        :param ZoneId: 子网所属可用区的ID。
+        :type PathPrefix: String
+        :param SubnetName: 子网的名称。
+        :type PathPrefix: String
+        :param VpcId: 子网所属VPC的ID。
+        :type PathPrefix: String
+        :param SubnetIds: 子网的ID。
+• 参数 - N：表示子网ID的序号，单次调用数量上限为100个。
+• 多个ID之间用&分隔。
+        :type PathPrefix: Filter
+        :param NextToken: 分页查询凭证，用于标记分页的位置。
+• 不填则从头开始查询。
+• 传入之前调用本API返回的NextToken，则从该次API调用标记分页的位置往后开始查询。
+        :type PathPrefix: String
+        :param MaxResults: 查询的数量，默认为 10，最大为100。
+        :type PathPrefix: Int
+        """
+        self.ZoneId = None
+        self.SubnetName = None
+        self.VpcId = None
+        self.SubnetIds = None
+        self.NextToken = None
+        self.MaxResults = None
+
+    def _deserialize(self, params):
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("SubnetName"):
+            self.SubnetName = params.get("SubnetName")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("SubnetIds"):
+            self.SubnetIds = params.get("SubnetIds")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+
+
+class ModifySoKeyPairAttributeRequest(AbstractModel):
+    """ModifySoKeyPairAttribute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改星海密钥对信息
+        :param Description: 密钥对的描述，默认值为空字符串。
+• 必须以字母或中文开头。
+• 只能包含中文、字母、数字、点“.”、空格、下划线“_”、中划线“-”、等号“=”、英文逗号“,”、中文逗号“，”和中文句号“。”
+• 长度限制在255个字符以内。
+• 传入空字符串时，将清空原有描述信息。
+        :type PathPrefix: String
+        :param KeyPairId: 密钥对唯一ID。
+• KeyPairName与KeyPairId不允许同时为空。
+• 如果同时设置了KeyPairName与KeyPairId，则优先生效KeyPairId。
+        :type PathPrefix: String
+        :param KeyPairName: 密钥对名称。
+• KeyPairName与KeyPairId不允许同时为空。
+• 如果同时设置了KeyPairName与KeyPairId，则优先生效KeyPairId。
+        :type PathPrefix: String
+        """
+        self.Description = None
+        self.KeyPairId = None
+        self.KeyPairName = None
+
+    def _deserialize(self, params):
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("KeyPairId"):
+            self.KeyPairId = params.get("KeyPairId")
+        if params.get("KeyPairName"):
+            self.KeyPairName = params.get("KeyPairName")
+
+
+class ModifySoImageAttributeRequest(AbstractModel):
+    """ModifySoImageAttribute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改星海镜像信息
+        :param BootMode: 镜像的启动模式，不填则保持原有配置。取值：
+• BIOS：BIOS启动模式
+• UEFI：UEFI启动模式
+        :type PathPrefix: String
+        :param Description: 镜像描述
+        :type PathPrefix: String
+        :param ImageId: 自定义镜像ID。
+        :type PathPrefix: String
+        :param ImageName: 镜像名称。
+        :type PathPrefix: String
+        """
+        self.BootMode = None
+        self.Description = None
+        self.ImageId = None
+        self.ImageName = None
+
+    def _deserialize(self, params):
+        if params.get("BootMode"):
+            self.BootMode = params.get("BootMode")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("ImageName"):
+            self.ImageName = params.get("ImageName")
+
+
+class ModifySoVpcAttributesRequest(AbstractModel):
+    """ModifySoVpcAttributes请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改星海私有网络
+        :param VpcId: 待修改信息的VPC的ID。
+        :type PathPrefix: String
+        :param Description: VPC的描述信息。
+        :type PathPrefix: String
+        :param DnsServers: VPC的DNS服务器地址。
+• 参数 - N：表示DNS服务器地址的序号，单次调用数量上限为5个，每个DnsServer必须以合法IP形式给出。
+• 多个IP之间用&分隔。
+• 不填则配置为默认DNS服务器地址。
+        :type PathPrefix: Filter
+        :param VpcName: VPC的名称。
+        :type PathPrefix: String
+        """
+        self.VpcId = None
+        self.Description = None
+        self.DnsServers = None
+        self.VpcName = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("DnsServers"):
+            self.DnsServers = params.get("DnsServers")
+        if params.get("VpcName"):
+            self.VpcName = params.get("VpcName")
+
+
+class ReplaceSoSystemVolumeRequest(AbstractModel):
+    """ReplaceSoSystemVolume请求参数结构体
+    """
+
+    def __init__(self):
+        r"""星海更换操作系统
+        :param ImageId: 更换操作系统时使用的镜像ID。
+        :type PathPrefix: String
+        :param InstanceId: 实例ID。
+        :type PathPrefix: String
+        :param KeepImageCredential: 使用镜像预设密码/密钥对登录实例。取值：
+• true：使用镜像预设密码/密钥对登录。
+• false（默认）：不使用镜像预设密码/密钥对登录。
+说明
+• 仅自定义镜像支持使用该功能。
+• 该参数为true时，请勿传入PassWord和KeyPairName。
+        :type PathPrefix: Boolean
+        :param KeyPairName: 重置密钥对。
+说明
+• 仅对Linux操作系统的实例生效。
+• KeepImageCredential为false时，本参数与Password不能同时为空。
+• 若同时设置了密钥对KeyPairName和密码Password，则仅生效密钥对KeyPairName。
+        :type PathPrefix: String
+        :param Password: 重置密码
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.InstanceId = None
+        self.KeepImageCredential = None
+        self.KeyPairName = None
+        self.Password = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("KeepImageCredential"):
+            self.KeepImageCredential = params.get("KeepImageCredential")
+        if params.get("KeyPairName"):
+            self.KeyPairName = params.get("KeyPairName")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+
+
+class CreateSoSubnetRequest(AbstractModel):
+    """CreateSoSubnet请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建星海子网
+        :param VpcId: 要创建的子网所属VPC的ID。
+        :type PathPrefix: String
+        :param ZoneId: 要创建的子网所属的可用区ID
+        :type PathPrefix: String
+        :param SubnetName: 子网的名称。
+        :type PathPrefix: String
+        :param Description: 子网的描述信息。
+        :type PathPrefix: String
+        :param CidrBlock: 子网的网段。
+• 子网的网段必须从属于子网所属VPC的网段。
+• 子网网段不能与所属VPC路由条目的目标网段相同，但可以是目标网段的子集。
+• 子网网段的掩码长度与VPC网段相关，具体如下：
+    ◦ 10.XX.XX.XX网段掩码范围：8 ~ 29
+    ◦ 172.16.XX.XX网段掩码范围：12 ~ 29
+    ◦ 192.168.XX.XX网段掩码范围：16 ~ 29
+        :type PathPrefix: String
+        """
+        self.VpcId = None
+        self.ZoneId = None
+        self.SubnetName = None
+        self.Description = None
+        self.CidrBlock = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("SubnetName"):
+            self.SubnetName = params.get("SubnetName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("CidrBlock"):
+            self.CidrBlock = params.get("CidrBlock")
+
+
+class DescribeSoVpcsRequest(AbstractModel):
+    """DescribeSoVpcs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询星海私有网络
+        :param VpcName: VPC的名称。
+        :type PathPrefix: String
+        :param VpcIds: VPC的ID。
+• 参数 - N：表示VPC ID的序号，单次调用数量上限为100个。
+• 多个VPC ID之间用&分隔。
+        :type PathPrefix: Filter
+        :param NextToken: 分页查询凭证，用于标记分页的位置。
+• 不填则从头开始查询。
+• 传入之前调用本API返回的NextToken，则从该次API调用标记分页的位置往后开始查询。
+        :type PathPrefix: String
+        :param MaxResults: 
+        :type PathPrefix: Int
+        """
+        self.VpcName = None
+        self.VpcIds = None
+        self.NextToken = None
+        self.MaxResults = None
+
+    def _deserialize(self, params):
+        if params.get("VpcName"):
+            self.VpcName = params.get("VpcName")
+        if params.get("VpcIds"):
+            self.VpcIds = params.get("VpcIds")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+
+
+class StopSoInstanceRequest(AbstractModel):
+    """StopSoInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""停止星海实例
+        :param ForceStop: 是否强制关机，取值：
+• true：强制关机。相当于典型的断电操作，所有未写入存储设备的缓存数据会丢失。
+• false（默认）：正常关机。
+说明
+以下类型的实例，ForceStop无论取值为true还是false，实例均会执行强制关机。
+• 弹性裸金属实例。
+• 高性能计算GPU型ebmhpcpni2l 、ebmhpcpni2、ebmhpchfpni2实例。该类实例正在邀测中，如需试用，请联系客户经理申请。
+示例值：false
+        :type PathPrefix: Boolean
+        :param InstanceIds: 实例ID，最多支持100个。
+• 参数 - N：表示实例的序号。
+• 多个Instance ID之间用&分隔。
+        :type PathPrefix: Filter
+        """
+        self.ForceStop = None
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("ForceStop"):
+            self.ForceStop = params.get("ForceStop")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+
+
+class DeleteSoKeyPairsRequest(AbstractModel):
+    """DeleteSoKeyPairs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除星海密钥对
+        :param KeyPairNames: 密钥对名称，最多支持100个。
+• 参数 - N：表示密钥对的序号。
+• 多个密钥对之间用&分隔。
+        :type PathPrefix: Filter
+        """
+        self.KeyPairNames = None
+
+    def _deserialize(self, params):
+        if params.get("KeyPairNames"):
+            self.KeyPairNames = params.get("KeyPairNames")
+
+
+class CreateSoImageRequest(AbstractModel):
+    """CreateSoImage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建星海自定义镜像
+        :param ForceStop: 重启实例前是否强制关机，取值：
+• true：强制关机。相当于典型的断电操作，所有未写入存储设备的缓存数据会丢失。
+• false（默认）：正常关机。
+说明
+以下类型的实例，ForceStop无论取值为true还是false，实例均会执行强制关机。
+• 弹性裸金属实例。
+• 高性能计算GPU型ebmhpcpni2l 、ebmhpcpni2、ebmhpchfpni2实例。
+示例值：false
+
+        :type PathPrefix: Boolean
+        :param InstanceIds: 实例ID，最多支持100个ID。
+• 参数 - N：表示实例的序号。
+• 多个Instance ID之间用&分隔。
+示例值：InstanceIds.1=8981d45e-b3dc-44c6-b02f-2d1969551316&InstanceIds.2=8981d45e-b3dc-44c6-b02f-2d1969551318
+        :type PathPrefix: Filter
+        """
+        self.ForceStop = None
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("ForceStop"):
+            self.ForceStop = params.get("ForceStop")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+
+
+class ModifySoInstanceAttributeRequest(AbstractModel):
+    """ModifySoInstanceAttribute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改指定实例的信息
+        :param DeletionProtection: 实例删除保护属性，指定是否支持通过控制台或API删除实例。取值：
+• true：开启实例删除保护。
+• false：关闭实例删除保护。
+示例值：true
+        :type PathPrefix: String
+        :param Description: 实例的描述。
+• 必须以字母或中文开头。
+• 只能包含中文、字母、数字、点“.”、空格、下划线“_”、中划线“-”、等号“=”、英文逗号“,”、中文逗号“，”和中文句号“。”
+• 长度限制在255个字符以内。
+说明 传入空字符串时，将清空原有描述信息。
+示例值：ECS instance for testing.
+        :type PathPrefix: String
+        :param Hostname: 实例主机名，即实例操作系统内部的计算机名。
+• Linux实例：
+    ◦ 允许使用字母、数字、点号“.”或中划线“-”。
+    ◦ 不能以中划线、点号开头或结尾，且不能连续使用中划线和点号。
+    ◦ Linux系统长度限制在2～63个字符之间。
+• Windows实例：
+    ◦ 允许使用字母、数字或中划线“-”，不能完全是数字。
+    ◦ 不能以中划线开头或结尾，且不能连续使用中划线。
+    ◦ Windows系统长度限制在2～15个字符之间。
+示例值：instance-host-name
+        :type PathPrefix: String
+        :param InstanceId: 实例ID。
+示例值：4f35e8f7-f549-5c55-9531-5f43ca78****
+        :type PathPrefix: String
+        :param InstanceName: 实例的名称。
+• 以字母或中文开头。
+• 只能包含中文、字母、数字、下划线“_”、中划线“-”和点号“.”。
+• 长度限制为1～128个字符。
+示例值：instance-test
+        :type PathPrefix: String
+        :param Password: 示例值：password@123
+使用“密码”方式登录实例时，请设置实例的登录密码。
+• 长度限制在8～30之间。
+• 密码只能由大写字母、小写字母、数字和特殊字符组成，且必须包含至少三项。
+• 特殊字符可以使用：`~!@#$%^&*()_-+=|{}[]:;'<>,.?/
+• 不能以“/”和“$6$”开头。
+        :type PathPrefix: String
+        """
+        self.DeletionProtection = None
+        self.Description = None
+        self.Hostname = None
+        self.InstanceId = None
+        self.InstanceName = None
+        self.Password = None
+
+    def _deserialize(self, params):
+        if params.get("DeletionProtection"):
+            self.DeletionProtection = params.get("DeletionProtection")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("Hostname"):
+            self.Hostname = params.get("Hostname")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("InstanceName"):
+            self.InstanceName = params.get("InstanceName")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+
+
+class CreateSoKeyPairRequest(AbstractModel):
+    """CreateSoKeyPair请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建星海密钥对
+        :param KeyPairName: 密钥对名称。
+• 不可与已有名称重复。
+• 长度限制在 2～64 个字符之间。
+• 允许使用点号“.”分隔字符成多段，每段允许使用大小写字母、数字或连字符“-”。
+• 不能以“-”和“.”开头或结尾，不能连续使用“-”或者“.”。
+        :type PathPrefix: String
+        :param Description: 密钥对的描述，默认值为空字符串。
+• 必须以字母或中文开头。
+• 只能包含中文、字母、数字、点“.”、空格、下划线“_”、中划线“-”、等号“=”、英文逗号“,”、中文逗号“，”和中文句号“。”
+• 长度限制在255个字符以内。
+        :type PathPrefix: String
+        """
+        self.KeyPairName = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("KeyPairName"):
+            self.KeyPairName = params.get("KeyPairName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+

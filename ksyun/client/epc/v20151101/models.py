@@ -865,15 +865,20 @@ class DescribeImagesRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
+        :param ImageId.N: 镜像ID
+        :type PathPrefix: String
         """
         self.MaxResults = None
         self.NextToken = None
+        self.ImageId.N = None
 
     def _deserialize(self, params):
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+        if params.get("ImageId.N"):
+            self.ImageId.N = params.get("ImageId.N")
 
 
 class ModifyDnsRequest(AbstractModel):
@@ -1313,7 +1318,7 @@ class DescribeEpcDeviceAttributesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeEpcDeviceAttributes
+        r"""查询云物理机型配置信息
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
         :param DeviceAttributeId: 设备的ID
@@ -2553,7 +2558,7 @@ class DescribeModelConfigRequest(AbstractModel):
     def __init__(self):
         r"""查询AI模型配置
         :param MaxResults: 单次调用可返回的最大条目数量. 传入返回的 NextToken 值可以获取剩余的其它条目. 这个值可以允许的范围是 5- 1000.
-类型: Integer
+类型: Int
 是否必填：否
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.

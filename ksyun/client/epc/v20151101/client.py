@@ -722,7 +722,7 @@ class EpcClient(AbstractClient):
 
 
     def DescribeEpcDeviceAttributes(self, request):
-        """DescribeEpcDeviceAttributes
+        """查询云物理机型配置信息
         :param request: Request instance for DescribeEpcDeviceAttributes.
         :type request: :class:`ksyun.client.epc.v20151101.models.DescribeEpcDeviceAttributesRequest`
         """

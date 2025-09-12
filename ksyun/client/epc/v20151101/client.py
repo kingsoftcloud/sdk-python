@@ -1664,6 +1664,29 @@ class EpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def RunSoInstances(self, request):
+        """创建星海实例
+        :param request: Request instance for RunSoInstances.
+        :type request: :class:`ksyun.client.epc.v20151101.models.RunSoInstancesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RunSoInstances", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DescribeSoImages(self, request):
         """查询星海镜像
         :param request: Request instance for DescribeSoImages.

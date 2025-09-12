@@ -8,7 +8,6 @@ class KecClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'kec.api.ksyun.com'
     _service = 'kec'
-
     def DescribeInstances(self, request):
         """描述实例信息
         :param request: Request instance for DescribeInstances.
@@ -31,8 +30,9 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RunInstances(self, request):
-        """创建实例
+        """创建实例信息
         :param request: Request instance for RunInstances.
         :type request: :class:`ksyun.client.kec.v20160304.models.RunInstancesRequest`
         """
@@ -52,6 +52,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def StartInstances(self, request):
         """启动实例
@@ -75,6 +76,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def StopInstances(self, request):
         """关闭实例
         :param request: Request instance for StopInstances.
@@ -96,6 +98,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RebootInstances(self, request):
         """重启实例
@@ -119,6 +122,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyInstanceAttribute(self, request):
         """修改实例属性信息
         :param request: Request instance for ModifyInstanceAttribute.
@@ -140,6 +144,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyInstanceType(self, request):
         """升级实例套餐类型
@@ -163,6 +168,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def TerminateInstances(self, request):
         """销毁实例
         :param request: Request instance for TerminateInstances.
@@ -184,6 +190,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeImages(self, request):
         """描述镜像信息
@@ -207,6 +214,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyImageAttribute(self, request):
         """修改镜像属性信息
         :param request: Request instance for ModifyImageAttribute.
@@ -228,6 +236,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyInstanceImage(self, request):
         """更换或者重新安装实例操作系统
@@ -251,6 +260,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateImage(self, request):
         """创建镜像
         :param request: Request instance for CreateImage.
@@ -272,6 +282,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RemoveImages(self, request):
         """删除镜像
@@ -295,6 +306,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyNetworkInterfaceAttribute(self, request):
         """修改网络接口
         :param request: Request instance for ModifyNetworkInterfaceAttribute.
@@ -316,6 +328,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AttachNetworkInterface(self, request):
         """实例添加弹性网卡
@@ -339,6 +352,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DetachNetworkInterface(self, request):
         """实例卸载弹性网卡
         :param request: Request instance for DetachNetworkInterface.
@@ -360,6 +374,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeLocalVolumes(self, request):
         """查询本地盘信息
@@ -383,6 +398,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateLocalVolumeSnapshot(self, request):
         """创建本地盘快照
         :param request: Request instance for CreateLocalVolumeSnapshot.
@@ -404,6 +420,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeLocalVolumeSnapshots(self, request):
         """描述本地盘快照信息
@@ -427,6 +444,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RollbackLocalVolume(self, request):
         """快照回滚本地盘
         :param request: Request instance for RollbackLocalVolume.
@@ -448,6 +466,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteLocalVolumeSnapshot(self, request):
         """删除本地盘快照
@@ -471,6 +490,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDataGuardGroups(self, request):
         """修改容灾分组信息
         :param request: Request instance for ModifyDataGuardGroups.
@@ -492,6 +512,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeDataGuardCapacity(self, request):
         """查询用户区域容灾分组容量
@@ -515,6 +536,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateDataGuardGroup(self, request):
         """创建容灾分组
         :param request: Request instance for CreateDataGuardGroup.
@@ -536,6 +558,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteDataGuardGroups(self, request):
         """删除容灾分组
@@ -559,6 +582,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDataGuardGroup(self, request):
         """描述容灾分组信息
         :param request: Request instance for DescribeDataGuardGroup.
@@ -580,6 +604,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RemoveVmFromDataGuard(self, request):
         """容灾分组中移除实例
@@ -603,6 +628,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateDedicatedHosts(self, request):
         """创建专属宿主机
         :param request: Request instance for CreateDedicatedHosts.
@@ -624,6 +650,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteDedicatedHost(self, request):
         """删除专属宿主机
@@ -647,6 +674,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDedicatedHosts(self, request):
         """描述专属宿主机信息
         :param request: Request instance for DescribeDedicatedHosts.
@@ -668,6 +696,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeScalingConfiguration(self, request):
         """查询启动配置
@@ -691,6 +720,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateScalingConfiguration(self, request):
         """创建启动配置
         :param request: Request instance for CreateScalingConfiguration.
@@ -712,6 +742,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteScalingConfiguration(self, request):
         """删除启动配置
@@ -735,6 +766,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateScalingGroup(self, request):
         """创建伸缩组接口
         :param request: Request instance for CreateScalingGroup.
@@ -756,6 +788,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeScalingGroup(self, request):
         """查询伸缩组列表接口
@@ -779,6 +812,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyScalingGroup(self, request):
         """修改伸缩组接口
         :param request: Request instance for ModifyScalingGroup.
@@ -800,6 +834,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetKvmProtectedDetach(self, request):
         """设置子机移除保护
@@ -823,6 +858,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeScalingInstance(self, request):
         """查询伸缩组绑定的云服务器
         :param request: Request instance for DescribeScalingInstance.
@@ -844,6 +880,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AttachInstance(self, request):
         """绑定伸缩组云服务器
@@ -867,6 +904,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DetachInstance(self, request):
         """解绑伸缩组云服务器
         :param request: Request instance for DetachInstance.
@@ -888,6 +926,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeScalingActivity(self, request):
         """查询伸缩活动
@@ -911,6 +950,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteScalingGroup(self, request):
         """删除伸缩组
         :param request: Request instance for DeleteScalingGroup.
@@ -932,6 +972,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DisableScalingGroup(self, request):
         """停用伸缩组
@@ -955,6 +996,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def EnableScalingGroup(self, request):
         """启用伸缩组
         :param request: Request instance for EnableScalingGroup.
@@ -976,6 +1018,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeScalingNotification(self, request):
         """查询通知
@@ -999,6 +1042,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateScalingNotification(self, request):
         """创建通知
         :param request: Request instance for CreateScalingNotification.
@@ -1020,6 +1064,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyScalingNotification(self, request):
         """修改通知
@@ -1043,6 +1088,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateScheduledTask(self, request):
         """创建定时任务
         :param request: Request instance for CreateScheduledTask.
@@ -1064,6 +1110,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeScheduledTask(self, request):
         """查询定时任务
@@ -1087,6 +1134,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyScheduledTask(self, request):
         """修改定时任务
         :param request: Request instance for ModifyScheduledTask.
@@ -1108,6 +1156,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteScheduledTask(self, request):
         """删除定时任务
@@ -1131,8 +1180,9 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateScalingPolicy(self, request):
-        """创建告警触发策略
+        """创建自定义策略
         :param request: Request instance for CreateScalingPolicy.
         :type request: :class:`ksyun.client.kec.v20160304.models.CreateScalingPolicyRequest`
         """
@@ -1153,8 +1203,9 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeScalingPolicy(self, request):
-        """查询告警触发策略
+        """查询自定义策略
         :param request: Request instance for DescribeScalingPolicy.
         :type request: :class:`ksyun.client.kec.v20160304.models.DescribeScalingPolicyRequest`
         """
@@ -1175,8 +1226,9 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyScalingPolicy(self, request):
-        """修改告警触发策略
+        """修改自定义策略
         :param request: Request instance for ModifyScalingPolicy.
         :type request: :class:`ksyun.client.kec.v20160304.models.ModifyScalingPolicyRequest`
         """
@@ -1197,8 +1249,9 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteScalingPolicy(self, request):
-        """删除告警触发策略
+        """删除自定义策略
         :param request: Request instance for DeleteScalingPolicy.
         :type request: :class:`ksyun.client.kec.v20160304.models.DeleteScalingPolicyRequest`
         """
@@ -1218,6 +1271,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ImportImage(self, request):
         """镜像导入
@@ -1241,6 +1295,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CopyImage(self, request):
         """镜像复制
         :param request: Request instance for CopyImage.
@@ -1262,6 +1317,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyImageSharePermission(self, request):
         """镜像共享，取消共享接口
@@ -1285,6 +1341,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeImageSharePermission(self, request):
         """镜像共享的账户列表
         :param request: Request instance for DescribeImageSharePermission.
@@ -1306,6 +1363,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRegions(self, request):
         """用户有权限机房
@@ -1329,6 +1387,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AttachKey(self, request):
         """主机绑定密钥
         :param request: Request instance for AttachKey.
@@ -1350,6 +1409,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachKey(self, request):
         """主机解绑密钥
@@ -1373,6 +1433,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeAvailabilityZones(self, request):
         """查询可用区列表
         :param request: Request instance for DescribeAvailabilityZones.
@@ -1394,6 +1455,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeInstanceTypeConfigs(self, request):
         """查询机型套餐配置信息
@@ -1417,6 +1479,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInstanceFamilys(self, request):
         """查询机型配置信息
         :param request: Request instance for DescribeInstanceFamilys.
@@ -1438,6 +1501,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddVmIntoDataGuard(self, request):
         """存量虚机迁入容灾分组
@@ -1461,6 +1525,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateFileSystem(self, request):
         """创建一个新的文件系统
         :param request: Request instance for CreateFileSystem.
@@ -1482,6 +1547,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteFileSystem(self, request):
         """删除文件系统信息
@@ -1505,6 +1571,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeFileSystems(self, request):
         """查询文件系统信息
         :param request: Request instance for DescribeFileSystems.
@@ -1526,6 +1593,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyFileSystem(self, request):
         """修改文件系统（名称）
@@ -1549,6 +1617,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateMountTarget(self, request):
         """创建文件系统挂载点
         :param request: Request instance for CreateMountTarget.
@@ -1570,6 +1639,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteMountTarget(self, request):
         """删除文件系统挂载点
@@ -1593,6 +1663,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeMountTargets(self, request):
         """查询挂载点信息
         :param request: Request instance for DescribeMountTargets.
@@ -1614,6 +1685,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateModel(self, request):
         """创建实例启动模版
@@ -1637,6 +1709,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def TerminateModels(self, request):
         """删除实例启动模版
         :param request: Request instance for TerminateModels.
@@ -1658,6 +1731,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeModels(self, request):
         """查询实例启动模版
@@ -1681,6 +1755,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDedicatedCluster(self, request):
         """描述专属集群信息
         :param request: Request instance for DescribeDedicatedCluster.
@@ -1702,6 +1777,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateDedicatedCluster(self, request):
         """创建集群
@@ -1725,6 +1801,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteDedicatedCluster(self, request):
         """删除集群
         :param request: Request instance for DeleteDedicatedCluster.
@@ -1746,6 +1823,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetvCPU(self, request):
         """专属宿主机设置虚拟核数
@@ -1769,6 +1847,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DedicatedHostMigrate(self, request):
         """宿主机迁移集群
         :param request: Request instance for DedicatedHostMigrate.
@@ -1790,6 +1869,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyDedicatedClusterName(self, request):
         """修改专属集群名称
@@ -1813,6 +1893,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def InstanceMigrate(self, request):
         """专属虚机迁移
         :param request: Request instance for InstanceMigrate.
@@ -1834,6 +1915,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyInstanceAutoDeleteTime(self, request):
         """实例定时删除
@@ -1857,6 +1939,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyScalingConfiguration(self, request):
         """修改启动配置
         :param request: Request instance for ModifyScalingConfiguration.
@@ -1878,6 +1961,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeSpotPriceHistory(self, request):
         """DescribeSpotPriceHistory
@@ -1901,8 +1985,9 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribePrice(self, request):
-        """查询价格
+        """查询实例价格
         :param request: Request instance for DescribePrice.
         :type request: :class:`ksyun.client.kec.v20160304.models.DescribePriceRequest`
         """
@@ -1922,6 +2007,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def EnableImageCaching(self, request):
         """自定义镜像预热
@@ -1945,6 +2031,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DisableImageCaching(self, request):
         """取消自定义镜像预热
         :param request: Request instance for DisableImageCaching.
@@ -1966,6 +2053,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyLoadBalancers(self, request):
         """ModifyLoadBalancers
@@ -1989,6 +2077,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AttachInstancesIamRole(self, request):
         """实例绑定IAM角色
         :param request: Request instance for AttachInstancesIamRole.
@@ -2010,6 +2099,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachInstancesIamRole(self, request):
         """实例解除绑定IAM角色
@@ -2033,6 +2123,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CopySnapshot(self, request):
         """本地盘快照跨region复制
         :param request: Request instance for CopySnapshot.
@@ -2054,6 +2145,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def PreMigrateInstance(self, request):
         """创建预迁移
@@ -2077,6 +2169,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CancelPreMigrateInstance(self, request):
         """取消预迁移
         :param request: Request instance for CancelPreMigrateInstance.
@@ -2099,27 +2192,6 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def GetVNCAddress(self, request):
-        """OpenAPI获取浏览器可用的VNC地址
-        :param request: Request instance for GetVNCAddress.
-        :type request: :class:`ksyun.client.kec.v20160304.models.GetVNCAddressRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetVNCAddress", params, "application/json")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def SwitchImageType(self, request):
         """镜像类型转换
@@ -2142,3 +2214,51 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def SetInstanceResourceProtect(self, request):
+        """设置实例的资源保护状态
+        :param request: Request instance for SetInstanceResourceProtect.
+        :type request: :class:`ksyun.client.kec.v20160304.models.SetInstanceResourceProtectRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetInstanceResourceProtect", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeInstanceVncUrl(self, request):
+        """查询VNC管理终端地址
+        :param request: Request instance for DescribeInstanceVncUrl.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeInstanceVncUrlRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInstanceVncUrl", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

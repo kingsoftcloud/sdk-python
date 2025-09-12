@@ -8,7 +8,6 @@ class VpcClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'vpc.api.ksyun.com'
     _service = 'vpc'
-
     def CreateVpc(self, request):
         """创建Vpc
         :param request: Request instance for CreateVpc.
@@ -30,6 +29,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteVpc(self, request):
         """删除Vpc
@@ -53,6 +53,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeVpcs(self, request):
         """描述Vpc
         :param request: Request instance for DescribeVpcs.
@@ -74,6 +75,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateSubnet(self, request):
         """创建子网
@@ -97,6 +99,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteSubnet(self, request):
         """删除子网
         :param request: Request instance for DeleteSubnet.
@@ -119,8 +122,9 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSubnets(self, request):
-        """描述子网
+        """描述VPC子网
         :param request: Request instance for DescribeSubnets.
         :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeSubnetsRequest`
         """
@@ -140,6 +144,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AssociateNetworkAcl(self, request):
         """关联ACL
@@ -163,6 +168,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DisassociateNetworkAcl(self, request):
         """解绑ACL
         :param request: Request instance for DisassociateNetworkAcl.
@@ -185,8 +191,9 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateRoute(self, request):
-        """创建路由
+        """创建vpc路由
         :param request: Request instance for CreateRoute.
         :type request: :class:`ksyun.client.vpc.v20160304.models.CreateRouteRequest`
         """
@@ -207,8 +214,9 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteRoute(self, request):
-        """删除路由
+        """删除vpc路由
         :param request: Request instance for DeleteRoute.
         :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteRouteRequest`
         """
@@ -229,8 +237,9 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeRoutes(self, request):
-        """描述路由
+        """描述vpc路由
         :param request: Request instance for DescribeRoutes.
         :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeRoutesRequest`
         """
@@ -250,6 +259,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateNetworkAcl(self, request):
         """创建ACL
@@ -273,6 +283,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteNetworkAcl(self, request):
         """删除ACL
         :param request: Request instance for DeleteNetworkAcl.
@@ -294,6 +305,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateNetworkAclEntry(self, request):
         """创建ACL规则
@@ -317,6 +329,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteNetworkAclEntry(self, request):
         """删除ACLl规则
         :param request: Request instance for DeleteNetworkAclEntry.
@@ -338,6 +351,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeNetworkAcls(self, request):
         """描述ACL
@@ -361,6 +375,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateSecurityGroup(self, request):
         """创建安全组
         :param request: Request instance for CreateSecurityGroup.
@@ -382,6 +397,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteSecurityGroup(self, request):
         """删除安全组
@@ -405,6 +421,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AuthorizeSecurityGroupEntry(self, request):
         """创建安全组规则
         :param request: Request instance for AuthorizeSecurityGroupEntry.
@@ -426,6 +443,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RevokeSecurityGroupEntry(self, request):
         """删除安全组规则
@@ -449,6 +467,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSecurityGroups(self, request):
         """描述安全组
         :param request: Request instance for DescribeSecurityGroups.
@@ -470,6 +489,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateNat(self, request):
         """创建Nat
@@ -493,6 +513,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteNat(self, request):
         """删除Nat
         :param request: Request instance for DeleteNat.
@@ -514,6 +535,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeNats(self, request):
         """描述Nat
@@ -537,6 +559,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AssociateNat(self, request):
         """Nat关联子网
         :param request: Request instance for AssociateNat.
@@ -558,6 +581,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DisassociateNat(self, request):
         """Nat解绑子网
@@ -581,6 +605,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInternetGateways(self, request):
         """描述InternetGateway
         :param request: Request instance for DescribeInternetGateways.
@@ -602,6 +627,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateVpcPeeringConnection(self, request):
         """创建对等连接
@@ -625,6 +651,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteVpcPeeringConnection(self, request):
         """删除对等连接
         :param request: Request instance for DeleteVpcPeeringConnection.
@@ -646,6 +673,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeVpcPeeringConnections(self, request):
         """描述对等连接
@@ -669,6 +697,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyNetworkAcl(self, request):
         """修改ACL
         :param request: Request instance for ModifyNetworkAcl.
@@ -690,6 +719,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifySecurityGroup(self, request):
         """更改安全组信息
@@ -713,6 +743,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifySubnet(self, request):
         """修改子网
         :param request: Request instance for ModifySubnet.
@@ -734,6 +765,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyNat(self, request):
         """更新NAT信息
@@ -757,6 +789,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeNetworkInterfaces(self, request):
         """描述弹性网卡
         :param request: Request instance for DescribeNetworkInterfaces.
@@ -778,6 +811,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeSubnetAvailableAddresses(self, request):
         """描述子网可用IP信息
@@ -801,6 +835,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyVpc(self, request):
         """修改Vpc
         :param request: Request instance for ModifyVpc.
@@ -822,6 +857,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AcceptVpcPeeringConnection(self, request):
         """接受对等连接
@@ -845,6 +881,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RejectVpcPeeringConnection(self, request):
         """拒绝对等连接
         :param request: Request instance for RejectVpcPeeringConnection.
@@ -866,6 +903,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyVpcPeeringConnection(self, request):
         """修改对等连接
@@ -889,6 +927,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeAvailabilityZones(self, request):
         """描述可用区信息
         :param request: Request instance for DescribeAvailabilityZones.
@@ -910,6 +949,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeDirectConnects(self, request):
         """描述物理端口
@@ -933,6 +973,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateDirectConnectInterface(self, request):
         """创建连接通道
         :param request: Request instance for CreateDirectConnectInterface.
@@ -954,6 +995,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteDirectConnectInterface(self, request):
         """删除连接通道
@@ -977,6 +1019,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDirectConnectInterfaces(self, request):
         """描述连接通道
         :param request: Request instance for DescribeDirectConnectInterfaces.
@@ -998,6 +1041,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateDirectConnectGateway(self, request):
         """创建边界网关
@@ -1021,6 +1065,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteDirectConnectGateway(self, request):
         """删除边界网关
         :param request: Request instance for DeleteDirectConnectGateway.
@@ -1042,6 +1087,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeDirectConnectGateways(self, request):
         """描述边界网关
@@ -1065,6 +1111,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AttachDirectConnectGateway(self, request):
         """绑定边界网关
         :param request: Request instance for AttachDirectConnectGateway.
@@ -1086,6 +1133,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachDirectConnectGateway(self, request):
         """解绑边界网关
@@ -1109,6 +1157,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDirectConnectInterface(self, request):
         """修改连接通道
         :param request: Request instance for ModifyDirectConnectInterface.
@@ -1130,6 +1179,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyDirectConnectGateway(self, request):
         """修改边界网关
@@ -1153,6 +1203,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateVpnGateway(self, request):
         """创建VPN网关
         :param request: Request instance for CreateVpnGateway.
@@ -1174,6 +1225,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyVpnGateway(self, request):
         """修改VPN网关
@@ -1197,6 +1249,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteVpnGateway(self, request):
         """删除VPN网关
         :param request: Request instance for DeleteVpnGateway.
@@ -1218,6 +1271,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeVpnGateways(self, request):
         """描述VPN网关
@@ -1241,6 +1295,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateVpnTunnel(self, request):
         """创建VPN通道
         :param request: Request instance for CreateVpnTunnel.
@@ -1262,6 +1317,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyVpnTunnel(self, request):
         """修改VPN通道
@@ -1285,6 +1341,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteVpnTunnel(self, request):
         """删除VPN通道
         :param request: Request instance for DeleteVpnTunnel.
@@ -1306,6 +1363,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeVpnTunnels(self, request):
         """描述VPN通道
@@ -1329,6 +1387,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateCustomerGateway(self, request):
         """创建客户网关
         :param request: Request instance for CreateCustomerGateway.
@@ -1350,6 +1409,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyCustomerGateway(self, request):
         """修改客户网关信息
@@ -1373,6 +1433,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteCustomerGateway(self, request):
         """删除客户网关
         :param request: Request instance for DeleteCustomerGateway.
@@ -1394,6 +1455,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyDirectConnect(self, request):
         """修改物理端口
@@ -1417,6 +1479,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCustomerGateways(self, request):
         """描述客户网关
         :param request: Request instance for DescribeCustomerGateways.
@@ -1438,6 +1501,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeSubnetAllocatedIpAddresses(self, request):
         """描述子网已用IP信息
@@ -1461,6 +1525,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AddNatIp(self, request):
         """增加NAT IP
         :param request: Request instance for AddNatIp.
@@ -1482,6 +1547,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteNatIp(self, request):
         """删除NATIP
@@ -1505,6 +1571,168 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
+    def AssociateVpcCidrBlock(self, request):
+        """为VPC添加IPv6网段
+        :param request: Request instance for AssociateVpcCidrBlock.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AssociateVpcCidrBlockRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AssociateVpcCidrBlock", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeIpv6PublicIpAddresses(self, request):
+        """网卡IPV6公网信息查询
+        :param request: Request instance for DescribeIpv6PublicIpAddresses.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeIpv6PublicIpAddressesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeIpv6PublicIpAddresses", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeIpv6NetworkInterfaces(self, request):
+        """描述具有IPV6的网卡信息
+        :param request: Request instance for DescribeIpv6NetworkInterfaces.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeIpv6NetworkInterfacesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeIpv6NetworkInterfaces", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateIpv6PublicIp(self, request):
+        """开通IPV6公网能力
+        :param request: Request instance for CreateIpv6PublicIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateIpv6PublicIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateIpv6PublicIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ReleaseIpv6PublicIp(self, request):
+        """解除IPV6公网能力
+        :param request: Request instance for ReleaseIpv6PublicIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ReleaseIpv6PublicIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ReleaseIpv6PublicIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AlterIpv6PublicIpState(self, request):
+        """挂起IPV6
+        :param request: Request instance for AlterIpv6PublicIpState.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AlterIpv6PublicIpStateRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AlterIpv6PublicIpState", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyIpv6PublicIp(self, request):
+        """修改IPV6公网带宽
+        :param request: Request instance for ModifyIpv6PublicIp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyIpv6PublicIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyIpv6PublicIp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ModifyPrivateIpAddressAttribute(self, request):
         """修改内网IP属性
         :param request: Request instance for ModifyPrivateIpAddressAttribute.
@@ -1526,6 +1754,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeDirectConnectRoutes(self, request):
         """查询专线路由
@@ -1549,6 +1778,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DetachDirectConnectGatewayWithVpc(self, request):
         """边界网关解绑VPC
         :param request: Request instance for DetachDirectConnectGatewayWithVpc.
@@ -1570,6 +1800,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AttachDirectConnectGatewayWithVpc(self, request):
         """边界网关关联VPC
@@ -1593,6 +1824,30 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
+    def AllocateSubnetIpv6CidrBlock(self, request):
+        """为子网添加IPv6网段
+        :param request: Request instance for AllocateSubnetIpv6CidrBlock.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AllocateSubnetIpv6CidrBlockRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AllocateSubnetIpv6CidrBlock", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def CreateRouteTable(self, request):
         """创建路由表
         :param request: Request instance for CreateRouteTable.
@@ -1614,6 +1869,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRouteTable(self, request):
         """删除路由表
@@ -1637,6 +1893,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyRouteTable(self, request):
         """修改路由表信息
         :param request: Request instance for ModifyRouteTable.
@@ -1658,6 +1915,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRouteTables(self, request):
         """描述路由表的信息
@@ -1681,6 +1939,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AssociateRouteTable(self, request):
         """关联路由表
         :param request: Request instance for AssociateRouteTable.
@@ -1702,6 +1961,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteNetworkInterface(self, request):
         """删除弹性网卡
@@ -1725,6 +1985,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateNetworkInterface(self, request):
         """创建弹性网卡
         :param request: Request instance for CreateNetworkInterface.
@@ -1746,6 +2007,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyNetworkInterface(self, request):
         """修改弹性网卡名称
@@ -1769,6 +2031,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateNatRateLimit(self, request):
         """CreateNatRateLimit
         :param request: Request instance for CreateNatRateLimit.
@@ -1790,6 +2053,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeNatRateLimit(self, request):
         """DescribeNatRateLimit
@@ -1813,6 +2077,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyNatRateLimit(self, request):
         """ModifyNatRateLimit
         :param request: Request instance for ModifyNatRateLimit.
@@ -1834,6 +2099,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteNatRateLimit(self, request):
         """DeleteNatRateLimit
@@ -1857,6 +2123,145 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
+    def CreateDnat(self, request):
+        """创建DNAT
+        :param request: Request instance for CreateDnat.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateDnatRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateDnat", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteDnat(self, request):
+        """删除DNAT
+        :param request: Request instance for DeleteDnat.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteDnatRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteDnat", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeDnats(self, request):
+        """查询DNAT
+        :param request: Request instance for DescribeDnats.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeDnatsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeDnats", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyDnat(self, request):
+        """修改DNAT
+        :param request: Request instance for ModifyDnat.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyDnatRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyDnat", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AssociateInstance(self, request):
+        """主机粒度SNAT
+        :param request: Request instance for AssociateInstance.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AssociateInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AssociateInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DisassociateInstance(self, request):
+        """删除主机粒度SNAT
+        :param request: Request instance for DisassociateInstance.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DisassociateInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DisassociateInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def CreateHaVip(self, request):
         """创建HaVip
         :param request: Request instance for CreateHaVip.
@@ -1878,6 +2283,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteHaVip(self, request):
         """删除HaVip
@@ -1901,6 +2307,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AssociateHaVip(self, request):
         """绑定HaVip
         :param request: Request instance for AssociateHaVip.
@@ -1922,6 +2329,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UnAssociateHaVip(self, request):
         """解绑HaVip
@@ -1945,6 +2353,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeHaVip(self, request):
         """查询HaVip
         :param request: Request instance for DescribeHaVip.
@@ -1966,6 +2375,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateDirectConnectGatewayRoute(self, request):
         """创建边界网关路由
@@ -1989,6 +2399,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteDirectConnectGatewayRoute(self, request):
         """删除边界网关路由
         :param request: Request instance for DeleteDirectConnectGatewayRoute.
@@ -2010,6 +2421,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeDirectConnectGatewayRoute(self, request):
         """查询边界网关路由
@@ -2033,6 +2445,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def PublishDirectConnectRoute(self, request):
         """发布边界网关路由到BGP
         :param request: Request instance for PublishDirectConnectRoute.
@@ -2054,6 +2467,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UnpublishDirectConnectRoute(self, request):
         """从BGP取消发布边界网关路由
@@ -2077,6 +2491,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AddSecondaryCidrBlock(self, request):
         """为VPC添加附加IPv4网段
         :param request: Request instance for AddSecondaryCidrBlock.
@@ -2098,6 +2513,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteSecondaryCidrBlock(self, request):
         """删除VPC附加IPv4网段
@@ -2121,6 +2537,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AssignPrivateIpAddress(self, request):
         """AssignPrivateIpAddress
         :param request: Request instance for AssignPrivateIpAddress.
@@ -2142,6 +2559,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UnassignPrivateIpAddress(self, request):
         """弹性网卡取消分配辅助私网ip
@@ -2165,6 +2583,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def BatchCreateNatRateLimit(self, request):
         """批量创建Nat限速
         :param request: Request instance for BatchCreateNatRateLimit.
@@ -2186,6 +2605,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def BatchModifyNatRateLimit(self, request):
         """批量修改Nat限速
@@ -2209,6 +2629,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def BatchDeleteNatRateLimit(self, request):
         """批量删除Nat限速
         :param request: Request instance for BatchDeleteNatRateLimit.
@@ -2230,6 +2651,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeVpnGatewayRoutes(self, request):
         """查询VPN网关路由
@@ -2253,6 +2675,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateVpnGatewayRoute(self, request):
         """创建VPN网关下的路由
         :param request: Request instance for CreateVpnGatewayRoute.
@@ -2274,6 +2697,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteVpnGatewayRoute(self, request):
         """删除VPN网关下的路由
@@ -2297,6 +2721,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeVpnTunnelIpsecStatus(self, request):
         """查询VPN通道ipsec status状态
         :param request: Request instance for DescribeVpnTunnelIpsecStatus.
@@ -2318,6 +2743,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def QueryNatTopVifMonitor(self, request):
         """查询NAT下流量排名的TOP 50的网卡
@@ -2341,6 +2767,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyNatIpStatus(self, request):
         """修改NatIp的禁用/启用
         :param request: Request instance for ModifyNatIpStatus.
@@ -2362,6 +2789,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def QueryPeerTopVifMonitor(self, request):
         """查询对等连接下流量排名的TOP 50的网卡
@@ -2385,6 +2813,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyVpnGatewayRoute(self, request):
         """修改VPN网关下的路由
         :param request: Request instance for ModifyVpnGatewayRoute.
@@ -2407,49 +2836,6 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def CreateDcNatIp(self, request):
-        """创建专线Nat
-        :param request: Request instance for CreateDcNatIp.
-        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateDcNatIpRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("CreateDcNatIp", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-    def DeleteDcNatIp(self, request):
-        """删除专线Nat
-        :param request: Request instance for DeleteDcNatIp.
-        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteDcNatIpRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DeleteDcNatIp", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def DescribeDirectConnectInterfacesBgpStatus(self, request):
         """查询专线通道 BGP邻居状态
@@ -2473,6 +2859,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeactiveFlowLog(self, request):
         """停止流日志
         :param request: Request instance for DeactiveFlowLog.
@@ -2494,6 +2881,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ActiveFlowLog(self, request):
         """启动流日志
@@ -2517,6 +2905,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteFlowLog(self, request):
         """删除流日志
         :param request: Request instance for DeleteFlowLog.
@@ -2538,6 +2927,7 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyFlowLog(self, request):
         """修改流日志
@@ -2561,6 +2951,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeFlowLogs(self, request):
         """查询流日志
         :param request: Request instance for DescribeFlowLogs.
@@ -2583,6 +2974,7 @@ class VpcClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateFlowLog(self, request):
         """创建流日志
         :param request: Request instance for CreateFlowLog.
@@ -2604,3 +2996,5 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

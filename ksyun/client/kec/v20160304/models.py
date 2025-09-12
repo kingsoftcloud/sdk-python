@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class DescribeInstancesRequest(AbstractModel):
     """DescribeInstances请求参数结构体
     """
@@ -16,14 +15,14 @@ class DescribeInstancesRequest(AbstractModel):
         :param InstanceId: 待返回描述信息的实例ID列表，N的范围为1-100
 标准UUID格式，形如`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
         :type PathPrefix: Filter
-        :param ProjectId: 待返回实例信息的项目ID列表，N的范围为1-100
+        :param ProjectId: 待返回实例信息的项目ID列表，N的范围为1-100，如果不传会查询默认值（0）下的实例
 
         :type PathPrefix: Filter
         :param Filter: 待返回实例信息的项目ID列表，N的范围为1-100
 支持如下过滤器名称<br>instance-id 实例ID<br>subnet-id 子网ID<br>vpc-id vpc ID<br>instance-name 实例名称<br>instance-type 实例类型<br>private-ip-address 内网IP<br>image-id 镜像ID<br>charge-type 计费模式（1（包年包月）、5（按量付费（按日月结））、87（按量付费）、810（竞价型实例））2（按小时计费）, 
 
 84（PostPaidByHour)
-<br>ProjectId.N 所属项目<br>network-interface.subnet-id 网络接口关联的子网ID<br>network-interface.network-interface-id 网卡的ID<br>network-interface.group-id 网络接口关联的安全组ID<br>instance-state.name [实例状态](https://docs.ksyun.com/documents/836)<br>availability-zone-name [可用区（AvailabilityZone）](https://docs.ksyun.com/documents/67)
+<br>ProjectId.N 所属项目<br>network-interface.subnet-id 网络接口关联的子网ID<br>network-interface.network-interface-id 网卡的ID<br>network-interface.group-id 网络接口关联的安全组ID<br>instance-state.name 实例状态<br>availability-zone-name [可用区(AvailabilityZone)](https://docs.ksyun.com/documents/67)
         :type PathPrefix: Filter
         :param Sort: 筛选器
 支持如下筛选器名称：<br>InstanceName –主机名称<br>CreationDate –创建时间<br>PrivateIpAddress - 主机内网IP（主网卡）
@@ -62,14 +61,10 @@ class RunInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建实例
+        r"""创建实例信息
         :param ImageId: 镜像ID
         :type PathPrefix: String
         :param DedicatedHostId: 专属宿主机ID
-        :type PathPrefix: String
-        :param InstanceConfigure.VCPU: 实例VCPU核数
-        :type PathPrefix: String
-        :param InstanceConfigure.MemoryGb: 实例内存
         :type PathPrefix: String
         :param InstanceType: 实例套餐类型
         :type PathPrefix: String
@@ -83,12 +78,12 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param InstancePassword: 实例开机密码
         :type PathPrefix: String
-        :param ChargeType: 计费类型，调用时需要明确指定，无默认值
+        :param ChargeType: 调用时需要明确指定，无默认值
         :type PathPrefix: String
         :param PurchaseTime: 购买时长，单位月
         :type PathPrefix: Int
         :param SecurityGroupId: 实例绑定的安全组，目前仅支持绑定一个安全组
-        :type PathPrefix: String
+        :type PathPrefix: Filter
         :param PrivateIpAddress: 私有IP地址，指定子网IP地址范围内的任意有效值，代表实例的主IP地址，只能选择一个，绑定到主网卡；如果未指定该参数，系统自动从有效地址池中随机选取一个
         :type PathPrefix: String
         :param InstanceName: 实例名称，如果未指定，则自动生成，形如`KSC-IN-[A-Z0-9]{10}`
@@ -103,10 +98,8 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param UserData: 用户自定义数据
         :type PathPrefix: String
-        :param SystemDisk.DiskType: 系统盘类型
-        :type PathPrefix: String
-        :param SystemDisk.DiskSize: 系统盘大小
-        :type PathPrefix: Int
+        :param SystemDisk: 系统盘
+        :type PathPrefix: Object
         :param ModelId: 实例启动模版ID，如填写了此项，则启动模板中已包含的RunInstances其他参数不生效，启动模板未指定的参数若调用RunInstances时额外传入则可生效，如果批量创建，实例名称后缀依然存在。【传modelId，使用默认版本。传modelId和modelVersion，使用传递的版本】
 示例值：3f0d6229-ed2d-4c9c-8554-b9433517cf8b
         :type PathPrefix: String
@@ -124,29 +117,45 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param AddressProjectId: 弹性IP项目的ID,默认值为0
         :type PathPrefix: String
+        :param BandWidthShareId: 共享带宽ID
+        :type PathPrefix: String
         :param AddressPurchaseTime: 购买时长
         :type PathPrefix: Int
         :param KeyId: 秘钥ID
         :type PathPrefix: Filter
-        :param keepImageLogin: 是否保持镜像登录
+        :param KeepImageLogin: 是否保留镜像设置
         :type PathPrefix: Boolean
         :param HostName: 操作系统内部的计算机名
         :type PathPrefix: String
         :param HostNameSuffix: 创建多台实例时为HostName增加有序后缀，有序后缀从1增加，例如host-1
         :type PathPrefix: Int
-        :param Password: 开机密码
-        :type PathPrefix: String
         :param FailureAutoDelete: 开机失败是否对外删除 ，默认值是false
         :type PathPrefix: Boolean
         :param Tag: 标签信息
         :type PathPrefix: Filter
         :param DataGuardId: 容灾组id
         :type PathPrefix: String
+        :param InstanceConfigure: 
+        :type PathPrefix: Object
+        :param SriovNetSupport: 是否支持联网增强
+        :type PathPrefix: Boolean
+        :param DistributeIpv6: 是否分配ipv6
+        :type PathPrefix: Boolean
+        :param LocalVolumeSnapshotId: 本地盘快照id
+        :type PathPrefix: String
+        :param SyncTag: 是否同步ebs标签
+        :type PathPrefix: Boolean
+        :param IamRoleName: iam角色名称
+        :type PathPrefix: String
+        :param AutoDeleteTime: 定时删除时间，传参格式：yyyy-MM-dd HH:mm
+        :type PathPrefix: String
+        :param AutoDeleteEip: 是否自动删除eip
+        :type PathPrefix: Boolean
+        :param IsProtect: 是否开启资源保护
+        :type PathPrefix: Boolean
         """
         self.ImageId = None
         self.DedicatedHostId = None
-        self.InstanceConfigure.VCPU = None
-        self.InstanceConfigure.MemoryGb = None
         self.InstanceType = None
         self.DataDiskGb = None
         self.MaxCount = None
@@ -163,8 +172,7 @@ class RunInstancesRequest(AbstractModel):
         self.DataDisk = None
         self.NetworkInterface = None
         self.UserData = None
-        self.SystemDisk.DiskType = None
-        self.SystemDisk.DiskSize = None
+        self.SystemDisk = None
         self.ModelId = None
         self.ModelVersion = None
         self.AssembledImageDataDiskType = None
@@ -173,25 +181,30 @@ class RunInstancesRequest(AbstractModel):
         self.AddressBandWidth = None
         self.AddressChargeType = None
         self.AddressProjectId = None
+        self.BandWidthShareId = None
         self.AddressPurchaseTime = None
         self.KeyId = None
-        self.keepImageLogin = None
+        self.KeepImageLogin = None
         self.HostName = None
         self.HostNameSuffix = None
-        self.Password = None
         self.FailureAutoDelete = None
         self.Tag = None
         self.DataGuardId = None
+        self.InstanceConfigure = None
+        self.SriovNetSupport = None
+        self.DistributeIpv6 = None
+        self.LocalVolumeSnapshotId = None
+        self.SyncTag = None
+        self.IamRoleName = None
+        self.AutoDeleteTime = None
+        self.AutoDeleteEip = None
+        self.IsProtect = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("DedicatedHostId"):
             self.DedicatedHostId = params.get("DedicatedHostId")
-        if params.get("InstanceConfigure.VCPU"):
-            self.InstanceConfigure.VCPU = params.get("InstanceConfigure.VCPU")
-        if params.get("InstanceConfigure.MemoryGb"):
-            self.InstanceConfigure.MemoryGb = params.get("InstanceConfigure.MemoryGb")
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
         if params.get("DataDiskGb"):
@@ -224,10 +237,8 @@ class RunInstancesRequest(AbstractModel):
             self.NetworkInterface = params.get("NetworkInterface")
         if params.get("UserData"):
             self.UserData = params.get("UserData")
-        if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
-        if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+        if params.get("SystemDisk"):
+            self.SystemDisk = params.get("SystemDisk")
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
         if params.get("ModelVersion"):
@@ -244,24 +255,42 @@ class RunInstancesRequest(AbstractModel):
             self.AddressChargeType = params.get("AddressChargeType")
         if params.get("AddressProjectId"):
             self.AddressProjectId = params.get("AddressProjectId")
+        if params.get("BandWidthShareId"):
+            self.BandWidthShareId = params.get("BandWidthShareId")
         if params.get("AddressPurchaseTime"):
             self.AddressPurchaseTime = params.get("AddressPurchaseTime")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
-        if params.get("keepImageLogin"):
-            self.keepImageLogin = params.get("keepImageLogin")
+        if params.get("KeepImageLogin"):
+            self.KeepImageLogin = params.get("KeepImageLogin")
         if params.get("HostName"):
             self.HostName = params.get("HostName")
         if params.get("HostNameSuffix"):
             self.HostNameSuffix = params.get("HostNameSuffix")
-        if params.get("Password"):
-            self.Password = params.get("Password")
         if params.get("FailureAutoDelete"):
             self.FailureAutoDelete = params.get("FailureAutoDelete")
         if params.get("Tag"):
             self.Tag = params.get("Tag")
         if params.get("DataGuardId"):
             self.DataGuardId = params.get("DataGuardId")
+        if params.get("InstanceConfigure"):
+            self.InstanceConfigure = params.get("InstanceConfigure")
+        if params.get("SriovNetSupport"):
+            self.SriovNetSupport = params.get("SriovNetSupport")
+        if params.get("DistributeIpv6"):
+            self.DistributeIpv6 = params.get("DistributeIpv6")
+        if params.get("LocalVolumeSnapshotId"):
+            self.LocalVolumeSnapshotId = params.get("LocalVolumeSnapshotId")
+        if params.get("SyncTag"):
+            self.SyncTag = params.get("SyncTag")
+        if params.get("IamRoleName"):
+            self.IamRoleName = params.get("IamRoleName")
+        if params.get("AutoDeleteTime"):
+            self.AutoDeleteTime = params.get("AutoDeleteTime")
+        if params.get("AutoDeleteEip"):
+            self.AutoDeleteEip = params.get("AutoDeleteEip")
+        if params.get("IsProtect"):
+            self.IsProtect = params.get("IsProtect")
 
 
 class StartInstancesRequest(AbstractModel):
@@ -379,7 +408,8 @@ class ModifyInstanceTypeRequest(AbstractModel):
 
         :type PathPrefix: String
         :param InstanceType: 实例目标套餐规格
-[实例套餐类型有效值](https://docs.ksyun.com/documents/40858) <br>若对应实例为专属虚机，该值需填写DVM1.NONE(专属型)、DVM2.NONE(专属型2.0)、DVM3.NONE（专属型3.0），专属虚机只支持升降配，不支持变更实例类型。<br>具体套餐信息参考[实例套餐类型定义](https://docs.ksyun.com/documents/705)
+实例套餐类型有效值
+若对应实例为专属虚机，该值需填写DVM1.NONE(专属型)、DVM2.NONE(专属型2.0)、DVM3.NONE（专属型3.0），专属虚机只支持升降配，不支持变更实例类型。<br>具体套餐信息参考[实例套餐类型定义](https://docs.ksyun.com/documents/705)
         :type PathPrefix: String
         :param InstanceConfigure.VCPU: 目标CPU值；当需变更实例为专属虚机时需填写该值
 
@@ -542,7 +572,6 @@ class ModifyInstanceImageRequest(AbstractModel):
 标准UUID格式，形如`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
         :type PathPrefix: String
         :param SystemDisk.DiskSize: 云主机系统盘配置参数。若不指定该参数，则按照系统默认值进行分配。通用型N2、N3主机支持更换操作系统时指定系统盘大小。
-[SystemDisk](https://docs.ksyun.com/documents/5866)
         :type PathPrefix: Int
         :param InstancePassword: 实例开机密码
 最短8字符，最长32字符，必须包含大小写英文字符和数字，支持其他可见字符
@@ -670,7 +699,7 @@ class ModifyNetworkInterfaceAttributeRequest(AbstractModel):
         :type PathPrefix: String
         :param SecurityGroupId: 实例绑定的安全组，SecurityGroupId.N可以绑定多个安全组。已绑定的安全组，未重新指定时会被删除。
 标准UUID格式，形如`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
-        :type PathPrefix: String
+        :type PathPrefix: Filter
         :param PrivateIpAddress: 私有IP地址，子网IP地址范围内的任意有效值。
 标准IP地址格式
         :type PathPrefix: String
@@ -719,11 +748,9 @@ class AttachNetworkInterfaceRequest(AbstractModel):
         :param SubnetId: 
         :type PathPrefix: String
         :param SecurityGroupId: 安全组id
-        :type PathPrefix: String
+        :type PathPrefix: Filter
         :param PrivateIpAddress: 
         :type PathPrefix: String
-        :param SecurityGroupIds: 
-        :type PathPrefix: Array
         :param VpcIpv6: 指定子网下的ipv6地址
         :type PathPrefix: String
         :param MacAddress: 
@@ -734,7 +761,6 @@ class AttachNetworkInterfaceRequest(AbstractModel):
         self.SubnetId = None
         self.SecurityGroupId = None
         self.PrivateIpAddress = None
-        self.SecurityGroupIds = None
         self.VpcIpv6 = None
         self.MacAddress = None
 
@@ -749,8 +775,6 @@ class AttachNetworkInterfaceRequest(AbstractModel):
             self.SecurityGroupId = params.get("SecurityGroupId")
         if params.get("PrivateIpAddress"):
             self.PrivateIpAddress = params.get("PrivateIpAddress")
-        if params.get("SecurityGroupIds"):
-            self.SecurityGroupIds = params.get("SecurityGroupIds")
         if params.get("VpcIpv6"):
             self.VpcIpv6 = params.get("VpcIpv6")
         if params.get("MacAddress"):
@@ -1066,6 +1090,15 @@ class CreateDedicatedHostsRequest(AbstractModel):
         :type PathPrefix: String
         :param Tag: 创建的专属宿主机的标签键，N取值范围1~10。若填写了Tag.N.Value，Tag.N.Key为必填，且两个参数的N值需保持一致
         :type PathPrefix: Filter
+        :param AvailabilityZone: 可用区
+        :type PathPrefix: String
+        :param ProjectId: 项目制ID
+        :type PathPrefix: Int
+        :param EbsClusterMode: 存储集群模式
+Mixed：混合模式；
+Public：公共集群；
+Exclusive：专属块存储集群
+        :type PathPrefix: String
         """
         self.DedicatedType = None
         self.Number = None
@@ -1075,6 +1108,9 @@ class CreateDedicatedHostsRequest(AbstractModel):
         self.InstanceNameSuffix = None
         self.DedicatedClusterId = None
         self.Tag = None
+        self.AvailabilityZone = None
+        self.ProjectId = None
+        self.EbsClusterMode = None
 
     def _deserialize(self, params):
         if params.get("DedicatedType"):
@@ -1093,6 +1129,12 @@ class CreateDedicatedHostsRequest(AbstractModel):
             self.DedicatedClusterId = params.get("DedicatedClusterId")
         if params.get("Tag"):
             self.Tag = params.get("Tag")
+        if params.get("AvailabilityZone"):
+            self.AvailabilityZone = params.get("AvailabilityZone")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("EbsClusterMode"):
+            self.EbsClusterMode = params.get("EbsClusterMode")
 
 
 class DeleteDedicatedHostRequest(AbstractModel):
@@ -1252,6 +1294,8 @@ class CreateScalingConfigurationRequest(AbstractModel):
         :type PathPrefix: String
         :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
         :type PathPrefix: String
+        :param SyncTag: 是否同步ebs标签
+        :type PathPrefix: Boolean
         """
         self.ScalingConfigurationName = None
         self.ImageId = None
@@ -1275,6 +1319,7 @@ class CreateScalingConfigurationRequest(AbstractModel):
         self.Tag = None
         self.SystemDisk.DiskType = None
         self.SystemDisk.ResizeType = None
+        self.SyncTag = None
 
     def _deserialize(self, params):
         if params.get("ScalingConfigurationName"):
@@ -1321,6 +1366,8 @@ class CreateScalingConfigurationRequest(AbstractModel):
             self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
             self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+        if params.get("SyncTag"):
+            self.SyncTag = params.get("SyncTag")
 
 
 class DeleteScalingConfigurationRequest(AbstractModel):
@@ -1414,7 +1461,7 @@ class DescribeScalingGroupRequest(AbstractModel):
         :param ScalingGroupId: 待查询的各伸缩组组成的数组数组下标从0开始 
  
         :type PathPrefix: Filter
-        :param ScalingGroupName: 待查询的伸缩组名称 
+        :param ScalingGroupName: 待查询的伸缩组名称 模糊查询
  
         :type PathPrefix: String
         :param ScalingConfigurationId: 待查询的伸缩组所使用的启动配置ID 
@@ -1972,7 +2019,7 @@ class CreateScalingPolicyRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建告警触发策略
+        r"""创建自定义策略
         :param ScalingGroupId: 要创建告警触发策略的伸缩组Id
         :type PathPrefix: String
         :param ScalingPolicyName: 用户自定义的告警策略名称
@@ -2013,7 +2060,7 @@ class DescribeScalingPolicyRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询告警触发策略
+        r"""查询自定义策略
         :param ScalingGroupId: 伸缩组ID，表示待查询告警触发策略所在的伸缩组ID
         :type PathPrefix: String
         :param ScalingPolicyId: 待查询的告警触发策略ID数组，数组下标从0开始
@@ -2049,7 +2096,7 @@ class ModifyScalingPolicyRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改告警触发策略
+        r"""修改自定义策略
         :param ScalingPolicyId: 要修改的告警触发策略Id
  
         :type PathPrefix: String
@@ -2096,7 +2143,7 @@ class DeleteScalingPolicyRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除告警触发策略
+        r"""删除自定义策略
         :param ScalingGroupId: 伸缩组Id，表示待删除告警策略所在的伸缩组
         :type PathPrefix: String
         :param ScalingPolicyId: 告警触发策略Id，待删除的告警触发策略Id
@@ -2127,7 +2174,7 @@ i386，x86_64
         :param Platform: 操作系统版本。
 centos：centos-5<br>centos-6<br>centos-7  <br>redhat：redhat-5<br>redhat-6<br>redhat7  <br>ubuntu：ubuntu-12<br>ubuntu-14<br>ubuntu-16  <br>debian：debian8/debian9 <br>fedora：fedora-20  <br>other linux：other-linux  <br>windows：windows-/server_2012_r2_datacenter_64_zh<br>windows-server_2012_r2_datacenter_64_en<br>windows-server_2008_r2_datacenter_64_zh<br>windows-server_2008_r2_datacenter_64_en
         :type PathPrefix: String
-        :param ImageUrl: 存放镜像的ks3对应的bucket地址。[如何开通ks3?](https://docs.ksyun.com/documents/858)[如何获取bucket地址？](https://docs.ksyun.com/documents/906#18)
+        :param ImageUrl: 存放镜像的ks3对应的bucket地址。[如何开通ks3?](https://docs.ksyun.com/documents/858)[如何获取bucket地址？](https://docs.ksyun.com/documents/27937?type=3)
 http开头，有效的bucket地址
         :type PathPrefix: String
         :param ImageFormat: 选择上传的镜像格式。
@@ -2581,9 +2628,7 @@ class CreateModelRequest(AbstractModel):
 标准UUID格式，形如`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
         :type PathPrefix: String
         :param InstanceType: 实例套餐类型，如果调用时未指定实例套餐类型，默认值为I1.1A
-[实例套餐类型有效值](https://docs.ksyun.com/documents/40858) <br>具体套餐信息参考[实例套餐类型定义](https://docs.ksyun.com/documents/705)
-        :type PathPrefix: String
-        :param SystemDisk.DiskSize: 系统盘内存大小，最小值为0，最大值为500
+实例套餐类型有效值具体套餐信息参考[实例套餐类型定义](https://docs.ksyun.com/documents/705)
         :type PathPrefix: String
         :param DataDiskGb: 数据卷容量，单位GB，容量限制依据[实例套餐类型定义](https://docs.ksyun.com/documents/705)变化，如果调用时未指定，则为相应实例套餐类型最小值。InstanceType为通用型主机时，此参数不生效。
         :type PathPrefix: Int
@@ -2606,7 +2651,7 @@ Monthly(包年包月）、Daily（按量付费（按日月结）)、 HourlyInsta
         :type PathPrefix: Int
         :param SecurityGroupId: 实例绑定的安全组，目前仅支持绑定一个安全组。
 标准UUID格式，形如`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
-        :type PathPrefix: String
+        :type PathPrefix: Filter
         :param PrivateIpAddress: 私有IP地址，指定子网IP地址范围内的任意有效值，代表实例的主IP地址，只能选择一个，绑定到主网卡；如果未指定该参数，系统自动从有效地址池中随机选取一个。
 标准IP地址格式
         :type PathPrefix: String
@@ -2637,18 +2682,40 @@ Monthly(包年包月）、Daily（按量付费（按日月结）)、 HourlyInsta
         :param ModelName: 实例启动模版名称，不允许重复
 ModelTest001
         :type PathPrefix: String
-        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
-        :type PathPrefix: String
-        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
-        :type PathPrefix: String
-        :param VersionDetail: 模板描述
-        :type PathPrefix: String
         :param FailureAutoDelete: 开机失败是否自动删除，默认值是false
+        :type PathPrefix: Boolean
+        :param SystemDisk: 
+        :type PathPrefix: Object
+        :param HostName: 操作系统内部的计算机名
+        :type PathPrefix: String
+        :param HostNameSuffix: 创建多台实例时为HostName增加有序后缀，有序后缀从1增加，例如host-1
+        :type PathPrefix: String
+        :param UserData: 用户自定义数据
+        :type PathPrefix: String
+        :param NetworkInterface: 
+        :type PathPrefix: Filter
+        :param Tag: 
+        :type PathPrefix: Filter
+        :param AllocateAddress: 购买EIP，true or false；传true即为购买EIP，下面关于EIP的参数生效；传false为稍后购买，下面的EIP参数不生效
+        :type PathPrefix: Boolean
+        :param IsDistributeIpv6: 是否支持ipV6
+
+        :type PathPrefix: Boolean
+        :param Mem: 内存
+        :type PathPrefix: String
+        :param Cpu: cpu
+        :type PathPrefix: String
+        :param IamRoleName: Iam角色名称
+        :type PathPrefix: String
+        :param AssembledImageDataDiskType: 整机镜像数据盘类型
+        :type PathPrefix: String
+        :param LocalVolumeSnapshotId: 本地盘快照id
+        :type PathPrefix: String
+        :param SyncTag: 是否同步ebs标签
         :type PathPrefix: Boolean
         """
         self.ImageId = None
         self.InstanceType = None
-        self.SystemDisk.DiskSize = None
         self.DataDiskGb = None
         self.SubnetId = None
         self.DataDisk = None
@@ -2669,18 +2736,27 @@ ModelTest001
         self.AddressPurchaseTime = None
         self.AddressProjectId = None
         self.ModelName = None
-        self.SystemDisk.DiskType = None
-        self.SystemDisk.ResizeType = None
-        self.VersionDetail = None
         self.FailureAutoDelete = None
+        self.SystemDisk = None
+        self.HostName = None
+        self.HostNameSuffix = None
+        self.UserData = None
+        self.NetworkInterface = None
+        self.Tag = None
+        self.AllocateAddress = None
+        self.IsDistributeIpv6 = None
+        self.Mem = None
+        self.Cpu = None
+        self.IamRoleName = None
+        self.AssembledImageDataDiskType = None
+        self.LocalVolumeSnapshotId = None
+        self.SyncTag = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
-        if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("DataDiskGb"):
             self.DataDiskGb = params.get("DataDiskGb")
         if params.get("SubnetId"):
@@ -2721,14 +2797,36 @@ ModelTest001
             self.AddressProjectId = params.get("AddressProjectId")
         if params.get("ModelName"):
             self.ModelName = params.get("ModelName")
-        if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
-        if params.get("SystemDisk.ResizeType"):
-            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
-        if params.get("VersionDetail"):
-            self.VersionDetail = params.get("VersionDetail")
         if params.get("FailureAutoDelete"):
             self.FailureAutoDelete = params.get("FailureAutoDelete")
+        if params.get("SystemDisk"):
+            self.SystemDisk = params.get("SystemDisk")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("HostNameSuffix"):
+            self.HostNameSuffix = params.get("HostNameSuffix")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
+        if params.get("NetworkInterface"):
+            self.NetworkInterface = params.get("NetworkInterface")
+        if params.get("Tag"):
+            self.Tag = params.get("Tag")
+        if params.get("AllocateAddress"):
+            self.AllocateAddress = params.get("AllocateAddress")
+        if params.get("IsDistributeIpv6"):
+            self.IsDistributeIpv6 = params.get("IsDistributeIpv6")
+        if params.get("Mem"):
+            self.Mem = params.get("Mem")
+        if params.get("Cpu"):
+            self.Cpu = params.get("Cpu")
+        if params.get("IamRoleName"):
+            self.IamRoleName = params.get("IamRoleName")
+        if params.get("AssembledImageDataDiskType"):
+            self.AssembledImageDataDiskType = params.get("AssembledImageDataDiskType")
+        if params.get("LocalVolumeSnapshotId"):
+            self.LocalVolumeSnapshotId = params.get("LocalVolumeSnapshotId")
+        if params.get("SyncTag"):
+            self.SyncTag = params.get("SyncTag")
 
 
 class TerminateModelsRequest(AbstractModel):
@@ -3035,6 +3133,8 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         :type PathPrefix: String
         :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
         :type PathPrefix: String
+        :param SyncTag: 是否同步ebs标签
+        :type PathPrefix: Boolean
         """
         self.ScalingConfigurationId = None
         self.ScalingConfigurationName = None
@@ -3062,6 +3162,7 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         self.InstanceNameRandom = None
         self.SystemDisk.DiskType = None
         self.SystemDisk.ResizeType = None
+        self.SyncTag = None
 
     def _deserialize(self, params):
         if params.get("ScalingConfigurationId"):
@@ -3116,6 +3217,8 @@ class ModifyScalingConfigurationRequest(AbstractModel):
             self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
             self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+        if params.get("SyncTag"):
+            self.SyncTag = params.get("SyncTag")
 
 
 class DescribeSpotPriceHistoryRequest(AbstractModel):
@@ -3154,7 +3257,7 @@ class DescribePriceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询价格
+        r"""查询实例价格
         :param InstanceType: 实例套餐类型，如果调用时未指定实例套餐类型，默认值为I1.1A
         :type PathPrefix: String
         :param SystemDisk.DiskSize: 云主机系统盘配置参数。若不指定该参数，则按照系统默认值进行分配。
@@ -3167,11 +3270,11 @@ class DescribePriceRequest(AbstractModel):
         :type PathPrefix: Int
         :param DataDiskGb: 数据卷容量，单位GB，容量限制依据 实例套餐类型定义 变化，如果调用时未指定，则为相应实例套餐类型最小值。InstanceType为通用型主机N1、N2、N3或者为本地NVMe机型I4时，此参数不生效。。
         :type PathPrefix: Int
-        :param DataDisk: 数据盘（云盘）的类型，数据盘n的类型，n 的取值范围为 [1, 8]。只支持I2、I2联网增强、E1、N1、N2、N3、S3、I3、C3。DataDisk.n.Type与DataDisk.n.Size必须都填写才有效。
+        :param DataDisk: 数据盘（云盘）的类型，数据盘n的类型，n 的取值范围为 [1, 32]，不同套餐规格支持的挂盘数量不同，详见官网文档。DataDisk.n.Type与DataDisk.n.Size必须都填写才有效。
         :type PathPrefix: Filter
         :param MaxCount: 最大实例数。
         :type PathPrefix: Int
-        :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
+        :param SystemDisk.DiskType: 系统盘类型。
         :type PathPrefix: String
         """
         self.InstanceType = None
@@ -3379,22 +3482,6 @@ class CancelPreMigrateInstanceRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
 
 
-class GetVNCAddressRequest(AbstractModel):
-    """GetVNCAddress请求参数结构体
-    """
-
-    def __init__(self):
-        r"""OpenAPI获取浏览器可用的VNC地址
-        :param InstanceId: 实例ID
-        :type PathPrefix: String
-        """
-        self.InstanceId = None
-
-    def _deserialize(self, params):
-        if params.get("InstanceId"):
-            self.InstanceId = params.get("InstanceId")
-
-
 class SwitchImageTypeRequest(AbstractModel):
     """SwitchImageType请求参数结构体
     """
@@ -3409,3 +3496,42 @@ class SwitchImageTypeRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
+
+
+class SetInstanceResourceProtectRequest(AbstractModel):
+    """SetInstanceResourceProtect请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置实例的资源保护状态
+        :param InstanceId: 待修改资源保护的实例ID列表，N的范围为1-100 标准UUID格式
+        :type PathPrefix: Filter
+        :param IsProtection: 是否打开资源保护
+        :type PathPrefix: Boolean
+        """
+        self.InstanceId = None
+        self.IsProtection = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("IsProtection"):
+            self.IsProtection = params.get("IsProtection")
+
+
+class DescribeInstanceVncUrlRequest(AbstractModel):
+    """DescribeInstanceVncUrl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询VNC管理终端地址
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+

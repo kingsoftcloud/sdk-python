@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateVpcRequest(AbstractModel):
     """CreateVpc请求参数结构体
     """
@@ -99,6 +98,8 @@ class CreateSubnetRequest(AbstractModel):
         :type PathPrefix: String
         :param AvailabilityZone: 可用区的名称，默认在可用区A创建，例如：cn-beijing-6a
         :type PathPrefix: String
+        :param VisitInternet: 裸金属子网是否支持公网访问，false: 禁止公网访问的子网，true:允许公网访问的子网，默认为true
+        :type PathPrefix: Boolean
         """
         self.VpcId = None
         self.SubnetName = None
@@ -112,6 +113,7 @@ class CreateSubnetRequest(AbstractModel):
         self.GatewayIp = None
         self.SecondaryCidrId = None
         self.AvailabilityZone = None
+        self.VisitInternet = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -138,6 +140,8 @@ class CreateSubnetRequest(AbstractModel):
             self.SecondaryCidrId = params.get("SecondaryCidrId")
         if params.get("AvailabilityZone"):
             self.AvailabilityZone = params.get("AvailabilityZone")
+        if params.get("VisitInternet"):
+            self.VisitInternet = params.get("VisitInternet")
 
 
 class DeleteSubnetRequest(AbstractModel):
@@ -161,7 +165,7 @@ class DescribeSubnetsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""描述子网
+        r"""描述VPC子网
         :param SubnetId: 多个子网的ID
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
@@ -234,7 +238,7 @@ class CreateRouteRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建路由
+        r"""创建vpc路由
         :param VpcId: Vpc的ID
         :type PathPrefix: String
         :param RouteType: 下一跳类型
@@ -315,7 +319,7 @@ class DeleteRouteRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除路由
+        r"""删除vpc路由
         :param RouteId: 路由的ID
         :type PathPrefix: String
         """
@@ -331,7 +335,7 @@ class DescribeRoutesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""描述路由
+        r"""描述vpc路由
         :param RouteId: 多个路由的ID
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
@@ -2060,6 +2064,178 @@ class DeleteNatIpRequest(AbstractModel):
             self.NatIpId = params.get("NatIpId")
 
 
+class AssociateVpcCidrBlockRequest(AbstractModel):
+    """AssociateVpcCidrBlock请求参数结构体
+    """
+
+    def __init__(self):
+        r"""为VPC添加IPv6网段
+        :param VpcId: Vpc的ID
+        :type PathPrefix: String
+        """
+        self.VpcId = None
+
+    def _deserialize(self, params):
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+
+
+class DescribeIpv6PublicIpAddressesRequest(AbstractModel):
+    """DescribeIpv6PublicIpAddresses请求参数结构体
+    """
+
+    def __init__(self):
+        r"""网卡IPV6公网信息查询
+        :param Ipv6PublicIpAddressId: 多个IPV6公网的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.Ipv6PublicIpAddressId = None
+        self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("Ipv6PublicIpAddressId"):
+            self.Ipv6PublicIpAddressId = params.get("Ipv6PublicIpAddressId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class DescribeIpv6NetworkInterfacesRequest(AbstractModel):
+    """DescribeIpv6NetworkInterfaces请求参数结构体
+    """
+
+    def __init__(self):
+        r"""描述具有IPV6的网卡信息
+        :param NetworkInterfaceId: 多个网卡的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.NetworkInterfaceId = None
+        self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class CreateIpv6PublicIpRequest(AbstractModel):
+    """CreateIpv6PublicIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开通IPV6公网能力
+        :param NetworkInterfaceId: 弹性网卡的ID
+        :type PathPrefix: String
+        :param BandWidth: Ipv6公网的带宽
+        :type PathPrefix: Int
+        :param Ipv6PublicIpAddress: Ipv6公网的地址
+        :type PathPrefix: String
+        :param ChargeType: Nat的计费类型
+        :type PathPrefix: String
+        :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省。
+        :type PathPrefix: Int
+        """
+        self.NetworkInterfaceId = None
+        self.BandWidth = None
+        self.Ipv6PublicIpAddress = None
+        self.ChargeType = None
+        self.PurchaseTime = None
+
+    def _deserialize(self, params):
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("BandWidth"):
+            self.BandWidth = params.get("BandWidth")
+        if params.get("Ipv6PublicIpAddress"):
+            self.Ipv6PublicIpAddress = params.get("Ipv6PublicIpAddress")
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
+
+
+class ReleaseIpv6PublicIpRequest(AbstractModel):
+    """ReleaseIpv6PublicIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""解除IPV6公网能力
+        :param Ipv6PublicIpAddressId: Ipv6公网的ID
+        :type PathPrefix: String
+        """
+        self.Ipv6PublicIpAddressId = None
+
+    def _deserialize(self, params):
+        if params.get("Ipv6PublicIpAddressId"):
+            self.Ipv6PublicIpAddressId = params.get("Ipv6PublicIpAddressId")
+
+
+class AlterIpv6PublicIpStateRequest(AbstractModel):
+    """AlterIpv6PublicIpState请求参数结构体
+    """
+
+    def __init__(self):
+        r"""挂起IPV6
+        :param Ipv6PublicIpAddressId: Ipv6公网的ID
+        :type PathPrefix: String
+        :param State: 状态(start|stop)
+        :type PathPrefix: String
+        """
+        self.Ipv6PublicIpAddressId = None
+        self.State = None
+
+    def _deserialize(self, params):
+        if params.get("Ipv6PublicIpAddressId"):
+            self.Ipv6PublicIpAddressId = params.get("Ipv6PublicIpAddressId")
+        if params.get("State"):
+            self.State = params.get("State")
+
+
+class ModifyIpv6PublicIpRequest(AbstractModel):
+    """ModifyIpv6PublicIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改IPV6公网带宽
+        :param Ipv6PublicIpAddressId: Ipv6公网的ID
+        :type PathPrefix: String
+        :param BandWidth: Ipv6公网的带宽
+        :type PathPrefix: Int
+        """
+        self.Ipv6PublicIpAddressId = None
+        self.BandWidth = None
+
+    def _deserialize(self, params):
+        if params.get("Ipv6PublicIpAddressId"):
+            self.Ipv6PublicIpAddressId = params.get("Ipv6PublicIpAddressId")
+        if params.get("BandWidth"):
+            self.BandWidth = params.get("BandWidth")
+
+
 class ModifyPrivateIpAddressAttributeRequest(AbstractModel):
     """ModifyPrivateIpAddressAttribute请求参数结构体
     """
@@ -2162,6 +2338,22 @@ class AttachDirectConnectGatewayWithVpcRequest(AbstractModel):
             self.DirectConnectGatewayId = params.get("DirectConnectGatewayId")
         if params.get("VpcId"):
             self.VpcId = params.get("VpcId")
+
+
+class AllocateSubnetIpv6CidrBlockRequest(AbstractModel):
+    """AllocateSubnetIpv6CidrBlock请求参数结构体
+    """
+
+    def __init__(self):
+        r"""为子网添加IPv6网段
+        :param SubnetId: 子网ID
+        :type PathPrefix: String
+        """
+        self.SubnetId = None
+
+    def _deserialize(self, params):
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
 
 
 class CreateRouteTableRequest(AbstractModel):
@@ -2439,6 +2631,207 @@ class DeleteNatRateLimitRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("NatRateLimitId"):
             self.NatRateLimitId = params.get("NatRateLimitId")
+
+
+class CreateDnatRequest(AbstractModel):
+    """CreateDnat请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建DNAT
+        :param NatId: Nat的ID
+        :type PathPrefix: String
+        :param NatIp: Nat的IP
+        :type PathPrefix: String
+        :param DnatName: Dnat规则的名称
+        :type PathPrefix: String
+        :param PublicPort: 公网端口
+        :type PathPrefix: String
+        :param PrivateIpAddress: 服务器的私网IP
+        :type PathPrefix: String
+        :param IpProtocol: 协议类型
+        :type PathPrefix: String
+        :param PrivatePort: 服务器端口
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        """
+        self.NatId = None
+        self.NatIp = None
+        self.DnatName = None
+        self.PublicPort = None
+        self.PrivateIpAddress = None
+        self.IpProtocol = None
+        self.PrivatePort = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
+        if params.get("NatIp"):
+            self.NatIp = params.get("NatIp")
+        if params.get("DnatName"):
+            self.DnatName = params.get("DnatName")
+        if params.get("PublicPort"):
+            self.PublicPort = params.get("PublicPort")
+        if params.get("PrivateIpAddress"):
+            self.PrivateIpAddress = params.get("PrivateIpAddress")
+        if params.get("IpProtocol"):
+            self.IpProtocol = params.get("IpProtocol")
+        if params.get("PrivatePort"):
+            self.PrivatePort = params.get("PrivatePort")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class DeleteDnatRequest(AbstractModel):
+    """DeleteDnat请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除DNAT
+        :param DnatId: Dnat的ID
+        :type PathPrefix: String
+        """
+        self.DnatId = None
+
+    def _deserialize(self, params):
+        if params.get("DnatId"):
+            self.DnatId = params.get("DnatId")
+
+
+class DescribeDnatsRequest(AbstractModel):
+    """DescribeDnats请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询DNAT
+        :param DnatId: 多个Dnat的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        """
+        self.DnatId = None
+        self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
+
+    def _deserialize(self, params):
+        if params.get("DnatId"):
+            self.DnatId = params.get("DnatId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+
+
+class ModifyDnatRequest(AbstractModel):
+    """ModifyDnat请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改DNAT
+        :param NatId: Nat的ID
+        :type PathPrefix: String
+        :param DnatId: Dnat规则的ID
+        :type PathPrefix: String
+        :param NatIp: Nat的IP
+        :type PathPrefix: String
+        :param DnatName: Dnat规则的名称
+        :type PathPrefix: String
+        :param PublicPort: 公网端口
+        :type PathPrefix: String
+        :param PrivateIpAddress: 服务器的私网IP
+        :type PathPrefix: String
+        :param IpProtocol: 协议类型
+        :type PathPrefix: String
+        :param PrivatePort: 服务器端口
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        """
+        self.NatId = None
+        self.DnatId = None
+        self.NatIp = None
+        self.DnatName = None
+        self.PublicPort = None
+        self.PrivateIpAddress = None
+        self.IpProtocol = None
+        self.PrivatePort = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
+        if params.get("DnatId"):
+            self.DnatId = params.get("DnatId")
+        if params.get("NatIp"):
+            self.NatIp = params.get("NatIp")
+        if params.get("DnatName"):
+            self.DnatName = params.get("DnatName")
+        if params.get("PublicPort"):
+            self.PublicPort = params.get("PublicPort")
+        if params.get("PrivateIpAddress"):
+            self.PrivateIpAddress = params.get("PrivateIpAddress")
+        if params.get("IpProtocol"):
+            self.IpProtocol = params.get("IpProtocol")
+        if params.get("PrivatePort"):
+            self.PrivatePort = params.get("PrivatePort")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class AssociateInstanceRequest(AbstractModel):
+    """AssociateInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""主机粒度SNAT
+        :param NetworkInterfaceId: 网卡ID
+        :type PathPrefix: String
+        :param NatId: Nat的ID
+        :type PathPrefix: String
+        :param NatIpId: 要绑定的NatIp的ID值
+        :type PathPrefix: Filter
+        """
+        self.NetworkInterfaceId = None
+        self.NatId = None
+        self.NatIpId = None
+
+    def _deserialize(self, params):
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
+        if params.get("NatIpId"):
+            self.NatIpId = params.get("NatIpId")
+
+
+class DisassociateInstanceRequest(AbstractModel):
+    """DisassociateInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除主机粒度SNAT
+        :param NetworkInterfaceId: 网卡ID
+        :type PathPrefix: String
+        :param NatId: Nat的ID
+        :type PathPrefix: String
+        """
+        self.NetworkInterfaceId = None
+        self.NatId = None
+
+    def _deserialize(self, params):
+        if params.get("NetworkInterfaceId"):
+            self.NetworkInterfaceId = params.get("NetworkInterfaceId")
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
 
 
 class CreateHaVipRequest(AbstractModel):
@@ -3051,30 +3444,6 @@ class ModifyVpnGatewayRouteRequest(AbstractModel):
             self.Description = params.get("Description")
 
 
-class CreateDcNatIpRequest(AbstractModel):
-    """CreateDcNatIp请求参数结构体
-    """
-
-    def __init__(self):
-        r"""创建专线Nat
-        """
-
-    def _deserialize(self, params):
-        return
-
-
-class DeleteDcNatIpRequest(AbstractModel):
-    """DeleteDcNatIp请求参数结构体
-    """
-
-    def __init__(self):
-        r"""删除专线Nat
-        """
-
-    def _deserialize(self, params):
-        return
-
-
 class DescribeDirectConnectInterfacesBgpStatusRequest(AbstractModel):
     """DescribeDirectConnectInterfacesBgpStatus请求参数结构体
     """
@@ -3252,3 +3621,5 @@ class CreateFlowLogRequest(AbstractModel):
             self.WindowTime = params.get("WindowTime")
         if params.get("Description"):
             self.Description = params.get("Description")
+
+

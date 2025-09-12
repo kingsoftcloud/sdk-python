@@ -2835,6 +2835,129 @@ XidError
             self.NextToken = params.get("NextToken")
 
 
+class RunSoInstancesRequest(AbstractModel):
+    """RunSoInstances请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建星海实例
+        :param ImageId: 镜像ID
+        :type PathPrefix: String
+        :param InstanceName: 实例名称
+        :type PathPrefix: String
+        :param InstanceTypeId: 机型
+        :type PathPrefix: String
+        :param SecurityGroupId: 安全组
+        :type PathPrefix: Filter
+        :param SubnetId: 子网ID
+        :type PathPrefix: String
+        :param Volumes: 
+        :type PathPrefix: Object
+        :param ZoneId: 可用区
+        :type PathPrefix: String
+        :param Description: 实例的描述，默认为空字符串。
+    ◦ 必须以字母或中文开头。
+    ◦ 只能包含中文、字母、数字、点号“.”、空格、下划线“_”、中划线“-”、等号“=”、英文逗号“,”、中文逗号“，”和中文句号“。”
+    ◦ 长度限制在255个字符以内。
+示例值：用于测试的云服务器实例
+        :type PathPrefix: String
+        :param HostName: 实例主机名，即实例操作系统内部的计算机名。
+    ◦ Linux实例：
+    ◦ 允许使用字母、数字、点号“.”或中划线“-”。
+    ◦ 不能以中划线、点号开头或结尾，且不能连续使用中划线和点号。
+    ◦ Linux系统长度限制在2～63个字符之间。
+        :type PathPrefix: String
+        :param InstanceChargeType: 实例和云盘的计费类型，取值：
+    ◦ 包年包月Monthly
+    ◦ 按量付费（按日月结）Daily（默认）
+        :type PathPrefix: String
+        :param KeepImageCredential: 是否保留镜像设置，取值：
+    ◦ true：保留镜像设置，保留后将使用镜像预设的密码或密钥对登录实例。
+    ◦ false（默认）：不保留镜像设置。
+    说明
+    ◦ 仅自定义镜像支持该功能。
+    ◦ 该参数取值为true时，请勿传入PassWord和KeyPairName。
+示例值：true
+        :type PathPrefix: Boolean
+        :param KeyPairName: 如需使用“SSH密钥”方式登录实例，请指定已创建密钥对的名称。
+    说明
+    ◦ Windows实例不支持SSH密钥方式，即使传入了该参数，仍旧只生效密码Password。
+    ◦ Linux实例支持密码或密钥对登录。调用该接口时如果同时设置了密钥对KeyPairName和密码Password，则仅生效密钥对KeyPairName。
+示例值：kp-test-123
+        :type PathPrefix: String
+        :param Password: 如需使用“密码”方式登录实例，请通过该参数指定实例的管理员账号初始登录密码。其中Linux管理员账号为root，Windows管理员账号为Administrator。
+    密码复杂度要求如下：
+    ◦ 长度限制在8～30之间。
+    ◦ 密码只能由大写字母、小写字母、数字和特殊字符组成，且必须包含至少三项。
+    ◦ 特殊字符可以使用：`~!@#$%^&*()_-+=|{}[]:;'<>,.?/
+    ◦ 不能以“/”和“$6$”开头。
+    说明：登录凭证支持“密码”、“密钥对”、“保留镜像设置”三种方式，使用“密码”方式登录实例时，建议增加密码复杂度以提高安全性。
+        :type PathPrefix: String
+        :param Period: 购买资源的时长（月）。
+    ◦ 取值：1、2、3、4、5、6、7、8、9、12、24、36、48、60
+    ◦ 默认值：1
+说明：仅当参数InstanceChargeType取值为Monthly时，该参数生效且为必选值
+        :type PathPrefix: Int
+        :param SuffixIndex: 有序后缀的起始序号，取值：1～999，默认值为1。
+示例值：1
+        :type PathPrefix: Int
+        :param UniqueSuffix: 表示当创建多台实例时，是否为Hostname和InstanceName自动添加有序后缀，取值：
+    ◦ true：开启有序后缀。
+    ◦ false（默认）：关闭有序后缀。
+        :type PathPrefix: Boolean
+        """
+        self.ImageId = None
+        self.InstanceName = None
+        self.InstanceTypeId = None
+        self.SecurityGroupId = None
+        self.SubnetId = None
+        self.Volumes = None
+        self.ZoneId = None
+        self.Description = None
+        self.HostName = None
+        self.InstanceChargeType = None
+        self.KeepImageCredential = None
+        self.KeyPairName = None
+        self.Password = None
+        self.Period = None
+        self.SuffixIndex = None
+        self.UniqueSuffix = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("InstanceName"):
+            self.InstanceName = params.get("InstanceName")
+        if params.get("InstanceTypeId"):
+            self.InstanceTypeId = params.get("InstanceTypeId")
+        if params.get("SecurityGroupId"):
+            self.SecurityGroupId = params.get("SecurityGroupId")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("Volumes"):
+            self.Volumes = params.get("Volumes")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("InstanceChargeType"):
+            self.InstanceChargeType = params.get("InstanceChargeType")
+        if params.get("KeepImageCredential"):
+            self.KeepImageCredential = params.get("KeepImageCredential")
+        if params.get("KeyPairName"):
+            self.KeyPairName = params.get("KeyPairName")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+        if params.get("Period"):
+            self.Period = params.get("Period")
+        if params.get("SuffixIndex"):
+            self.SuffixIndex = params.get("SuffixIndex")
+        if params.get("UniqueSuffix"):
+            self.UniqueSuffix = params.get("UniqueSuffix")
+
+
 class DescribeSoImagesRequest(AbstractModel):
     """DescribeSoImages请求参数结构体
     """

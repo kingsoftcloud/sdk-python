@@ -2905,6 +2905,14 @@ class RunSoInstancesRequest(AbstractModel):
     ◦ true：开启有序后缀。
     ◦ false（默认）：关闭有序后缀。
         :type PathPrefix: Boolean
+        :param InstallRunCommandAgent: 创建实例时是否安装云助手Agent，取值：
+    ◦ true：创建时安装。
+    ◦ false（默认）：创建时不安装。
+
+        :type PathPrefix: Boolean
+        :param Count: 创建数量，取值范围：1～100；传入0时，会默认为1。
+示例值：1
+        :type PathPrefix: Int
         """
         self.ImageId = None
         self.InstanceName = None
@@ -2922,6 +2930,8 @@ class RunSoInstancesRequest(AbstractModel):
         self.Period = None
         self.SuffixIndex = None
         self.UniqueSuffix = None
+        self.InstallRunCommandAgent = None
+        self.Count = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -2956,6 +2966,10 @@ class RunSoInstancesRequest(AbstractModel):
             self.SuffixIndex = params.get("SuffixIndex")
         if params.get("UniqueSuffix"):
             self.UniqueSuffix = params.get("UniqueSuffix")
+        if params.get("InstallRunCommandAgent"):
+            self.InstallRunCommandAgent = params.get("InstallRunCommandAgent")
+        if params.get("Count"):
+            self.Count = params.get("Count")
 
 
 class DescribeSoImagesRequest(AbstractModel):

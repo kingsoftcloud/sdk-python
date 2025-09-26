@@ -5,17 +5,18 @@ from ksyun.common.abstract_client import AbstractClient
 
 
 class TradeClient(AbstractClient):
-    _apiVersion = '2020-08-31'
+    _apiVersion = '2025-08-28'
     _endpoint = 'trade.api.ksyun.com'
     _service = 'trade'
-    def SetRenewal(self, request):
-        """批量设置实例续费策略
-        :param request: Request instance for SetRenewal.
-        :type request: :class:`ksyun.client.trade.v20200831.models.SetRenewalRequest`
+
+    def QueryInstances(self, request):
+        """根据搜索条件查询实例列表
+        :param request: Request instance for QueryInstances.
+        :type request: :class:`ksyun.client.trade.v20250828.models.QueryInstancesRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("SetRenewal", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("QueryInstances", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

@@ -1,5 +1,16 @@
 from ksyun.common.abstract_model import AbstractModel
 
+class GetDomainLogsRequest(AbstractModel):
+    """GetDomainLogs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取日志下载URL
+        """
+
+    def _deserialize(self, params):
+        return
+
 
 class GetRefreshOrPreloadTaskRequest(AbstractModel):
     """GetRefreshOrPreloadTask请求参数结构体
@@ -48,3 +59,5 @@ class GetDomainPidDimensionUsageDataRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+

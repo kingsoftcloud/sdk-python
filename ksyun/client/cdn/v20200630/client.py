@@ -53,6 +53,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetDomainRankingListData(self, request):
         """查询域名排行V2
         :param request: Request instance for GetDomainRankingListData.
@@ -74,6 +75,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetAreaIspData(self, request):
         """查询地区、运营商V2
@@ -97,6 +99,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetTopReferData(self, request):
         """查询热门refererV2
         :param request: Request instance for GetTopReferData.
@@ -118,6 +121,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetTopUrlData(self, request):
         """查询热门URLV2
@@ -141,6 +145,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetRealTimeHitRateData(self, request):
         """命中率查询接口
         :param request: Request instance for GetRealTimeHitRateData.
@@ -162,6 +167,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetReqHitRateData(self, request):
         """请求命中率详情查询接口
@@ -185,6 +191,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetFlowHitRateData(self, request):
         """流量命中率详情查询接口
         :param request: Request instance for GetFlowHitRateData.
@@ -206,6 +213,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetDomainRequestPeriodRatioData(self, request):
         """数据对比V2
@@ -229,6 +237,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetUvData(self, request):
         """查询独立IP数V2
         :param request: Request instance for GetUvData.
@@ -250,6 +259,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetTopIpData(self, request):
         """查询TopIPV2
@@ -273,6 +283,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetSrcDomainHttpCodeDetailedData(self, request):
         """回源状态码详情查询接口
         :param request: Request instance for GetSrcDomainHttpCodeDetailedData.
@@ -294,6 +305,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetSrcDomainHttpCodeData(self, request):
         """回源状态码查询接口
@@ -317,6 +329,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetDomainHttpCodeDetailedData(self, request):
         """服务状态码详情查询接口
         :param request: Request instance for GetDomainHttpCodeDetailedData.
@@ -338,6 +351,7 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetDomainHttpCodeData(self, request):
         """服务状态码占比查询接口
@@ -361,6 +375,7 @@ class CdnClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetEntryRateData(self, request):
         """ECN进入率查询接口
         :param request: Request instance for GetEntryRateData.
@@ -382,3 +397,5 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

@@ -822,3 +822,5 @@ class GetEntryRateDataRequest(AbstractModel):
             self.Province = params.get("Province")
         if params.get("Isp"):
             self.Isp = params.get("Isp")
+
+

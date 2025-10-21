@@ -63,12 +63,14 @@ class CreateEpcRequest(AbstractModel):
         :param AvailabilityZone: 可用区的名称
         :type PathPrefix: String
         :param Raid: 数据盘Raid级别,和数据盘的数量直接相关 
-有效值：  Raid1：数据盘数量必须是2的倍数
-Raid5：数据盘的数量必须大于等于3
-Raid10：数据盘数量必须是4的倍数
-Raid50：数据盘的数量必须大于6且是2的倍数
-SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
-与RaidId必填其一，RaidId优先级高
+有效值：
+- Jbod：直连模式
+- Raid1：数据盘数量必须是2的倍数
+- Raid5：数据盘的数量必须大于等于3
+- Raid10：数据盘数量必须是4的倍数
+- Raid50：数据盘的数量必须大于6且是2的倍数
+- SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+说明：Raid与RaidId必填其一，RaidId优先级高
         :type PathPrefix: String
         :param RaidId: Raid模板Id
         :type PathPrefix: String
@@ -2913,6 +2915,8 @@ class RunSoInstancesRequest(AbstractModel):
         :param Count: 创建数量，取值范围：1～100；传入0时，会默认为1。
 示例值：1
         :type PathPrefix: Int
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.InstanceName = None
@@ -2932,6 +2936,7 @@ class RunSoInstancesRequest(AbstractModel):
         self.UniqueSuffix = None
         self.InstallRunCommandAgent = None
         self.Count = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -2970,6 +2975,8 @@ class RunSoInstancesRequest(AbstractModel):
             self.InstallRunCommandAgent = params.get("InstallRunCommandAgent")
         if params.get("Count"):
             self.Count = params.get("Count")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoImagesRequest(AbstractModel):
@@ -3016,6 +3023,8 @@ class DescribeSoImagesRequest(AbstractModel):
 • public：公共镜像
 • private：自定义镜像
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.ImageName = None
@@ -3026,6 +3035,7 @@ class DescribeSoImagesRequest(AbstractModel):
         self.Platform = None
         self.Status = None
         self.Visibility = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -3046,6 +3056,8 @@ class DescribeSoImagesRequest(AbstractModel):
             self.Status = params.get("Status")
         if params.get("Visibility"):
             self.Visibility = params.get("Visibility")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class RebootSoInstanceRequest(AbstractModel):
@@ -3069,15 +3081,20 @@ class RebootSoInstanceRequest(AbstractModel):
 • 多个Instance ID之间用&分隔。
 示例值：InstanceIds.1=8981d45e-b3dc-44c6-b02f-2d1969551316&InstanceIds.2=8981d45e-b3dc-44c6-b02f-2d1969551318
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ForceStop = None
         self.InstanceIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ForceStop"):
             self.ForceStop = params.get("ForceStop")
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DeleteSoImagesRequest(AbstractModel):
@@ -3090,12 +3107,17 @@ class DeleteSoImagesRequest(AbstractModel):
 • 参数 -N：表示镜像的序号。
 • 多个Image ID之间用&分隔。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ImageIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ImageIds"):
             self.ImageIds = params.get("ImageIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DeleteSoVpcRequest(AbstractModel):
@@ -3106,12 +3128,17 @@ class DeleteSoVpcRequest(AbstractModel):
         r"""删除星海私有网络
         :param VpcId: 待删除VPC的ID。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.VpcId = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
             self.VpcId = params.get("VpcId")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoAvailableResourceRequest(AbstractModel):
@@ -3134,10 +3161,13 @@ class DescribeSoAvailableResourceRequest(AbstractModel):
 说明：默认为空，表示返回当前地域（RegionId）下的所有可用区中所有符合条件的资源。
 示例值：cn-beijing-6a
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.InstanceChargeType = None
         self.InstanceTypeId = None
         self.ZoneId = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("InstanceChargeType"):
@@ -3146,6 +3176,8 @@ class DescribeSoAvailableResourceRequest(AbstractModel):
             self.InstanceTypeId = params.get("InstanceTypeId")
         if params.get("ZoneId"):
             self.ZoneId = params.get("ZoneId")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoInstancesRequest(AbstractModel):
@@ -3191,6 +3223,8 @@ undefined多个实例规格之间用&分隔
 • 参数 - N：表示实例的序号。
 • 多个Instance ID之间用&分隔。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.InstanceChargeType = None
         self.InstanceTypeId = None
@@ -3202,6 +3236,7 @@ undefined多个实例规格之间用&分隔
         self.VpcId = None
         self.ZoneId = None
         self.InstanceIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("InstanceChargeType"):
@@ -3224,6 +3259,8 @@ undefined多个实例规格之间用&分隔
             self.ZoneId = params.get("ZoneId")
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DeleteSoInstanceRequest(AbstractModel):
@@ -3236,12 +3273,17 @@ class DeleteSoInstanceRequest(AbstractModel):
 • 参数 - N：表示实例的序号。
 • 多个Instance ID之间用&分隔。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.InstanceIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoSecurityGroupsRequest(AbstractModel):
@@ -3262,11 +3304,14 @@ class DescribeSoSecurityGroupsRequest(AbstractModel):
         :type PathPrefix: String
         :param MaxResults: 查询的数量，默认为 10，最大为100。
         :type PathPrefix: Int
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.SecurityGroupIds = None
         self.NextToken = None
         self.MaxResults = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -3277,6 +3322,8 @@ class DescribeSoSecurityGroupsRequest(AbstractModel):
             self.NextToken = params.get("NextToken")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class CreateSoVpcRequest(AbstractModel):
@@ -3301,12 +3348,15 @@ class CreateSoVpcRequest(AbstractModel):
         :type PathPrefix: Filter
         :param AttachVpcId: 关联的VPC ID
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.VpcName = None
         self.Description = None
         self.CidrBlock = None
         self.DnsServers = None
         self.AttachVpcId = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("VpcName"):
@@ -3319,6 +3369,8 @@ class CreateSoVpcRequest(AbstractModel):
             self.DnsServers = params.get("DnsServers")
         if params.get("AttachVpcId"):
             self.AttachVpcId = params.get("AttachVpcId")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DeleteSoSubnetRequest(AbstractModel):
@@ -3329,12 +3381,17 @@ class DeleteSoSubnetRequest(AbstractModel):
         r"""删除星海子网信息
         :param SubnetId: 待删除子网的ID。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.SubnetId = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("SubnetId"):
             self.SubnetId = params.get("SubnetId")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoKeyPairsRequest(AbstractModel):
@@ -3362,6 +3419,8 @@ class DescribeSoKeyPairsRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 分页查询凭证，用于标记分页的位置，初次调用该接口时无需设置。下次查询时，取值为上一次API调用返回的NextToken参数值。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.FingerPrint = None
         self.KeyPairIds = None
@@ -3369,6 +3428,7 @@ class DescribeSoKeyPairsRequest(AbstractModel):
         self.KeyPairNames = None
         self.MaxResults = None
         self.NextToken = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("FingerPrint"):
@@ -3383,6 +3443,8 @@ class DescribeSoKeyPairsRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class StartSoInstanceRequest(AbstractModel):
@@ -3393,12 +3455,17 @@ class StartSoInstanceRequest(AbstractModel):
         r"""启动星海实例
         :param InstanceIds: 实例ID。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.InstanceIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoInstanceTypesRequest(AbstractModel):
@@ -3414,15 +3481,20 @@ class DescribeSoInstanceTypesRequest(AbstractModel):
 • 多个InstanceTypeId 之间用&分隔。
 说明：不传则默认查询所有实例规格的信息。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.InstanceTypeId = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("InstanceTypeId"):
             self.InstanceTypeId = params.get("InstanceTypeId")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class ModifySoSubnetAttributesRequest(AbstractModel):
@@ -3437,10 +3509,13 @@ class ModifySoSubnetAttributesRequest(AbstractModel):
         :type PathPrefix: String
         :param Description: 子网的描述信息。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.SubnetId = None
         self.SubnetName = None
         self.Description = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("SubnetId"):
@@ -3449,6 +3524,8 @@ class ModifySoSubnetAttributesRequest(AbstractModel):
             self.SubnetName = params.get("SubnetName")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoSubnetRequest(AbstractModel):
@@ -3473,6 +3550,8 @@ class DescribeSoSubnetRequest(AbstractModel):
         :type PathPrefix: String
         :param MaxResults: 查询的数量，默认为 10，最大为100。
         :type PathPrefix: Int
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ZoneId = None
         self.SubnetName = None
@@ -3480,6 +3559,7 @@ class DescribeSoSubnetRequest(AbstractModel):
         self.SubnetIds = None
         self.NextToken = None
         self.MaxResults = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ZoneId"):
@@ -3494,6 +3574,8 @@ class DescribeSoSubnetRequest(AbstractModel):
             self.NextToken = params.get("NextToken")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class ModifySoKeyPairAttributeRequest(AbstractModel):
@@ -3516,10 +3598,13 @@ class ModifySoKeyPairAttributeRequest(AbstractModel):
 • KeyPairName与KeyPairId不允许同时为空。
 • 如果同时设置了KeyPairName与KeyPairId，则优先生效KeyPairId。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.Description = None
         self.KeyPairId = None
         self.KeyPairName = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("Description"):
@@ -3528,6 +3613,8 @@ class ModifySoKeyPairAttributeRequest(AbstractModel):
             self.KeyPairId = params.get("KeyPairId")
         if params.get("KeyPairName"):
             self.KeyPairName = params.get("KeyPairName")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class ModifySoImageAttributeRequest(AbstractModel):
@@ -3546,11 +3633,14 @@ class ModifySoImageAttributeRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageName: 镜像名称。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.BootMode = None
         self.Description = None
         self.ImageId = None
         self.ImageName = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("BootMode"):
@@ -3561,6 +3651,8 @@ class ModifySoImageAttributeRequest(AbstractModel):
             self.ImageId = params.get("ImageId")
         if params.get("ImageName"):
             self.ImageName = params.get("ImageName")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class ModifySoVpcAttributesRequest(AbstractModel):
@@ -3580,11 +3672,14 @@ class ModifySoVpcAttributesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param VpcName: VPC的名称。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.Description = None
         self.DnsServers = None
         self.VpcName = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -3595,6 +3690,8 @@ class ModifySoVpcAttributesRequest(AbstractModel):
             self.DnsServers = params.get("DnsServers")
         if params.get("VpcName"):
             self.VpcName = params.get("VpcName")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class ReplaceSoSystemVolumeRequest(AbstractModel):
@@ -3622,12 +3719,15 @@ class ReplaceSoSystemVolumeRequest(AbstractModel):
         :type PathPrefix: String
         :param Password: 重置密码
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.InstanceId = None
         self.KeepImageCredential = None
         self.KeyPairName = None
         self.Password = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -3640,6 +3740,8 @@ class ReplaceSoSystemVolumeRequest(AbstractModel):
             self.KeyPairName = params.get("KeyPairName")
         if params.get("Password"):
             self.Password = params.get("Password")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class CreateSoSubnetRequest(AbstractModel):
@@ -3664,12 +3766,15 @@ class CreateSoSubnetRequest(AbstractModel):
     ◦ 172.16.XX.XX网段掩码范围：12 ~ 29
     ◦ 192.168.XX.XX网段掩码范围：16 ~ 29
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.ZoneId = None
         self.SubnetName = None
         self.Description = None
         self.CidrBlock = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -3682,6 +3787,8 @@ class CreateSoSubnetRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("CidrBlock"):
             self.CidrBlock = params.get("CidrBlock")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DescribeSoVpcsRequest(AbstractModel):
@@ -3702,11 +3809,14 @@ class DescribeSoVpcsRequest(AbstractModel):
         :type PathPrefix: String
         :param MaxResults: 
         :type PathPrefix: Int
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.VpcName = None
         self.VpcIds = None
         self.NextToken = None
         self.MaxResults = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("VpcName"):
@@ -3717,6 +3827,8 @@ class DescribeSoVpcsRequest(AbstractModel):
             self.NextToken = params.get("NextToken")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class StopSoInstanceRequest(AbstractModel):
@@ -3738,15 +3850,20 @@ class StopSoInstanceRequest(AbstractModel):
 • 参数 - N：表示实例的序号。
 • 多个Instance ID之间用&分隔。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ForceStop = None
         self.InstanceIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ForceStop"):
             self.ForceStop = params.get("ForceStop")
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class DeleteSoKeyPairsRequest(AbstractModel):
@@ -3759,12 +3876,17 @@ class DeleteSoKeyPairsRequest(AbstractModel):
 • 参数 - N：表示密钥对的序号。
 • 多个密钥对之间用&分隔。
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.KeyPairNames = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("KeyPairNames"):
             self.KeyPairNames = params.get("KeyPairNames")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class CreateSoImageRequest(AbstractModel):
@@ -3788,15 +3910,20 @@ class CreateSoImageRequest(AbstractModel):
 • 多个Instance ID之间用&分隔。
 示例值：InstanceIds.1=8981d45e-b3dc-44c6-b02f-2d1969551316&InstanceIds.2=8981d45e-b3dc-44c6-b02f-2d1969551318
         :type PathPrefix: Filter
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.ForceStop = None
         self.InstanceIds = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("ForceStop"):
             self.ForceStop = params.get("ForceStop")
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class ModifySoInstanceAttributeRequest(AbstractModel):
@@ -3844,6 +3971,8 @@ class ModifySoInstanceAttributeRequest(AbstractModel):
 • 特殊字符可以使用：`~!@#$%^&*()_-+=|{}[]:;'<>,.?/
 • 不能以“/”和“$6$”开头。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.DeletionProtection = None
         self.Description = None
@@ -3851,6 +3980,7 @@ class ModifySoInstanceAttributeRequest(AbstractModel):
         self.InstanceId = None
         self.InstanceName = None
         self.Password = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("DeletionProtection"):
@@ -3865,6 +3995,8 @@ class ModifySoInstanceAttributeRequest(AbstractModel):
             self.InstanceName = params.get("InstanceName")
         if params.get("Password"):
             self.Password = params.get("Password")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 
 class CreateSoKeyPairRequest(AbstractModel):
@@ -3884,14 +4016,19 @@ class CreateSoKeyPairRequest(AbstractModel):
 • 只能包含中文、字母、数字、点“.”、空格、下划线“_”、中划线“-”、等号“=”、英文逗号“,”、中文逗号“，”和中文句号“。”
 • 长度限制在255个字符以内。
         :type PathPrefix: String
+        :param SoZoneId: 星海专区
+        :type PathPrefix: String
         """
         self.KeyPairName = None
         self.Description = None
+        self.SoZoneId = None
 
     def _deserialize(self, params):
         if params.get("KeyPairName"):
             self.KeyPairName = params.get("KeyPairName")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("SoZoneId"):
+            self.SoZoneId = params.get("SoZoneId")
 
 

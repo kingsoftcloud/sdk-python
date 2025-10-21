@@ -72,6 +72,36 @@ class ApiRequest(object):
         self.request_size = 0
         self.response_size = 0
 
+    def _build_url(self, base_url, path=None, query_params=None):
+        """Build complete URL from base_url, path and query parameters.
+
+        Ensures no double slashes between domain and path.
+
+        :param base_url: Base URL (scheme + domain)
+        :type base_url: str
+        :param path: URL path
+        :type path: str
+        :param query_params: Query parameters
+        :type query_params: str
+        :return: Complete URL
+        :rtype: str
+        """
+        # Start with base URL, remove trailing slash if present
+        url = base_url.rstrip('/')
+
+        # Add path if provided
+        if path:
+            # Ensure path starts with /
+            if not path.startswith('/'):
+                path = '/' + path
+            url += path
+
+        # Add query parameters if provided
+        if query_params:
+            url += '?' + query_params
+
+        return url
+
     def set_req_timeout(self, req_timeout):
         self.req_timeout = req_timeout
 
@@ -89,14 +119,14 @@ class ApiRequest(object):
             req_inter.header["Connection"] = "Keep-Alive"
         if self.debug:
             logger.debug("SendRequest %s" % req_inter)
+
         if req_inter.method == 'GET':
-            req_inter_url = '%s?%s' % (self.host, req_inter.data)
+            # For GET requests, parameters are in the query string (req_inter.data)
+            req_inter_url = self._build_url(self.host, req_inter.uri, req_inter.data)
             return self.conn.request(req_inter.method, req_inter_url, None, req_inter.header, req_inter.auth)
         elif req_inter.method == 'POST' or req_inter.method == 'PUT' or req_inter.method == 'DELETE':
-            if req_inter.uri_params:
-                req_inter_url = '%s?%s' % (self.host, req_inter.uri_params)
-            else:
-                req_inter_url = self.host
+            # For POST/PUT/DELETE, use uri_params for query string if present
+            req_inter_url = self._build_url(self.host, req_inter.uri, req_inter.uri_params if req_inter.uri_params else None)
             return self.conn.request(req_inter.method, req_inter_url, req_inter.data, req_inter.header, req_inter.auth)
         else:
             raise KsyunSDKException("ClientParamsError", 'Method only support (GET, POST, PUT, DELETE)')
@@ -115,7 +145,7 @@ class ApiRequest(object):
 
 
 class RequestInternal(object):
-    def __init__(self, host="", method="", uri="", header=None, data="",auth=None):
+    def __init__(self, host="", method="", uri="", header=None, data="", auth=None):
         if header is None:
             header = {}
         self.host = host
@@ -124,6 +154,7 @@ class RequestInternal(object):
         self.header = header
         self.data = data
         self.auth = auth
+        self.uri_params = None  # Query parameters for POST/PUT/DELETE requests
 
     def __str__(self):
         headers = "\n".join("%s: %s" % (k, v) for k, v in self.header.items())

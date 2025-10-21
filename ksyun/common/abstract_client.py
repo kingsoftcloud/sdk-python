@@ -229,7 +229,9 @@ class AbstractClient(object):
 
 
     def call(self, action, params, options=None):
-        req = RequestInternal(self._get_endpoint(), self.profile.httpProfile.reqMethod, self._requestPath)
+        # Use custom path from HttpProfile if available, otherwise use default _requestPath
+        request_path = self.profile.httpProfile.path if self.profile.httpProfile.path else self._requestPath
+        req = RequestInternal(self._get_endpoint(), self.profile.httpProfile.reqMethod, request_path)
         self._build_req_inter(action, params, req, options)
         resp_inter = self.request.send_request(req)
         self._check_status(resp_inter)
@@ -252,9 +254,11 @@ class AbstractClient(object):
         if self.profile.httpProfile.reqMethod != "POST":
             raise SDKError("ClientError", "Invalid request method.")
 
+        # Use custom path from HttpProfile if available, otherwise use default _requestPath
+        request_path = self.profile.httpProfile.path if self.profile.httpProfile.path else self._requestPath
         req = RequestInternal(self._get_endpoint(),
                               self.profile.httpProfile.reqMethod,
-                              self._requestPath)
+                              request_path)
         for key in headers:
             req.header[key] = headers[key]
         req.data = body

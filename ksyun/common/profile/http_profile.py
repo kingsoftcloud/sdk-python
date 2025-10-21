@@ -17,7 +17,7 @@ class HttpProfile(object):
     scheme = "https"
 
     def __init__(self, protocol=None, endpoint=None, reqMethod="POST", reqTimeout=60,
-                 keepAlive=False, proxy=None, rootDomain=None, certification=None):
+                 keepAlive=False, proxy=None, rootDomain=None, certification=None, path=None):
         """HTTP profile.
         :param protocol: http or https, default is https.
         :type protocol: str
@@ -29,6 +29,8 @@ class HttpProfile(object):
         :type reqTimeout: int
         :param rootDomain: The root domain to access, like: api.ksyun.com.
         :type rootDomain: str
+        :param path: Custom URL path like /api/xxx/xxx. Query parameters will be automatically removed.
+        :type path: str
         """
         self.endpoint = endpoint
         self.reqTimeout = 60 if reqTimeout is None else reqTimeout
@@ -40,3 +42,26 @@ class HttpProfile(object):
         self.proxy = proxy
         self.rootDomain = "api.ksyun.com" if rootDomain is None else rootDomain
         self.certification = certification
+        # Clean path: remove query parameters if present
+        self.path = self._clean_path(path) if path else None
+
+    def _clean_path(self, path):
+        """Clean path by removing query parameters and normalizing slashes.
+
+        :param path: The path to clean
+        :type path: str
+        :return: Cleaned path
+        :rtype: str
+        """
+        if not path:
+            return None
+
+        # Remove query parameters (everything after ?)
+        if '?' in path:
+            path = path.split('?')[0]
+
+        # Ensure path starts with /
+        if not path.startswith('/'):
+            path = '/' + path
+
+        return path

@@ -12,13 +12,13 @@ ROOT = os.path.dirname(__file__)
 
 setup(
     name='kingsoftcloud-sdk-python',
-    install_requires=["requests==2.27.1", "requests-aws4auth==1.0.1", "six"],
+    install_requires=["requests>=2.20.0,<3.0.0", "requests-aws4auth>=1.0.1,<2.0.0", "six"],
     version=ksyun.__version__,
     description='Kingsoft Cloud SDK for Python',
     long_description=open('README.rst').read(),
     author='Kingsoft Cloud',
     url='https://github.com/ksyun/ksyun-sdk-python',
-    maintainer_email="liuhuicheng1@kingsoft.com",
+    maintainer_email="fengyikai@kingsoft.com",
     scripts=[],
     packages=find_packages(exclude=["tests*"]),
     license="Apache License 2.0",

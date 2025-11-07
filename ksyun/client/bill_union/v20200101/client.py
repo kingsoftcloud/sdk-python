@@ -9,13 +9,13 @@ class Bill_unionClient(AbstractClient):
     _endpoint = 'bill-union.api.ksyun.com'
     _service = 'bill-union'
     def DescribeBillSummaryByPayMode(self, request):
-        """获取计费类别汇总账单
+        """获取计费类别汇总账单（费用账单接口，推荐使用，包含预付费、实时付费、后付费）
         :param request: Request instance for DescribeBillSummaryByPayMode.
         :type request: :class:`ksyun.client.bill_union.v20200101.models.DescribeBillSummaryByPayModeRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeBillSummaryByPayMode", params, "application/json")
+            body = self.call_judge("DescribeBillSummaryByPayMode", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -55,13 +55,13 @@ class Bill_unionClient(AbstractClient):
 
 
     def DescribeBillSummaryByProject(self, request):
-        """按项目制获取账单汇总金额
+        """按项目制获取账单汇总金额（费用账单接口，推荐使用，包含预付费、实时付费、后付费）
         :param request: Request instance for DescribeBillSummaryByProject.
         :type request: :class:`ksyun.client.bill_union.v20200101.models.DescribeBillSummaryByProjectRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeBillSummaryByProject", params, "application/json")
+            body = self.call_judge("DescribeBillSummaryByProject", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

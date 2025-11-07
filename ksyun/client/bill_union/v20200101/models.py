@@ -5,17 +5,23 @@ class DescribeBillSummaryByPayModeRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""获取计费类别汇总账单
+        r"""获取计费类别汇总账单（费用账单接口，推荐使用，包含预付费、实时付费、后付费）
         :param BillBeginMonth: 账单开始时间
         :type PathPrefix: String
         :param BillEndMonth: 账单结束时间
         :type PathPrefix: String
         :param SubAccount: 成员账账号Id，非必填
         :type PathPrefix: Int
+        :param FetchAllFinanceRelationData: 非必传，默认值为 False。
+是否吐出全部财务关系数据。
+值为true时，同时吐出财务管理和财务托管账号数据。
+值为false时或不传该参数，仅吐出财务托管账号数据。
+        :type PathPrefix: Boolean
         """
         self.BillBeginMonth = None
         self.BillEndMonth = None
         self.SubAccount = None
+        self.FetchAllFinanceRelationData = None
 
     def _deserialize(self, params):
         if params.get("BillBeginMonth"):
@@ -24,6 +30,8 @@ class DescribeBillSummaryByPayModeRequest(AbstractModel):
             self.BillEndMonth = params.get("BillEndMonth")
         if params.get("SubAccount"):
             self.SubAccount = params.get("SubAccount")
+        if params.get("FetchAllFinanceRelationData"):
+            self.FetchAllFinanceRelationData = params.get("FetchAllFinanceRelationData")
 
 
 class DescribeBillSummaryByProductRequest(AbstractModel):
@@ -65,17 +73,23 @@ class DescribeBillSummaryByProjectRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""按项目制获取账单汇总金额
+        r"""按项目制获取账单汇总金额（费用账单接口，推荐使用，包含预付费、实时付费、后付费）
         :param BillBeginMonth: 账单开始月份
         :type PathPrefix: String
         :param BillEndMonth: 账单结束月份
         :type PathPrefix: String
         :param SubAccount: 成员账号Id
         :type PathPrefix: Int
+        :param FetchAllFinanceRelationData: 非必传，默认值为 False。
+是否吐出全部财务关系数据。
+值为true时，同时吐出财务管理和财务托管账号数据。
+值为false时或不传该参数，仅吐出财务托管账号数据。
+        :type PathPrefix: Boolean
         """
         self.BillBeginMonth = None
         self.BillEndMonth = None
         self.SubAccount = None
+        self.FetchAllFinanceRelationData = None
 
     def _deserialize(self, params):
         if params.get("BillBeginMonth"):
@@ -84,6 +98,8 @@ class DescribeBillSummaryByProjectRequest(AbstractModel):
             self.BillEndMonth = params.get("BillEndMonth")
         if params.get("SubAccount"):
             self.SubAccount = params.get("SubAccount")
+        if params.get("FetchAllFinanceRelationData"):
+            self.FetchAllFinanceRelationData = params.get("FetchAllFinanceRelationData")
 
 
 class DescribeInstanceSummaryBillsRequest(AbstractModel):

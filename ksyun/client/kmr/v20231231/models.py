@@ -1,15 +1,14 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class ListInstancesRequest(AbstractModel):
     """ListInstances请求参数结构体
     """
 
     def __init__(self):
-        r"""实例列表
+        r"""查询实例列表
         :param PageNumber: 当前页码 从0开始
         :type PathPrefix: Int
-        :param PageSize: 当前页内数据的个数
+        :param PageSize: 当前页内数据的个数	
         :type PathPrefix: Int
         :param InstanceStatus: - “Running”: 集群当前正在运行并执行其任务。
 - “Creating”: 集群正在创建或初始化中。
@@ -58,6 +57,27 @@ class GetInstanceDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceId"):
             self.InstanceId = params.get("InstanceId")
+
+
+class ModifyHostsRequest(AbstractModel):
+    """ModifyHosts请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改域名解析地址
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        :param TunaHosts: TunaHosts
+        :type PathPrefix: Array
+        """
+        self.InstanceId = None
+        self.TunaHosts = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("TunaHosts"):
+            self.TunaHosts = params.get("TunaHosts")
 
 
 class ListAutoScaleHistoryRequest(AbstractModel):
@@ -177,3 +197,5 @@ class DeleteAutoScalePolicyRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("PolicyId"):
             self.PolicyId = params.get("PolicyId")
+
+

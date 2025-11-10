@@ -4,18 +4,18 @@ from ksyun.common.exception.ksyun_sdk_exception import KsyunSDKException
 from ksyun.common.abstract_client import AbstractClient
 
 
-class KmrClient(AbstractClient):
-    _apiVersion = '2023-12-31'
-    _endpoint = 'kmr.api.ksyun.com'
-    _service = 'kmr'
-    def ListInstances(self, request):
-        """查询实例列表
-        :param request: Request instance for ListInstances.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.ListInstancesRequest`
+class KesClient(AbstractClient):
+    _apiVersion = '2020-12-15'
+    _endpoint = 'kes.api.ksyun.com'
+    _service = 'kes'
+    def DescribeCluster(self, request):
+        """查询集群详情V2
+        :param request: Request instance for DescribeCluster.
+        :type request: :class:`ksyun.client.kes.v20201215.models.DescribeClusterRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ListInstances", params, "application/json")
+            body = self.call_judge("DescribeCluster", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -31,14 +31,14 @@ class KmrClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def GetInstanceDetail(self, request):
-        """实例信息
-        :param request: Request instance for GetInstanceDetail.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.GetInstanceDetailRequest`
+    def ListClusters(self, request):
+        """查看集群列表V2
+        :param request: Request instance for ListClusters.
+        :type request: :class:`ksyun.client.kes.v20201215.models.ListClustersRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("GetInstanceDetail", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ListClusters", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -54,14 +54,14 @@ class KmrClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def ModifyHosts(self, request):
-        """修改域名解析地址
-        :param request: Request instance for ModifyHosts.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.ModifyHostsRequest`
+    def ModifyClusterName(self, request):
+        """修改集群名称V2
+        :param request: Request instance for ModifyClusterName.
+        :type request: :class:`ksyun.client.kes.v20201215.models.ModifyClusterNameRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyHosts", params, "application/json")
+            body = self.call_judge("ModifyClusterName", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -77,14 +77,14 @@ class KmrClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def ListAutoScaleHistory(self, request):
-        """查看弹性伸缩策略历史
-        :param request: Request instance for ListAutoScaleHistory.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.ListAutoScaleHistoryRequest`
+    def LaunchCluster(self, request):
+        """创建集群V2
+        :param request: Request instance for LaunchCluster.
+        :type request: :class:`ksyun.client.kes.v20201215.models.LaunchClusterRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ListAutoScaleHistory", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("LaunchCluster", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -100,14 +100,14 @@ class KmrClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def CreateAutoScalePolicy(self, request):
-        """新增弹性伸缩策略
-        :param request: Request instance for CreateAutoScalePolicy.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.CreateAutoScalePolicyRequest`
+    def ListInstanceGroups(self, request):
+        """查询节点组详情V2
+        :param request: Request instance for ListInstanceGroups.
+        :type request: :class:`ksyun.client.kes.v20201215.models.ListInstanceGroupsRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateAutoScalePolicy", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ListInstanceGroups", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -123,14 +123,14 @@ class KmrClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def ListAutoScalePolicy(self, request):
-        """查看弹性伸缩策略
-        :param request: Request instance for ListAutoScalePolicy.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.ListAutoScalePolicyRequest`
+    def ServiceControl(self, request):
+        """重启集群V2
+        :param request: Request instance for ServiceControl.
+        :type request: :class:`ksyun.client.kes.v20201215.models.ServiceControlRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ListAutoScalePolicy", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ServiceControl", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -146,14 +146,37 @@ class KmrClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DeleteAutoScalePolicy(self, request):
-        """删除弹性伸缩策略
-        :param request: Request instance for DeleteAutoScalePolicy.
-        :type request: :class:`ksyun.client.kmr.v20231231.models.DeleteAutoScalePolicyRequest`
+    def ClusterHealthStatistic(self, request):
+        """查看诊断报告V2
+        :param request: Request instance for ClusterHealthStatistic.
+        :type request: :class:`ksyun.client.kes.v20201215.models.ClusterHealthStatisticRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteAutoScalePolicy", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ClusterHealthStatistic", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CheckClusterHealth(self, request):
+        """立即诊断V2
+        :param request: Request instance for CheckClusterHealth.
+        :type request: :class:`ksyun.client.kes.v20201215.models.CheckClusterHealthRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CheckClusterHealth", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

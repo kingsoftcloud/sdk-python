@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class DetailWorkspaceRequest(AbstractModel):
     """DetailWorkspace请求参数结构体
     """
@@ -420,9 +419,7 @@ class CancelFlinkJobRunRequest(AbstractModel):
         r"""停止Flink作业运行
         :param WorkspaceId: 工作空间ID
         :type PathPrefix: String
-        :param JobRunIds: 作业的ID和作业类型组成的数组
-JobRunId:xxx
-JobType:flink
+        :param JobRunIds: 
         :type PathPrefix: Array
         """
         self.WorkspaceId = None
@@ -475,3 +472,52 @@ class RestartFlinkJobRunRequest(AbstractModel):
             self.WorkspaceId = params.get("WorkspaceId")
         if params.get("JobRunId"):
             self.JobRunId = params.get("JobRunId")
+
+
+class DescribeMetricListRequest(AbstractModel):
+    """DescribeMetricList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取监控指标项
+        :param WorkspaceId: 工作空间ID
+        :type PathPrefix: String
+        :param ProductType: 作业类型：flink，spark，ray
+        :type PathPrefix: String
+        """
+        self.WorkspaceId = None
+        self.ProductType = None
+
+    def _deserialize(self, params):
+        if params.get("WorkspaceId"):
+            self.WorkspaceId = params.get("WorkspaceId")
+        if params.get("ProductType"):
+            self.ProductType = params.get("ProductType")
+
+
+class QueryMetricsRequest(AbstractModel):
+    """QueryMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取监控指标详情
+        :param WorkspaceId: 工作空间ID
+        :type PathPrefix: String
+        :param ProductType: 作业类型：flink，spark，ray
+        :type PathPrefix: String
+        :param QueryData: 查询指标的详细信息
+        :type PathPrefix: Object
+        """
+        self.WorkspaceId = None
+        self.ProductType = None
+        self.QueryData = None
+
+    def _deserialize(self, params):
+        if params.get("WorkspaceId"):
+            self.WorkspaceId = params.get("WorkspaceId")
+        if params.get("ProductType"):
+            self.ProductType = params.get("ProductType")
+        if params.get("QueryData"):
+            self.QueryData = params.get("QueryData")
+
+

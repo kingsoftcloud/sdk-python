@@ -90,15 +90,25 @@ class ListProjectsRequest(AbstractModel):
 
     def __init__(self):
         r"""查看工程列表
+        :param ProjectName: 工程名称
+        :type PathPrefix: String
+        :param Description: 工程描述
+        :type PathPrefix: String
         :param Page: 返回记录的页码，从0开始
         :type PathPrefix: Int
         :param Size: 每页返回最大条目，最大值500
         :type PathPrefix: Int
         """
+        self.ProjectName = None
+        self.Description = None
         self.Page = None
         self.Size = None
 
     def _deserialize(self, params):
+        if params.get("ProjectName"):
+            self.ProjectName = params.get("ProjectName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
         if params.get("Page"):
             self.Page = params.get("Page")
         if params.get("Size"):

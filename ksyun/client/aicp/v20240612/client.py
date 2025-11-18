@@ -153,7 +153,7 @@ class AicpClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("StartNotebook", params, "application/json")
+            body = self.call_judge("StartNotebook", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -246,6 +246,213 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("StopNotebookSavingImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateTrainJob(self, request):
+        """创建训练任务
+        :param request: Request instance for CreateTrainJob.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateTrainJobRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateTrainJob", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeTrainJobEvents(self, request):
+        """查询训练任务pod事件
+        :param request: Request instance for DescribeTrainJobEvents.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTrainJobEventsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTrainJobEvents", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def StopTrainJob(self, request):
+        """关停训练任务
+        :param request: Request instance for StopTrainJob.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.StopTrainJobRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StopTrainJob", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeTrainJob(self, request):
+        """查询训练任务
+        :param request: Request instance for DescribeTrainJob.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTrainJobRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTrainJob", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def StartTrainJob(self, request):
+        """开启训练任务
+        :param request: Request instance for StartTrainJob.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.StartTrainJobRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StartTrainJob", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteTrainJob(self, request):
+        """删除训练任务
+        :param request: Request instance for DeleteTrainJob.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteTrainJobRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteTrainJob", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyTrainJob(self, request):
+        """修改训练任务
+        :param request: Request instance for ModifyTrainJob.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyTrainJobRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyTrainJob", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeTrainJobPodLogs(self, request):
+        """查询训练任务pod日志
+        :param request: Request instance for DescribeTrainJobPodLogs.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTrainJobPodLogsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTrainJobPodLogs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeTrainJobPods(self, request):
+        """查询训练任务pod列表
+        :param request: Request instance for DescribeTrainJobPods.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTrainJobPodsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTrainJobPods", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

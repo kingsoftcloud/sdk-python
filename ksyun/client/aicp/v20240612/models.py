@@ -551,6 +551,11 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: String
         :param FrameworkReplicas: 框架副本配置
         :type PathPrefix: Object
+        :param RestartPolicy: 重启策略，可选值：
+· Always
+· OnFailure
+· Never
+        :type PathPrefix: String
         :param Envs: 环境变量
         :type PathPrefix: Array
         :param SupportTensorboard: 是否开启Tensorboard，默认不开启
@@ -567,7 +572,7 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: String
         :param GPUNumber: 范围0-10000
         :type PathPrefix: Int
-        :param CpuNum: 范围0-10000
+        :param CPUNum: 范围0-10000
         :type PathPrefix: Int
         :param Memory: 0-10000
         :type PathPrefix: Int
@@ -580,7 +585,7 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: Int
         :param SelfHealing: 是否开启自愈，默认true
         :type PathPrefix: Boolean
-        :param RunOnCpu: 任务是否仅运行在cpu节点上，默认false
+        :param RunOnCPU: 任务是否仅运行在cpu节点上，默认false
         :type PathPrefix: Boolean
         """
         self.TrainJobName = None
@@ -592,6 +597,7 @@ class CreateTrainJobRequest(AbstractModel):
         self.Framework = None
         self.ImageSource = None
         self.FrameworkReplicas = None
+        self.RestartPolicy = None
         self.Envs = None
         self.SupportTensorboard = None
         self.ImageId = None
@@ -600,13 +606,13 @@ class CreateTrainJobRequest(AbstractModel):
         self.ImageTagId = None
         self.GPUType = None
         self.GPUNumber = None
-        self.CpuNum = None
+        self.CPUNum = None
         self.Memory = None
         self.StorageConfigs = None
         self.AccessType = None
         self.MaxRuntime = None
         self.SelfHealing = None
-        self.RunOnCpu = None
+        self.RunOnCPU = None
 
     def _deserialize(self, params):
         if params.get("TrainJobName"):
@@ -627,6 +633,8 @@ class CreateTrainJobRequest(AbstractModel):
             self.ImageSource = params.get("ImageSource")
         if params.get("FrameworkReplicas"):
             self.FrameworkReplicas = params.get("FrameworkReplicas")
+        if params.get("RestartPolicy"):
+            self.RestartPolicy = params.get("RestartPolicy")
         if params.get("Envs"):
             self.Envs = params.get("Envs")
         if params.get("SupportTensorboard"):
@@ -643,8 +651,8 @@ class CreateTrainJobRequest(AbstractModel):
             self.GPUType = params.get("GPUType")
         if params.get("GPUNumber"):
             self.GPUNumber = params.get("GPUNumber")
-        if params.get("CpuNum"):
-            self.CpuNum = params.get("CpuNum")
+        if params.get("CPUNum"):
+            self.CPUNum = params.get("CPUNum")
         if params.get("Memory"):
             self.Memory = params.get("Memory")
         if params.get("StorageConfigs"):
@@ -655,8 +663,8 @@ class CreateTrainJobRequest(AbstractModel):
             self.MaxRuntime = params.get("MaxRuntime")
         if params.get("SelfHealing"):
             self.SelfHealing = params.get("SelfHealing")
-        if params.get("RunOnCpu"):
-            self.RunOnCpu = params.get("RunOnCpu")
+        if params.get("RunOnCPU"):
+            self.RunOnCPU = params.get("RunOnCPU")
 
 
 class DescribeTrainJobEventsRequest(AbstractModel):

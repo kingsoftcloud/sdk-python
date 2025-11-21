@@ -858,3 +858,103 @@ class DescribeTrainJobPodsRequest(AbstractModel):
             self.Filter = params.get("Filter")
 
 
+class DescribeResourcePoolsRequest(AbstractModel):
+    """DescribeResourcePools请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询资源组列表
+        :param Sort: 排序方式：默认倒序
+- DESC 倒序
+- ASC 正序
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 单次调用所返回的最大实例数目，默认1000， 范围[5-1000]。
+        :type PathPrefix: Int
+        :param ResourcePoolName: 资源池名称，可模糊匹配
+        :type PathPrefix: String
+        :param Component: 组件名称:
+- spark
+- ray
+        :type PathPrefix: String
+        :param ResourcePoolId: 资源组ID
+        :type PathPrefix: Filter
+        :param Filter: 一个或者多个过滤器
+        :type PathPrefix: Filter
+        """
+        self.Sort = None
+        self.Page = None
+        self.PageSize = None
+        self.ResourcePoolName = None
+        self.Component = None
+        self.ResourcePoolId = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("ResourcePoolName"):
+            self.ResourcePoolName = params.get("ResourcePoolName")
+        if params.get("Component"):
+            self.Component = params.get("Component")
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+
+class DescribeResourcePoolInstancesRequest(AbstractModel):
+    """DescribeResourcePoolInstances请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询资源组节点列表
+        :param ResourcePoolId: 	
+资源组d
+        :type PathPrefix: String
+        :param PageSize: 单次调用所返回的最大实例数目，默认1000, 范围值为[5, 1000]
+        :type PathPrefix: Int
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param InstanceName: 实例名称，可模糊匹配
+
+
+        :type PathPrefix: String
+        :param InstanceId: 	
+实例ID
+        :type PathPrefix: Filter
+        :param ProjectId: 项目制
+        :type PathPrefix: Filter
+        :param Filter: 一个或者多个过滤器
+        :type PathPrefix: Filter
+        """
+        self.ResourcePoolId = None
+        self.PageSize = None
+        self.Page = None
+        self.InstanceName = None
+        self.InstanceId = None
+        self.ProjectId = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("InstanceName"):
+            self.InstanceName = params.get("InstanceName")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+

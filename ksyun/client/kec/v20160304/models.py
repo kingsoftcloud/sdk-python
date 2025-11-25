@@ -751,8 +751,6 @@ class AttachNetworkInterfaceRequest(AbstractModel):
         :type PathPrefix: Filter
         :param PrivateIpAddress: 
         :type PathPrefix: String
-        :param VpcIpv6: 指定子网下的ipv6地址
-        :type PathPrefix: String
         :param MacAddress: 
         :type PathPrefix: String
         """
@@ -761,7 +759,6 @@ class AttachNetworkInterfaceRequest(AbstractModel):
         self.SubnetId = None
         self.SecurityGroupId = None
         self.PrivateIpAddress = None
-        self.VpcIpv6 = None
         self.MacAddress = None
 
     def _deserialize(self, params):
@@ -775,8 +772,6 @@ class AttachNetworkInterfaceRequest(AbstractModel):
             self.SecurityGroupId = params.get("SecurityGroupId")
         if params.get("PrivateIpAddress"):
             self.PrivateIpAddress = params.get("PrivateIpAddress")
-        if params.get("VpcIpv6"):
-            self.VpcIpv6 = params.get("VpcIpv6")
         if params.get("MacAddress"):
             self.MacAddress = params.get("MacAddress")
 
@@ -3052,6 +3047,42 @@ class ModifyInstanceAutoDeleteTimeRequest(AbstractModel):
             self.AutoDeleteTime = params.get("AutoDeleteTime")
         if params.get("AutoDeleteEip"):
             self.AutoDeleteEip = params.get("AutoDeleteEip")
+
+
+class DescribeKecInventoryRequest(AbstractModel):
+    """DescribeKecInventory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询云主机库存
+        :param InstanceType: 实例类型
+        :type PathPrefix: String
+        :param DataDiskGb: 数据卷容量，单位GB
+        :type PathPrefix: Int
+        :param SystemDisk.DiskSize: 系统盘大小
+        :type PathPrefix: Int
+        :param SystemDisk.DiskType: 系统盘类型
+        :type PathPrefix: String
+        :param AvailabilityZone: 可用区信息
+        :type PathPrefix: String
+        """
+        self.InstanceType = None
+        self.DataDiskGb = None
+        self.SystemDisk.DiskSize = None
+        self.SystemDisk.DiskType = None
+        self.AvailabilityZone = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceType"):
+            self.InstanceType = params.get("InstanceType")
+        if params.get("DataDiskGb"):
+            self.DataDiskGb = params.get("DataDiskGb")
+        if params.get("SystemDisk.DiskSize"):
+            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+        if params.get("SystemDisk.DiskType"):
+            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+        if params.get("AvailabilityZone"):
+            self.AvailabilityZone = params.get("AvailabilityZone")
 
 
 class ModifyScalingConfigurationRequest(AbstractModel):

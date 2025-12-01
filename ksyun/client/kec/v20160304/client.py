@@ -698,6 +698,144 @@ class KecClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def CreateAutoSnapshotPolicy(self, request):
+        """创建自动快照策略
+        :param request: Request instance for CreateAutoSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CreateAutoSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAutoSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteAutoSnapshotPolicy(self, request):
+        """删除自动快照策略
+        :param request: Request instance for DeleteAutoSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DeleteAutoSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAutoSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyAutoSnapshotPolicy(self, request):
+        """修改自动快照策略
+        :param request: Request instance for ModifyAutoSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ModifyAutoSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAutoSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAutoSnapshotPolicy(self, request):
+        """查询自动快照策略
+        :param request: Request instance for DescribeAutoSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeAutoSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAutoSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ApplyAutoSnapshotPolicy(self, request):
+        """执行自动快照策略
+        :param request: Request instance for ApplyAutoSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ApplyAutoSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ApplyAutoSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CancelAutoSnapshotPolicy(self, request):
+        """消执行自动快照策略
+        :param request: Request instance for CancelAutoSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CancelAutoSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CancelAutoSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DescribeScalingConfiguration(self, request):
         """查询启动配置
         :param request: Request instance for DescribeScalingConfiguration.

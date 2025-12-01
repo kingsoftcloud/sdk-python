@@ -1179,6 +1179,162 @@ class DescribeDedicatedHostsRequest(AbstractModel):
             self.ProjectId = params.get("ProjectId")
 
 
+class CreateAutoSnapshotPolicyRequest(AbstractModel):
+    """CreateAutoSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建自动快照策略
+        :param AutoSnapshotPolicyName: 自动快照策略名称,2-64个字符，支持中文、字母、数字以及-_@#.字符
+        :type PathPrefix: String
+        :param AutoSnapshotTime: 快照创建时间
+        :type PathPrefix: String
+        :param AutoSnapshotDate: 自动快照重复时间,选定周一到周日中需要创建快照的日期，参数为 1 ~ 7 的数字
+        :type PathPrefix: Filter
+        :param SnapshotType: 快照类型 LocalSnapshot（极速可用快照）、CommonSnapshot（普通快照）
+        :type PathPrefix: String
+        :param RetentionTime: 自动快照保留时长
+        :type PathPrefix: Int
+        """
+        self.AutoSnapshotPolicyName = None
+        self.AutoSnapshotTime = None
+        self.AutoSnapshotDate = None
+        self.SnapshotType = None
+        self.RetentionTime = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyName"):
+            self.AutoSnapshotPolicyName = params.get("AutoSnapshotPolicyName")
+        if params.get("AutoSnapshotTime"):
+            self.AutoSnapshotTime = params.get("AutoSnapshotTime")
+        if params.get("AutoSnapshotDate"):
+            self.AutoSnapshotDate = params.get("AutoSnapshotDate")
+        if params.get("SnapshotType"):
+            self.SnapshotType = params.get("SnapshotType")
+        if params.get("RetentionTime"):
+            self.RetentionTime = params.get("RetentionTime")
+
+
+class DeleteAutoSnapshotPolicyRequest(AbstractModel):
+    """DeleteAutoSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除自动快照策略
+        :param AutoSnapshotPolicyId: 自动快照策略ID
+        :type PathPrefix: Filter
+        """
+        self.AutoSnapshotPolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+
+
+class ModifyAutoSnapshotPolicyRequest(AbstractModel):
+    """ModifyAutoSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改自动快照策略
+        :param AutoSnapshotPolicyId: 自动快照策略ID
+        :type PathPrefix: String
+        :param AutoSnapshotPolicyName: 自动快照策略名称,2-64个字符，支持中文、字母、数字以及-_@#.字符
+        :type PathPrefix: String
+        :param AutoSnapshotTime: 快照创建时间
+        :type PathPrefix: String
+        :param AutoSnapshotDate: 自动快照重复时间,选定周一到周日中需要创建快照的日期，参数为 1 ~ 7 的数字
+        :type PathPrefix: Filter
+        :param SnapshotType: 快照类型 LocalSnapshot（极速可用快照）、CommonSnapshot（普通快照）
+        :type PathPrefix: String
+        :param RetentionTime: 自动快照保留时长
+        :type PathPrefix: Int
+        """
+        self.AutoSnapshotPolicyId = None
+        self.AutoSnapshotPolicyName = None
+        self.AutoSnapshotTime = None
+        self.AutoSnapshotDate = None
+        self.SnapshotType = None
+        self.RetentionTime = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("AutoSnapshotPolicyName"):
+            self.AutoSnapshotPolicyName = params.get("AutoSnapshotPolicyName")
+        if params.get("AutoSnapshotTime"):
+            self.AutoSnapshotTime = params.get("AutoSnapshotTime")
+        if params.get("AutoSnapshotDate"):
+            self.AutoSnapshotDate = params.get("AutoSnapshotDate")
+        if params.get("SnapshotType"):
+            self.SnapshotType = params.get("SnapshotType")
+        if params.get("RetentionTime"):
+            self.RetentionTime = params.get("RetentionTime")
+
+
+class DescribeAutoSnapshotPolicyRequest(AbstractModel):
+    """DescribeAutoSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询自动快照策略
+        :param AutoSnapshotPolicyName: 自动快照策略名称
+        :type PathPrefix: String
+        :param AutoSnapshotPolicyId: 快照策略id
+        :type PathPrefix: Filter
+        """
+        self.AutoSnapshotPolicyName = None
+        self.AutoSnapshotPolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyName"):
+            self.AutoSnapshotPolicyName = params.get("AutoSnapshotPolicyName")
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+
+
+class ApplyAutoSnapshotPolicyRequest(AbstractModel):
+    """ApplyAutoSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""执行自动快照策略
+        :param AutoSnapshotPolicyId: 自动快照策略ID
+        :type PathPrefix: String
+        :param AttachVolumeId: 绑定的硬盘ID，支持多个硬盘ID
+        :type PathPrefix: Filter
+        """
+        self.AutoSnapshotPolicyId = None
+        self.AttachVolumeId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("AttachVolumeId"):
+            self.AttachVolumeId = params.get("AttachVolumeId")
+
+
+class CancelAutoSnapshotPolicyRequest(AbstractModel):
+    """CancelAutoSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""消执行自动快照策略
+        :param AutoSnapshotPolicyId: 自动快照策略ID
+        :type PathPrefix: String
+        :param AttachVolumeId: 待解绑的硬盘ID
+        :type PathPrefix: Filter
+        """
+        self.AutoSnapshotPolicyId = None
+        self.AttachVolumeId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("AttachVolumeId"):
+            self.AttachVolumeId = params.get("AttachVolumeId")
+
+
 class DescribeScalingConfigurationRequest(AbstractModel):
     """DescribeScalingConfiguration请求参数结构体
     """

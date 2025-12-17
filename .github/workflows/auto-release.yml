@@ -3,7 +3,6 @@ name: Auto Create Release
 on:
   push:
     branches:
-      - master
       - main
 
 jobs:

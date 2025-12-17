@@ -55,3 +55,5 @@ class GetMetricStatisticsBatchRequest(AbstractModel):
             self.Period = params.get("Period")
         if params.get("Metrics"):
             self.Metrics = params.get("Metrics")
+
+

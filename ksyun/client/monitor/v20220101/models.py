@@ -28,3 +28,5 @@ class DeleteAlarmPolicyRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("PolicyIds"):
             self.PolicyIds = params.get("PolicyIds")
+
+

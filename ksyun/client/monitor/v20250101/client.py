@@ -30,6 +30,7 @@ class MonitorClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSystemEventAttributes(self, request):
         """查询系统事件详情
         :param request: Request instance for DescribeSystemEventAttributes.
@@ -51,3 +52,5 @@ class MonitorClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

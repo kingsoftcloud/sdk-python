@@ -274,3 +274,5 @@ class DescribeMonitorProductListRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+

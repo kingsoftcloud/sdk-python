@@ -1,0 +1,71 @@
+name: Auto Create Release
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  check-version-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # 获取完整历史以便比较
+
+    - name: Extract version
+      id: get_version
+      run: |
+        VERSION=$(grep -oP "__version__ = '\K[^']+" ksyun/__init__.py)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+        echo "Current version: $VERSION"
+
+    - name: Check if tag exists
+      id: check_tag
+      run: |
+        if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "Tag v${{ steps.get_version.outputs.version }} already exists"
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Tag v${{ steps.get_version.outputs.version }} does not exist"
+        fi
+
+    - name: Create tag and release
+      if: steps.check_tag.outputs.exists == 'false'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        # 创建并推送 tag
+        git tag -a ${{ steps.get_version.outputs.tag }} -m "Release ${{ steps.get_version.outputs.tag }}"
+        git push origin ${{ steps.get_version.outputs.tag }}
+
+        # 使用 GitHub CLI 创建 release
+        gh release create ${{ steps.get_version.outputs.tag }} \
+          --title "Release ${{ steps.get_version.outputs.tag }}" \
+          --notes "## Release ${{ steps.get_version.outputs.tag }}
+
+Auto-generated release from version update in ksyun/__init__.py
+
+### Changes
+See commit history for details." \
+          --latest
+
+    - name: Release created
+      if: steps.check_tag.outputs.exists == 'false'
+      run: |
+        echo "✅ Successfully created release ${{ steps.get_version.outputs.tag }}"
+
+    - name: Skip release
+      if: steps.check_tag.outputs.exists == 'true'
+      run: |
+        echo "⏭️  Skipped: Tag ${{ steps.get_version.outputs.tag }} already exists"

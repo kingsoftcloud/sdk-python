@@ -46,18 +46,23 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
         # 创建并推送 tag
-        git tag -a ${{ steps.get_version.outputs.tag }} -m "Release ${{ steps.get_version.outputs.tag }}"
+        git tag -a ${{ steps.get_version.outputs.tag }} -m "${{ steps.get_version.outputs.tag }}"
         git push origin ${{ steps.get_version.outputs.tag }}
+
+        # 创建 release notes
+        cat > release_notes.md << 'EOF'
+        ## Release ${{ steps.get_version.outputs.tag }}
+
+        Auto-generated release from version update in ksyun/__init__.py
+
+        ### Changes
+        See commit history for details.
+        EOF
 
         # 使用 GitHub CLI 创建 release
         gh release create ${{ steps.get_version.outputs.tag }} \
-          --title "Release ${{ steps.get_version.outputs.tag }}" \
-          --notes "## Release ${{ steps.get_version.outputs.tag }}
-
-Auto-generated release from version update in ksyun/__init__.py
-
-### Changes
-See commit history for details." \
+          --title "${{ steps.get_version.outputs.tag }}" \
+          --notes-file release_notes.md \
           --latest
 
     - name: Release created

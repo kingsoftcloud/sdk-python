@@ -1,4 +1,4 @@
-name: Auto Create Release
+name: Auto Release and Publish
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  check-version-and-release:
+  release-and-publish:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -64,10 +64,33 @@ jobs:
           --notes-file release_notes.md \
           --latest
 
-    - name: Release created
+    - name: Set up Python
+      if: steps.check_tag.outputs.exists == 'false'
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
       if: steps.check_tag.outputs.exists == 'false'
       run: |
-        echo "✅ Successfully created release ${{ steps.get_version.outputs.tag }}"
+        python -m pip install --upgrade pip
+        pip install build
+
+    - name: Build package
+      if: steps.check_tag.outputs.exists == 'false'
+      run: python -m build
+
+    - name: Publish package to PyPI
+      if: steps.check_tag.outputs.exists == 'false'
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+
+    - name: Success
+      if: steps.check_tag.outputs.exists == 'false'
+      run: |
+        echo "✅ Successfully created release ${{ steps.get_version.outputs.tag }} and published to PyPI"
 
     - name: Skip release
       if: steps.check_tag.outputs.exists == 'true'

@@ -514,26 +514,3 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
-    def DescribeModelChats(self, request):
-        """查询在线体验对话列表
-        :param request: Request instance for DescribeModelChats.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeModelChatsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeModelChats", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-

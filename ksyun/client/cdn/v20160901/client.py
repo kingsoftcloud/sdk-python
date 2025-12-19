@@ -8,29 +8,6 @@ class CdnClient(AbstractClient):
     _apiVersion = '2016-09-01'
     _endpoint = 'cdn.api.ksyun.com'
     _service = 'cdn'
-    def GetDomainLogs(self, request):
-        """获取日志下载URL
-        :param request: Request instance for GetDomainLogs.
-        :type request: :class:`ksyun.client.cdn.v20160901.models.GetDomainLogsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetDomainLogs", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-
     def GetRefreshOrPreloadTask(self, request):
         """刷新预热进度查询接口
         :param request: Request instance for GetRefreshOrPreloadTask.

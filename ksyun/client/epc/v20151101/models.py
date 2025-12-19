@@ -250,6 +250,12 @@ storage_bond
         :type PathPrefix: String
         :param StorageRoceNetworkInterfaceMode: 存储网卡bond模式，仅支持bond3(bond)、single(非bond)
         :type PathPrefix: String
+        :param RoceCluster: 计算roce集群名称
+        :type PathPrefix: String
+        :param SRoceCluster: 存储Roce卡集群名称
+        :type PathPrefix: String
+        :param UserDefinedData: 自定义脚本
+        :type PathPrefix: String
         """
         self.HostType = None
         self.AvailabilityZone = None
@@ -305,12 +311,15 @@ storage_bond
         self.PasswordInherit = None
         self.DataDiskMount = None
         self.StorageRoceNetworkCardName = None
-        self.Anaconda.N = None
-        self.Framework.N = None
-        self.Engine.N = None
-        self.AiModel.N = None
+        self.Anaconda_N = None
+        self.Framework_N = None
+        self.Engine_N = None
+        self.AiModel_N = None
         self.UserData = None
         self.StorageRoceNetworkInterfaceMode = None
+        self.RoceCluster = None
+        self.SRoceCluster = None
+        self.UserDefinedData = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -422,17 +431,23 @@ storage_bond
         if params.get("StorageRoceNetworkCardName"):
             self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
         if params.get("Anaconda.N"):
-            self.Anaconda.N = params.get("Anaconda.N")
+            self.Anaconda_N = params.get("Anaconda.N")
         if params.get("Framework.N"):
-            self.Framework.N = params.get("Framework.N")
+            self.Framework_N = params.get("Framework.N")
         if params.get("Engine.N"):
-            self.Engine.N = params.get("Engine.N")
+            self.Engine_N = params.get("Engine.N")
         if params.get("AiModel.N"):
-            self.AiModel.N = params.get("AiModel.N")
+            self.AiModel_N = params.get("AiModel.N")
         if params.get("UserData"):
             self.UserData = params.get("UserData")
         if params.get("StorageRoceNetworkInterfaceMode"):
             self.StorageRoceNetworkInterfaceMode = params.get("StorageRoceNetworkInterfaceMode")
+        if params.get("RoceCluster"):
+            self.RoceCluster = params.get("RoceCluster")
+        if params.get("SRoceCluster"):
+            self.SRoceCluster = params.get("SRoceCluster")
+        if params.get("UserDefinedData"):
+            self.UserDefinedData = params.get("UserDefinedData")
 
 
 class StartEpcRequest(AbstractModel):
@@ -572,6 +587,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :param StorageRoceNetworkCardName: RoCE存储卡名称，仅支持
 eth8x_bond、storage_bond
         :type PathPrefix: String
+        :param UserDefinedData: 自定义脚本
+        :type PathPrefix: String
         """
         self.HostId = None
         self.ImageId = None
@@ -602,6 +619,7 @@ eth8x_bond、storage_bond
         self.PasswordInherit = None
         self.DataDiskMount = None
         self.StorageRoceNetworkCardName = None
+        self.UserDefinedData = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -662,6 +680,8 @@ eth8x_bond、storage_bond
             self.DataDiskMount = params.get("DataDiskMount")
         if params.get("StorageRoceNetworkCardName"):
             self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
+        if params.get("UserDefinedData"):
+            self.UserDefinedData = params.get("UserDefinedData")
 
 
 class ModifySecurityGroupRequest(AbstractModel):
@@ -869,10 +889,13 @@ class DescribeImagesRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageId.N: 镜像ID
         :type PathPrefix: String
+        :param Filter: 
+        :type PathPrefix: Filter
         """
         self.MaxResults = None
         self.NextToken = None
-        self.ImageId.N = None
+        self.ImageId_N = None
+        self.Filter = None
 
     def _deserialize(self, params):
         if params.get("MaxResults"):
@@ -880,7 +903,9 @@ class DescribeImagesRequest(AbstractModel):
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
         if params.get("ImageId.N"):
-            self.ImageId.N = params.get("ImageId.N")
+            self.ImageId_N = params.get("ImageId.N")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
 
 
 class ModifyDnsRequest(AbstractModel):
@@ -1304,7 +1329,7 @@ class DescribeEpcStocksRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeEpcStocks
+        r"""查询云物理主机的库存
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
         """
@@ -1924,7 +1949,7 @@ class AutoDeleteEpcRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""AutoDeleteEpc
+        r"""预约删除云物理主机
         :param HostId: 实例ID
         :type PathPrefix: String
         :param AutoDeleteTime: 预约删除时间
@@ -2462,13 +2487,13 @@ replace-type，热备替换类型
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
         """
-        self.Filter.N = None
+        self.Filter_N = None
         self.MaxResults = None
         self.NextToken = None
 
     def _deserialize(self, params):
         if params.get("Filter.N"):
-            self.Filter.N = params.get("Filter.N")
+            self.Filter_N = params.get("Filter.N")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
@@ -2610,8 +2635,8 @@ class DescribeRoceEventRequest(AbstractModel):
         """
         self.MaxResults = None
         self.NextToken = None
-        self.Filter.N = None
-        self.HostId.N = None
+        self.Filter_N = None
+        self.HostId_N = None
 
     def _deserialize(self, params):
         if params.get("MaxResults"):
@@ -2619,9 +2644,9 @@ class DescribeRoceEventRequest(AbstractModel):
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
         if params.get("Filter.N"):
-            self.Filter.N = params.get("Filter.N")
+            self.Filter_N = params.get("Filter.N")
         if params.get("HostId.N"):
-            self.HostId.N = params.get("HostId.N")
+            self.HostId_N = params.get("HostId.N")
 
 
 class DescribeRoceEventDetailsRequest(AbstractModel):
@@ -2917,6 +2942,10 @@ class RunSoInstancesRequest(AbstractModel):
         :type PathPrefix: Int
         :param SoZoneId: 星海专区
         :type PathPrefix: String
+        :param UserData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。
+不填则默认为空。
+示例值：ZWNobyBoZWxsbyBlY3Mh
+        :type PathPrefix: String
         """
         self.ImageId = None
         self.InstanceName = None
@@ -2937,6 +2966,7 @@ class RunSoInstancesRequest(AbstractModel):
         self.InstallRunCommandAgent = None
         self.Count = None
         self.SoZoneId = None
+        self.UserData = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -2977,6 +3007,8 @@ class RunSoInstancesRequest(AbstractModel):
             self.Count = params.get("Count")
         if params.get("SoZoneId"):
             self.SoZoneId = params.get("SoZoneId")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
 
 
 class DescribeSoImagesRequest(AbstractModel):
@@ -3973,6 +4005,12 @@ class ModifySoInstanceAttributeRequest(AbstractModel):
         :type PathPrefix: String
         :param SoZoneId: 星海专区
         :type PathPrefix: String
+        :param UserData:   实例自定义数据，提供一种自定义实例启动行为及传入数据的功能。
+• 传入数据时，设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。
+• 传入空字符串时，将清空自定义数据。
+示例值：IyEvYmluL2Jhc2gKdG91Y2ggL3RtcC91c2VyZG******
+
+        :type PathPrefix: String
         """
         self.DeletionProtection = None
         self.Description = None
@@ -3981,6 +4019,7 @@ class ModifySoInstanceAttributeRequest(AbstractModel):
         self.InstanceName = None
         self.Password = None
         self.SoZoneId = None
+        self.UserData = None
 
     def _deserialize(self, params):
         if params.get("DeletionProtection"):
@@ -3997,6 +4036,8 @@ class ModifySoInstanceAttributeRequest(AbstractModel):
             self.Password = params.get("Password")
         if params.get("SoZoneId"):
             self.SoZoneId = params.get("SoZoneId")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
 
 
 class CreateSoKeyPairRequest(AbstractModel):
@@ -4030,5 +4071,130 @@ class CreateSoKeyPairRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("SoZoneId"):
             self.SoZoneId = params.get("SoZoneId")
+
+
+class InstallAgentRequest(AbstractModel):
+    """InstallAgent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""安装agent
+        :param HostId: 实例ID
+        :type PathPrefix: String
+        :param AgentId: 安装agentID
+        :type PathPrefix: String
+        :param Username: 用户名
+        :type PathPrefix: String
+        :param Password: 密码
+        :type PathPrefix: String
+        :param Key: 密钥
+        :type PathPrefix: String
+        """
+        self.HostId = None
+        self.AgentId = None
+        self.Username = None
+        self.Password = None
+        self.Key = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("Username"):
+            self.Username = params.get("Username")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+        if params.get("Key"):
+            self.Key = params.get("Key")
+
+
+class DescribeAgentRequest(AbstractModel):
+    """DescribeAgent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询agent
+        :param AgentName: Agent名称
+        :type PathPrefix: String
+        :param AgentId: Agent的ID
+        :type PathPrefix: String
+        :param AgentType: Agent类型
+CloudMoniter 云监控
+Container 容器
+        :type PathPrefix: String
+        """
+        self.AgentName = None
+        self.AgentId = None
+        self.AgentType = None
+
+    def _deserialize(self, params):
+        if params.get("AgentName"):
+            self.AgentName = params.get("AgentName")
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("AgentType"):
+            self.AgentType = params.get("AgentType")
+
+
+class DescribeAgentInstallStatusRequest(AbstractModel):
+    """DescribeAgentInstallStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例Agent的安装状态
+        :param HostId: 实例ID，最多支持100个ID。
+• 参数 - N：表示实例的序号。
+• 多个Host ID之间用&分隔。
+        :type PathPrefix: Filter
+        :param AgentId: Agent的ID
+        :type PathPrefix: String
+        :param Status: Agent状态。取值：
+• Installing：安装中
+• InstallFinished：安装完成
+• InstallFailed：安装失败
+        :type PathPrefix: String
+        :param NextToken: 当前页码。
+• 起始值：1。
+• 默认值：1。
+        :type PathPrefix: String
+        :param MaxResults: 分页查询时设置的每页行数。
+• 取值范围：1~100。
+• 默认值：10。
+        :type PathPrefix: Int
+        """
+        self.HostId = None
+        self.AgentId = None
+        self.Status = None
+        self.NextToken = None
+        self.MaxResults = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+
+
+class DescribeSoUserDataRequest(AbstractModel):
+    """DescribeSoUserData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询自定义数据
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
 
 

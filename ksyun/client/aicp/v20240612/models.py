@@ -958,39 +958,3 @@ class DescribeResourcePoolInstancesRequest(AbstractModel):
             self.Filter = params.get("Filter")
 
 
-class DescribeModelChatsRequest(AbstractModel):
-    """DescribeModelChats请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询在线体验对话列表
-        :param ChatId: 
-        :type PathPrefix: String
-        :param CreateTimeStart: 创建时间区间起始，毫秒时间戳
-        :type PathPrefix: Int
-        :param CreateTimeEnd: 创建时间区间截止，毫秒时间戳
-        :type PathPrefix: Int
-        :param Marker: 页码，从1开始。
-        :type PathPrefix: Int
-        :param MaxResults: 页长，默认100
-        :type PathPrefix: Int
-        """
-        self.ChatId = None
-        self.CreateTimeStart = None
-        self.CreateTimeEnd = None
-        self.Marker = None
-        self.MaxResults = None
-
-    def _deserialize(self, params):
-        if params.get("ChatId"):
-            self.ChatId = params.get("ChatId")
-        if params.get("CreateTimeStart"):
-            self.CreateTimeStart = params.get("CreateTimeStart")
-        if params.get("CreateTimeEnd"):
-            self.CreateTimeEnd = params.get("CreateTimeEnd")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-
-

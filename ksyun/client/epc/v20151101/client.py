@@ -699,7 +699,7 @@ class EpcClient(AbstractClient):
 
 
     def DescribeEpcStocks(self, request):
-        """DescribeEpcStocks
+        """查询云物理主机的库存
         :param request: Request instance for DescribeEpcStocks.
         :type request: :class:`ksyun.client.epc.v20151101.models.DescribeEpcStocksRequest`
         """
@@ -1251,7 +1251,7 @@ class EpcClient(AbstractClient):
 
 
     def AutoDeleteEpc(self, request):
-        """AutoDeleteEpc
+        """预约删除云物理主机
         :param request: Request instance for AutoDeleteEpc.
         :type request: :class:`ksyun.client.epc.v20151101.models.AutoDeleteEpcRequest`
         """
@@ -2270,6 +2270,98 @@ class EpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("CreateSoKeyPair", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def InstallAgent(self, request):
+        """安装agent
+        :param request: Request instance for InstallAgent.
+        :type request: :class:`ksyun.client.epc.v20151101.models.InstallAgentRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("InstallAgent", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAgent(self, request):
+        """查询agent
+        :param request: Request instance for DescribeAgent.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeAgentRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAgent", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeAgentInstallStatus(self, request):
+        """查询实例Agent的安装状态
+        :param request: Request instance for DescribeAgentInstallStatus.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeAgentInstallStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAgentInstallStatus", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeSoUserData(self, request):
+        """查询自定义数据
+        :param request: Request instance for DescribeSoUserData.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeSoUserDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSoUserData", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

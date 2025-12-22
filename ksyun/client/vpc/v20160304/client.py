@@ -1779,6 +1779,52 @@ class VpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def PublishDirectConnectRouteToBgp(self, request):
+        """发布边界网关路由到BGP(1.0/2.0)
+        :param request: Request instance for PublishDirectConnectRouteToBgp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.PublishDirectConnectRouteToBgpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("PublishDirectConnectRouteToBgp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CancelDirectConnectRouteToBgp(self, request):
+        """从BGP取消专线路由(1.0/2.0)
+        :param request: Request instance for CancelDirectConnectRouteToBgp.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CancelDirectConnectRouteToBgpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CancelDirectConnectRouteToBgp", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DetachDirectConnectGatewayWithVpc(self, request):
         """边界网关解绑VPC
         :param request: Request instance for DetachDirectConnectGatewayWithVpc.

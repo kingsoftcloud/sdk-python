@@ -8,7 +8,6 @@ class KceClient(AbstractClient):
     _apiVersion = '2018-03-14'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
-
     def CreateRepoNamespace(self, request):
         """创建命名空间
         :param request: Request instance for CreateRepoNamespace.
@@ -30,6 +29,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRepoNamespace(self, request):
         """查询命名空间
@@ -53,6 +53,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyRepoNamespaceType(self, request):
         """修改命名空间属性
         :param request: Request instance for ModifyRepoNamespaceType.
@@ -74,6 +75,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RepoNamespaceExist(self, request):
         """查询命名空间是否存在
@@ -97,6 +99,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateRepository(self, request):
         """创建镜像仓库
         :param request: Request instance for CreateRepository.
@@ -118,6 +121,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRepository(self, request):
         """删除镜像仓库
@@ -141,6 +145,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeRepository(self, request):
         """查询镜像仓库
         :param request: Request instance for DescribeRepository.
@@ -162,6 +167,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribePublicRepository(self, request):
         """查询ksyun公有镜像仓库列表
@@ -185,6 +191,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateRepoDesc(self, request):
         """更新仓库描述信息
         :param request: Request instance for UpdateRepoDesc.
@@ -206,6 +213,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeTag(self, request):
         """查询镜像tag列表
@@ -229,6 +237,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteTags(self, request):
         """删除镜像tag
         :param request: Request instance for DeleteTags.
@@ -250,6 +259,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddFavor(self, request):
         """添加收藏
@@ -273,6 +283,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteFavor(self, request):
         """取消收藏
         :param request: Request instance for DeleteFavor.
@@ -294,6 +305,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetFavor(self, request):
         """查询镜像收藏列表
@@ -317,6 +329,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RegisterRepositoryAccount(self, request):
         """注册镜像仓库
         :param request: Request instance for RegisterRepositoryAccount.
@@ -338,6 +351,7 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyPassword(self, request):
         """修改镜像仓库密码
@@ -361,6 +375,7 @@ class KceClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteRepoNamespace(self, request):
         """删除命名空间
         :param request: Request instance for DeleteRepoNamespace.
@@ -382,3 +397,5 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

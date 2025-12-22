@@ -513,6 +513,63 @@ class StopNotebookSavingImageRequest(AbstractModel):
             self.NotebookId = params.get("NotebookId")
 
 
+class QueryTokenDataRequest(AbstractModel):
+    """QueryTokenData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型API token用量
+        :param StartTimestamp: 开始时间，毫秒时间戳，仅支持最近180天内时间。
+        :type PathPrefix: Int
+        :param EndTimestamp: 截止时间，毫秒时间戳
+        :type PathPrefix: Int
+        :param MaxResults: 分页页长，最大10000
+        :type PathPrefix: Int
+        :param ModelKeyword: model 搜索关键词
+        :type PathPrefix: String
+        :param Keyword: 搜索关键词
+        :type PathPrefix: String
+        :param GroupBy: 分组字段：
+model-按模型分组；keyId-按apikey分组。
+        :type PathPrefix: String
+        :param ReasoningType: 推理类型：normal-在线，batch-批量，web-在线体验，不传为查询全部。
+        :type PathPrefix: String
+        :param Marker: 页码，从1开始。
+        :type PathPrefix: Int
+        :param IsGlobalServer: 是否国际版：false-国内版，true-国际版
+        :type PathPrefix: Boolean
+        """
+        self.StartTimestamp = None
+        self.EndTimestamp = None
+        self.MaxResults = None
+        self.ModelKeyword = None
+        self.Keyword = None
+        self.GroupBy = None
+        self.ReasoningType = None
+        self.Marker = None
+        self.IsGlobalServer = None
+
+    def _deserialize(self, params):
+        if params.get("StartTimestamp"):
+            self.StartTimestamp = params.get("StartTimestamp")
+        if params.get("EndTimestamp"):
+            self.EndTimestamp = params.get("EndTimestamp")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("ModelKeyword"):
+            self.ModelKeyword = params.get("ModelKeyword")
+        if params.get("Keyword"):
+            self.Keyword = params.get("Keyword")
+        if params.get("GroupBy"):
+            self.GroupBy = params.get("GroupBy")
+        if params.get("ReasoningType"):
+            self.ReasoningType = params.get("ReasoningType")
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("IsGlobalServer"):
+            self.IsGlobalServer = params.get("IsGlobalServer")
+
+
 class CreateTrainJobRequest(AbstractModel):
     """CreateTrainJob请求参数结构体
     """

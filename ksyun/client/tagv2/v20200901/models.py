@@ -1,15 +1,14 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateTagRequest(AbstractModel):
     """CreateTag请求参数结构体
     """
 
     def __init__(self):
         r"""创建标签
-        :param Key: Key 最多128字符，仅支持中英文字符 数字 + - = . _ : / @，不能以ksc开头
+        :param Key: Key 最多128字符，仅支持中英文字符 数字 + - = . _ : / @ () {} （） 【】，不能以ksc开头
         :type PathPrefix: String
-        :param Value: Value最多256字符，仅支持中英文字符 数字 + - = . _ : / @ () {}，不能以ksc开头,多个以","隔开
+        :param Value: Value最多255字符，仅支持中英文字符 数字 + - = . _ : / @ () {} （） 【】，不能以ksc开头,多个以","隔开
         :type PathPrefix: String
         """
         self.Key = None
@@ -127,7 +126,7 @@ class ListResourcesRequest(AbstractModel):
 
     def __init__(self):
         r"""获取用户资源列表
-        :param ResourceType: 资源类型英文简称
+        :param ResourceType: 资源类型英文简称，多个用逗号连接
         :type PathPrefix: String
         :param ProjectIds: 项目ID，多个用逗号连接
         :type PathPrefix: String
@@ -178,7 +177,7 @@ class ListTagsByResourceIdsRequest(AbstractModel):
 
     def __init__(self):
         r"""根据资源ID获取资源标签
-        :param ResourceType: 资源类型英文简写
+        :param ResourceType: 资源类型英文简写，详见 [各产品线资源类型名称](https://docs.ksyun.com/documents/43391)
         :type PathPrefix: String
         :param ResourceUuids: 资源ID，多个用逗号连接
         :type PathPrefix: String
@@ -238,3 +237,36 @@ class DetachResourceTagsRequest(AbstractModel):
             self.ResourceUuid = params.get("ResourceUuid")
         if params.get("TagIds"):
             self.TagIds = params.get("TagIds")
+
+
+class CreateTagAndAttachResourceRequest(AbstractModel):
+    """CreateTagAndAttachResource请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建标签并且绑定资源
+        :param TagKey: Key 最多128字符，仅支持中英文字符 数字 + - = . _ : / @ () {} （） 【】，不能以ksc开头
+        :type PathPrefix: String
+        :param TagValue: Value最多255字符，仅支持中英文字符 数字 + - = . _ : / @ () {} （） 【】，不能以ksc开头,多个以","隔开
+        :type PathPrefix: String
+        :param ResourceType: 资源类型，[各产品线资源类型](https://docs.ksyun.com/documents/43391)
+        :type PathPrefix: String
+        :param ResourceUuid: ResourceUuid
+        :type PathPrefix: String
+        """
+        self.TagKey = None
+        self.TagValue = None
+        self.ResourceType = None
+        self.ResourceUuid = None
+
+    def _deserialize(self, params):
+        if params.get("TagKey"):
+            self.TagKey = params.get("TagKey")
+        if params.get("TagValue"):
+            self.TagValue = params.get("TagValue")
+        if params.get("ResourceType"):
+            self.ResourceType = params.get("ResourceType")
+        if params.get("ResourceUuid"):
+            self.ResourceUuid = params.get("ResourceUuid")
+
+

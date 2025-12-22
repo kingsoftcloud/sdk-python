@@ -308,7 +308,7 @@ class GetLogsRequest(AbstractModel):
         self.ProjectName = None
         self.LogPoolName = None
         self.LogPoolId = None
-        self.From = None
+        self.From_field = None
         self.To = None
         self.Query = None
         self.Offset = None
@@ -324,7 +324,7 @@ class GetLogsRequest(AbstractModel):
         if params.get("LogPoolId"):
             self.LogPoolId = params.get("LogPoolId")
         if params.get("From"):
-            self.From = params.get("From")
+            self.From_field = params.get("From")
         if params.get("To"):
             self.To = params.get("To")
         if params.get("Query"):

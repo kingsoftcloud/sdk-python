@@ -298,7 +298,7 @@ class StartInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""启动实例
+        r"""启动实例接口
         :param InstanceId: 待启动实例ID列表，N的范围为1-100
         :type PathPrefix: Filter
         """
@@ -314,7 +314,7 @@ class StopInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""关闭实例
+        r"""关闭实例接口
         :param InstanceId: 待关闭实例ID列表，N的范围为1-100
 
         :type PathPrefix: Filter
@@ -342,7 +342,7 @@ class RebootInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""重启实例
+        r"""重启实例接口
         :param InstanceId: 待重启实例ID列表，N的范围为1-100
         :type PathPrefix: Filter
         :param ForceReboot: 强制重启
@@ -441,16 +441,16 @@ true/false
         """
         self.InstanceId = None
         self.InstanceType = None
-        self.InstanceConfigure.VCPU = None
-        self.InstanceConfigure.MemoryGb = None
+        self.InstanceConfigure_VCPU = None
+        self.InstanceConfigure_MemoryGb = None
         self.DataDiskGb = None
         self.CrossInstanceMigrate = None
-        self.SystemDisk.DiskType = None
+        self.SystemDisk_DiskType = None
         self.DataDisk = None
         self.StopInstance = None
         self.AutoRestart = None
-        self.SystemDisk.DiskSize = None
-        self.SystemDisk.ResizeType = None
+        self.SystemDisk_DiskSize = None
+        self.SystemDisk_ResizeType = None
         self.InstantAccess = None
 
     def _deserialize(self, params):
@@ -459,15 +459,15 @@ true/false
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
         if params.get("InstanceConfigure.VCPU"):
-            self.InstanceConfigure.VCPU = params.get("InstanceConfigure.VCPU")
+            self.InstanceConfigure_VCPU = params.get("InstanceConfigure.VCPU")
         if params.get("InstanceConfigure.MemoryGb"):
-            self.InstanceConfigure.MemoryGb = params.get("InstanceConfigure.MemoryGb")
+            self.InstanceConfigure_MemoryGb = params.get("InstanceConfigure.MemoryGb")
         if params.get("DataDiskGb"):
             self.DataDiskGb = params.get("DataDiskGb")
         if params.get("CrossInstanceMigrate"):
             self.CrossInstanceMigrate = params.get("CrossInstanceMigrate")
         if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
         if params.get("DataDisk"):
             self.DataDisk = params.get("DataDisk")
         if params.get("StopInstance"):
@@ -475,9 +475,9 @@ true/false
         if params.get("AutoRestart"):
             self.AutoRestart = params.get("AutoRestart")
         if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("SystemDisk.ResizeType"):
-            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+            self.SystemDisk_ResizeType = params.get("SystemDisk.ResizeType")
         if params.get("InstantAccess"):
             self.InstantAccess = params.get("InstantAccess")
 
@@ -487,7 +487,7 @@ class TerminateInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""销毁实例
+        r"""销毁实例接口
         :param InstanceId: 待销毁实例ID列表，N的范围为1-100
         :type PathPrefix: Filter
         :param ForceDelete: 强制销毁
@@ -590,12 +590,12 @@ true/false,默认false
         """
         self.InstanceId = None
         self.ImageId = None
-        self.SystemDisk.DiskSize = None
+        self.SystemDisk_DiskSize = None
         self.InstancePassword = None
         self.KeyId = None
         self.KeepImageLogin = None
-        self.SystemDisk.DiskType = None
-        self.SystemDisk.ResizeType = None
+        self.SystemDisk_DiskType = None
+        self.SystemDisk_ResizeType = None
         self.UserData = None
 
     def _deserialize(self, params):
@@ -604,7 +604,7 @@ true/false,默认false
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("InstancePassword"):
             self.InstancePassword = params.get("InstancePassword")
         if params.get("KeyId"):
@@ -612,9 +612,9 @@ true/false,默认false
         if params.get("KeepImageLogin"):
             self.KeepImageLogin = params.get("KeepImageLogin")
         if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
-            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+            self.SystemDisk_ResizeType = params.get("SystemDisk.ResizeType")
         if params.get("UserData"):
             self.UserData = params.get("UserData")
 
@@ -624,7 +624,7 @@ class CreateImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建镜像
+        r"""创建镜像接口
         :param InstanceId: 待创建镜像的实例ID。
 标准UUID格式，形如^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
         :type PathPrefix: String
@@ -1458,7 +1458,7 @@ class CreateScalingConfigurationRequest(AbstractModel):
         self.KeepImageLogin = None
         self.KeyId = None
         self.DataDisk = None
-        self.SystemDisk.DiskSize = None
+        self.SystemDisk_DiskSize = None
         self.AddressBandWidth = None
         self.BandWidthShareId = None
         self.LineId = None
@@ -1468,8 +1468,8 @@ class CreateScalingConfigurationRequest(AbstractModel):
         self.UserData = None
         self.InstanceNameTimeSuffix = None
         self.Tag = None
-        self.SystemDisk.DiskType = None
-        self.SystemDisk.ResizeType = None
+        self.SystemDisk_DiskType = None
+        self.SystemDisk_ResizeType = None
         self.SyncTag = None
 
     def _deserialize(self, params):
@@ -1494,7 +1494,7 @@ class CreateScalingConfigurationRequest(AbstractModel):
         if params.get("DataDisk"):
             self.DataDisk = params.get("DataDisk")
         if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("AddressBandWidth"):
             self.AddressBandWidth = params.get("AddressBandWidth")
         if params.get("BandWidthShareId"):
@@ -1514,9 +1514,9 @@ class CreateScalingConfigurationRequest(AbstractModel):
         if params.get("Tag"):
             self.Tag = params.get("Tag")
         if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
-            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+            self.SystemDisk_ResizeType = params.get("SystemDisk.ResizeType")
         if params.get("SyncTag"):
             self.SyncTag = params.get("SyncTag")
 
@@ -2315,7 +2315,7 @@ class ImportImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""镜像导入
+        r"""镜像导入接口
         :param ImageName: 镜像名称。
 2-64个字符，支持中文、字母、数字以及-_@#.字符
         :type PathPrefix: String
@@ -2374,7 +2374,7 @@ class CopyImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""镜像复制
+        r"""镜像复制接口
         :param ImageId: 源自定义镜像的ID列表。
 cc27b87a-b74c-4da8-93b0-33edce5399cf
         :type PathPrefix: Filter
@@ -3048,7 +3048,7 @@ class CreateDedicatedClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建集群
+        r"""创建集群接口
         :param DedicatedClusterName: 集群名称
         :type PathPrefix: String
         :param Model: 集群类型
@@ -3074,7 +3074,7 @@ class DeleteDedicatedClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除集群
+        r"""删除集群接口
         :param DedicatedClusterId: 专属集群id列表
         :type PathPrefix: Filter
         """
@@ -3224,8 +3224,8 @@ class DescribeKecInventoryRequest(AbstractModel):
         """
         self.InstanceType = None
         self.DataDiskGb = None
-        self.SystemDisk.DiskSize = None
-        self.SystemDisk.DiskType = None
+        self.SystemDisk_DiskSize = None
+        self.SystemDisk_DiskType = None
         self.AvailabilityZone = None
 
     def _deserialize(self, params):
@@ -3234,9 +3234,9 @@ class DescribeKecInventoryRequest(AbstractModel):
         if params.get("DataDiskGb"):
             self.DataDiskGb = params.get("DataDiskGb")
         if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
         if params.get("AvailabilityZone"):
             self.AvailabilityZone = params.get("AvailabilityZone")
 
@@ -3334,7 +3334,7 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         self.KeepImageLogin = None
         self.KeyId = None
         self.DataDisk = None
-        self.SystemDisk.DiskSize = None
+        self.SystemDisk_DiskSize = None
         self.AddressBandWidth = None
         self.BandWidthShareId = None
         self.LineId = None
@@ -3347,8 +3347,8 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         self.LoginSetAfter = None
         self.IpBindAfter = None
         self.InstanceNameRandom = None
-        self.SystemDisk.DiskType = None
-        self.SystemDisk.ResizeType = None
+        self.SystemDisk_DiskType = None
+        self.SystemDisk_ResizeType = None
         self.SyncTag = None
 
     def _deserialize(self, params):
@@ -3375,7 +3375,7 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         if params.get("DataDisk"):
             self.DataDisk = params.get("DataDisk")
         if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("AddressBandWidth"):
             self.AddressBandWidth = params.get("AddressBandWidth")
         if params.get("BandWidthShareId"):
@@ -3401,9 +3401,9 @@ class ModifyScalingConfigurationRequest(AbstractModel):
         if params.get("InstanceNameRandom"):
             self.InstanceNameRandom = params.get("InstanceNameRandom")
         if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
         if params.get("SystemDisk.ResizeType"):
-            self.SystemDisk.ResizeType = params.get("SystemDisk.ResizeType")
+            self.SystemDisk_ResizeType = params.get("SystemDisk.ResizeType")
         if params.get("SyncTag"):
             self.SyncTag = params.get("SyncTag")
 
@@ -3465,20 +3465,20 @@ class DescribePriceRequest(AbstractModel):
         :type PathPrefix: String
         """
         self.InstanceType = None
-        self.SystemDisk.DiskSize = None
+        self.SystemDisk_DiskSize = None
         self.ImageId = None
         self.ChargeType = None
         self.PurchaseTime = None
         self.DataDiskGb = None
         self.DataDisk = None
         self.MaxCount = None
-        self.SystemDisk.DiskType = None
+        self.SystemDisk_DiskType = None
 
     def _deserialize(self, params):
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
         if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk.DiskSize = params.get("SystemDisk.DiskSize")
+            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
         if params.get("ChargeType"):
@@ -3492,7 +3492,7 @@ class DescribePriceRequest(AbstractModel):
         if params.get("MaxCount"):
             self.MaxCount = params.get("MaxCount")
         if params.get("SystemDisk.DiskType"):
-            self.SystemDisk.DiskType = params.get("SystemDisk.DiskType")
+            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
 
 
 class EnableImageCachingRequest(AbstractModel):

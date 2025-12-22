@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class QueryUnPayOrdersRequest(AbstractModel):
     """QueryUnPayOrders请求参数结构体
     """
@@ -68,3 +67,5 @@ class LaunchPayOrderRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("OrderId"):
             self.OrderId = params.get("OrderId")
+
+

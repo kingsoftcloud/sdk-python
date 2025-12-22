@@ -8,7 +8,6 @@ class TradeClient(AbstractClient):
     _apiVersion = '2025-08-28'
     _endpoint = 'trade.api.ksyun.com'
     _service = 'trade'
-
     def QueryInstances(self, request):
         """根据搜索条件查询实例列表
         :param request: Request instance for QueryInstances.
@@ -30,3 +29,5 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

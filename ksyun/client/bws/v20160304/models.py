@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateBandWidthShareRequest(AbstractModel):
     """CreateBandWidthShare请求参数结构体
     """
@@ -49,6 +48,12 @@ class DescribeBandWidthSharesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
+        :param IsContainTag: 是否在返回值中包含资源标签信息
+        :type PathPrefix: Boolean
+        :param TagKey: 多个标签的键
+        :type PathPrefix: Filter
+        :param TagKV: 多个标签的键
+        :type PathPrefix: Filter
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
@@ -57,6 +62,9 @@ class DescribeBandWidthSharesRequest(AbstractModel):
         self.ProjectId = None
         self.BandWidthShareId = None
         self.Filter = None
+        self.IsContainTag = None
+        self.TagKey = None
+        self.TagKV = None
         self.MaxResults = None
         self.NextToken = None
 
@@ -67,6 +75,12 @@ class DescribeBandWidthSharesRequest(AbstractModel):
             self.BandWidthShareId = params.get("BandWidthShareId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("IsContainTag"):
+            self.IsContainTag = params.get("IsContainTag")
+        if params.get("TagKey"):
+            self.TagKey = params.get("TagKey")
+        if params.get("TagKV"):
+            self.TagKV = params.get("TagKV")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
@@ -196,3 +210,5 @@ class QueryBwsTopEipMonitorRequest(AbstractModel):
             self.SortType = params.get("SortType")
         if params.get("PublicIp"):
             self.PublicIp = params.get("PublicIp")
+
+

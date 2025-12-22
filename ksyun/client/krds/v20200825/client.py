@@ -8,15 +8,14 @@ class KrdsClient(AbstractClient):
     _apiVersion = '2020-08-25'
     _endpoint = 'krds.api.ksyun.com'
     _service = 'krds'
-
     def CreateSecurityGroup(self, request):
-        """创建安全组
+        """创建安全组(GET)
         :param request: Request instance for CreateSecurityGroup.
         :type request: :class:`ksyun.client.krds.v20200825.models.CreateSecurityGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateSecurityGroup", params, "application/json")
+            body = self.call_judge("CreateSecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -31,8 +30,9 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSecurityGroup(self, request):
-        """查看安全组
+        """查询安全组列表/详情
         :param request: Request instance for DescribeSecurityGroup.
         :type request: :class:`ksyun.client.krds.v20200825.models.DescribeSecurityGroupRequest`
         """
@@ -53,6 +53,7 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteSecurityGroup(self, request):
         """删除安全组
         :param request: Request instance for DeleteSecurityGroup.
@@ -60,7 +61,7 @@ class KrdsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteSecurityGroup", params, "application/json")
+            body = self.call_judge("DeleteSecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -75,14 +76,15 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifySecurityGroup(self, request):
-        """修改参数组
+        """修改安全组
         :param request: Request instance for ModifySecurityGroup.
         :type request: :class:`ksyun.client.krds.v20200825.models.ModifySecurityGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifySecurityGroup", params, "application/json")
+            body = self.call_judge("ModifySecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -97,14 +99,15 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CloneSecurityGroup(self, request):
-        """复制安全组
+        """克隆安全组(仅含CIDR规则)
         :param request: Request instance for CloneSecurityGroup.
         :type request: :class:`ksyun.client.krds.v20200825.models.CloneSecurityGroupRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CloneSecurityGroup", params, "application/json")
+            body = self.call_judge("CloneSecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -118,6 +121,7 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifySecurityGroupRule(self, request):
         """修改安全组规则
@@ -126,7 +130,7 @@ class KrdsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifySecurityGroupRule", params, "application/json")
+            body = self.call_judge("ModifySecurityGroupRule", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -141,14 +145,15 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SecurityGroupRelation(self, request):
-        """修改安全组实例绑定关系
+        """修改安全组绑定关系
         :param request: Request instance for SecurityGroupRelation.
         :type request: :class:`ksyun.client.krds.v20200825.models.SecurityGroupRelationRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("SecurityGroupRelation", params, "application/json")
+            body = self.call_judge("SecurityGroupRelation", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -163,14 +168,15 @@ class KrdsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifySecurityGroupRuleName(self, request):
-        """修改安全组规则名称
+        """修改规则名称
         :param request: Request instance for ModifySecurityGroupRuleName.
         :type request: :class:`ksyun.client.krds.v20200825.models.ModifySecurityGroupRuleNameRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifySecurityGroupRuleName", params, "application/json")
+            body = self.call_judge("ModifySecurityGroupRuleName", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -184,3 +190,51 @@ class KrdsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateDBParameterGroup(self, request):
+        """创建参数组
+        :param request: Request instance for CreateDBParameterGroup.
+        :type request: :class:`ksyun.client.krds.v20200825.models.CreateDBParameterGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateDBParameterGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyDBParameterGroup(self, request):
+        """修改参数组
+        :param request: Request instance for ModifyDBParameterGroup.
+        :type request: :class:`ksyun.client.krds.v20200825.models.ModifyDBParameterGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyDBParameterGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

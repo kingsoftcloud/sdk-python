@@ -8,7 +8,6 @@ class CenClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'cen.api.ksyun.com'
     _service = 'cen'
-
     def CreateCen(self, request):
         """CreateCen
         :param request: Request instance for CreateCen.
@@ -30,6 +29,7 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyCen(self, request):
         """ModifyCen
@@ -53,6 +53,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteCen(self, request):
         """DeleteCen
         :param request: Request instance for DeleteCen.
@@ -75,8 +76,9 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCens(self, request):
-        """DescribeCens
+        """查询云企业网信息
         :param request: Request instance for DescribeCens.
         :type request: :class:`ksyun.client.cen.v20160304.models.DescribeCensRequest`
         """
@@ -97,93 +99,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def AttachCenInstance(self, request):
-        """AttachCenInstance
-        :param request: Request instance for AttachCenInstance.
-        :type request: :class:`ksyun.client.cen.v20160304.models.AttachCenInstanceRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("AttachCenInstance", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-    def DetachCenInstance(self, request):
-        """DetachCenInstance
-        :param request: Request instance for DetachCenInstance.
-        :type request: :class:`ksyun.client.cen.v20160304.models.DetachCenInstanceRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DetachCenInstance", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-    def DescribeCenInstances(self, request):
-        """DescribeCenInstances
-        :param request: Request instance for DescribeCenInstances.
-        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeCenInstancesRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeCenInstances", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
-
-    def CreatCenGrant(self, request):
-        """CreatCenGrant
-        :param request: Request instance for CreatCenGrant.
-        :type request: :class:`ksyun.client.cen.v20160304.models.CreatCenGrantRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("CreatCenGrant", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def DeleteCenGrant(self, request):
         """DeleteCenGrant
@@ -207,6 +122,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCenGrants(self, request):
         """DescribeCenGrants
         :param request: Request instance for DescribeCenGrants.
@@ -229,27 +145,6 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def DescribeRegionGroups(self, request):
-        """DescribeRegionGroups
-        :param request: Request instance for DescribeRegionGroups.
-        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeRegionGroupsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeRegionGroups", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def CreateCenBandWidthPackage(self, request):
         """CreateCenBandWidthPackage
@@ -273,6 +168,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyCenBandWidthPackage(self, request):
         """ModifyCenBandWidthPackage
         :param request: Request instance for ModifyCenBandWidthPackage.
@@ -294,6 +190,7 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteCenBandWidthPackage(self, request):
         """DeleteCenBandWidthPackage
@@ -317,6 +214,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AttachCenBandWidthPackage(self, request):
         """AttachCenBandWidthPackage
         :param request: Request instance for AttachCenBandWidthPackage.
@@ -338,6 +236,7 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DetachCenBandWidthPackage(self, request):
         """DetachCenBandWidthPackage
@@ -361,6 +260,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCenBandWidthPackages(self, request):
         """DescribeCenBandWidthPackages
         :param request: Request instance for DescribeCenBandWidthPackages.
@@ -368,7 +268,7 @@ class CenClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCenBandWidthPackages", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeCenBandWidthPackages", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -382,6 +282,7 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateCenRegionBandwidth(self, request):
         """CreateCenRegionBandwidth
@@ -405,6 +306,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteCenRegionBandwidth(self, request):
         """DeleteCenRegionBandwidth
         :param request: Request instance for DeleteCenRegionBandwidth.
@@ -426,6 +328,7 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyCenRegionBandwidth(self, request):
         """ModifyCenRegionBandwidth
@@ -449,6 +352,7 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCenRegionBandwidths(self, request):
         """DescribeCenRegionBandwidths
         :param request: Request instance for DescribeCenRegionBandwidths.
@@ -456,7 +360,7 @@ class CenClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCenRegionBandwidths", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeCenRegionBandwidths", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -470,6 +374,7 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeCenRoutes(self, request):
         """DescribeCenRoutes
@@ -493,14 +398,15 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def DescribeCenRegions(self, request):
-        """DescribeCenRegions
-        :param request: Request instance for DescribeCenRegions.
-        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeCenRegionsRequest`
+
+    def DescribeCenBandWidthPackageUsage(self, request):
+        """DescribeCenBandWidthPackageUsage
+        :param request: Request instance for DescribeCenBandWidthPackageUsage.
+        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeCenBandWidthPackageUsageRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCenRegions", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeCenBandWidthPackageUsage", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -515,14 +421,15 @@ class CenClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def DescribeCenBandWidthPackageUsage(self, request):
-        """DescribeCenBandWidthPackageUsage
-        :param request: Request instance for DescribeCenBandWidthPackageUsage.
-        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeCenBandWidthPackageUsageRequest`
+
+    def DescribeNetworkInstances(self, request):
+        """DescribeNetworkInstances
+        :param request: Request instance for DescribeNetworkInstances.
+        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeNetworkInstancesRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCenBandWidthPackageUsage", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeNetworkInstances", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -536,3 +443,166 @@ class CenClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateCenGrant(self, request):
+        """CreateCenGrant
+        :param request: Request instance for CreateCenGrant.
+        :type request: :class:`ksyun.client.cen.v20160304.models.CreateCenGrantRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateCenGrant", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeInterAreas(self, request):
+        """DescribeInterAreas
+        :param request: Request instance for DescribeInterAreas.
+        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeInterAreasRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInterAreas", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeInterRegions(self, request):
+        """DescribeInterRegions
+        :param request: Request instance for DescribeInterRegions.
+        :type request: :class:`ksyun.client.cen.v20160304.models.DescribeInterRegionsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInterRegions", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AttachNetworkInstance(self, request):
+        """AttachNetworkInstance
+        :param request: Request instance for AttachNetworkInstance.
+        :type request: :class:`ksyun.client.cen.v20160304.models.AttachNetworkInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AttachNetworkInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DetachNetworkInstance(self, request):
+        """DetachNetworkInstance
+        :param request: Request instance for DetachNetworkInstance.
+        :type request: :class:`ksyun.client.cen.v20160304.models.DetachNetworkInstanceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DetachNetworkInstance", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CenCidrPublish(self, request):
+        """发布云企业网网络实例的路由
+        :param request: Request instance for CenCidrPublish.
+        :type request: :class:`ksyun.client.cen.v20160304.models.CenCidrPublishRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CenCidrPublish", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CenCidrDelete(self, request):
+        """撤销云企业网网络实例的路由
+        :param request: Request instance for CenCidrDelete.
+        :type request: :class:`ksyun.client.cen.v20160304.models.CenCidrDeleteRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CenCidrDelete", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

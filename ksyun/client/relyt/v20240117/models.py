@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class GetDwsuMetricRequest(AbstractModel):
     """GetDwsuMetric请求参数结构体
     """
@@ -20,3 +19,5 @@ class GetDwsuMetricRequest(AbstractModel):
             self.DwsuId = params.get("DwsuId")
         if params.get("Timestamp"):
             self.Timestamp = params.get("Timestamp")
+
+

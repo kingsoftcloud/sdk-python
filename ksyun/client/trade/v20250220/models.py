@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class ListInstanceSupportBillTypesRequest(AbstractModel):
     """ListInstanceSupportBillTypes请求参数结构体
     """
@@ -88,3 +87,5 @@ class CreateTrialToBuyNowRequest(AbstractModel):
             self.billType = params.get("billType")
         if params.get("duration"):
             self.duration = params.get("duration")
+
+

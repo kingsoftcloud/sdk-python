@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class PresetRequest(AbstractModel):
     """Preset请求参数结构体
     """
@@ -180,3 +179,87 @@ class GetStreamTranListRequest(AbstractModel):
             self.App = params.get("App")
         if params.get("StreamID"):
             self.StreamID = params.get("StreamID")
+
+
+class StartLoopRequest(AbstractModel):
+    """StartLoop请求参数结构体
+    """
+
+    def __init__(self):
+        r"""start loop tran
+        :param UniqName: 域名空间
+        :type PathPrefix: String
+        :param App: 应用名
+        :type PathPrefix: String
+        :param Preset: 模板名称，支持配置：视频帧率、视频码率、音频码率、视频分辨率
+        :type PathPrefix: String
+        :param StreamID: 轮播流名
+        :type PathPrefix: String
+        :param SrcInfo: 轮播源文件信息，数组，每项包括文件路径（金山云KS3内网URL）和顺序参数。发起轮播前请先确认轮播源文件是否存在。最多可以支持100个轮播任务。
+        :type PathPrefix: Array
+        :param PubDomain: 用来轮播的推流域名
+        :type PathPrefix: String
+        :param TaskStartTime: 任务开始时间戳，指定轮播流启动播放时间，精确到秒，不填默认下发后立即开始轮播。只能填当前时间1分钟之后的时间。
+        :type PathPrefix: String
+        :param TaskStopTime: 任务结束时间戳，指定轮播流结束播放时间，精确到秒，不填默认结束时间为开始时间之后20天。TaskStopTime-TaskStartTime必须>30s。
+        :type PathPrefix: String
+        :param LoopTimes: 文件轮播次数，与TaskStopTime冲突时，以TaskStopTime为准，如果需要以轮播次数为准，TaskStopTime不填。
+        :type PathPrefix: Int
+        """
+        self.UniqName = None
+        self.App = None
+        self.Preset = None
+        self.StreamID = None
+        self.SrcInfo = None
+        self.PubDomain = None
+        self.TaskStartTime = None
+        self.TaskStopTime = None
+        self.LoopTimes = None
+
+    def _deserialize(self, params):
+        if params.get("UniqName"):
+            self.UniqName = params.get("UniqName")
+        if params.get("App"):
+            self.App = params.get("App")
+        if params.get("Preset"):
+            self.Preset = params.get("Preset")
+        if params.get("StreamID"):
+            self.StreamID = params.get("StreamID")
+        if params.get("SrcInfo"):
+            self.SrcInfo = params.get("SrcInfo")
+        if params.get("PubDomain"):
+            self.PubDomain = params.get("PubDomain")
+        if params.get("TaskStartTime"):
+            self.TaskStartTime = params.get("TaskStartTime")
+        if params.get("TaskStopTime"):
+            self.TaskStopTime = params.get("TaskStopTime")
+        if params.get("LoopTimes"):
+            self.LoopTimes = params.get("LoopTimes")
+
+
+class StopLoopRequest(AbstractModel):
+    """StopLoop请求参数结构体
+    """
+
+    def __init__(self):
+        r"""stop loop tran
+        :param UniqName: 域名空间
+        :type PathPrefix: String
+        :param App: 应用名
+        :type PathPrefix: String
+        :param StreamID: 轮播流名
+        :type PathPrefix: String
+        """
+        self.UniqName = None
+        self.App = None
+        self.StreamID = None
+
+    def _deserialize(self, params):
+        if params.get("UniqName"):
+            self.UniqName = params.get("UniqName")
+        if params.get("App"):
+            self.App = params.get("App")
+        if params.get("StreamID"):
+            self.StreamID = params.get("StreamID")
+
+

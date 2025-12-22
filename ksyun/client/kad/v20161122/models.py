@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateForwardConfRequest(AbstractModel):
     """CreateForwardConf请求参数结构体
     """
@@ -126,3 +125,43 @@ class DescribeForwardSourceRequest(AbstractModel):
             self.ForwardConfId = params.get("ForwardConfId")
         if params.get("ForwardSourceId"):
             self.ForwardSourceId = params.get("ForwardSourceId")
+
+
+class GetAttackLogRequest(AbstractModel):
+    """GetAttackLog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""攻击日志列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DescribeOverviewRequest(AbstractModel):
+    """DescribeOverview请求参数结构体
+    """
+
+    def __init__(self):
+        r"""高防ip攻击概况
+        :param KadId: 实例id
+        :type PathPrefix: String
+        :param StartTime: 开始时间。例：2024-01-01 00:00:00
+        :type PathPrefix: String
+        :param EndTime: 结束时间
+        :type PathPrefix: String
+        """
+        self.KadId = None
+        self.StartTime = None
+        self.EndTime = None
+
+    def _deserialize(self, params):
+        if params.get("KadId"):
+            self.KadId = params.get("KadId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+
+

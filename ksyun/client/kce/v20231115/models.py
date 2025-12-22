@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class DescribeClusterRequest(AbstractModel):
     """DescribeCluster请求参数结构体
     """
@@ -9,7 +8,7 @@ class DescribeClusterRequest(AbstractModel):
         r"""查询集群列表，只加载集群基本信息，不会加载组件详情等信息
         :param ClusterId: 
         :type PathPrefix: String
-        :param Marker: 
+        :param Marker: 分页标识，单次调用未返回全部实例时，标记下次调用的返回值的起点，默认值为0
         :type PathPrefix: Int
         :param MaxResults: 值范围0-20
         :type PathPrefix: Int
@@ -35,3 +34,26 @@ class DescribeClusterRequest(AbstractModel):
             self.Search = params.get("Search")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+
+
+class UpdateClusterDelProtectionRequest(AbstractModel):
+    """UpdateClusterDelProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""UpdateClusterDelProtection
+        :param ClusterId: 集群Id
+        :type PathPrefix: String
+        :param EnableDelProtection: 是否开启删除保护
+        :type PathPrefix: Boolean
+        """
+        self.ClusterId = None
+        self.EnableDelProtection = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("EnableDelProtection"):
+            self.EnableDelProtection = params.get("EnableDelProtection")
+
+

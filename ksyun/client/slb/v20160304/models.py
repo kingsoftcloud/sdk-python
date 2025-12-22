@@ -731,6 +731,8 @@ class CreateLoadBalancerRequest(AbstractModel):
         :type PathPrefix: String
         :param ModificationProtection: 删除保护，on开启，off关闭，默认关闭，on/off
         :type PathPrefix: String
+        :param ChargeType: 计费类型 ，会根据用户计费模版选择 PrepaidByTime（一次性预付费） | PostpaidByTime（一次性后付费）
+        :type PathPrefix: String
         :param IpVersion: 负载均衡的IP版本
         :type PathPrefix: String
         :param LbType: 负载均衡类型(classic|application)
@@ -745,6 +747,7 @@ class CreateLoadBalancerRequest(AbstractModel):
         self.PrivateIpAddress = None
         self.DeleteProtection = None
         self.ModificationProtection = None
+        self.ChargeType = None
         self.IpVersion = None
         self.LbType = None
         self.ProjectId = None
@@ -764,6 +767,8 @@ class CreateLoadBalancerRequest(AbstractModel):
             self.DeleteProtection = params.get("DeleteProtection")
         if params.get("ModificationProtection"):
             self.ModificationProtection = params.get("ModificationProtection")
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
         if params.get("IpVersion"):
             self.IpVersion = params.get("IpVersion")
         if params.get("LbType"):
@@ -1808,11 +1813,11 @@ class CreateAlbRequest(AbstractModel):
 
     def __init__(self):
         r"""创建应用型负载均衡
-        :param AlbName: 应用型负载均衡的名称
+        :param AlbName: 独享型负载均衡的名称
         :type PathPrefix: String
-        :param AlbVersion: 应用型负载均衡支持的版本
+        :param AlbVersion: 独享型负载均衡支持的版本
         :type PathPrefix: String
-        :param AlbType: 应用型负载均衡的类型，public 为公网负载均衡，internal 为内网负载均衡
+        :param AlbType: 独享型负载均衡的类型，public 为公网负载均衡，internal 为内网负载均衡
         :type PathPrefix: String
         :param VpcId: Vpc的ID
         :type PathPrefix: String
@@ -1894,7 +1899,7 @@ class DeleteAlbRequest(AbstractModel):
 
     def __init__(self):
         r"""DeleteAlb
-        :param AlbId: 应用型负载均衡的ID
+        :param AlbId: 独享型负载均衡的ID
         :type PathPrefix: String
         """
         self.AlbId = None
@@ -1910,9 +1915,9 @@ class SetAlbNameRequest(AbstractModel):
 
     def __init__(self):
         r"""SetAlbName
-        :param AlbId: 应用型负载均衡的ID
+        :param AlbId: 独享型负载均衡的ID
         :type PathPrefix: String
-        :param AlbName: 应用型负载均衡的名称
+        :param AlbName: 独享型负载均衡的名称
         :type PathPrefix: String
         """
         self.AlbId = None
@@ -1930,10 +1935,10 @@ class SetAlbStatusRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""SetAlbStatus
-        :param AlbId: 应用型负载均衡的ID
+        r"""设置独享型负载均衡状态
+        :param AlbId: 独享型负载均衡的ID
         :type PathPrefix: String
-        :param State: 应用型负载均衡的开启状态(start|stop)
+        :param State: 独享型负载均衡的开启状态(start|stop)
         :type PathPrefix: String
         """
         self.AlbId = None
@@ -1952,7 +1957,7 @@ class DescribeAlbsRequest(AbstractModel):
 
     def __init__(self):
         r"""查询应用型负载均衡
-        :param AlbId: 多个应用型负载均衡的ID
+        :param AlbId: 多个独享型负载均衡的ID
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
@@ -2007,9 +2012,11 @@ class CreateAlbListenerRequest(AbstractModel):
         :type PathPrefix: String
         :param AlbListenerName: 应用型负载均衡监听器的名称
         :type PathPrefix: String
-        :param Protocol: 监听器的协议(TCP | TCPSSL | UDP | HTTP | HTTPS)
+        :param Protocol: 监听器的协议(TCP|UDP|TCPSSL|HTTP|HTTPS|QUIC)
         :type PathPrefix: String
         :param Port: 监听器的协议端口
+        :type PathPrefix: Int
+        :param IdleTimeout: 空闲超时时间(s)
         :type PathPrefix: Int
         :param CertificateId: 证书的ID
         :type PathPrefix: String
@@ -2046,6 +2053,7 @@ class CreateAlbListenerRequest(AbstractModel):
         self.AlbListenerName = None
         self.Protocol = None
         self.Port = None
+        self.IdleTimeout = None
         self.CertificateId = None
         self.TlsCipherPolicy = None
         self.AlbListenerAclId = None
@@ -2071,6 +2079,8 @@ class CreateAlbListenerRequest(AbstractModel):
             self.Protocol = params.get("Protocol")
         if params.get("Port"):
             self.Port = params.get("Port")
+        if params.get("IdleTimeout"):
+            self.IdleTimeout = params.get("IdleTimeout")
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
         if params.get("TlsCipherPolicy"):
@@ -2133,6 +2143,8 @@ class ModifyAlbListenerRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param QuicListenerId: QUIC监听器id
         :type PathPrefix: String
+        :param IdleTimeout: 空闲超时时间(s)
+        :type PathPrefix: Int
         :param ServerGroupId: 服务器组 ID
         :type PathPrefix: String
         """
@@ -2148,6 +2160,7 @@ class ModifyAlbListenerRequest(AbstractModel):
         self.CaCertificateId = None
         self.EnableQuicUpgrade = None
         self.QuicListenerId = None
+        self.IdleTimeout = None
         self.ServerGroupId = None
 
     def _deserialize(self, params):
@@ -2175,6 +2188,8 @@ class ModifyAlbListenerRequest(AbstractModel):
             self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("QuicListenerId"):
             self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("IdleTimeout"):
+            self.IdleTimeout = params.get("IdleTimeout")
         if params.get("ServerGroupId"):
             self.ServerGroupId = params.get("ServerGroupId")
 
@@ -2543,7 +2558,7 @@ class SetEnableAlbAccessLogRequest(AbstractModel):
 
     def __init__(self):
         r"""SetEnableAlbAccessLog
-        :param AlbId: 应用型负载均衡的ID
+        :param AlbId: 独享型负载均衡的ID
         :type PathPrefix: String
         :param EnabledLog: 是否开启日志服务
         :type PathPrefix: Boolean
@@ -2564,7 +2579,7 @@ class SetAlbAccessLogRequest(AbstractModel):
 
     def __init__(self):
         r"""SetAlbAccessLog
-        :param AlbId: 应用型负载均衡的ID
+        :param AlbId: 独享型负载均衡的ID
         :type PathPrefix: String
         :param ProjectName: 访问日志投递的日志库
         :type PathPrefix: String
@@ -2750,8 +2765,12 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param HealthCheckConnectPort: 健康检查端口
         :type PathPrefix: Int
-        :param HealthProtocol(TCP | ICMP| UDP | HTTP): 健康检查协议
+        :param HealthProtocol: 健康检查协议(TCP | ICMP| UDP | HTTP)
         :type PathPrefix: String
+        :param SlowStartEnabled: 慢启动
+        :type PathPrefix: Boolean
+        :param SlowStartDuration: 慢启动时间
+        :type PathPrefix: Int
         :param HttpMethod: HTTP请求方式 (GET|HEAD)
         :type PathPrefix: String
         :param HealthCheckReq: UDP监听器健康检查的请求串
@@ -2780,6 +2799,8 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
         self.HostName = None
         self.HealthCheckConnectPort = None
         self.HealthProtocol = None
+        self.SlowStartEnabled = None
+        self.SlowStartDuration = None
         self.HttpMethod = None
         self.HealthCheckReq = None
         self.HealthCheckExp = None
@@ -2822,8 +2843,12 @@ class CreateAlbBackendServerGroupRequest(AbstractModel):
             self.HostName = params.get("HostName")
         if params.get("HealthCheckConnectPort"):
             self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
-        if params.get("HealthProtocol(TCP | ICMP| UDP | HTTP)"):
+        if params.get("HealthProtocol"):
             self.HealthProtocol = params.get("HealthProtocol")
+        if params.get("SlowStartEnabled"):
+            self.SlowStartEnabled = params.get("SlowStartEnabled")
+        if params.get("SlowStartDuration"):
+            self.SlowStartDuration = params.get("SlowStartDuration")
         if params.get("HttpMethod"):
             self.HttpMethod = params.get("HttpMethod")
         if params.get("HealthCheckReq"):
@@ -2890,6 +2915,10 @@ class ModifyAlbBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: Int
         :param HealthProtocol: 健康检查协议(TCP | ICMP| UDP | HTTP)
         :type PathPrefix: String
+        :param SlowStartEnabled: 慢启动
+        :type PathPrefix: Boolean
+        :param SlowStartDuration: 慢启动时间
+        :type PathPrefix: Int
         :param HttpMethod: HTTP请求方式 (GET|HEAD)
         :type PathPrefix: String
         :param HealthCode: 健康状态返回码
@@ -2916,6 +2945,8 @@ class ModifyAlbBackendServerGroupRequest(AbstractModel):
         self.HostName = None
         self.HealthCheckConnectPort = None
         self.HealthProtocol = None
+        self.SlowStartEnabled = None
+        self.SlowStartDuration = None
         self.HttpMethod = None
         self.HealthCode = None
         self.HealthCheckReq = None
@@ -2956,6 +2987,10 @@ class ModifyAlbBackendServerGroupRequest(AbstractModel):
             self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
         if params.get("HealthProtocol"):
             self.HealthProtocol = params.get("HealthProtocol")
+        if params.get("SlowStartEnabled"):
+            self.SlowStartEnabled = params.get("SlowStartEnabled")
+        if params.get("SlowStartDuration"):
+            self.SlowStartDuration = params.get("SlowStartDuration")
         if params.get("HttpMethod"):
             self.HttpMethod = params.get("HttpMethod")
         if params.get("HealthCode"):
@@ -3013,7 +3048,7 @@ class RegisterAlbBackendServerRequest(AbstractModel):
         :type PathPrefix: Int
         :param NetworkInterfaceId: 网卡id
         :type PathPrefix: String
-        :param DirectConnectGatewayId: 对等连接id
+        :param DirectConnectGatewayId: 边界网关id
         :type PathPrefix: String
         :param MasterSlaveType: 真实服务器的主备状态
         :type PathPrefix: String
@@ -3275,3 +3310,5 @@ class SetLbProtocolLayersRequest(AbstractModel):
             self.AlbId = params.get("AlbId")
         if params.get("ProtocolLayers"):
             self.ProtocolLayers = params.get("ProtocolLayers")
+
+

@@ -8,7 +8,6 @@ class ResourcemanagerClient(AbstractClient):
     _apiVersion = '2021-03-20'
     _endpoint = 'resourcemanager.api.ksyun.com'
     _service = 'resourcemanager'
-
     def CreateFolder(self, request):
         """创建资源夹
         :param request: Request instance for CreateFolder.
@@ -30,6 +29,7 @@ class ResourcemanagerClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteFolder(self, request):
         """删除资源夹
@@ -53,6 +53,7 @@ class ResourcemanagerClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateFolder(self, request):
         """更新资源夹
         :param request: Request instance for UpdateFolder.
@@ -74,6 +75,7 @@ class ResourcemanagerClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ListAccountsForParent(self, request):
         """某资源夹下所有用户
@@ -97,6 +99,7 @@ class ResourcemanagerClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def MoveAccount(self, request):
         """移动成员到其他资源夹
         :param request: Request instance for MoveAccount.
@@ -118,6 +121,7 @@ class ResourcemanagerClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateAccount(self, request):
         """更新成员
@@ -141,6 +145,7 @@ class ResourcemanagerClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListAccounts(self, request):
         """查看整个资源目录下的所有成员信息
         :param request: Request instance for ListAccounts.
@@ -163,6 +168,7 @@ class ResourcemanagerClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ListFolders(self, request):
         """资源夹列表
         :param request: Request instance for ListFolders.
@@ -184,3 +190,5 @@ class ResourcemanagerClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

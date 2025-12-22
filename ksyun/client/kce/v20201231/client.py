@@ -8,7 +8,6 @@ class KceClient(AbstractClient):
     _apiVersion = '2020-12-31'
     _endpoint = 'kce.api.ksyun.com'
     _service = 'kce'
-
     def CreateCluster(self, request):
         """创建集群（新）
         :param request: Request instance for CreateCluster.
@@ -30,3 +29,5 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

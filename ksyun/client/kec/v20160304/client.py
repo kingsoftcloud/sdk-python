@@ -55,7 +55,7 @@ class KecClient(AbstractClient):
 
 
     def StartInstances(self, request):
-        """启动实例
+        """启动实例接口
         :param request: Request instance for StartInstances.
         :type request: :class:`ksyun.client.kec.v20160304.models.StartInstancesRequest`
         """
@@ -78,7 +78,7 @@ class KecClient(AbstractClient):
 
 
     def StopInstances(self, request):
-        """关闭实例
+        """关闭实例接口
         :param request: Request instance for StopInstances.
         :type request: :class:`ksyun.client.kec.v20160304.models.StopInstancesRequest`
         """
@@ -101,7 +101,7 @@ class KecClient(AbstractClient):
 
 
     def RebootInstances(self, request):
-        """重启实例
+        """重启实例接口
         :param request: Request instance for RebootInstances.
         :type request: :class:`ksyun.client.kec.v20160304.models.RebootInstancesRequest`
         """
@@ -170,7 +170,7 @@ class KecClient(AbstractClient):
 
 
     def TerminateInstances(self, request):
-        """销毁实例
+        """销毁实例接口
         :param request: Request instance for TerminateInstances.
         :type request: :class:`ksyun.client.kec.v20160304.models.TerminateInstancesRequest`
         """
@@ -262,7 +262,7 @@ class KecClient(AbstractClient):
 
 
     def CreateImage(self, request):
-        """创建镜像
+        """创建镜像接口
         :param request: Request instance for CreateImage.
         :type request: :class:`ksyun.client.kec.v20160304.models.CreateImageRequest`
         """
@@ -1412,7 +1412,7 @@ class KecClient(AbstractClient):
 
 
     def ImportImage(self, request):
-        """镜像导入
+        """镜像导入接口
         :param request: Request instance for ImportImage.
         :type request: :class:`ksyun.client.kec.v20160304.models.ImportImageRequest`
         """
@@ -1435,7 +1435,7 @@ class KecClient(AbstractClient):
 
 
     def CopyImage(self, request):
-        """镜像复制
+        """镜像复制接口
         :param request: Request instance for CopyImage.
         :type request: :class:`ksyun.client.kec.v20160304.models.CopyImageRequest`
         """
@@ -1918,7 +1918,7 @@ class KecClient(AbstractClient):
 
 
     def CreateDedicatedCluster(self, request):
-        """创建集群
+        """创建集群接口
         :param request: Request instance for CreateDedicatedCluster.
         :type request: :class:`ksyun.client.kec.v20160304.models.CreateDedicatedClusterRequest`
         """
@@ -1941,7 +1941,7 @@ class KecClient(AbstractClient):
 
 
     def DeleteDedicatedCluster(self, request):
-        """删除集群
+        """删除集群接口
         :param request: Request instance for DeleteDedicatedCluster.
         :type request: :class:`ksyun.client.kec.v20160304.models.DeleteDedicatedClusterRequest`
         """

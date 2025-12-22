@@ -8,7 +8,6 @@ class KcrsClient(AbstractClient):
     _apiVersion = '2021-11-09'
     _endpoint = 'kcrs.api.ksyun.com'
     _service = 'kcrs'
-
     def CreateNamespace(self, request):
         """创建命名空间
         :param request: Request instance for CreateNamespace.
@@ -30,6 +29,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeNamespace(self, request):
         """查询命名空间
@@ -53,6 +53,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyNamespaceType(self, request):
         """修改命名空间类型
         :param request: Request instance for ModifyNamespaceType.
@@ -74,6 +75,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeNamespaceExist(self, request):
         """查询命名空间是否存在
@@ -97,6 +99,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteNamespace(self, request):
         """删除命名空间
         :param request: Request instance for DeleteNamespace.
@@ -119,8 +122,9 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeImages(self, request):
-        """查询镜像
+        """用于查询镜像
         :param request: Request instance for DescribeImages.
         :type request: :class:`ksyun.client.kcrs.v20211109.models.DescribeImagesRequest`
         """
@@ -140,6 +144,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteImages(self, request):
         """删除镜像
@@ -163,6 +168,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteRepoTag(self, request):
         """删除tag
         :param request: Request instance for DeleteRepoTag.
@@ -184,6 +190,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRepository(self, request):
         """查询仓库
@@ -207,6 +214,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyRepoDesc(self, request):
         """修改仓库描述
         :param request: Request instance for ModifyRepoDesc.
@@ -228,6 +236,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRepository(self, request):
         """删除仓库
@@ -251,6 +260,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def StartImageScan(self, request):
         """扫描镜像
         :param request: Request instance for StartImageScan.
@@ -272,6 +282,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeImageScan(self, request):
         """查询镜像扫描
@@ -295,6 +306,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateInstanceToken(self, request):
         """创建凭证
         :param request: Request instance for CreateInstanceToken.
@@ -316,6 +328,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeInternalEndpoint(self, request):
         """DescribeInternalEndpoint
@@ -339,6 +352,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInstanceToken(self, request):
         """查询凭证
         :param request: Request instance for DescribeInstanceToken.
@@ -360,6 +374,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateInternalEndpoint(self, request):
         """CreateInternalEndpoint
@@ -383,6 +398,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyInstanceTokenStatus(self, request):
         """开启/禁用凭证
         :param request: Request instance for ModifyInstanceTokenStatus.
@@ -404,6 +420,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteInternalEndpoint(self, request):
         """DeleteInternalEndpoint
@@ -427,6 +444,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyInstanceTokenInformation(self, request):
         """修改凭证信息
         :param request: Request instance for ModifyInstanceTokenInformation.
@@ -448,6 +466,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeInternalEndpointDns(self, request):
         """DescribeInternalEndpointDns
@@ -471,6 +490,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteInstanceToken(self, request):
         """删除凭证
         :param request: Request instance for DeleteInstanceToken.
@@ -492,6 +512,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateInternalEndpointDns(self, request):
         """CreateInternalEndpointDns
@@ -515,6 +536,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteInternalEndpointDns(self, request):
         """DeleteInternalEndpointDns
         :param request: Request instance for DeleteInternalEndpointDns.
@@ -536,6 +558,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateInstance(self, request):
         """创建仓库实例
@@ -559,14 +582,15 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteInstance(self, request):
-        """删除实例
+        """删除企业版实例
         :param request: Request instance for DeleteInstance.
         :type request: :class:`ksyun.client.kcrs.v20211109.models.DeleteInstanceRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteInstance", params, "application/json")
+            body = self.call_judge("DeleteInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -580,6 +604,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeInstanceUsage(self, request):
         """查询实例配额
@@ -603,6 +628,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInstance(self, request):
         """查询镜像实例信息
         :param request: Request instance for DescribeInstance.
@@ -624,6 +650,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateWebhookTrigger(self, request):
         """创建触发器
@@ -647,6 +674,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeWebhookTrigger(self, request):
         """查询触发器
         :param request: Request instance for DescribeWebhookTrigger.
@@ -668,6 +696,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyWebhookTrigger(self, request):
         """修改触发器
@@ -691,6 +720,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeWebhookTriggerLog(self, request):
         """查询触发器日志
         :param request: Request instance for DescribeWebhookTriggerLog.
@@ -712,6 +742,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteWebhookTrigger(self, request):
         """删除触发器
@@ -735,6 +766,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateRetentionRule(self, request):
         """创建镜像清理规则
         :param request: Request instance for CreateRetentionRule.
@@ -756,6 +788,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateRetentionRule(self, request):
         """更新镜像清理规则
@@ -779,6 +812,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteRetentionRule(self, request):
         """删除镜像清理规则
         :param request: Request instance for DeleteRetentionRule.
@@ -800,6 +834,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRetentionRule(self, request):
         """描述镜像清理规则
@@ -823,6 +858,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RunRetentionPolicy(self, request):
         """运行清理保留规则
         :param request: Request instance for RunRetentionPolicy.
@@ -844,6 +880,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetRetentionPolicyLogs(self, request):
         """获取运行日志列表
@@ -867,6 +904,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetRetentionPolicyLogDetail(self, request):
         """获取日志运行详情
         :param request: Request instance for GetRetentionPolicyLogDetail.
@@ -888,6 +926,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetRetentionPolicyLog(self, request):
         """获取日志保留结果
@@ -911,6 +950,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetRetentionTrigger(self, request):
         """获取触发器
         :param request: Request instance for GetRetentionTrigger.
@@ -932,6 +972,7 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateRetentionTrigger(self, request):
         """修改触发器
@@ -955,6 +996,7 @@ class KcrsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def Schedule(self, request):
         """ks3清理
         :param request: Request instance for Schedule.
@@ -976,3 +1018,5 @@ class KcrsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

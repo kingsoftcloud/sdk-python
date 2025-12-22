@@ -8,7 +8,6 @@ class KkmsClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'kkms.api.ksyun.com'
     _service = 'kkms'
-
     def CreateKey(self, request):
         """创建用户的主密钥
         :param request: Request instance for CreateKey.
@@ -30,6 +29,7 @@ class KkmsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyKey(self, request):
         """修改用户主密钥
@@ -53,6 +53,7 @@ class KkmsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyKeyState(self, request):
         """修改用户主密钥的状态
         :param request: Request instance for ModifyKeyState.
@@ -74,6 +75,7 @@ class KkmsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteKey(self, request):
         """删除用户主密钥
@@ -97,6 +99,7 @@ class KkmsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeKeys(self, request):
         """查询用户主密钥信息
         :param request: Request instance for DescribeKeys.
@@ -118,6 +121,7 @@ class KkmsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def Encrypt(self, request):
         """加密明文数据
@@ -141,6 +145,7 @@ class KkmsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def Decrypt(self, request):
         """解密密文数据
         :param request: Request instance for Decrypt.
@@ -163,6 +168,7 @@ class KkmsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GenerateDataKey(self, request):
         """创建数据密钥
         :param request: Request instance for GenerateDataKey.
@@ -184,3 +190,5 @@ class KkmsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

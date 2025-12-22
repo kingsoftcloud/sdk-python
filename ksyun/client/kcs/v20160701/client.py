@@ -8,9 +8,8 @@ class KcsClient(AbstractClient):
     _apiVersion = '2016-07-01'
     _endpoint = 'kcs.api.ksyun.com'
     _service = 'kcs'
-
     def CreateCacheCluster(self, request):
-        """创建实例
+        """创建新实例
         :param request: Request instance for CreateCacheCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.CreateCacheClusterRequest`
         """
@@ -31,8 +30,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteCacheCluster(self, request):
-        """删除实例
+        """删除实例。
         :param request: Request instance for DeleteCacheCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DeleteCacheClusterRequest`
         """
@@ -53,6 +53,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCacheCluster(self, request):
         """查询实例详情
         :param request: Request instance for DescribeCacheCluster.
@@ -60,7 +61,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCacheCluster", params, "application/json")
+            body = self.call_judge("DescribeCacheCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -74,6 +75,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeCacheClusters(self, request):
         """查看实例列表
@@ -82,7 +84,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCacheClusters", params, "application/json")
+            body = self.call_judge("DescribeCacheClusters", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -97,8 +99,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def FlushCacheCluster(self, request):
-        """清空缓存
+        """清空缓存。
         :param request: Request instance for FlushCacheCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.FlushCacheClusterRequest`
         """
@@ -118,6 +121,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RenameCacheCluster(self, request):
         """修改实例名称
@@ -141,8 +145,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ResizeCacheCluster(self, request):
-        """更配实例
+        """更改实例配置
         :param request: Request instance for ResizeCacheCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.ResizeCacheClusterRequest`
         """
@@ -162,6 +167,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeCacheParameters(self, request):
         """查询缓存服务参数
@@ -185,6 +191,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SetCacheParameters(self, request):
         """设置缓存服务参数
         :param request: Request instance for SetCacheParameters.
@@ -207,14 +214,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCacheDefaultParameters(self, request):
-        """DescribeCacheDefaultParameters
+        """查询实例默认参数
         :param request: Request instance for DescribeCacheDefaultParameters.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeCacheDefaultParametersRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCacheDefaultParameters", params, "application/json")
+            body = self.call_judge("DescribeCacheDefaultParameters", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -228,6 +236,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetCacheParameterGroup(self, request):
         """应用参数组，将参数组中所有的参数的当前值应用到指定的缓存服务对应参数上
@@ -251,6 +260,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateCacheParameterGroup(self, request):
         """创建参数组
         :param request: Request instance for CreateCacheParameterGroup.
@@ -272,6 +282,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteCacheParameterGroup(self, request):
         """删除参数组
@@ -295,6 +306,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyCacheParameterGroup(self, request):
         """修改参数组
         :param request: Request instance for ModifyCacheParameterGroup.
@@ -316,6 +328,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeCacheParameterGroups(self, request):
         """根据参数组的名称以及ID进行参数组查询
@@ -339,6 +352,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCacheParameterGroup(self, request):
         """查询参数组详情
         :param request: Request instance for DescribeCacheParameterGroup.
@@ -360,6 +374,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetTimingSnapshot(self, request):
         """设置备份时间
@@ -383,8 +398,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteSnapshot(self, request):
-        """删除备份
+        """删除实例备份
         :param request: Request instance for DeleteSnapshot.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DeleteSnapshotRequest`
         """
@@ -404,6 +420,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RenameSnapshot(self, request):
         """重命名备份
@@ -427,8 +444,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RestoreSnapshot(self, request):
-        """恢复备份
+        """将实例恢复至备份
         :param request: Request instance for RestoreSnapshot.
         :type request: :class:`ksyun.client.kcs.v20160701.models.RestoreSnapshotRequest`
         """
@@ -448,6 +466,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeSnapshots(self, request):
         """获取备份列表
@@ -471,8 +490,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DownloadSnapshot(self, request):
-        """下载备份
+        """下载实例备份
         :param request: Request instance for DownloadSnapshot.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DownloadSnapshotRequest`
         """
@@ -493,8 +513,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ExportSnapshot(self, request):
-        """ExportSnapshot
+        """导出备份至ks3
         :param request: Request instance for ExportSnapshot.
         :type request: :class:`ksyun.client.kcs.v20160701.models.ExportSnapshotRequest`
         """
@@ -515,8 +536,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeRegions(self, request):
-        """查询机房
+        """查询地域列表
         :param request: Request instance for DescribeRegions.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeRegionsRequest`
         """
@@ -537,8 +559,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeAvailabilityZones(self, request):
-        """查询可用区
+        """查询可用区列表
         :param request: Request instance for DescribeAvailabilityZones.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeAvailabilityZonesRequest`
         """
@@ -558,6 +581,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeCacheByRole(self, request):
         """通过角色查询缓存服务列表接口
@@ -581,8 +605,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def StatisticDBInstances(self, request):
-        """概览页统计查询
+        """实例概览统计
         :param request: Request instance for StatisticDBInstances.
         :type request: :class:`ksyun.client.kcs.v20160701.models.StatisticDBInstancesRequest`
         """
@@ -603,8 +628,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdatePassword(self, request):
-        """修改缓存服务密码
+        """修改密码。
         :param request: Request instance for UpdatePassword.
         :type request: :class:`ksyun.client.kcs.v20160701.models.UpdatePasswordRequest`
         """
@@ -625,8 +651,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RestartCacheCluster(self, request):
-        """实例重启
+        """重启实例。
         :param request: Request instance for RestartCacheCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.RestartCacheClusterRequest`
         """
@@ -647,8 +674,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AllocateEip(self, request):
-        """申请EIP
+        """申请外网EIP
         :param request: Request instance for AllocateEip.
         :type request: :class:`ksyun.client.kcs.v20160701.models.AllocateEipRequest`
         """
@@ -669,8 +697,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeallocateEip(self, request):
-        """释放EIP
+        """释放外网EIP
         :param request: Request instance for DeallocateEip.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DeallocateEipRequest`
         """
@@ -691,14 +720,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInstances(self, request):
-        """安全组-查询实例信息
+        """查询安全组绑定查询实例信息
         :param request: Request instance for DescribeInstances.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeInstancesRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeInstances", params, "application/json")
+            body = self.call_judge("DescribeInstances", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -712,6 +742,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteSecurityGroupRule(self, request):
         """删除安全组规则
@@ -735,6 +766,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateSecurityGroupRule(self, request):
         """创建安全组规则
         :param request: Request instance for CreateSecurityGroupRule.
@@ -756,6 +788,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeallocateSecurityGroup(self, request):
         """解绑安全组
@@ -779,6 +812,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AllocateSecurityGroup(self, request):
         """绑定安全组
         :param request: Request instance for AllocateSecurityGroup.
@@ -801,6 +835,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSecurityGroup(self, request):
         """查询安全组明细
         :param request: Request instance for DescribeSecurityGroup.
@@ -808,7 +843,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeSecurityGroup", params, "application/json")
+            body = self.call_judge("DescribeSecurityGroup", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -823,6 +858,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSecurityGroups(self, request):
         """查询安全组列表
         :param request: Request instance for DescribeSecurityGroups.
@@ -830,7 +866,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeSecurityGroups", params, "application/json")
+            body = self.call_judge("DescribeSecurityGroups", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -844,6 +880,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifySecurityGroup(self, request):
         """修改安全组
@@ -867,6 +904,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteSecurityGroup(self, request):
         """删除安全组
         :param request: Request instance for DeleteSecurityGroup.
@@ -888,6 +926,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CloneSecurityGroup(self, request):
         """克隆安全组
@@ -911,6 +950,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateSecurityGroup(self, request):
         """创建安全组
         :param request: Request instance for CreateSecurityGroup.
@@ -933,6 +973,53 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
+    def DescribeCacheReadonlyNode(self, request):
+        """获取只读实例列表
+        :param request: Request instance for DescribeCacheReadonlyNode.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeCacheReadonlyNodeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeCacheReadonlyNode", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AddCacheSlaveNode(self, request):
+        """社区版主从实例添加只读实例
+        :param request: Request instance for AddCacheSlaveNode.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.AddCacheSlaveNodeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddCacheSlaveNode", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def DescribeHotKeys(self, request):
         """查询热key列表
         :param request: Request instance for DescribeHotKeys.
@@ -940,7 +1027,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeHotKeys", params, "application/json")
+            body = self.call_judge("DescribeHotKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -955,14 +1042,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AnalyzeHotKeys(self, request):
-        """热key分析按钮
+        """发起热key分析
         :param request: Request instance for AnalyzeHotKeys.
         :type request: :class:`ksyun.client.kcs.v20160701.models.AnalyzeHotKeysRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("AnalyzeHotKeys", params, "application/json")
+            body = self.call_judge("AnalyzeHotKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -977,14 +1065,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CloseDirectAccessToCluster(self, request):
-        """cluster关闭直连
+        """社区版集群实例关闭直连
         :param request: Request instance for CloseDirectAccessToCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.CloseDirectAccessToClusterRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CloseDirectAccessToCluster", params, "application/json")
+            body = self.call_judge("CloseDirectAccessToCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -999,14 +1088,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def OpenDirectAccessToCluster(self, request):
-        """cluster开启直连
+        """社区版集群实例开启直连
         :param request: Request instance for OpenDirectAccessToCluster.
         :type request: :class:`ksyun.client.kcs.v20160701.models.OpenDirectAccessToClusterRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("OpenDirectAccessToCluster", params, "application/json")
+            body = self.call_judge("OpenDirectAccessToCluster", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1021,14 +1111,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeParentBackUpsSnapshots(self, request):
-        """redis集群备份数据父列表数据
+        """集群实例备份数据父列表数据
         :param request: Request instance for DescribeParentBackUpsSnapshots.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeParentBackUpsSnapshotsRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeParentBackUpsSnapshots", params, "application/json")
+            body = self.call_judge("DescribeParentBackUpsSnapshots", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1043,14 +1134,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeBackUpsSnapshotsDetail(self, request):
-        """redis集群备份数据子列表数据
+        """集群实例备份数据子列表数据
         :param request: Request instance for DescribeBackUpsSnapshotsDetail.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeBackUpsSnapshotsDetailRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeBackUpsSnapshotsDetail", params, "application/json")
+            body = self.call_judge("DescribeBackUpsSnapshotsDetail", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1065,14 +1157,15 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteLevelSnapshots(self, request):
-        """redis集群层级备份数据删除
+        """集群实例层级备份数据删除
         :param request: Request instance for DeleteLevelSnapshots.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DeleteLevelSnapshotsRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteLevelSnapshots", params, "application/json")
+            body = self.call_judge("DeleteLevelSnapshots", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1087,8 +1180,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DownloadLevelSnapshot(self, request):
-        """redis集群层次备份数据下载
+        """集群实例层次备份数据下载
         :param request: Request instance for DownloadLevelSnapshot.
         :type request: :class:`ksyun.client.kcs.v20160701.models.DownloadLevelSnapshotRequest`
         """
@@ -1109,6 +1203,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeBigKeys(self, request):
         """获取大key分析的任务结果列表
         :param request: Request instance for DescribeBigKeys.
@@ -1116,7 +1211,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeBigKeys", params, "application/json")
+            body = self.call_judge("DescribeBigKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1130,6 +1225,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteBigKeysAnalyseResult(self, request):
         """删除大key分析任务列表数据
@@ -1138,7 +1234,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteBigKeysAnalyseResult", params, "application/json")
+            body = self.call_judge("DeleteBigKeysAnalyseResult", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1152,6 +1248,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AnalyzeBigKeys(self, request):
         """获取大key分析的结果
@@ -1160,7 +1257,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("AnalyzeBigKeys", params, "application/json")
+            body = self.call_judge("AnalyzeBigKeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1175,6 +1272,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeCreateSnapshotStatus(self, request):
         """创建备份前的备份状态和大key分析状态查询
         :param request: Request instance for DescribeCreateSnapshotStatus.
@@ -1182,7 +1280,7 @@ class KcsClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeCreateSnapshotStatus", params, "application/json")
+            body = self.call_judge("DescribeCreateSnapshotStatus", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1196,6 +1294,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetDailyAnalyzeSwitchState(self, request):
         """慢日志和运行日志分析开关
@@ -1219,6 +1318,7 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AnalyzeDaily(self, request):
         """运行日志分析
         :param request: Request instance for AnalyzeDaily.
@@ -1240,6 +1340,7 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AnalyzeSlowDaily(self, request):
         """慢日志分析
@@ -1263,8 +1364,9 @@ class KcsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AnalyzeDailySwitch(self, request):
-        """AnalyzeDailySwitch
+        """日志分析开关
         :param request: Request instance for AnalyzeDailySwitch.
         :type request: :class:`ksyun.client.kcs.v20160701.models.AnalyzeDailySwitchRequest`
         """
@@ -1284,3 +1386,143 @@ class KcsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def RestoreByTimePointSwitch(self, request):
+        """实例开启或关闭基于时间点恢复
+        :param request: Request instance for RestoreByTimePointSwitch.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.RestoreByTimePointSwitchRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RestoreByTimePointSwitch", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeRestoreTimePoints(self, request):
+        """查询实例可恢复时间点
+        :param request: Request instance for DescribeRestoreTimePoints.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeRestoreTimePointsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeRestoreTimePoints", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeBigHotKeys(self, request):
+        """查询实例实时或历史的大key，热key信息（仅支持企业版实例）。
+        :param request: Request instance for DescribeBigHotKeys.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.DescribeBigHotKeysRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeBigHotKeys", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribePlugins(self, request):
+        """查询插件列表
+        :param request: Request instance for DescribePlugins.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.DescribePluginsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribePlugins", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def InstallPlugins(self, request):
+        """实例安装插件
+        :param request: Request instance for InstallPlugins.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.InstallPluginsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("InstallPlugins", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UninstallPlugins(self, request):
+        """实例卸载插件
+        :param request: Request instance for UninstallPlugins.
+        :type request: :class:`ksyun.client.kcs.v20160701.models.UninstallPluginsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UninstallPlugins", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

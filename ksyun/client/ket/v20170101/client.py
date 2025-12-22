@@ -8,7 +8,6 @@ class KetClient(AbstractClient):
     _apiVersion = '2017-01-01'
     _endpoint = 'ket.api.ksyun.com'
     _service = 'ket'
-
     def Preset(self, request):
         """add preset
         :param request: Request instance for Preset.
@@ -30,6 +29,7 @@ class KetClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdatePreset(self, request):
         """update preset
@@ -53,6 +53,7 @@ class KetClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DelPreset(self, request):
         """delete preset
         :param request: Request instance for DelPreset.
@@ -74,6 +75,7 @@ class KetClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def GetPresetList(self, request):
         """get preset list
@@ -97,6 +99,7 @@ class KetClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetPresetDetail(self, request):
         """get preset detail
         :param request: Request instance for GetPresetDetail.
@@ -119,6 +122,7 @@ class KetClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetStreamTranList(self, request):
         """get stream tran list
         :param request: Request instance for GetStreamTranList.
@@ -140,3 +144,51 @@ class KetClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def StartLoop(self, request):
+        """start loop tran
+        :param request: Request instance for StartLoop.
+        :type request: :class:`ksyun.client.ket.v20170101.models.StartLoopRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StartLoop", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def StopLoop(self, request):
+        """stop loop tran
+        :param request: Request instance for StopLoop.
+        :type request: :class:`ksyun.client.ket.v20170101.models.StopLoopRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StopLoop", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

@@ -8,7 +8,6 @@ class RelytClient(AbstractClient):
     _apiVersion = '2024-01-17'
     _endpoint = 'relyt.api.ksyun.com'
     _service = 'relyt'
-
     def GetDwsuMetric(self, request):
         """获取实例监控数据
         :param request: Request instance for GetDwsuMetric.
@@ -30,3 +29,5 @@ class RelytClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

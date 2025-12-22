@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class DescribeBackendServersRequest(AbstractModel):
     """DescribeBackendServers请求参数结构体
     """
@@ -95,7 +94,7 @@ class RegisterBackendServerRequest(AbstractModel):
         :type PathPrefix: Int
         :param NetworkInterfaceId: 网卡id
         :type PathPrefix: String
-        :param DirectConnectGatewayId: 对等连接id
+        :param DirectConnectGatewayId: 边界网关id
         :type PathPrefix: String
         :param MasterSlaveType: 真实服务器的主备状态
         :type PathPrefix: String
@@ -196,6 +195,10 @@ class ModifyBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: Int
         :param HealthProtocol: 健康检查协议(TCP | ICMP| UDP | HTTP)
         :type PathPrefix: String
+        :param SlowStartEnabled: 慢启动
+        :type PathPrefix: Boolean
+        :param SlowStartDuration: 慢启动时间
+        :type PathPrefix: Int
         :param HttpMethod: HTTP请求方式 (GET|HEAD)
         :type PathPrefix: String
         :param HealthCode: 健康状态返回码
@@ -222,6 +225,8 @@ class ModifyBackendServerGroupRequest(AbstractModel):
         self.HostName = None
         self.HealthCheckConnectPort = None
         self.HealthProtocol = None
+        self.SlowStartEnabled = None
+        self.SlowStartDuration = None
         self.HttpMethod = None
         self.HealthCode = None
         self.HealthCheckReq = None
@@ -262,6 +267,10 @@ class ModifyBackendServerGroupRequest(AbstractModel):
             self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
         if params.get("HealthProtocol"):
             self.HealthProtocol = params.get("HealthProtocol")
+        if params.get("SlowStartEnabled"):
+            self.SlowStartEnabled = params.get("SlowStartEnabled")
+        if params.get("SlowStartDuration"):
+            self.SlowStartDuration = params.get("SlowStartDuration")
         if params.get("HttpMethod"):
             self.HttpMethod = params.get("HttpMethod")
         if params.get("HealthCode"):
@@ -330,8 +339,12 @@ class CreateBackendServerGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param HealthCheckConnectPort: 健康检查端口
         :type PathPrefix: Int
-        :param HealthProtocol(TCP | ICMP| UDP | HTTP): 健康检查协议
+        :param HealthProtocol: 健康检查协议(TCP | ICMP| UDP | HTTP)
         :type PathPrefix: String
+        :param SlowStartEnabled: 慢启动
+        :type PathPrefix: Boolean
+        :param SlowStartDuration: 慢启动时间
+        :type PathPrefix: Int
         :param HttpMethod: HTTP请求方式 (GET|HEAD)
         :type PathPrefix: String
         :param HealthCheckReq: UDP监听器健康检查的请求串
@@ -360,6 +373,8 @@ class CreateBackendServerGroupRequest(AbstractModel):
         self.HostName = None
         self.HealthCheckConnectPort = None
         self.HealthProtocol = None
+        self.SlowStartEnabled = None
+        self.SlowStartDuration = None
         self.HttpMethod = None
         self.HealthCheckReq = None
         self.HealthCheckExp = None
@@ -404,6 +419,10 @@ class CreateBackendServerGroupRequest(AbstractModel):
             self.HealthCheckConnectPort = params.get("HealthCheckConnectPort")
         if params.get("HealthProtocol"):
             self.HealthProtocol = params.get("HealthProtocol")
+        if params.get("SlowStartEnabled"):
+            self.SlowStartEnabled = params.get("SlowStartEnabled")
+        if params.get("SlowStartDuration"):
+            self.SlowStartDuration = params.get("SlowStartDuration")
         if params.get("HttpMethod"):
             self.HttpMethod = params.get("HttpMethod")
         if params.get("HealthCheckReq"):
@@ -475,6 +494,8 @@ class ModifyListenerRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param QuicListenerId: QUIC监听器id
         :type PathPrefix: String
+        :param IdleTimeout: 空闲超时时间(s)
+        :type PathPrefix: Int
         :param ServerGroupId: 服务器组 ID
         :type PathPrefix: String
         """
@@ -490,6 +511,7 @@ class ModifyListenerRequest(AbstractModel):
         self.CaCertificateId = None
         self.EnableQuicUpgrade = None
         self.QuicListenerId = None
+        self.IdleTimeout = None
         self.ServerGroupId = None
 
     def _deserialize(self, params):
@@ -517,6 +539,8 @@ class ModifyListenerRequest(AbstractModel):
             self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("QuicListenerId"):
             self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("IdleTimeout"):
+            self.IdleTimeout = params.get("IdleTimeout")
         if params.get("ServerGroupId"):
             self.ServerGroupId = params.get("ServerGroupId")
 
@@ -579,6 +603,8 @@ class CreateListenerRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param QuicListenerId: QUIC监听器id
         :type PathPrefix: String
+        :param IdleTimeout: 空闲超时时间(s)
+        :type PathPrefix: Int
         :param ServerGroupId: 服务器组 ID
         :type PathPrefix: String
         """
@@ -600,6 +626,7 @@ class CreateListenerRequest(AbstractModel):
         self.CaCertificateId = None
         self.EnableQuicUpgrade = None
         self.QuicListenerId = None
+        self.IdleTimeout = None
         self.ServerGroupId = None
 
     def _deserialize(self, params):
@@ -639,6 +666,8 @@ class CreateListenerRequest(AbstractModel):
             self.EnableQuicUpgrade = params.get("EnableQuicUpgrade")
         if params.get("QuicListenerId"):
             self.QuicListenerId = params.get("QuicListenerId")
+        if params.get("IdleTimeout"):
+            self.IdleTimeout = params.get("IdleTimeout")
         if params.get("ServerGroupId"):
             self.ServerGroupId = params.get("ServerGroupId")
 
@@ -709,18 +738,6 @@ class SetLbProtocolLayersRequest(AbstractModel):
             self.LoadBalancerId = params.get("LoadBalancerId")
         if params.get("ProtocolLayers"):
             self.ProtocolLayers = params.get("ProtocolLayers")
-
-
-class ModifyLoadBalancerRequest(AbstractModel):
-    """ModifyLoadBalancer请求参数结构体
-    """
-
-    def __init__(self):
-        r"""修改高阶/hpa配置接口
-        """
-
-    def _deserialize(self, params):
-        return
 
 
 class SetLoadBalancerStatusRequest(AbstractModel):
@@ -1351,3 +1368,5 @@ class SetLBDeleteProtectionRequest(AbstractModel):
             self.LoadBalancerId = params.get("LoadBalancerId")
         if params.get("DeleteProtection"):
             self.DeleteProtection = params.get("DeleteProtection")
+
+

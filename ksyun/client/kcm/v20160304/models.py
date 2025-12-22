@@ -1,5 +1,113 @@
 from ksyun.common.abstract_model import AbstractModel
 
+class CreateCertificateRequest(AbstractModel):
+    """CreateCertificate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建负载均衡证书
+        :param CertificateName: 证书名称
+        :type PathPrefix: String
+        :param PrivateKey: 私钥
+        :type PathPrefix: String
+        :param PublicKey: 公钥
+        :type PathPrefix: String
+        :param CertificateType: 证书类型，SVR|CA
+        :type PathPrefix: String
+        :param Source: 证书来源own|kcm，可以不传，kcm来源的证书必传
+        :type PathPrefix: String
+        :param SslCertificateId: kcm来源的ssl证书id，kcm来源的证书必传
+        :type PathPrefix: String
+        :param Description: 描述
+        :type PathPrefix: String
+        """
+        self.CertificateName = None
+        self.PrivateKey = None
+        self.PublicKey = None
+        self.CertificateType = None
+        self.Source = None
+        self.SslCertificateId = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateName"):
+            self.CertificateName = params.get("CertificateName")
+        if params.get("PrivateKey"):
+            self.PrivateKey = params.get("PrivateKey")
+        if params.get("PublicKey"):
+            self.PublicKey = params.get("PublicKey")
+        if params.get("CertificateType"):
+            self.CertificateType = params.get("CertificateType")
+        if params.get("Source"):
+            self.Source = params.get("Source")
+        if params.get("SslCertificateId"):
+            self.SslCertificateId = params.get("SslCertificateId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class DeleteCertificateRequest(AbstractModel):
+    """DeleteCertificate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除SLB证书
+        :param CertificateId: 
+        :type PathPrefix: String
+        """
+        self.CertificateId = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+
+
+class ModifyCertificateRequest(AbstractModel):
+    """ModifyCertificate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新证书信息
+        :param CertificateId: 证书ID
+        :type PathPrefix: String
+        :param CertificateName: 证书名称
+        :type PathPrefix: String
+        :param PrivateKey: 私钥
+        :type PathPrefix: String
+        :param PublicKey: 公钥
+        :type PathPrefix: String
+        """
+        self.CertificateId = None
+        self.CertificateName = None
+        self.PrivateKey = None
+        self.PublicKey = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+        if params.get("CertificateName"):
+            self.CertificateName = params.get("CertificateName")
+        if params.get("PrivateKey"):
+            self.PrivateKey = params.get("PrivateKey")
+        if params.get("PublicKey"):
+            self.PublicKey = params.get("PublicKey")
+
+
+class DescribeCertificatesRequest(AbstractModel):
+    """DescribeCertificates请求参数结构体
+    """
+
+    def __init__(self):
+        r"""描述SLB证书
+        :param CertificateId: 
+        :type PathPrefix: Filter
+        """
+        self.CertificateId = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+
 
 class ApplyCertificateRequest(AbstractModel):
     """ApplyCertificate请求参数结构体
@@ -23,6 +131,8 @@ class ApplyCertificateRequest(AbstractModel):
         :type PathPrefix: String
         :param ProjectId: 资源所属项目ID
         :type PathPrefix: Int
+        :param BillType: 计费方式：801 一次性预付费 805 一次性后付费，不填默认为：805 一次性后付费
+        :type PathPrefix: Int
         """
         self.MainDomain = None
         self.CertificateCode = None
@@ -32,6 +142,7 @@ class ApplyCertificateRequest(AbstractModel):
         self.ProductId = None
         self.SubOrderId = None
         self.ProjectId = None
+        self.BillType = None
 
     def _deserialize(self, params):
         if params.get("MainDomain"):
@@ -50,6 +161,8 @@ class ApplyCertificateRequest(AbstractModel):
             self.SubOrderId = params.get("SubOrderId")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
+        if params.get("BillType"):
+            self.BillType = params.get("BillType")
 
 
 class UpdateCertificateRequest(AbstractModel):
@@ -60,11 +173,11 @@ class UpdateCertificateRequest(AbstractModel):
         r"""更新/补全证书信息
         :param CertificateId: 证书ID
         :type PathPrefix: String
-        :param AuthMethod: 验证方式（除Sectigo外仅针对DV证书，Sectigo全部需要）
+        :param AuthMethod: 验证方式，可选值：DNS 、 FILE， 不填默认值为：DNS
         :type PathPrefix: String
         :param CSR: 证书CSR字符串，当CsrSource为USER或缺省时，此值不可缺省
         :type PathPrefix: String
-        :param ContactId: 联系人ID，当ContactId不为空时，Contact参数可缺省，两者并存时以ContactId为准，当ContactId不为空时，City、State、Country都不能为空
+        :param ContactId: 联系人ID，当ContactId不为空时，Contact参数可缺省，两者并存时以ContactId为准，当ContactId为空时，City、State、Country都不能为空
         :type PathPrefix: Int
         :param CompanyId: 企业信息ID，当CompanyId不为空时，CompanyName、Department、State、City、Address、CompanyPhone、PostalCode可缺省，两者并存时以CompanyId为准
         :type PathPrefix: Int
@@ -88,7 +201,7 @@ class UpdateCertificateRequest(AbstractModel):
         :type PathPrefix: String
         :param Wildcards: 通配符域名,多个通配符域名以英文,分隔
         :type PathPrefix: String
-        :param Contact: 联系人,DV证书只需要技术联系人
+        :param Contact: 联系人,DV证书只需要技术联系人,如果Contactid为空， Contact不可缺省
         :type PathPrefix: String
         :param IsSubmit: 是否提交，提交后将把订单数据提交给第三方，可选值0 否|1 是
 
@@ -116,6 +229,11 @@ class UpdateCertificateRequest(AbstractModel):
 - ECC
 - RSA 默认值
         :type PathPrefix: String
+        :param CertSignature: 证书签名算法。可选值
+
+SHA256-FULLCHAIN
+SHA2-256 默认值
+        :type PathPrefix: String
         """
         self.CertificateId = None
         self.AuthMethod = None
@@ -137,6 +255,7 @@ class UpdateCertificateRequest(AbstractModel):
         self.BusinessLicence = None
         self.CsrSource = None
         self.Algorithm = None
+        self.CertSignature = None
 
     def _deserialize(self, params):
         if params.get("CertificateId"):
@@ -179,6 +298,46 @@ class UpdateCertificateRequest(AbstractModel):
             self.CsrSource = params.get("CsrSource")
         if params.get("Algorithm"):
             self.Algorithm = params.get("Algorithm")
+        if params.get("CertSignature"):
+            self.CertSignature = params.get("CertSignature")
+
+
+class ReIssueCertificateRequest(AbstractModel):
+    """ReIssueCertificate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""重新签发签发
+        :param CertificateId: 证书id
+        :type PathPrefix: String
+        :param CsrSource: 是否重新生成csr。
+值：new：重新生成csr。不传则用老的csr
+        :type PathPrefix: String
+        """
+        self.CertificateId = None
+        self.CsrSource = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+        if params.get("CsrSource"):
+            self.CsrSource = params.get("CsrSource")
+
+
+class CancelTransactionRequest(AbstractModel):
+    """CancelTransaction请求参数结构体
+    """
+
+    def __init__(self):
+        r"""取消证书申请
+        :param CertificateId: 证书ID
+        :type PathPrefix: String
+        """
+        self.CertificateId = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
 
 
 class ListCertificatesRequest(AbstractModel):
@@ -193,10 +352,16 @@ class ListCertificatesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 主域名
         :type PathPrefix: Filter
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 默认20
+        :type PathPrefix: Int
         """
         self.CertificateId = None
         self.ProjectId = None
         self.Filter = None
+        self.Page = None
+        self.PageSize = None
 
     def _deserialize(self, params):
         if params.get("CertificateId"):
@@ -205,6 +370,10 @@ class ListCertificatesRequest(AbstractModel):
             self.ProjectId = params.get("ProjectId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
 
 
 class GetCertificateDetailRequest(AbstractModel):
@@ -221,3 +390,5 @@ class GetCertificateDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
+
+

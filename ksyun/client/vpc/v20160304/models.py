@@ -2298,6 +2298,38 @@ class DescribeDirectConnectRoutesRequest(AbstractModel):
             self.NextToken = params.get("NextToken")
 
 
+class PublishDirectConnectRouteToBgpRequest(AbstractModel):
+    """PublishDirectConnectRouteToBgp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""发布边界网关路由到BGP(1.0/2.0)
+        :param DirectConnectRouteId: 专线路由的ID
+        :type PathPrefix: String
+        """
+        self.DirectConnectRouteId = None
+
+    def _deserialize(self, params):
+        if params.get("DirectConnectRouteId"):
+            self.DirectConnectRouteId = params.get("DirectConnectRouteId")
+
+
+class CancelDirectConnectRouteToBgpRequest(AbstractModel):
+    """CancelDirectConnectRouteToBgp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""从BGP取消专线路由(1.0/2.0)
+        :param DirectConnectRouteId: 专线路由的ID
+        :type PathPrefix: String
+        """
+        self.DirectConnectRouteId = None
+
+    def _deserialize(self, params):
+        if params.get("DirectConnectRouteId"):
+            self.DirectConnectRouteId = params.get("DirectConnectRouteId")
+
+
 class DetachDirectConnectGatewayWithVpcRequest(AbstractModel):
     """DetachDirectConnectGatewayWithVpc请求参数结构体
     """
@@ -3453,11 +3485,11 @@ class DescribeDirectConnectInterfacesBgpStatusRequest(AbstractModel):
         :param DirectConnectInterfaceId.N: 专线通道id
         :type PathPrefix: String
         """
-        self.DirectConnectInterfaceId.N = None
+        self.DirectConnectInterfaceId_N = None
 
     def _deserialize(self, params):
         if params.get("DirectConnectInterfaceId.N"):
-            self.DirectConnectInterfaceId.N = params.get("DirectConnectInterfaceId.N")
+            self.DirectConnectInterfaceId_N = params.get("DirectConnectInterfaceId.N")
 
 
 class DeactiveFlowLogRequest(AbstractModel):

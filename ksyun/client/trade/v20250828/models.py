@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class QueryInstancesRequest(AbstractModel):
     """QueryInstances请求参数结构体
     """
@@ -78,3 +77,5 @@ class QueryInstancesRequest(AbstractModel):
             self.page = params.get("page")
         if params.get("size"):
             self.size = params.get("size")
+
+

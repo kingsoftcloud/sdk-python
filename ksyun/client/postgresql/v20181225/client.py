@@ -8,9 +8,8 @@ class PostgresqlClient(AbstractClient):
     _apiVersion = '2018-12-25'
     _endpoint = 'postgresql.api.ksyun.com'
     _service = 'postgresql'
-
     def CreateDBInstance(self, request):
-        """create db instance
+        """创建实例(可指定具体产品类型)
         :param request: Request instance for CreateDBInstance.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateDBInstanceRequest`
         """
@@ -31,8 +30,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBInstances(self, request):
-        """describe db instances
+        """查询实例列表/详情
         :param request: Request instance for DescribeDBInstances.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBInstancesRequest`
         """
@@ -53,8 +53,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteDBInstance(self, request):
-        """delete db instance
+        """删除指定实例(不支持批量)
         :param request: Request instance for DeleteDBInstance.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DeleteDBInstanceRequest`
         """
@@ -75,8 +76,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def StatisticDBInstances(self, request):
-        """statistic db instances
+        """实例概览统计(全可用地域下单区分类统计)
         :param request: Request instance for StatisticDBInstances.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.StatisticDBInstancesRequest`
         """
@@ -97,8 +99,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDBInstance(self, request):
-        """modify db instance
+        """修改实例信息(实例名/账户密码/自动备份时间/参数组/安全组)
         :param request: Request instance for ModifyDBInstance.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBInstanceRequest`
         """
@@ -119,8 +122,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateSecurityGroup(self, request):
-        """create security group
+        """创建安全组(模版)
         :param request: Request instance for CreateSecurityGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateSecurityGroupRequest`
         """
@@ -141,8 +145,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSecurityGroup(self, request):
-        """describe security group
+        """查询安全组详情
         :param request: Request instance for DescribeSecurityGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeSecurityGroupRequest`
         """
@@ -163,8 +168,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteSecurityGroup(self, request):
-        """delete security group
+        """删除安全组(支持批量)
         :param request: Request instance for DeleteSecurityGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DeleteSecurityGroupRequest`
         """
@@ -185,8 +191,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifySecurityGroup(self, request):
-        """modify security group
+        """修改安全组名称/描述
         :param request: Request instance for ModifySecurityGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifySecurityGroupRequest`
         """
@@ -207,8 +214,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CloneSecurityGroup(self, request):
-        """clone security group
+        """克隆安全组
         :param request: Request instance for CloneSecurityGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.CloneSecurityGroupRequest`
         """
@@ -229,8 +237,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifySecurityGroupRule(self, request):
-        """modify security grooup rule
+        """修改CIDR规则
         :param request: Request instance for ModifySecurityGroupRule.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifySecurityGroupRuleRequest`
         """
@@ -251,8 +260,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SecurityGroupRelation(self, request):
-        """security group relation
+        """实例绑定/解绑安全组
         :param request: Request instance for SecurityGroupRelation.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.SecurityGroupRelationRequest`
         """
@@ -273,8 +283,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifySecurityGroupRuleName(self, request):
-        """modify security group rule name
+        """修改安全组规则备注
         :param request: Request instance for ModifySecurityGroupRuleName.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifySecurityGroupRuleNameRequest`
         """
@@ -295,8 +306,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBLogFiles(self, request):
-        """describe db log files
+        """查询日志文件列表
         :param request: Request instance for DescribeDBLogFiles.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBLogFilesRequest`
         """
@@ -317,8 +329,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateDBBackup(self, request):
-        """create db backup
+        """创建指定实例手动备份
         :param request: Request instance for CreateDBBackup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateDBBackupRequest`
         """
@@ -339,8 +352,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteDBBackup(self, request):
-        """delete db backup
+        """删除实例备份(手动备份)
         :param request: Request instance for DeleteDBBackup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DeleteDBBackupRequest`
         """
@@ -361,8 +375,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBBackups(self, request):
-        """describe db backups
+        """查询备份列表
         :param request: Request instance for DescribeDBBackups.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBBackupsRequest`
         """
@@ -383,8 +398,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDBBackupPolicy(self, request):
-        """modify db backup policy
+        """修改备份策略
         :param request: Request instance for ModifyDBBackupPolicy.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBBackupPolicyRequest`
         """
@@ -405,8 +421,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def OverrideDBInstance(self, request):
-        """override db instance
+        """恢复至源实例
         :param request: Request instance for OverrideDBInstance.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.OverrideDBInstanceRequest`
         """
@@ -427,8 +444,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateDBParameterGroup(self, request):
-        """create db parameter group
+        """创建参数组(模版)
         :param request: Request instance for CreateDBParameterGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateDBParameterGroupRequest`
         """
@@ -449,8 +467,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDBParameterGroup(self, request):
-        """modify db parameter group
+        """修改参数组
         :param request: Request instance for ModifyDBParameterGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBParameterGroupRequest`
         """
@@ -471,8 +490,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteDBParameterGroup(self, request):
-        """delete db parameter group
+        """删除参数组(模版)
         :param request: Request instance for DeleteDBParameterGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DeleteDBParameterGroupRequest`
         """
@@ -493,8 +513,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ResetDBParameterGroup(self, request):
-        """reset db parameter grooup
+        """重置实例参数
         :param request: Request instance for ResetDBParameterGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ResetDBParameterGroupRequest`
         """
@@ -515,8 +536,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBParameterGroup(self, request):
-        """describe db parameter group
+        """查询参数组列表/详情
         :param request: Request instance for DescribeDBParameterGroup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBParameterGroupRequest`
         """
@@ -537,8 +559,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeEngineDefaultParameters(self, request):
-        """describe engine default parameters
+        """查询默认参数组详情
         :param request: Request instance for DescribeEngineDefaultParameters.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeEngineDefaultParametersRequest`
         """
@@ -559,8 +582,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBInstanceParameters(self, request):
-        """查看实例参数组
+        """查询实例参数(运行中参数)
         :param request: Request instance for DescribeDBInstanceParameters.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBInstanceParametersRequest`
         """
@@ -581,8 +605,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RebootDBInstance(self, request):
-        """reboot db instance
+        """重启指定实例
         :param request: Request instance for RebootDBInstance.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.RebootDBInstanceRequest`
         """
@@ -603,8 +628,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBEngineVersions(self, request):
-        """describe db engine version
+        """查询支持的引擎版本及最新小版本信息
         :param request: Request instance for DescribeDBEngineVersions.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBEngineVersionsRequest`
         """
@@ -625,8 +651,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AllocateDBInstanceEip(self, request):
-        """allocate db instance eip
+        """申请外网EIP
         :param request: Request instance for AllocateDBInstanceEip.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.AllocateDBInstanceEipRequest`
         """
@@ -647,8 +674,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ReleaseDBInstanceEip(self, request):
-        """release db instance eip
+        """释放外网EIP
         :param request: Request instance for ReleaseDBInstanceEip.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ReleaseDBInstanceEipRequest`
         """
@@ -669,8 +697,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDBInstanceSpec(self, request):
-        """modify db instance spec
+        """更改实例配置
         :param request: Request instance for ModifyDBInstanceSpec.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBInstanceSpecRequest`
         """
@@ -691,8 +720,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RestoreDBInstanceFromDBBackup(self, request):
-        """restore db instance from db backup
+        """恢复至新实例
         :param request: Request instance for RestoreDBInstanceFromDBBackup.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.RestoreDBInstanceFromDBBackupRequest`
         """
@@ -713,8 +743,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SwitchDBInstanceHA(self, request):
-        """switch db instance ha
+        """主备切换(可用区)
         :param request: Request instance for SwitchDBInstanceHA.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.SwitchDBInstanceHARequest`
         """
@@ -735,8 +766,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateDBInstanceReadReplica(self, request):
-        """create db instance read replica
+        """创建只读实例
         :param request: Request instance for CreateDBInstanceReadReplica.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateDBInstanceReadReplicaRequest`
         """
@@ -757,8 +789,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyInstanceAccountInfo(self, request):
-        """modify instance account info
+        """编辑账号信息
         :param request: Request instance for ModifyInstanceAccountInfo.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyInstanceAccountInfoRequest`
         """
@@ -779,8 +812,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInstanceDatabases(self, request):
-        """获取实例数据库列表
+        """查询数据库列表
         :param request: Request instance for DescribeInstanceDatabases.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeInstanceDatabasesRequest`
         """
@@ -801,8 +835,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeDBInstanceExtensions(self, request):
-        """describe db instance extensions
+        """查询插件列表
         :param request: Request instance for DescribeDBInstanceExtensions.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeDBInstanceExtensionsRequest`
         """
@@ -823,8 +858,9 @@ class PostgresqlClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyDBInstanceExtension(self, request):
-        """modify db instance extension
+        """安装/卸载用户实例插件
         :param request: Request instance for ModifyDBInstanceExtension.
         :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBInstanceExtensionRequest`
         """
@@ -844,3 +880,281 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeCollations(self, request):
+        """查询支持字符集
+        :param request: Request instance for DescribeCollations.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeCollationsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeCollations", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyInstanceDatabaseOwner(self, request):
+        """修改数据库所有者
+        :param request: Request instance for ModifyInstanceDatabaseOwner.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyInstanceDatabaseOwnerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyInstanceDatabaseOwner", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteInstanceDatabase(self, request):
+        """删除数据库
+        :param request: Request instance for DeleteInstanceDatabase.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.DeleteInstanceDatabaseRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteInstanceDatabase", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateInstanceDatabase(self, request):
+        """创建数据库
+        :param request: Request instance for CreateInstanceDatabase.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateInstanceDatabaseRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateInstanceDatabase", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeInstanceAccounts(self, request):
+        """查询账号列表
+        :param request: Request instance for DescribeInstanceAccounts.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.DescribeInstanceAccountsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInstanceAccounts", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateInstanceAccount(self, request):
+        """创建账号(数据库账号)
+        :param request: Request instance for CreateInstanceAccount.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.CreateInstanceAccountRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateInstanceAccount", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteInstanceAccount(self, request):
+        """删除账号(不支持批量)
+        :param request: Request instance for DeleteInstanceAccount.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.DeleteInstanceAccountRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteInstanceAccount", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyDBNetwork(self, request):
+        """变更网络(修改VPC信息)
+        :param request: Request instance for ModifyDBNetwork.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBNetworkRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyDBNetwork", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UpdateDBInstanceVersion(self, request):
+        """升级至当前实例最新小版本
+        :param request: Request instance for UpdateDBInstanceVersion.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.UpdateDBInstanceVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateDBInstanceVersion", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyDBInstanceAvailabilityZone(self, request):
+        """迁移可用区(迁移备库可用区)
+        :param request: Request instance for ModifyDBInstanceAvailabilityZone.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.ModifyDBInstanceAvailabilityZoneRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyDBInstanceAvailabilityZone", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UpdateDBInstanceOrder(self, request):
+        """试用订单延期/转正
+        :param request: Request instance for UpdateDBInstanceOrder.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.UpdateDBInstanceOrderRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateDBInstanceOrder", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UpdateResourceProtection(self, request):
+        """删除保护设置
+        :param request: Request instance for UpdateResourceProtection.
+        :type request: :class:`ksyun.client.postgresql.v20181225.models.UpdateResourceProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateResourceProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

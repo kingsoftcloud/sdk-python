@@ -8,7 +8,6 @@ class TradeClient(AbstractClient):
     _apiVersion = '2025-03-21'
     _endpoint = 'trade.api.ksyun.com'
     _service = 'trade'
-
     def QueryUnPayOrders(self, request):
         """查询主账号待支付的订单列表
         :param request: Request instance for QueryUnPayOrders.
@@ -30,6 +29,7 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def QueryOrderInfo(self, request):
         """根据订单ID查询订单信息
@@ -53,6 +53,7 @@ class TradeClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CancelOrder(self, request):
         """取消还未支付的订单，取消后不能再支付
         :param request: Request instance for CancelOrder.
@@ -75,6 +76,7 @@ class TradeClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def LaunchPayOrder(self, request):
         """通过订单ID支付订单，会自动扣余额的金额
         :param request: Request instance for LaunchPayOrder.
@@ -96,3 +98,5 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

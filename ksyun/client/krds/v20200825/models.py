@@ -1,12 +1,11 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateSecurityGroupRequest(AbstractModel):
     """CreateSecurityGroup请求参数结构体
     """
 
     def __init__(self):
-        r"""创建安全组
+        r"""创建安全组(GET)
         :param SecurityGroupName: 安全组名称	不超过256个字节，仅支持中文、大小写字母、数字、减号和下划线
         :type PathPrefix: String
         :param SecurityGroupDescription: 安全组描述	不超过256个字节，仅支持中文、大小写字母、数字、减号和下划线
@@ -24,8 +23,8 @@ class CreateSecurityGroupRequest(AbstractModel):
         self.SecurityGroupDescription = None
         self.SecurityGroupType = None
         self.DBInstanceIdentifier = None
-        self.SecurityGroupRule.SecurityGroupRuleName.N = None
-        self.SecurityGroupRule.SecurityGroupRuleCidr.N = None
+        self.SecurityGroupRule_SecurityGroupRuleName_N = None
+        self.SecurityGroupRule_SecurityGroupRuleCidr_N = None
 
     def _deserialize(self, params):
         if params.get("SecurityGroupName"):
@@ -37,9 +36,9 @@ class CreateSecurityGroupRequest(AbstractModel):
         if params.get("DBInstanceIdentifier"):
             self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
         if params.get("SecurityGroupRule.SecurityGroupRuleName.N"):
-            self.SecurityGroupRule.SecurityGroupRuleName.N = params.get("SecurityGroupRule.SecurityGroupRuleName.N")
+            self.SecurityGroupRule_SecurityGroupRuleName_N = params.get("SecurityGroupRule.SecurityGroupRuleName.N")
         if params.get("SecurityGroupRule.SecurityGroupRuleCidr.N"):
-            self.SecurityGroupRule.SecurityGroupRuleCidr.N = params.get("SecurityGroupRule.SecurityGroupRuleCidr.N")
+            self.SecurityGroupRule_SecurityGroupRuleCidr_N = params.get("SecurityGroupRule.SecurityGroupRuleCidr.N")
 
 
 class DescribeSecurityGroupRequest(AbstractModel):
@@ -47,18 +46,18 @@ class DescribeSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查看安全组
-        :param SecurityGroupId.N: 安全组ID列表，不传的时候返回列表，传值展示指定ID的安全组信息。
-        :type PathPrefix: String
+        r"""查询安全组列表/详情
+        :param SecurityGroupId: 安全组ID列表，不传的时候返回列表，传值展示指定ID的安全组信息。支持批量查询。
+        :type PathPrefix: Filter
         :param SecurityGroupType: 取值范围：IPV4 / IPV6 （默认IPV4）
         :type PathPrefix: String
         """
-        self.SecurityGroupId.N = None
+        self.SecurityGroupId = None
         self.SecurityGroupType = None
 
     def _deserialize(self, params):
-        if params.get("SecurityGroupId.N"):
-            self.SecurityGroupId.N = params.get("SecurityGroupId.N")
+        if params.get("SecurityGroupId"):
+            self.SecurityGroupId = params.get("SecurityGroupId")
         if params.get("SecurityGroupType"):
             self.SecurityGroupType = params.get("SecurityGroupType")
 
@@ -92,7 +91,7 @@ class ModifySecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改参数组
+        r"""修改安全组
         :param SecurityGroupId: 安全组ID
         :type PathPrefix: String
         :param SecurityGroupName: 安全组名称
@@ -118,7 +117,7 @@ class CloneSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""复制安全组
+        r"""克隆安全组(仅含CIDR规则)
         :param SecurityGroupId: 被克隆安全组ID
         :type PathPrefix: String
         :param SecurityGroupName: 安全组名称.		不超过256个字节，仅支持中文、大小写字母、数字、减号和下划线
@@ -161,9 +160,9 @@ Cover：用传入的规则列表（SecurityGroupRuleName，SecurityGroupRuleProt
         """
         self.SecurityGroupRuleAction = None
         self.SecurityGroupId = None
-        self.SecurityGroupRule.SecurityGroupRuleId = None
-        self.SecurityGroupRule.SecurityGroupRuleName = None
-        self.SecurityGroupRule.SecurityGroupRuleCidr = None
+        self.SecurityGroupRule_SecurityGroupRuleId = None
+        self.SecurityGroupRule_SecurityGroupRuleName = None
+        self.SecurityGroupRule_SecurityGroupRuleCidr = None
 
     def _deserialize(self, params):
         if params.get("SecurityGroupRuleAction"):
@@ -171,11 +170,11 @@ Cover：用传入的规则列表（SecurityGroupRuleName，SecurityGroupRuleProt
         if params.get("SecurityGroupId"):
             self.SecurityGroupId = params.get("SecurityGroupId")
         if params.get("SecurityGroupRule.SecurityGroupRuleId"):
-            self.SecurityGroupRule.SecurityGroupRuleId = params.get("SecurityGroupRule.SecurityGroupRuleId")
+            self.SecurityGroupRule_SecurityGroupRuleId = params.get("SecurityGroupRule.SecurityGroupRuleId")
         if params.get("SecurityGroupRule.SecurityGroupRuleName"):
-            self.SecurityGroupRule.SecurityGroupRuleName = params.get("SecurityGroupRule.SecurityGroupRuleName")
+            self.SecurityGroupRule_SecurityGroupRuleName = params.get("SecurityGroupRule.SecurityGroupRuleName")
         if params.get("SecurityGroupRule.SecurityGroupRuleCidr"):
-            self.SecurityGroupRule.SecurityGroupRuleCidr = params.get("SecurityGroupRule.SecurityGroupRuleCidr")
+            self.SecurityGroupRule_SecurityGroupRuleCidr = params.get("SecurityGroupRule.SecurityGroupRuleCidr")
 
 
 class SecurityGroupRelationRequest(AbstractModel):
@@ -183,16 +182,23 @@ class SecurityGroupRelationRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改安全组实例绑定关系
-        :param RelationAction: 操作类型		Attach \
+        r"""修改安全组绑定关系
+        :param RelationAction: Attach | Dettach Attach: 添加实例Id到安全组 Dettach：将实例Id从安全组解绑
         :type PathPrefix: String
         :param SecurityGroupId: 安全组ID
+
+单独操作传递此值
+        :type PathPrefix: String
+        :param SecurityGroupIds: 安全组ID列表
+
+若批量操作则传递此值
         :type PathPrefix: String
         :param DBInstanceIdentifier: 实例ID列表		例如：<br>方式1：DBInstanceIdentifier.0=aaa&DBInstanceIdentifier.1=bbb<br>方式2：DBInstanceIdentifier=aaa,bbb
         :type PathPrefix: String
         """
         self.RelationAction = None
         self.SecurityGroupId = None
+        self.SecurityGroupIds = None
         self.DBInstanceIdentifier = None
 
     def _deserialize(self, params):
@@ -200,6 +206,8 @@ class SecurityGroupRelationRequest(AbstractModel):
             self.RelationAction = params.get("RelationAction")
         if params.get("SecurityGroupId"):
             self.SecurityGroupId = params.get("SecurityGroupId")
+        if params.get("SecurityGroupIds"):
+            self.SecurityGroupIds = params.get("SecurityGroupIds")
         if params.get("DBInstanceIdentifier"):
             self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
 
@@ -209,7 +217,7 @@ class ModifySecurityGroupRuleNameRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改安全组规则名称
+        r"""修改规则名称
         :param SecurityGroupId: 安全组ID
         :type PathPrefix: String
         :param SecurityGroupRuleId: 安全组规则ID
@@ -228,3 +236,101 @@ class ModifySecurityGroupRuleNameRequest(AbstractModel):
             self.SecurityGroupRuleId = params.get("SecurityGroupRuleId")
         if params.get("SecurityGroupRuleName"):
             self.SecurityGroupRuleName = params.get("SecurityGroupRuleName")
+
+
+class CreateDBParameterGroupRequest(AbstractModel):
+    """CreateDBParameterGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建参数组
+        :param DBParameterGroupName: 参数组名称
+        :type PathPrefix: String
+        :param Engine: 数据库引擎名称 不同的数据库引擎，需要不同的数据库参数组
+```json
+Engine与EngineVersion的对应关系：
+mysql 5.5、5.6、5.7、8.0
+percona 5.6
+consistent_mysql 5.7
+ebs_mysql 5.6、5.7
+```
+        :type PathPrefix: String
+        :param EngineVersion: 数据库引擎版本
+        :type PathPrefix: String
+        :param Description: 参数组描述
+        :type PathPrefix: String
+        :param Parameters: 参数值
+
+```json
+模拟请求入参：
+{
+    "Engine": "mysql",
+    "EngineVersion": "5.7",
+    "Parameters": {
+        "delay_key_write": "ON",
+        "table_open_cache_instances": 16
+    },
+    "DBParameterGroupName": "db-drds-openapi-2",
+    "Description": "db-drds-openapi-2"
+}
+```
+        :type PathPrefix: Object
+        """
+        self.DBParameterGroupName = None
+        self.Engine = None
+        self.EngineVersion = None
+        self.Description = None
+        self.Parameters = None
+
+    def _deserialize(self, params):
+        if params.get("DBParameterGroupName"):
+            self.DBParameterGroupName = params.get("DBParameterGroupName")
+        if params.get("Engine"):
+            self.Engine = params.get("Engine")
+        if params.get("EngineVersion"):
+            self.EngineVersion = params.get("EngineVersion")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("Parameters"):
+            self.Parameters = params.get("Parameters")
+
+
+class ModifyDBParameterGroupRequest(AbstractModel):
+    """ModifyDBParameterGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改参数组
+        :param DBParameterGroupId: 参数组ID
+
+
+        :type PathPrefix: String
+        :param DBParameterGroupName: 参数组名称 请勿修改实例唯一参数组；参数组名-参数值/参数组名称/参数组描述，至少填写一项
+
+
+        :type PathPrefix: String
+        :param Description: 参数组描述 请勿修改实例唯一参数组；参数组名-参数值/参数组名称/参数组描述，至少填写一项
+
+
+        :type PathPrefix: String
+        :param Parameters: 参数名 参数名与参数值同时填写；参数组名-参数值/参数组名称/参数组描述，至少填写一项
+
+
+        :type PathPrefix: Object
+        """
+        self.DBParameterGroupId = None
+        self.DBParameterGroupName = None
+        self.Description = None
+        self.Parameters = None
+
+    def _deserialize(self, params):
+        if params.get("DBParameterGroupId"):
+            self.DBParameterGroupId = params.get("DBParameterGroupId")
+        if params.get("DBParameterGroupName"):
+            self.DBParameterGroupName = params.get("DBParameterGroupName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("Parameters"):
+            self.Parameters = params.get("Parameters")
+
+

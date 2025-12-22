@@ -1,12 +1,11 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateCacheClusterRequest(AbstractModel):
     """CreateCacheCluster请求参数结构体
     """
 
     def __init__(self):
-        r"""创建实例
+        r"""创建新实例
         :param AvailableZone: 可用区       	 默认：对应机房的a区
         :type PathPrefix: String
         :param Name: 缓存服务名称 	 支持6-64个中文或者英文字符，包括汉字，大小写字母，数字，下划线和中划线
@@ -23,7 +22,7 @@ class CreateCacheClusterRequest(AbstractModel):
         :type PathPrefix: String
         :param VnetId: 终端子网ID   	 终端子网ID，可在网络控制台获取（注意类型必须为终端子网）
         :type PathPrefix: String
-        :param BillType: 计费方式     	 默认：1。范围：1包年包月，5按量付费（按日月结），87按量付费。 参照请见－[计费方式](https://docs.ksyun.com/documents/38477)
+        :param BillType: 计费方式     	 默认值：1。可选值范围：1包年包月，5按量付费（按日月结），87按量付费。 参照请见－[计费方式](https://docs.ksyun.com/documents/37271)
         :type PathPrefix: Int
         :param Duration: 时长         	 默认：1，BillType=1(包年包月)必填，最大支持范围是(1 ~36月)
         :type PathPrefix: Int
@@ -123,7 +122,7 @@ class DeleteCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除实例
+        r"""删除实例。
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID
@@ -252,7 +251,7 @@ class FlushCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""清空缓存
+        r"""清空缓存。
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID。
@@ -280,20 +279,15 @@ class RenameCacheClusterRequest(AbstractModel):
 
     def __init__(self):
         r"""修改实例名称
-        :param AvailableZone: 可用区       	 默认：对应机房的a区
+        :param CacheId: 实例Id
         :type PathPrefix: String
-        :param CacheId: 缓存服务ID。
-        :type PathPrefix: String
-        :param Name: 缓存服务名称。 	 支持6-64个中文或者英文字符，包括汉字，大小写字母，数字，下划线和中划线。
+        :param Name: 实例新名称。
         :type PathPrefix: String
         """
-        self.AvailableZone = None
         self.CacheId = None
         self.Name = None
 
     def _deserialize(self, params):
-        if params.get("AvailableZone"):
-            self.AvailableZone = params.get("AvailableZone")
         if params.get("CacheId"):
             self.CacheId = params.get("CacheId")
         if params.get("Name"):
@@ -305,7 +299,7 @@ class ResizeCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""更配实例
+        r"""更改实例配置
         :param AvailableZone: 可用区       	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID。
@@ -379,8 +373,8 @@ class SetCacheParametersRequest(AbstractModel):
         self.AvailableZone = None
         self.CacheId = None
         self.Protocol = None
-        self.Parameters.ParameterName = None
-        self.Parameters.ParameterValue = None
+        self.Parameters_ParameterName = None
+        self.Parameters_ParameterValue = None
         self.ResetAllParameters = None
 
     def _deserialize(self, params):
@@ -391,9 +385,9 @@ class SetCacheParametersRequest(AbstractModel):
         if params.get("Protocol"):
             self.Protocol = params.get("Protocol")
         if params.get("Parameters.ParameterName"):
-            self.Parameters.ParameterName = params.get("Parameters.ParameterName")
+            self.Parameters_ParameterName = params.get("Parameters.ParameterName")
         if params.get("Parameters.ParameterValue"):
-            self.Parameters.ParameterValue = params.get("Parameters.ParameterValue")
+            self.Parameters_ParameterValue = params.get("Parameters.ParameterValue")
         if params.get("ResetAllParameters"):
             self.ResetAllParameters = params.get("ResetAllParameters")
 
@@ -403,7 +397,7 @@ class DescribeCacheDefaultParametersRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeCacheDefaultParameters
+        r"""查询实例默认参数
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param ParamVersion: 参数组版本 ，默认是2.8版本。 可选2.8，3.0，4.0，5.0，6.0
@@ -427,20 +421,20 @@ class SetCacheParameterGroupRequest(AbstractModel):
         r"""应用参数组，将参数组中所有的参数的当前值应用到指定的缓存服务对应参数上
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
-        :param CacheParameterGroupId: 参数组ID。
+        :param CacheParameterGroupIds: 参数组ID。支持同时应用server参数组和proxy参数组，以','分隔。
         :type PathPrefix: String
         :param CacheId: 缓存服务ID。
         :type PathPrefix: String
         """
         self.AvailableZone = None
-        self.CacheParameterGroupId = None
+        self.CacheParameterGroupIds = None
         self.CacheId = None
 
     def _deserialize(self, params):
         if params.get("AvailableZone"):
             self.AvailableZone = params.get("AvailableZone")
-        if params.get("CacheParameterGroupId"):
-            self.CacheParameterGroupId = params.get("CacheParameterGroupId")
+        if params.get("CacheParameterGroupIds"):
+            self.CacheParameterGroupIds = params.get("CacheParameterGroupIds")
         if params.get("CacheId"):
             self.CacheId = params.get("CacheId")
 
@@ -646,7 +640,7 @@ class DeleteSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除备份
+        r"""删除实例备份
         :param AvailableZone: 可用区   	 默认：对应机房的a区
         :type PathPrefix: String
         :param SnapshotId: 备份ID。
@@ -693,7 +687,7 @@ class RestoreSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""恢复备份
+        r"""将实例恢复至备份
         :param AvailableZone: 可用区       	 默认：对应机房的a区
         :type PathPrefix: String
         :param Cacheld: 缓存服务ID。
@@ -755,7 +749,7 @@ class DownloadSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""下载备份
+        r"""下载实例备份
         :param AvailableZone: 可用区   	 默认：对应机房的a区
         :type PathPrefix: String
         :param SnapshotId: 备份ID 
@@ -776,7 +770,7 @@ class ExportSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""ExportSnapshot
+        r"""导出备份至ks3
         :param AvailableZone: 可用区       	 默认：对应机房的a区
         :type PathPrefix: String
         :param SnapshotId: 备份ID 
@@ -785,11 +779,14 @@ class ExportSnapshotRequest(AbstractModel):
         :type PathPrefix: String
         :param ObjectName: 文件名称 
         :type PathPrefix: String
+        :param CacheId: 实例Id。
+        :type PathPrefix: String
         """
         self.AvailableZone = None
         self.SnapshotId = None
         self.BucketName = None
         self.ObjectName = None
+        self.CacheId = None
 
     def _deserialize(self, params):
         if params.get("AvailableZone"):
@@ -800,6 +797,8 @@ class ExportSnapshotRequest(AbstractModel):
             self.BucketName = params.get("BucketName")
         if params.get("ObjectName"):
             self.ObjectName = params.get("ObjectName")
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
 
 
 class DescribeRegionsRequest(AbstractModel):
@@ -807,7 +806,7 @@ class DescribeRegionsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询机房
+        r"""查询地域列表
         """
 
     def _deserialize(self, params):
@@ -819,7 +818,7 @@ class DescribeAvailabilityZonesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询可用区
+        r"""查询可用区列表
         """
 
     def _deserialize(self, params):
@@ -857,7 +856,7 @@ class StatisticDBInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""概览页统计查询
+        r"""实例概览统计
         """
 
     def _deserialize(self, params):
@@ -869,7 +868,7 @@ class UpdatePasswordRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改缓存服务密码
+        r"""修改密码。
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID
@@ -895,7 +894,7 @@ class RestartCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""实例重启
+        r"""重启实例。
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID 
@@ -916,7 +915,7 @@ class AllocateEipRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""申请EIP
+        r"""申请外网EIP
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID。
@@ -942,7 +941,7 @@ class DeallocateEipRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""释放EIP
+        r"""释放外网EIP
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID 	 缓存服务ID
@@ -968,7 +967,7 @@ class DescribeInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""安全组-查询实例信息
+        r"""查询安全组绑定查询实例信息
         :param AvailableZone: 可用区     	 默认：对应机房的a区
         :type PathPrefix: String
         :param SecurityGroupId: 安全组id
@@ -1304,6 +1303,44 @@ class CreateSecurityGroupRequest(AbstractModel):
             self.Description = params.get("Description")
 
 
+class DescribeCacheReadonlyNodeRequest(AbstractModel):
+    """DescribeCacheReadonlyNode请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取只读实例列表
+        :param CacheId: 实例Id。
+        :type PathPrefix: String
+        """
+        self.CacheId = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+
+
+class AddCacheSlaveNodeRequest(AbstractModel):
+    """AddCacheSlaveNode请求参数结构体
+    """
+
+    def __init__(self):
+        r"""社区版主从实例添加只读实例
+        :param CacheId: 缓存服务ID
+        :type PathPrefix: String
+        :param SlaveVip: 只读节点指定内网ip
+
+        :type PathPrefix: String
+        """
+        self.CacheId = None
+        self.SlaveVip = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+        if params.get("SlaveVip"):
+            self.SlaveVip = params.get("SlaveVip")
+
+
 class DescribeHotKeysRequest(AbstractModel):
     """DescribeHotKeys请求参数结构体
     """
@@ -1350,7 +1387,7 @@ class AnalyzeHotKeysRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""热key分析按钮
+        r"""发起热key分析
         :param AvailableZone: 可用区       	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID
@@ -1371,7 +1408,7 @@ class CloseDirectAccessToClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""cluster关闭直连
+        r"""社区版集群实例关闭直连
         :param AvailableZone: 可用区       	 默认：对应机房的a区
         :type PathPrefix: String
         :param CacheId: 缓存服务ID。
@@ -1392,7 +1429,7 @@ class OpenDirectAccessToClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""cluster开启直连
+        r"""社区版集群实例开启直连
         :param AvailableZone: 可用区。默认为当前region的a区。
         :type PathPrefix: String
         :param CacheId: 缓存服务ID
@@ -1423,7 +1460,7 @@ class DescribeParentBackUpsSnapshotsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""redis集群备份数据父列表数据
+        r"""集群实例备份数据父列表数据
         :param CacheId: 缓存服务ID		缓存服务ID
         :type PathPrefix: String
         """
@@ -1439,7 +1476,7 @@ class DescribeBackUpsSnapshotsDetailRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""redis集群备份数据子列表数据
+        r"""集群实例备份数据子列表数据
         :param CacheId: 缓存服务ID
         :type PathPrefix: String
         :param SnapshotId: 备份ID
@@ -1460,7 +1497,7 @@ class DeleteLevelSnapshotsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""redis集群层级备份数据删除
+        r"""集群实例层级备份数据删除
         :param CacheId: 缓存服务ID		缓存服务ID
         :type PathPrefix: String
         :param SnapshotId: 备份ID		备份ID
@@ -1481,7 +1518,7 @@ class DownloadLevelSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""redis集群层次备份数据下载
+        r"""集群实例层次备份数据下载
         :param CacheId: 缓存服务ID
         :type PathPrefix: String
         :param SnapshotId: 备份ID
@@ -1561,14 +1598,10 @@ class DescribeCreateSnapshotStatusRequest(AbstractModel):
 
     def __init__(self):
         r"""创建备份前的备份状态和大key分析状态查询
-        :param CacheId: 缓存服务ID(实例ID)
-        :type PathPrefix: String
         """
-        self.CacheId = None
 
     def _deserialize(self, params):
-        if params.get("CacheId"):
-            self.CacheId = params.get("CacheId")
+        return
 
 
 class GetDailyAnalyzeSwitchStateRequest(AbstractModel):
@@ -1689,7 +1722,7 @@ class AnalyzeDailySwitchRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""AnalyzeDailySwitch
+        r"""日志分析开关
         :param CacheId: 缓存服务ID	 实例ID
         :type PathPrefix: String
         :param ServiceLog: 运行日志开关	 true表示开启，false表示关闭，null保持当前状态不变 默认传null
@@ -1708,3 +1741,177 @@ class AnalyzeDailySwitchRequest(AbstractModel):
             self.ServiceLog = params.get("ServiceLog")
         if params.get("SlowLog"):
             self.SlowLog = params.get("SlowLog")
+
+
+class RestoreByTimePointSwitchRequest(AbstractModel):
+    """RestoreByTimePointSwitch请求参数结构体
+    """
+
+    def __init__(self):
+        r"""实例开启或关闭基于时间点恢复
+        :param CacheId: 实例Id。
+        :type PathPrefix: String
+        :param RestoreSwitch: 开启或关闭基于时间点恢复。可选值：on，off
+        :type PathPrefix: String
+        """
+        self.CacheId = None
+        self.RestoreSwitch = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+        if params.get("RestoreSwitch"):
+            self.RestoreSwitch = params.get("RestoreSwitch")
+
+
+class DescribeRestoreTimePointsRequest(AbstractModel):
+    """DescribeRestoreTimePoints请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例可恢复时间点
+        :param CacheId: 实例Id。
+        :type PathPrefix: String
+        """
+        self.CacheId = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+
+
+class DescribeBigHotKeysRequest(AbstractModel):
+    """DescribeBigHotKeys请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例实时或历史的大key，热key信息（仅支持企业版实例）。
+        :param CacheId: 实例Id。
+        :type PathPrefix: String
+        :param NodeId: 根据指定节点查询。
+        :type PathPrefix: String
+        :param QueryType: 查询类型，可选值：RealTime（实时）或History（历史）。默认：RealTime。
+        :type PathPrefix: String
+        :param KeyType: 查询的Key类型。可选值：1，2，3；默认为1。
+1:热key; 2：大key（子元素数量）；3：大key（内存占用）
+        :type PathPrefix: Int
+        :param KeyName: 指定查询某个key的全部数据。仅QueryType为History时生效。
+        :type PathPrefix: String
+        :param StartQueryTime: 查询时间范围的开始时间。默认取当前时间的前30分钟。格式："yyyy-MM-dd HH:mm:ss。仅QueryType为History时生效。
+        :type PathPrefix: String
+        :param EndQueryTime: 查询时间范围的结束时间。默认取当前时间。格式："yyyy-MM-dd HH:mm:ss。仅QueryType为History时生效。
+        :type PathPrefix: String
+        :param PageSize: 查询结果每页返回记录数。默认10，范围1-100。
+        :type PathPrefix: Int
+        :param PageNum: 页数。默认1. 最小为1
+        :type PathPrefix: Int
+        """
+        self.CacheId = None
+        self.NodeId = None
+        self.QueryType = None
+        self.KeyType = None
+        self.KeyName = None
+        self.StartQueryTime = None
+        self.EndQueryTime = None
+        self.PageSize = None
+        self.PageNum = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+        if params.get("NodeId"):
+            self.NodeId = params.get("NodeId")
+        if params.get("QueryType"):
+            self.QueryType = params.get("QueryType")
+        if params.get("KeyType"):
+            self.KeyType = params.get("KeyType")
+        if params.get("KeyName"):
+            self.KeyName = params.get("KeyName")
+        if params.get("StartQueryTime"):
+            self.StartQueryTime = params.get("StartQueryTime")
+        if params.get("EndQueryTime"):
+            self.EndQueryTime = params.get("EndQueryTime")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+
+
+class DescribePluginsRequest(AbstractModel):
+    """DescribePlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询插件列表
+        :param CacheId: 实例ID
+        :type PathPrefix: String
+        :param Installed: 是否是已安装的插件。
+        :type PathPrefix: Boolean
+        :param FuzzySearch: 模糊查找
+        :type PathPrefix: String
+        :param Offset: 偏移量
+        :type PathPrefix: Int
+        :param Limit: 返回最大记录数
+        :type PathPrefix: Int
+        """
+        self.CacheId = None
+        self.Installed = None
+        self.FuzzySearch = None
+        self.Offset = None
+        self.Limit = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+        if params.get("Installed"):
+            self.Installed = params.get("Installed")
+        if params.get("FuzzySearch"):
+            self.FuzzySearch = params.get("FuzzySearch")
+        if params.get("Offset"):
+            self.Offset = params.get("Offset")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+
+
+class InstallPluginsRequest(AbstractModel):
+    """InstallPlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""实例安装插件
+        :param CacheId: 实例ID
+        :type PathPrefix: String
+        :param Plugins: 需安装的插件列表。
+        :type PathPrefix: Array
+        """
+        self.CacheId = None
+        self.Plugins = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+        if params.get("Plugins"):
+            self.Plugins = params.get("Plugins")
+
+
+class UninstallPluginsRequest(AbstractModel):
+    """UninstallPlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""实例卸载插件
+        :param CacheId: 实例ID
+        :type PathPrefix: String
+        :param PluginNames: 插件名称
+        :type PathPrefix: Array
+        """
+        self.CacheId = None
+        self.PluginNames = None
+
+    def _deserialize(self, params):
+        if params.get("CacheId"):
+            self.CacheId = params.get("CacheId")
+        if params.get("PluginNames"):
+            self.PluginNames = params.get("PluginNames")
+
+

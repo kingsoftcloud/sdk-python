@@ -1,16 +1,34 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class GetLinesRequest(AbstractModel):
     """GetLines请求参数结构体
     """
 
     def __init__(self):
         r"""获取用户可选链路信息
+        :param Uuid: 线路类型的ID
+        :type PathPrefix: String
+        :param Name: 线路LineName
+        :type PathPrefix: String
+        :param IpVersion: IpVersion版本，ipv6|ipv4|all，不传查询ipv4
+        :type PathPrefix: String
+        :param Type: LineType，线路类型，例如:Public
+        :type PathPrefix: String
         """
+        self.Uuid = None
+        self.Name = None
+        self.IpVersion = None
+        self.Type = None
 
     def _deserialize(self, params):
-        return
+        if params.get("Uuid"):
+            self.Uuid = params.get("Uuid")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("IpVersion"):
+            self.IpVersion = params.get("IpVersion")
+        if params.get("Type"):
+            self.Type = params.get("Type")
 
 
 class DescribeAddressesRequest(AbstractModel):
@@ -25,6 +43,12 @@ class DescribeAddressesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
+        :param IsContainTag: 是否在返回值中包含资源标签信息
+        :type PathPrefix: Boolean
+        :param TagKey: 多个标签的键
+        :type PathPrefix: Filter
+        :param TagKV: 多个标签的键
+        :type PathPrefix: Filter
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
@@ -37,6 +61,9 @@ class DescribeAddressesRequest(AbstractModel):
         self.ProjectId = None
         self.AllocationId = None
         self.Filter = None
+        self.IsContainTag = None
+        self.TagKey = None
+        self.TagKV = None
         self.MaxResults = None
         self.NextToken = None
         self.State = None
@@ -49,6 +76,12 @@ class DescribeAddressesRequest(AbstractModel):
             self.AllocationId = params.get("AllocationId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("IsContainTag"):
+            self.IsContainTag = params.get("IsContainTag")
+        if params.get("TagKey"):
+            self.TagKey = params.get("TagKey")
+        if params.get("TagKV"):
+            self.TagKV = params.get("TagKV")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
@@ -194,3 +227,65 @@ class ModifyAddressRequest(AbstractModel):
             self.AllocationId = params.get("AllocationId")
         if params.get("BandWidth"):
             self.BandWidth = params.get("BandWidth")
+
+
+class CreateEipPoolRequest(AbstractModel):
+    """CreateEipPool请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建EIP地址池
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DeleteEipPoolRequest(AbstractModel):
+    """DeleteEipPool请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除EIP地址池
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class ModifyEipPoolRequest(AbstractModel):
+    """ModifyEipPool请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改EIP地址池
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DescribeEipPoolsRequest(AbstractModel):
+    """DescribeEipPools请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询EIP地址池
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DescribeIpExistEipPoolUseRequest(AbstractModel):
+    """DescribeIpExistEipPoolUse请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询IP是否在地址池中使用
+        """
+
+    def _deserialize(self, params):
+        return
+
+

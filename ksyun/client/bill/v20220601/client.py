@@ -8,7 +8,6 @@ class BillClient(AbstractClient):
     _apiVersion = '2022-06-01'
     _endpoint = 'bill.api.ksyun.com'
     _service = 'bill'
-
     def GetMonthConsume(self, request):
         """获取日耗月账单
         :param request: Request instance for GetMonthConsume.
@@ -31,6 +30,7 @@ class BillClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def GetPostpayDetailConsume(self, request):
         """获取日耗账单明细
         :param request: Request instance for GetPostpayDetailConsume.
@@ -52,3 +52,5 @@ class BillClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

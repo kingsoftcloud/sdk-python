@@ -1,42 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
-class DescribeClusterRequest(AbstractModel):
-    """DescribeCluster请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询集群列表
-        :param ClusterId: 集群id，如不输入，则默认查询该地域下的所有集群。
-        :type PathPrefix: String
-        :param Marker: 分页标识，单次调用未返回全部实例时，标记下次调用的返回值的起点，默认值是0。
-        :type PathPrefix: Int
-        :param MaxResults: 单次调用所返回的最大实例数目，默认10， 范围(0-20]。
-        :type PathPrefix: String
-        :param Search: 模糊匹配，可匹配如下字段：<br>集群名称(ClusterName)。
-        :type PathPrefix: String
-        :param Filter: 
-        :type PathPrefix: Filter
-        """
-        self.ClusterId = None
-        self.Marker = None
-        self.MaxResults = None
-        self.Search = None
-        self.Filter = None
-
-    def _deserialize(self, params):
-        if params.get("ClusterId"):
-            self.ClusterId = params.get("ClusterId")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-        if params.get("Search"):
-            self.Search = params.get("Search")
-        if params.get("Filter"):
-            self.Filter = params.get("Filter")
-
-
 class DescribeClusterInstanceRequest(AbstractModel):
     """DescribeClusterInstance请求参数结构体
     """
@@ -235,12 +198,15 @@ class DescribeEpcForClusterRequest(AbstractModel):
         :type PathPrefix: Int
         :param MaxResults: 单次调用所返回的最大实例数目，默认20， 范围(1-50]。
         :type PathPrefix: Int
+        :param OperatorType: 操作类型，可取值：AddNode，传递该值后，返回的数据则自动增加状态过滤，只返回Running、HotStandby状态的EPC实例
+        :type PathPrefix: String
         """
         self.ClusterId = None
         self.InstanceId = None
         self.Filter = None
         self.Marker = None
         self.MaxResults = None
+        self.OperatorType = None
 
     def _deserialize(self, params):
         if params.get("ClusterId"):
@@ -253,6 +219,8 @@ class DescribeEpcForClusterRequest(AbstractModel):
             self.Marker = params.get("Marker")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
+        if params.get("OperatorType"):
+            self.OperatorType = params.get("OperatorType")
 
 
 class AddClusterEpcInstancesRequest(AbstractModel):
@@ -374,6 +342,12 @@ class CreateNodePoolRequest(AbstractModel):
         :type PathPrefix: Int
         :param DesiredCapacity: 期望节点数量，即节点池刚创建时的实例数量，必须在最小节点数量与最大节点数量之间
         :type PathPrefix: Int
+        :param EnableDelProtection: 开启删除保护
+默认值：True
+        :type PathPrefix: Boolean
+        :param FailureAutoDelete: 开启自动删除实例
+默认值：false
+        :type PathPrefix: Boolean
         """
         self.NodePoolName = None
         self.ClusterId = None
@@ -384,6 +358,8 @@ class CreateNodePoolRequest(AbstractModel):
         self.MinSize = None
         self.MaxSize = None
         self.DesiredCapacity = None
+        self.EnableDelProtection = None
+        self.FailureAutoDelete = None
 
     def _deserialize(self, params):
         if params.get("NodePoolName"):
@@ -404,6 +380,10 @@ class CreateNodePoolRequest(AbstractModel):
             self.MaxSize = params.get("MaxSize")
         if params.get("DesiredCapacity"):
             self.DesiredCapacity = params.get("DesiredCapacity")
+        if params.get("EnableDelProtection"):
+            self.EnableDelProtection = params.get("EnableDelProtection")
+        if params.get("FailureAutoDelete"):
+            self.FailureAutoDelete = params.get("FailureAutoDelete")
 
 
 class DescribeNodePoolRequest(AbstractModel):
@@ -453,7 +433,7 @@ class DeleteNodePoolRequest(AbstractModel):
         :param NodePoolId: 节点池id
         :type PathPrefix: Filter
         :param InstanceDeleteMode: 节点的删除模式，有效值:<br>- **Terminate**：销毁实例<br>- **Remove**：仅把节点移出集群，实例本身不销毁<br>默认值：Terminate
-        :type PathPrefix: Boolean
+        :type PathPrefix: String
         """
         self.ClusterId = None
         self.NodePoolId = None
@@ -759,3 +739,361 @@ class DescribeNodePoolSummaryRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ClusterId"):
             self.ClusterId = params.get("ClusterId")
+
+
+class CreateLogRuleRequest(AbstractModel):
+    """CreateLogRule请求参数结构体
+    """
+
+    def __init__(self):
+        r"""CreateLogRule
+        :param ClusterId: 集群Id
+        :type PathPrefix: String
+        :param RuleName: 日志规则名称
+- 不超过40个字符，只能包含小写字母、数字及分隔符("-"、"_"、".")，且必须以小写字母、数字开头和结尾
+        :type PathPrefix: String
+        :param InputConfig: 日志源
+        :type PathPrefix: Object
+        :param OutputConfig: 消费端
+        :type PathPrefix: Object
+        """
+        self.ClusterId = None
+        self.RuleName = None
+        self.InputConfig = None
+        self.OutputConfig = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("RuleName"):
+            self.RuleName = params.get("RuleName")
+        if params.get("InputConfig"):
+            self.InputConfig = params.get("InputConfig")
+        if params.get("OutputConfig"):
+            self.OutputConfig = params.get("OutputConfig")
+
+
+class DescribeClusterSummaryRequest(AbstractModel):
+    """DescribeClusterSummary请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询用户指定机房下的全量集群基础信息
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class UpdateNodePoolDelProtectionRequest(AbstractModel):
+    """UpdateNodePoolDelProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""UpdateNodePoolDelProtection
+        :param NodePoolId: 节点池Id
+        :type PathPrefix: String
+        :param EnableDelProtection: 是否开启删除保护
+        :type PathPrefix: Boolean
+        """
+        self.NodePoolId = None
+        self.EnableDelProtection = None
+
+    def _deserialize(self, params):
+        if params.get("NodePoolId"):
+            self.NodePoolId = params.get("NodePoolId")
+        if params.get("EnableDelProtection"):
+            self.EnableDelProtection = params.get("EnableDelProtection")
+
+
+class DescribeReleaseRequest(AbstractModel):
+    """DescribeRelease请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询Helm3应用
+        :param ClusterId: 集群 Id
+        :type PathPrefix: String
+        :param Filter: helm应用筛选条件
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+
+class DescribeReleaseHistoryRequest(AbstractModel):
+    """DescribeReleaseHistory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询Helm3应用历史版本
+        :param ClusterId: 集群 Id
+        :type PathPrefix: String
+        :param ReleaseName: Helm应用名称
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+        self.ReleaseName = None
+        self.Namespace = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("ReleaseName"):
+            self.ReleaseName = params.get("ReleaseName")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+
+
+class DescribeReleaseDetailRequest(AbstractModel):
+    """DescribeReleaseDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询Helm3应用详情
+        :param ClusterId: 集群Id
+        :type PathPrefix: String
+        :param ReleaseName: helm应用名称
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+        self.ReleaseName = None
+        self.Namespace = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("ReleaseName"):
+            self.ReleaseName = params.get("ReleaseName")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+
+
+class DeleteReleaseRequest(AbstractModel):
+    """DeleteRelease请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除Helm3应用
+        :param ClusterId: 集群 Id
+        :type PathPrefix: String
+        :param ReleaseName: 应用名称
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+        self.ReleaseName = None
+        self.Namespace = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("ReleaseName"):
+            self.ReleaseName = params.get("ReleaseName")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+
+
+class RollbackReleaseRequest(AbstractModel):
+    """RollbackRelease请求参数结构体
+    """
+
+    def __init__(self):
+        r"""回滚Helm3应用
+        :param ClusterId: 集群 Id
+        :type PathPrefix: String
+        :param ReleaseName: 应用名称
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param ReleaseVersion: 版本号
+        :type PathPrefix: Int
+        """
+        self.ClusterId = None
+        self.ReleaseName = None
+        self.Namespace = None
+        self.ReleaseVersion = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("ReleaseName"):
+            self.ReleaseName = params.get("ReleaseName")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("ReleaseVersion"):
+            self.ReleaseVersion = params.get("ReleaseVersion")
+
+
+class InstallReleaseRequest(AbstractModel):
+    """InstallRelease请求参数结构体
+    """
+
+    def __init__(self):
+        r"""安装Helm3应用
+        :param ClusterId: 集群 Id
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param ReleaseName: 应用名称
+        :type PathPrefix: String
+        :param ChartSource: Chart 来源
+        :type PathPrefix: String
+        :param ChartNamespace: Chart命名空间，ChartSource为KSYUN 时，必填
+        :type PathPrefix: String
+        :param ChartName: Chart 名称，ChartSource为KSYUN 时，必填
+        :type PathPrefix: String
+        :param ChartVersion: Chart版本，ChartSource为 KSYUN时，必填
+        :type PathPrefix: String
+        :param ChartUrl: Chart 仓库地址，ChartSource 为THIRD时，必填
+        :type PathPrefix: String
+        :param ChartRepoType: 仓库类型
+        :type PathPrefix: String
+        :param ChartRepoUsername: 仓库的用户名
+ChartRepoType 为PRIVATE时，必填
+        :type PathPrefix: String
+        :param ChartRepoPassword: 仓库的密码
+ChartRepoType为PRIVATE时，必填
+        :type PathPrefix: String
+        :param Values: Values.yaml文件内容
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+        self.Namespace = None
+        self.ReleaseName = None
+        self.ChartSource = None
+        self.ChartNamespace = None
+        self.ChartName = None
+        self.ChartVersion = None
+        self.ChartUrl = None
+        self.ChartRepoType = None
+        self.ChartRepoUsername = None
+        self.ChartRepoPassword = None
+        self.Values = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("ReleaseName"):
+            self.ReleaseName = params.get("ReleaseName")
+        if params.get("ChartSource"):
+            self.ChartSource = params.get("ChartSource")
+        if params.get("ChartNamespace"):
+            self.ChartNamespace = params.get("ChartNamespace")
+        if params.get("ChartName"):
+            self.ChartName = params.get("ChartName")
+        if params.get("ChartVersion"):
+            self.ChartVersion = params.get("ChartVersion")
+        if params.get("ChartUrl"):
+            self.ChartUrl = params.get("ChartUrl")
+        if params.get("ChartRepoType"):
+            self.ChartRepoType = params.get("ChartRepoType")
+        if params.get("ChartRepoUsername"):
+            self.ChartRepoUsername = params.get("ChartRepoUsername")
+        if params.get("ChartRepoPassword"):
+            self.ChartRepoPassword = params.get("ChartRepoPassword")
+        if params.get("Values"):
+            self.Values = params.get("Values")
+
+
+class UpgradeReleaseRequest(AbstractModel):
+    """UpgradeRelease请求参数结构体
+    """
+
+    def __init__(self):
+        r"""安装Helm3应用
+        :param ClusterId: 集群 Id
+
+
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+
+        :type PathPrefix: String
+        :param ReleaseName: 应用名称
+        :type PathPrefix: String
+        :param ChartSource: Chart来源
+        :type PathPrefix: String
+        :param ChartNamespace: Chart命名空间，ChartSource为KSYUN 时，必填
+
+        :type PathPrefix: String
+        :param ChartName: Chart 名称，ChartSource为KSYUN 时，必填
+
+
+        :type PathPrefix: String
+        :param ChartVersion: Chart版本，ChartSource为 KSYUN时，必填
+
+
+        :type PathPrefix: String
+        :param ChartUrl: Chart 仓库地址，ChartSource 为THIRD时，必填
+
+
+        :type PathPrefix: String
+        :param ChartRepoType: 仓库类型
+
+
+        :type PathPrefix: String
+        :param ChartRepoUsername: 仓库的用户名
+ChartRepoType 为PRIVATE时，必填
+        :type PathPrefix: String
+        :param ChartRepoPassword: 	
+仓库的密码
+ChartRepoType为PRIVATE时，必填
+        :type PathPrefix: String
+        :param Values: Values.yaml文件内容
+
+
+        :type PathPrefix: String
+        """
+        self.ClusterId = None
+        self.Namespace = None
+        self.ReleaseName = None
+        self.ChartSource = None
+        self.ChartNamespace = None
+        self.ChartName = None
+        self.ChartVersion = None
+        self.ChartUrl = None
+        self.ChartRepoType = None
+        self.ChartRepoUsername = None
+        self.ChartRepoPassword = None
+        self.Values = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("ReleaseName"):
+            self.ReleaseName = params.get("ReleaseName")
+        if params.get("ChartSource"):
+            self.ChartSource = params.get("ChartSource")
+        if params.get("ChartNamespace"):
+            self.ChartNamespace = params.get("ChartNamespace")
+        if params.get("ChartName"):
+            self.ChartName = params.get("ChartName")
+        if params.get("ChartVersion"):
+            self.ChartVersion = params.get("ChartVersion")
+        if params.get("ChartUrl"):
+            self.ChartUrl = params.get("ChartUrl")
+        if params.get("ChartRepoType"):
+            self.ChartRepoType = params.get("ChartRepoType")
+        if params.get("ChartRepoUsername"):
+            self.ChartRepoUsername = params.get("ChartRepoUsername")
+        if params.get("ChartRepoPassword"):
+            self.ChartRepoPassword = params.get("ChartRepoPassword")
+        if params.get("Values"):
+            self.Values = params.get("Values")
+
+

@@ -8,7 +8,6 @@ class SksClient(AbstractClient):
     _apiVersion = '2015-11-01'
     _endpoint = 'sks.api.ksyun.com'
     _service = 'sks'
-
     def CreateKey(self, request):
         """创建密钥
         :param request: Request instance for CreateKey.
@@ -30,6 +29,7 @@ class SksClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ImportKey(self, request):
         """导入密钥
@@ -53,6 +53,7 @@ class SksClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteKey(self, request):
         """删除密钥
         :param request: Request instance for DeleteKey.
@@ -74,6 +75,7 @@ class SksClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyKey(self, request):
         """修改密钥信息
@@ -97,6 +99,7 @@ class SksClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeKeys(self, request):
         """获取密钥列表信息
         :param request: Request instance for DescribeKeys.
@@ -118,3 +121,5 @@ class SksClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

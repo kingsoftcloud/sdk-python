@@ -8,7 +8,6 @@ class PdnsClient(AbstractClient):
     _apiVersion = '2016-03-04'
     _endpoint = 'pdns.api.ksyun.com'
     _service = 'pdns'
-
     def CreatePrivateDns(self, request):
         """创建内网DNS实例
         :param request: Request instance for CreatePrivateDns.
@@ -30,6 +29,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeletePrivateDns(self, request):
         """删除内网DNS实例
@@ -53,6 +53,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribePrivateDns(self, request):
         """描述内网DNS实例
         :param request: Request instance for DescribePrivateDns.
@@ -74,6 +75,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AssociateVpcs(self, request):
         """关联VPC
@@ -97,6 +99,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DisassociateVpcs(self, request):
         """解绑VPC
         :param request: Request instance for DisassociateVpcs.
@@ -118,6 +121,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateZone(self, request):
         """创建Zone
@@ -141,6 +145,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteZone(self, request):
         """删除Zone
         :param request: Request instance for DeleteZone.
@@ -162,6 +167,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyZone(self, request):
         """修改Zone
@@ -185,6 +191,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeZone(self, request):
         """描述Zone
         :param request: Request instance for DescribeZone.
@@ -206,6 +213,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateRecord(self, request):
         """添加解析记录
@@ -229,6 +237,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteRecord(self, request):
         """删除解析记录
         :param request: Request instance for DeleteRecord.
@@ -251,27 +260,6 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def ModifyRecord(self, request):
-        """修改解析记录
-        :param request: Request instance for ModifyRecord.
-        :type request: :class:`ksyun.client.pdns.v20160304.models.ModifyRecordRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("ModifyRecord", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def DescribeRecord(self, request):
         """描述解析记录
@@ -295,6 +283,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateRecordData(self, request):
         """添加记录值
         :param request: Request instance for CreateRecordData.
@@ -316,6 +305,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRecordData(self, request):
         """删除记录值
@@ -339,6 +329,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreatePdnsZone(self, request):
         """创建内网DNSzone
         :param request: Request instance for CreatePdnsZone.
@@ -360,6 +351,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyPdnsZone(self, request):
         """修改Zone的ttl
@@ -383,6 +375,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeletePdnsZone(self, request):
         """删除Zone-二期
         :param request: Request instance for DeletePdnsZone.
@@ -404,6 +397,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribePdnsZones(self, request):
         """查询Zone-二期
@@ -427,6 +421,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def BindZoneVpc(self, request):
         """为Zone绑定VPC
         :param request: Request instance for BindZoneVpc.
@@ -448,6 +443,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UnbindZoneVpc(self, request):
         """Zone解绑VPC
@@ -471,6 +467,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateZoneRecord(self, request):
         """创建Zone解析记录-二期
         :param request: Request instance for CreateZoneRecord.
@@ -492,6 +489,7 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteZoneRecord(self, request):
         """删除Zone解析记录
@@ -515,6 +513,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyZoneRecord(self, request):
         """修改Zone解析记录
         :param request: Request instance for ModifyZoneRecord.
@@ -537,6 +536,7 @@ class PdnsClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeZoneRecord(self, request):
         """查询Zone解析记录 - 二期
         :param request: Request instance for DescribeZoneRecord.
@@ -558,3 +558,258 @@ class PdnsClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def UnbindFdZoneVpc(self, request):
+        """取消关联生效VPC
+        :param request: Request instance for UnbindFdZoneVpc.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.UnbindFdZoneVpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UnbindFdZoneVpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def BindFdZoneVpc(self, request):
+        """关联生效VPC
+        :param request: Request instance for BindFdZoneVpc.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.BindFdZoneVpcRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BindFdZoneVpc", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribePdnsFdZone(self, request):
+        """查询转发Zone
+        :param request: Request instance for DescribePdnsFdZone.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.DescribePdnsFdZoneRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribePdnsFdZone", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeletePdnsFdZone(self, request):
+        """删除转发Zone
+        :param request: Request instance for DeletePdnsFdZone.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.DeletePdnsFdZoneRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeletePdnsFdZone", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyPdnsFdZone(self, request):
+        """修改转发Zone
+        :param request: Request instance for ModifyPdnsFdZone.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.ModifyPdnsFdZoneRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyPdnsFdZone", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreatePdnsFdZone(self, request):
+        """创建转发Zone
+        :param request: Request instance for CreatePdnsFdZone.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.CreatePdnsFdZoneRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreatePdnsFdZone", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def QueryEndPointRegionAZ(self, request):
+        """查询Endpoint支持的可用区
+        :param request: Request instance for QueryEndPointRegionAZ.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.QueryEndPointRegionAZRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryEndPointRegionAZ", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeEndPoints(self, request):
+        """查询出站节点
+        :param request: Request instance for DescribeEndPoints.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.DescribeEndPointsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeEndPoints", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteEndPoint(self, request):
+        """删除出站节点
+        :param request: Request instance for DeleteEndPoint.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.DeleteEndPointRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteEndPoint", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyEndPoint(self, request):
+        """修改出站节点
+        :param request: Request instance for ModifyEndPoint.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.ModifyEndPointRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyEndPoint", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateEndPoint(self, request):
+        """创建出站节点
+        :param request: Request instance for CreateEndPoint.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.CreateEndPointRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateEndPoint", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

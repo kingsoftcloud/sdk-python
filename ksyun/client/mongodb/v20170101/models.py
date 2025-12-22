@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateMongoDBInstanceRequest(AbstractModel):
     """CreateMongoDBInstance请求参数结构体
     """
@@ -78,7 +77,7 @@ class DeleteMongoDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除实例
+        r"""删除实例。
         :param InstanceId: 实例ID
         :type PathPrefix: String
         """
@@ -110,7 +109,7 @@ class DescribeMongoDBInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询账号下实例列表
+        r"""查询实例列表
         :param Area: 按可用区筛选。
         :type PathPrefix: String
         :param Vip: 实例IP地址。
@@ -119,8 +118,7 @@ class DescribeMongoDBInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param VnetId: 终端子网ID。
         :type PathPrefix: String
-        :param IamProjectId: 项目ID。                           
- 默认是0(默认项目),如果查询全部项目，需要传入所有的项目ID，‘,’隔开。
+        :param IamProjectId: 项目制ID。如需指定查询多个项目制下实例，用‘,’隔开。默认查询全部项目制。
         :type PathPrefix: String
         :param InstanceId: 实例Id。
         :type PathPrefix: String
@@ -246,7 +244,7 @@ class ResetPasswordMongoDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改密码
+        r"""修改实例密码
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param InstancePassword: 实例修改后的密码。8-30个字符，必须包含大小写字母和数字，支持特殊字符字符为!@#$%^&*()_+=-
@@ -267,7 +265,7 @@ class RestartMongoDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""重启实例
+        r"""重启实例。
         :param InstanceId: 实例ID
         :type PathPrefix: String
         """
@@ -283,7 +281,7 @@ class CreateMongoDBSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建手动备份
+        r"""手动创建备份
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         :param Name: 备份名称
@@ -356,7 +354,7 @@ class DeleteMongoDBSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除备份
+        r"""删除备份。
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         :param SnapshotId: 备份Id
@@ -377,7 +375,7 @@ class RenameMongoDBSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""备份重命名
+        r"""修改备份名称
         :param InstanceId: 实例id
 
         :type PathPrefix: String
@@ -422,6 +420,32 @@ class AddSecurityGroupRuleRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("Cidrs"):
             self.Cidrs = params.get("Cidrs")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+
+
+class DeleteSecurityGroupRulesRequest(AbstractModel):
+    """DeleteSecurityGroupRules请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除安全组规则
+        :param Cidrs: cidr字段集合。安全组规则id在白名单列表中获取。 
+        :type PathPrefix: String
+        :param InstanceId: 实例ID。
+        :type PathPrefix: String
+        :param Type: 网络类型	。可选：IPV4 或者 IPV6。 请注意，字段值严格大写。
+        :type PathPrefix: String
+        """
+        self.Cidrs = None
+        self.InstanceId = None
+        self.Type = None
+
+    def _deserialize(self, params):
+        if params.get("Cidrs"):
+            self.Cidrs = params.get("Cidrs")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
         if params.get("Type"):
             self.Type = params.get("Type")
 
@@ -494,8 +518,8 @@ class DescribeMongoDBShardNodeRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""分片集群实例shard节点查询
-        :param InstanceId: 实例ID
+        r"""查询分片集群实例shard节点信息
+        :param InstanceId: 实例Id
         :type PathPrefix: String
         """
         self.InstanceId = None
@@ -510,15 +534,11 @@ class DescribeValidRegionRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询用户可用机房详情
-        :param Action: Action
-        :type PathPrefix: String
+        r"""查询用户可用机房列表
         """
-        self.Action = None
 
     def _deserialize(self, params):
-        if params.get("Action"):
-            self.Action = params.get("Action")
+        return
 
 
 class AllocateEipRequest(AbstractModel):
@@ -564,14 +584,10 @@ class DescribeRegionsRequest(AbstractModel):
 
     def __init__(self):
         r"""查询机房可用区
-        :param Action: Action
-        :type PathPrefix: String
         """
-        self.Action = None
 
     def _deserialize(self, params):
-        if params.get("Action"):
-            self.Action = params.get("Action")
+        return
 
 
 class CreateMongoDBShardInstanceRequest(AbstractModel):
@@ -666,16 +682,21 @@ class DownloadSnapshotRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""下载备份
+        r"""下载备份。
         :param SnapshotId: 备份ID。请注意：暂不支持分片集群实例备份的下载。
 
         :type PathPrefix: String
+        :param InstanceId: 实例Id。
+        :type PathPrefix: String
         """
         self.SnapshotId = None
+        self.InstanceId = None
 
     def _deserialize(self, params):
         if params.get("SnapshotId"):
             self.SnapshotId = params.get("SnapshotId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
 
 
 class CloneInstanceRequest(AbstractModel):
@@ -745,7 +766,7 @@ class DescribeShardNodeRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询分片集群shard节点列表
+        r"""查询分片集群shard节点信息
         :param InstanceId: 分片集群实例id
         :type PathPrefix: String
         """
@@ -761,15 +782,11 @@ class DescribeInstanceStatisticRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""概览页统计接口
-        :param Action: Action
-        :type PathPrefix: String
+        r"""实例概览统计
         """
-        self.Action = None
 
     def _deserialize(self, params):
-        if params.get("Action"):
-            self.Action = params.get("Action")
+        return
 
 
 class AddClusterNodeRequest(AbstractModel):
@@ -829,7 +846,7 @@ class DescribeSlowLogDetailRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeSlowLogDetail
+        r"""查询实例运行慢日志
         :param InstanceId: 实例ID。
 
         :type PathPrefix: String
@@ -882,7 +899,7 @@ class DescribeSlowLogStatisticsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeSlowLogStatistics
+        r"""实例运行慢日志统计
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         :param NodeId: 节点ID。选填节点ID则查询该节点下的慢SQL统计数据
@@ -929,7 +946,7 @@ class DescribeSlowLogDatabaseRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeSlowLogDatabase
+        r"""查询慢日志数据库列表
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         :param NodeId: 节点ID。加上节点ID则查询该节点下的慢SQL数据库信息。
@@ -1001,7 +1018,7 @@ class UpdateMongoDBInstanceClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""分片集群节点更配
+        r"""分片集群节点配置大小更配
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         :param InstanceClass: 实例套餐 可选:  1C2G        2C4G        4C8G         8C16G    8C32G    16C64G
@@ -1052,3 +1069,178 @@ class DescribeClusterForRestoreRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("ResetTimePoint"):
             self.ResetTimePoint = params.get("ResetTimePoint")
+
+
+class DescribeDefaultParamsRequest(AbstractModel):
+    """DescribeDefaultParams请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询默认参数模板
+        :param DbVersion: 实例版本
+        :type PathPrefix: String
+        """
+        self.DbVersion = None
+
+    def _deserialize(self, params):
+        if params.get("DbVersion"):
+            self.DbVersion = params.get("DbVersion")
+
+
+class CreateParamGroupRequest(AbstractModel):
+    """CreateParamGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建参数组
+        :param ParamGroupName: 参数组名称
+        :type PathPrefix: String
+        :param Description: 参数组描述
+        :type PathPrefix: String
+        :param DbVersion: 实例版本
+        :type PathPrefix: Double
+        :param Params: 参数项
+        :type PathPrefix: String
+        """
+        self.ParamGroupName = None
+        self.Description = None
+        self.DbVersion = None
+        self.Params = None
+
+    def _deserialize(self, params):
+        if params.get("ParamGroupName"):
+            self.ParamGroupName = params.get("ParamGroupName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("DbVersion"):
+            self.DbVersion = params.get("DbVersion")
+        if params.get("Params"):
+            self.Params = params.get("Params")
+
+
+class DescribeParamGroupListRequest(AbstractModel):
+    """DescribeParamGroupList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询参数组列表
+        :param DbVersion: 实例版本
+        :type PathPrefix: String
+        :param NameSearch: 按名称筛选
+        :type PathPrefix: String
+        :param Offset: 偏移量
+        :type PathPrefix: String
+        :param Limit: 返回最大数据量
+        :type PathPrefix: String
+        """
+        self.DbVersion = None
+        self.NameSearch = None
+        self.Offset = None
+        self.Limit = None
+
+    def _deserialize(self, params):
+        if params.get("DbVersion"):
+            self.DbVersion = params.get("DbVersion")
+        if params.get("NameSearch"):
+            self.NameSearch = params.get("NameSearch")
+        if params.get("Offset"):
+            self.Offset = params.get("Offset")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+
+
+class DescribeParamGroupInfoRequest(AbstractModel):
+    """DescribeParamGroupInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询参数组详情
+        :param ParamGroupId: 参数组Id
+        :type PathPrefix: String
+        """
+        self.ParamGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("ParamGroupId"):
+            self.ParamGroupId = params.get("ParamGroupId")
+
+
+class DescribeModifyHistoryRequest(AbstractModel):
+    """DescribeModifyHistory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询参数组修改历史
+        :param ParamName: 指定查询某个参数项的修改历史。
+        :type PathPrefix: String
+        :param Offset: 偏移量
+        :type PathPrefix: Int
+        :param Limit: 每页最大返回记录数
+        :type PathPrefix: Int
+        """
+        self.ParamName = None
+        self.Offset = None
+        self.Limit = None
+
+    def _deserialize(self, params):
+        if params.get("ParamName"):
+            self.ParamName = params.get("ParamName")
+        if params.get("Offset"):
+            self.Offset = params.get("Offset")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+
+
+class DescribeInstanceParamsRequest(AbstractModel):
+    """DescribeInstanceParams请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例参数配置
+        :param InstanceId: 实例Id
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
+class ModifyParamGroupRequest(AbstractModel):
+    """ModifyParamGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改参数组
+        :param NewParamGroupName: 新参数组名称
+        :type PathPrefix: String
+        :param NewDescription: 新参数组描述
+        :type PathPrefix: String
+        """
+        self.NewParamGroupName = None
+        self.NewDescription = None
+
+    def _deserialize(self, params):
+        if params.get("NewParamGroupName"):
+            self.NewParamGroupName = params.get("NewParamGroupName")
+        if params.get("NewDescription"):
+            self.NewDescription = params.get("NewDescription")
+
+
+class DeleteParamGroupRequest(AbstractModel):
+    """DeleteParamGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除参数组
+        :param ParamGroupId: 删除参数组
+        :type PathPrefix: String
+        """
+        self.ParamGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("ParamGroupId"):
+            self.ParamGroupId = params.get("ParamGroupId")
+
+

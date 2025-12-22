@@ -14,3 +14,5 @@ class DescribeInstancesRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InstanceIds"):
             self.InstanceIds = params.get("InstanceIds")
+
+

@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreatePrometheusInstanceRequest(AbstractModel):
     """CreatePrometheusInstance请求参数结构体
     """
@@ -210,7 +209,7 @@ class AssociateClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""关联集群
+        r"""用于关联集群
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param ClusterId: 集群id
@@ -579,7 +578,7 @@ class EnableMetricsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""开启指标
+        r"""用于开启指标
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param ClusterId: 集群id
@@ -619,7 +618,7 @@ class DropMetricsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""废弃指标
+        r"""用于废弃指标
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param ClusterId: 集群id
@@ -652,3 +651,5 @@ ServiceMonitor
             self.Type = params.get("Type")
         if params.get("MetricsName"):
             self.MetricsName = params.get("MetricsName")
+
+

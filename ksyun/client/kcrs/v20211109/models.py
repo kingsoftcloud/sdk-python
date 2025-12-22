@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateNamespaceRequest(AbstractModel):
     """CreateNamespace请求参数结构体
     """
@@ -136,7 +135,7 @@ class DescribeImagesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询镜像
+        r"""用于查询镜像
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param Namespace: 命名空间名称，只能包含小写字母、数字、和分隔符（“-”，“.”)，不能以分隔符开头或结尾
@@ -731,7 +730,7 @@ class DeleteInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除实例
+        r"""删除企业版实例
         :param InstanceId: 实例id
         :type PathPrefix: String
         :param DeleteBucket: 是否随实例删除关联的KS3 Bucket，有效值：<br />True：是<br />False：否<br />默认值：False
@@ -1279,3 +1278,5 @@ class ScheduleRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("TestRun"):
             self.TestRun = params.get("TestRun")
+
+

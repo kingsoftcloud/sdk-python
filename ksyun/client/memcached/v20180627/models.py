@@ -1,12 +1,11 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateCacheClusterRequest(AbstractModel):
     """CreateCacheCluster请求参数结构体
     """
 
     def __init__(self):
-        r"""创建缓存服务
+        r"""创建实例。
         :param Name: 缓存服务名称             	 支持6-64个中文或者英文字符，包括汉字，大小写字母，数字，下划线和中划线
         :type PathPrefix: String
         :param Capacity: 缓存容量大小，以GB为单位 	 缓存资源为单主从模式时，可选值为：{1, 2, 4, 8, 16, 32, 64}；
@@ -77,7 +76,7 @@ class DeleteCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除缓存服务
+        r"""删除实例。
         """
 
     def _deserialize(self, params):
@@ -115,7 +114,7 @@ class DescribeCacheClustersRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询缓存服务列表
+        r"""查询实例列表
         :param Engine: 服务引擎                              	 取固定值memcached
         :type PathPrefix: String
         :param CacheId: 缓存服务ID
@@ -176,7 +175,7 @@ class DescribeCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询缓存服务详情
+        r"""查询实例详情
         :param CacheId: 缓存服务ID
         :type PathPrefix: String
         :param Engine: 缓存服务引擎 	 取固定值： memcached
@@ -197,7 +196,7 @@ class FlushCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""清空缓存服务
+        r"""清空实例缓存
         """
 
     def _deserialize(self, params):
@@ -209,7 +208,7 @@ class RenameCacheClusterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""重命名缓存服务
+        r"""修改实例名称
         :param CacheId: 缓存服务ID
         :type PathPrefix: String
         :param Name: 缓存服务名称
@@ -235,7 +234,7 @@ class UpdatePasswordRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""修改缓存服务密码
+        r"""重置实例密码
         :param CacheId: 缓存服务ID
         :type PathPrefix: String
         :param Password: 缓存服务密码 	 密码规则：(?=.*[A-Z]+.*)(?=.*[a-z]+.*)(?=.*[\\d]+.*)([A-Za-z\\d!@#$%^&*()_+=-]{8,30})，不传则设置为没有密码
@@ -261,7 +260,7 @@ class DescribeCacheSecurityRulesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""缓存服务白名单(安全规则信息)
+        r"""查询安全组规则
         """
 
     def _deserialize(self, params):
@@ -273,7 +272,7 @@ class DeleteCacheSecurityRuleRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""缓存服务删除安全规则
+        r"""删除安全组规则
         """
 
     def _deserialize(self, params):
@@ -285,7 +284,7 @@ class SetCacheSecurityRulesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""缓存服务设置安全规则
+        r"""设置安全组规则
         """
 
     def _deserialize(self, params):
@@ -297,7 +296,7 @@ class DescribeRegionsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询机房
+        r"""查询地域列表
         """
 
     def _deserialize(self, params):
@@ -309,8 +308,10 @@ class DescribeAvailabilityZonesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询可用区
+        r"""查询可用区列表
         """
 
     def _deserialize(self, params):
         return
+
+

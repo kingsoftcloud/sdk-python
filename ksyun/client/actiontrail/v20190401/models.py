@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class ListOperateLogsRequest(AbstractModel):
     """ListOperateLogs请求参数结构体
     """
@@ -72,3 +71,5 @@ class ListOperateLogsRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
         if params.get("SearchAfter"):
             self.SearchAfter = params.get("SearchAfter")
+
+

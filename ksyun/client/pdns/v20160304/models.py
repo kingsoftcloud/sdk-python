@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreatePrivateDnsRequest(AbstractModel):
     """CreatePrivateDns请求参数结构体
     """
@@ -237,22 +236,6 @@ class DeleteRecordRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("Action"):
             self.Action = params.get("Action")
-
-
-class ModifyRecordRequest(AbstractModel):
-    """ModifyRecord请求参数结构体
-    """
-
-    def __init__(self):
-        r"""修改解析记录
-        :param RecordValue: 记录值
-        :type PathPrefix: String
-        """
-        self.RecordValue = None
-
-    def _deserialize(self, params):
-        if params.get("RecordValue"):
-            self.RecordValue = params.get("RecordValue")
 
 
 class DescribeRecordRequest(AbstractModel):
@@ -527,14 +510,11 @@ class ModifyZoneRecordRequest(AbstractModel):
         :type PathPrefix: String
         :param RecordId: 记录ID
         :type PathPrefix: String
-        :param RecordValue: 记录值
-        :type PathPrefix: String
         :param RecordTtl: 记录ttl
         :type PathPrefix: Int
         """
         self.ZoneId = None
         self.RecordId = None
-        self.RecordValue = None
         self.RecordTtl = None
 
     def _deserialize(self, params):
@@ -542,8 +522,6 @@ class ModifyZoneRecordRequest(AbstractModel):
             self.ZoneId = params.get("ZoneId")
         if params.get("RecordId"):
             self.RecordId = params.get("RecordId")
-        if params.get("RecordValue"):
-            self.RecordValue = params.get("RecordValue")
         if params.get("RecordTtl"):
             self.RecordTtl = params.get("RecordTtl")
 
@@ -556,9 +534,9 @@ class DescribeZoneRecordRequest(AbstractModel):
         r"""查询Zone解析记录 - 二期
         :param ZoneId: Zone的ID
         :type PathPrefix: String
-        :param RecordId: 记录的ID
+        :param RecordId: 解析记录的ID
         :type PathPrefix: Filter
-        :param Filter: 筛选Filter
+        :param Filter: 解析记录的主机记录筛选
         :type PathPrefix: Filter
         """
         self.ZoneId = None
@@ -572,3 +550,256 @@ class DescribeZoneRecordRequest(AbstractModel):
             self.RecordId = params.get("RecordId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+
+
+class UnbindFdZoneVpcRequest(AbstractModel):
+    """UnbindFdZoneVpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""取消关联生效VPC
+        :param BindVpcId: 要解绑的BindVpcId
+        :type PathPrefix: Filter
+        """
+        self.BindVpcId = None
+
+    def _deserialize(self, params):
+        if params.get("BindVpcId"):
+            self.BindVpcId = params.get("BindVpcId")
+
+
+class BindFdZoneVpcRequest(AbstractModel):
+    """BindFdZoneVpc请求参数结构体
+    """
+
+    def __init__(self):
+        r"""关联生效VPC
+        :param FdZoneId: 转发Zone的ID
+        :type PathPrefix: String
+        :param RegionName: 机房code
+        :type PathPrefix: String
+        :param VpcId: 要绑定的VpcId
+        :type PathPrefix: Filter
+        """
+        self.FdZoneId = None
+        self.RegionName = None
+        self.VpcId = None
+
+    def _deserialize(self, params):
+        if params.get("FdZoneId"):
+            self.FdZoneId = params.get("FdZoneId")
+        if params.get("RegionName"):
+            self.RegionName = params.get("RegionName")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+
+
+class DescribePdnsFdZoneRequest(AbstractModel):
+    """DescribePdnsFdZone请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询转发Zone
+        :param FdZoneId: 转发Zone的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        """
+        self.FdZoneId = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("FdZoneId"):
+            self.FdZoneId = params.get("FdZoneId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+
+class DeletePdnsFdZoneRequest(AbstractModel):
+    """DeletePdnsFdZone请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除转发Zone
+        :param FdZoneId: 出站节点的ID
+        :type PathPrefix: String
+        """
+        self.FdZoneId = None
+
+    def _deserialize(self, params):
+        if params.get("FdZoneId"):
+            self.FdZoneId = params.get("FdZoneId")
+
+
+class ModifyPdnsFdZoneRequest(AbstractModel):
+    """ModifyPdnsFdZone请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改转发Zone
+        :param FdZoneId: 转发Zone的ID
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        :param ForwardIp: ForwardIp,此字段若传入即为全量更新
+        :type PathPrefix: Filter
+        """
+        self.FdZoneId = None
+        self.Description = None
+        self.ForwardIp = None
+
+    def _deserialize(self, params):
+        if params.get("FdZoneId"):
+            self.FdZoneId = params.get("FdZoneId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ForwardIp"):
+            self.ForwardIp = params.get("ForwardIp")
+
+
+class CreatePdnsFdZoneRequest(AbstractModel):
+    """CreatePdnsFdZone请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建转发Zone
+        :param EndPointId: 出站节点的Id
+        :type PathPrefix: String
+        :param FdZoneName: 转发Zone名称
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        :param ForwardIp: ForwardIp
+        :type PathPrefix: Filter
+        """
+        self.EndPointId = None
+        self.FdZoneName = None
+        self.Description = None
+        self.ForwardIp = None
+
+    def _deserialize(self, params):
+        if params.get("EndPointId"):
+            self.EndPointId = params.get("EndPointId")
+        if params.get("FdZoneName"):
+            self.FdZoneName = params.get("FdZoneName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ForwardIp"):
+            self.ForwardIp = params.get("ForwardIp")
+
+
+class QueryEndPointRegionAZRequest(AbstractModel):
+    """QueryEndPointRegionAZ请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询Endpoint支持的可用区
+        :param Region: 机房code 例如cn-beijing-6
+        :type PathPrefix: String
+        """
+        self.Region = None
+
+    def _deserialize(self, params):
+        if params.get("Region"):
+            self.Region = params.get("Region")
+
+
+class DescribeEndPointsRequest(AbstractModel):
+    """DescribeEndPoints请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询出站节点
+        :param EndPointId: 出站节点的Id
+        :type PathPrefix: Filter
+        """
+        self.EndPointId = None
+
+    def _deserialize(self, params):
+        if params.get("EndPointId"):
+            self.EndPointId = params.get("EndPointId")
+
+
+class DeleteEndPointRequest(AbstractModel):
+    """DeleteEndPoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除出站节点
+        :param EndPointId: EndPointId的ID
+        :type PathPrefix: String
+        """
+        self.EndPointId = None
+
+    def _deserialize(self, params):
+        if params.get("EndPointId"):
+            self.EndPointId = params.get("EndPointId")
+
+
+class ModifyEndPointRequest(AbstractModel):
+    """ModifyEndPoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改出站节点
+        :param EndPointId: 出站节点的ID
+        :type PathPrefix: String
+        :param EndPointName: 名称
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        :param IpConfig: 筛选Filter
+        :type PathPrefix: Filter
+        """
+        self.EndPointId = None
+        self.EndPointName = None
+        self.Description = None
+        self.IpConfig = None
+
+    def _deserialize(self, params):
+        if params.get("EndPointId"):
+            self.EndPointId = params.get("EndPointId")
+        if params.get("EndPointName"):
+            self.EndPointName = params.get("EndPointName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("IpConfig"):
+            self.IpConfig = params.get("IpConfig")
+
+
+class CreateEndPointRequest(AbstractModel):
+    """CreateEndPoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建出站节点
+        :param EndPointName: 名称
+        :type PathPrefix: String
+        :param Region: 机房code 例如cn-beijing-6
+        :type PathPrefix: String
+        :param VpcId: VpcId
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        :param IpConfig: 筛选Filter
+        :type PathPrefix: Filter
+        """
+        self.EndPointName = None
+        self.Region = None
+        self.VpcId = None
+        self.Description = None
+        self.IpConfig = None
+
+    def _deserialize(self, params):
+        if params.get("EndPointName"):
+            self.EndPointName = params.get("EndPointName")
+        if params.get("Region"):
+            self.Region = params.get("Region")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("IpConfig"):
+            self.IpConfig = params.get("IpConfig")
+
+

@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateFolderRequest(AbstractModel):
     """CreateFolder请求参数结构体
     """
@@ -194,3 +193,5 @@ class ListFoldersRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+

@@ -1,12 +1,11 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateInstanceRequest(AbstractModel):
     """CreateInstance请求参数结构体
     """
 
     def __init__(self):
-        r"""创建实例
+        r"""创建实例。
         :param ProjectId: 所属项目Id。
         :type PathPrefix: String
         :param InstanceName: RabbitMQ实例名称,
@@ -78,7 +77,7 @@ class DeleteInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除实例
+        r"""删除实例。
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         """
@@ -94,7 +93,7 @@ class DescribeInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""实例列表
+        r"""查询实例列表
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         :param InstanceName: 实例名称。
@@ -156,7 +155,7 @@ class DescribeInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""实例明细
+        r"""查询实例详情
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         """
@@ -172,7 +171,7 @@ class DescribeInstanceNodesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""实例节点列表
+        r"""查询实例节点列表
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         """
@@ -188,15 +187,11 @@ class DescribeValidRegionRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""控制台有效机房列表
-        :param Action: Action
-        :type PathPrefix: String
+        r"""查询地域列表
         """
-        self.Action = None
 
     def _deserialize(self, params):
-        if params.get("Action"):
-            self.Action = params.get("Action")
+        return
 
 
 class DescribeRegionsRequest(AbstractModel):
@@ -204,15 +199,11 @@ class DescribeRegionsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""客户获取机房列表信息
-        :param Action: Action
-        :type PathPrefix: String
+        r"""查询可用区列表
         """
-        self.Action = None
 
     def _deserialize(self, params):
-        if params.get("Action"):
-            self.Action = params.get("Action")
+        return
 
 
 class DescribeSecurityGroupRulesRequest(AbstractModel):
@@ -220,7 +211,7 @@ class DescribeSecurityGroupRulesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""实例白名单列表
+        r"""查询安全组列表
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         """
@@ -236,7 +227,7 @@ class AddSecurityGroupRuleRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""添加实例白名单
+        r"""添加安全组规则
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         :param Cidrs: IP地址段。如：0.0.0.0/16,0.0.0.0/24。多个","分隔
@@ -257,7 +248,7 @@ class DeleteSecurityGroupRulesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""删除实例白名单
+        r"""删除安全组规则
         :param InstanceId: 实例Id。
         :type PathPrefix: String
         :param Cidrs: Ip地址段，如：0.0.0.0/16,0.0.0.0/24。多个以","分隔
@@ -313,3 +304,110 @@ class RenameRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("InstanceName"):
             self.InstanceName = params.get("InstanceName")
+
+
+class AllocateEipRequest(AbstractModel):
+    """AllocateEip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""申请外网EIP
+        :param InstanceId: 实例Id。
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
+class DeallocateEipRequest(AbstractModel):
+    """DeallocateEip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""释放外网eip
+        :param InstanceId: 实例Id。
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
+class SupportPluginsRequest(AbstractModel):
+    """SupportPlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例支持的插件列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class RestartInstanceRequest(AbstractModel):
+    """RestartInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""重启实例。
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class ListInstancePluginsRequest(AbstractModel):
+    """ListInstancePlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例插件列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class EnableInstancePluginsRequest(AbstractModel):
+    """EnableInstancePlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""实例启用插件
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DisableInstancePluginsRequest(AbstractModel):
+    """DisableInstancePlugins请求参数结构体
+    """
+
+    def __init__(self):
+        r"""实例插件列表
+        :param InstanceId: 实例Id。
+        :type PathPrefix: String
+        :param DisablePlugins: 禁用插件列表，格式如下：
+[
+        "rabbitmq_amqp1_0",
+        "rabbitmq_delayed_message_exchange"
+]
+        :type PathPrefix: Array
+        """
+        self.InstanceId = None
+        self.DisablePlugins = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("DisablePlugins"):
+            self.DisablePlugins = params.get("DisablePlugins")
+
+

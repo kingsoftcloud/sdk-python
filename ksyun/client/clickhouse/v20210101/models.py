@@ -1,12 +1,11 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class ListInstanceRequest(AbstractModel):
     """ListInstance请求参数结构体
     """
 
     def __init__(self):
-        r"""Clickhouse查询实例列表
+        r"""查询实例列表
         :param ProductType: 商品类型。可选：单副本（ClickHouse_Single）
 ；高可用（ClickHouse）。
         :type PathPrefix: String
@@ -53,7 +52,7 @@ class DescribeInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查看实例详情
+        r"""查询实例详情
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         """
@@ -69,7 +68,7 @@ class CreateInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse创建实例
+        r"""创建实例(支持指定计费方式)
         :param ProductType: 商品类型。可选：ClickHouse_Single（单副本）；ClickHouse（高可用）。
         :type PathPrefix: String
         :param InstanceName: 实例名称。
@@ -116,6 +115,13 @@ class CreateInstanceRequest(AbstractModel):
         :type PathPrefix: String
         :param SecurityGroupId: 安全组ID，如果绑定安全组，需要添加。
         :type PathPrefix: String
+        :param ProductWhat: 产品类型(是否试用)
+
+```json
+1:正式产品
+2:试用产品
+```
+        :type PathPrefix: Int
         """
         self.ProductType = None
         self.InstanceName = None
@@ -139,6 +145,7 @@ class CreateInstanceRequest(AbstractModel):
         self.NodeNum = None
         self.PreferredBackupTime = None
         self.SecurityGroupId = None
+        self.ProductWhat = None
 
     def _deserialize(self, params):
         if params.get("ProductType"):
@@ -185,6 +192,8 @@ class CreateInstanceRequest(AbstractModel):
             self.PreferredBackupTime = params.get("PreferredBackupTime")
         if params.get("SecurityGroupId"):
             self.SecurityGroupId = params.get("SecurityGroupId")
+        if params.get("ProductWhat"):
+            self.ProductWhat = params.get("ProductWhat")
 
 
 class DeleteInstanceRequest(AbstractModel):
@@ -192,7 +201,7 @@ class DeleteInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse删除实例
+        r"""删除实例(默认放入回收站)
         :param InstanceIds: 实例ID列表。
         :type PathPrefix: Filter
         :param DeleteDirectly: 是否直接删除。默认：false 【参数说明：true：立刻删除，false：放入回收站】
@@ -208,12 +217,32 @@ class DeleteInstanceRequest(AbstractModel):
             self.DeleteDirectly = params.get("DeleteDirectly")
 
 
+class RestartInstanceRequest(AbstractModel):
+    """RestartInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""重启实例(指定实例ID重启)
+        :param instanceIds: 实例ID列表
+
+```json
+批量操作可使用英文','分隔
+```
+        :type PathPrefix: String
+        """
+        self.instanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("instanceIds"):
+            self.instanceIds = params.get("instanceIds")
+
+
 class RenameInstanceRequest(AbstractModel):
     """RenameInstance请求参数结构体
     """
 
     def __init__(self):
-        r"""Clickhouse重命名实例
+        r"""修改实例名称
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         :param InstanceName: 实例新名称。
@@ -234,8 +263,12 @@ class ListSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查看安全组列表
-        :param ProductType: 商品类型：Clickhouse固定取值：523。
+        r"""查看安全组列表
+        :param ProductType: 商品类型
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         """
         self.ProductType = None
@@ -250,8 +283,12 @@ class DescribeSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查看安全组详情
-        :param ProductType: 商品类型：Clickhouse固定取值：523。
+        r"""查看安全组详情
+        :param ProductType: 商品类型
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         :param SecurityGroupId: 安全组ID。
         :type PathPrefix: String
@@ -271,8 +308,15 @@ class CreateSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse创建安全组
-        :param ProductType: 商品类型：Clickhouse固定取值：523。
+        r"""创建安全组
+        :param ProductType: 商品类型
+
+```json
+高可用版:523
+单副本版:676
+
+注意：仅做标记，取默认值即可
+```
         :type PathPrefix: Int
         :param SecurityGroupName: 安全组名称。
         :type PathPrefix: String
@@ -297,10 +341,15 @@ class DeleteSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse删除安全组接口
+        r"""删除安全组
         :param SecurityGroupIds: 安全组ID列表。
         :type PathPrefix: String
         :param ProductType: 商品类型：Clickhouse固定取值：523。
+
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         """
         self.SecurityGroupIds = None
@@ -318,8 +367,13 @@ class RenameSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse重命名安全组
+        r"""重命名安全组
         :param ProductType: 商品类型：Clickhouse固定取值：523。
+
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         :param SecurityGroupId: 安全组ID。
         :type PathPrefix: String
@@ -351,8 +405,13 @@ class CloneSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse克隆安全组
+        r"""克隆安全组
         :param ProductType: 商品类型：Clickhouse固定取值：523。
+
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         :param SrcSecurityGroupId: 被克隆安全组ID。
         :type PathPrefix: String
@@ -382,8 +441,12 @@ class BindSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse绑定安全组
+        r"""绑定安全组
         :param ProductType: 商品类型：Clickhouse固定取值：523。
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         :param SecurityGroupIds: 安全组ID列表。
         :type PathPrefix: Array
@@ -408,7 +471,7 @@ class UnbindSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse解绑安全组
+        r"""解绑安全组
         :param ProductType: 商品类型：Clickhouse固定取值：523。
         :type PathPrefix: Int
         :param SecurityGroupId: 安全组ID。
@@ -434,7 +497,7 @@ class CreateSecurityRuleRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse创建安全规则
+        r"""创建安全规则(添加自定义IP地址+绑定云主机IP)
         :param ProductType: 商品类型：Clickhouse固定取值：523。
         :type PathPrefix: Int
         :param SecurityGroupId: 安全组ID。
@@ -460,7 +523,7 @@ class DeleteSecurityRuleRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse删除安全规则
+        r"""删除安全规则(移除IP地址)
         :param ProductType: 商品类型：Clickhouse固定取值：523。
         :type PathPrefix: Int
         :param SecurityGroupId: 安全组ID。
@@ -486,7 +549,7 @@ class ListSecuredInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查询已绑定安全组的实例列表
+        r"""查询已绑定安全组的实例列表
         :param SecurityGroupId: 安全组ID。
         :type PathPrefix: String
         :param ProjectIds: 项目组ID列表。不填表示全部项目。
@@ -527,7 +590,7 @@ class ListUnsecuredInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查询未绑定安全组的实例列表
+        r"""查询未绑定安全组的实例列表
         :param FuzzySearch: 模糊搜索。
         :type PathPrefix: String
         :param Offset: 第几页，从0开始。
@@ -558,7 +621,7 @@ class ListRecycledInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查询回收站实例列表
+        r"""查询实例列表(回收站)
         :param ProductType: 商品类型。可选：ClickHouse_Single（单副本）；ClickHouse（高可用）。
         :type PathPrefix: String
         :param ProjectIds: 项目ID列表，不填表示全部项目。
@@ -599,7 +662,7 @@ class RecoverRecycledInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse恢复实例
+        r"""恢复实例(回收站实例重新移入正常实例列表)
         :param InstanceIds: 实例ID列表。
         :type PathPrefix: Array
         """
@@ -615,7 +678,7 @@ class DropRecycledInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse彻底删除实例
+        r"""彻底删除实例(回收站清空)
         :param InstanceIds: 实例ID列表。
         :type PathPrefix: Filter
         """
@@ -631,8 +694,13 @@ class ListRegionRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查询地域列表
-        :param ProductType: 商品类型：Clickhouse固定取值：523。
+        r"""查询地域列表
+        :param ProductType: 商品类型
+
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         """
         self.ProductType = None
@@ -647,8 +715,12 @@ class DescRegionRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查询地域详情
-        :param ProductType: 商品类型：Clickhouse固定取值：523。
+        r"""查询可用区详情
+        :param ProductType: 商品类型
+```json
+高可用版:523
+单副本版:676
+```
         :type PathPrefix: Int
         :param RegionCode: 地域编码。
         :type PathPrefix: String
@@ -668,7 +740,7 @@ class UpdateSecurityRuleRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse更新安全规则备注
+        r"""修改安全规则备注(具体的IP规则描述)
         :param ProductType: 商品类型：Clickhouse固定取值：523。
         :type PathPrefix: Int
         :param RuleId: 安全组规则ID。安全组规则ID可通过DescribeSecurityGroup接口获取。
@@ -694,7 +766,7 @@ class RebindSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse实例重新绑定安全组
+        r"""重新绑定安全组
         :param ProductType: 商品类型：Clickhouse固定取值：523。
         :type PathPrefix: Int
         :param SecurityGroupId: 安全组ID。
@@ -720,7 +792,7 @@ class DescribeEngineDefaultParametersRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse根据版本查询实例默认参数配置
+        r"""查询实例默认参数
         :param EngineVersion: 引擎版本。可选：21.8、22.8。
         :type PathPrefix: String
         :param ConfigType: 参数类型。可选：Users，Config。
@@ -741,17 +813,23 @@ class ModifyDBParameterGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse修改实例参数
+        r"""修改实例参数
         :param InstanceId: 实例ID。
         :type PathPrefix: String
-        :param Parameters: 参数变更列表。请求体中传值(key-value形式放入所有要变更的参数-参数值)。如：{
-  "InstanceId": "***",
-  "Parameters": {
-    "keep_alive_timeout": "350"
-  },
-  "ConfigType": "Config"
+        :param Parameters: 参数变更列表。
+
+```json
+请求体中传值(key-value形式放入所有要变更的参数-参数值)。
+例如：
+{
+    "InstanceId": "***",
+    "Parameters": {
+        "keep_alive_timeout": "500"
+    },
+    "ConfigType": "Config"
 }
-        :type PathPrefix: Filter
+```
+        :type PathPrefix: String
         :param ConfigType: 参数类型。可选：Users，Config。
         :type PathPrefix: String
         """
@@ -773,7 +851,7 @@ class DescribeDBInstanceParametersRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse查询当前实例参数配置
+        r"""查询实例当前参数
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         :param ConfigType: 参数类型。可选：Users，Config。
@@ -794,7 +872,7 @@ class ResetDBParameterRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""Clickhouse重置实例参数
+        r"""重置实例参数
         :param InstanceId: 实例ID。
         :type PathPrefix: String
         :param ConfigType: 参数类型。可选：Users，Config。
@@ -808,3 +886,242 @@ class ResetDBParameterRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
         if params.get("ConfigType"):
             self.ConfigType = params.get("ConfigType")
+
+
+class DescribeBucketsRequest(AbstractModel):
+    """DescribeBuckets请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询当前用桶列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class OperateHotAndColdSeparationRequest(AbstractModel):
+    """OperateHotAndColdSeparation请求参数结构体
+    """
+
+    def __init__(self):
+        r"""冷热数据分层配置
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class CreateInstanceAccountRequest(AbstractModel):
+    """CreateInstanceAccount请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建指定实例的数据库账号(普通用户)
+        :param Name: 账号名称
+        :type PathPrefix: String
+        :param Password: 账号密码
+        :type PathPrefix: String
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        :param Description: 账号描述
+        :type PathPrefix: String
+        """
+        self.Name = None
+        self.Password = None
+        self.InstanceId = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class ModifyInstanceAccountPrivilegesRequest(AbstractModel):
+    """ModifyInstanceAccountPrivileges请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改实例指定用户的数据库权限
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        :param InstanceAccountName: 账号名称
+        :type PathPrefix: String
+        :param InstanceAccountPrivileges: 
+        :type PathPrefix: Filter
+        """
+        self.InstanceId = None
+        self.InstanceAccountName = None
+        self.InstanceAccountPrivileges = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("InstanceAccountName"):
+            self.InstanceAccountName = params.get("InstanceAccountName")
+        if params.get("InstanceAccountPrivileges"):
+            self.InstanceAccountPrivileges = params.get("InstanceAccountPrivileges")
+
+
+class DeleteInstanceAccountRequest(AbstractModel):
+    """DeleteInstanceAccount请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除指定实例数据库账号
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        :param InstanceAccountName: 账号名称
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.InstanceAccountName = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("InstanceAccountName"):
+            self.InstanceAccountName = params.get("InstanceAccountName")
+
+
+class DescribeInstanceAccountsRequest(AbstractModel):
+    """DescribeInstanceAccounts请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询指定实例数据库账号列表
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
+class DescribeInstanceDatabasesRequest(AbstractModel):
+    """DescribeInstanceDatabases请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询库表列表
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
+class ModifyInstanceAccountInfoRequest(AbstractModel):
+    """ModifyInstanceAccountInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改实例账号密码或者描述
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        :param InstanceAccountName: 账号名称
+        :type PathPrefix: String
+        :param InstanceAccountPassword: 账号密码
+
+```json
+账号密码或者描述必须填写一项
+```
+        :type PathPrefix: String
+        :param InstanceAccountDescription: 账号描述
+
+```json
+账号密码或者描述必须填写一项
+```
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.InstanceAccountName = None
+        self.InstanceAccountPassword = None
+        self.InstanceAccountDescription = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("InstanceAccountName"):
+            self.InstanceAccountName = params.get("InstanceAccountName")
+        if params.get("InstanceAccountPassword"):
+            self.InstanceAccountPassword = params.get("InstanceAccountPassword")
+        if params.get("InstanceAccountDescription"):
+            self.InstanceAccountDescription = params.get("InstanceAccountDescription")
+
+
+class DescribeInstanceShardInfoRequest(AbstractModel):
+    """DescribeInstanceShardInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询集群拓扑图(拓扑关系数据)
+        :param InstanceId: 实例id
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+
+
+class UpdateInstanceTrialOrderRequest(AbstractModel):
+    """UpdateInstanceTrialOrder请求参数结构体
+    """
+
+    def __init__(self):
+        r"""试用订单转正/延期
+        :param InstanceId: 实例ID
+        :type PathPrefix: String
+        :param OperateType: 操作类型
+
+```
+延期：delay
+购买：buy  
+
+注意：无默认，不区分大小写
+```
+        :type PathPrefix: String
+        :param Duration: 延期或转正时间指定
+
+```json
+默认1，按日结算和按量付费不用指定
+```
+        :type PathPrefix: Int
+        :param BillType: 计费类型
+
+```json
+按量付费：87
+按量付费（按日月结）：5
+包年包月： 1
+```
+        :type PathPrefix: Int
+        """
+        self.InstanceId = None
+        self.OperateType = None
+        self.Duration = None
+        self.BillType = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("OperateType"):
+            self.OperateType = params.get("OperateType")
+        if params.get("Duration"):
+            self.Duration = params.get("Duration")
+        if params.get("BillType"):
+            self.BillType = params.get("BillType")
+
+

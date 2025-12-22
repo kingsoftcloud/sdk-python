@@ -8,7 +8,6 @@ class MongodbClient(AbstractClient):
     _apiVersion = '2017-01-01'
     _endpoint = 'mongodb.api.ksyun.com'
     _service = 'mongodb'
-
     def CreateMongoDBInstance(self, request):
         """创建副本集实例
         :param request: Request instance for CreateMongoDBInstance.
@@ -31,8 +30,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteMongoDBInstance(self, request):
-        """删除实例
+        """删除实例。
         :param request: Request instance for DeleteMongoDBInstance.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DeleteMongoDBInstanceRequest`
         """
@@ -53,6 +53,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeMongoDBInstance(self, request):
         """查询实例详情
         :param request: Request instance for DescribeMongoDBInstance.
@@ -60,7 +61,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeMongoDBInstance", params, "application/json")
+            body = self.call_judge("DescribeMongoDBInstance", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -75,8 +76,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeMongoDBInstances(self, request):
-        """查询账号下实例列表
+        """查询实例列表
         :param request: Request instance for DescribeMongoDBInstances.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeMongoDBInstancesRequest`
         """
@@ -96,6 +98,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeMongoDBInstanceNode(self, request):
         """查询副本集实例节点信息
@@ -119,6 +122,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RenameMongoDBInstance(self, request):
         """实例重命名
         :param request: Request instance for RenameMongoDBInstance.
@@ -141,8 +145,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ResetPasswordMongoDBInstance(self, request):
-        """修改密码
+        """修改实例密码
         :param request: Request instance for ResetPasswordMongoDBInstance.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.ResetPasswordMongoDBInstanceRequest`
         """
@@ -163,8 +168,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RestartMongoDBInstance(self, request):
-        """重启实例
+        """重启实例。
         :param request: Request instance for RestartMongoDBInstance.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.RestartMongoDBInstanceRequest`
         """
@@ -185,8 +191,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateMongoDBSnapshot(self, request):
-        """创建手动备份
+        """手动创建备份
         :param request: Request instance for CreateMongoDBSnapshot.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.CreateMongoDBSnapshotRequest`
         """
@@ -206,6 +213,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetMongoDBTimingSnapshot(self, request):
         """自动备份设置
@@ -229,6 +237,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeMongoDBSnapshot(self, request):
         """查询实例备份记录列表
         :param request: Request instance for DescribeMongoDBSnapshot.
@@ -236,7 +245,7 @@ class MongodbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeMongoDBSnapshot", params, "application/json")
+            body = self.call_judge("DescribeMongoDBSnapshot", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -251,14 +260,15 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteMongoDBSnapshot(self, request):
-        """删除备份
+        """删除备份。
         :param request: Request instance for DeleteMongoDBSnapshot.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DeleteMongoDBSnapshotRequest`
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteMongoDBSnapshot", params, "application/json")
+            body = self.call_judge("DeleteMongoDBSnapshot", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -273,8 +283,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def RenameMongoDBSnapshot(self, request):
-        """备份重命名
+        """修改备份名称
         :param request: Request instance for RenameMongoDBSnapshot.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.RenameMongoDBSnapshotRequest`
         """
@@ -294,6 +305,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddSecurityGroupRule(self, request):
         """添加安全组规则
@@ -317,6 +329,30 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
+    def DeleteSecurityGroupRules(self, request):
+        """删除安全组规则
+        :param request: Request instance for DeleteSecurityGroupRules.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DeleteSecurityGroupRulesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSecurityGroupRules", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def ListSecurityGroupRules(self, request):
         """查询安全组列表
         :param request: Request instance for ListSecurityGroupRules.
@@ -338,6 +374,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def UpdateMongoDBInstance(self, request):
         """副本集实例更配
@@ -361,6 +398,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AddSecondaryInstance(self, request):
         """副本集实例添加secondary节点
         :param request: Request instance for AddSecondaryInstance.
@@ -383,8 +421,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeMongoDBShardNode(self, request):
-        """分片集群实例shard节点查询
+        """查询分片集群实例shard节点信息
         :param request: Request instance for DescribeMongoDBShardNode.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeMongoDBShardNodeRequest`
         """
@@ -405,8 +444,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeValidRegion(self, request):
-        """查询用户可用机房详情
+        """查询用户可用机房列表
         :param request: Request instance for DescribeValidRegion.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeValidRegionRequest`
         """
@@ -426,6 +466,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AllocateEip(self, request):
         """实例绑定外网eip
@@ -449,6 +490,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeallocateEip(self, request):
         """实例解绑外网eip
         :param request: Request instance for DeallocateEip.
@@ -470,6 +512,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRegions(self, request):
         """查询机房可用区
@@ -493,6 +536,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateMongoDBShardInstance(self, request):
         """创建分片集群实例
         :param request: Request instance for CreateMongoDBShardInstance.
@@ -515,8 +559,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DownloadSnapshot(self, request):
-        """下载备份
+        """下载备份。
         :param request: Request instance for DownloadSnapshot.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DownloadSnapshotRequest`
         """
@@ -536,6 +581,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CloneInstance(self, request):
         """基于备份文件恢复至新实例
@@ -559,8 +605,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeShardNode(self, request):
-        """查询分片集群shard节点列表
+        """查询分片集群shard节点信息
         :param request: Request instance for DescribeShardNode.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeShardNodeRequest`
         """
@@ -581,8 +628,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeInstanceStatistic(self, request):
-        """概览页统计接口
+        """实例概览统计
         :param request: Request instance for DescribeInstanceStatistic.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeInstanceStatisticRequest`
         """
@@ -602,6 +650,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddClusterNode(self, request):
         """添加分片集群的节点。支持mongos和shard节点。
@@ -625,6 +674,7 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteClusterNode(self, request):
         """删除分片集群节点，只支持mongos节点。
         :param request: Request instance for DeleteClusterNode.
@@ -647,8 +697,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSlowLogDetail(self, request):
-        """DescribeSlowLogDetail
+        """查询实例运行慢日志
         :param request: Request instance for DescribeSlowLogDetail.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeSlowLogDetailRequest`
         """
@@ -669,8 +720,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSlowLogStatistics(self, request):
-        """DescribeSlowLogStatistics
+        """实例运行慢日志统计
         :param request: Request instance for DescribeSlowLogStatistics.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeSlowLogStatisticsRequest`
         """
@@ -691,8 +743,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeSlowLogDatabase(self, request):
-        """DescribeSlowLogDatabase
+        """查询慢日志数据库列表
         :param request: Request instance for DescribeSlowLogDatabase.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeSlowLogDatabaseRequest`
         """
@@ -712,6 +765,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeSlowLogLineChart(self, request):
         """慢查询产生趋势折线图，反映慢查询趋势。
@@ -735,8 +789,9 @@ class MongodbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def UpdateMongoDBInstanceCluster(self, request):
-        """分片集群节点更配
+        """分片集群节点配置大小更配
         :param request: Request instance for UpdateMongoDBInstanceCluster.
         :type request: :class:`ksyun.client.mongodb.v20170101.models.UpdateMongoDBInstanceClusterRequest`
         """
@@ -756,6 +811,7 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeClusterForRestore(self, request):
         """查询分片集群可恢复配置
@@ -778,3 +834,189 @@ class MongodbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeDefaultParams(self, request):
+        """查询默认参数模板
+        :param request: Request instance for DescribeDefaultParams.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeDefaultParamsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeDefaultParams", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def CreateParamGroup(self, request):
+        """创建参数组
+        :param request: Request instance for CreateParamGroup.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.CreateParamGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateParamGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeParamGroupList(self, request):
+        """查询参数组列表
+        :param request: Request instance for DescribeParamGroupList.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeParamGroupListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeParamGroupList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeParamGroupInfo(self, request):
+        """查询参数组详情
+        :param request: Request instance for DescribeParamGroupInfo.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeParamGroupInfoRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeParamGroupInfo", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeModifyHistory(self, request):
+        """查询参数组修改历史
+        :param request: Request instance for DescribeModifyHistory.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeModifyHistoryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeModifyHistory", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DescribeInstanceParams(self, request):
+        """查询实例参数配置
+        :param request: Request instance for DescribeInstanceParams.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DescribeInstanceParamsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInstanceParams", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ModifyParamGroup(self, request):
+        """修改参数组
+        :param request: Request instance for ModifyParamGroup.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.ModifyParamGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyParamGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteParamGroup(self, request):
+        """删除参数组
+        :param request: Request instance for DeleteParamGroup.
+        :type request: :class:`ksyun.client.mongodb.v20170101.models.DeleteParamGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteParamGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

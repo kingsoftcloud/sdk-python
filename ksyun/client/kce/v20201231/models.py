@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateClusterRequest(AbstractModel):
     """CreateCluster请求参数结构体
     """
@@ -42,7 +41,8 @@ class CreateClusterRequest(AbstractModel):
 - Canal
 - Calico
         :type PathPrefix: String
-        :param K8sVersion: 容器服务支持的k8s的集群版本号<br>有效值：v1.17.6、v1.19.3、v1.21.3
+        :param K8sVersion: 容器服务支持的k8s的集群版本号<br>示例：v1.27.7
+有效值以控制台页面为准
         :type PathPrefix: String
         :param ReserveSubnetId: 集群所在vpc终端子网id
         :type PathPrefix: String
@@ -67,6 +67,9 @@ False：Master和Etcd组件共享节点部署
         :type PathPrefix: Filter
         :param ControlPlaneLog: 控制面日志采集,当用户选择的是独立部署集群时，此选项填写无效；当选择是托管时，可选
         :type PathPrefix: Object
+        :param EnableDelProtection: 开启删除保护
+默认值：True
+        :type PathPrefix: Boolean
         """
         self.ClusterName = None
         self.ClusterType = None
@@ -87,6 +90,7 @@ False：Master和Etcd组件共享节点部署
         self.ExistedInstanceForEpc = None
         self.Component = None
         self.ControlPlaneLog = None
+        self.EnableDelProtection = None
 
     def _deserialize(self, params):
         if params.get("ClusterName"):
@@ -127,3 +131,7 @@ False：Master和Etcd组件共享节点部署
             self.Component = params.get("Component")
         if params.get("ControlPlaneLog"):
             self.ControlPlaneLog = params.get("ControlPlaneLog")
+        if params.get("EnableDelProtection"):
+            self.EnableDelProtection = params.get("EnableDelProtection")
+
+

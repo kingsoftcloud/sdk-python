@@ -8,7 +8,6 @@ class TradeClient(AbstractClient):
     _apiVersion = '2025-02-20'
     _endpoint = 'trade.api.ksyun.com'
     _service = 'trade'
-
     def ListInstanceSupportBillTypes(self, request):
         """实例转正，支持重新指定正式实例的计费方式，实例获取支持的计费方式列表
         :param request: Request instance for ListInstanceSupportBillTypes.
@@ -30,6 +29,7 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def AddTrialToBuyTask(self, request):
         """添加定时转正的任务，支持到期转正和指定时间点转正。 可重复提交，最后一次提交会覆盖之前的提交，相当于更新。
@@ -53,6 +53,7 @@ class TradeClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteTrialToBuyTask(self, request):
         """取消已经提交的转正任务。
         :param request: Request instance for DeleteTrialToBuyTask.
@@ -75,6 +76,7 @@ class TradeClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateTrialToBuyNow(self, request):
         """创建转正订单，立即将实例转成正式实例。
         :param request: Request instance for CreateTrialToBuyNow.
@@ -96,3 +98,5 @@ class TradeClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

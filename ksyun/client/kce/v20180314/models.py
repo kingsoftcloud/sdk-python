@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateRepoNamespaceRequest(AbstractModel):
     """CreateRepoNamespace请求参数结构体
     """
@@ -371,3 +370,5 @@ class DeleteRepoNamespaceRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("Namespace"):
             self.Namespace = params.get("Namespace")
+
+

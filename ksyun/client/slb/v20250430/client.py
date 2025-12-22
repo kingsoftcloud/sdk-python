@@ -8,7 +8,6 @@ class SlbClient(AbstractClient):
     _apiVersion = '2025-04-30'
     _endpoint = 'slb.api.ksyun.com'
     _service = 'slb'
-
     def DescribeBackendServers(self, request):
         """查询服务器信息
         :param request: Request instance for DescribeBackendServers.
@@ -30,6 +29,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyBackendServer(self, request):
         """修改服务器信息
@@ -53,6 +53,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeregisterBackendServer(self, request):
         """从服务器组移除服务器
         :param request: Request instance for DeregisterBackendServer.
@@ -74,6 +75,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def RegisterBackendServer(self, request):
         """注册服务器到服务组
@@ -97,6 +99,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeBackendServerGroups(self, request):
         """查询服务器组
         :param request: Request instance for DescribeBackendServerGroups.
@@ -118,6 +121,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def ModifyBackendServerGroup(self, request):
         """修改服务器组
@@ -141,6 +145,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteBackendServerGroup(self, request):
         """删除服务器组
         :param request: Request instance for DeleteBackendServerGroup.
@@ -162,6 +167,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateBackendServerGroup(self, request):
         """创建服务器组
@@ -185,6 +191,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DescribeListeners(self, request):
         """查询监听器
         :param request: Request instance for DescribeListeners.
@@ -207,6 +214,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyListener(self, request):
         """修改监听器
         :param request: Request instance for ModifyListener.
@@ -214,7 +222,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyListener", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ModifyListener", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -228,6 +236,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteListener(self, request):
         """删除监听器
@@ -251,6 +260,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateListener(self, request):
         """创建监听器
         :param request: Request instance for CreateListener.
@@ -258,7 +268,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateListener", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("CreateListener", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -272,6 +282,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetAccessLog(self, request):
         """创建/修改访问日志对接klog
@@ -295,6 +306,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SetEnableAccessLog(self, request):
         """设置访问日志对接klog开关
         :param request: Request instance for SetEnableAccessLog.
@@ -316,6 +328,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetLbProtocolLayers(self, request):
         """设置LB的协议层数
@@ -339,27 +352,6 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
-    def ModifyLoadBalancer(self, request):
-        """修改高阶/hpa配置接口
-        :param request: Request instance for ModifyLoadBalancer.
-        :type request: :class:`ksyun.client.slb.v20250430.models.ModifyLoadBalancerRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("ModifyLoadBalancer", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(e.message, e.message)
 
     def SetLoadBalancerStatus(self, request):
         """设置负载均衡状态
@@ -383,6 +375,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SetLoadBalancerName(self, request):
         """设置负载均衡名称
         :param request: Request instance for SetLoadBalancerName.
@@ -404,6 +397,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeLoadBalancers(self, request):
         """查询负载均衡
@@ -427,6 +421,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteLoadBalancer(self, request):
         """删除负载均衡
         :param request: Request instance for DeleteLoadBalancer.
@@ -448,6 +443,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateLoadBalancer(self, request):
         """创建负载均衡
@@ -471,6 +467,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyCertificateWithGroup(self, request):
         """监听器维度更换同域名的证书
         :param request: Request instance for ModifyCertificateWithGroup.
@@ -492,6 +489,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DissociateCertificateWithGroup(self, request):
         """移除证书出证书组
@@ -515,6 +513,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AssociateCertificateWithGroup(self, request):
         """添加证书进证书组
         :param request: Request instance for AssociateCertificateWithGroup.
@@ -536,6 +535,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeListenerCertGroups(self, request):
         """描述证书组
@@ -559,6 +559,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteListenerCertGroup(self, request):
         """删除证书组
         :param request: Request instance for DeleteListenerCertGroup.
@@ -580,6 +581,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def CreateListenerCertGroup(self, request):
         """创建证书组
@@ -603,6 +605,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AddRules(self, request):
         """添加多个转发规则
         :param request: Request instance for AddRules.
@@ -610,7 +613,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("AddRules", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("AddRules", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -624,6 +627,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DeleteRule(self, request):
         """删除转发策略规则
@@ -647,6 +651,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def AddRule(self, request):
         """创建转发策略规则
         :param request: Request instance for AddRule.
@@ -669,6 +674,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def ModifyRuleGroup(self, request):
         """修改转发策略
         :param request: Request instance for ModifyRuleGroup.
@@ -676,7 +682,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ModifyRuleGroup", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("ModifyRuleGroup", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -690,6 +696,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def DescribeRuleGroups(self, request):
         """描述转发策略
@@ -713,6 +720,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def DeleteRuleGroup(self, request):
         """删除转发策略
         :param request: Request instance for DeleteRuleGroup.
@@ -735,6 +743,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def CreateRuleGroup(self, request):
         """创建转发策略
         :param request: Request instance for CreateRuleGroup.
@@ -742,7 +751,7 @@ class SlbClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateRuleGroup", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("CreateRuleGroup", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -756,6 +765,7 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
 
     def SetLBModificationProtection(self, request):
         """负载均衡修改保护
@@ -779,6 +789,7 @@ class SlbClient(AbstractClient):
             else:
                 raise KsyunSDKException(e.message, e.message)
 
+
     def SetLBDeleteProtection(self, request):
         """负载均衡删除保护
         :param request: Request instance for SetLBDeleteProtection.
@@ -800,3 +811,5 @@ class SlbClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(e.message, e.message)
+
+

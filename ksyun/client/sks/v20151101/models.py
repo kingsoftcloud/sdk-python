@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateKeyRequest(AbstractModel):
     """CreateKey请求参数结构体
     """
@@ -25,10 +24,15 @@ class ImportKeyRequest(AbstractModel):
         :type PathPrefix: String
         :param Description: 描述
         :type PathPrefix: String
+        :param IsCheck: 是否校验密钥合法性
+true:校验
+false:不校验
+        :type PathPrefix: Boolean
         """
         self.KeyName = None
         self.PublicKey = None
         self.Description = None
+        self.IsCheck = None
 
     def _deserialize(self, params):
         if params.get("KeyName"):
@@ -37,6 +41,8 @@ class ImportKeyRequest(AbstractModel):
             self.PublicKey = params.get("PublicKey")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("IsCheck"):
+            self.IsCheck = params.get("IsCheck")
 
 
 class DeleteKeyRequest(AbstractModel):
@@ -105,3 +111,5 @@ class DescribeKeysRequest(AbstractModel):
             self.KeyId = params.get("KeyId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+
+

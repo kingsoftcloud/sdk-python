@@ -1,12 +1,11 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateDBInstanceRequest(AbstractModel):
     """CreateDBInstance请求参数结构体
     """
 
     def __init__(self):
-        r"""create db instance
+        r"""创建实例(可指定具体产品类型)
         :param Mem: 客户只能购买特定规格的套餐，否则将会报错,    注:各规格对应连接数和iops见下方附表.
 
 | 实例规格 | 最大连接数 | 读IOPS | 写IOPS | 对应磁盘取值范围(步长均为5) |
@@ -137,7 +136,7 @@ class DescribeDBInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe db instances
+        r"""查询实例列表/详情
         :param DBInstanceIdentifier: 实例id 传入实例ID，获取的是该实例的详情，否则则获取list
         :type PathPrefix: String
         :param DBInstanceType: 实例类型
@@ -211,7 +210,7 @@ class DeleteDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""delete db instance
+        r"""删除指定实例(不支持批量)
         :param DBInstanceIdentifier: 实例id
         :type PathPrefix: String
         """
@@ -227,7 +226,7 @@ class StatisticDBInstancesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""statistic db instances
+        r"""实例概览统计(全可用地域下单区分类统计)
         :param ExpiryDateLessThan: 按照实例过期时间过滤，取值范围>1
         :type PathPrefix: String
         :param GroupId: 实例分组id
@@ -253,7 +252,7 @@ class ModifyDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify db instance
+        r"""修改实例信息(实例名/账户密码/自动备份时间/参数组/安全组)
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param PreferredBackupTime: 自动备份发起时间
@@ -302,7 +301,7 @@ class CreateSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""create security group
+        r"""创建安全组(模版)
         :param SecurityGroupName: 安全组名称
 ```json 
 不超过256字符，中文，字母，数字，中划线，下划线
@@ -343,7 +342,7 @@ class DescribeSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe security group
+        r"""查询安全组详情
         :param SecurityGroupId: 安全组ID
 
 ```json
@@ -363,7 +362,7 @@ class DeleteSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""delete security group
+        r"""删除安全组(支持批量)
         :param SecurityGroupId: 安全组ID
         :type PathPrefix: String
         """
@@ -379,7 +378,7 @@ class ModifySecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify security group
+        r"""修改安全组名称/描述
         :param SecurityGroupId: 安全组ID
         :type PathPrefix: String
         :param SecurityGroupName: 安全组名称
@@ -411,7 +410,7 @@ class CloneSecurityGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""clone security group
+        r"""克隆安全组
         :param SecurityGroupId: 安全组ID(源安全组ID)
         :type PathPrefix: String
         :param SecurityGroupName: 安全组名称
@@ -441,7 +440,7 @@ class ModifySecurityGroupRuleRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify security grooup rule
+        r"""修改CIDR规则
         :param SecurityGroupId: 安全组ID
         :type PathPrefix: String
         :param SecurityGroupRuleAction: 安全组规则操作
@@ -474,7 +473,7 @@ class SecurityGroupRelationRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""security group relation
+        r"""实例绑定/解绑安全组
         :param RelationAction: 操作类型
 
 ```json
@@ -506,7 +505,7 @@ class ModifySecurityGroupRuleNameRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify security group rule name
+        r"""修改安全组规则备注
         :param SecurityGroupRuleId: 安全组规则ID
         :type PathPrefix: String
         :param SecurityGroupRuleName: 安全组规则名称
@@ -531,7 +530,7 @@ class DescribeDBLogFilesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe db log files
+        r"""查询日志文件列表
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param DBLogType: 日志类型
@@ -583,7 +582,7 @@ class CreateDBBackupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""create db backup
+        r"""创建指定实例手动备份
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param DBBackupName: 备份名称
@@ -609,7 +608,7 @@ class DeleteDBBackupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""delete db backup
+        r"""删除实例备份(手动备份)
         :param DBBackupIdentifier: 备份ID
         :type PathPrefix: String
         """
@@ -625,7 +624,7 @@ class DescribeDBBackupsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe db backups
+        r"""查询备份列表
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param BackupType: 数据库快照类型，取值范围：AutoBackup（自动产生的备份）、Snapshot（手动发起的备份）
@@ -665,7 +664,7 @@ class ModifyDBBackupPolicyRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify db backup policy
+        r"""修改备份策略
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param PreferredBackupTime: 备份时间段
@@ -688,7 +687,7 @@ class OverrideDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""override db instance
+        r"""恢复至源实例
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param DBBackupIdentifier: 备份ID
@@ -709,7 +708,7 @@ class CreateDBParameterGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""create db parameter group
+        r"""创建参数组(模版)
         :param Engine: #### 数据库引擎名称
 取值范围:PostgreSQL
         :type PathPrefix: String
@@ -748,7 +747,7 @@ class ModifyDBParameterGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify db parameter group
+        r"""修改参数组
         :param DBParameterGroupId: 参数组ID
         :type PathPrefix: String
         :param DBParameterGroupName: 参数组名称
@@ -785,7 +784,7 @@ class DeleteDBParameterGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""delete db parameter group
+        r"""删除参数组(模版)
         :param DBParameterGroupId: #### 参数组ID
         :type PathPrefix: String
         """
@@ -801,7 +800,7 @@ class ResetDBParameterGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""reset db parameter grooup
+        r"""重置实例参数
         :param DBParameterGroupId: 参数组ID
         :type PathPrefix: String
         """
@@ -817,7 +816,7 @@ class DescribeDBParameterGroupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe db parameter group
+        r"""查询参数组列表/详情
         :param DBParameterGroupId: 参数组id
         :type PathPrefix: String
         :param Marker: 获取记录开始偏移量
@@ -855,7 +854,7 @@ class DescribeEngineDefaultParametersRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe engine default parameters
+        r"""查询默认参数组详情
         :param Engine: 数据库引擎名称
 
 	固定PostgreSQL
@@ -880,7 +879,7 @@ class DescribeDBInstanceParametersRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查看实例参数组
+        r"""查询实例参数(运行中参数)
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         """
@@ -896,7 +895,7 @@ class RebootDBInstanceRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""reboot db instance
+        r"""重启指定实例
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         """
@@ -912,7 +911,7 @@ class DescribeDBEngineVersionsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe db engine version
+        r"""查询支持的引擎版本及最新小版本信息
         """
 
     def _deserialize(self, params):
@@ -924,7 +923,7 @@ class AllocateDBInstanceEipRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""allocate db instance eip
+        r"""申请外网EIP
         :param DBInstanceIdentifier: 实例id
         :type PathPrefix: String
         :param Port: 外网访问端口号,可设置外网访问端口号 范围:10000~65500
@@ -945,7 +944,7 @@ class ReleaseDBInstanceEipRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""release db instance eip
+        r"""释放外网EIP
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         """
@@ -961,7 +960,7 @@ class ModifyDBInstanceSpecRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify db instance spec
+        r"""更改实例配置
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param Mem: 内存大小，客户只能购买特定规格的套餐，且需>=原规格.否则将会报错    注:各规格对应连接数和iops见下方附表.
@@ -1011,7 +1010,7 @@ class RestoreDBInstanceFromDBBackupRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""restore db instance from db backup
+        r"""恢复至新实例
         :param DBBackupIdentifier: #### 备份ID
         :type PathPrefix: String
         :param DBInstanceType: #### 实例类型
@@ -1073,7 +1072,7 @@ class SwitchDBInstanceHARequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""switch db instance ha
+        r"""主备切换(可用区)
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         """
@@ -1089,7 +1088,7 @@ class CreateDBInstanceReadReplicaRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""create db instance read replica
+        r"""创建只读实例
         :param DBInstanceIdentifier: 主实例Id
         :type PathPrefix: String
         :param DBInstanceName: 实例名称
@@ -1164,30 +1163,30 @@ class ModifyInstanceAccountInfoRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify instance account info
+        r"""编辑账号信息
         :param DBInstanceIdentifier: 实例id
         :type PathPrefix: String
-        :param InstanceAccountName: 实例名称
+        :param AccountName: 实例名称
         :type PathPrefix: String
-        :param InstanceAccountPassword: 实例密码
+        :param AccountPassword: 实例密码
         :type PathPrefix: String
-        :param InstanceAccountDescription: 数据库账户描述
+        :param AccountDescription: 数据库账户描述
         :type PathPrefix: String
         """
         self.DBInstanceIdentifier = None
-        self.InstanceAccountName = None
-        self.InstanceAccountPassword = None
-        self.InstanceAccountDescription = None
+        self.AccountName = None
+        self.AccountPassword = None
+        self.AccountDescription = None
 
     def _deserialize(self, params):
         if params.get("DBInstanceIdentifier"):
             self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
-        if params.get("InstanceAccountName"):
-            self.InstanceAccountName = params.get("InstanceAccountName")
-        if params.get("InstanceAccountPassword"):
-            self.InstanceAccountPassword = params.get("InstanceAccountPassword")
-        if params.get("InstanceAccountDescription"):
-            self.InstanceAccountDescription = params.get("InstanceAccountDescription")
+        if params.get("AccountName"):
+            self.AccountName = params.get("AccountName")
+        if params.get("AccountPassword"):
+            self.AccountPassword = params.get("AccountPassword")
+        if params.get("AccountDescription"):
+            self.AccountDescription = params.get("AccountDescription")
 
 
 class DescribeInstanceDatabasesRequest(AbstractModel):
@@ -1195,7 +1194,7 @@ class DescribeInstanceDatabasesRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""获取实例数据库列表
+        r"""查询数据库列表
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         """
@@ -1211,7 +1210,7 @@ class DescribeDBInstanceExtensionsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""describe db instance extensions
+        r"""查询插件列表
         :param DBInstanceIdentifier: 实例ID
         :type PathPrefix: String
         :param KeyWord: 绑定类型(绑定/未绑定) 
@@ -1238,7 +1237,7 @@ class ModifyDBInstanceExtensionRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""modify db instance extension
+        r"""安装/卸载用户实例插件
         :param DBInstanceIdentifier: 实例Id
         :type PathPrefix: String
         :param InstanceDatabaseName: 数据库名称
@@ -1276,3 +1275,355 @@ class ModifyDBInstanceExtensionRequest(AbstractModel):
             self.Operation = params.get("Operation")
         if params.get("Extension"):
             self.Extension = params.get("Extension")
+
+
+class DescribeCollationsRequest(AbstractModel):
+    """DescribeCollations请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询支持字符集
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+
+
+class ModifyInstanceDatabaseOwnerRequest(AbstractModel):
+    """ModifyInstanceDatabaseOwner请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改数据库所有者
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param InstanceDatabaseName: 数据库名称
+        :type PathPrefix: String
+        :param Owner: 数据库拥有者(账户)
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.InstanceDatabaseName = None
+        self.Owner = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("InstanceDatabaseName"):
+            self.InstanceDatabaseName = params.get("InstanceDatabaseName")
+        if params.get("Owner"):
+            self.Owner = params.get("Owner")
+
+
+class DeleteInstanceDatabaseRequest(AbstractModel):
+    """DeleteInstanceDatabase请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除数据库
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param InstanceDatabaseName: 库表名称
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.InstanceDatabaseName = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("InstanceDatabaseName"):
+            self.InstanceDatabaseName = params.get("InstanceDatabaseName")
+
+
+class CreateInstanceDatabaseRequest(AbstractModel):
+    """CreateInstanceDatabase请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建数据库
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param InstanceDatabaseName: 库名称
+        :type PathPrefix: String
+        :param InstanceDatabaseCollation: 排序规则
+        :type PathPrefix: String
+        :param InstanceDatabaseCharacterSet: 字符集
+        :type PathPrefix: String
+        :param InstanceDatabaseCharacterSetType: 字符分类
+        :type PathPrefix: String
+        :param Description: 描述
+        :type PathPrefix: String
+        :param InstanceDatabaseOwner: 拥有者
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.InstanceDatabaseName = None
+        self.InstanceDatabaseCollation = None
+        self.InstanceDatabaseCharacterSet = None
+        self.InstanceDatabaseCharacterSetType = None
+        self.Description = None
+        self.InstanceDatabaseOwner = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("InstanceDatabaseName"):
+            self.InstanceDatabaseName = params.get("InstanceDatabaseName")
+        if params.get("InstanceDatabaseCollation"):
+            self.InstanceDatabaseCollation = params.get("InstanceDatabaseCollation")
+        if params.get("InstanceDatabaseCharacterSet"):
+            self.InstanceDatabaseCharacterSet = params.get("InstanceDatabaseCharacterSet")
+        if params.get("InstanceDatabaseCharacterSetType"):
+            self.InstanceDatabaseCharacterSetType = params.get("InstanceDatabaseCharacterSetType")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("InstanceDatabaseOwner"):
+            self.InstanceDatabaseOwner = params.get("InstanceDatabaseOwner")
+
+
+class DescribeInstanceAccountsRequest(AbstractModel):
+    """DescribeInstanceAccounts请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询账号列表
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+
+
+class CreateInstanceAccountRequest(AbstractModel):
+    """CreateInstanceAccount请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建账号(数据库账号)
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param AccountName: 账号名称
+
+```json
+长度为2~16个字符，由小写字母、数字或下划线组成，但开头需为字母，结尾需为字母或数字
+```
+        :type PathPrefix: String
+        :param AccountPassword: 账号密码
+        :type PathPrefix: String
+        :param AccountDescription: 账号描述
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.AccountName = None
+        self.AccountPassword = None
+        self.AccountDescription = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("AccountName"):
+            self.AccountName = params.get("AccountName")
+        if params.get("AccountPassword"):
+            self.AccountPassword = params.get("AccountPassword")
+        if params.get("AccountDescription"):
+            self.AccountDescription = params.get("AccountDescription")
+
+
+class DeleteInstanceAccountRequest(AbstractModel):
+    """DeleteInstanceAccount请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除账号(不支持批量)
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param AccountName: 账号名称
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.AccountName = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("AccountName"):
+            self.AccountName = params.get("AccountName")
+
+
+class ModifyDBNetworkRequest(AbstractModel):
+    """ModifyDBNetwork请求参数结构体
+    """
+
+    def __init__(self):
+        r"""变更网络(修改VPC信息)
+        :param DBInstanceIdentifier: 实例Id
+        :type PathPrefix: String
+        :param SubnetId: SubnetId
+        :type PathPrefix: String
+        :param VpcId: VpcId
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.SubnetId = None
+        self.VpcId = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+
+
+class UpdateDBInstanceVersionRequest(AbstractModel):
+    """UpdateDBInstanceVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""升级至当前实例最新小版本
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param Engine: 实例引擎，默认：'postgresql',可不填
+        :type PathPrefix: String
+        :param EngineVersion: 实例版本，需要指定当前实例具体的大版本。
+若不指定则默认：'9.6'
+
+```json
+现支持如下版本：
+9.6|10|11|12.5|13|1
+
+注意：
+9.6仅做维护，已不支持售卖，请您务必指定实例版本
+```
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.Engine = None
+        self.EngineVersion = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("Engine"):
+            self.Engine = params.get("Engine")
+        if params.get("EngineVersion"):
+            self.EngineVersion = params.get("EngineVersion")
+
+
+class ModifyDBInstanceAvailabilityZoneRequest(AbstractModel):
+    """ModifyDBInstanceAvailabilityZone请求参数结构体
+    """
+
+    def __init__(self):
+        r"""迁移可用区(迁移备库可用区)
+        :param DBInstanceIdentifier: 实例ID
+        :type PathPrefix: String
+        :param AvailabilityZone.1: 主可用区
+        :type PathPrefix: String
+        :param AvailabilityZone.2: 备可用区
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.AvailabilityZone_1 = None
+        self.AvailabilityZone_2 = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("AvailabilityZone.1"):
+            self.AvailabilityZone_1 = params.get("AvailabilityZone.1")
+        if params.get("AvailabilityZone.2"):
+            self.AvailabilityZone_2 = params.get("AvailabilityZone.2")
+
+
+class UpdateDBInstanceOrderRequest(AbstractModel):
+    """UpdateDBInstanceOrder请求参数结构体
+    """
+
+    def __init__(self):
+        r"""试用订单延期/转正
+        :param DBInstanceIdentifier: 实例Id
+        :type PathPrefix: String
+        :param UpdateUse: 操作类型
+
+```json
+试用延期：Renew
+试用转正：Buy
+```
+        :type PathPrefix: String
+        :param Duration: 持续时间
+
+```json
+注意：选定续费或者转正方式为包年包月是，需要指定持续时间；
+```
+        :type PathPrefix: Int
+        :param BillType: 计费类型
+
+```json
+包年包月：YEAR_MONTH
+按日月结（按日配置付费月结）：DAY
+按小时实时结算：HourlyInstantSettlement
+
+注意：若不选定计费类型，则默认为HourlyInstantSettlement
+```
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.UpdateUse = None
+        self.Duration = None
+        self.BillType = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("UpdateUse"):
+            self.UpdateUse = params.get("UpdateUse")
+        if params.get("Duration"):
+            self.Duration = params.get("Duration")
+        if params.get("BillType"):
+            self.BillType = params.get("BillType")
+
+
+class UpdateResourceProtectionRequest(AbstractModel):
+    """UpdateResourceProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除保护设置
+        :param DBInstanceIdentifier: 实例id
+        :type PathPrefix: String
+        :param ProtectionSwitch: 保护开关
+
+```json
+开启：ON 关闭：OFF 
+```
+        :type PathPrefix: String
+        :param ProtectionReason: 操作理由
+
+```json
+限定64字符
+```
+        :type PathPrefix: String
+        """
+        self.DBInstanceIdentifier = None
+        self.ProtectionSwitch = None
+        self.ProtectionReason = None
+
+    def _deserialize(self, params):
+        if params.get("DBInstanceIdentifier"):
+            self.DBInstanceIdentifier = params.get("DBInstanceIdentifier")
+        if params.get("ProtectionSwitch"):
+            self.ProtectionSwitch = params.get("ProtectionSwitch")
+        if params.get("ProtectionReason"):
+            self.ProtectionReason = params.get("ProtectionReason")
+
+

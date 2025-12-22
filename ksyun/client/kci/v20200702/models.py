@@ -1,6 +1,5 @@
 from ksyun.common.abstract_model import AbstractModel
 
-
 class CreateContainerGroupRequest(AbstractModel):
     """CreateContainerGroup请求参数结构体
     """
@@ -41,6 +40,9 @@ class CreateContainerGroupRequest(AbstractModel):
         :type PathPrefix: Int
         :param EipAllocationId: EIP实例ID，容器实例成功启动后会自动进行EIP绑定
         :type PathPrefix: String
+        :param MultiEipAllocationId: EIP实例ID(多值传参用法)，
+MultiEipAllocationId 和 EipAllocationId只能同时传一个
+        :type PathPrefix: Filter
         :param AutoMatchImageCache: 自动匹配镜像缓存，默认False
         :type PathPrefix: Boolean
         :param ImageCacheId: 镜像缓存ID，指定镜像缓存，则AutoMatchImageCache无效
@@ -103,6 +105,7 @@ pod内部所有容器申请的资源列表，不填写，开出的容器实例�
         self.RetainIp = None
         self.RetainIpHours = None
         self.EipAllocationId = None
+        self.MultiEipAllocationId = None
         self.AutoMatchImageCache = None
         self.ImageCacheId = None
         self.AdvanceSettings = None
@@ -157,6 +160,8 @@ pod内部所有容器申请的资源列表，不填写，开出的容器实例�
             self.RetainIpHours = params.get("RetainIpHours")
         if params.get("EipAllocationId"):
             self.EipAllocationId = params.get("EipAllocationId")
+        if params.get("MultiEipAllocationId"):
+            self.MultiEipAllocationId = params.get("MultiEipAllocationId")
         if params.get("AutoMatchImageCache"):
             self.AutoMatchImageCache = params.get("AutoMatchImageCache")
         if params.get("ImageCacheId"):
@@ -245,22 +250,6 @@ status常用值范围
             self.Search = params.get("Search")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
-
-
-class DescribeContainerGroupListRequest(AbstractModel):
-    """DescribeContainerGroupList请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用于控制台查询容器实例组列表
-        :param Action: 请求Action
-        :type PathPrefix: String
-        """
-        self.Action = None
-
-    def _deserialize(self, params):
-        if params.get("Action"):
-            self.Action = params.get("Action")
 
 
 class DeleteContainerGroupRequest(AbstractModel):
@@ -431,7 +420,7 @@ class CreateImageCacheRequest(AbstractModel):
         :param Image: 镜像数量，最多20个，镜像必须符合docker镜像格式
         :type PathPrefix: Filter
         :param ImageRegistryCredential: 拉取镜像仓库中私有镜像的凭据，公开镜像无须填写凭据
-        :type PathPrefix: Array
+        :type PathPrefix: Filter
         :param ImageCacheType: 镜像缓存类型
 - Common 普通型
 - Rapid 极速型
@@ -556,3 +545,70 @@ class DescribeImageCacheEventRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ImageCacheId"):
             self.ImageCacheId = params.get("ImageCacheId")
+
+
+class UpdateImageCacheRequest(AbstractModel):
+    """UpdateImageCache请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新容器实例镜像缓存
+        :param ImageCacheId: 镜像缓存ID
+        :type PathPrefix: String
+        :param ImageCacheName: 镜像缓存名称，最长63个字符，名称需符合
+`^[a-zA-Z0-9]([-a-zA-Z0-9._]*[a-zA-Z0-9])?$` 格式
+        :type PathPrefix: String
+        :param SubnetId: 子网ID，创建缓存过程中会创建一个容器实例，占用该子网下一个ip
+        :type PathPrefix: String
+        :param SecurityGroupId: 安全组ID
+        :type PathPrefix: String
+        :param ImageCacheSize: 镜像缓存大小，单位GB，默认20GB，取值范围20-500G，请保证下载的镜像小于等于该大小。
+        :type PathPrefix: Int
+        :param RetentionDays: 镜像缓存保留天数，最大65536天，不填写或者0则表示永久保留
+        :type PathPrefix: Int
+        :param Image: 镜像数量，最多20个，镜像必须符合docker镜像格式
+        :type PathPrefix: Filter
+        :param ImageCacheType: 镜像缓存类型
+
+- Common 普通型
+- Rapid 极速型
+        :type PathPrefix: String
+        :param EnableWarm: 是否预热，默认false
+        :type PathPrefix: Boolean
+        :param ImageRegistryCredential: 镜像拉取凭证
+        :type PathPrefix: Filter
+        """
+        self.ImageCacheId = None
+        self.ImageCacheName = None
+        self.SubnetId = None
+        self.SecurityGroupId = None
+        self.ImageCacheSize = None
+        self.RetentionDays = None
+        self.Image = None
+        self.ImageCacheType = None
+        self.EnableWarm = None
+        self.ImageRegistryCredential = None
+
+    def _deserialize(self, params):
+        if params.get("ImageCacheId"):
+            self.ImageCacheId = params.get("ImageCacheId")
+        if params.get("ImageCacheName"):
+            self.ImageCacheName = params.get("ImageCacheName")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("SecurityGroupId"):
+            self.SecurityGroupId = params.get("SecurityGroupId")
+        if params.get("ImageCacheSize"):
+            self.ImageCacheSize = params.get("ImageCacheSize")
+        if params.get("RetentionDays"):
+            self.RetentionDays = params.get("RetentionDays")
+        if params.get("Image"):
+            self.Image = params.get("Image")
+        if params.get("ImageCacheType"):
+            self.ImageCacheType = params.get("ImageCacheType")
+        if params.get("EnableWarm"):
+            self.EnableWarm = params.get("EnableWarm")
+        if params.get("ImageRegistryCredential"):
+            self.ImageRegistryCredential = params.get("ImageRegistryCredential")
+
+

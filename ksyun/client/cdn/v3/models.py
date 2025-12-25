@@ -648,3 +648,262 @@ Enable为on时为必填项；
             self.AllowEmpty = params.get("AllowEmpty")
 
 
+class SetIpProtectionConfigRequest(AbstractModel):
+    """SetIpProtectionConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置IP防盗链
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param Enable: 配置是否开启或关闭 取值：on、off，默认值为off关闭。开启时，下述必须项为必填项；关闭时，只更改此标识，忽略后面的项目。
+        :type PathPrefix: String
+        :param IpType: Ip黑白名单类型，取值：block：黑名单；allow：白名单，开启后必填
+        :type PathPrefix: String
+        :param IpList: 103.200.110.0-103.200.110.254；
+10.10.10.0/24 (24表示采用子网掩码中的前24位有效位，即用32-24=8bit来表示主机号，该子网可以容纳2^8-2=254台主机，故10.10.10.0/24表示IP网段范围是：10.10.10.1~10.10.10.254。)
+        :type PathPrefix: String
+        """
+        self.DomainId = None
+        self.Enable = None
+        self.IpType = None
+        self.IpList = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("Enable"):
+            self.Enable = params.get("Enable")
+        if params.get("IpType"):
+            self.IpType = params.get("IpType")
+        if params.get("IpList"):
+            self.IpList = params.get("IpList")
+
+
+class SetHttpHeadersConfigRequest(AbstractModel):
+    """SetHttpHeadersConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置请求http头V3
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param HeaderKey: 要设置的HTTP头参数名称，支持英文、数字、下划线、英文中划线，必须以英文开头，最大长度为128个字符
+        :type PathPrefix: String
+        :param HeaderValue: 要设置的Http头参数取值，取值组成：不支持双引号、单引号、中括号、花括号、中文，最大长度为255个字符
+        :type PathPrefix: String
+        """
+        self.DomainId = None
+        self.HeaderKey = None
+        self.HeaderValue = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("HeaderKey"):
+            self.HeaderKey = params.get("HeaderKey")
+        if params.get("HeaderValue"):
+            self.HeaderValue = params.get("HeaderValue")
+
+
+class DeleteHttpHeadersConfigRequest(AbstractModel):
+    """DeleteHttpHeadersConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除Http响应头
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param HeaderKey: 已经设置的Http头参数
+        :type PathPrefix: String
+        """
+        self.DomainId = None
+        self.HeaderKey = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("HeaderKey"):
+            self.HeaderKey = params.get("HeaderKey")
+
+
+class GetHttpHeaderListRequest(AbstractModel):
+    """GetHttpHeaderList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Http响应头列表V3
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class SetRequestAuthConfigRequest(AbstractModel):
+    """SetRequestAuthConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置时间戳共享秘钥防盗链接口
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param Enable: 配置是否开启或关闭取值：on、off，默认值为off关闭。开启时，下述必须项为必填项；关闭时，只更改此标识，忽略后面的项目。
+        :type PathPrefix: String
+        :param AuthType: 防盗链类型，取值：typeA 、typeB；开启后必填（两种类型说明见下）
+        :type PathPrefix: String
+        :param Key1: 主享密钥，必须由大小写字母（a-Z）或者数字（0-9）组成，长度在6-128个字符之间。
+        :type PathPrefix: String
+        :param Key2: 备享密钥，必须由大小写字母（a-Z）或者数字（0-9）组成，长度在6-128个字符之间。
+        :type PathPrefix: String
+        :param ExpirationTime: 过期时间，单位为“秒”，输入大于等于0的正整数，最大不要超过31536000。
+两种防盗链类型说明如下：
+        :type PathPrefix: String
+        """
+        self.DomainId = None
+        self.Enable = None
+        self.AuthType = None
+        self.Key1 = None
+        self.Key2 = None
+        self.ExpirationTime = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("Enable"):
+            self.Enable = params.get("Enable")
+        if params.get("AuthType"):
+            self.AuthType = params.get("AuthType")
+        if params.get("Key1"):
+            self.Key1 = params.get("Key1")
+        if params.get("Key2"):
+            self.Key2 = params.get("Key2")
+        if params.get("ExpirationTime"):
+            self.ExpirationTime = params.get("ExpirationTime")
+
+
+class SetForceRedirectConfigRequest(AbstractModel):
+    """SetForceRedirectConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置强制跳转接口V3
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param RedirectType: 配置强制跳转类型, 取值: off、 https，默认为off 。其中https表示http → https，当选择https时需保证域名已配置证书。
+        :type PathPrefix: String
+        :param RedirectCode: 强制跳转使用的状态码，仅支持301、302、303、307和308。仅允许输入一个状态码
+
+为空默认302
+        :type PathPrefix: String
+        """
+        self.DomainId = None
+        self.RedirectType = None
+        self.RedirectCode = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("RedirectType"):
+            self.RedirectType = params.get("RedirectType")
+        if params.get("RedirectCode"):
+            self.RedirectCode = params.get("RedirectCode")
+
+
+class SetErrorPageConfigRequest(AbstractModel):
+    """SetErrorPageConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置自定义错误页面接口V3
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param ErrorPages: 由ErrorPage组成的数组，表示自定义错误页面列表。注意：该数组是有序的，如果一个相同状态码在数组里有配置子集，则以最后面的子集为准。
+        :type PathPrefix: Array
+        """
+        self.DomainId = None
+        self.ErrorPages = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("ErrorPages"):
+            self.ErrorPages = params.get("ErrorPages")
+
+
+class SetTLSVersionConfigRequest(AbstractModel):
+    """SetTLSVersionConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置TLS版本V3
+        :param DomainId: 域名ID
+        :type PathPrefix: String
+        :param TLSVersion: 选择要启用TLS协议版本，取值：TLSv1.0, TLSV1.1, TLSV1.2, TLSv1.3，缺省时默认全部启用；
+* 支持同时启用多种协议版本，以列表形式传入，见参数示例值；
+* 支持同时启用两个不连续的协议版本，如：TLSv1.0,TLSV1.3；
+* 至少需要启用一种TLS协议版本。
+        :type PathPrefix: Array
+        """
+        self.DomainId = None
+        self.TLSVersion = None
+
+    def _deserialize(self, params):
+        if params.get("DomainId"):
+            self.DomainId = params.get("DomainId")
+        if params.get("TLSVersion"):
+            self.TLSVersion = params.get("TLSVersion")
+
+
+class GetBillingModeRequest(AbstractModel):
+    """GetBillingMode请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取计费方式接口V3
+        :param StartTime: 获取数据起始时间点，日期格式按ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param EndTime: 结束时间需大于起始时间；获取日期格式按照ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param CdnType: 产品类型，只允许输入一种类型，取值为file：大文件下载，video：音视频点播，page：小文件下载，live：流媒体直播，all：所有业务类型汇总
+        :type PathPrefix: String
+        :param DomainIds: 域名ID，缺省为当前产品类型下的全部域名，可输入需要查询的域名ID，支持批量域名查询，多个域名ID用逗号（半角）分隔
+        :type PathPrefix: String
+        :param Regions: 区域名称，枚举类型表见[使用须知](https://docs.ksyun.com/documents/196#36)，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
+        :type PathPrefix: String
+        :param BillingMode: 计费方式， 取值为 peakbw:峰值计费;peak95bw:95峰值计费;averagebw：日峰值平均值计费；monthflow：流量按月，只允许输入一种计费方式，缺省为 peakbw ；
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.CdnType = None
+        self.DomainIds = None
+        self.Regions = None
+        self.BillingMode = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("CdnType"):
+            self.CdnType = params.get("CdnType")
+        if params.get("DomainIds"):
+            self.DomainIds = params.get("DomainIds")
+        if params.get("Regions"):
+            self.Regions = params.get("Regions")
+        if params.get("BillingMode"):
+            self.BillingMode = params.get("BillingMode")
+
+
+class GetBlockUrlQuotaRequest(AbstractModel):
+    """GetBlockUrlQuota请求参数结构体
+    """
+
+    def __init__(self):
+        r"""屏蔽url配额查询V3
+        """
+
+    def _deserialize(self, params):
+        return
+
+

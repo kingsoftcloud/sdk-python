@@ -491,3 +491,233 @@ class CdnClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def SetIpProtectionConfig(self, request):
+        """设置IP防盗链
+        :param request: Request instance for SetIpProtectionConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetIpProtectionConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetIpProtectionConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetHttpHeadersConfig(self, request):
+        """设置请求http头V3
+        :param request: Request instance for SetHttpHeadersConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetHttpHeadersConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetHttpHeadersConfig", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def DeleteHttpHeadersConfig(self, request):
+        """删除Http响应头
+        :param request: Request instance for DeleteHttpHeadersConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.DeleteHttpHeadersConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteHttpHeadersConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetHttpHeaderList(self, request):
+        """获取Http响应头列表V3
+        :param request: Request instance for GetHttpHeaderList.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetHttpHeaderListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetHttpHeaderList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetRequestAuthConfig(self, request):
+        """设置时间戳共享秘钥防盗链接口
+        :param request: Request instance for SetRequestAuthConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetRequestAuthConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetRequestAuthConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetForceRedirectConfig(self, request):
+        """设置强制跳转接口V3
+        :param request: Request instance for SetForceRedirectConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetForceRedirectConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetForceRedirectConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetErrorPageConfig(self, request):
+        """设置自定义错误页面接口V3
+        :param request: Request instance for SetErrorPageConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetErrorPageConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetErrorPageConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetTLSVersionConfig(self, request):
+        """设置TLS版本V3
+        :param request: Request instance for SetTLSVersionConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetTLSVersionConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetTLSVersionConfig", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetBillingMode(self, request):
+        """获取计费方式接口V3
+        :param request: Request instance for GetBillingMode.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetBillingModeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetBillingMode", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetBlockUrlQuota(self, request):
+        """屏蔽url配额查询V3
+        :param request: Request instance for GetBlockUrlQuota.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetBlockUrlQuotaRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetBlockUrlQuota", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

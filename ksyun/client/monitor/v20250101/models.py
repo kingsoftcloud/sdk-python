@@ -123,3 +123,34 @@ class DescribeSystemEventAttributesRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
 
 
+class ListAlarmEffectInstanceRequest(AbstractModel):
+    """ListAlarmEffectInstance请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取故障影响实例列表
+        :param StartTime: 开始时间。
+        :type PathPrefix: Int
+        :param EndTime: 结束时间。
+        :type PathPrefix: Int
+        :param PageIndex: 页数。
+        :type PathPrefix: Int
+        :param PageSize: 每页显示最大数量。
+        :type PathPrefix: Int
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.PageIndex = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("PageIndex"):
+            self.PageIndex = params.get("PageIndex")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+

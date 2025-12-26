@@ -721,3 +721,72 @@ class CdnClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def GetBandwidthData(self, request):
+        """新版查询带宽信息V3
+        :param request: Request instance for GetBandwidthData.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetBandwidthDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetBandwidthData", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetFlowData(self, request):
+        """新版查询流量信息接口V3
+        :param request: Request instance for GetFlowData.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetFlowDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetFlowData", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetPvData(self, request):
+        """新版查询请求数信息接口V3
+        :param request: Request instance for GetPvData.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetPvDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetPvData", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

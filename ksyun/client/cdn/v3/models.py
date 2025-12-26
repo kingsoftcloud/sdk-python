@@ -907,3 +907,171 @@ class GetBlockUrlQuotaRequest(AbstractModel):
         return
 
 
+class GetBandwidthDataRequest(AbstractModel):
+    """GetBandwidthData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新版查询带宽信息V3
+        :param StartTime: 获取数据起始时间点，日期格式按ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param EndTime: 结束时间需大于起始时间；获取日期格式按照ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param CdnType: 产品类型，只允许输入一种类型，取值为file：大文件下载，video：音视频点播，page：图片小文件，live：流媒体直播
+        :type PathPrefix: String
+        :param DomainIds: 域名ID，缺省为当前产品类型下的全部域名，可输入需要查询的域名ID，支持批量域名查询，多个域名ID用逗号（半角）分隔
+        :type PathPrefix: String
+        :param Regions: S区域名称，枚举类型表见使用须知，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
+        :type PathPrefix: String
+        :param ResultType: 取值为0：多域名多区域数据做合并；1：每个域名每个区域的数据分别返回
+        :type PathPrefix: Int
+        :param Granularity: 统计粒度，取值为 5（默认）：5分钟粒度；10：10分钟粒度；20：20分钟粒度；60：1小时粒度；240：4小时粒度；480：8小时粒度；1440：1天粒度；以上粒度的带宽值均取该粒度时间段的带宽峰值，即每5分钟有效带宽值的最高带宽
+        :type PathPrefix: Int
+        :param DataType: 数据类型，取值为edge：服务数据； origin：回源数据（push：直播推流加速暂不支持查询回源数据）； 支持多类型选择，多个类型用逗号（半角）分隔，缺省为 edge
+        :type PathPrefix: String
+        :param ProtocolType: 协议类型， 取值为http：http协议数据；https：https协议数据；缺省默认返回全部协议数据（当CdnType=live时，请忽略此参数）
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.CdnType = None
+        self.DomainIds = None
+        self.Regions = None
+        self.ResultType = None
+        self.Granularity = None
+        self.DataType = None
+        self.ProtocolType = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("CdnType"):
+            self.CdnType = params.get("CdnType")
+        if params.get("DomainIds"):
+            self.DomainIds = params.get("DomainIds")
+        if params.get("Regions"):
+            self.Regions = params.get("Regions")
+        if params.get("ResultType"):
+            self.ResultType = params.get("ResultType")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+        if params.get("DataType"):
+            self.DataType = params.get("DataType")
+        if params.get("ProtocolType"):
+            self.ProtocolType = params.get("ProtocolType")
+
+
+class GetFlowDataRequest(AbstractModel):
+    """GetFlowData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新版查询流量信息接口V3
+        :param StartTime: 获取数据起始时间点，日期格式按ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param EndTime: 结束时间需大于起始时间；获取日期格式按照ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param CdnType: 产品类型，只允许输入一种类型，取值为file：大文件下载，video：音视频点播，page：图片小文件，live：流媒体直播
+        :type PathPrefix: String
+        :param DomainIds: 域名ID，缺省为当前产品类型下的全部域名，可输入需要查询的域名ID，支持批量域名查询，多个域名ID用逗号（半角）分隔
+        :type PathPrefix: String
+        :param Regions: 区域名称，枚举类型表见[使用须知](使用须知)，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
+        :type PathPrefix: String
+        :param ResultType: 取值为0：多域名多区域数据做合并；1：每个域名每个区域的数据分别返回
+        :type PathPrefix: Int
+        :param Granularity: 统计粒度，取值为 5（默认）：5分钟粒度；10：10分钟粒度；20：20分钟粒度；60：1小时粒度；240：4小时粒度；480：8小时粒度；1440：1天粒度；以上粒度流量值均取该粒度时间段的流量总和
+        :type PathPrefix: Int
+        :param DataType: 数据类型，取值为edge:服务数据; origin:回源数据（push：直播推流加速暂不支持查询回源数据）; 支持多类型选择，多个类型用逗号（半角）分隔，缺省为edge
+        :type PathPrefix: String
+        :param ProtocolType: 协议类型， 取值为http：htts协议数据； https：https协议数据；缺省默认返回全部协议数据
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.CdnType = None
+        self.DomainIds = None
+        self.Regions = None
+        self.ResultType = None
+        self.Granularity = None
+        self.DataType = None
+        self.ProtocolType = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("CdnType"):
+            self.CdnType = params.get("CdnType")
+        if params.get("DomainIds"):
+            self.DomainIds = params.get("DomainIds")
+        if params.get("Regions"):
+            self.Regions = params.get("Regions")
+        if params.get("ResultType"):
+            self.ResultType = params.get("ResultType")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+        if params.get("DataType"):
+            self.DataType = params.get("DataType")
+        if params.get("ProtocolType"):
+            self.ProtocolType = params.get("ProtocolType")
+
+
+class GetPvDataRequest(AbstractModel):
+    """GetPvData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新版查询请求数信息接口V3
+        :param StartTime: 获取数据起始时间点，日期格式按ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param EndTime: 结束时间需大于起始时间；获取日期格式按照ISO8601表示法，北京时间，格式为：YYYY-MM-DDThh:mm+0800，例如： 2016-08-01T21:14+0800
+        :type PathPrefix: String
+        :param CdnType: 产品类型，只允许输入一种类型，取值为file：大文件下载，video：音视频点播，page：图片小文件，live：流媒体直播
+        :type PathPrefix: String
+        :param DomainIds: 域名ID，缺省为当前产品类型下的全部域名，可输入需要查询的域名ID，支持批量域名查询，多个域名ID用逗号（半角）分隔
+        :type PathPrefix: String
+        :param Regions: 区域名称，枚举类型表见[使用须知](https://docs.ksyun.com/documents/196#36)，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
+        :type PathPrefix: String
+        :param ResultType: 取值为0：多域名多区域数据做合并；1：每个域名每个区域的数据分别返回
+        :type PathPrefix: Int
+        :param Granularity: 统计粒度，取值为 5（默认）：5分钟粒度；10：10分钟粒度；20：20分钟粒度；60：1小时粒度；240：4小时粒度；480：8小时粒度；1440：1天粒度；以上粒度的请求数均取该粒度时间段的请求数总和
+        :type PathPrefix: Int
+        :param DataType: 数据类型， 取值为edge:服务数据; origin:回源数据; 支持多类型选择，多个类型用逗号（半角）分隔，缺省为edge
+        :type PathPrefix: String
+        :param ProtocolType: 协议类型， 取值为http:http协议数据; https:https协议数据（直播不支持区分协议查询），默认返回全部协议数据
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.CdnType = None
+        self.DomainIds = None
+        self.Regions = None
+        self.ResultType = None
+        self.Granularity = None
+        self.DataType = None
+        self.ProtocolType = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("CdnType"):
+            self.CdnType = params.get("CdnType")
+        if params.get("DomainIds"):
+            self.DomainIds = params.get("DomainIds")
+        if params.get("Regions"):
+            self.Regions = params.get("Regions")
+        if params.get("ResultType"):
+            self.ResultType = params.get("ResultType")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+        if params.get("DataType"):
+            self.DataType = params.get("DataType")
+        if params.get("ProtocolType"):
+            self.ProtocolType = params.get("ProtocolType")
+
+

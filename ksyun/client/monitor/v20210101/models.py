@@ -276,3 +276,55 @@ class DescribeMonitorProductListRequest(AbstractModel):
         return
 
 
+class DescribeAlertHistoriesRequest(AbstractModel):
+    """DescribeAlertHistories请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取告警历史记录
+        :param StartTime: 开始时间。
+
+> 时间格式：Unix时间戳(秒)
+        :type PathPrefix: Int
+        :param EndTime: 结束时间。
+
+> 时间格式：Unix时间戳(秒)
+        :type PathPrefix: Int
+        :param ProductType: 产品ID，详情 [获取产品列表](https://docs.ksyun.com/documents/42040?type=3)
+        :type PathPrefix: Int
+        :param PolicyId: 指定策略ID查询。
+        :type PathPrefix: Int
+        :param InstanceId: 指定告警资源ID。
+
+> 不支持批量资源ID查询。
+        :type PathPrefix: String
+        :param PageIndex: 页数。
+        :type PathPrefix: Int
+        :param PageSize: 每页最多显示记录数。
+        :type PathPrefix: Int
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.ProductType = None
+        self.PolicyId = None
+        self.InstanceId = None
+        self.PageIndex = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("ProductType"):
+            self.ProductType = params.get("ProductType")
+        if params.get("PolicyId"):
+            self.PolicyId = params.get("PolicyId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("PageIndex"):
+            self.PageIndex = params.get("PageIndex")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+

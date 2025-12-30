@@ -261,3 +261,26 @@ class MonitorClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeAlertHistories(self, request):
+        """获取告警历史记录
+        :param request: Request instance for DescribeAlertHistories.
+        :type request: :class:`ksyun.client.monitor.v20210101.models.DescribeAlertHistoriesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAlertHistories", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

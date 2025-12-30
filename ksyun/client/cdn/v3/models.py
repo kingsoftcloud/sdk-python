@@ -8,12 +8,32 @@ class GetDomainLogsRequest(AbstractModel):
         r"""获取日志下载URL
         :param DomainId: 
         :type PathPrefix: String
+        :param StartTime: 查询开始时间，格式yyyy-MM-dd，开始时间和结束时间均不指定时，默认是当天
+        :type PathPrefix: String
+        :param EndTime: 查询结束时间，格式yyyy-MM-dd，开始时间和结束时间均不指定时，默认是当天，若已指定开始时间StartTime，则EndTime为必填项
+        :type PathPrefix: String
+        :param PageSize: 分页大小，取值为1-500，最大500，默认50
+        :type PathPrefix: Int
+        :param PageNumber: 取得第几页，取值为：1-10000，最大10000，默认1
+        :type PathPrefix: Int
         """
         self.DomainId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.PageSize = None
+        self.PageNumber = None
 
     def _deserialize(self, params):
         if params.get("DomainId"):
             self.DomainId = params.get("DomainId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
 
 
 class GetClientRequestDataRequest(AbstractModel):

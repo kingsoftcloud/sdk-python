@@ -73,7 +73,7 @@ class CreateSubnetRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建子网
+        r"""创建vpc子网
         :param VpcId: Vpc的ID
         :type PathPrefix: String
         :param SubnetName: 子网的名称

@@ -790,3 +790,210 @@ class CdnClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def SetDomainLogService(self, request):
+        """设置用户日志V3
+        :param request: Request instance for SetDomainLogService.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetDomainLogServiceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetDomainLogService", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetCertificate(self, request):
+        """更新证书V3
+        :param request: Request instance for SetCertificate.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetCertificateRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetCertificate", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def RemoveCertificates(self, request):
+        """删除证书V3
+        :param request: Request instance for RemoveCertificates.
+        :type request: :class:`ksyun.client.cdn.v3.models.RemoveCertificatesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemoveCertificates", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def AssociateCertificateConfig(self, request):
+        """为域名配置证书V3
+        :param request: Request instance for AssociateCertificateConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.AssociateCertificateConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AssociateCertificateConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def ValidateIP(self, request):
+        """Ip检测V3
+        :param request: Request instance for ValidateIP.
+        :type request: :class:`ksyun.client.cdn.v3.models.ValidateIPRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ValidateIP", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SetCdnBlockDomainUrl(self, request):
+        """屏蔽urlV3
+        :param request: Request instance for SetCdnBlockDomainUrl.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetCdnBlockDomainUrlRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetCdnBlockDomainUrl", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def SyncRefreshCaches(self, request):
+        """刷新缓存接口V3
+        :param request: Request instance for SyncRefreshCaches.
+        :type request: :class:`ksyun.client.cdn.v3.models.SyncRefreshCachesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SyncRefreshCaches", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def InsertPreloadCaches(self, request):
+        """预热缓存接口V3
+        :param request: Request instance for InsertPreloadCaches.
+        :type request: :class:`ksyun.client.cdn.v3.models.InsertPreloadCachesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("InsertPreloadCaches", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def GetCntvRefreshOrPreloadTask(self, request):
+        """刷新预热进度查询接口(央视)
+        :param request: Request instance for GetCntvRefreshOrPreloadTask.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetCntvRefreshOrPreloadTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetCntvRefreshOrPreloadTask", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

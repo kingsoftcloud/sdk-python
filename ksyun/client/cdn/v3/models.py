@@ -6,7 +6,7 @@ class GetDomainLogsRequest(AbstractModel):
 
     def __init__(self):
         r"""获取日志下载URL
-        :param DomainId: 
+        :param DomainId: 域名ID，只支持单个域名输入
         :type PathPrefix: String
         :param StartTime: 查询开始时间，格式yyyy-MM-dd，开始时间和结束时间均不指定时，默认是当天
         :type PathPrefix: String
@@ -1093,5 +1093,231 @@ class GetPvDataRequest(AbstractModel):
             self.DataType = params.get("DataType")
         if params.get("ProtocolType"):
             self.ProtocolType = params.get("ProtocolType")
+
+
+class SetDomainLogServiceRequest(AbstractModel):
+    """SetDomainLogService请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置用户日志V3
+        :param ActionType: 操作类型，取值为start：启用；stop：停用；modify-granularity：更改日志粒度
+        :type PathPrefix: String
+        :param DomainIds: 需要启用或停用日志服务的域名ID，支持批量域名开启或停用，多个域名ID用逗号（半角）分隔
+        :type PathPrefix: String
+        :param Granularity: 日志存储粒度，取值为5：按5分钟粒度存储；60：按小时粒度存储；1440：按天粒度存储，默认按天粒度存储，此入参在ActionType为stop时为非必填，其余情况为必填
+        :type PathPrefix: String
+        """
+        self.ActionType = None
+        self.DomainIds = None
+        self.Granularity = None
+
+    def _deserialize(self, params):
+        if params.get("ActionType"):
+            self.ActionType = params.get("ActionType")
+        if params.get("DomainIds"):
+            self.DomainIds = params.get("DomainIds")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+
+
+class SetCertificateRequest(AbstractModel):
+    """SetCertificate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新证书V3
+        :param CertificateId: 证书对应的唯一ID
+        :type PathPrefix: String
+        :param CertificateName: 安全证书名称
+        :type PathPrefix: String
+        :param ServerCertificate: 域名对应的安全证书内容
+        :type PathPrefix: String
+        :param PrivateKey: 安全证书对应的私钥内容
+        :type PathPrefix: String
+        """
+        self.CertificateId = None
+        self.CertificateName = None
+        self.ServerCertificate = None
+        self.PrivateKey = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+        if params.get("CertificateName"):
+            self.CertificateName = params.get("CertificateName")
+        if params.get("ServerCertificate"):
+            self.ServerCertificate = params.get("ServerCertificate")
+        if params.get("PrivateKey"):
+            self.PrivateKey = params.get("PrivateKey")
+
+
+class RemoveCertificatesRequest(AbstractModel):
+    """RemoveCertificates请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除证书V3
+        :param CertificateIds: 多个SSL安全证书ID,ID之间用英文半角“,”相隔
+        :type PathPrefix: String
+        """
+        self.CertificateIds = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateIds"):
+            self.CertificateIds = params.get("CertificateIds")
+
+
+class AssociateCertificateConfigRequest(AbstractModel):
+    """AssociateCertificateConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""为域名配置证书V3
+        :param Enable: 开启、关闭设置服务证书，取值：on：开启，off：关闭，默认为off。当选择开启时，以下为必填 ；当选择关闭时，联动关闭 HTTP 2.0 和强制跳转
+        :type PathPrefix: String
+        :param DomainIds: 域名ID，支持按逗号分隔输入多条Id
+        :type PathPrefix: String
+        :param CertificateId: 金山云生成的安全证书唯一性ID；若输入证书ID，则CertificateName、ServerCertificate、PrivateKey可不填写；若无证书ID，则CertificateName、ServerCertificate、PrivateKey为必填
+注: CertificateId有值时，忽略CertificateName、ServerCertificate和Privatekey的值。
+        :type PathPrefix: String
+        :param CertificateName: 安全证书名称
+        :type PathPrefix: String
+        :param ServerCertificate: 域名对应的安全证书内容
+        :type PathPrefix: String
+        :param PrivateKey: 安全证书对应的私钥内容
+        :type PathPrefix: String
+        """
+        self.Enable = None
+        self.DomainIds = None
+        self.CertificateId = None
+        self.CertificateName = None
+        self.ServerCertificate = None
+        self.PrivateKey = None
+
+    def _deserialize(self, params):
+        if params.get("Enable"):
+            self.Enable = params.get("Enable")
+        if params.get("DomainIds"):
+            self.DomainIds = params.get("DomainIds")
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+        if params.get("CertificateName"):
+            self.CertificateName = params.get("CertificateName")
+        if params.get("ServerCertificate"):
+            self.ServerCertificate = params.get("ServerCertificate")
+        if params.get("PrivateKey"):
+            self.PrivateKey = params.get("PrivateKey")
+
+
+class ValidateIPRequest(AbstractModel):
+    """ValidateIP请求参数结构体
+    """
+
+    def __init__(self):
+        r"""Ip检测V3
+        :param Ip: 指定的IP，不支持批量IP
+        :type PathPrefix: String
+        """
+        self.Ip = None
+
+    def _deserialize(self, params):
+        if params.get("Ip"):
+            self.Ip = params.get("Ip")
+
+
+class SetCdnBlockDomainUrlRequest(AbstractModel):
+    """SetCdnBlockDomainUrl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""屏蔽urlV3
+        :param BlockType: 操作接口名，系统规定参数 取值：block：屏蔽URL；unblock：解除屏蔽
+        :type PathPrefix: String
+        :param Urls: URL列表
+        :type PathPrefix: Array
+        :param RefreshOnUnblock: (仅在解除屏蔽时生效)，解除屏蔽时，是否联动触发刷新任务 取值：on：触发刷新任务、off：不触发刷新任务 ，默认为off
+        :type PathPrefix: String
+        """
+        self.BlockType = None
+        self.Urls = None
+        self.RefreshOnUnblock = None
+
+    def _deserialize(self, params):
+        if params.get("BlockType"):
+            self.BlockType = params.get("BlockType")
+        if params.get("Urls"):
+            self.Urls = params.get("Urls")
+        if params.get("RefreshOnUnblock"):
+            self.RefreshOnUnblock = params.get("RefreshOnUnblock")
+
+
+class SyncRefreshCachesRequest(AbstractModel):
+    """SyncRefreshCaches请求参数结构体
+    """
+
+    def __init__(self):
+        r"""刷新缓存接口V3
+        :param Files: 需要文件类型刷新的Url列表
+        :type PathPrefix: Array
+        :param Dirs: 需要目录类型刷新的Url列表
+        :type PathPrefix: Array
+        """
+        self.Files = None
+        self.Dirs = None
+
+    def _deserialize(self, params):
+        if params.get("Files"):
+            self.Files = params.get("Files")
+        if params.get("Dirs"):
+            self.Dirs = params.get("Dirs")
+
+
+class InsertPreloadCachesRequest(AbstractModel):
+    """InsertPreloadCaches请求参数结构体
+    """
+
+    def __init__(self):
+        r"""预热缓存接口V3
+        :param Urls: 需要预热的Url列表
+        :type PathPrefix: Array
+        """
+        self.Urls = None
+
+    def _deserialize(self, params):
+        if params.get("Urls"):
+            self.Urls = params.get("Urls")
+
+
+class GetCntvRefreshOrPreloadTaskRequest(AbstractModel):
+    """GetCntvRefreshOrPreloadTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""刷新预热进度查询接口(央视)
+        :param StartTime: 开始时间，只能查询3天之内的任务
+
+        :type PathPrefix: String
+        :param EndTime: 结束时间
+        :type PathPrefix: String
+        :param Type: 支持按内容管理任务的类型查询，传参可取值：refresh、preload。其中，refresh表示刷新任务类型，preload表示预热任务类型，不传参表示查询所有类型。
+        :type PathPrefix: String
+        :param TaskId: 支持按任务ID查询，只允许输入单个任务ID
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.Type = None
+        self.TaskId = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
 
 

@@ -78,7 +78,7 @@ class VpcClient(AbstractClient):
 
 
     def CreateSubnet(self, request):
-        """创建子网
+        """创建vpc子网
         :param request: Request instance for CreateSubnet.
         :type request: :class:`ksyun.client.vpc.v20160304.models.CreateSubnetRequest`
         """

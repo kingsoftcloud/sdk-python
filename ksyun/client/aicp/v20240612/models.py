@@ -513,6 +513,237 @@ class StopNotebookSavingImageRequest(AbstractModel):
             self.NotebookId = params.get("NotebookId")
 
 
+class EnableApikeyStatusRequest(AbstractModel):
+    """EnableApikeyStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启用API Key
+        :param KeyId: API Key的ID
+        :type PathPrefix: String
+        :param Status: 启禁用状态：1启用，2禁用
+        :type PathPrefix: String
+        """
+        self.KeyId = None
+        self.Status = None
+
+    def _deserialize(self, params):
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+
+
+class ModifyApikeyRequest(AbstractModel):
+    """ModifyApikey请求参数结构体
+    """
+
+    def __init__(self):
+        r"""编辑API Key
+        :param KeyId: 
+        :type PathPrefix: String
+        :param Name: API Key 名称
+        :type PathPrefix: String
+        :param Description: API Key 描述
+        :type PathPrefix: String
+        :param AssociatedModelIds: API Key 关联的模型列表
+        :type PathPrefix: Array
+        :param AllAssociatedModel: 是否全选
+        :type PathPrefix: Boolean
+        """
+        self.KeyId = None
+        self.Name = None
+        self.Description = None
+        self.AssociatedModelIds = None
+        self.AllAssociatedModel = None
+
+    def _deserialize(self, params):
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("AssociatedModelIds"):
+            self.AssociatedModelIds = params.get("AssociatedModelIds")
+        if params.get("AllAssociatedModel"):
+            self.AllAssociatedModel = params.get("AllAssociatedModel")
+
+
+class ActivateApiServiceRequest(AbstractModel):
+    """ActivateApiService请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开通模型API服务
+        :param Status: 状态：1 表示开通服务
+        :type PathPrefix: String
+        """
+        self.Status = None
+
+    def _deserialize(self, params):
+        if params.get("Status"):
+            self.Status = params.get("Status")
+
+
+class DeleteApikeyRequest(AbstractModel):
+    """DeleteApikey请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除API Key
+        :param KeyId: KeyId，例如：API-KEY-1158133806039134208
+        :type PathPrefix: String
+        """
+        self.KeyId = None
+
+    def _deserialize(self, params):
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+
+
+class DescribeModelsRequest(AbstractModel):
+    """DescribeModels请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型列表(支持分页)
+        :param Marker: 分页页码，从1开始
+        :type PathPrefix: Int
+        :param MaxResults: 分页页长，最大100
+        :type PathPrefix: Int
+        :param ModelCategory: 模型类别筛选项
+        :type PathPrefix: Filter
+        :param Provider: 模型供应商
+        :type PathPrefix: Filter
+        :param ContextLength: 模型上下文长度
+1 - 128k及以下
+2 - 128k到256k
+3 - 256k以上
+        :type PathPrefix: Filter
+        :param ModelName: 模型名称关键词
+        :type PathPrefix: String
+        """
+        self.Marker = None
+        self.MaxResults = None
+        self.ModelCategory = None
+        self.Provider = None
+        self.ContextLength = None
+        self.ModelName = None
+
+    def _deserialize(self, params):
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("ModelCategory"):
+            self.ModelCategory = params.get("ModelCategory")
+        if params.get("Provider"):
+            self.Provider = params.get("Provider")
+        if params.get("ContextLength"):
+            self.ContextLength = params.get("ContextLength")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+
+
+class CreateApikeyRequest(AbstractModel):
+    """CreateApikey请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建API Key
+        :param Name: API Key 名称
+        :type PathPrefix: String
+        :param Description: API Key 描述
+        :type PathPrefix: String
+        :param ProjectId: 项目ID
+        :type PathPrefix: Int
+        :param AssociatedModelIds: 关联的模型列表
+        :type PathPrefix: Array
+        :param AllAssociatedModel: 是否全选
+        :type PathPrefix: Boolean
+        :param AllowedIps: IP白名单，空数组表示不设置白名单
+        :type PathPrefix: Array
+        """
+        self.Name = None
+        self.Description = None
+        self.ProjectId = None
+        self.AssociatedModelIds = None
+        self.AllAssociatedModel = None
+        self.AllowedIps = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("AssociatedModelIds"):
+            self.AssociatedModelIds = params.get("AssociatedModelIds")
+        if params.get("AllAssociatedModel"):
+            self.AllAssociatedModel = params.get("AllAssociatedModel")
+        if params.get("AllowedIps"):
+            self.AllowedIps = params.get("AllowedIps")
+
+
+class GetModelDetailRequest(AbstractModel):
+    """GetModelDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型详情
+        :param ModelId: 
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+
+
+class DescribeApikeysRequest(AbstractModel):
+    """DescribeApikeys请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询API Key列表（分页）
+        :param Marker: 分页页码，从1开始
+        :type PathPrefix: Int
+        :param MaxResults: 每页条数，最多100
+        :type PathPrefix: Int
+        :param AssociatedModelId: 通过模型查关联的API Key
+        :type PathPrefix: Filter
+        :param Status: 按状态过滤查询
+        :type PathPrefix: Filter
+        :param Namekeyword: 名称搜索关键词
+        :type PathPrefix: String
+        :param DefaultKey: 是否默认只查默认Key
+        :type PathPrefix: Boolean
+        """
+        self.Marker = None
+        self.MaxResults = None
+        self.AssociatedModelId = None
+        self.Status = None
+        self.Namekeyword = None
+        self.DefaultKey = None
+
+    def _deserialize(self, params):
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("AssociatedModelId"):
+            self.AssociatedModelId = params.get("AssociatedModelId")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("Namekeyword"):
+            self.Namekeyword = params.get("Namekeyword")
+        if params.get("DefaultKey"):
+            self.DefaultKey = params.get("DefaultKey")
+
+
 class QueryTokenDataRequest(AbstractModel):
     """QueryTokenData请求参数结构体
     """
@@ -525,8 +756,6 @@ class QueryTokenDataRequest(AbstractModel):
         :type PathPrefix: Int
         :param MaxResults: 分页页长，最大10000
         :type PathPrefix: Int
-        :param ModelKeyword: model 搜索关键词
-        :type PathPrefix: String
         :param Keyword: 搜索关键词
         :type PathPrefix: String
         :param GroupBy: 分组字段：
@@ -542,7 +771,6 @@ model-按模型分组；keyId-按apikey分组。
         self.StartTimestamp = None
         self.EndTimestamp = None
         self.MaxResults = None
-        self.ModelKeyword = None
         self.Keyword = None
         self.GroupBy = None
         self.ReasoningType = None
@@ -556,8 +784,6 @@ model-按模型分组；keyId-按apikey分组。
             self.EndTimestamp = params.get("EndTimestamp")
         if params.get("MaxResults"):
             self.MaxResults = params.get("MaxResults")
-        if params.get("ModelKeyword"):
-            self.ModelKeyword = params.get("ModelKeyword")
         if params.get("Keyword"):
             self.Keyword = params.get("Keyword")
         if params.get("GroupBy"):
@@ -568,6 +794,333 @@ model-按模型分组；keyId-按apikey分组。
             self.Marker = params.get("Marker")
         if params.get("IsGlobalServer"):
             self.IsGlobalServer = params.get("IsGlobalServer")
+
+
+class DisableApikeyStatusRequest(AbstractModel):
+    """DisableApikeyStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""禁用API Key
+        :param KeyId: API Key的ID
+        :type PathPrefix: String
+        :param Status: 启禁用状态：1启用，2禁用
+        :type PathPrefix: String
+        """
+        self.KeyId = None
+        self.Status = None
+
+    def _deserialize(self, params):
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+
+
+class GetApiServiceRequest(AbstractModel):
+    """GetApiService请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询API服务开通状态
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class GetBatchInferenceJobsFinalResultDownloadUrlRequest(AbstractModel):
+    """GetBatchInferenceJobsFinalResultDownloadUrl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询批量推理任务最终结果下载链接
+        :param BatchId: 
+        :type PathPrefix: String
+        """
+        self.BatchId = None
+
+    def _deserialize(self, params):
+        if params.get("BatchId"):
+            self.BatchId = params.get("BatchId")
+
+
+class DescribeInferenceJobsKs3AuthInfoRequest(AbstractModel):
+    """DescribeInferenceJobsKs3AuthInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询批量推理任务Ks3鉴权信息
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class StopBatchInferenceJobRequest(AbstractModel):
+    """StopBatchInferenceJob请求参数结构体
+    """
+
+    def __init__(self):
+        r"""终止批量推理任务
+        :param BatchId: 
+        :type PathPrefix: String
+        """
+        self.BatchId = None
+
+    def _deserialize(self, params):
+        if params.get("BatchId"):
+            self.BatchId = params.get("BatchId")
+
+
+class CreateBatchInferenceJobRequest(AbstractModel):
+    """CreateBatchInferenceJob请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建批量推理任务
+        :param JobName: 
+        :type PathPrefix: String
+        :param JobDesc: 
+        :type PathPrefix: String
+        :param ApikeyId: 
+        :type PathPrefix: String
+        :param Model: 模型名，如：deepseek-r1-0528
+        :type PathPrefix: String
+        :param ExecuteTimeoutMs: 
+        :type PathPrefix: Int
+        :param InputDataType: 文件类型：user_ks3 用户ks3;upload_ks3 上传文件
+        :type PathPrefix: String
+        :param Ks3Region: 
+        :type PathPrefix: String
+        :param Ks3Ak: 
+        :type PathPrefix: String
+        :param Ks3Sk: 
+        :type PathPrefix: String
+        :param InBucket: 
+        :type PathPrefix: String
+        :param OutBucket: 
+        :type PathPrefix: String
+        :param InObjectName: 
+        :type PathPrefix: String
+        :param OutObjectName: 
+        :type PathPrefix: String
+        """
+        self.JobName = None
+        self.JobDesc = None
+        self.ApikeyId = None
+        self.Model = None
+        self.ExecuteTimeoutMs = None
+        self.InputDataType = None
+        self.Ks3Region = None
+        self.Ks3Ak = None
+        self.Ks3Sk = None
+        self.InBucket = None
+        self.OutBucket = None
+        self.InObjectName = None
+        self.OutObjectName = None
+
+    def _deserialize(self, params):
+        if params.get("JobName"):
+            self.JobName = params.get("JobName")
+        if params.get("JobDesc"):
+            self.JobDesc = params.get("JobDesc")
+        if params.get("ApikeyId"):
+            self.ApikeyId = params.get("ApikeyId")
+        if params.get("Model"):
+            self.Model = params.get("Model")
+        if params.get("ExecuteTimeoutMs"):
+            self.ExecuteTimeoutMs = params.get("ExecuteTimeoutMs")
+        if params.get("InputDataType"):
+            self.InputDataType = params.get("InputDataType")
+        if params.get("Ks3Region"):
+            self.Ks3Region = params.get("Ks3Region")
+        if params.get("Ks3Ak"):
+            self.Ks3Ak = params.get("Ks3Ak")
+        if params.get("Ks3Sk"):
+            self.Ks3Sk = params.get("Ks3Sk")
+        if params.get("InBucket"):
+            self.InBucket = params.get("InBucket")
+        if params.get("OutBucket"):
+            self.OutBucket = params.get("OutBucket")
+        if params.get("InObjectName"):
+            self.InObjectName = params.get("InObjectName")
+        if params.get("OutObjectName"):
+            self.OutObjectName = params.get("OutObjectName")
+
+
+class ModifyBatchInferenceJobRequest(AbstractModel):
+    """ModifyBatchInferenceJob请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新批量推理任务（修改jobName和jobDesc）
+        :param BatchId: 
+        :type PathPrefix: String
+        :param JobName: 
+        :type PathPrefix: String
+        :param JobDesc: 
+        :type PathPrefix: String
+        """
+        self.BatchId = None
+        self.JobName = None
+        self.JobDesc = None
+
+    def _deserialize(self, params):
+        if params.get("BatchId"):
+            self.BatchId = params.get("BatchId")
+        if params.get("JobName"):
+            self.JobName = params.get("JobName")
+        if params.get("JobDesc"):
+            self.JobDesc = params.get("JobDesc")
+
+
+class DescribeBatchInferenceJobsRequest(AbstractModel):
+    """DescribeBatchInferenceJobs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询批量推理任务(支持分页，按创建用户过滤)
+        :param Marker: 页码，从1开始，默认是1
+        :type PathPrefix: Int
+        :param MaxResults: 页长，默认和最大都是100
+        :type PathPrefix: Int
+        :param JobNameKeyword: 任务名称模糊查询条件
+        :type PathPrefix: String
+        :param Status: 按状态过滤查询
+init、queuing、running、terminated、completed、failed、timeout
+        :type PathPrefix: Filter
+        :param BatchId: 
+        :type PathPrefix: String
+        """
+        self.Marker = None
+        self.MaxResults = None
+        self.JobNameKeyword = None
+        self.Status = None
+        self.BatchId = None
+
+    def _deserialize(self, params):
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("JobNameKeyword"):
+            self.JobNameKeyword = params.get("JobNameKeyword")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("BatchId"):
+            self.BatchId = params.get("BatchId")
+
+
+class DeleteBatchInferenceJobRequest(AbstractModel):
+    """DeleteBatchInferenceJob请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除批量推理任务
+        :param BatchId: 
+        :type PathPrefix: String
+        """
+        self.BatchId = None
+
+    def _deserialize(self, params):
+        if params.get("BatchId"):
+            self.BatchId = params.get("BatchId")
+
+
+class EnableModelsRequest(AbstractModel):
+    """EnableModels请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开通模型，支持批量
+        :param ModelIds: 
+        :type PathPrefix: Array
+        """
+        self.ModelIds = None
+
+    def _deserialize(self, params):
+        if params.get("ModelIds"):
+            self.ModelIds = params.get("ModelIds")
+
+
+class DescribeModelQuotasRequest(AbstractModel):
+    """DescribeModelQuotas请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型配额列表
+        :param Marker: 分页页码，从1开始
+        :type PathPrefix: Int
+        :param MaxResults: 分页页长，最大100
+        :type PathPrefix: Int
+        :param Keyword: 模型搜索关键词
+        :type PathPrefix: String
+        :param Type: 文本模型/视觉模型
+        :type PathPrefix: String
+        """
+        self.Marker = None
+        self.MaxResults = None
+        self.Keyword = None
+        self.Type = None
+
+    def _deserialize(self, params):
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("Keyword"):
+            self.Keyword = params.get("Keyword")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+
+
+class DisableModelsRequest(AbstractModel):
+    """DisableModels请求参数结构体
+    """
+
+    def __init__(self):
+        r"""禁用对应模型
+        :param ModelIds: 
+        :type PathPrefix: Array
+        """
+        self.ModelIds = None
+
+    def _deserialize(self, params):
+        if params.get("ModelIds"):
+            self.ModelIds = params.get("ModelIds")
+
+
+class EnableOverFreeLimitRequest(AbstractModel):
+    """EnableOverFreeLimit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""免费配额用完后禁用对应模型
+        :param ModelIds: 
+        :type PathPrefix: Array
+        """
+        self.ModelIds = None
+
+    def _deserialize(self, params):
+        if params.get("ModelIds"):
+            self.ModelIds = params.get("ModelIds")
+
+
+class DisableOverFreeLimitRequest(AbstractModel):
+    """DisableOverFreeLimit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""即免费配额用完后继续使用计费配额
+        :param ModelIds: 
+        :type PathPrefix: Array
+        """
+        self.ModelIds = None
+
+    def _deserialize(self, params):
+        if params.get("ModelIds"):
+            self.ModelIds = params.get("ModelIds")
 
 
 class CreateTrainJobRequest(AbstractModel):
@@ -1013,5 +1566,150 @@ class DescribeResourcePoolInstancesRequest(AbstractModel):
             self.ProjectId = params.get("ProjectId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+
+
+class CreateInferenceEndpointRequest(AbstractModel):
+    """CreateInferenceEndpoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建接入点
+        :param EndpointName: 推理接入点名称,1-64个字符，允许字母中文，数字，特殊字符-_、()
+        :type PathPrefix: String
+        :param ProjectId: 项目制Id
+        :type PathPrefix: String
+        :param ModelName: 默认绑定的模型名称
+        :type PathPrefix: String
+        :param RateLimit : 接入点限流配置
+        :type PathPrefix: Object
+        :param ModelId: ModelId 模型名称
+        :type PathPrefix: String
+        """
+        self.EndpointName = None
+        self.ProjectId = None
+        self.ModelName = None
+        self.RateLimit_ = None
+        self.ModelId = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointName"):
+            self.EndpointName = params.get("EndpointName")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("RateLimit "):
+            self.RateLimit_ = params.get("RateLimit ")
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+
+
+class DescribeInferenceEndpointsRequest(AbstractModel):
+    """DescribeInferenceEndpoints请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询接入点
+        :param EndpointId: 推理接入点 ID列表，范围为1-100
+        :type PathPrefix: Filter
+        :param EndpointName: 
+        :type PathPrefix: String
+        :param Marker: 
+        :type PathPrefix: Int
+        :param MaxResults: 
+        :type PathPrefix: Int
+        :param ProjectId: 
+        :type PathPrefix: Filter
+        :param Filter: 条件过滤，支持按照state状态和project过滤
+        :type PathPrefix: Array
+        """
+        self.EndpointId = None
+        self.EndpointName = None
+        self.Marker = None
+        self.MaxResults = None
+        self.ProjectId = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+        if params.get("EndpointName"):
+            self.EndpointName = params.get("EndpointName")
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+
+class StartInferenceEndpointRequest(AbstractModel):
+    """StartInferenceEndpoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""关闭接入点
+        :param EndpointName: 推理接入点名称
+        :type PathPrefix: String
+        :param ProjectId: 项目制Id
+        :type PathPrefix: String
+        :param ModelName: 默认绑定的模型名称
+        :type PathPrefix: String
+        :param RateLimit : 接入点限流配置
+        :type PathPrefix: Object
+        :param EndpointId: 
+        :type PathPrefix: String
+        """
+        self.EndpointName = None
+        self.ProjectId = None
+        self.ModelName = None
+        self.RateLimit_ = None
+        self.EndpointId = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointName"):
+            self.EndpointName = params.get("EndpointName")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("RateLimit "):
+            self.RateLimit_ = params.get("RateLimit ")
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+
+
+class DeleteInferenceEndpointRequest(AbstractModel):
+    """DeleteInferenceEndpoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除接入点
+        :param EndpointId: 
+        :type PathPrefix: String
+        """
+        self.EndpointId = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+
+
+class DisableEndpointRateLimitRequest(AbstractModel):
+    """DisableEndpointRateLimit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""关闭接入点限流
+        :param EndpointId: 
+        :type PathPrefix: String
+        """
+        self.EndpointId = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
 
 

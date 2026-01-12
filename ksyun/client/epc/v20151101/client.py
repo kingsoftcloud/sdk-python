@@ -2377,3 +2377,26 @@ class EpcClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def DescribeUserData(self, request):
+        """查询自定义脚本
+        :param request: Request instance for DescribeUserData.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeUserDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeUserData", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+

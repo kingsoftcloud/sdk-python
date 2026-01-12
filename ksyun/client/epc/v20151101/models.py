@@ -4198,3 +4198,19 @@ class DescribeSoUserDataRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
 
 
+class DescribeUserDataRequest(AbstractModel):
+    """DescribeUserData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询自定义脚本
+        :param HostId: 实例ID
+        :type PathPrefix: String
+        """
+        self.HostId = None
+
+    def _deserialize(self, params):
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+
+

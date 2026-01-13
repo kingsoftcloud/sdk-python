@@ -163,6 +163,11 @@ class AbstractClient(object):
             content_type = _x_protobuf
         req.header["Content-Type"] = content_type
 
+        # 支持自定义 header
+        if options.get("CustomHeaders"):
+            for key, value in options["CustomHeaders"].items():
+                req.header[key] = value
+
         # GET上传文件报错
         if req.method == "GET" and content_type == _multipart_content:
             raise SDKError("ClientError", "Invalid request method GET for multipart.")

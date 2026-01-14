@@ -446,7 +446,7 @@ class AicpClient(AbstractClient):
 
 
     def QueryTokenData(self, request):
-        """查询模型API token用量
+        """查询模型API token用量（限定半年内的）
         :param request: Request instance for QueryTokenData.
         :type request: :class:`ksyun.client.aicp.v20240612.models.QueryTokenDataRequest`
         """
@@ -1089,14 +1089,83 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(e.message, e.message)
 
 
+    def EnableEndpointRateLimit(self, request):
+        """开启接入点限流
+        :param request: Request instance for EnableEndpointRateLimit.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.EnableEndpointRateLimitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("EnableEndpointRateLimit", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def UpdateInferenceEndpoint(self, request):
+        """创建接入点
+        :param request: Request instance for UpdateInferenceEndpoint.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.UpdateInferenceEndpointRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateInferenceEndpoint", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
     def StartInferenceEndpoint(self, request):
-        """关闭接入点
+        """开启接入点
         :param request: Request instance for StartInferenceEndpoint.
         :type request: :class:`ksyun.client.aicp.v20240612.models.StartInferenceEndpointRequest`
         """
         try:
             params = request._serialize()
             body = self.call_judge("StartInferenceEndpoint", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(e.message, e.message)
+
+
+    def StopInferenceEndpoint(self, request):
+        """关闭接入点
+        :param request: Request instance for StopInferenceEndpoint.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.StopInferenceEndpointRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("StopInferenceEndpoint", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

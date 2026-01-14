@@ -721,6 +721,8 @@ class DescribeApikeysRequest(AbstractModel):
         :type PathPrefix: String
         :param DefaultKey: 是否默认只查默认Key
         :type PathPrefix: Boolean
+        :param KeyId: 按apiKeyId 查询
+        :type PathPrefix: Filter
         """
         self.Marker = None
         self.MaxResults = None
@@ -728,6 +730,7 @@ class DescribeApikeysRequest(AbstractModel):
         self.Status = None
         self.Namekeyword = None
         self.DefaultKey = None
+        self.KeyId = None
 
     def _deserialize(self, params):
         if params.get("Marker"):
@@ -742,6 +745,8 @@ class DescribeApikeysRequest(AbstractModel):
             self.Namekeyword = params.get("Namekeyword")
         if params.get("DefaultKey"):
             self.DefaultKey = params.get("DefaultKey")
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
 
 
 class QueryTokenDataRequest(AbstractModel):
@@ -749,7 +754,7 @@ class QueryTokenDataRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询模型API token用量
+        r"""查询模型API token用量（限定半年内的）
         :param StartTimestamp: 开始时间，毫秒时间戳，仅支持最近180天内时间。
         :type PathPrefix: Int
         :param EndTimestamp: 截止时间，毫秒时间戳
@@ -767,6 +772,8 @@ model-按模型分组；keyId-按apikey分组。
         :type PathPrefix: Int
         :param IsGlobalServer: 是否国际版：false-国内版，true-国际版
         :type PathPrefix: Boolean
+        :param ModelName: 
+        :type PathPrefix: String
         """
         self.StartTimestamp = None
         self.EndTimestamp = None
@@ -776,6 +783,7 @@ model-按模型分组；keyId-按apikey分组。
         self.ReasoningType = None
         self.Marker = None
         self.IsGlobalServer = None
+        self.ModelName = None
 
     def _deserialize(self, params):
         if params.get("StartTimestamp"):
@@ -794,6 +802,8 @@ model-按模型分组；keyId-按apikey分组。
             self.Marker = params.get("Marker")
         if params.get("IsGlobalServer"):
             self.IsGlobalServer = params.get("IsGlobalServer")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
 
 
 class DisableApikeyStatusRequest(AbstractModel):
@@ -1645,12 +1655,33 @@ class DescribeInferenceEndpointsRequest(AbstractModel):
             self.Filter = params.get("Filter")
 
 
-class StartInferenceEndpointRequest(AbstractModel):
-    """StartInferenceEndpoint请求参数结构体
+class EnableEndpointRateLimitRequest(AbstractModel):
+    """EnableEndpointRateLimit请求参数结构体
     """
 
     def __init__(self):
-        r"""关闭接入点
+        r"""开启接入点限流
+        :param EndpointId: 接入点id
+        :type PathPrefix: String
+        :param RateLimit: 
+        :type PathPrefix: Object
+        """
+        self.EndpointId = None
+        self.RateLimit = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+        if params.get("RateLimit"):
+            self.RateLimit = params.get("RateLimit")
+
+
+class UpdateInferenceEndpointRequest(AbstractModel):
+    """UpdateInferenceEndpoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建接入点
         :param EndpointName: 推理接入点名称
         :type PathPrefix: String
         :param ProjectId: 项目制Id
@@ -1677,6 +1708,38 @@ class StartInferenceEndpointRequest(AbstractModel):
             self.ModelName = params.get("ModelName")
         if params.get("RateLimit "):
             self.RateLimit_ = params.get("RateLimit ")
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+
+
+class StartInferenceEndpointRequest(AbstractModel):
+    """StartInferenceEndpoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开启接入点
+        :param EndpointId: 
+        :type PathPrefix: String
+        """
+        self.EndpointId = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+
+
+class StopInferenceEndpointRequest(AbstractModel):
+    """StopInferenceEndpoint请求参数结构体
+    """
+
+    def __init__(self):
+        r"""关闭接入点
+        :param EndpointId: 推理接入点名称
+        :type PathPrefix: String
+        """
+        self.EndpointId = None
+
+    def _deserialize(self, params):
         if params.get("EndpointId"):
             self.EndpointId = params.get("EndpointId")
 

@@ -400,7 +400,7 @@ class EpcClient(AbstractClient):
 
 
     def DescribeEpcManagements(self, request):
-        """DescribeEpcManagements
+        """DescribeEpcManagements查询带外信息
         :param request: Request instance for DescribeEpcManagements.
         :type request: :class:`ksyun.client.epc.v20151101.models.DescribeEpcManagementsRequest`
         """

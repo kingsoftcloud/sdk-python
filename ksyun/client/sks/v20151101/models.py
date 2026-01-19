@@ -5,11 +5,25 @@ class CreateKeyRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""创建密钥
+        r"""创建密钥对
+        :param projectId: 项目制ID
+        :type PathPrefix: String
+        :param KeyName: 秘钥名称
+        :type PathPrefix: String
+        :param Description: 描述
+        :type PathPrefix: String
         """
+        self.projectId = None
+        self.KeyName = None
+        self.Description = None
 
     def _deserialize(self, params):
-        return
+        if params.get("projectId"):
+            self.projectId = params.get("projectId")
+        if params.get("KeyName"):
+            self.KeyName = params.get("KeyName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
 
 
 class ImportKeyRequest(AbstractModel):
@@ -96,11 +110,14 @@ class DescribeKeysRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
+        :param ProjectId: 项目制ID
+        :type PathPrefix: Filter
         """
         self.MaxResults = None
         self.NextToken = None
         self.KeyId = None
         self.Filter = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("MaxResults"):
@@ -111,5 +128,7 @@ class DescribeKeysRequest(AbstractModel):
             self.KeyId = params.get("KeyId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 

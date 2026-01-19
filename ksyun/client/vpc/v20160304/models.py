@@ -12,10 +12,13 @@ class CreateVpcRequest(AbstractModel):
         :type PathPrefix: String
         :param ProvidedIpv6CidrBlock: 是否支持IPv6网段，目前只支持部分机房
         :type PathPrefix: Boolean
+        :param Ipv6CidrBlock: Ipv6CidrBlock指定ipv6网段创建vpc，只有当ProvidedIpv6CidrBlock = true时生效，该参数可不传，不传则随机分配ipv6网段
+        :type PathPrefix: String
         """
         self.VpcName = None
         self.CidrBlock = None
         self.ProvidedIpv6CidrBlock = None
+        self.Ipv6CidrBlock = None
 
     def _deserialize(self, params):
         if params.get("VpcName"):
@@ -24,6 +27,8 @@ class CreateVpcRequest(AbstractModel):
             self.CidrBlock = params.get("CidrBlock")
         if params.get("ProvidedIpv6CidrBlock"):
             self.ProvidedIpv6CidrBlock = params.get("ProvidedIpv6CidrBlock")
+        if params.get("Ipv6CidrBlock"):
+            self.Ipv6CidrBlock = params.get("Ipv6CidrBlock")
 
 
 class DeleteVpcRequest(AbstractModel):

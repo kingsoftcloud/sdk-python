@@ -9,7 +9,7 @@ class SksClient(AbstractClient):
     _endpoint = 'sks.api.ksyun.com'
     _service = 'sks'
     def CreateKey(self, request):
-        """创建密钥
+        """创建密钥对
         :param request: Request instance for CreateKey.
         :type request: :class:`ksyun.client.sks.v20151101.models.CreateKeyRequest`
         """

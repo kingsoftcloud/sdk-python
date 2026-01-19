@@ -1001,7 +1001,7 @@ class DescribeEpcManagementsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeEpcManagements
+        r"""DescribeEpcManagements查询带外信息
         :param MaxResults: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
@@ -1014,6 +1014,8 @@ class DescribeEpcManagementsRequest(AbstractModel):
         :type PathPrefix: Filter
         :param RemoteManagementId: 带外管理的ID
         :type PathPrefix: String
+        :param ProjectId: 项目制ID
+        :type PathPrefix: Filter
         """
         self.MaxResults = None
         self.NextToken = None
@@ -1021,6 +1023,7 @@ class DescribeEpcManagementsRequest(AbstractModel):
         self.Pin = None
         self.EpcManagementId = None
         self.RemoteManagementId = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("MaxResults"):
@@ -1035,6 +1038,8 @@ class DescribeEpcManagementsRequest(AbstractModel):
             self.EpcManagementId = params.get("EpcManagementId")
         if params.get("RemoteManagementId"):
             self.RemoteManagementId = params.get("RemoteManagementId")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class DescribeRemoteManagementsRequest(AbstractModel):
@@ -1114,7 +1119,7 @@ class ModifyRemoteManagementRequest(AbstractModel):
         :param Name: 姓名
         :type PathPrefix: String
         :param VersionId: 版本ID
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         """
         self.RemoteManagementId = None
         self.DynamicCode = None
@@ -1156,7 +1161,7 @@ class CreateRemoteManagementRequest(AbstractModel):
         :param Name: 姓名
         :type PathPrefix: String
         :param VersionId: 版本ID
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         """
         self.DynamicCode = None
         self.Pin = None
@@ -2294,6 +2299,10 @@ windows创建时，只支持非bond模式。
 eth8x_bond
 storage_bond
         :type PathPrefix: String
+        :param SRoceCluster: Roce存储卡集群名称
+        :type PathPrefix: String
+        :param RoceCluster: Roce计算卡集群名称
+        :type PathPrefix: String
         """
         self.HostType = None
         self.AvailabilityZone = None
@@ -2350,6 +2359,8 @@ storage_bond
         self.PasswordInherit = None
         self.DataDiskMount = None
         self.StorageRoceNetworkCardName = None
+        self.SRoceCluster = None
+        self.RoceCluster = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -2462,6 +2473,10 @@ storage_bond
             self.DataDiskMount = params.get("DataDiskMount")
         if params.get("StorageRoceNetworkCardName"):
             self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
+        if params.get("SRoceCluster"):
+            self.SRoceCluster = params.get("SRoceCluster")
+        if params.get("RoceCluster"):
+            self.RoceCluster = params.get("RoceCluster")
 
 
 class DescribeUseHotStandbyRecordsRequest(AbstractModel):
@@ -2585,7 +2600,7 @@ class DescribeModelConfigRequest(AbstractModel):
     def __init__(self):
         r"""查询AI模型配置
         :param MaxResults: 单次调用可返回的最大条目数量. 传入返回的 NextToken 值可以获取剩余的其它条目. 这个值可以允许的范围是 5- 1000.
-类型: Int
+类型: Integer
 是否必填：否
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.

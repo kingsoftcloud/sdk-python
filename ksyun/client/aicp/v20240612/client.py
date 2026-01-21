@@ -123,6 +123,98 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def CreateImage(self, request):
+        """新建自定义镜像
+        :param request: Request instance for CreateImage.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateImageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteImage(self, request):
+        """删除自定义镜像
+        :param request: Request instance for DeleteImage.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteImageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyImage(self, request):
+        """修改自定义镜像
+        :param request: Request instance for ModifyImage.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyImageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeImages(self, request):
+        """查询镜像列表
+        :param request: Request instance for DescribeImages.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeImagesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeImages", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def StopNotebook(self, request):
         """停止开发任务
         :param request: Request instance for StopNotebook.
@@ -1225,3 +1317,28 @@ class AicpClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+
+    def SetKcrPersonalToken(self, request):
+        """配置个人版镜像仓库访问凭证
+        :param request: Request instance for SetKcrPersonalToken.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.SetKcrPersonalTokenRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetKcrPersonalToken", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

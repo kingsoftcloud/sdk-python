@@ -416,6 +416,170 @@ class CreateNotebookRequest(AbstractModel):
             self.RunOnCPU = params.get("RunOnCPU")
 
 
+class CreateImageRequest(AbstractModel):
+    """CreateImage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新建自定义镜像
+        :param ImageName: 自定义镜像名称
+        :type PathPrefix: String
+        :param Description: 描述信息
+        :type PathPrefix: String
+        :param ImageType: 镜像类型
+        :type PathPrefix: String
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        :param NamespacePermission: 命名空间权限
+        :type PathPrefix: String
+        :param ImageRepo: 镜像仓库
+        :type PathPrefix: String
+        :param ImageVersion: 镜像版本
+        :type PathPrefix: String
+        :param OfficialInstance: 企业镜像实例，当ImageType=Official不能为空
+        :type PathPrefix: String
+        :param UserName: 用户名，当ImageType=Official不能为空
+        :type PathPrefix: String
+        :param Password: 密码，当ImageType=Official不能为空
+        :type PathPrefix: String
+        :param ImagePermission: 镜像权限
+        :type PathPrefix: String
+        """
+        self.ImageName = None
+        self.Description = None
+        self.ImageType = None
+        self.Namespace = None
+        self.NamespacePermission = None
+        self.ImageRepo = None
+        self.ImageVersion = None
+        self.OfficialInstance = None
+        self.UserName = None
+        self.Password = None
+        self.ImagePermission = None
+
+    def _deserialize(self, params):
+        if params.get("ImageName"):
+            self.ImageName = params.get("ImageName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ImageType"):
+            self.ImageType = params.get("ImageType")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("NamespacePermission"):
+            self.NamespacePermission = params.get("NamespacePermission")
+        if params.get("ImageRepo"):
+            self.ImageRepo = params.get("ImageRepo")
+        if params.get("ImageVersion"):
+            self.ImageVersion = params.get("ImageVersion")
+        if params.get("OfficialInstance"):
+            self.OfficialInstance = params.get("OfficialInstance")
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+        if params.get("Password"):
+            self.Password = params.get("Password")
+        if params.get("ImagePermission"):
+            self.ImagePermission = params.get("ImagePermission")
+
+
+class DeleteImageRequest(AbstractModel):
+    """DeleteImage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除自定义镜像
+        :param ImageId: 自定义镜像ID
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+
+
+class ModifyImageRequest(AbstractModel):
+    """ModifyImage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改自定义镜像
+        :param ImageId: 自定义镜像ID
+        :type PathPrefix: String
+        :param ImageName: 镜像名称
+        :type PathPrefix: String
+        :param ImagePermission: 镜像权限
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.ImageName = None
+        self.ImagePermission = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("ImageName"):
+            self.ImageName = params.get("ImageName")
+        if params.get("ImagePermission"):
+            self.ImagePermission = params.get("ImagePermission")
+
+
+class DescribeImagesRequest(AbstractModel):
+    """DescribeImages请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询镜像列表
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param ImageSource: 镜像来源
+        :type PathPrefix: String
+        :param ImageStatus: 镜像状态
+        :type PathPrefix: String
+        :param ImageType: 镜像类型
+        :type PathPrefix: String
+        :param ApplicationScenario: 适用场景
+        :type PathPrefix: String
+        :param ImageId: 镜像ID
+        :type PathPrefix: Filter
+        :param ImageName: 镜像名称
+        :type PathPrefix: String
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        """
+        self.Page = None
+        self.PageSize = None
+        self.ImageSource = None
+        self.ImageStatus = None
+        self.ImageType = None
+        self.ApplicationScenario = None
+        self.ImageId = None
+        self.ImageName = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("ImageSource"):
+            self.ImageSource = params.get("ImageSource")
+        if params.get("ImageStatus"):
+            self.ImageStatus = params.get("ImageStatus")
+        if params.get("ImageType"):
+            self.ImageType = params.get("ImageType")
+        if params.get("ApplicationScenario"):
+            self.ApplicationScenario = params.get("ApplicationScenario")
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("ImageName"):
+            self.ImageName = params.get("ImageName")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+
 class StopNotebookRequest(AbstractModel):
     """StopNotebook请求参数结构体
     """
@@ -1774,5 +1938,26 @@ class DisableEndpointRateLimitRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("EndpointId"):
             self.EndpointId = params.get("EndpointId")
+
+
+class SetKcrPersonalTokenRequest(AbstractModel):
+    """SetKcrPersonalToken请求参数结构体
+    """
+
+    def __init__(self):
+        r"""配置个人版镜像仓库访问凭证
+        :param UserName: 用户名
+        :type PathPrefix: String
+        :param Password: 密码
+        :type PathPrefix: String
+        """
+        self.UserName = None
+        self.Password = None
+
+    def _deserialize(self, params):
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+        if params.get("Password"):
+            self.Password = params.get("Password")
 
 

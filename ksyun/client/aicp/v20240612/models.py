@@ -95,7 +95,7 @@ class ModifyNotebookRequest(AbstractModel):
         :param GPUType: GPU类型
         :type PathPrefix: String
         :param GPUNumber: GPU核数，允许范围为0~10000
-        :type PathPrefix: Int
+        :type PathPrefix: String
         :param CPUNum: Cpu数量，允许范围为0~10000
         :type PathPrefix: Int
         :param Memory: 内存G，允许范围为0~10000	
@@ -300,8 +300,8 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param GPUType: GPU类型
         :type PathPrefix: String
-        :param GPUNumber: GPU核数，允许范围为0~10000
-        :type PathPrefix: Int
+        :param GPUNumber: GPU核数，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
+        :type PathPrefix: String
         :param CPUNum: Cpu数量，允许范围为0~10000
         :type PathPrefix: Int
         :param Memory: 内存G，允许范围为0~10000
@@ -657,7 +657,7 @@ class CreateApikeyRequest(AbstractModel):
         :param Description: API Key 描述
         :type PathPrefix: String
         :param ProjectId: 项目ID
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param AssociatedModelIds: 关联的模型列表
         :type PathPrefix: Array
         :param AllAssociatedModel: 是否全选
@@ -756,9 +756,9 @@ class QueryTokenDataRequest(AbstractModel):
     def __init__(self):
         r"""查询模型API token用量（限定半年内的）
         :param StartTimestamp: 开始时间，毫秒时间戳，仅支持最近180天内时间。
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param EndTimestamp: 截止时间，毫秒时间戳
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param MaxResults: 分页页长，最大10000
         :type PathPrefix: Int
         :param Keyword: 搜索关键词
@@ -898,7 +898,7 @@ class CreateBatchInferenceJobRequest(AbstractModel):
         :param Model: 模型名，如：deepseek-r1-0528
         :type PathPrefix: String
         :param ExecuteTimeoutMs: 
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param InputDataType: 文件类型：user_ks3 用户ks3;upload_ks3 上传文件
         :type PathPrefix: String
         :param Ks3Region: 

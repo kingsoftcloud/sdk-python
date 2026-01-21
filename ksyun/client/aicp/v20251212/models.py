@@ -23,7 +23,7 @@ class CreateTrainJobRequest(AbstractModel):
         :param SelfHealing: GPU故障自愈
         :type PathPrefix: Boolean
         :param MaxRuntimeHour: 最长运行时长(小时)
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param JobRunOnCPU: 节点亲和性-仅调度到CPU节点
         :type PathPrefix: Boolean
         :param SupportTensorboard: 开启Tensorboard

@@ -28,7 +28,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteListeners(self, request):
@@ -51,7 +51,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyListeners(self, request):
@@ -74,7 +74,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateListeners(self, request):
@@ -97,7 +97,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyInstancesWithListener(self, request):
@@ -120,7 +120,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RegisterInstancesWithListener(self, request):
@@ -143,7 +143,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeregisterInstancesFromListener(self, request):
@@ -166,7 +166,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInstancesWithListener(self, request):
@@ -189,7 +189,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyHealthCheck(self, request):
@@ -212,7 +212,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteHealthCheck(self, request):
@@ -235,7 +235,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeHealthChecks(self, request):
@@ -258,7 +258,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ConfigureHealthCheck(self, request):
@@ -281,7 +281,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeLoadBalancers(self, request):
@@ -304,7 +304,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteLoadBalancer(self, request):
@@ -327,7 +327,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyLoadBalancer(self, request):
@@ -350,7 +350,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateLoadBalancer(self, request):
@@ -373,7 +373,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateHostHeader(self, request):
@@ -396,7 +396,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyHostHeader(self, request):
@@ -419,7 +419,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteHostHeader(self, request):
@@ -442,7 +442,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeHostHeaders(self, request):
@@ -465,7 +465,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteRule(self, request):
@@ -488,7 +488,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeRules(self, request):
@@ -511,7 +511,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateBackendServerGroup(self, request):
@@ -534,7 +534,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteBackendServerGroup(self, request):
@@ -557,7 +557,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyBackendServerGroup(self, request):
@@ -580,7 +580,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeBackendServerGroups(self, request):
@@ -603,7 +603,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RegisterBackendServer(self, request):
@@ -626,7 +626,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeregisterBackendServer(self, request):
@@ -649,7 +649,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeBackendServers(self, request):
@@ -672,7 +672,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateLoadBalancerAcl(self, request):
@@ -695,7 +695,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteLoadBalancerAcl(self, request):
@@ -718,7 +718,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyLoadBalancerAcl(self, request):
@@ -741,7 +741,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateLoadBalancerAclEntry(self, request):
@@ -764,7 +764,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteLoadBalancerAclEntry(self, request):
@@ -787,7 +787,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AssociateLoadBalancerAcl(self, request):
@@ -810,7 +810,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DisassociateLoadBalancerAcl(self, request):
@@ -833,7 +833,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeLoadBalancerAcls(self, request):
@@ -856,7 +856,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateSlbRule(self, request):
@@ -879,7 +879,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySlbRule(self, request):
@@ -902,7 +902,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreatePrivateLinkServer(self, request):
@@ -925,7 +925,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribePrivateLinkServer(self, request):
@@ -948,7 +948,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeletePrivateLinkServer(self, request):
@@ -971,7 +971,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyPrivateLinkServer(self, request):
@@ -994,7 +994,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AssociatePrivateLinkServer(self, request):
@@ -1017,7 +1017,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribePrivateLink(self, request):
@@ -1040,7 +1040,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeletePrivateLink(self, request):
@@ -1063,7 +1063,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyLoadBalancerAclEntry(self, request):
@@ -1086,7 +1086,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AcceptPrivateLink(self, request):
@@ -1109,11 +1109,11 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RejectPrivateLink(self, request):
-        """RejectPrivateLink
+        """拒绝PrivateLink申请RejectPrivateLink
         :param request: Request instance for RejectPrivateLink.
         :type request: :class:`ksyun.client.slb.v20160304.models.RejectPrivateLinkRequest`
         """
@@ -1132,7 +1132,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ListPrivateLinkServer(self, request):
@@ -1155,11 +1155,11 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RemovePrivateLink(self, request):
-        """RemovePrivateLink
+        """删除已建立的RemovePrivateLink
         :param request: Request instance for RemovePrivateLink.
         :type request: :class:`ksyun.client.slb.v20160304.models.RemovePrivateLinkRequest`
         """
@@ -1178,7 +1178,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateAlb(self, request):
@@ -1201,7 +1201,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAlb(self, request):
@@ -1224,7 +1224,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetAlbName(self, request):
@@ -1247,7 +1247,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetAlbStatus(self, request):
@@ -1270,7 +1270,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAlbs(self, request):
@@ -1293,7 +1293,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateAlbListener(self, request):
@@ -1316,7 +1316,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyAlbListener(self, request):
@@ -1339,7 +1339,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAlbListener(self, request):
@@ -1362,7 +1362,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAlbListeners(self, request):
@@ -1385,7 +1385,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateAlbRuleGroup(self, request):
@@ -1408,7 +1408,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAlbRuleGroup(self, request):
@@ -1431,7 +1431,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAlbRuleGroups(self, request):
@@ -1454,7 +1454,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyAlbRuleGroup(self, request):
@@ -1477,7 +1477,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AddAlbRule(self, request):
@@ -1500,7 +1500,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAlbRule(self, request):
@@ -1523,7 +1523,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateAlbListenerCertGroup(self, request):
@@ -1546,7 +1546,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAlbListenerCertGroup(self, request):
@@ -1569,7 +1569,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAlbListenerCertGroups(self, request):
@@ -1592,7 +1592,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AssociateCertificateWithGroup(self, request):
@@ -1615,7 +1615,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DissociateCertificateWithGroup(self, request):
@@ -1638,7 +1638,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetEnableAlbAccessLog(self, request):
@@ -1661,7 +1661,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetAlbAccessLog(self, request):
@@ -1684,7 +1684,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CloneLoadBalancer(self, request):
@@ -1707,7 +1707,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetLBDeleteProtection(self, request):
@@ -1730,7 +1730,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetLBModificationProtection(self, request):
@@ -1753,7 +1753,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyCertificateWithGroup(self, request):
@@ -1776,7 +1776,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateAlbBackendServerGroup(self, request):
@@ -1799,7 +1799,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAlbBackendServerGroup(self, request):
@@ -1822,7 +1822,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyAlbBackendServerGroup(self, request):
@@ -1845,7 +1845,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAlbBackendServerGroups(self, request):
@@ -1868,7 +1868,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RegisterAlbBackendServer(self, request):
@@ -1891,7 +1891,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeregisterAlbBackendServer(self, request):
@@ -1914,7 +1914,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyAlbBackendServer(self, request):
@@ -1937,7 +1937,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAlbBackendServers(self, request):
@@ -1960,7 +1960,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RegisterBackendServerGroupWithListener(self, request):
@@ -1983,7 +1983,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetPrivateLinkDeleteProtection(self, request):
@@ -2006,7 +2006,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetAlbDeleteProtection(self, request):
@@ -2029,7 +2029,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetAlbModificationProtection(self, request):
@@ -2052,7 +2052,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AddAlbRules(self, request):
@@ -2075,7 +2075,7 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetLbProtocolLayers(self, request):
@@ -2098,6 +2098,4 @@ class SlbClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
-
-
+                raise KsyunSDKException(message=str(e))

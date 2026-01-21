@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import unicode_literals
 import json
 import sys
 
@@ -31,10 +32,9 @@ class AbstractModel(object):
                     if isinstance(tem, AbstractModel):
                         r.append(tem._serialize(allow_none))
                     else:
-                        r.append(
-                            tem.encode("UTF-8") if isinstance(tem, type(u"")) and sys.version_info[0] == 2 else tem)
+                        r.append(tem)
             else:
-                r = d[k].encode("UTF-8") if isinstance(d[k], type(u"")) and sys.version_info[0] == 2 else d[k]
+                r = d[k]
             if allow_none or r is not None:
                 ret[k[0].upper() + k[1:]] = r
         return ret

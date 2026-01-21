@@ -28,7 +28,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StartEpc(self, request):
@@ -51,7 +51,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RebootEpc(self, request):
@@ -74,7 +74,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteEpc(self, request):
@@ -97,7 +97,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ReinstallEpc(self, request):
@@ -120,7 +120,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySecurityGroup(self, request):
@@ -143,7 +143,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateKey(self, request):
@@ -166,7 +166,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEpcs(self, request):
@@ -189,7 +189,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def GetDynamicCode(self, request):
@@ -212,7 +212,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeVpns(self, request):
@@ -235,7 +235,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateImage(self, request):
@@ -258,7 +258,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyImage(self, request):
@@ -281,7 +281,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteImage(self, request):
@@ -304,7 +304,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeImages(self, request):
@@ -327,7 +327,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyDns(self, request):
@@ -350,7 +350,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyNetworkInterfaceAttribute(self, request):
@@ -373,7 +373,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribePhysicalMonitor(self, request):
@@ -396,7 +396,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEpcManagements(self, request):
@@ -419,7 +419,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeRemoteManagements(self, request):
@@ -442,7 +442,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StopEpc(self, request):
@@ -465,7 +465,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyEpc(self, request):
@@ -488,7 +488,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyRemoteManagement(self, request):
@@ -511,7 +511,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateRemoteManagement(self, request):
@@ -534,7 +534,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ReinstallCustomerEpc(self, request):
@@ -557,7 +557,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteRemoteManagement(self, request):
@@ -580,7 +580,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ResetPassword(self, request):
@@ -603,7 +603,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyHyperThreading(self, request):
@@ -626,7 +626,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AssociateCluster(self, request):
@@ -649,7 +649,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DisassociateCluster(self, request):
@@ -672,7 +672,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInspections(self, request):
@@ -695,7 +695,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEpcStocks(self, request):
@@ -718,7 +718,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEpcDeviceAttributes(self, request):
@@ -741,7 +741,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeProcesses(self, request):
@@ -764,7 +764,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateProcess(self, request):
@@ -787,7 +787,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteProcess(self, request):
@@ -810,7 +810,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ReplyProcess(self, request):
@@ -833,7 +833,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEpcTrashes(self, request):
@@ -856,7 +856,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ReturnEpc(self, request):
@@ -879,7 +879,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateResourceRequirement(self, request):
@@ -902,7 +902,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AttachVolume(self, request):
@@ -925,7 +925,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DetachVolume(self, request):
@@ -948,7 +948,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribePrice(self, request):
@@ -971,7 +971,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def UpdateConfirm(self, request):
@@ -994,7 +994,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyOverclockingAttribute(self, request):
@@ -1017,7 +1017,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CopyImage(self, request):
@@ -1040,7 +1040,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEpcRaidAttributes(self, request):
@@ -1063,7 +1063,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeGpuImageDriver(self, request):
@@ -1086,7 +1086,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateShareImage(self, request):
@@ -1109,7 +1109,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteShareImage(self, request):
@@ -1132,7 +1132,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeShareImageAccountList(self, request):
@@ -1155,7 +1155,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeShareImage(self, request):
@@ -1178,7 +1178,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AcceptShareImage(self, request):
@@ -1201,7 +1201,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RejectShareImage(self, request):
@@ -1224,7 +1224,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeManagedAccessory(self, request):
@@ -1247,7 +1247,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AutoDeleteEpc(self, request):
@@ -1270,7 +1270,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ExportImage(self, request):
@@ -1293,7 +1293,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def QueryBuckets(self, request):
@@ -1316,7 +1316,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CancelImageExport(self, request):
@@ -1339,7 +1339,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def UseHotStandByEpc(self, request):
@@ -1362,7 +1362,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ActivateHotStandbyEpc(self, request):
@@ -1385,7 +1385,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def BatchCreateEpc(self, request):
@@ -1408,7 +1408,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeUseHotStandbyRecords(self, request):
@@ -1431,7 +1431,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeGpuRoceTopology(self, request):
@@ -1454,7 +1454,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyProcess(self, request):
@@ -1477,7 +1477,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ConfirmProcess(self, request):
@@ -1500,7 +1500,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeModelConfig(self, request):
@@ -1523,7 +1523,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeRoceEvent(self, request):
@@ -1546,7 +1546,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeRoceEventDetails(self, request):
@@ -1569,7 +1569,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def BatchCreateProcess(self, request):
@@ -1592,7 +1592,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateInspectHost(self, request):
@@ -1615,7 +1615,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInspectHostResults(self, request):
@@ -1638,7 +1638,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeXidDetails(self, request):
@@ -1661,7 +1661,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RunSoInstances(self, request):
@@ -1684,7 +1684,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoImages(self, request):
@@ -1707,7 +1707,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RebootSoInstance(self, request):
@@ -1730,7 +1730,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteSoImages(self, request):
@@ -1753,7 +1753,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteSoVpc(self, request):
@@ -1776,7 +1776,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoAvailableResource(self, request):
@@ -1799,7 +1799,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoInstances(self, request):
@@ -1822,7 +1822,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteSoInstance(self, request):
@@ -1845,7 +1845,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoSecurityGroups(self, request):
@@ -1868,7 +1868,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateSoVpc(self, request):
@@ -1891,7 +1891,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteSoSubnet(self, request):
@@ -1914,7 +1914,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoKeyPairs(self, request):
@@ -1937,7 +1937,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StartSoInstance(self, request):
@@ -1960,7 +1960,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoInstanceTypes(self, request):
@@ -1983,7 +1983,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySoSubnetAttributes(self, request):
@@ -2006,7 +2006,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoSubnet(self, request):
@@ -2029,7 +2029,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySoKeyPairAttribute(self, request):
@@ -2052,7 +2052,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySoImageAttribute(self, request):
@@ -2075,7 +2075,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySoVpcAttributes(self, request):
@@ -2098,7 +2098,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ReplaceSoSystemVolume(self, request):
@@ -2121,7 +2121,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateSoSubnet(self, request):
@@ -2144,7 +2144,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoVpcs(self, request):
@@ -2167,7 +2167,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StopSoInstance(self, request):
@@ -2190,7 +2190,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteSoKeyPairs(self, request):
@@ -2213,7 +2213,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateSoImage(self, request):
@@ -2236,7 +2236,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySoInstanceAttribute(self, request):
@@ -2259,7 +2259,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateSoKeyPair(self, request):
@@ -2282,7 +2282,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def InstallAgent(self, request):
@@ -2305,7 +2305,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAgent(self, request):
@@ -2328,7 +2328,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAgentInstallStatus(self, request):
@@ -2351,7 +2351,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSoUserData(self, request):
@@ -2374,7 +2374,7 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeUserData(self, request):
@@ -2397,6 +2397,4 @@ class EpcClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
-
-
+                raise KsyunSDKException(message=str(e))

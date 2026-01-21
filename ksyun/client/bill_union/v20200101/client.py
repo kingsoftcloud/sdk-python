@@ -28,7 +28,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeBillSummaryByProduct(self, request):
@@ -51,7 +51,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeBillSummaryByProject(self, request):
@@ -74,7 +74,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInstanceSummaryBills(self, request):
@@ -97,7 +97,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeProductCode(self, request):
@@ -120,7 +120,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSplitItemBillDetails(self, request):
@@ -143,7 +143,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeMiItemBills(self, request):
@@ -166,7 +166,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSplitItemDayBillDetails(self, request):
@@ -189,7 +189,7 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ListProductGroups(self, request):
@@ -212,6 +212,4 @@ class Bill_unionClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
-
-
+                raise KsyunSDKException(message=str(e))

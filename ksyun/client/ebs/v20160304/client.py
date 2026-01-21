@@ -28,7 +28,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AttachVolume(self, request):
@@ -51,7 +51,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DetachVolume(self, request):
@@ -74,7 +74,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteVolume(self, request):
@@ -97,7 +97,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ResizeVolume(self, request):
@@ -120,7 +120,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeVolumes(self, request):
@@ -143,7 +143,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyVolume(self, request):
@@ -166,7 +166,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeEbsInstances(self, request):
@@ -189,7 +189,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInstanceVolumes(self, request):
@@ -212,7 +212,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RenewVolume(self, request):
@@ -235,7 +235,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def UpdateVolumeProject(self, request):
@@ -258,7 +258,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSnapshots(self, request):
@@ -281,7 +281,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateSnapshot(self, request):
@@ -304,7 +304,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteSnapshot(self, request):
@@ -327,7 +327,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RollbackSnapshot(self, request):
@@ -350,7 +350,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySnapshot(self, request):
@@ -373,7 +373,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RecoveryVolume(self, request):
@@ -396,7 +396,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ValidateAttachInstance(self, request):
@@ -419,7 +419,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAvailabilityZones(self, request):
@@ -442,7 +442,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeCreateVolumePrice(self, request):
@@ -465,7 +465,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifySnapshotType(self, request):
@@ -488,7 +488,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyVolumeType(self, request):
@@ -511,7 +511,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyDedicatedBlockStorageClusterAttribute(self, request):
@@ -534,7 +534,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ResizeDedicatedBlockStorageClusters(self, request):
@@ -557,7 +557,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeDedicatedBlockStorageClusters(self, request):
@@ -580,7 +580,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateDedicatedBlockStorageCluster(self, request):
@@ -603,7 +603,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyVolumePreset(self, request):
@@ -626,7 +626,7 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def GetUpgradeVolumeTypeProcessInfo(self, request):
@@ -649,6 +649,4 @@ class EbsClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
-
-
+                raise KsyunSDKException(message=str(e))

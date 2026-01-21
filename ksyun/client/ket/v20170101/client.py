@@ -28,7 +28,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def UpdatePreset(self, request):
@@ -51,7 +51,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DelPreset(self, request):
@@ -74,7 +74,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def GetPresetList(self, request):
@@ -97,7 +97,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def GetPresetDetail(self, request):
@@ -120,7 +120,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def GetStreamTranList(self, request):
@@ -143,7 +143,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StartLoop(self, request):
@@ -166,7 +166,7 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StopLoop(self, request):
@@ -189,6 +189,4 @@ class KetClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
-
-
+                raise KsyunSDKException(message=str(e))

@@ -28,7 +28,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RunInstances(self, request):
@@ -51,7 +51,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StartInstances(self, request):
@@ -74,7 +74,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def StopInstances(self, request):
@@ -97,7 +97,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RebootInstances(self, request):
@@ -120,7 +120,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyInstanceAttribute(self, request):
@@ -143,7 +143,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyInstanceType(self, request):
@@ -166,7 +166,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def TerminateInstances(self, request):
@@ -189,7 +189,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeImages(self, request):
@@ -212,7 +212,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyImageAttribute(self, request):
@@ -235,7 +235,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyInstanceImage(self, request):
@@ -258,7 +258,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateImage(self, request):
@@ -281,7 +281,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RemoveImages(self, request):
@@ -304,7 +304,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyNetworkInterfaceAttribute(self, request):
@@ -327,7 +327,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AttachNetworkInterface(self, request):
@@ -350,7 +350,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DetachNetworkInterface(self, request):
@@ -373,7 +373,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeLocalVolumes(self, request):
@@ -396,7 +396,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateLocalVolumeSnapshot(self, request):
@@ -419,7 +419,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeLocalVolumeSnapshots(self, request):
@@ -442,7 +442,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RollbackLocalVolume(self, request):
@@ -465,7 +465,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteLocalVolumeSnapshot(self, request):
@@ -488,7 +488,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyDataGuardGroups(self, request):
@@ -511,7 +511,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeDataGuardCapacity(self, request):
@@ -534,7 +534,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateDataGuardGroup(self, request):
@@ -557,7 +557,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteDataGuardGroups(self, request):
@@ -580,7 +580,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeDataGuardGroup(self, request):
@@ -603,7 +603,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def RemoveVmFromDataGuard(self, request):
@@ -626,7 +626,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateDedicatedHosts(self, request):
@@ -649,7 +649,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteDedicatedHost(self, request):
@@ -672,7 +672,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeDedicatedHosts(self, request):
@@ -695,7 +695,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateAutoSnapshotPolicy(self, request):
@@ -718,7 +718,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteAutoSnapshotPolicy(self, request):
@@ -741,7 +741,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyAutoSnapshotPolicy(self, request):
@@ -764,7 +764,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAutoSnapshotPolicy(self, request):
@@ -787,7 +787,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ApplyAutoSnapshotPolicy(self, request):
@@ -810,7 +810,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CancelAutoSnapshotPolicy(self, request):
@@ -833,7 +833,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScalingConfiguration(self, request):
@@ -856,7 +856,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateScalingConfiguration(self, request):
@@ -879,7 +879,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteScalingConfiguration(self, request):
@@ -902,7 +902,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateScalingGroup(self, request):
@@ -925,7 +925,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScalingGroup(self, request):
@@ -948,7 +948,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyScalingGroup(self, request):
@@ -971,7 +971,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetKvmProtectedDetach(self, request):
@@ -994,7 +994,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScalingInstance(self, request):
@@ -1017,7 +1017,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AttachInstance(self, request):
@@ -1040,7 +1040,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DetachInstance(self, request):
@@ -1063,7 +1063,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScalingActivity(self, request):
@@ -1086,7 +1086,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteScalingGroup(self, request):
@@ -1109,7 +1109,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DisableScalingGroup(self, request):
@@ -1132,7 +1132,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def EnableScalingGroup(self, request):
@@ -1155,7 +1155,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScalingNotification(self, request):
@@ -1178,7 +1178,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateScalingNotification(self, request):
@@ -1201,7 +1201,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyScalingNotification(self, request):
@@ -1224,7 +1224,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateScheduledTask(self, request):
@@ -1247,7 +1247,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScheduledTask(self, request):
@@ -1270,7 +1270,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyScheduledTask(self, request):
@@ -1293,7 +1293,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteScheduledTask(self, request):
@@ -1316,7 +1316,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateScalingPolicy(self, request):
@@ -1339,7 +1339,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeScalingPolicy(self, request):
@@ -1362,7 +1362,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyScalingPolicy(self, request):
@@ -1385,7 +1385,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteScalingPolicy(self, request):
@@ -1408,7 +1408,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ImportImage(self, request):
@@ -1431,7 +1431,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CopyImage(self, request):
@@ -1454,7 +1454,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyImageSharePermission(self, request):
@@ -1477,7 +1477,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeImageSharePermission(self, request):
@@ -1500,7 +1500,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeRegions(self, request):
@@ -1523,7 +1523,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AttachKey(self, request):
@@ -1546,7 +1546,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DetachKey(self, request):
@@ -1569,7 +1569,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeAvailabilityZones(self, request):
@@ -1592,7 +1592,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInstanceTypeConfigs(self, request):
@@ -1615,7 +1615,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInstanceFamilys(self, request):
@@ -1638,7 +1638,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AddVmIntoDataGuard(self, request):
@@ -1661,7 +1661,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateFileSystem(self, request):
@@ -1684,7 +1684,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteFileSystem(self, request):
@@ -1707,7 +1707,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeFileSystems(self, request):
@@ -1730,7 +1730,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyFileSystem(self, request):
@@ -1753,7 +1753,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateMountTarget(self, request):
@@ -1776,7 +1776,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteMountTarget(self, request):
@@ -1799,7 +1799,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeMountTargets(self, request):
@@ -1822,7 +1822,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateModel(self, request):
@@ -1845,7 +1845,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def TerminateModels(self, request):
@@ -1868,7 +1868,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeModels(self, request):
@@ -1891,7 +1891,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeDedicatedCluster(self, request):
@@ -1914,7 +1914,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CreateDedicatedCluster(self, request):
@@ -1937,7 +1937,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DeleteDedicatedCluster(self, request):
@@ -1960,7 +1960,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetvCPU(self, request):
@@ -1983,7 +1983,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DedicatedHostMigrate(self, request):
@@ -2006,7 +2006,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyDedicatedClusterName(self, request):
@@ -2029,7 +2029,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def InstanceMigrate(self, request):
@@ -2052,7 +2052,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyInstanceAutoDeleteTime(self, request):
@@ -2075,7 +2075,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeKecInventory(self, request):
@@ -2098,7 +2098,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyScalingConfiguration(self, request):
@@ -2121,7 +2121,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSpotPriceHistory(self, request):
@@ -2144,7 +2144,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribePrice(self, request):
@@ -2167,7 +2167,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def EnableImageCaching(self, request):
@@ -2190,7 +2190,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DisableImageCaching(self, request):
@@ -2213,7 +2213,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ModifyLoadBalancers(self, request):
@@ -2236,7 +2236,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def AttachInstancesIamRole(self, request):
@@ -2259,7 +2259,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DetachInstancesIamRole(self, request):
@@ -2282,7 +2282,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CopySnapshot(self, request):
@@ -2305,7 +2305,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def PreMigrateInstance(self, request):
@@ -2328,7 +2328,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def CancelPreMigrateInstance(self, request):
@@ -2351,7 +2351,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SwitchImageType(self, request):
@@ -2374,7 +2374,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def SetInstanceResourceProtect(self, request):
@@ -2397,7 +2397,7 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeInstanceVncUrl(self, request):
@@ -2420,6 +2420,466 @@ class KecClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
+    def CreateSnapshot(self, request):
+        """创建文件系统快照
+        :param request: Request instance for CreateSnapshot.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CreateSnapshotRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSnapshot", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
 
+    def UpdateSnapshot(self, request):
+        """修改文件系统快照
+        :param request: Request instance for UpdateSnapshot.
+        :type request: :class:`ksyun.client.kec.v20160304.models.UpdateSnapshotRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateSnapshot", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DeleteSnapshot(self, request):
+        """删除文件系统快照
+        :param request: Request instance for DeleteSnapshot.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DeleteSnapshotRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSnapshot", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def RevertSnapshot(self, request):
+        """文件系统快照回滚
+        :param request: Request instance for RevertSnapshot.
+        :type request: :class:`ksyun.client.kec.v20160304.models.RevertSnapshotRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RevertSnapshot", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DescribeSnapshotList(self, request):
+        """查询文件系统的快照信息
+        :param request: Request instance for DescribeSnapshotList.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeSnapshotListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSnapshotList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def CreateSnapshotPolicy(self, request):
+        """创建文件系统自动快照策略
+        :param request: Request instance for CreateSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CreateSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def UpdateSnapshotPolicy(self, request):
+        """修改文件系统自动快照策略
+        :param request: Request instance for UpdateSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.UpdateSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DeleteSnapshotPolicy(self, request):
+        """删除文件系统自动快照策略
+        :param request: Request instance for DeleteSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DeleteSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def ApplySnapshotPolicy(self, request):
+        """文件系统关联自动快照策略
+        :param request: Request instance for ApplySnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ApplySnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ApplySnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def CancelSnapshotPolicy(self, request):
+        """文件系统移除自动快照策略
+        :param request: Request instance for CancelSnapshotPolicy.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CancelSnapshotPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CancelSnapshotPolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DescribeSnapshotPolicyList(self, request):
+        """获取文件系统自动快照策略列表
+        :param request: Request instance for DescribeSnapshotPolicyList.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeSnapshotPolicyListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSnapshotPolicyList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def ModifyRecycleBinAttribute(self, request):
+        """修改回收站信息
+        :param request: Request instance for ModifyRecycleBinAttribute.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ModifyRecycleBinAttributeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyRecycleBinAttribute", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DescribeAccessGroups(self, request):
+        """查询权限组信息
+        :param request: Request instance for DescribeAccessGroups.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeAccessGroupsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAccessGroups", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def CreateAccessGroup(self, request):
+        """创建权限组
+        :param request: Request instance for CreateAccessGroup.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CreateAccessGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAccessGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def ModifyAccessGroup(self, request):
+        """修改权限组
+        :param request: Request instance for ModifyAccessGroup.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ModifyAccessGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAccessGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DeleteAccessGroup(self, request):
+        """删除权限组
+        :param request: Request instance for DeleteAccessGroup.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DeleteAccessGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAccessGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DescribeAccessRules(self, request):
+        """查询权限组规则列表
+        :param request: Request instance for DescribeAccessRules.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DescribeAccessRulesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAccessRules", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def CreateAccessRule(self, request):
+        """创建权限组规则
+        :param request: Request instance for CreateAccessRule.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CreateAccessRuleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAccessRule", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def ModifyAccessRule(self, request):
+        """修改权限组规则
+        :param request: Request instance for ModifyAccessRule.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ModifyAccessRuleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAccessRule", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def DeleteAccessRule(self, request):
+        """删除权限组规则
+        :param request: Request instance for DeleteAccessRule.
+        :type request: :class:`ksyun.client.kec.v20160304.models.DeleteAccessRuleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAccessRule", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+    def ModifyMountTarget(self, request):
+        """修改文件系统挂载点
+        :param request: Request instance for ModifyMountTarget.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ModifyMountTargetRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyMountTarget", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))

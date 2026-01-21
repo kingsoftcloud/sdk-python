@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
 import sys
 
 
@@ -8,17 +9,20 @@ class KsyunSDKException(Exception):
 
     def __init__(self, code=None, message=None, requestId=None):
         self.code = code
-        self.message = message
+        self.message = message or str(code)
         self.requestId = requestId
+        # Python 2/3 compatible super() call
+        if sys.version_info[0] >= 3:
+            super().__init__(self.message)
+        else:
+            super(KsyunSDKException, self).__init__(self.message)
 
     def __str__(self):
-        s = "[KsyunSDKException] code:%s message:%s requestId:%s" % (
-            self.code, self.message, self.requestId)
-        if sys.version_info[0] < 3 and isinstance(s, unicode):
-            return s.encode("utf8")
-        else:
-            return s
+        return "[KsyunSDKException] code:%s message:%s requestId:%s" % (
+            self.code, self.message, self.requestId
+        )
 
+    # 保证与旧版本代码兼容，保留原有方法名
     def get_code(self):
         return self.code
 

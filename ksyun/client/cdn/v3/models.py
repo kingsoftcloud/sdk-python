@@ -13,9 +13,9 @@ class GetDomainLogsRequest(AbstractModel):
         :param EndTime: 查询结束时间，格式yyyy-MM-dd，开始时间和结束时间均不指定时，默认是当天，若已指定开始时间StartTime，则EndTime为必填项
         :type PathPrefix: String
         :param PageSize: 分页大小，取值为1-500，最大500，默认50
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param PageNumber: 取得第几页，取值为：1-10000，最大10000，默认1
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         """
         self.DomainId = None
         self.StartTime = None
@@ -119,13 +119,13 @@ class GetCdnDomainsRequest(AbstractModel):
     def __init__(self):
         r"""根据用户查询域名信息列表-V3版本
         :param PageSize: 分页大小，默认20，最大500，取值1～500间整数
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param PageNumber: 取第几页。默认为1，取值1～10000
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DomainName: 按域名过滤，默认为空，为空时代表当前用户下所有域名，域名长度最大255，不支持多个域名同时查询
         :type PathPrefix: String
         :param ProjectId: 查询指定项目下的域名。默认为空，为空时查询当前用户下所有域名ProjectId可至金山云控制台-资源管理-项目管理查询
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DomainStatus: 按域名状态过滤。默认为空，为空时查询当前用户下所有域名的全部状态，取值为：online：正在运行；offline：已停止；configuring：配置中；configure_failed：配置失败 ；icp_checking：审核中；icp_check_failed：审核失败；locked：已封禁；locking：封禁中
         :type PathPrefix: String
         :param CdnType: 产品类型：file：大文件下载，video：音视频点播，page：图片小文件，wcdn：全站加速，默认为空，代表当前用户下全部产品类型（包括wcdn产品，不支持live：流媒体直播），支持同时查询多个产品类型，两个类型之间用英文逗号（半角）隔开
@@ -944,9 +944,9 @@ class GetBandwidthDataRequest(AbstractModel):
         :param Regions: S区域名称，枚举类型表见使用须知，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
         :type PathPrefix: String
         :param ResultType: 取值为0：多域名多区域数据做合并；1：每个域名每个区域的数据分别返回
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Granularity: 统计粒度，取值为 5（默认）：5分钟粒度；10：10分钟粒度；20：20分钟粒度；60：1小时粒度；240：4小时粒度；480：8小时粒度；1440：1天粒度；以上粒度的带宽值均取该粒度时间段的带宽峰值，即每5分钟有效带宽值的最高带宽
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DataType: 数据类型，取值为edge：服务数据； origin：回源数据（push：直播推流加速暂不支持查询回源数据）； 支持多类型选择，多个类型用逗号（半角）分隔，缺省为 edge
         :type PathPrefix: String
         :param ProtocolType: 协议类型， 取值为http：http协议数据；https：https协议数据；缺省默认返回全部协议数据（当CdnType=live时，请忽略此参数）
@@ -1000,9 +1000,9 @@ class GetFlowDataRequest(AbstractModel):
         :param Regions: 区域名称，枚举类型表见[使用须知](使用须知)，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
         :type PathPrefix: String
         :param ResultType: 取值为0：多域名多区域数据做合并；1：每个域名每个区域的数据分别返回
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Granularity: 统计粒度，取值为 5（默认）：5分钟粒度；10：10分钟粒度；20：20分钟粒度；60：1小时粒度；240：4小时粒度；480：8小时粒度；1440：1天粒度；以上粒度流量值均取该粒度时间段的流量总和
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DataType: 数据类型，取值为edge:服务数据; origin:回源数据（push：直播推流加速暂不支持查询回源数据）; 支持多类型选择，多个类型用逗号（半角）分隔，缺省为edge
         :type PathPrefix: String
         :param ProtocolType: 协议类型， 取值为http：htts协议数据； https：https协议数据；缺省默认返回全部协议数据
@@ -1056,9 +1056,9 @@ class GetPvDataRequest(AbstractModel):
         :param Regions: 区域名称，枚举类型表见[使用须知](https://docs.ksyun.com/documents/196#36)，支持多区域查询，多个区域用逗号（半角）分隔，缺省为 CN缺省为 CN
         :type PathPrefix: String
         :param ResultType: 取值为0：多域名多区域数据做合并；1：每个域名每个区域的数据分别返回
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Granularity: 统计粒度，取值为 5（默认）：5分钟粒度；10：10分钟粒度；20：20分钟粒度；60：1小时粒度；240：4小时粒度；480：8小时粒度；1440：1天粒度；以上粒度的请求数均取该粒度时间段的请求数总和
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DataType: 数据类型， 取值为edge:服务数据; origin:回源数据; 支持多类型选择，多个类型用逗号（半角）分隔，缺省为edge
         :type PathPrefix: String
         :param ProtocolType: 协议类型， 取值为http:http协议数据; https:https协议数据（直播不支持区分协议查询），默认返回全部协议数据

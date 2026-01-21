@@ -7,7 +7,7 @@ class QueryInstancesRequest(AbstractModel):
     def __init__(self):
         r"""根据搜索条件查询实例列表
         :param associatedUserId: 企业账号中心关联用户ID。如果空，则会返回企业账号中心有查看权限的用户ID下的实例。
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param instanceIds: 实例ID列表
         :type PathPrefix: Array
         :param status: 实例状态，默认值为2.

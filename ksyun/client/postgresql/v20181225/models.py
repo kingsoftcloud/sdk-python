@@ -545,7 +545,7 @@ class DescribeDBLogFilesRequest(AbstractModel):
         :type PathPrefix: String
         :param MaxFileSize: 最大文件大小
 ##### 过滤文件大小大于MaxFileSize的文件，单位：字节
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Marker: 偏移量
         :type PathPrefix: Int
         :param MaxRecords: 每页结果中包含的最大条数

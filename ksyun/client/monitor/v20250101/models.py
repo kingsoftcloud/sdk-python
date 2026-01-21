@@ -41,11 +41,11 @@ class DescribeSystemEventAttributesRequest(AbstractModel):
         :param StartTime: 开始时间。
 
 > **Tips：** 请注意时间格式为Unix时间戳（毫秒），从1970年1月1日开始所经过的毫秒数。
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param EndTime: 结束时间。
 
 > **Tips：** 请注意时间格式为Unix时间戳（毫秒），从1970年1月1日开始所经过的毫秒数。
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Namespace: 表示一类云产品，指定命名空间。
         :type PathPrefix: String
         :param EventType: 事件类型。
@@ -154,3 +154,35 @@ class ListAlarmEffectInstanceRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
 
 
+class GetPrometheusTokenRequest(AbstractModel):
+    """GetPrometheusToken请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取 Prometheus 访问Token
+        :param ControllerID: 控制ID（*即：当前Prometheus实例ID*）。
+
+> 值可通过 ListPrometheusInstances 接口获取。
+        :type PathPrefix: String
+        """
+        self.ControllerID = None
+
+    def _deserialize(self, params):
+        if params.get("ControllerID"):
+            self.ControllerID = params.get("ControllerID")
+
+
+class PutDefaultEventPolicyRequest(AbstractModel):
+    """PutDefaultEventPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置默认事件告警策略
+        :param PolicyName: 告警策略名称。
+        :type PathPrefix: String
+        """
+        self.PolicyName = None
+
+    def _deserialize(self, params):
+        if params.get("PolicyName"):
+            self.PolicyName = params.get("PolicyName")

@@ -28,7 +28,7 @@ class MonitorClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def DescribeSystemEventAttributes(self, request):
@@ -51,7 +51,7 @@ class MonitorClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
 
     def ListAlarmEffectInstance(self, request):
@@ -74,6 +74,48 @@ class MonitorClient(AbstractClient):
             if isinstance(e, KsyunSDKException):
                 raise
             else:
-                raise KsyunSDKException(e.message, e.message)
+                raise KsyunSDKException(message=str(e))
 
+    def GetPrometheusToken(self, request):
+        """获取 Prometheus 访问Token
+        :param request: Request instance for GetPrometheusToken.
+        :type request: :class:`ksyun.client.monitor.v20250101.models.GetPrometheusTokenRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetPrometheusToken", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
 
+    def PutDefaultEventPolicy(self, request):
+        """设置默认事件告警策略
+        :param request: Request instance for PutDefaultEventPolicy.
+        :type request: :class:`ksyun.client.monitor.v20250101.models.PutDefaultEventPolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("PutDefaultEventPolicy", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))

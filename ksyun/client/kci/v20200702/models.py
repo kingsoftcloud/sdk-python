@@ -25,7 +25,7 @@ class CreateContainerGroupRequest(AbstractModel):
         :param SpotStrategy: 竞价实例策略，当计费方式为Spot时，该字段有效，当前固定为SpotAsPriceGo
         :type PathPrefix: String
         :param ProjectId: 项目ID，不填写默认0
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Cpu: 容器实例CPU规格，支持三位小数，最大值256，系统会自动以标准规格适配，如指定的Cpu是2.5核，系统最终可能根据机型还要求开出4核，最小规格去适配
         :type PathPrefix: Double
         :param Memory: 容器实例内存规格，支持最多三位小数，最大512，单位GB。填写3G，最终系统根据机型以最小规格适配可能开出4G标准规格。

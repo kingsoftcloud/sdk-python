@@ -76,7 +76,7 @@ class ModifyListenersRequest(AbstractModel):
         :param SessionState: 会话保持的状态
         :type PathPrefix: String
         :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param CookieType: 会话类型
         :type PathPrefix: String
         :param CookieName: Cookie的名称
@@ -1342,7 +1342,7 @@ class CreateSlbRuleRequest(AbstractModel):
         :param SessionState: 会话保持的状态，在ListenerSync为off时有效
         :type PathPrefix: String
         :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param cookieType: 会话类型(ImplantCookie|RewriteCookie)
         :type PathPrefix: String
         :param CookieName: cookie名字
@@ -1433,7 +1433,7 @@ class ModifySlbRuleRequest(AbstractModel):
         :param SessionState: 会话保持的状态，在ListenerSync为off时有效
         :type PathPrefix: String
         :param SessionPersistencePeriod: 会话保持超时时间
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param cookieType: 会话类型(ImplantCookie|RewriteCookie)
         :type PathPrefix: String
         :param CookieName: cookie名字
@@ -1754,7 +1754,7 @@ class RejectPrivateLinkRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""RejectPrivateLink
+        r"""拒绝PrivateLink申请RejectPrivateLink
         :param PrivateLinkId: PrivateLink的ID
         :type PathPrefix: String
         """
@@ -1791,7 +1791,7 @@ class RemovePrivateLinkRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""RemovePrivateLink
+        r"""删除已建立的RemovePrivateLink
         :param PrivateLinkServerId: PrivateLinkServer的ID
         :type PathPrefix: String
         :param PrivateLinkId: PrivateLink的ID

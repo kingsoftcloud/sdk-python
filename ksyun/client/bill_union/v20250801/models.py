@@ -15,7 +15,7 @@ class QueryItemBillsRequest(AbstractModel):
         :param InstanceId: 实例ID
         :type PathPrefix: String
         :param SubAccountId: 托管子账号ID
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Size: 查询条数，最大值1000
         :type PathPrefix: Int
         :param LastSortValue: 上次查询排序值LastSortValue，基于es search_after; 

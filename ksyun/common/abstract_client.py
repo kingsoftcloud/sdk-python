@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import unicode_literals, print_function
 import copy
 import json
 import sys
@@ -21,6 +22,7 @@ import uuid
 import warnings
 import logging
 import logging.handlers
+import six
 
 try:
     from urllib.parse import urlencode
@@ -211,9 +213,19 @@ class AbstractClient(object):
                 if isinstance(v, list) or isinstance(v, dict):
                     v = json.dumps(v)
                     body += b'Content-Type: application/json\r\n'
-            if sys.version_info[0] == 3 and isinstance(v, type("")):
-                v = v.encode()
-            body += b'\r\n%s\r\n' % v
+            # Python 2/3 compatible: convert any non-bytes value to bytes
+            if isinstance(v, six.binary_type):
+                # Already bytes
+                pass
+            elif isinstance(v, six.text_type):
+                # Unicode/str text -> bytes
+                v = v.encode('utf-8')
+            else:
+                # Numbers, None, etc. -> str -> bytes
+                v = str(v).encode('utf-8')
+            # Concatenate bytes
+            body += v
+            body += b'\r\n'
         if body != b'':
             body += b'--%s--\r\n' % boundary
         return body

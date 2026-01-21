@@ -91,7 +91,7 @@ class RunInstancesRequest(AbstractModel):
         :param InstanceNameSuffix: 实例名称后缀，InstanceName参数如果缺省，此参数不生效；当大于1台的批量创建主机，后缀编号自动+1，例如后缀输入5，主机名输入"host"，批量3台，则生成的三台主机名分别为："host-5"、"host-6"、"host-7"；
         :type PathPrefix: String
         :param ProjectId: 实例所属项目ID
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DataDisk: 数据盘是否随实例释放
         :type PathPrefix: Filter
         :param NetworkInterface: 辅网卡
@@ -104,7 +104,7 @@ class RunInstancesRequest(AbstractModel):
 示例值：3f0d6229-ed2d-4c9c-8554-b9433517cf8b
         :type PathPrefix: String
         :param ModelVersion: 实例启动模板版本号。如不指定，则采用默认版本号
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param AssembledImageDataDiskType: 整机镜像所开云盘数据盘的类型
         :type PathPrefix: String
         :param AutoCreateEbs: 整机镜像是否展开镜像中的数据盘
@@ -1088,7 +1088,7 @@ class CreateDedicatedHostsRequest(AbstractModel):
         :param AvailabilityZone: 可用区
         :type PathPrefix: String
         :param ProjectId: 项目制ID
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param EbsClusterMode: 存储集群模式
 Mixed：混合模式；
 Public：公共集群；
@@ -2594,6 +2594,23 @@ class CreateFileSystemRequest(AbstractModel):
         :param FileSystemName: 文件系统名称，有效值：长度2-64字符，支持中文，字母，数字，以及-_；
         :type PathPrefix: String
         :param ProjectId: 项目制id
+        :type PathPrefix: Long
+        :param IsTrashEnable: • 回收站功能是否开启，默认不开启
+    ◦ TRUE ：表示回收站功能开启
+    ◦ FALSE：表示回收站功能不开启
+        :type PathPrefix: Boolean
+        :param IsTrashVisible: • 回收站目录是否可见，默认不可见
+    ◦ TRUE ：表示回收站目录可见
+    ◦ FALSE：表示回收站目录不可见
+        :type PathPrefix: Boolean
+        :param IntervalTrash: • 回收站内数据保留时长，默认1天
+    ◦ 0：表示“永久保留”，不自动删除。
+    ◦ 1：表示“固定周期保留”，取值范围：
+        ▪ 天：[1,  180]
+        :type PathPrefix: Int
+        :param RecycleOpPermission: • 可以选择操作回收站内文件的用户权限，默认“普通用户”
+    ◦ 0：表示“root用户”，只有root用户具有操作所有用户目录的权限
+    ◦ 1：表示“普通用户”，系统根据用户名和用户ID为每个用户创建自己的目录，用户有操作个人目录下文件的权限
         :type PathPrefix: Int
         """
         self.AvailabilityZone = None
@@ -2602,6 +2619,10 @@ class CreateFileSystemRequest(AbstractModel):
         self.ProtocolType = None
         self.FileSystemName = None
         self.ProjectId = None
+        self.IsTrashEnable = None
+        self.IsTrashVisible = None
+        self.IntervalTrash = None
+        self.RecycleOpPermission = None
 
     def _deserialize(self, params):
         if params.get("AvailabilityZone"):
@@ -2616,6 +2637,14 @@ class CreateFileSystemRequest(AbstractModel):
             self.FileSystemName = params.get("FileSystemName")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
+        if params.get("IsTrashEnable"):
+            self.IsTrashEnable = params.get("IsTrashEnable")
+        if params.get("IsTrashVisible"):
+            self.IsTrashVisible = params.get("IsTrashVisible")
+        if params.get("IntervalTrash"):
+            self.IntervalTrash = params.get("IntervalTrash")
+        if params.get("RecycleOpPermission"):
+            self.RecycleOpPermission = params.get("RecycleOpPermission")
 
 
 class DeleteFileSystemRequest(AbstractModel):
@@ -2708,10 +2737,13 @@ class CreateMountTargetRequest(AbstractModel):
         :type PathPrefix: String
         :param IpVersion: 取值为【ipv4，ipv6】，默认为 ipv4，如果选择了不支持ipv6的VPC且ip version选择 ipv6则报错
         :type PathPrefix: String
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
         """
         self.FileSystemId = None
         self.SubnetId = None
         self.IpVersion = None
+        self.AccessGroupId = None
 
     def _deserialize(self, params):
         if params.get("FileSystemId"):
@@ -2720,6 +2752,8 @@ class CreateMountTargetRequest(AbstractModel):
             self.SubnetId = params.get("SubnetId")
         if params.get("IpVersion"):
             self.IpVersion = params.get("IpVersion")
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
 
 
 class DeleteMountTargetRequest(AbstractModel):
@@ -2816,7 +2850,7 @@ Monthly(包年包月）、Daily（按量付费（按日月结）)、 HourlyInsta
         :type PathPrefix: String
         :param ProjectId: 实例所属项目ID
 账户有权限的项目ID，0为默认项目,默认值为默认项目
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param DataGuardId: 容灾分组ID
         :type PathPrefix: String
         :param AddressBandWidth: 弹性IP的带宽
@@ -2989,7 +3023,7 @@ class TerminateModelsRequest(AbstractModel):
         :param ModelId: 只传ModelId删除模板以及模板下对应的版本
         :type PathPrefix: String
         :param ModelVersion: 传ModelId和ModelVersion，删除某个模板下的版本
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         """
         self.ModelId = None
         self.ModelVersion = None
@@ -3211,32 +3245,17 @@ class DescribeKecInventoryRequest(AbstractModel):
 
     def __init__(self):
         r"""查询云主机库存
-        :param InstanceType: 实例类型
+        :param InstanceType: 云服务器的实例规格。
         :type PathPrefix: String
-        :param DataDiskGb: 数据卷容量，单位GB
-        :type PathPrefix: Int
-        :param SystemDisk.DiskSize: 系统盘大小
-        :type PathPrefix: Int
-        :param SystemDisk.DiskType: 系统盘类型
-        :type PathPrefix: String
-        :param AvailabilityZone: 可用区信息
+        :param AvailabilityZone: 可用区。
         :type PathPrefix: String
         """
         self.InstanceType = None
-        self.DataDiskGb = None
-        self.SystemDisk_DiskSize = None
-        self.SystemDisk_DiskType = None
         self.AvailabilityZone = None
 
     def _deserialize(self, params):
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
-        if params.get("DataDiskGb"):
-            self.DataDiskGb = params.get("DataDiskGb")
-        if params.get("SystemDisk.DiskSize"):
-            self.SystemDisk_DiskSize = params.get("SystemDisk.DiskSize")
-        if params.get("SystemDisk.DiskType"):
-            self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
         if params.get("AvailabilityZone"):
             self.AvailabilityZone = params.get("AvailabilityZone")
 
@@ -3722,3 +3741,651 @@ class DescribeInstanceVncUrlRequest(AbstractModel):
             self.InstanceId = params.get("InstanceId")
 
 
+class CreateSnapshotRequest(AbstractModel):
+    """CreateSnapshot请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建文件系统快照
+        :param FileSystemId: 指定文件系统实例ID
+        :type PathPrefix: String
+        :param SnapshotName: 快照名称
+        :type PathPrefix: String
+        :param Description: 快照描述
+        :type PathPrefix: String
+        :param AliveDays: 快照保留天数
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.SnapshotName = None
+        self.Description = None
+        self.AliveDays = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("SnapshotName"):
+            self.SnapshotName = params.get("SnapshotName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("AliveDays"):
+            self.AliveDays = params.get("AliveDays")
+
+
+class UpdateSnapshotRequest(AbstractModel):
+    """UpdateSnapshot请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改文件系统快照
+        :param FileSystemId: 指定文件系统实例ID
+        :type PathPrefix: String
+        :param SnapshotId: 生成的快照ID
+        :type PathPrefix: String
+        :param SnapshotName: 快照名称
+        :type PathPrefix: String
+        :param Description: 快照描述
+        :type PathPrefix: String
+        :param AliveDays: 快照保留天数
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.SnapshotId = None
+        self.SnapshotName = None
+        self.Description = None
+        self.AliveDays = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("SnapshotId"):
+            self.SnapshotId = params.get("SnapshotId")
+        if params.get("SnapshotName"):
+            self.SnapshotName = params.get("SnapshotName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("AliveDays"):
+            self.AliveDays = params.get("AliveDays")
+
+
+class DeleteSnapshotRequest(AbstractModel):
+    """DeleteSnapshot请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除文件系统快照
+        :param SnapshotId: 快照ID，支持批量删除
+        :type PathPrefix: Filter
+        """
+        self.SnapshotId = None
+
+    def _deserialize(self, params):
+        if params.get("SnapshotId"):
+            self.SnapshotId = params.get("SnapshotId")
+
+
+class RevertSnapshotRequest(AbstractModel):
+    """RevertSnapshot请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统快照回滚
+        :param FileSystemId: 文件系统实例ID
+        :type PathPrefix: String
+        :param SnapshotId: 快照ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.SnapshotId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("SnapshotId"):
+            self.SnapshotId = params.get("SnapshotId")
+
+
+class DescribeSnapshotListRequest(AbstractModel):
+    """DescribeSnapshotList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询文件系统的快照信息
+        :param FileSystemId: 文件系统实例ID，支持批量查询
+        :type PathPrefix: Filter
+        :param SnapshotId: 快照ID，支持批量查询
+        :type PathPrefix: Filter
+        :param SnapshotName: 快照名称
+        :type PathPrefix: String
+        :param SnapshotType: 快照类型。有效取值：
+• auto：自动快照
+• user：手动创建的快照
+        :type PathPrefix: String
+        :param Sort: 排序规则，CreateTime.desc、CreateTime.asc、ExpireTime.desc、ExpireTime.asc
+        :type PathPrefix: String
+        :param PageNum: 页码，默认为1
+        :type PathPrefix: Int
+        :param PageSize: 分页大小，默认为10
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.SnapshotId = None
+        self.SnapshotName = None
+        self.SnapshotType = None
+        self.Sort = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("SnapshotId"):
+            self.SnapshotId = params.get("SnapshotId")
+        if params.get("SnapshotName"):
+            self.SnapshotName = params.get("SnapshotName")
+        if params.get("SnapshotType"):
+            self.SnapshotType = params.get("SnapshotType")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class CreateSnapshotPolicyRequest(AbstractModel):
+    """CreateSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建文件系统自动快照策略
+        :param AutoSnapshotPolicyName: 自动快照策略名称。格式规范为：
+• 长度为2~30个字符。必须以字母开头，可包含数字、下划线（_）
+        :type PathPrefix: String
+        :param FrequencyUnit: 自动快照策略备份周期。有效值：
+• day：按天（默认值）
+• week：按周
+• month：按月
+        :type PathPrefix: String
+        :param IndexOfFrequency: 备份日期
+按天不传, 按周（必传） （1-7  可多选）按月（必传）（1-31 ）[1，2，3，4，5]
+        :type PathPrefix: Filter
+        :param SnapshotTimePoint: 备份时间点
+快照定期备份时间点（在一天的哪一小时） 00:00，01:00 ...  默认 00:00，  只支持小时
+        :type PathPrefix: Filter
+        :param AliveDays: 快照保留天数
+        :type PathPrefix: Int
+        """
+        self.AutoSnapshotPolicyName = None
+        self.FrequencyUnit = None
+        self.IndexOfFrequency = None
+        self.SnapshotTimePoint = None
+        self.AliveDays = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyName"):
+            self.AutoSnapshotPolicyName = params.get("AutoSnapshotPolicyName")
+        if params.get("FrequencyUnit"):
+            self.FrequencyUnit = params.get("FrequencyUnit")
+        if params.get("IndexOfFrequency"):
+            self.IndexOfFrequency = params.get("IndexOfFrequency")
+        if params.get("SnapshotTimePoint"):
+            self.SnapshotTimePoint = params.get("SnapshotTimePoint")
+        if params.get("AliveDays"):
+            self.AliveDays = params.get("AliveDays")
+
+
+class UpdateSnapshotPolicyRequest(AbstractModel):
+    """UpdateSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改文件系统自动快照策略
+        :param AutoSnapshotPolicyId: 策略ID
+        :type PathPrefix: String
+        :param AutoSnapshotPolicyName: 策略名称
+        :type PathPrefix: String
+        :param FrequencyUnit: 自动快照策略备份周期。有效值：
+• day：按天（默认值）
+• week：按周
+• month：按月
+        :type PathPrefix: String
+        :param IndexOfFrequency: 备份日期
+按天不传, 按周（必传）（1-7 可多选）按月（必传）（1-31 ）[1，2，3，4，5]
+        :type PathPrefix: Filter
+        :param SnapshotTimePoint: 备份时间点
+快照定期备份时间点（在一天的哪一小时） 00:00，01:00 ...  默认 00:00，只支持小时
+        :type PathPrefix: Filter
+        :param AliveDays: 快照保留天数
+        :type PathPrefix: Int
+        """
+        self.AutoSnapshotPolicyId = None
+        self.AutoSnapshotPolicyName = None
+        self.FrequencyUnit = None
+        self.IndexOfFrequency = None
+        self.SnapshotTimePoint = None
+        self.AliveDays = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("AutoSnapshotPolicyName"):
+            self.AutoSnapshotPolicyName = params.get("AutoSnapshotPolicyName")
+        if params.get("FrequencyUnit"):
+            self.FrequencyUnit = params.get("FrequencyUnit")
+        if params.get("IndexOfFrequency"):
+            self.IndexOfFrequency = params.get("IndexOfFrequency")
+        if params.get("SnapshotTimePoint"):
+            self.SnapshotTimePoint = params.get("SnapshotTimePoint")
+        if params.get("AliveDays"):
+            self.AliveDays = params.get("AliveDays")
+
+
+class DeleteSnapshotPolicyRequest(AbstractModel):
+    """DeleteSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除文件系统自动快照策略
+        :param AutoSnapshotPolicyId: 自动快照策略ID，支持批量删除
+        :type PathPrefix: Filter
+        """
+        self.AutoSnapshotPolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+
+
+class ApplySnapshotPolicyRequest(AbstractModel):
+    """ApplySnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统关联自动快照策略
+        :param AutoSnapshotPolicyId: 自动快照策略ID
+        :type PathPrefix: String
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        """
+        self.AutoSnapshotPolicyId = None
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class CancelSnapshotPolicyRequest(AbstractModel):
+    """CancelSnapshotPolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统移除自动快照策略
+        :param AutoSnapshotPolicyId: 快照策略ID
+        :type PathPrefix: String
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        """
+        self.AutoSnapshotPolicyId = None
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class DescribeSnapshotPolicyListRequest(AbstractModel):
+    """DescribeSnapshotPolicyList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取文件系统自动快照策略列表
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param AutoSnapshotPolicyId: 自动快照策略ID
+        :type PathPrefix: Filter
+        :param AutoSnapshotPolicyName: 自动快照策略名称
+        :type PathPrefix: String
+        :param Sort: 排序，CreateTime.desc、CreateTime.asc、NextActiveTime.desc、NextActiveTime.asc
+        :type PathPrefix: String
+        :param PageNum: 页码，默认为1
+        :type PathPrefix: Int
+        :param PageSize: 分页大小，默认为10
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.AutoSnapshotPolicyId = None
+        self.AutoSnapshotPolicyName = None
+        self.Sort = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("AutoSnapshotPolicyId"):
+            self.AutoSnapshotPolicyId = params.get("AutoSnapshotPolicyId")
+        if params.get("AutoSnapshotPolicyName"):
+            self.AutoSnapshotPolicyName = params.get("AutoSnapshotPolicyName")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class ModifyRecycleBinAttributeRequest(AbstractModel):
+    """ModifyRecycleBinAttribute请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改回收站信息
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param IsTrashEnable: 回收站功能是否开启，默认开启
+        :type PathPrefix: Boolean
+        :param IsTrashVisible: 回收站目录是否可见，默认可见
+        :type PathPrefix: Boolean
+        :param IntervalTrash: 回收站内数据保留时长，默认1天
+        :type PathPrefix: Int
+        :param RecycleOpPermission: 回收站操作权限级别：0(只读)/1(读写)
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.IsTrashEnable = None
+        self.IsTrashVisible = None
+        self.IntervalTrash = None
+        self.RecycleOpPermission = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("IsTrashEnable"):
+            self.IsTrashEnable = params.get("IsTrashEnable")
+        if params.get("IsTrashVisible"):
+            self.IsTrashVisible = params.get("IsTrashVisible")
+        if params.get("IntervalTrash"):
+            self.IntervalTrash = params.get("IntervalTrash")
+        if params.get("RecycleOpPermission"):
+            self.RecycleOpPermission = params.get("RecycleOpPermission")
+
+
+class DescribeAccessGroupsRequest(AbstractModel):
+    """DescribeAccessGroups请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询权限组信息
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param PageSize: 每个分页包含的权限组个数
+取值范围：1~200
+默认值：10
+        :type PathPrefix: Int
+        :param PageNumber: 列表的分页页码
+起始值（默认值）：1
+        :type PathPrefix: Int
+        """
+        self.AccessGroupId = None
+        self.PageSize = None
+        self.PageNumber = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
+
+
+class CreateAccessGroupRequest(AbstractModel):
+    """CreateAccessGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建权限组
+        :param AccessGroupName: 权限组名称。
+限制：
+• 长度为 3~64 个字符
+• 同一区域的权限组参数名称不可重复
+• 必须以大小写字母开头，可以包含英文字母、数字、下划线（_）或者短划线（-）
+        :type PathPrefix: String
+        :param Description: 权限组描述。
+限制：
+• 长度为 0~128个英文或中文字符。
+• 必须以大小字母或中文开头，不可包含http://和https://
+• 可以包含数字、半角冒号（:）、下划线（_）或者短划号（-）
+        :type PathPrefix: String
+        """
+        self.AccessGroupName = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupName"):
+            self.AccessGroupName = params.get("AccessGroupName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class ModifyAccessGroupRequest(AbstractModel):
+    """ModifyAccessGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改权限组
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param AccessGroupName: 权限组名称
+限制：
+• 长度为 3~64 个字符
+• 同一区域的权限组参数名称不可重复
+• 必须以大小写字母开头，可以包含英文字母、数字、下划线（_）或者短划线（-）
+        :type PathPrefix: String
+        :param Description: 权限组描述
+限制：
+• 长度为 0~128个英文或中文字符
+• 必须以大小字母或中文开头，不可包含http://和https://
+• 可以包含数字、半角冒号（:）、下划线（_）或者短划号（-）
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+        self.AccessGroupName = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("AccessGroupName"):
+            self.AccessGroupName = params.get("AccessGroupName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class DeleteAccessGroupRequest(AbstractModel):
+    """DeleteAccessGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除权限组
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+
+
+class DescribeAccessRulesRequest(AbstractModel):
+    """DescribeAccessRules请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询权限组规则列表
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param AccessRuleId: 权限规则ID
+        :type PathPrefix: String
+        :param PageSize: 分页查询时，每个分页包含的文件系统个数
+取值范围：1~100
+默认值：10
+        :type PathPrefix: Int
+        :param PageNumber: 文件系统列表的分页页码
+起始值（默认值）：1
+        :type PathPrefix: Int
+        """
+        self.AccessGroupId = None
+        self.AccessRuleId = None
+        self.PageSize = None
+        self.PageNumber = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("AccessRuleId"):
+            self.AccessRuleId = params.get("AccessRuleId")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
+
+
+class CreateAccessRuleRequest(AbstractModel):
+    """CreateAccessRule请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建权限组规则
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param SourceCidrIp: 授权地址，授权对象的 IP 地址或网段
+格式必须为 IP 地址或者 CIDR 网段，如果批量设置则逗号分隔
+备注：批量录入后需按每个IP或每条CIDR地址段来拆解为多条规则
+        :type PathPrefix: Filter
+        :param RwAccessType: 读写权限，支持“读写权限、禁止访问”
+• RDWR：读写
+• RDONLY：只读
+• RDWR_NODELETE_NORENAME：读写(不支持删除和重命名)
+        :type PathPrefix: String
+        :param UserAccessType: 授权对象的系统用户对文件系统的访问权限
+取值：
+• no_squash：允许使用 root 用户访问文件系统
+• root_squash：以 root 用户身份访问时，映射 nobody 用户
+• all_squash：无论以何种用户身份访问，均映射为 nobody 用户
+nobody 用户是 Linux 系统的默认用户，只能访问服务器上的公共内容，具有低权限，高安全性的特点
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+        self.SourceCidrIp = None
+        self.RwAccessType = None
+        self.UserAccessType = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("SourceCidrIp"):
+            self.SourceCidrIp = params.get("SourceCidrIp")
+        if params.get("RwAccessType"):
+            self.RwAccessType = params.get("RwAccessType")
+        if params.get("UserAccessType"):
+            self.UserAccessType = params.get("UserAccessType")
+
+
+class ModifyAccessRuleRequest(AbstractModel):
+    """ModifyAccessRule请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改权限组规则
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param AccessRuleId: 权限组规则ID
+        :type PathPrefix: String
+        :param SourceCidrIp: 授权地址，授权对象的 IP 地址或网段。
+格式必须为 IP 地址或者 CIDR 网段
+        :type PathPrefix: String
+        :param RwAccessType: 读写权限，支持“读写权限、禁止访问”
+• RDWR：读写
+• RDONLY：只读
+• RDWR_NODELETE_NORENAME：读写(不支持删除和重命名)
+        :type PathPrefix: String
+        :param UserAccessType: 授权对象的系统用户对文件系统的访问权限
+取值：
+• no_squash：允许使用 root 用户访问文件系统
+• root_squash：以 root 用户身份访问时，映射 nobody 用户
+• all_squash：无论以何种用户身份访问，均映射为 nobody 用户
+nobody 用户是 Linux 系统的默认用户，只能访问服务器上的公共内容，具有低权限，高安全性的特点
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+        self.AccessRuleId = None
+        self.SourceCidrIp = None
+        self.RwAccessType = None
+        self.UserAccessType = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("AccessRuleId"):
+            self.AccessRuleId = params.get("AccessRuleId")
+        if params.get("SourceCidrIp"):
+            self.SourceCidrIp = params.get("SourceCidrIp")
+        if params.get("RwAccessType"):
+            self.RwAccessType = params.get("RwAccessType")
+        if params.get("UserAccessType"):
+            self.UserAccessType = params.get("UserAccessType")
+
+
+class DeleteAccessRuleRequest(AbstractModel):
+    """DeleteAccessRule请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除权限组规则
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param AccessRuleId: 权限组规则ID
+        :type PathPrefix: Filter
+        """
+        self.AccessGroupId = None
+        self.AccessRuleId = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("AccessRuleId"):
+            self.AccessRuleId = params.get("AccessRuleId")
+
+
+class ModifyMountTargetRequest(AbstractModel):
+    """ModifyMountTarget请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改文件系统挂载点
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param MountTargetId: 挂载点ID
+        :type PathPrefix: String
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.MountTargetId = None
+        self.AccessGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("MountTargetId"):
+            self.MountTargetId = params.get("MountTargetId")
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")

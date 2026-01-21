@@ -11,7 +11,7 @@ class DescribeBillSummaryByPayModeRequest(AbstractModel):
         :param BillEndMonth: 账单结束时间
         :type PathPrefix: String
         :param SubAccount: 成员账账号Id，非必填
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param FetchAllFinanceRelationData: 非必传，默认值为 False。
 是否吐出全部财务关系数据。
 值为true时，同时吐出财务管理和财务托管账号数据。
@@ -45,7 +45,7 @@ class DescribeBillSummaryByProductRequest(AbstractModel):
         :param BillEndMonth: 账单结束时间
         :type PathPrefix: String
         :param SubAccount: 成员账号Id
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param FetchAllFinanceRelationData: 非必传，默认值为 False。
 是否吐出全部财务关系数据。
 值为true时，同时吐出财务管理和财务托管账号数据。
@@ -79,7 +79,7 @@ class DescribeBillSummaryByProjectRequest(AbstractModel):
         :param BillEndMonth: 账单结束月份
         :type PathPrefix: String
         :param SubAccount: 成员账号Id
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param FetchAllFinanceRelationData: 非必传，默认值为 False。
 是否吐出全部财务关系数据。
 值为true时，同时吐出财务管理和财务托管账号数据。
@@ -160,7 +160,7 @@ class DescribeSplitItemBillDetailsRequest(AbstractModel):
         :param PayType: 计费类别
         :type PathPrefix: Int
         :param SubAccountId: 主账号所托管的账号Id
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Page: 第几页
         :type PathPrefix: Int
         :param Size: 每页条数
@@ -224,7 +224,7 @@ class DescribeSplitItemDayBillDetailsRequest(AbstractModel):
         :type PathPrefix: Int
         :param SubAccountId: 主账号所托管的账号Id
 
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Page: 第几页
         :type PathPrefix: Int
         :param Size: 每页条数

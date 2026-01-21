@@ -2,24 +2,30 @@
 Ksyun Cloud SDK for Python
 ============================
 
-Ksyun Cloud Python SDK is the official software development kit, which allows Python developers to write software that makes use of ksyun Cloud services.
+Ksyun Cloud Python SDK is the official software development kit, which allows Python developers
+to write software that makes use of Ksyun Cloud services.
 
-The SDK works on Python versions:
-
-   * 2.7 and greater, including 3.x
+Supported Python Versions
+-------------------------
+This SDK works on Python versions **2.7 and above**, including all Python 3.x versions up to 3.14.
 
 Quick Start
 -----------
-First, install the library:
+
+### Install via pip
 
 .. code-block:: sh
 
-    $ pip install kingsoftcloud-sdk-python
+    pip install kingsoftcloud-sdk-python
 
-or download source code from github and install:
+### Install from source
 
 .. code-block:: sh
 
-    $ git clone https://github.com/kingsoftcloud/sdk-python
-    $ cd kingsoftcloud-sdk-python
-    $ python setup.py install
+    git clone https://github.com/ksyun/ksyun-sdk-python
+    cd kingsoftcloud-sdk-python
+    python setup.py install
+
+License
+-------
+Apache License 2.0

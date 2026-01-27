@@ -1,5 +1,162 @@
 from ksyun.common.abstract_model import AbstractModel
 
+class CreateStorageConfigRequest(AbstractModel):
+    """CreateStorageConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建存储配置
+        :param StorageConfigName: 存储配置名称, 1-64个字符，允许字母 中文 数字 - _ . / ( )
+        :type PathPrefix: String
+        :param Description: 存储配置描述
+        :type PathPrefix: String
+        :param Type: 存储类型 
+ 有效值： 
+ - KPFS 
+ - KS3
+        :type PathPrefix: String
+        :param MountPath: 挂载路径, 不能覆盖关键系统目录，包括：/、/bin、/sbin、/usr、/etc、/proc、/sys、/home等，子目录可以
+        :type PathPrefix: String
+        :param KpfsInfo: KPFS存储信息 (当Type为KPFS时必填)
+        :type PathPrefix: Object
+        :param Ks3Info: KS3存储信息 (当Type为KS3时必填)
+        :type PathPrefix: Object
+        :param Users: 子账号权限信息列表
+        :type PathPrefix: Array
+        :param Ak: 访问密钥ID,除性能型KPFS外，其余存储类型均需要填写
+        :type PathPrefix: String
+        :param Sk: 访问密钥Secret,除性能型KPFS外，其余存储类型均需要填写
+        :type PathPrefix: String
+        """
+        self.StorageConfigName = None
+        self.Description = None
+        self.Type = None
+        self.MountPath = None
+        self.KpfsInfo = None
+        self.Ks3Info = None
+        self.Users = None
+        self.Ak = None
+        self.Sk = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigName"):
+            self.StorageConfigName = params.get("StorageConfigName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+        if params.get("MountPath"):
+            self.MountPath = params.get("MountPath")
+        if params.get("KpfsInfo"):
+            self.KpfsInfo = params.get("KpfsInfo")
+        if params.get("Ks3Info"):
+            self.Ks3Info = params.get("Ks3Info")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+        if params.get("Ak"):
+            self.Ak = params.get("Ak")
+        if params.get("Sk"):
+            self.Sk = params.get("Sk")
+
+
+class ModifyStorageConfigRequest(AbstractModel):
+    """ModifyStorageConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改存储配置
+        :param StorageConfigId: 存储配置Id
+        :type PathPrefix: String
+        :param StorageConfigName: 存储配置名称, 1-64个字符，允许字母 中文 数字 - _ . / ( )
+        :type PathPrefix: String
+        :param Description: 存储配置描述
+        :type PathPrefix: String
+        :param MountPath: 挂载路径, 不能覆盖关键系统目录，包括：/、/bin、/sbin、/usr、/etc、/proc、/sys、/home等，子目录可以
+        :type PathPrefix: String
+        :param Ks3Info: KS3存储信息 (修改BucketName或BucketPath时需填入)
+        :type PathPrefix: Object
+        :param Users: 子账号权限信息列表（若传入，会进行全量覆盖式修改）
+        :type PathPrefix: Array
+        :param Ak: 访问密钥ID,对于KPFS类型的存储配置,需要用户自行保证AK/SK的有效性
+        :type PathPrefix: String
+        :param Sk: 访问密钥Secret,对于KPFS类型的存储配置,需要用户自行保证AK/SK的有效性
+        :type PathPrefix: String
+        """
+        self.StorageConfigId = None
+        self.StorageConfigName = None
+        self.Description = None
+        self.MountPath = None
+        self.Ks3Info = None
+        self.Users = None
+        self.Ak = None
+        self.Sk = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("StorageConfigName"):
+            self.StorageConfigName = params.get("StorageConfigName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("MountPath"):
+            self.MountPath = params.get("MountPath")
+        if params.get("Ks3Info"):
+            self.Ks3Info = params.get("Ks3Info")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+        if params.get("Ak"):
+            self.Ak = params.get("Ak")
+        if params.get("Sk"):
+            self.Sk = params.get("Sk")
+
+
+class DescribeStorageConfigsRequest(AbstractModel):
+    """DescribeStorageConfigs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询存储配置
+        :param StorageConfigId: 多个存储配置的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param PageSize: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param Page: 页码
+        :type PathPrefix: Int
+        """
+        self.StorageConfigId = None
+        self.Filter = None
+        self.PageSize = None
+        self.Page = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+
+
+class DeleteStorageConfigRequest(AbstractModel):
+    """DeleteStorageConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除存储配置
+        :param StorageConfigId: 存储配置Id
+        :type PathPrefix: String
+        """
+        self.StorageConfigId = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+
+
 class SaveNotebookImageRequest(AbstractModel):
     """SaveNotebookImage请求参数结构体
     """
@@ -248,12 +405,10 @@ class DescribeNotebooksRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Name: 开发任务名称
         :type PathPrefix: String
-        :param Marker: 页数
+        :param Page: 页数
         :type PathPrefix: Int
-        :param MaxResults: 每页查询数目
+        :param PageSize: 每页查询数目
         :type PathPrefix: Int
-        :param State: 开发任务状态
-        :type PathPrefix: String
         :param Filter: 条件过滤
         :type PathPrefix: Filter
         :param QueueId: 队列ID
@@ -261,9 +416,8 @@ class DescribeNotebooksRequest(AbstractModel):
         """
         self.NotebookId = None
         self.Name = None
-        self.Marker = None
-        self.MaxResults = None
-        self.State = None
+        self.Page = None
+        self.PageSize = None
         self.Filter = None
         self.QueueId = None
 
@@ -272,12 +426,10 @@ class DescribeNotebooksRequest(AbstractModel):
             self.NotebookId = params.get("NotebookId")
         if params.get("Name"):
             self.Name = params.get("Name")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-        if params.get("State"):
-            self.State = params.get("State")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
         if params.get("QueueId"):
@@ -633,32 +785,30 @@ class GetWebIdeUrlRequest(AbstractModel):
             self.ExpirationMinute = params.get("ExpirationMinute")
 
 
-class DescribeNotebookEventsRequest(AbstractModel):
-    """DescribeNotebookEvents请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询开发任务事件列表
-        :param NotebookId: 开发任务ID
-        :type PathPrefix: String
-        """
-        self.NotebookId = None
-
-    def _deserialize(self, params):
-        if params.get("NotebookId"):
-            self.NotebookId = params.get("NotebookId")
-
-
 class DescribeNotebookLogRequest(AbstractModel):
     """DescribeNotebookLog请求参数结构体
     """
 
     def __init__(self):
-        r"""查看开发机日志
+        r"""查看开发机的pod日志
+        :param NotebookId: 开发任务Id
+        :type PathPrefix: String
+        :param SinceSeconds: 日志默认显示时间，单位秒；比如10分钟内的，值为600
+        :type PathPrefix: Int
+        :param TailLines: 日志显示行数，比如显示30行，值为30
+        :type PathPrefix: String
         """
+        self.NotebookId = None
+        self.SinceSeconds = None
+        self.TailLines = None
 
     def _deserialize(self, params):
-        return
+        if params.get("NotebookId"):
+            self.NotebookId = params.get("NotebookId")
+        if params.get("SinceSeconds"):
+            self.SinceSeconds = params.get("SinceSeconds")
+        if params.get("TailLines"):
+            self.TailLines = params.get("TailLines")
 
 
 class StopNotebookSavingImageRequest(AbstractModel):
@@ -911,63 +1061,6 @@ class DescribeApikeysRequest(AbstractModel):
             self.DefaultKey = params.get("DefaultKey")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
-
-
-class QueryTokenDataRequest(AbstractModel):
-    """QueryTokenData请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询模型API token用量（限定半年内的）
-        :param StartTimestamp: 开始时间，毫秒时间戳，仅支持最近180天内时间。
-        :type PathPrefix: Long
-        :param EndTimestamp: 截止时间，毫秒时间戳
-        :type PathPrefix: Long
-        :param MaxResults: 分页页长，最大10000
-        :type PathPrefix: Int
-        :param Keyword: 搜索关键词
-        :type PathPrefix: String
-        :param GroupBy: 分组字段：
-model-按模型分组；keyId-按apikey分组。
-        :type PathPrefix: String
-        :param ReasoningType: 推理类型：normal-在线，batch-批量，web-在线体验，不传为查询全部。
-        :type PathPrefix: String
-        :param Marker: 页码，从1开始。
-        :type PathPrefix: Int
-        :param IsGlobalServer: 是否国际版：false-国内版，true-国际版
-        :type PathPrefix: Boolean
-        :param ModelName: 
-        :type PathPrefix: String
-        """
-        self.StartTimestamp = None
-        self.EndTimestamp = None
-        self.MaxResults = None
-        self.Keyword = None
-        self.GroupBy = None
-        self.ReasoningType = None
-        self.Marker = None
-        self.IsGlobalServer = None
-        self.ModelName = None
-
-    def _deserialize(self, params):
-        if params.get("StartTimestamp"):
-            self.StartTimestamp = params.get("StartTimestamp")
-        if params.get("EndTimestamp"):
-            self.EndTimestamp = params.get("EndTimestamp")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-        if params.get("Keyword"):
-            self.Keyword = params.get("Keyword")
-        if params.get("GroupBy"):
-            self.GroupBy = params.get("GroupBy")
-        if params.get("ReasoningType"):
-            self.ReasoningType = params.get("ReasoningType")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("IsGlobalServer"):
-            self.IsGlobalServer = params.get("IsGlobalServer")
-        if params.get("ModelName"):
-            self.ModelName = params.get("ModelName")
 
 
 class DisableApikeyStatusRequest(AbstractModel):
@@ -1940,6 +2033,46 @@ class DisableEndpointRateLimitRequest(AbstractModel):
             self.EndpointId = params.get("EndpointId")
 
 
+class DescribeResourcePoolInstanceTasksRequest(AbstractModel):
+    """DescribeResourcePoolInstanceTasks请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询节点上运行的任务
+        :param ResourcePoolId: 节点所在资源组ID
+        :type PathPrefix: String
+        :param InstanceId: 节点ID
+        :type PathPrefix: String
+        :param TaskType: 任务类型：
+- Notebook，开发任务
+- TrainJob，训练任务
+- Inference，模型在线服务
+- DataJob，数据处理任务
+        :type PathPrefix: String
+        :param PageSize: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param Page: 页码
+        :type PathPrefix: Int
+        """
+        self.ResourcePoolId = None
+        self.InstanceId = None
+        self.TaskType = None
+        self.PageSize = None
+        self.Page = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("TaskType"):
+            self.TaskType = params.get("TaskType")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+
+
 class SetKcrPersonalTokenRequest(AbstractModel):
     """SetKcrPersonalToken请求参数结构体
     """
@@ -1959,5 +2092,36 @@ class SetKcrPersonalTokenRequest(AbstractModel):
             self.UserName = params.get("UserName")
         if params.get("Password"):
             self.Password = params.get("Password")
+
+
+class DescribeQueuesRequest(AbstractModel):
+    """DescribeQueues请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询资源组队列
+        :param QueueId: 队列ID列表
+        :type PathPrefix: Filter
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        """
+        self.QueueId = None
+        self.Page = None
+        self.PageSize = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
 
 

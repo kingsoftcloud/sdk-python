@@ -8,6 +8,98 @@ class AicpClient(AbstractClient):
     _apiVersion = '2024-06-12'
     _endpoint = 'aicp.api.ksyun.com'
     _service = 'aicp'
+    def CreateStorageConfig(self, request):
+        """创建存储配置
+        :param request: Request instance for CreateStorageConfig.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateStorageConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateStorageConfig", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyStorageConfig(self, request):
+        """修改存储配置
+        :param request: Request instance for ModifyStorageConfig.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyStorageConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyStorageConfig", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeStorageConfigs(self, request):
+        """查询存储配置
+        :param request: Request instance for DescribeStorageConfigs.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeStorageConfigsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeStorageConfigs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteStorageConfig(self, request):
+        """删除存储配置
+        :param request: Request instance for DeleteStorageConfig.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteStorageConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteStorageConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def SaveNotebookImage(self, request):
         """保存开发任务镜像
         :param request: Request instance for SaveNotebookImage.
@@ -130,7 +222,7 @@ class AicpClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("CreateImage", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("CreateImage", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -222,7 +314,7 @@ class AicpClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("StopNotebook", params, "application/json")
+            body = self.call_judge("StopNotebook", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -284,31 +376,8 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def DescribeNotebookEvents(self, request):
-        """查询开发任务事件列表
-        :param request: Request instance for DescribeNotebookEvents.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeNotebookEventsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeNotebookEvents", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def DescribeNotebookLog(self, request):
-        """查看开发机日志
+        """查看开发机的pod日志
         :param request: Request instance for DescribeNotebookLog.
         :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeNotebookLogRequest`
         """
@@ -522,29 +591,6 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeApikeys", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
-    def QueryTokenData(self, request):
-        """查询模型API token用量（限定半年内的）
-        :param request: Request instance for QueryTokenData.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.QueryTokenDataRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("QueryTokenData", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1319,6 +1365,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DescribeResourcePoolInstanceTasks(self, request):
+        """查询节点上运行的任务
+        :param request: Request instance for DescribeResourcePoolInstanceTasks.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeResourcePoolInstanceTasksRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeResourcePoolInstanceTasks", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def SetKcrPersonalToken(self, request):
         """配置个人版镜像仓库访问凭证
         :param request: Request instance for SetKcrPersonalToken.
@@ -1327,6 +1396,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("SetKcrPersonalToken", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeQueues(self, request):
+        """查询资源组队列
+        :param request: Request instance for DescribeQueues.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeQueuesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeQueues", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

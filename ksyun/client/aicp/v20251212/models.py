@@ -112,3 +112,309 @@ class DescribeTrainJobsRequest(AbstractModel):
             self.TrainJobName = params.get("TrainJobName")
 
 
+class ModifyModelAccessRequest(AbstractModel):
+    """ModifyModelAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新模型访问权限
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param Users: 用户访问权限列表
+        :type PathPrefix: Array
+        """
+        self.ModelId = None
+        self.Users = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+
+
+class CreateModelAndVersionRequest(AbstractModel):
+    """CreateModelAndVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建模型及版本
+        :param ModelName: 模型名称
+        :type PathPrefix: String
+        :param ModelDescription: 模型描述
+        :type PathPrefix: String
+        :param ModelVersionName: 模型版本名称
+        :type PathPrefix: String
+        :param ModelVersionDescription: 模型版本描述
+        :type PathPrefix: String
+        :param SourceType: 来源类型，有效值：storage-config
+        :type PathPrefix: String
+        :param StorageConfigId: 存储配置ID
+        :type PathPrefix: String
+        :param Format: 模型格式
+        :type PathPrefix: String
+        :param Framework: 模型框架
+        :type PathPrefix: String
+        :param Users: 用户访问权限列表
+        :type PathPrefix: Array
+        """
+        self.ModelName = None
+        self.ModelDescription = None
+        self.ModelVersionName = None
+        self.ModelVersionDescription = None
+        self.SourceType = None
+        self.StorageConfigId = None
+        self.Format = None
+        self.Framework = None
+        self.Users = None
+
+    def _deserialize(self, params):
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("ModelDescription"):
+            self.ModelDescription = params.get("ModelDescription")
+        if params.get("ModelVersionName"):
+            self.ModelVersionName = params.get("ModelVersionName")
+        if params.get("ModelVersionDescription"):
+            self.ModelVersionDescription = params.get("ModelVersionDescription")
+        if params.get("SourceType"):
+            self.SourceType = params.get("SourceType")
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("Format"):
+            self.Format = params.get("Format")
+        if params.get("Framework"):
+            self.Framework = params.get("Framework")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+
+
+class ModifyModelRequest(AbstractModel):
+    """ModifyModel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新模型信息
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param ModelName: 模型名称
+        :type PathPrefix: String
+        :param ModelDescription: 模型描述
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+        self.ModelName = None
+        self.ModelDescription = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("ModelDescription"):
+            self.ModelDescription = params.get("ModelDescription")
+
+
+class DescribeModelsRequest(AbstractModel):
+    """DescribeModels请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型列表
+        :param ModelId.N: 模型ID列表
+        :type PathPrefix: Array
+        :param ModelName: 模型名称(支持模糊查询)
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 每页数量
+        :type PathPrefix: Int
+        """
+        self.ModelId_N = None
+        self.ModelName = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId.N"):
+            self.ModelId_N = params.get("ModelId.N")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class DeleteModelRequest(AbstractModel):
+    """DeleteModel请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除指定模型
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+
+
+class CreateModelVersionRequest(AbstractModel):
+    """CreateModelVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建推理模型版本
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param ModelVersionName: 模型版本名称
+        :type PathPrefix: String
+        :param ModelVersionDescription: 模型版本描述
+        :type PathPrefix: String
+        :param SourceType: 来源类型，有效值：storage-config
+        :type PathPrefix: String
+        :param StorageConfigId: 存储配置ID
+        :type PathPrefix: String
+        :param Format: 模型格式
+        :type PathPrefix: String
+        :param Framework: 模型框架
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+        self.ModelVersionName = None
+        self.ModelVersionDescription = None
+        self.SourceType = None
+        self.StorageConfigId = None
+        self.Format = None
+        self.Framework = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("ModelVersionName"):
+            self.ModelVersionName = params.get("ModelVersionName")
+        if params.get("ModelVersionDescription"):
+            self.ModelVersionDescription = params.get("ModelVersionDescription")
+        if params.get("SourceType"):
+            self.SourceType = params.get("SourceType")
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("Format"):
+            self.Format = params.get("Format")
+        if params.get("Framework"):
+            self.Framework = params.get("Framework")
+
+
+class DeleteModelVersionRequest(AbstractModel):
+    """DeleteModelVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除模型版本
+        :param ModelVersionId: 模型版本ID
+        :type PathPrefix: String
+        """
+        self.ModelVersionId = None
+
+    def _deserialize(self, params):
+        if params.get("ModelVersionId"):
+            self.ModelVersionId = params.get("ModelVersionId")
+
+
+class ModifyModelVersionRequest(AbstractModel):
+    """ModifyModelVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新模型版本
+        :param ModelVersionId: 模型版本ID
+        :type PathPrefix: String
+        :param ModelVersionName: 模型版本名称
+        :type PathPrefix: String
+        :param ModelVersionDescription: 模型版本描述
+        :type PathPrefix: String
+        :param Format: 模型格式
+        :type PathPrefix: String
+        :param Framework: 模型框架
+        :type PathPrefix: String
+        :param SourceType: 来源类型，有效值：storage-config
+        :type PathPrefix: String
+        :param StorageConfigId: 存储配置ID
+        :type PathPrefix: String
+        """
+        self.ModelVersionId = None
+        self.ModelVersionName = None
+        self.ModelVersionDescription = None
+        self.Format = None
+        self.Framework = None
+        self.SourceType = None
+        self.StorageConfigId = None
+
+    def _deserialize(self, params):
+        if params.get("ModelVersionId"):
+            self.ModelVersionId = params.get("ModelVersionId")
+        if params.get("ModelVersionName"):
+            self.ModelVersionName = params.get("ModelVersionName")
+        if params.get("ModelVersionDescription"):
+            self.ModelVersionDescription = params.get("ModelVersionDescription")
+        if params.get("Format"):
+            self.Format = params.get("Format")
+        if params.get("Framework"):
+            self.Framework = params.get("Framework")
+        if params.get("SourceType"):
+            self.SourceType = params.get("SourceType")
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+
+
+class DescribeModelVersionsRequest(AbstractModel):
+    """DescribeModelVersions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型版本
+        :param ModelVersionId.N: 模型版本ID列表
+        :type PathPrefix: Array
+        :param ModelVersionName: 模型版本名称(支持模糊查询)
+        :type PathPrefix: String
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 每页数量
+        :type PathPrefix: Int
+        """
+        self.ModelVersionId_N = None
+        self.ModelVersionName = None
+        self.ModelId = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("ModelVersionId.N"):
+            self.ModelVersionId_N = params.get("ModelVersionId.N")
+        if params.get("ModelVersionName"):
+            self.ModelVersionName = params.get("ModelVersionName")
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class DescribeFormatAndFrameworksRequest(AbstractModel):
+    """DescribeFormatAndFrameworks请求参数结构体
+    """
+
+    def __init__(self):
+        r"""描述模型格式及框架
+        """
+
+    def _deserialize(self, params):
+        return
+
+

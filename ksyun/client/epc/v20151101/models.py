@@ -256,6 +256,8 @@ storage_bond
         :type PathPrefix: String
         :param UserDefinedData: 自定义脚本
         :type PathPrefix: String
+        :param GroupSubType: 子机型
+        :type PathPrefix: String
         """
         self.HostType = None
         self.AvailabilityZone = None
@@ -320,6 +322,7 @@ storage_bond
         self.RoceCluster = None
         self.SRoceCluster = None
         self.UserDefinedData = None
+        self.GroupSubType = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -448,6 +451,8 @@ storage_bond
             self.SRoceCluster = params.get("SRoceCluster")
         if params.get("UserDefinedData"):
             self.UserDefinedData = params.get("UserDefinedData")
+        if params.get("GroupSubType"):
+            self.GroupSubType = params.get("GroupSubType")
 
 
 class StartEpcRequest(AbstractModel):
@@ -2303,6 +2308,8 @@ storage_bond
         :type PathPrefix: String
         :param RoceCluster: Roce计算卡集群名称
         :type PathPrefix: String
+        :param GroupSubType: 子机型
+        :type PathPrefix: String
         """
         self.HostType = None
         self.AvailabilityZone = None
@@ -2361,6 +2368,7 @@ storage_bond
         self.StorageRoceNetworkCardName = None
         self.SRoceCluster = None
         self.RoceCluster = None
+        self.GroupSubType = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -2477,6 +2485,8 @@ storage_bond
             self.SRoceCluster = params.get("SRoceCluster")
         if params.get("RoceCluster"):
             self.RoceCluster = params.get("RoceCluster")
+        if params.get("GroupSubType"):
+            self.GroupSubType = params.get("GroupSubType")
 
 
 class DescribeUseHotStandbyRecordsRequest(AbstractModel):

@@ -41,6 +41,7 @@ class CreateEpcRequest(AbstractModel):
 		- EC-I-V-III：高性能计算型-V-III
 		- EC-I-V-V：高性能计算型-V-V
 		- EC-I-V-VI：高性能计算型-V-VI
+		- ……
 	- GPU型	
 		- GPU-I：GPU I型
 		- P3E：GPU裸金属服务器实例标准型
@@ -58,11 +59,17 @@ class CreateEpcRequest(AbstractModel):
 		- GN3-III：推理I型-III
 		- GND5：效能V型
 		- CMLU1：寒武纪I型
-		- ...
+		- ……
+- 说明：当使用标准机型创建裸金属服务器时，该参数需传入标准机型的CODE(形如GN3-II)；当使用套餐组开机时，该参数需传入套餐组的CODE(形如GROUP-GM301)，和GroupSubType字段二者必须有一个不为空
         :type PathPrefix: String
-        :param AvailabilityZone: 可用区的名称
+        :param GroupSubType: - 裸金属服务器的子机型
+- 说明：当HostType传入套餐组的CODE时，才可指定子机型。传入该参数表示通过套餐组创建裸金属服务器时，指定创建套餐组内的某一子机型。取值逻辑为：套餐组CODE-子机型CODE,套餐组开机可以只传此参数，和HostType二者至少有一个不为空
+
+
         :type PathPrefix: String
-        :param Raid: 数据盘Raid级别,和数据盘的数量直接相关 
+        :param AvailabilityZone: 可用区
+        :type PathPrefix: String
+        :param Raid: 数据盘Raid，和机型的数据盘的数量相关 
 有效值：
 - Jbod：直连模式
 - Raid1：数据盘数量必须是2的倍数
@@ -70,24 +77,30 @@ class CreateEpcRequest(AbstractModel):
 - Raid10：数据盘数量必须是4的倍数
 - Raid50：数据盘的数量必须大于6且是2的倍数
 - SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+
 说明：Raid与RaidId必填其一，RaidId优先级高
         :type PathPrefix: String
         :param RaidId: Raid模板Id
         :type PathPrefix: String
-        :param ImageId: 镜像资源ID,参见DescribeImages
+        :param ImageId: 镜像资源ID，参见DescribeImages
         :type PathPrefix: String
-        :param NetworkInterfaceMode: 网卡模式
+        :param NetworkInterfaceMode: VPC网卡模式
 有效值：
-bond4：bond模式
-single：非bond模式
-dual：双网卡模式
-windows创建时，只支持非bond模式。
+- bond4：bond模式
+- single：非bond模式
+- dual：双网卡模式
+- 说明：使用windows镜像创建时，仅支持非bond模式。
         :type PathPrefix: String
-        :param SubnetId: 云物理主机的子网ID
+        :param BondAttribute: bond名称
+有效值： 
+- bond0
+- bond1
         :type PathPrefix: String
-        :param PrivateIpAddress: 内网资源IP地址
+        :param SubnetId: 裸金属服务器的子网ID
         :type PathPrefix: String
-        :param keyId: 用户密钥对的资源ID
+        :param PrivateIpAddress: 内网IP地址
+        :type PathPrefix: String
+        :param keyId: 密钥对ID
         :type PathPrefix: String
         :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持5个安全组
         :type PathPrefix: Filter
@@ -95,18 +108,21 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param DNS2: DNS2的值，当通过该接口进行修改网络配置时不填写此参数，保持与之前不变
         :type PathPrefix: String
-        :param HostName: 云物理主机名称
+        :param HostName: 裸金属服务器的实例名称
         :type PathPrefix: String
-        :param ProjectId: 项目的ID
+        :param ProjectId: 项目ID，表示资源所属项目，一个资源只能归属于一个项目。
+说明：默认项目的id为0。
+
         :type PathPrefix: String
-        :param ChargeType: 云物理主机计费类型，包年包月Monthly，按日月结Daily，试用Trial
--有效值：Monthly | Daily | Trial
+        :param ChargeType: 裸金属服务器的计费方式
+当前支持：包年包月、按日月结、试用Trial
+- 有效值：Monthly | Daily | Trial
         :type PathPrefix: String
         :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省。
         :type PathPrefix: Int
         :param Password: 系统的登录密码
         :type PathPrefix: String
-        :param CloudMonitorAgent: 云监控
+        :param CloudMonitorAgent: 是否安装云监控agent
 - classic：经典版
 - no：不开启
         :type PathPrefix: String
@@ -173,9 +189,6 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param NvmeDataDiskCatalogueSuffix: NVME数据盘目录后缀属性
         :type PathPrefix: String
-        :param BondAttribute: bond名称
-有效值： bond0|bond1
-        :type PathPrefix: String
         :param ContainerAgent: 容器引擎组件类型
         :type PathPrefix: String
         :param KesAgent: kes组件类型
@@ -186,7 +199,7 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param OverclockingAttribute: 超频
         :type PathPrefix: String
-        :param GpuImageDriverId: gpu版本
+        :param GpuImageDriverId: GPU驱动版本
         :type PathPrefix: String
         :param SystemVolumeType: 云硬盘的系统盘类型
         :type PathPrefix: String
@@ -248,23 +261,27 @@ storage_bond
         :type PathPrefix: String
         :param UserData: base64编码后的自定义脚本
         :type PathPrefix: String
-        :param StorageRoceNetworkInterfaceMode: 存储网卡bond模式，仅支持bond3(bond)、single(非bond)
+        :param StorageRoceNetworkInterfaceMode: 存储RoCE网卡bond模式
+有效值：
+- bond模式：bond3
+- 非bond模式：single
         :type PathPrefix: String
-        :param RoceCluster: 计算roce集群名称
+        :param RoceCluster: 计算RoCE集群名称
         :type PathPrefix: String
-        :param SRoceCluster: 存储Roce卡集群名称
+        :param SRoceCluster: 存储RoCE集群名称
         :type PathPrefix: String
-        :param UserDefinedData: 自定义脚本
-        :type PathPrefix: String
-        :param GroupSubType: 子机型
+        :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。
+不填则默认为空。
         :type PathPrefix: String
         """
         self.HostType = None
+        self.GroupSubType = None
         self.AvailabilityZone = None
         self.Raid = None
         self.RaidId = None
         self.ImageId = None
         self.NetworkInterfaceMode = None
+        self.BondAttribute = None
         self.SubnetId = None
         self.PrivateIpAddress = None
         self.keyId = None
@@ -296,7 +313,6 @@ storage_bond
         self.NvmeDataFileType = None
         self.NvmeDataDiskCatalogue = None
         self.NvmeDataDiskCatalogueSuffix = None
-        self.BondAttribute = None
         self.ContainerAgent = None
         self.KesAgent = None
         self.KmrAgent = None
@@ -322,11 +338,12 @@ storage_bond
         self.RoceCluster = None
         self.SRoceCluster = None
         self.UserDefinedData = None
-        self.GroupSubType = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
             self.HostType = params.get("HostType")
+        if params.get("GroupSubType"):
+            self.GroupSubType = params.get("GroupSubType")
         if params.get("AvailabilityZone"):
             self.AvailabilityZone = params.get("AvailabilityZone")
         if params.get("Raid"):
@@ -337,6 +354,8 @@ storage_bond
             self.ImageId = params.get("ImageId")
         if params.get("NetworkInterfaceMode"):
             self.NetworkInterfaceMode = params.get("NetworkInterfaceMode")
+        if params.get("BondAttribute"):
+            self.BondAttribute = params.get("BondAttribute")
         if params.get("SubnetId"):
             self.SubnetId = params.get("SubnetId")
         if params.get("PrivateIpAddress"):
@@ -399,8 +418,6 @@ storage_bond
             self.NvmeDataDiskCatalogue = params.get("NvmeDataDiskCatalogue")
         if params.get("NvmeDataDiskCatalogueSuffix"):
             self.NvmeDataDiskCatalogueSuffix = params.get("NvmeDataDiskCatalogueSuffix")
-        if params.get("BondAttribute"):
-            self.BondAttribute = params.get("BondAttribute")
         if params.get("ContainerAgent"):
             self.ContainerAgent = params.get("ContainerAgent")
         if params.get("KesAgent"):
@@ -451,8 +468,6 @@ storage_bond
             self.SRoceCluster = params.get("SRoceCluster")
         if params.get("UserDefinedData"):
             self.UserDefinedData = params.get("UserDefinedData")
-        if params.get("GroupSubType"):
-            self.GroupSubType = params.get("GroupSubType")
 
 
 class StartEpcRequest(AbstractModel):
@@ -2120,6 +2135,7 @@ class BatchCreateEpcRequest(AbstractModel):
 		- EC-I-V-III：高性能计算型-V-III
 		- EC-I-V-V：高性能计算型-V-V
 		- EC-I-V-VI：高性能计算型-V-VI
+		- ……
 	- GPU型	
 		- GPU-I：GPU I型
 		- P3E：GPU裸金属服务器实例标准型
@@ -2137,21 +2153,28 @@ class BatchCreateEpcRequest(AbstractModel):
 		- GN3-III：推理I型-III
 		- GND5：效能V型
 		- CMLU1：寒武纪I型
-		- ...
+		- ……
+
+说明：当使用标准机型创建裸金属服务器时，该参数需传入标准机型的CODE(形如GN3-II)；当使用套餐组开机时，该参数需传入套餐组的CODE(形如GROUP-GM301)。
         :type PathPrefix: String
-        :param AvailabilityZone: 可用区的名称
+        :param GroupSubType: 裸金属服务器的子机型
+说明：当HostType传入套餐组的CODE时，才可指定子机型。传入该参数表示通过套餐组创建裸金属服务器时，指定创建套餐组内的某一子机型。取值逻辑为：套餐组CODE-子机型CODE。
         :type PathPrefix: String
-        :param Raid: 数据盘Raid级别,和数据盘的数量直接相关 
-有效值：  Raid1：数据盘数量必须是2的倍数
-Raid5：数据盘的数量必须大于等于3
-Raid10：数据盘数量必须是4的倍数
-Raid50：数据盘的数量必须大于6且是2的倍数
-SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+        :param AvailabilityZone: 可用区
+        :type PathPrefix: String
+        :param Raid: 数据盘Raid，和数据盘的数量相关 
+有效值：
+- Raid1：数据盘数量必须是2的倍数
+- Raid5：数据盘的数量必须大于等于3
+- Raid10：数据盘数量必须是4的倍数
+- Raid50：数据盘的数量必须大于6且是2的倍数
+- SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+
 与RaidId必填其一，RaidId优先级高
         :type PathPrefix: String
         :param RaidId: Raid模板Id
         :type PathPrefix: String
-        :param ImageId: 镜像资源ID,参见DescribeImages
+        :param ImageId: 镜像ID，参见DescribeImages
         :type PathPrefix: String
         :param NetworkInterfaceMode: 网卡模式
 有效值：
@@ -2162,7 +2185,7 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param SubnetId: 云物理主机的子网ID
         :type PathPrefix: String
-        :param keyId: 用户密钥对的资源ID
+        :param keyId: 密钥ID
         :type PathPrefix: String
         :param SecurityGroupId: 裸金属服务器关联的安全组ID，一个裸金属服务器最多可以支持5个安全组
         :type PathPrefix: Filter
@@ -2300,18 +2323,18 @@ windows创建时，只支持非bond模式。
 ▪ unsupport：关闭
 默认值：support
         :type PathPrefix: String
-        :param StorageRoceNetworkCardName: 存储网卡名称，有效值：
-eth8x_bond
-storage_bond
+        :param StorageRoceNetworkCardName: 存储RoCE网卡名称
+有效值：
+- eth8x_bond
+- storage_bond
         :type PathPrefix: String
-        :param SRoceCluster: Roce存储卡集群名称
+        :param SRoceCluster: 存储RoCE集群名称
         :type PathPrefix: String
-        :param RoceCluster: Roce计算卡集群名称
-        :type PathPrefix: String
-        :param GroupSubType: 子机型
+        :param RoceCluster: 计算RoCE集群名称
         :type PathPrefix: String
         """
         self.HostType = None
+        self.GroupSubType = None
         self.AvailabilityZone = None
         self.Raid = None
         self.RaidId = None
@@ -2368,11 +2391,12 @@ storage_bond
         self.StorageRoceNetworkCardName = None
         self.SRoceCluster = None
         self.RoceCluster = None
-        self.GroupSubType = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
             self.HostType = params.get("HostType")
+        if params.get("GroupSubType"):
+            self.GroupSubType = params.get("GroupSubType")
         if params.get("AvailabilityZone"):
             self.AvailabilityZone = params.get("AvailabilityZone")
         if params.get("Raid"):
@@ -2485,8 +2509,6 @@ storage_bond
             self.SRoceCluster = params.get("SRoceCluster")
         if params.get("RoceCluster"):
             self.RoceCluster = params.get("RoceCluster")
-        if params.get("GroupSubType"):
-            self.GroupSubType = params.get("GroupSubType")
 
 
 class DescribeUseHotStandbyRecordsRequest(AbstractModel):

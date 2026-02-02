@@ -32,7 +32,7 @@ class EpcClient(AbstractClient):
 
 
     def StartEpc(self, request):
-        """StartEpc
+        """启动epc
         :param request: Request instance for StartEpc.
         :type request: :class:`ksyun.client.epc.v20151101.models.StartEpcRequest`
         """
@@ -55,7 +55,7 @@ class EpcClient(AbstractClient):
 
 
     def RebootEpc(self, request):
-        """RebootEpc
+        """重启服务器
         :param request: Request instance for RebootEpc.
         :type request: :class:`ksyun.client.epc.v20151101.models.RebootEpcRequest`
         """
@@ -78,7 +78,7 @@ class EpcClient(AbstractClient):
 
 
     def DeleteEpc(self, request):
-        """DeleteEpc
+        """删除服务器
         :param request: Request instance for DeleteEpc.
         :type request: :class:`ksyun.client.epc.v20151101.models.DeleteEpcRequest`
         """
@@ -446,7 +446,7 @@ class EpcClient(AbstractClient):
 
 
     def StopEpc(self, request):
-        """StopEpc
+        """关机epc服务器
         :param request: Request instance for StopEpc.
         :type request: :class:`ksyun.client.epc.v20151101.models.StopEpcRequest`
         """
@@ -469,7 +469,7 @@ class EpcClient(AbstractClient):
 
 
     def ModifyEpc(self, request):
-        """ModifyEpc
+        """修改云物理主机信息
         :param request: Request instance for ModifyEpc.
         :type request: :class:`ksyun.client.epc.v20151101.models.ModifyEpcRequest`
         """

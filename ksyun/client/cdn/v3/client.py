@@ -995,3 +995,74 @@ class CdnClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+
+    def SubmitRefreshCaches(self, request):
+        """刷新缓存接口V3
+        :param request: Request instance for SubmitRefreshCaches.
+        :type request: :class:`ksyun.client.cdn.v3.models.SubmitRefreshCachesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SubmitRefreshCaches", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def SubmitPreloadCaches(self, request):
+        """预热缓存接口V3
+        :param request: Request instance for SubmitPreloadCaches.
+        :type request: :class:`ksyun.client.cdn.v3.models.SubmitPreloadCachesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SubmitPreloadCaches", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def SetCertificateConfig(self, request):
+        """为域名配置证书V3
+        :param request: Request instance for SetCertificateConfig.
+        :type request: :class:`ksyun.client.cdn.v3.models.SetCertificateConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetCertificateConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

@@ -273,6 +273,8 @@ storage_bond
         :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。
 不填则默认为空。
         :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
+        :type PathPrefix: String
         """
         self.HostType = None
         self.GroupSubType = None
@@ -338,6 +340,7 @@ storage_bond
         self.RoceCluster = None
         self.SRoceCluster = None
         self.UserDefinedData = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -468,6 +471,8 @@ storage_bond
             self.SRoceCluster = params.get("SRoceCluster")
         if params.get("UserDefinedData"):
             self.UserDefinedData = params.get("UserDefinedData")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class StartEpcRequest(AbstractModel):
@@ -475,15 +480,20 @@ class StartEpcRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""StartEpc
+        r"""启动epc
         :param HostId: 裸金属服务器资源ID，也可填入EpcHostId
+        :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
         """
         self.HostId = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
             self.HostId = params.get("HostId")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class RebootEpcRequest(AbstractModel):
@@ -491,15 +501,20 @@ class RebootEpcRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""RebootEpc
+        r"""重启服务器
         :param HostId: 裸金属服务器资源ID，也可填入EpcHostId
+        :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
         """
         self.HostId = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
             self.HostId = params.get("HostId")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class DeleteEpcRequest(AbstractModel):
@@ -507,15 +522,20 @@ class DeleteEpcRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DeleteEpc
+        r"""删除服务器
         :param HostId: 裸金属服务器资源ID
+        :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
         """
         self.HostId = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
             self.HostId = params.get("HostId")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class ReinstallEpcRequest(AbstractModel):
@@ -609,6 +629,8 @@ eth8x_bond、storage_bond
         :type PathPrefix: String
         :param UserDefinedData: 自定义脚本
         :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
+        :type PathPrefix: String
         """
         self.HostId = None
         self.ImageId = None
@@ -640,6 +662,7 @@ eth8x_bond、storage_bond
         self.DataDiskMount = None
         self.StorageRoceNetworkCardName = None
         self.UserDefinedData = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -702,6 +725,8 @@ eth8x_bond、storage_bond
             self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
         if params.get("UserDefinedData"):
             self.UserDefinedData = params.get("UserDefinedData")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class ModifySecurityGroupRequest(AbstractModel):
@@ -1083,15 +1108,20 @@ class StopEpcRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""StopEpc
+        r"""关机epc服务器
         :param HostId: 裸金属服务器资源ID，也可填入EpcHostId
+        :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
         """
         self.HostId = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
             self.HostId = params.get("HostId")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class ModifyEpcRequest(AbstractModel):
@@ -1099,17 +1129,20 @@ class ModifyEpcRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""ModifyEpc
+        r"""修改云物理主机信息
         :param HostId: 裸金属服务器资源ID
         :type PathPrefix: String
         :param HostName: 云物理主机名称
         :type PathPrefix: String
         :param Description: 描述信息
         :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
+        :type PathPrefix: String
         """
         self.HostId = None
         self.HostName = None
         self.Description = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -1118,6 +1151,8 @@ class ModifyEpcRequest(AbstractModel):
             self.HostName = params.get("HostName")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class ModifyRemoteManagementRequest(AbstractModel):
@@ -2332,6 +2367,8 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param RoceCluster: 计算RoCE集群名称
         :type PathPrefix: String
+        :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
+        :type PathPrefix: String
         """
         self.HostType = None
         self.GroupSubType = None
@@ -2391,6 +2428,7 @@ windows创建时，只支持非bond模式。
         self.StorageRoceNetworkCardName = None
         self.SRoceCluster = None
         self.RoceCluster = None
+        self.ClientToken = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -2509,6 +2547,8 @@ windows创建时，只支持非bond模式。
             self.SRoceCluster = params.get("SRoceCluster")
         if params.get("RoceCluster"):
             self.RoceCluster = params.get("RoceCluster")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
 
 
 class DescribeUseHotStandbyRecordsRequest(AbstractModel):

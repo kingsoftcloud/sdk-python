@@ -1,5 +1,51 @@
 from ksyun.common.abstract_model import AbstractModel
 
+class DescribeFileSystemListRequest(AbstractModel):
+    """DescribeFileSystemList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统列表查询
+        :param Region: 文件系统所在地域，不传则返回所有地域下文件系统。
+        :type PathPrefix: String
+        :param FileSystemName: 文件系统名称前缀，模糊查询。
+        :type PathPrefix: String
+        :param FileSystemIds: 文件系统的实例ID清单，支持批量查询，FileSystemId 以逗号分隔。
+        :type PathPrefix: String
+        :param StoreClasses: 文件系统的存储类型。
+        :type PathPrefix: String
+        :param ProjectId: 项目制。子账号查询：若不传则返回子账号下有权限项目的文件系统列表。主账号查询：若不传则返回所有项目的文件系统列表。
+        :type PathPrefix: String
+        :param PageNum: 页码。默认为1。
+        :type PathPrefix: Int
+        :param PageSize: 分页大小。默认为10。
+        :type PathPrefix: Int
+        """
+        self.Region = None
+        self.FileSystemName = None
+        self.FileSystemIds = None
+        self.StoreClasses = None
+        self.ProjectId = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("Region"):
+            self.Region = params.get("Region")
+        if params.get("FileSystemName"):
+            self.FileSystemName = params.get("FileSystemName")
+        if params.get("FileSystemIds"):
+            self.FileSystemIds = params.get("FileSystemIds")
+        if params.get("StoreClasses"):
+            self.StoreClasses = params.get("StoreClasses")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
 class DescribeDirQuotaListRequest(AbstractModel):
     """DescribeDirQuotaList请求参数结构体
     """

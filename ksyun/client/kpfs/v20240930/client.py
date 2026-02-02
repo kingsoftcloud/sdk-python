@@ -8,6 +8,29 @@ class KpfsClient(AbstractClient):
     _apiVersion = '2024-09-30'
     _endpoint = 'kpfs.api.ksyun.com'
     _service = 'kpfs'
+    def DescribeFileSystemList(self, request):
+        """文件系统列表查询
+        :param request: Request instance for DescribeFileSystemList.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DescribeFileSystemListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeFileSystemList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DescribeDirQuotaList(self, request):
         """查询目录配额列表
         :param request: Request instance for DescribeDirQuotaList.

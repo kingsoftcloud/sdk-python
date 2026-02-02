@@ -1168,48 +1168,6 @@ class RemoveCertificatesRequest(AbstractModel):
             self.CertificateIds = params.get("CertificateIds")
 
 
-class AssociateCertificateConfigRequest(AbstractModel):
-    """AssociateCertificateConfig请求参数结构体
-    """
-
-    def __init__(self):
-        r"""为域名配置证书V3
-        :param Enable: 开启、关闭设置服务证书，取值：on：开启，off：关闭，默认为off。当选择开启时，以下为必填 ；当选择关闭时，联动关闭 HTTP 2.0 和强制跳转
-        :type PathPrefix: String
-        :param DomainIds: 域名ID，支持按逗号分隔输入多条Id
-        :type PathPrefix: String
-        :param CertificateId: 金山云生成的安全证书唯一性ID；若输入证书ID，则CertificateName、ServerCertificate、PrivateKey可不填写；若无证书ID，则CertificateName、ServerCertificate、PrivateKey为必填
-注: CertificateId有值时，忽略CertificateName、ServerCertificate和Privatekey的值。
-        :type PathPrefix: String
-        :param CertificateName: 安全证书名称
-        :type PathPrefix: String
-        :param ServerCertificate: 域名对应的安全证书内容
-        :type PathPrefix: String
-        :param PrivateKey: 安全证书对应的私钥内容
-        :type PathPrefix: String
-        """
-        self.Enable = None
-        self.DomainIds = None
-        self.CertificateId = None
-        self.CertificateName = None
-        self.ServerCertificate = None
-        self.PrivateKey = None
-
-    def _deserialize(self, params):
-        if params.get("Enable"):
-            self.Enable = params.get("Enable")
-        if params.get("DomainIds"):
-            self.DomainIds = params.get("DomainIds")
-        if params.get("CertificateId"):
-            self.CertificateId = params.get("CertificateId")
-        if params.get("CertificateName"):
-            self.CertificateName = params.get("CertificateName")
-        if params.get("ServerCertificate"):
-            self.ServerCertificate = params.get("ServerCertificate")
-        if params.get("PrivateKey"):
-            self.PrivateKey = params.get("PrivateKey")
-
-
 class ValidateIPRequest(AbstractModel):
     """ValidateIP请求参数结构体
     """
@@ -1250,43 +1208,6 @@ class SetCdnBlockDomainUrlRequest(AbstractModel):
             self.Urls = params.get("Urls")
         if params.get("RefreshOnUnblock"):
             self.RefreshOnUnblock = params.get("RefreshOnUnblock")
-
-
-class SyncRefreshCachesRequest(AbstractModel):
-    """SyncRefreshCaches请求参数结构体
-    """
-
-    def __init__(self):
-        r"""刷新缓存接口V3
-        :param Files: 需要文件类型刷新的Url列表
-        :type PathPrefix: Array
-        :param Dirs: 需要目录类型刷新的Url列表
-        :type PathPrefix: Array
-        """
-        self.Files = None
-        self.Dirs = None
-
-    def _deserialize(self, params):
-        if params.get("Files"):
-            self.Files = params.get("Files")
-        if params.get("Dirs"):
-            self.Dirs = params.get("Dirs")
-
-
-class InsertPreloadCachesRequest(AbstractModel):
-    """InsertPreloadCaches请求参数结构体
-    """
-
-    def __init__(self):
-        r"""预热缓存接口V3
-        :param Urls: 需要预热的Url列表
-        :type PathPrefix: Array
-        """
-        self.Urls = None
-
-    def _deserialize(self, params):
-        if params.get("Urls"):
-            self.Urls = params.get("Urls")
 
 
 class GetCntvRefreshOrPreloadTaskRequest(AbstractModel):

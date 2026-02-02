@@ -859,29 +859,6 @@ class CdnClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def AssociateCertificateConfig(self, request):
-        """为域名配置证书V3
-        :param request: Request instance for AssociateCertificateConfig.
-        :type request: :class:`ksyun.client.cdn.v3.models.AssociateCertificateConfigRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("AssociateCertificateConfig", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def ValidateIP(self, request):
         """Ip检测V3
         :param request: Request instance for ValidateIP.
@@ -913,52 +890,6 @@ class CdnClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("SetCdnBlockDomainUrl", params, "application/json")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
-    def SyncRefreshCaches(self, request):
-        """刷新缓存接口V3
-        :param request: Request instance for SyncRefreshCaches.
-        :type request: :class:`ksyun.client.cdn.v3.models.SyncRefreshCachesRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("SyncRefreshCaches", params, "application/json")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
-    def InsertPreloadCaches(self, request):
-        """预热缓存接口V3
-        :param request: Request instance for InsertPreloadCaches.
-        :type request: :class:`ksyun.client.cdn.v3.models.InsertPreloadCachesRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("InsertPreloadCaches", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

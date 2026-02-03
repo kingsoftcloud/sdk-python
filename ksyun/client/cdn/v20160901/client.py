@@ -54,26 +54,3 @@ class CdnClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def GetDomainPidDimensionUsageData(self, request):
-        """查询pid维度-计费用量数据
-        :param request: Request instance for GetDomainPidDimensionUsageData.
-        :type request: :class:`ksyun.client.cdn.v20160901.models.GetDomainPidDimensionUsageDataRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetDomainPidDimensionUsageData", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-

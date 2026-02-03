@@ -1210,38 +1210,6 @@ class SetCdnBlockDomainUrlRequest(AbstractModel):
             self.RefreshOnUnblock = params.get("RefreshOnUnblock")
 
 
-class GetCntvRefreshOrPreloadTaskRequest(AbstractModel):
-    """GetCntvRefreshOrPreloadTask请求参数结构体
-    """
-
-    def __init__(self):
-        r"""刷新预热进度查询接口(央视)
-        :param StartTime: 开始时间，只能查询3天之内的任务
-
-        :type PathPrefix: String
-        :param EndTime: 结束时间
-        :type PathPrefix: String
-        :param Type: 支持按内容管理任务的类型查询，传参可取值：refresh、preload。其中，refresh表示刷新任务类型，preload表示预热任务类型，不传参表示查询所有类型。
-        :type PathPrefix: String
-        :param TaskId: 支持按任务ID查询，只允许输入单个任务ID
-        :type PathPrefix: String
-        """
-        self.StartTime = None
-        self.EndTime = None
-        self.Type = None
-        self.TaskId = None
-
-    def _deserialize(self, params):
-        if params.get("StartTime"):
-            self.StartTime = params.get("StartTime")
-        if params.get("EndTime"):
-            self.EndTime = params.get("EndTime")
-        if params.get("Type"):
-            self.Type = params.get("Type")
-        if params.get("TaskId"):
-            self.TaskId = params.get("TaskId")
-
-
 class SubmitRefreshCachesRequest(AbstractModel):
     """SubmitRefreshCaches请求参数结构体
     """

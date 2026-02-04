@@ -238,3 +238,141 @@ class KpfsClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def UpdatePerformanceNfsAclIp(self, request):
+        """编辑NFS访问授权客户端
+        :param request: Request instance for UpdatePerformanceNfsAclIp.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.UpdatePerformanceNfsAclIpRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdatePerformanceNfsAclIp", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RemovePerformanceNfsAclClient(self, request):
+        """删除NFS访问授权客户端
+        :param request: Request instance for RemovePerformanceNfsAclClient.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.RemovePerformanceNfsAclClientRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemovePerformanceNfsAclClient", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def AddPerformanceNfsAclClient(self, request):
+        """添加NFS访问授权客户端
+        :param request: Request instance for AddPerformanceNfsAclClient.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.AddPerformanceNfsAclClientRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddPerformanceNfsAclClient", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeletePerformanceOneNfsAcl(self, request):
+        """删除NFS协议访问授权
+        :param request: Request instance for DeletePerformanceOneNfsAcl.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DeletePerformanceOneNfsAclRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeletePerformanceOneNfsAcl", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def SetPerformanceOneNfsAcl(self, request):
+        """新建NFS协议访问授权
+        :param request: Request instance for SetPerformanceOneNfsAcl.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.SetPerformanceOneNfsAclRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetPerformanceOneNfsAcl", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribePerformanceOneNfsAclList(self, request):
+        """查询NFS协议访问授权
+        :param request: Request instance for DescribePerformanceOneNfsAclList.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DescribePerformanceOneNfsAclListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribePerformanceOneNfsAclList", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

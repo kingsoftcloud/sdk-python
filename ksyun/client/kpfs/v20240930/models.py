@@ -440,3 +440,144 @@ class DescribeDirQuotaRequest(AbstractModel):
             self.DirPath = params.get("DirPath")
 
 
+class UpdatePerformanceNfsAclIpRequest(AbstractModel):
+    """UpdatePerformanceNfsAclIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""编辑NFS访问授权客户端
+        :param NfsAclId: 访问授权ID。
+        :type PathPrefix: String
+        :param Ips: 授权IP配置列表，单次最多编辑20个。
+        :type PathPrefix: Array
+        """
+        self.NfsAclId = None
+        self.Ips = None
+
+    def _deserialize(self, params):
+        if params.get("NfsAclId"):
+            self.NfsAclId = params.get("NfsAclId")
+        if params.get("Ips"):
+            self.Ips = params.get("Ips")
+
+
+class RemovePerformanceNfsAclClientRequest(AbstractModel):
+    """RemovePerformanceNfsAclClient请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除NFS访问授权客户端
+        :param NfsAclId: 访问授权ID。
+        :type PathPrefix: String
+        :param Ips: 授权IP列表，为计算节点的私网IP，单次最多删除100个。支持IP（示例：10.0.0.1,10.0.0.2）和网段（示例：10.0.0.1/24）
+        :type PathPrefix: Array
+        """
+        self.NfsAclId = None
+        self.Ips = None
+
+    def _deserialize(self, params):
+        if params.get("NfsAclId"):
+            self.NfsAclId = params.get("NfsAclId")
+        if params.get("Ips"):
+            self.Ips = params.get("Ips")
+
+
+class AddPerformanceNfsAclClientRequest(AbstractModel):
+    """AddPerformanceNfsAclClient请求参数结构体
+    """
+
+    def __init__(self):
+        r"""添加NFS访问授权客户端
+        :param NfsAclId: 访问授权ID。
+        :type PathPrefix: String
+        :param Ips: 授权IP列表，为计算节点的私网IP，单次最多添加100个。
+        :type PathPrefix: Array
+        """
+        self.NfsAclId = None
+        self.Ips = None
+
+    def _deserialize(self, params):
+        if params.get("NfsAclId"):
+            self.NfsAclId = params.get("NfsAclId")
+        if params.get("Ips"):
+            self.Ips = params.get("Ips")
+
+
+class DeletePerformanceOneNfsAclRequest(AbstractModel):
+    """DeletePerformanceOneNfsAcl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除NFS协议访问授权
+        :param NfsAclId: 规则ID。
+        :type PathPrefix: String
+        """
+        self.NfsAclId = None
+
+    def _deserialize(self, params):
+        if params.get("NfsAclId"):
+            self.NfsAclId = params.get("NfsAclId")
+
+
+class SetPerformanceOneNfsAclRequest(AbstractModel):
+    """SetPerformanceOneNfsAcl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新建NFS协议访问授权
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param ExportPath: 共享目录路径。格式：整个文件系统：不传或传/；子目录：支持格式 dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。
+        :type PathPrefix: String
+        :param Ips: 授权IP列表，为计算节点的私网IP，单次最多添加100个。
+        :type PathPrefix: Array
+        :param Desc: 规则描述信息。0-63字符。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.ExportPath = None
+        self.Ips = None
+        self.Desc = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("ExportPath"):
+            self.ExportPath = params.get("ExportPath")
+        if params.get("Ips"):
+            self.Ips = params.get("Ips")
+        if params.get("Desc"):
+            self.Desc = params.get("Desc")
+
+
+class DescribePerformanceOneNfsAclListRequest(AbstractModel):
+    """DescribePerformanceOneNfsAclList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询NFS协议访问授权
+        :param FileSystemName: 文件系统名称。
+        :type PathPrefix: String
+        :param NfsAclId: 规则ID。
+        :type PathPrefix: String
+        :param PageNum: 页码。默认为1。
+        :type PathPrefix: Int
+        :param PageSize: 分页大小。默认为10。
+        :type PathPrefix: Int
+        """
+        self.FileSystemName = None
+        self.NfsAclId = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemName"):
+            self.FileSystemName = params.get("FileSystemName")
+        if params.get("NfsAclId"):
+            self.NfsAclId = params.get("NfsAclId")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+

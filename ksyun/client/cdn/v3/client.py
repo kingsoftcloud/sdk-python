@@ -974,3 +974,26 @@ class CdnClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def GetRefreshOrPreloadTask(self, request):
+        """刷新预热进度查询接口迭代
+        :param request: Request instance for GetRefreshOrPreloadTask.
+        :type request: :class:`ksyun.client.cdn.v3.models.GetRefreshOrPreloadTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRefreshOrPreloadTask", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

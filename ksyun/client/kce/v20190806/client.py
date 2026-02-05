@@ -788,3 +788,28 @@ class KceClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+
+    def CreateWebSocketPublicUri(self, request):
+        """创建WebSocket公网请求URI，使用该链接可以与集群pod远程交互
+        :param request: Request instance for CreateWebSocketPublicUri.
+        :type request: :class:`ksyun.client.kce.v20190806.models.CreateWebSocketPublicUriRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateWebSocketPublicUri", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

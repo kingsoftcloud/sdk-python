@@ -1097,3 +1097,44 @@ ChartRepoType为PRIVATE时，必填
             self.Values = params.get("Values")
 
 
+class CreateWebSocketPublicUriRequest(AbstractModel):
+    """CreateWebSocketPublicUri请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建WebSocket公网请求URI，使用该链接可以与集群pod远程交互
+        :param ClusterId: 集群ID
+        :type PathPrefix: String
+        :param Namespace: k8s集群命名空间
+        :type PathPrefix: String
+        :param PodName: Pod名称
+        :type PathPrefix: String
+        :param ContainerName: 容器名
+        :type PathPrefix: String
+        :param Command: 启动命令
+        :type PathPrefix: String
+        :param Tty: 保持连接
+        :type PathPrefix: Boolean
+        """
+        self.ClusterId = None
+        self.Namespace = None
+        self.PodName = None
+        self.ContainerName = None
+        self.Command = None
+        self.Tty = None
+
+    def _deserialize(self, params):
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("PodName"):
+            self.PodName = params.get("PodName")
+        if params.get("ContainerName"):
+            self.ContainerName = params.get("ContainerName")
+        if params.get("Command"):
+            self.Command = params.get("Command")
+        if params.get("Tty"):
+            self.Tty = params.get("Tty")
+
+

@@ -58,6 +58,10 @@ class CreateFunctionRequest(AbstractModel):
         :type PathPrefix: Object
         :param Layers: Layer列表，格式为“name#version”，如 “layer#1”
         :type PathPrefix: Array
+        :param CodeType: 部署方式，可选值：Image/Code
+        :type PathPrefix: String
+        :param CustomContainerConfig: 镜像配置
+        :type PathPrefix: Object
         """
         self.Id = None
         self.Name = None
@@ -77,6 +81,8 @@ class CreateFunctionRequest(AbstractModel):
         self.LivenessProbeConfig = None
         self.ReadinessProbeConfig = None
         self.Layers = None
+        self.CodeType = None
+        self.CustomContainerConfig = None
 
     def _deserialize(self, params):
         if params.get("Id"):
@@ -115,6 +121,10 @@ class CreateFunctionRequest(AbstractModel):
             self.ReadinessProbeConfig = params.get("ReadinessProbeConfig")
         if params.get("Layers"):
             self.Layers = params.get("Layers")
+        if params.get("CodeType"):
+            self.CodeType = params.get("CodeType")
+        if params.get("CustomContainerConfig"):
+            self.CustomContainerConfig = params.get("CustomContainerConfig")
 
 
 class CheckFunctionServiceRequest(AbstractModel):
@@ -245,6 +255,8 @@ class ModifyFunctionRequest(AbstractModel):
         :type PathPrefix: Object
         :param Layers: Layer列表，格式为“name#version”，如 “layer#1”
         :type PathPrefix: Array
+        :param CustomContainerConfig: 镜像配置
+        :type PathPrefix: Object
         """
         self.Id = None
         self.Runtime = None
@@ -261,6 +273,7 @@ class ModifyFunctionRequest(AbstractModel):
         self.LivenessProbeConfig = None
         self.ReadinessProbeConfig = None
         self.Layers = None
+        self.CustomContainerConfig = None
 
     def _deserialize(self, params):
         if params.get("Id"):
@@ -293,6 +306,8 @@ class ModifyFunctionRequest(AbstractModel):
             self.ReadinessProbeConfig = params.get("ReadinessProbeConfig")
         if params.get("Layers"):
             self.Layers = params.get("Layers")
+        if params.get("CustomContainerConfig"):
+            self.CustomContainerConfig = params.get("CustomContainerConfig")
 
 
 class DescribeTriggersRequest(AbstractModel):

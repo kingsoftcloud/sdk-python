@@ -92,12 +92,21 @@ class DescribeTrainJobsRequest(AbstractModel):
         :type PathPrefix: Int
         :param TrainJobName: 训练任务名称(支持模糊搜索)
         :type PathPrefix: String
+        :param GPUType: GPU卡型
+        :type PathPrefix: String
+        :param SortKey: 排序关键字
+        :type PathPrefix: String
+        :param Sort: 排序方式
+        :type PathPrefix: String
         """
         self.TrainJobId = None
         self.Filter = None
         self.PageSize = None
         self.Page = None
         self.TrainJobName = None
+        self.GPUType = None
+        self.SortKey = None
+        self.Sort = None
 
     def _deserialize(self, params):
         if params.get("TrainJobId"):
@@ -110,6 +119,12 @@ class DescribeTrainJobsRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("TrainJobName"):
             self.TrainJobName = params.get("TrainJobName")
+        if params.get("GPUType"):
+            self.GPUType = params.get("GPUType")
+        if params.get("SortKey"):
+            self.SortKey = params.get("SortKey")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
 
 
 class ModifyModelAccessRequest(AbstractModel):

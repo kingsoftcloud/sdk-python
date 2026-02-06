@@ -219,6 +219,157 @@ class DeleteTriggerRequest(AbstractModel):
             self.Id = params.get("Id")
 
 
+class CreateOrModifyAutoScalingConfigRequest(AbstractModel):
+    """CreateOrModifyAutoScalingConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建弹性伸缩配置
+        :param FunctionId: 
+        :type PathPrefix: String
+        :param IdleReplicaCount: 预留实例数。保持常驻的实例数量
+        :type PathPrefix: Int
+        :param MaxReplicaCount: 最大实例数
+        :type PathPrefix: Int
+        :param MinReplicaCount: 最小实例数
+        :type PathPrefix: Int
+        :param CooldownPeriod: 冷却时间。无弹性伸缩策略命中时，等待指令冷却时间后，实例数缩减为预留实例数
+        :type PathPrefix: Int
+        :param StabilizationWindowSeconds: 缩容稳定窗口期。在执行弹性伸缩动作后，指定窗口时间内不会再进行缩容操作
+        :type PathPrefix: Int
+        """
+        self.FunctionId = None
+        self.IdleReplicaCount = None
+        self.MaxReplicaCount = None
+        self.MinReplicaCount = None
+        self.CooldownPeriod = None
+        self.StabilizationWindowSeconds = None
+
+    def _deserialize(self, params):
+        if params.get("FunctionId"):
+            self.FunctionId = params.get("FunctionId")
+        if params.get("IdleReplicaCount"):
+            self.IdleReplicaCount = params.get("IdleReplicaCount")
+        if params.get("MaxReplicaCount"):
+            self.MaxReplicaCount = params.get("MaxReplicaCount")
+        if params.get("MinReplicaCount"):
+            self.MinReplicaCount = params.get("MinReplicaCount")
+        if params.get("CooldownPeriod"):
+            self.CooldownPeriod = params.get("CooldownPeriod")
+        if params.get("StabilizationWindowSeconds"):
+            self.StabilizationWindowSeconds = params.get("StabilizationWindowSeconds")
+
+
+class DescribeAutoScalingConfigRequest(AbstractModel):
+    """DescribeAutoScalingConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看弹性伸缩配置
+        :param FunctionId: 
+        :type PathPrefix: String
+        """
+        self.FunctionId = None
+
+    def _deserialize(self, params):
+        if params.get("FunctionId"):
+            self.FunctionId = params.get("FunctionId")
+
+
+class CreateAutoScaledTriggerRequest(AbstractModel):
+    """CreateAutoScaledTrigger请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建弹性伸缩触发器
+        :param FunctionId: 函数Id
+        :type PathPrefix: String
+        :param Triggers: 
+        :type PathPrefix: Array
+        """
+        self.FunctionId = None
+        self.Triggers = None
+
+    def _deserialize(self, params):
+        if params.get("FunctionId"):
+            self.FunctionId = params.get("FunctionId")
+        if params.get("Triggers"):
+            self.Triggers = params.get("Triggers")
+
+
+class ModifyAutoScaledTriggerRequest(AbstractModel):
+    """ModifyAutoScaledTrigger请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新弹性伸缩触发器
+        :param FucntionId: 
+        :type PathPrefix: String
+        :param Name: 触发器名称
+        :type PathPrefix: String
+        :param TriggerConfig: 触发器配置。缺失的字段会采用原触发器值回填
+        :type PathPrefix: Object
+        """
+        self.FucntionId = None
+        self.Name = None
+        self.TriggerConfig = None
+
+    def _deserialize(self, params):
+        if params.get("FucntionId"):
+            self.FucntionId = params.get("FucntionId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("TriggerConfig"):
+            self.TriggerConfig = params.get("TriggerConfig")
+
+
+class DescribeAutoScaledTriggersRequest(AbstractModel):
+    """DescribeAutoScaledTriggers请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询弹性伸缩触发器列表
+        :param FunctionId: 
+        :type PathPrefix: String
+        :param Name: 触发器名称
+        :type PathPrefix: String
+        :param Type: 触发器类型
+        :type PathPrefix: String
+        """
+        self.FunctionId = None
+        self.Name = None
+        self.Type = None
+
+    def _deserialize(self, params):
+        if params.get("FunctionId"):
+            self.FunctionId = params.get("FunctionId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+
+
+class DeleteAutoScaledTriggerRequest(AbstractModel):
+    """DeleteAutoScaledTrigger请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除弹性伸缩触发器
+        :param Functionid: 
+        :type PathPrefix: String
+        :param TriggerName: 
+        :type PathPrefix: String
+        """
+        self.Functionid = None
+        self.TriggerName = None
+
+    def _deserialize(self, params):
+        if params.get("Functionid"):
+            self.Functionid = params.get("Functionid")
+        if params.get("TriggerName"):
+            self.TriggerName = params.get("TriggerName")
+
+
 class DescribeFunctionsRequest(AbstractModel):
     """DescribeFunctions请求参数结构体
     """

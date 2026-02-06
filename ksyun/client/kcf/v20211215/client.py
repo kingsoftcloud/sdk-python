@@ -169,6 +169,144 @@ class KcfClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def CreateOrModifyAutoScalingConfig(self, request):
+        """创建弹性伸缩配置
+        :param request: Request instance for CreateOrModifyAutoScalingConfig.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.CreateOrModifyAutoScalingConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateOrModifyAutoScalingConfig", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeAutoScalingConfig(self, request):
+        """查看弹性伸缩配置
+        :param request: Request instance for DescribeAutoScalingConfig.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.DescribeAutoScalingConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAutoScalingConfig", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateAutoScaledTrigger(self, request):
+        """创建弹性伸缩触发器
+        :param request: Request instance for CreateAutoScaledTrigger.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.CreateAutoScaledTriggerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAutoScaledTrigger", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyAutoScaledTrigger(self, request):
+        """更新弹性伸缩触发器
+        :param request: Request instance for ModifyAutoScaledTrigger.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.ModifyAutoScaledTriggerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAutoScaledTrigger", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeAutoScaledTriggers(self, request):
+        """查询弹性伸缩触发器列表
+        :param request: Request instance for DescribeAutoScaledTriggers.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.DescribeAutoScaledTriggersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAutoScaledTriggers", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteAutoScaledTrigger(self, request):
+        """删除弹性伸缩触发器
+        :param request: Request instance for DeleteAutoScaledTrigger.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.DeleteAutoScaledTriggerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAutoScaledTrigger", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DescribeFunctions(self, request):
         """查询函数列表
         :param request: Request instance for DescribeFunctions.

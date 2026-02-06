@@ -452,7 +452,7 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param GPUType: GPU类型
         :type PathPrefix: String
-        :param GPUNumber: GPU核数，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
+        :param GPUNumber: GPU核数，GPUType不为空时，此值有效，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
         :type PathPrefix: String
         :param CPUNum: Cpu数量，允许范围为0~10000
         :type PathPrefix: Int

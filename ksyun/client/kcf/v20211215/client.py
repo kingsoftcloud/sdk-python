@@ -107,7 +107,7 @@ class KcfClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteFunction", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DeleteFunction", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -153,7 +153,53 @@ class KcfClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DeleteTrigger", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DeleteTrigger", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeFunctions(self, request):
+        """查询函数列表
+        :param request: Request instance for DescribeFunctions.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.DescribeFunctionsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeFunctions", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeFunction(self, request):
+        """查询函数详情信息
+        :param request: Request instance for DescribeFunction.
+        :type request: :class:`ksyun.client.kcf.v20211215.models.DescribeFunctionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeFunction", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -199,7 +245,7 @@ class KcfClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("DescribeTriggers", params, "application/x-www-form-urlencoded")
+            body = self.call_judge("DescribeTriggers", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

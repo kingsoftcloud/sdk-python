@@ -46,6 +46,376 @@ class DescribeFileSystemListRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
 
 
+class GetTotalSizeRequest(AbstractModel):
+    """GetTotalSize请求参数结构体
+    """
+
+    def __init__(self):
+        r"""当前文件系统中的容量使用数量
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+
+
+class GetInodeCountRequest(AbstractModel):
+    """GetInodeCount请求参数结构体
+    """
+
+    def __init__(self):
+        r"""当前文件系统中的inode数量
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+
+
+class GetCapacityAvailableRequest(AbstractModel):
+    """GetCapacityAvailable请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统可用容量
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+
+
+class GetCapacityTotalRequest(AbstractModel):
+    """GetCapacityTotal请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统总容量
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+
+
+class GetLatencyWriteRequest(AbstractModel):
+    """GetLatencyWrite请求参数结构体
+    """
+
+    def __init__(self):
+        r"""客户端级写延迟
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
+        :type PathPrefix: String
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.ClientNm = None
+        self.VpcIp = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+        if params.get("VpcIp"):
+            self.VpcIp = params.get("VpcIp")
+
+
+class GetLatencyReadRequest(AbstractModel):
+    """GetLatencyRead请求参数结构体
+    """
+
+    def __init__(self):
+        r"""性能型客户端级读延迟
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
+        :type PathPrefix: String
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.ClientNm = None
+        self.VpcIp = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+        if params.get("VpcIp"):
+            self.VpcIp = params.get("VpcIp")
+
+
+class GetIopsWriteRequest(AbstractModel):
+    """GetIopsWrite请求参数结构体
+    """
+
+    def __init__(self):
+        r"""写IOPS
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
+        :type PathPrefix: String
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.ClientNm = None
+        self.VpcIp = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+        if params.get("VpcIp"):
+            self.VpcIp = params.get("VpcIp")
+
+
+class GetIopsReadRequest(AbstractModel):
+    """GetIopsRead请求参数结构体
+    """
+
+    def __init__(self):
+        r"""读IOPS
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
+        :type PathPrefix: String
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.ClientNm = None
+        self.VpcIp = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+        if params.get("VpcIp"):
+            self.VpcIp = params.get("VpcIp")
+
+
+class GetBandwidthWriteRequest(AbstractModel):
+    """GetBandwidthWrite请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统统计查询_性能型写带宽
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
+        :type PathPrefix: String
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.ClientNm = None
+        self.VpcIp = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+        if params.get("VpcIp"):
+            self.VpcIp = params.get("VpcIp")
+
+
+class GetBandwidthReadRequest(AbstractModel):
+    """GetBandwidthRead请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统统计查询_性能型读带宽
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
+        :type PathPrefix: String
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.ClientNm = None
+        self.VpcIp = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+        if params.get("VpcIp"):
+            self.VpcIp = params.get("VpcIp")
+
+
 class DescribeDirQuotaListRequest(AbstractModel):
     """DescribeDirQuotaList请求参数结构体
     """
@@ -579,5 +949,41 @@ class DescribePerformanceOneNfsAclListRequest(AbstractModel):
             self.PageNum = params.get("PageNum")
         if params.get("PageSize"):
             self.PageSize = params.get("PageSize")
+
+
+class DescribeFileSystemNfsClientInfoRequest(AbstractModel):
+    """DescribeFileSystemNfsClientInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询特定文件系统的NFS客户端信息
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param PageNum: 页码 默认值1
+        :type PathPrefix: Int
+        :param PageSize: 分页大小 默认值1000 可选1-1000
+        :type PathPrefix: Int
+        :param Action: 该参数为公共参数，本接口取值如下：DescribeFileSystemNfsClientInfo。
+        :type PathPrefix: String
+        :param Version: 该参数为公共参数，取值：2024-09-30。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.PageNum = None
+        self.PageSize = None
+        self.Action = None
+        self.Version = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Action"):
+            self.Action = params.get("Action")
+        if params.get("Version"):
+            self.Version = params.get("Version")
 
 

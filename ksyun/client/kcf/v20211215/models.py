@@ -219,6 +219,38 @@ class DeleteTriggerRequest(AbstractModel):
             self.Id = params.get("Id")
 
 
+class DescribeFunctionsRequest(AbstractModel):
+    """DescribeFunctions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询函数列表
+        :param Namespace: 命名空间
+        :type PathPrefix: String
+        """
+        self.Namespace = None
+
+    def _deserialize(self, params):
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+
+
+class DescribeFunctionRequest(AbstractModel):
+    """DescribeFunction请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询函数详情信息
+        :param id: 函数Id
+        :type PathPrefix: String
+        """
+        self.id = None
+
+    def _deserialize(self, params):
+        if params.get("id"):
+            self.id = params.get("id")
+
+
 class ModifyFunctionRequest(AbstractModel):
     """ModifyFunction请求参数结构体
     """

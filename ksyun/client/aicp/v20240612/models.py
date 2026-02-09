@@ -827,27 +827,6 @@ class StopNotebookSavingImageRequest(AbstractModel):
             self.NotebookId = params.get("NotebookId")
 
 
-class EnableApikeyStatusRequest(AbstractModel):
-    """EnableApikeyStatus请求参数结构体
-    """
-
-    def __init__(self):
-        r"""启用API Key
-        :param KeyId: API Key的ID
-        :type PathPrefix: String
-        :param Status: 启禁用状态：1启用，2禁用
-        :type PathPrefix: String
-        """
-        self.KeyId = None
-        self.Status = None
-
-    def _deserialize(self, params):
-        if params.get("KeyId"):
-            self.KeyId = params.get("KeyId")
-        if params.get("Status"):
-            self.Status = params.get("Status")
-
-
 class ModifyApikeyRequest(AbstractModel):
     """ModifyApikey请求参数结构体
     """

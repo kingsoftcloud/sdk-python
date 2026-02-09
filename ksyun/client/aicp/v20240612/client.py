@@ -422,6 +422,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def EnableApikeyStatus(self, request):
+        """启用KSCC API Key
+        :param request: Request instance for EnableApikeyStatus.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.EnableApikeyStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("EnableApikeyStatus", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def ModifyApikey(self, request):
         """编辑API Key
         :param request: Request instance for ModifyApikey.

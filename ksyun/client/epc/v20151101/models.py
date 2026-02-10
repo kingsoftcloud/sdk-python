@@ -275,6 +275,10 @@ storage_bond
         :type PathPrefix: String
         :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
+        :param NetworkCardNameFormat: 网卡名称格式，仅支持ethN和ethNx(仅对白名单用户生效)
+        :type PathPrefix: String
+        :param NetworkCardPriority: 网卡的优先级，仅支持VPC-RoCE和RoCE-VPC(仅对白名单用户生效)
+        :type PathPrefix: String
         """
         self.HostType = None
         self.GroupSubType = None
@@ -341,6 +345,8 @@ storage_bond
         self.SRoceCluster = None
         self.UserDefinedData = None
         self.ClientToken = None
+        self.NetworkCardNameFormat = None
+        self.NetworkCardPriority = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -473,6 +479,10 @@ storage_bond
             self.UserDefinedData = params.get("UserDefinedData")
         if params.get("ClientToken"):
             self.ClientToken = params.get("ClientToken")
+        if params.get("NetworkCardNameFormat"):
+            self.NetworkCardNameFormat = params.get("NetworkCardNameFormat")
+        if params.get("NetworkCardPriority"):
+            self.NetworkCardPriority = params.get("NetworkCardPriority")
 
 
 class StartEpcRequest(AbstractModel):
@@ -631,6 +641,10 @@ eth8x_bond、storage_bond
         :type PathPrefix: String
         :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
+        :param NetworkCardNameFormat: 网卡名称格式，仅支持ethN和ethNx(仅对白名单用户生效)
+        :type PathPrefix: String
+        :param NetworkCardPriority: 网卡的优先级，仅支持VPC-RoCE和RoCE-VPC(仅对白名单用户生效)
+        :type PathPrefix: String
         """
         self.HostId = None
         self.ImageId = None
@@ -663,6 +677,8 @@ eth8x_bond、storage_bond
         self.StorageRoceNetworkCardName = None
         self.UserDefinedData = None
         self.ClientToken = None
+        self.NetworkCardNameFormat = None
+        self.NetworkCardPriority = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -727,6 +743,10 @@ eth8x_bond、storage_bond
             self.UserDefinedData = params.get("UserDefinedData")
         if params.get("ClientToken"):
             self.ClientToken = params.get("ClientToken")
+        if params.get("NetworkCardNameFormat"):
+            self.NetworkCardNameFormat = params.get("NetworkCardNameFormat")
+        if params.get("NetworkCardPriority"):
+            self.NetworkCardPriority = params.get("NetworkCardPriority")
 
 
 class ModifySecurityGroupRequest(AbstractModel):
@@ -2369,6 +2389,10 @@ windows创建时，只支持非bond模式。
         :type PathPrefix: String
         :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
+        :param NetworkCardNameFormat: 网卡名称格式，仅支持ethN和ethNx(仅对白名单用户生效)
+        :type PathPrefix: String
+        :param NetworkCardPriority: 网卡的优先级，仅支持VPC-RoCE和RoCE-VPC(仅对白名单用户生效)
+        :type PathPrefix: String
         """
         self.HostType = None
         self.GroupSubType = None
@@ -2429,6 +2453,8 @@ windows创建时，只支持非bond模式。
         self.SRoceCluster = None
         self.RoceCluster = None
         self.ClientToken = None
+        self.NetworkCardNameFormat = None
+        self.NetworkCardPriority = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -2549,6 +2575,10 @@ windows创建时，只支持非bond模式。
             self.RoceCluster = params.get("RoceCluster")
         if params.get("ClientToken"):
             self.ClientToken = params.get("ClientToken")
+        if params.get("NetworkCardNameFormat"):
+            self.NetworkCardNameFormat = params.get("NetworkCardNameFormat")
+        if params.get("NetworkCardPriority"):
+            self.NetworkCardPriority = params.get("NetworkCardPriority")
 
 
 class DescribeUseHotStandbyRecordsRequest(AbstractModel):

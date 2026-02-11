@@ -629,3 +629,118 @@ class KpfsClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DeleteDataFlow(self, request):
+        """用于删除数据流动，仅未运行的数据流动支持删除
+        :param request: Request instance for DeleteDataFlow.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DeleteDataFlowRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteDataFlow", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeDataFlowTasks(self, request):
+        """用于查询数据流动任务
+        :param request: Request instance for DescribeDataFlowTasks.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DescribeDataFlowTasksRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeDataFlowTasks", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeDataFlows(self, request):
+        """用于查询数据流动
+        :param request: Request instance for DescribeDataFlows.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DescribeDataFlowsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeDataFlows", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateDataFlowTask(self, request):
+        """用于为某个数据流动绑定关系创建一个数据流动任务
+        :param request: Request instance for CreateDataFlowTask.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.CreateDataFlowTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateDataFlowTask", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateDataFlow(self, request):
+        """用于创建一个KPFS文件系统与KS3对象存储的数据流动绑定关系
+        :param request: Request instance for CreateDataFlow.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.CreateDataFlowRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateDataFlow", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

@@ -987,3 +987,175 @@ class DescribeFileSystemNfsClientInfoRequest(AbstractModel):
             self.Version = params.get("Version")
 
 
+class DeleteDataFlowRequest(AbstractModel):
+    """DeleteDataFlow请求参数结构体
+    """
+
+    def __init__(self):
+        r"""用于删除数据流动，仅未运行的数据流动支持删除
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param DataFlowId: 数据流动ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.DataFlowId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("DataFlowId"):
+            self.DataFlowId = params.get("DataFlowId")
+
+
+class DescribeDataFlowTasksRequest(AbstractModel):
+    """DescribeDataFlowTasks请求参数结构体
+    """
+
+    def __init__(self):
+        r"""用于查询数据流动任务
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param DataFlowId: 数据流动ID。
+        :type PathPrefix: String
+        :param TaskIds: 数据流动任务ID，逗号分割。
+        :type PathPrefix: String
+        :param PageSize: 分页大小，默认为10。
+        :type PathPrefix: Int
+        :param PageNum: 页码，默认为1。
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.DataFlowId = None
+        self.TaskIds = None
+        self.PageSize = None
+        self.PageNum = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("DataFlowId"):
+            self.DataFlowId = params.get("DataFlowId")
+        if params.get("TaskIds"):
+            self.TaskIds = params.get("TaskIds")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+
+
+class DescribeDataFlowsRequest(AbstractModel):
+    """DescribeDataFlows请求参数结构体
+    """
+
+    def __init__(self):
+        r"""用于查询数据流动
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param DataFlowId: 数据流动ID。
+        :type PathPrefix: String
+        :param PageSize: 分页大小，默认为10。
+        :type PathPrefix: Int
+        :param PageNum: 页码，默认为1。
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.DataFlowId = None
+        self.PageSize = None
+        self.PageNum = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("DataFlowId"):
+            self.DataFlowId = params.get("DataFlowId")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+
+
+class CreateDataFlowTaskRequest(AbstractModel):
+    """CreateDataFlowTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""用于为某个数据流动绑定关系创建一个数据流动任务
+        :param DataFlowId: 数据流动ID。
+        :type PathPrefix: String
+        :param TaskAction: 数据流动任务类型，当前仅支持import。import：将KS3 Bucket的BucketPrefix下数据导入至KPFS DirPath下。
+        :type PathPrefix: String
+        :param SrcDirectory: 数据的源目录，为数据流动绑定关系中BucketPrefix下的相对路径。• 1~1023个字符，不能包含"@"、“..”"@base@"和"@style@"，必须以/开头，不允许以/结尾。
+        :type PathPrefix: String
+        :param DstDirectory: 数据的目标目录，为数据流动绑定关系中DirPath下的相对路径。
+• 必须以/开头，不允许以/结尾。
+• KPFS文件系统子目录要求必须存在。
+        :type PathPrefix: String
+        :param EntryList: 数据流动任务执行源目录下的文件清单，一个元素代表一个文件名称，限制单次调用最多64KB，采用JSON格式。若文件清单内存在源目录下不存在的文件，迁移时会忽略。任务要同步的源数据为：BucketPrefix+SrcDirectory+EntryList；任务同步到目标的数据路径为：DirPath+DstDirectory+EntryList
+        :type PathPrefix: Array
+        :param Bandwidth: 数据流动任务带宽上限。带宽：MB/s，默认300MB/s。取值范围：300-1500MB/s。
+        :type PathPrefix: Int
+        """
+        self.DataFlowId = None
+        self.TaskAction = None
+        self.SrcDirectory = None
+        self.DstDirectory = None
+        self.EntryList = None
+        self.Bandwidth = None
+
+    def _deserialize(self, params):
+        if params.get("DataFlowId"):
+            self.DataFlowId = params.get("DataFlowId")
+        if params.get("TaskAction"):
+            self.TaskAction = params.get("TaskAction")
+        if params.get("SrcDirectory"):
+            self.SrcDirectory = params.get("SrcDirectory")
+        if params.get("DstDirectory"):
+            self.DstDirectory = params.get("DstDirectory")
+        if params.get("EntryList"):
+            self.EntryList = params.get("EntryList")
+        if params.get("Bandwidth"):
+            self.Bandwidth = params.get("Bandwidth")
+
+
+class CreateDataFlowRequest(AbstractModel):
+    """CreateDataFlow请求参数结构体
+    """
+
+    def __init__(self):
+        r"""用于创建一个KPFS文件系统与KS3对象存储的数据流动绑定关系
+        :param Name: 数据流动名称，最大64字符。
+        :type PathPrefix: String
+        :param FileSystemId: KPFS文件系统ID。
+        :type PathPrefix: String
+        :param DirPath: KPFS文件系统目录完整绝对路径。• 若不设置，默认/，代表整个文件系统。必须以/开头，不允许以/结尾。• KPFS文件系统目录要求必须存在。• KPFS文件系统目录不能与其它数据流动规则存在重复。
+        :type PathPrefix: String
+        :param Bucket: KS3 Bucket名称，必须与KPFS实例在相同地域，3~63个字符，只能包含小写字母、数字和连字符（-），且不能以连字符（-）开头或结尾。
+        :type PathPrefix: String
+        :param BucketPrefix: KS3 Bucket前缀。• 若不设置，代表整个存储桶。• 1~1023个字符，不能包含"@"、“..”"@base@"和"@style@"。• KS3存储桶前缀不能与其它数据流动规则存在重复。
+        :type PathPrefix: String
+        :param Description: 描述信息。
+        :type PathPrefix: String
+        """
+        self.Name = None
+        self.FileSystemId = None
+        self.DirPath = None
+        self.Bucket = None
+        self.BucketPrefix = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("Bucket"):
+            self.Bucket = params.get("Bucket")
+        if params.get("BucketPrefix"):
+            self.BucketPrefix = params.get("BucketPrefix")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+

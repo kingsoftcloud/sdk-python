@@ -288,9 +288,9 @@ class GetLogsRequest(AbstractModel):
         :param LogPoolId: 日志池ID
         :type PathPrefix: String
         :param From: 查询开始时间，unix时间戳
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param To: 查询结束时间，unix时间戳
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param Query: 查询分析语法。关于查询分析的详细语法，详见查询语法，不填的情况下 返回原始日志
         :type PathPrefix: String
         :param Offset: 偏移页数，从0开始

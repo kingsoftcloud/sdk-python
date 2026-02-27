@@ -12,19 +12,24 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: String
         :param ResourcePoolId: 资源组ID
         :type PathPrefix: String
-        :param Priority: 优先级
+        :param Priority: 优先级，有效值：
+- kaic-high 高优先级
+- kaic-normal 中优先级
+- kaic-low 低优先级
         :type PathPrefix: String
         :param QueueName: 队列名称
         :type PathPrefix: String
-        :param Framework: 训练框架
+        :param Framework: 训练框架	，有效值：
+- pytorch
+- tensorflow
         :type PathPrefix: String
         :param AccessType: 权限配置-可见范围
         :type PathPrefix: String
-        :param SelfHealing: GPU故障自愈
+        :param SelfHealing: 故障自愈
         :type PathPrefix: Boolean
         :param MaxRuntimeHour: 最长运行时长(小时)
         :type PathPrefix: Long
-        :param JobRunOnCPU: 节点亲和性-仅调度到CPU节点
+        :param JobRunOnCPU: 仅调度到CPU节点。当GPUNumber为空或值为0时，此值有效
         :type PathPrefix: Boolean
         :param SupportTensorboard: 开启Tensorboard
         :type PathPrefix: Boolean
@@ -92,7 +97,9 @@ class DescribeTrainJobsRequest(AbstractModel):
         :type PathPrefix: Int
         :param TrainJobName: 训练任务名称(支持模糊搜索)
         :type PathPrefix: String
-        :param GPUType: GPU卡型
+        :param GPUType: GPU类型
+        :type PathPrefix: String
+        :param QueueId: 队列ID
         :type PathPrefix: String
         :param SortKey: 排序关键字
         :type PathPrefix: String
@@ -105,6 +112,7 @@ class DescribeTrainJobsRequest(AbstractModel):
         self.Page = None
         self.TrainJobName = None
         self.GPUType = None
+        self.QueueId = None
         self.SortKey = None
         self.Sort = None
 
@@ -121,6 +129,8 @@ class DescribeTrainJobsRequest(AbstractModel):
             self.TrainJobName = params.get("TrainJobName")
         if params.get("GPUType"):
             self.GPUType = params.get("GPUType")
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
         if params.get("SortKey"):
             self.SortKey = params.get("SortKey")
         if params.get("Sort"):
@@ -166,9 +176,9 @@ class CreateModelAndVersionRequest(AbstractModel):
         :type PathPrefix: String
         :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
-        :param Format: 模型格式
+        :param Format: 模型格式(有效值请参考DescribeFormatAndFrameworks)
         :type PathPrefix: String
-        :param Framework: 模型框架
+        :param Framework: 模型框架(有效值请参考DescribeFormatAndFrameworks)
         :type PathPrefix: String
         :param Users: 用户访问权限列表
         :type PathPrefix: Array
@@ -242,7 +252,7 @@ class DescribeModelsRequest(AbstractModel):
         :type PathPrefix: String
         :param Page: 页码
         :type PathPrefix: Int
-        :param PageSize: 每页数量
+        :param PageSize: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         """
         self.ModelId_N = None
@@ -293,9 +303,9 @@ class CreateModelVersionRequest(AbstractModel):
         :type PathPrefix: String
         :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
-        :param Format: 模型格式
+        :param Format: 模型格式（有效值请参考DescribeFormatAndFrameworks）
         :type PathPrefix: String
-        :param Framework: 模型框架
+        :param Framework: 模型框架（有效值请参考DescribeFormatAndFrameworks）
         :type PathPrefix: String
         """
         self.ModelId = None
@@ -351,9 +361,9 @@ class ModifyModelVersionRequest(AbstractModel):
         :type PathPrefix: String
         :param ModelVersionDescription: 模型版本描述
         :type PathPrefix: String
-        :param Format: 模型格式
+        :param Format: 模型格式（有效值请参考DescribeFormatAndFrameworks）
         :type PathPrefix: String
-        :param Framework: 模型框架
+        :param Framework: 模型框架（有效值请参考DescribeFormatAndFrameworks）
         :type PathPrefix: String
         :param SourceType: 来源类型，有效值：storage-config
         :type PathPrefix: String
@@ -399,7 +409,7 @@ class DescribeModelVersionsRequest(AbstractModel):
         :type PathPrefix: String
         :param Page: 页码
         :type PathPrefix: Int
-        :param PageSize: 每页数量
+        :param PageSize: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         """
         self.ModelVersionId_N = None

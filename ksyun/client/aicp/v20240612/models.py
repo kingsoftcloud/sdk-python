@@ -251,15 +251,15 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param GPUType: GPU类型
         :type PathPrefix: String
-        :param GPUNumber: GPU核数，允许范围为0~10000
+        :param GPUNumber: GPU卡数，允许范围为0~10000
         :type PathPrefix: String
-        :param CPUNum: Cpu数量，允许范围为0~10000
+        :param CPUNum: CPU核数，允许范围为0~10000
         :type PathPrefix: Int
-        :param Memory: 内存G，允许范围为0~10000	
+        :param Memory: 内存Gi，允许范围为0~10000	
         :type PathPrefix: Int
         :param AccessType: 可见范围:
-• Creator ：仅实例创建者可见
-• QueueMember ：队列内成员可见
+• Creator ：个人私有
+• QueueMember ：队列内共享
 
         :type PathPrefix: String
         :param EnablePublicNetworkSsh: 是否开启公网SSH访问模式，当EnableSsh=true时可设置该参数
@@ -271,7 +271,7 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: Array
         :param ServiceConfigs: 服务开放端口列表
         :type PathPrefix: Array
-        :param AutoSave: 
+        :param AutoSave: 自动保存镜像。当值为true时，开发任务停止前会执行自动保存镜像。
         :type PathPrefix: Boolean
         :param RunOnCPU: 仅调度CPU
         :type PathPrefix: String
@@ -285,7 +285,7 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param AllocationId: 弹性IP ID，当EnablePublicNetworkSsh=true时，此参数必传
         :type PathPrefix: String
-        :param ImageTagId: 第三方镜像tagId
+        :param ImageTagId: 第三方镜像版本ID
         :type PathPrefix: String
         :param ImageSource: 镜像来源，当改变镜像来源时，需传入该值。
 - Official 官方镜像
@@ -297,7 +297,7 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageRepoId: 第三方镜像仓库ID
         :type PathPrefix: String
-        :param ImageRegistryId: 第三方镜像ID
+        :param ImageRegistryId: 第三方镜像配置ID
         :type PathPrefix: String
         """
         self.NotebookId = None
@@ -452,13 +452,13 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param GPUType: GPU类型
         :type PathPrefix: String
-        :param GPUNumber: GPU核数，GPUType不为空时，此值有效，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
+        :param GPUNumber: GPU卡数，当GPUType不为空时，此值有效，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
         :type PathPrefix: String
-        :param CPUNum: Cpu数量，允许范围为0~10000
+        :param CPUNum: CPU核数，允许范围为0~10000
         :type PathPrefix: Int
-        :param Memory: 内存G，允许范围为0~10000
+        :param Memory: 内存Gi，允许范围为0~10000
         :type PathPrefix: Int
-        :param AccessType: 可见范围，Creator(创建者可见)，QueueMember（队列成员可见）
+        :param AccessType: 可见范围，Creator(个人私有)，QueueMember（队列内共享）
         :type PathPrefix: String
         :param StorageConfigs: 存储配置列表
         :type PathPrefix: Array
@@ -469,18 +469,18 @@ class CreateNotebookRequest(AbstractModel):
         :param ImageSource: 镜像来源
 - 官方镜像 Official
 - 个人镜像 Personal
-- 第三方镜 ThirdParty
+- 第三方镜像 ThirdParty
 
 当传入值为ThirdParty时，"ImageRegistryId", "ImageRepoId", "ImageTagId"必须传入
         :type PathPrefix: String
         :param ImageId: 镜像ID
 当镜像来源为第三方来源时，此参数不传递，其他镜像来源，此参数为必填项
         :type PathPrefix: String
-        :param ImageRegistryId: 仓库连接 Id
+        :param ImageRegistryId: 第三方镜像配置ID
         :type PathPrefix: String
-        :param ImageRepoId: 仓库 Id
+        :param ImageRepoId: 第三方镜像仓库ID
         :type PathPrefix: String
-        :param ImageTagId: tagId
+        :param ImageTagId: 第三方镜像版本ID
         :type PathPrefix: String
         :param EnableSSH: 是否开启SSH
         :type PathPrefix: Boolean
@@ -732,6 +732,284 @@ class DescribeImagesRequest(AbstractModel):
             self.Filter = params.get("Filter")
 
 
+class CreateInferenceRequest(AbstractModel):
+    """CreateInference请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建推理服务
+        :param InferenceName: 推理服务名称
+名称仅支持字母、中文、数字、下划线_、中划线-、小数点.、斜杠/、括号()，长度最大64
+        :type PathPrefix: String
+        :param Description: 描述
+限制字符数 0-200
+        :type PathPrefix: String
+        :param ResourcePoolId: 资源池ID
+        :type PathPrefix: String
+        :param QueueName: 队列名称
+        :type PathPrefix: String
+        :param Replicas: 副本数
+默认1 ，取值范围1-500
+        :type PathPrefix: Int
+        :param AccessType: 任务可见性
+-  Creator (创建人)
+-  QueueMember （队列成员）
+        :type PathPrefix: String
+        :param DeploymentType: 部署类型
+> • 自定义部署需要镜像相关参数
+• 模型部署需要模型相关参数
+
+• Custom（自定义部署）
+• Predefine（模型部署）
+
+        :type PathPrefix: String
+        :param Engine: 模型推理引擎
+
+> 部署类型为 模型部署 时，必填
+- vLLM
+- SGLang
+        :type PathPrefix: String
+        :param ModelName: 模型名称 
+> 部署类型为 模型部署 时，必填
+（通过接口GetInferenceModels获取模型信息）
+        :type PathPrefix: String
+        :param CmdOptions: 模型部署启动参数
+> 仅为模型部署时，此参数才生效
+        :type PathPrefix: Array
+        :param ModelStorageEnabled: 模型预加载
+> 模型部署参数，当开启预加载时，需填入 ModelStoragePath 模型预加载路径
+        :type PathPrefix: Boolean
+        :param ModelStoragePath: 模型预加载路径
+> 开启模型预加载时，必填
+        :type PathPrefix: String
+        :param EntryPoint: 服务启动命令
+> 自定义部署时，需传入此参数
+        :type PathPrefix: String
+        :param ImageSource: 镜像类型
+> 自定义部署参数,仅自定义部署时生效且**必填**
+
+• Personal 自定义镜像
+• Official 官方镜像
+• ThirdParty 第三方镜像
+        :type PathPrefix: String
+        :param ImageId: 镜像Id
+> 自定义部署参数，仅自定义部署时生效
+
+当ImageSource（镜像类型）为Personal（自定义镜像）和Official（官方镜像）时必填。
+        :type PathPrefix: String
+        :param ImageRegistryId: 仓库连接 Id
+> 自定义部署参数，仅自定义部署时有效。
+
+当ImageSource（镜像类型）为ThirdParty（第三方镜像）时，此值有效且必填。
+        :type PathPrefix: String
+        :param ImageRepoId: 第三方镜像仓库Id
+> 自定义部署参数，仅自定义部署有效
+
+当ImageSource（镜像类型）为ThirdParty（第三方镜像）时，此值有效且必填。
+        :type PathPrefix: String
+        :param ImageTagId: 第三方镜像tagId
+> 自定义部署参数，仅自定义部署时有效
+
+当ImageSource（镜像类型）为ThirdParty（第三方镜像）时，此值有效且必填
+        :type PathPrefix: String
+        :param SubnetId: 子网ID
+        :type PathPrefix: String
+        :param Port: 端口
+        :type PathPrefix: Int
+        :param Env: 环境变量
+        :type PathPrefix: Array
+        :param GPUType: GPU卡类型
+> 不填代表不使用GPU卡
+        :type PathPrefix: String
+        :param GPUNum: Gpu卡数
+> 取值范围： 0-8
+        :type PathPrefix: String
+        :param CPUNum: CPU数
+> 取值范围 1- 1000
+        :type PathPrefix: Int
+        :param Memory: 内存大小
+> 取值范围 ： 1-1000
+单位：Gi
+        :type PathPrefix: Int
+        :param AutoScaleEnable: 开启自动扩缩容
+        :type PathPrefix: Boolean
+        :param AutoScaleStrategy: 自动扩缩容配置
+> 自动扩缩容开启时，需传入此配置
+        :type PathPrefix: Object
+        :param RunOnCPU: 仅运行在CPU节点
+        :type PathPrefix: Boolean
+        :param Distributed: 是否支持多机部署
+        :type PathPrefix: Boolean
+        :param NodeNum: 支持多机部署的节点数
+> 模型部署参数，仅模型部署时值有效
+
+Distributed（多机部署）为true时，有效且必填
+        :type PathPrefix: Boolean
+        :param StorageConfigs: 存储配置
+> 自定义部署时，必须传Model模型存储配置
+        :type PathPrefix: Array
+        """
+        self.InferenceName = None
+        self.Description = None
+        self.ResourcePoolId = None
+        self.QueueName = None
+        self.Replicas = None
+        self.AccessType = None
+        self.DeploymentType = None
+        self.Engine = None
+        self.ModelName = None
+        self.CmdOptions = None
+        self.ModelStorageEnabled = None
+        self.ModelStoragePath = None
+        self.EntryPoint = None
+        self.ImageSource = None
+        self.ImageId = None
+        self.ImageRegistryId = None
+        self.ImageRepoId = None
+        self.ImageTagId = None
+        self.SubnetId = None
+        self.Port = None
+        self.Env = None
+        self.GPUType = None
+        self.GPUNum = None
+        self.CPUNum = None
+        self.Memory = None
+        self.AutoScaleEnable = None
+        self.AutoScaleStrategy = None
+        self.RunOnCPU = None
+        self.Distributed = None
+        self.NodeNum = None
+        self.StorageConfigs = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceName"):
+            self.InferenceName = params.get("InferenceName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("QueueName"):
+            self.QueueName = params.get("QueueName")
+        if params.get("Replicas"):
+            self.Replicas = params.get("Replicas")
+        if params.get("AccessType"):
+            self.AccessType = params.get("AccessType")
+        if params.get("DeploymentType"):
+            self.DeploymentType = params.get("DeploymentType")
+        if params.get("Engine"):
+            self.Engine = params.get("Engine")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("CmdOptions"):
+            self.CmdOptions = params.get("CmdOptions")
+        if params.get("ModelStorageEnabled"):
+            self.ModelStorageEnabled = params.get("ModelStorageEnabled")
+        if params.get("ModelStoragePath"):
+            self.ModelStoragePath = params.get("ModelStoragePath")
+        if params.get("EntryPoint"):
+            self.EntryPoint = params.get("EntryPoint")
+        if params.get("ImageSource"):
+            self.ImageSource = params.get("ImageSource")
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("ImageRegistryId"):
+            self.ImageRegistryId = params.get("ImageRegistryId")
+        if params.get("ImageRepoId"):
+            self.ImageRepoId = params.get("ImageRepoId")
+        if params.get("ImageTagId"):
+            self.ImageTagId = params.get("ImageTagId")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("Port"):
+            self.Port = params.get("Port")
+        if params.get("Env"):
+            self.Env = params.get("Env")
+        if params.get("GPUType"):
+            self.GPUType = params.get("GPUType")
+        if params.get("GPUNum"):
+            self.GPUNum = params.get("GPUNum")
+        if params.get("CPUNum"):
+            self.CPUNum = params.get("CPUNum")
+        if params.get("Memory"):
+            self.Memory = params.get("Memory")
+        if params.get("AutoScaleEnable"):
+            self.AutoScaleEnable = params.get("AutoScaleEnable")
+        if params.get("AutoScaleStrategy"):
+            self.AutoScaleStrategy = params.get("AutoScaleStrategy")
+        if params.get("RunOnCPU"):
+            self.RunOnCPU = params.get("RunOnCPU")
+        if params.get("Distributed"):
+            self.Distributed = params.get("Distributed")
+        if params.get("NodeNum"):
+            self.NodeNum = params.get("NodeNum")
+        if params.get("StorageConfigs"):
+            self.StorageConfigs = params.get("StorageConfigs")
+
+
+class GetInferenceModelsRequest(AbstractModel):
+    """GetInferenceModels请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取预定义模型列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class GetInferencePodsRequest(AbstractModel):
+    """GetInferencePods请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询推理服务pod列表
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        :param State: Pod状态（Pending，Running，Failed，Succeeded，Stopped，Unknown）
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+        self.State = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("State"):
+            self.State = params.get("State")
+
+
+class GetInferenceLogsRequest(AbstractModel):
+    """GetInferenceLogs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询推理服务日志
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        :param PodName: Pod名称
+        :type PathPrefix: String
+        :param SinceSeconds: 返回从指定时间（秒）开始的日志
+        :type PathPrefix: Int
+        :param TailLines: 返回日志的最后几行
+        :type PathPrefix: Int
+        """
+        self.InferenceId = None
+        self.PodName = None
+        self.SinceSeconds = None
+        self.TailLines = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("PodName"):
+            self.PodName = params.get("PodName")
+        if params.get("SinceSeconds"):
+            self.SinceSeconds = params.get("SinceSeconds")
+        if params.get("TailLines"):
+            self.TailLines = params.get("TailLines")
+
+
 class StopNotebookRequest(AbstractModel):
     """StopNotebook请求参数结构体
     """
@@ -809,6 +1087,22 @@ class DescribeNotebookLogRequest(AbstractModel):
             self.SinceSeconds = params.get("SinceSeconds")
         if params.get("TailLines"):
             self.TailLines = params.get("TailLines")
+
+
+class GetInferenceAutoScaleStrategyRequest(AbstractModel):
+    """GetInferenceAutoScaleStrategy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取推理服务自动扩缩容规则
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
 
 
 class StopNotebookSavingImageRequest(AbstractModel):
@@ -1390,169 +1684,15 @@ class DisableOverFreeLimitRequest(AbstractModel):
             self.ModelIds = params.get("ModelIds")
 
 
-class CreateTrainJobRequest(AbstractModel):
-    """CreateTrainJob请求参数结构体
-    """
-
-    def __init__(self):
-        r"""创建训练任务
-        :param TrainJobName: 训练任务名称，名称规范：1-64个字符，允许字母 中文 数字 - _ . / ( )
-        :type PathPrefix: String
-        :param Description: 训练任务描述信息 0-200字符
-        :type PathPrefix: String
-        :param ResourcePoolId: 资源池id
-        :type PathPrefix: String
-        :param QueueName: 队列名称
-        :type PathPrefix: String
-        :param Priority: 优先级
-可选项：
-• kaic-high 高 
-• kaic-normal 中
-• kaic-low 低
-默认kaic-normal
-        :type PathPrefix: String
-        :param Command: 启动命令
-        :type PathPrefix: String
-        :param Framework: 训练框架
-可选项：
-• pytorch
-• tensorflow
-默认pytorch
-
-        :type PathPrefix: String
-        :param ImageSource: 镜像类型
-可选项：
-• Official 官方镜像
-• Personal 自定义镜像
-• ThirdParty 第三方镜像
-        :type PathPrefix: String
-        :param FrameworkReplicas: 框架副本配置
-        :type PathPrefix: Object
-        :param RestartPolicy: 重启策略，可选值：
-· Always
-· OnFailure
-· Never
-        :type PathPrefix: String
-        :param Envs: 环境变量
-        :type PathPrefix: Array
-        :param SupportTensorboard: 是否开启Tensorboard，默认不开启
-        :type PathPrefix: Boolean
-        :param ImageId: 镜像ID
-        :type PathPrefix: String
-        :param ImageRegistryId: 镜像仓库id
-        :type PathPrefix: String
-        :param ImageRepoId: 镜像RepoId
-        :type PathPrefix: String
-        :param ImageTagId: 镜像tagId
-        :type PathPrefix: String
-        :param GPUType: GPU卡型
-        :type PathPrefix: String
-        :param GPUNumber: 范围0-10000
-        :type PathPrefix: Int
-        :param CPUNum: 范围0-10000
-        :type PathPrefix: Int
-        :param Memory: 0-10000
-        :type PathPrefix: Int
-        :param StorageConfigs: 存储配置
-
-        :type PathPrefix: Array
-        :param AccessType: 任务可见性，可选：Creator|QueueMember 默认：Creator
-        :type PathPrefix: String
-        :param MaxRuntime: 运行时长0-240000,单位h
-        :type PathPrefix: Int
-        :param SelfHealing: 是否开启自愈，默认true
-        :type PathPrefix: Boolean
-        :param RunOnCPU: 任务是否仅运行在cpu节点上，默认false
-        :type PathPrefix: Boolean
-        """
-        self.TrainJobName = None
-        self.Description = None
-        self.ResourcePoolId = None
-        self.QueueName = None
-        self.Priority = None
-        self.Command = None
-        self.Framework = None
-        self.ImageSource = None
-        self.FrameworkReplicas = None
-        self.RestartPolicy = None
-        self.Envs = None
-        self.SupportTensorboard = None
-        self.ImageId = None
-        self.ImageRegistryId = None
-        self.ImageRepoId = None
-        self.ImageTagId = None
-        self.GPUType = None
-        self.GPUNumber = None
-        self.CPUNum = None
-        self.Memory = None
-        self.StorageConfigs = None
-        self.AccessType = None
-        self.MaxRuntime = None
-        self.SelfHealing = None
-        self.RunOnCPU = None
-
-    def _deserialize(self, params):
-        if params.get("TrainJobName"):
-            self.TrainJobName = params.get("TrainJobName")
-        if params.get("Description"):
-            self.Description = params.get("Description")
-        if params.get("ResourcePoolId"):
-            self.ResourcePoolId = params.get("ResourcePoolId")
-        if params.get("QueueName"):
-            self.QueueName = params.get("QueueName")
-        if params.get("Priority"):
-            self.Priority = params.get("Priority")
-        if params.get("Command"):
-            self.Command = params.get("Command")
-        if params.get("Framework"):
-            self.Framework = params.get("Framework")
-        if params.get("ImageSource"):
-            self.ImageSource = params.get("ImageSource")
-        if params.get("FrameworkReplicas"):
-            self.FrameworkReplicas = params.get("FrameworkReplicas")
-        if params.get("RestartPolicy"):
-            self.RestartPolicy = params.get("RestartPolicy")
-        if params.get("Envs"):
-            self.Envs = params.get("Envs")
-        if params.get("SupportTensorboard"):
-            self.SupportTensorboard = params.get("SupportTensorboard")
-        if params.get("ImageId"):
-            self.ImageId = params.get("ImageId")
-        if params.get("ImageRegistryId"):
-            self.ImageRegistryId = params.get("ImageRegistryId")
-        if params.get("ImageRepoId"):
-            self.ImageRepoId = params.get("ImageRepoId")
-        if params.get("ImageTagId"):
-            self.ImageTagId = params.get("ImageTagId")
-        if params.get("GPUType"):
-            self.GPUType = params.get("GPUType")
-        if params.get("GPUNumber"):
-            self.GPUNumber = params.get("GPUNumber")
-        if params.get("CPUNum"):
-            self.CPUNum = params.get("CPUNum")
-        if params.get("Memory"):
-            self.Memory = params.get("Memory")
-        if params.get("StorageConfigs"):
-            self.StorageConfigs = params.get("StorageConfigs")
-        if params.get("AccessType"):
-            self.AccessType = params.get("AccessType")
-        if params.get("MaxRuntime"):
-            self.MaxRuntime = params.get("MaxRuntime")
-        if params.get("SelfHealing"):
-            self.SelfHealing = params.get("SelfHealing")
-        if params.get("RunOnCPU"):
-            self.RunOnCPU = params.get("RunOnCPU")
-
-
 class DescribeTrainJobEventsRequest(AbstractModel):
     """DescribeTrainJobEvents请求参数结构体
     """
 
     def __init__(self):
         r"""查询训练任务pod事件
-        :param ResourcePoolId: 
+        :param ResourcePoolId: 资源组ID
         :type PathPrefix: String
-        :param TrainJobId: 
+        :param TrainJobId: 训练任务ID
         :type PathPrefix: String
         """
         self.ResourcePoolId = None
@@ -1571,7 +1711,7 @@ class StopTrainJobRequest(AbstractModel):
 
     def __init__(self):
         r"""关停训练任务
-        :param TrainJobId: 训练任务Id
+        :param TrainJobId: 训练任务ID
         :type PathPrefix: String
         """
         self.TrainJobId = None
@@ -1581,44 +1721,13 @@ class StopTrainJobRequest(AbstractModel):
             self.TrainJobId = params.get("TrainJobId")
 
 
-class DescribeTrainJobRequest(AbstractModel):
-    """DescribeTrainJob请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询训练任务
-        :param TrainJobId: 训练任务Id,多个TrainJobId.1=xx& TrainJobId.2=xx 
-        :type PathPrefix: Filter
-        :param Filter: 
-        :type PathPrefix: Filter
-        :param Marker: 分页参数
-        :type PathPrefix: Int
-        :param MaxResults: 返回最大值，默认1000
-        :type PathPrefix: Int
-        """
-        self.TrainJobId = None
-        self.Filter = None
-        self.Marker = None
-        self.MaxResults = None
-
-    def _deserialize(self, params):
-        if params.get("TrainJobId"):
-            self.TrainJobId = params.get("TrainJobId")
-        if params.get("Filter"):
-            self.Filter = params.get("Filter")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-
-
 class StartTrainJobRequest(AbstractModel):
     """StartTrainJob请求参数结构体
     """
 
     def __init__(self):
-        r"""开启训练任务
-        :param TrainJobId: 
+        r"""启动训练任务
+        :param TrainJobId: 训练任务ID
         :type PathPrefix: String
         """
         self.TrainJobId = None
@@ -1634,7 +1743,7 @@ class DeleteTrainJobRequest(AbstractModel):
 
     def __init__(self):
         r"""删除训练任务
-        :param TrainJobId: 训练任务Id
+        :param TrainJobId: 训练任务ID
         :type PathPrefix: String
         """
         self.TrainJobId = None
@@ -1650,12 +1759,12 @@ class ModifyTrainJobRequest(AbstractModel):
 
     def __init__(self):
         r"""修改训练任务
-        :param TrainJobId: 训练任务Id
+        :param TrainJobId: 训练任务ID
         :type PathPrefix: String
         :param Priority: 优先级，可选值：
- ·kaic-high
- ·kaic-normal
- ·kaic-low
+ - kaic-high 高优先级
+ - kaic-normal 中优先级
+ - kaic-low 低优先级
         :type PathPrefix: String
         """
         self.TrainJobId = None
@@ -1674,13 +1783,13 @@ class DescribeTrainJobPodLogsRequest(AbstractModel):
 
     def __init__(self):
         r"""查询训练任务pod日志
-        :param ResourcePoolId: 资源池Id
+        :param ResourcePoolId: 资源组ID
         :type PathPrefix: String
         :param TrainJobId: 训练任务ID
         :type PathPrefix: String
-        :param PodName: PodName名称
+        :param PodName: Pod名称
         :type PathPrefix: String
-        :param SinceSeconds: 秒，默认86400
+        :param SinceSeconds: 日志时间范围，即查询多长时间以内的日志，单位秒
         :type PathPrefix: Int
         :param TailLines: 行数
         :type PathPrefix: Int
@@ -1710,13 +1819,13 @@ class DescribeTrainJobPodsRequest(AbstractModel):
 
     def __init__(self):
         r"""查询训练任务pod列表
-        :param Marker: 
+        :param Marker: 页码，后续废弃，改用Page
         :type PathPrefix: String
-        :param MaxResults: 
+        :param MaxResults: 单次调用返回的最大条目，后续废弃，改用PageSize
         :type PathPrefix: String
-        :param TrainJobId: 
+        :param TrainJobId: 训练任务ID
         :type PathPrefix: String
-        :param Filter: 
+        :param Filter: 筛选器
         :type PathPrefix: Filter
         """
         self.Marker = None
@@ -1733,6 +1842,219 @@ class DescribeTrainJobPodsRequest(AbstractModel):
             self.TrainJobId = params.get("TrainJobId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+
+
+class DescribeInferencesRequest(AbstractModel):
+    """DescribeInferences请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型在线服务
+        :param InferenceId: 多个模型在线服务的ID
+        :type PathPrefix: Filter
+        :param Filter: 筛选Filter
+        :type PathPrefix: Filter
+        :param PageSize: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param Page: 页码
+        :type PathPrefix: Int
+        """
+        self.InferenceId = None
+        self.Filter = None
+        self.PageSize = None
+        self.Page = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+
+
+class SetInferenceAutoScaleStrategyRequest(AbstractModel):
+    """SetInferenceAutoScaleStrategy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""配置自动扩缩容配置
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        :param AutoScaleEnable: 是否启用自动扩缩容
+        :type PathPrefix: Boolean
+        :param AutoScaleStrategy: 自动扩缩容策略
+        :type PathPrefix: Object
+        """
+        self.InferenceId = None
+        self.AutoScaleEnable = None
+        self.AutoScaleStrategy = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("AutoScaleEnable"):
+            self.AutoScaleEnable = params.get("AutoScaleEnable")
+        if params.get("AutoScaleStrategy"):
+            self.AutoScaleStrategy = params.get("AutoScaleStrategy")
+
+
+class DeleteInferenceRequest(AbstractModel):
+    """DeleteInference请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除模型在线服务
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+
+
+class StopInferenceRequest(AbstractModel):
+    """StopInference请求参数结构体
+    """
+
+    def __init__(self):
+        r"""停止模型在线服务
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+
+
+class GetInferenceDetailRequest(AbstractModel):
+    """GetInferenceDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取模型在线服务详情
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+
+
+class StartInferenceRequest(AbstractModel):
+    """StartInference请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启动模型在线服务
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+
+
+class ModifyInferenceRequest(AbstractModel):
+    """ModifyInference请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改模型在线服务信息
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        :param InferenceName: 推理服务名称
+        :type PathPrefix: String
+        :param Description: 描述（限长200）
+        :type PathPrefix: String
+        :param EntryPoint: 启动命令
+        :type PathPrefix: String
+        :param ImageSource: 镜像来源（自定义部署时，镜像来源类型）
+        :type PathPrefix: String
+        :param ImageId: 镜像ID（自定义部署时，官方镜像、自定义镜像参数）
+        :type PathPrefix: String
+        :param ImageRegistryId: 镜像仓库ID（自定义部署时，第三方镜像参数）
+        :type PathPrefix: String
+        :param ImageRepoId: 镜像仓库ID（自定义部署时，第三方镜像参数）
+        :type PathPrefix: String
+        :param ImageTagId: 镜像标签ID（自定义部署时，第三方镜像参数）
+        :type PathPrefix: String
+        :param Env: 环境变量列表
+        :type PathPrefix: Array
+        :param CmdOptions: 启动参数（模型部署类型参数）
+        :type PathPrefix: Array
+        :param HostNetworkEnabled: 是否启用主机网络
+        :type PathPrefix: Boolean
+        """
+        self.InferenceId = None
+        self.InferenceName = None
+        self.Description = None
+        self.EntryPoint = None
+        self.ImageSource = None
+        self.ImageId = None
+        self.ImageRegistryId = None
+        self.ImageRepoId = None
+        self.ImageTagId = None
+        self.Env = None
+        self.CmdOptions = None
+        self.HostNetworkEnabled = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("InferenceName"):
+            self.InferenceName = params.get("InferenceName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("EntryPoint"):
+            self.EntryPoint = params.get("EntryPoint")
+        if params.get("ImageSource"):
+            self.ImageSource = params.get("ImageSource")
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("ImageRegistryId"):
+            self.ImageRegistryId = params.get("ImageRegistryId")
+        if params.get("ImageRepoId"):
+            self.ImageRepoId = params.get("ImageRepoId")
+        if params.get("ImageTagId"):
+            self.ImageTagId = params.get("ImageTagId")
+        if params.get("Env"):
+            self.Env = params.get("Env")
+        if params.get("CmdOptions"):
+            self.CmdOptions = params.get("CmdOptions")
+        if params.get("HostNetworkEnabled"):
+            self.HostNetworkEnabled = params.get("HostNetworkEnabled")
+
+
+class SetInferenceReplicasRequest(AbstractModel):
+    """SetInferenceReplicas请求参数结构体
+    """
+
+    def __init__(self):
+        r"""手动扩缩容
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        :param Replicas: 副本数
+        :type PathPrefix: Int
+        """
+        self.InferenceId = None
+        self.Replicas = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("Replicas"):
+            self.Replicas = params.get("Replicas")
 
 
 class DescribeResourcePoolsRequest(AbstractModel):

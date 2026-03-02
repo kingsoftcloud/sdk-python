@@ -721,6 +721,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def QueryTokenData(self, request):
+        """查询模型API token用量
+        :param request: Request instance for QueryTokenData.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.QueryTokenDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryTokenData", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DisableApikeyStatus(self, request):
         """禁用API Key
         :param request: Request instance for DisableApikeyStatus.

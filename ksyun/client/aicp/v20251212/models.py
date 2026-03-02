@@ -15,7 +15,7 @@ class CreateTrainJobRequest(AbstractModel):
         :param Priority: 优先级，有效值：
 - kaic-high 高优先级
 - kaic-normal 中优先级
-- kaic-low 低优先级
+- kaic-low  低优先级
         :type PathPrefix: String
         :param QueueName: 队列名称
         :type PathPrefix: String

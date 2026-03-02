@@ -372,3 +372,105 @@ class CreateKnowledgeBaseRequest(AbstractModel):
             self.RetrievalModel = params.get("RetrievalModel")
 
 
+class CreateMemorySdkRequest(AbstractModel):
+    """CreateMemorySdk请求参数结构体
+    """
+
+    def __init__(self):
+        r"""向指定记忆库写入记忆
+        :param Namespace: 
+        :type PathPrefix: String
+        :param UserId: 
+        :type PathPrefix: String
+        :param AgentId: 
+        :type PathPrefix: String
+        :param SessionId: 
+        :type PathPrefix: String
+        :param SceneId: 
+        :type PathPrefix: String
+        :param DataType: 
+        :type PathPrefix: String
+        :param Data: 
+        :type PathPrefix: Object
+        """
+        self.Namespace = None
+        self.UserId = None
+        self.AgentId = None
+        self.SessionId = None
+        self.SceneId = None
+        self.DataType = None
+        self.Data = None
+
+    def _deserialize(self, params):
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("SceneId"):
+            self.SceneId = params.get("SceneId")
+        if params.get("DataType"):
+            self.DataType = params.get("DataType")
+        if params.get("Data"):
+            self.Data = params.get("Data")
+
+
+class QueryMemorySdkRequest(AbstractModel):
+    """QueryMemorySdk请求参数结构体
+    """
+
+    def __init__(self):
+        r"""从记忆库检索记忆
+        :param Namespace: 
+        :type PathPrefix: String
+        :param UserId: 
+        :type PathPrefix: String
+        :param Query: 
+        :type PathPrefix: String
+        :param SceneId: 
+        :type PathPrefix: String
+        :param OccurredAfter: 
+        :type PathPrefix: Long
+        :param OccurredBefore: 
+        :type PathPrefix: Long
+        :param Mode: 
+        :type PathPrefix: String
+        :param ReturnCitations: 
+        :type PathPrefix: Boolean
+        :param Limit: 
+        :type PathPrefix: Int
+        """
+        self.Namespace = None
+        self.UserId = None
+        self.Query = None
+        self.SceneId = None
+        self.OccurredAfter = None
+        self.OccurredBefore = None
+        self.Mode = None
+        self.ReturnCitations = None
+        self.Limit = None
+
+    def _deserialize(self, params):
+        if params.get("Namespace"):
+            self.Namespace = params.get("Namespace")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("Query"):
+            self.Query = params.get("Query")
+        if params.get("SceneId"):
+            self.SceneId = params.get("SceneId")
+        if params.get("OccurredAfter"):
+            self.OccurredAfter = params.get("OccurredAfter")
+        if params.get("OccurredBefore"):
+            self.OccurredBefore = params.get("OccurredBefore")
+        if params.get("Mode"):
+            self.Mode = params.get("Mode")
+        if params.get("ReturnCitations"):
+            self.ReturnCitations = params.get("ReturnCitations")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+
+

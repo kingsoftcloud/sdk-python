@@ -147,7 +147,7 @@ class DeleteStorageConfigRequest(AbstractModel):
 
     def __init__(self):
         r"""删除存储配置
-        :param StorageConfigId: 存储配置Id
+        :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
         """
         self.StorageConfigId = None
@@ -241,9 +241,9 @@ class ModifyNotebookRequest(AbstractModel):
         r"""修改开发任务
         :param NotebookId: 开发任务ID
         :type PathPrefix: String
-        :param NotebookName: 名称
+        :param NotebookName: 开发任务名称
         :type PathPrefix: String
-        :param Description: 描述
+        :param Description: 描述信息
         :type PathPrefix: String
         :param ImageId: 镜像ID
         :type PathPrefix: String
@@ -289,7 +289,7 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageSource: 镜像来源，当改变镜像来源时，需传入该值。
 - Official 官方镜像
-- Personal 个人镜像
+- Personal 自定义镜像
 - ThirdParty 第三方镜像
 
 当修改镜像类型为第三方镜像时，需同时传入"ImageRegistryId", "ImageRepoId", "ImageTagId"三个入参
@@ -401,13 +401,13 @@ class DescribeNotebooksRequest(AbstractModel):
 
     def __init__(self):
         r"""查询开发任务
-        :param NotebookId: 开发任务ID
+        :param NotebookId: 多个开发任务的ID
         :type PathPrefix: Filter
         :param Name: 开发任务名称
         :type PathPrefix: String
-        :param Page: 页数
+        :param Page: 页码
         :type PathPrefix: Int
-        :param PageSize: 每页查询数目
+        :param PageSize: 单次调用可返回的最大条目数量
         :type PathPrefix: Int
         :param Filter: 条件过滤
         :type PathPrefix: Filter
@@ -442,17 +442,17 @@ class CreateNotebookRequest(AbstractModel):
 
     def __init__(self):
         r"""创建开发任务
-        :param NotebookName: 任务名称
+        :param NotebookName: 开发任务名称
         :type PathPrefix: String
         :param Description: 描述信息
         :type PathPrefix: String
-        :param ResourcePoolId: 资源池ID
+        :param ResourcePoolId: 资源组ID
         :type PathPrefix: String
         :param QueueName: 队列名称
         :type PathPrefix: String
         :param GPUType: GPU类型
         :type PathPrefix: String
-        :param GPUNumber: GPU卡数，当GPUType不为空时，此值有效，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
+        :param GPUNumber: GPU卡数，当GPUType不为空时，此值有效且必传，允许范围为0~10000, 如果可虚拟化，支持[0.1,0.9]
         :type PathPrefix: String
         :param CPUNum: CPU核数，允许范围为0~10000
         :type PathPrefix: Int
@@ -462,13 +462,13 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param StorageConfigs: 存储配置列表
         :type PathPrefix: Array
-        :param AutoSave: 是否自动保存镜像
+        :param AutoSave: 自动保存镜像。当值为true时，开发任务停止前会执行自动保存镜像
         :type PathPrefix: Boolean
-        :param ServiceConfigs: 开放服务端口列表
+        :param ServiceConfigs: 自定义服务配置
         :type PathPrefix: Array
         :param ImageSource: 镜像来源
 - 官方镜像 Official
-- 个人镜像 Personal
+- 自定义镜像 Personal
 - 第三方镜像 ThirdParty
 
 当传入值为ThirdParty时，"ImageRegistryId", "ImageRepoId", "ImageTagId"必须传入
@@ -492,7 +492,7 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param AllocationId: 弹性IP ID，当EnablePublicNetworkSsh=true时，此参数必传
         :type PathPrefix: String
-        :param RunOnCPU: 开启后，仅调度CPU
+        :param RunOnCPU: 仅调度到CPU节点。当GPUNumber为空或值为0时此值有效
         :type PathPrefix: String
         """
         self.NotebookName = None
@@ -1069,7 +1069,7 @@ class DescribeNotebookLogRequest(AbstractModel):
 
     def __init__(self):
         r"""查看开发机的pod日志
-        :param NotebookId: 开发任务Id
+        :param NotebookId: 开发任务ID
         :type PathPrefix: String
         :param SinceSeconds: 日志默认显示时间，单位秒；比如10分钟内的，值为600
         :type PathPrefix: Int
@@ -1355,6 +1355,69 @@ class DescribeApikeysRequest(AbstractModel):
             self.DefaultKey = params.get("DefaultKey")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
+
+
+class QueryTokenDataRequest(AbstractModel):
+    """QueryTokenData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型API token用量
+        :param StartTimestamp: 开始时间，毫秒时间戳
+        :type PathPrefix: Long
+        :param EndTimestamp: 截止时间，毫秒时间戳
+        :type PathPrefix: Long
+        :param LastKey: 分页用的游标，表示上次已经获取到的数据，当前请求可以取上次返回结果的LastKey，首页时不传
+        :type PathPrefix: String
+        :param MaxResults: 分页页长，最大10000
+        :type PathPrefix: Int
+        :param ModelKeyword: model 搜索关键词
+        :type PathPrefix: String
+        :param Keyword: 搜索关键词
+        :type PathPrefix: String
+        :param GroupBy: 分组字段：model、keyId
+        :type PathPrefix: String
+        :param ReasoningType: 推理类型：normal-在线，batch-批量，web-在线体验，为空表示全部。
+        :type PathPrefix: String
+        :param Marker: 页码，从1开始。
+        :type PathPrefix: Int
+        :param ModelName: 模型名称
+- 当按照模型分组时，Keyword优先，Keyword为空再以该字段筛选
+- 当按照APIKEY分组时，该字段始终生效
+        :type PathPrefix: String
+        """
+        self.StartTimestamp = None
+        self.EndTimestamp = None
+        self.LastKey = None
+        self.MaxResults = None
+        self.ModelKeyword = None
+        self.Keyword = None
+        self.GroupBy = None
+        self.ReasoningType = None
+        self.Marker = None
+        self.ModelName = None
+
+    def _deserialize(self, params):
+        if params.get("StartTimestamp"):
+            self.StartTimestamp = params.get("StartTimestamp")
+        if params.get("EndTimestamp"):
+            self.EndTimestamp = params.get("EndTimestamp")
+        if params.get("LastKey"):
+            self.LastKey = params.get("LastKey")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("ModelKeyword"):
+            self.ModelKeyword = params.get("ModelKeyword")
+        if params.get("Keyword"):
+            self.Keyword = params.get("Keyword")
+        if params.get("GroupBy"):
+            self.GroupBy = params.get("GroupBy")
+        if params.get("ReasoningType"):
+            self.ReasoningType = params.get("ReasoningType")
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
 
 
 class DisableApikeyStatusRequest(AbstractModel):

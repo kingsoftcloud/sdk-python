@@ -215,75 +215,6 @@ class Kce2Client(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def DescribeNetwork(self, request):
-        """查询集群网络
-        :param request: Request instance for DescribeNetwork.
-        :type request: :class:`ksyun.client.kce2.v20230101.models.DescribeNetworkRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeNetwork", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
-    def DescribeComponentParams(self, request):
-        """查询组件参数版本
-        :param request: Request instance for DescribeComponentParams.
-        :type request: :class:`ksyun.client.kce2.v20230101.models.DescribeComponentParamsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeComponentParams", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
-    def DescribeEventLogs(self, request):
-        """查询集群事件日志
-        :param request: Request instance for DescribeEventLogs.
-        :type request: :class:`ksyun.client.kce2.v20230101.models.DescribeEventLogsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeEventLogs", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def DescribeClusterVersionList(self, request):
         """查询集群版本信息
         :param request: Request instance for DescribeClusterVersionList.
@@ -351,3 +282,5 @@ class Kce2Client(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+

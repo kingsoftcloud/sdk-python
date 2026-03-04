@@ -207,8 +207,6 @@ class DeleteNodeRequest(AbstractModel):
         r"""删除集群节点
         :param ClusterId: 集群ID
         :type PathPrefix: String
-        :param NodeIds: 
-        :type PathPrefix: Array
         :param InstanceDelete: 是否删除主机实例
         :type PathPrefix: Boolean
         :param KceNodeIds: 节点id集合，同实例 id集合必须二选一
@@ -217,7 +215,6 @@ class DeleteNodeRequest(AbstractModel):
         :type PathPrefix: Array
         """
         self.ClusterId = None
-        self.NodeIds = None
         self.InstanceDelete = None
         self.KceNodeIds = None
         self.InstanceIds = None
@@ -225,8 +222,6 @@ class DeleteNodeRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ClusterId"):
             self.ClusterId = params.get("ClusterId")
-        if params.get("NodeIds"):
-            self.NodeIds = params.get("NodeIds")
         if params.get("InstanceDelete"):
             self.InstanceDelete = params.get("InstanceDelete")
         if params.get("KceNodeIds"):
@@ -317,106 +312,6 @@ class DescribeNodeComponentsRequest(AbstractModel):
             self.NodeNames = params.get("NodeNames")
         if params.get("NodeIds"):
             self.NodeIds = params.get("NodeIds")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-
-
-class DescribeNetworkRequest(AbstractModel):
-    """DescribeNetwork请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询集群网络
-        :param ClusterId: 集群ID
-        :type PathPrefix: String
-        :param ClusterName: 集群名称
-        :type PathPrefix: String
-        """
-        self.ClusterId = None
-        self.ClusterName = None
-
-    def _deserialize(self, params):
-        if params.get("ClusterId"):
-            self.ClusterId = params.get("ClusterId")
-        if params.get("ClusterName"):
-            self.ClusterName = params.get("ClusterName")
-
-
-class DescribeComponentParamsRequest(AbstractModel):
-    """DescribeComponentParams请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询组件参数版本
-        :param ClusterId: 集群ID
-        :type PathPrefix: String
-        :param Components: 组件查询条件
-        :type PathPrefix: Array
-        :param Marker: 游标起始位置
-        :type PathPrefix: Int
-        :param MaxResults: 分页参数，每页最大数
-        :type PathPrefix: Int
-        """
-        self.ClusterId = None
-        self.Components = None
-        self.Marker = None
-        self.MaxResults = None
-
-    def _deserialize(self, params):
-        if params.get("ClusterId"):
-            self.ClusterId = params.get("ClusterId")
-        if params.get("Components"):
-            self.Components = params.get("Components")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-
-
-class DescribeEventLogsRequest(AbstractModel):
-    """DescribeEventLogs请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询集群事件日志
-        :param ClusterId: 集群ID
-        :type PathPrefix: String
-        :param ClusterName: 集群名称
-        :type PathPrefix: String
-        :param NodeId: 节点ID
-        :type PathPrefix: String
-        :param NodeName: 节点名称
-        :type PathPrefix: String
-        :param Inner: 是否查询内部事件
-        :type PathPrefix: Boolean
-        :param Marker: 分页参数 游标起始位置，
-每次查询返回
-        :type PathPrefix: Int
-        :param MaxResults: 分页参数，每页最大数 
-
-        :type PathPrefix: Int
-        """
-        self.ClusterId = None
-        self.ClusterName = None
-        self.NodeId = None
-        self.NodeName = None
-        self.Inner = None
-        self.Marker = None
-        self.MaxResults = None
-
-    def _deserialize(self, params):
-        if params.get("ClusterId"):
-            self.ClusterId = params.get("ClusterId")
-        if params.get("ClusterName"):
-            self.ClusterName = params.get("ClusterName")
-        if params.get("NodeId"):
-            self.NodeId = params.get("NodeId")
-        if params.get("NodeName"):
-            self.NodeName = params.get("NodeName")
-        if params.get("Inner"):
-            self.Inner = params.get("Inner")
         if params.get("Marker"):
             self.Marker = params.get("Marker")
         if params.get("MaxResults"):

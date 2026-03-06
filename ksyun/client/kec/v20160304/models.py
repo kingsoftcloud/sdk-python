@@ -82,7 +82,7 @@ class RunInstancesRequest(AbstractModel):
         :type PathPrefix: String
         :param PurchaseTime: 购买时长，单位月
         :type PathPrefix: Int
-        :param SecurityGroupId: 实例绑定的安全组，目前仅支持绑定一个安全组
+        :param SecurityGroupId: 实例绑定的安全组
         :type PathPrefix: Filter
         :param PrivateIpAddress: 私有IP地址，指定子网IP地址范围内的任意有效值，代表实例的主IP地址，只能选择一个，绑定到主网卡；如果未指定该参数，系统自动从有效地址池中随机选取一个
         :type PathPrefix: String
@@ -583,10 +583,6 @@ true/false,默认false
         :type PathPrefix: Boolean
         :param SystemDisk.DiskType: 不能给默认值，不传默认按价格体系配置systemDisk属性中第一个创建
         :type PathPrefix: String
-        :param SystemDisk.ResizeType: 扩容 offline 离线扩容| online 在线扩容
-        :type PathPrefix: String
-        :param UserData: 用户自定义数据，必须是base64编码
-        :type PathPrefix: String
         """
         self.InstanceId = None
         self.ImageId = None
@@ -595,8 +591,6 @@ true/false,默认false
         self.KeyId = None
         self.KeepImageLogin = None
         self.SystemDisk_DiskType = None
-        self.SystemDisk_ResizeType = None
-        self.UserData = None
 
     def _deserialize(self, params):
         if params.get("InstanceId"):
@@ -613,10 +607,6 @@ true/false,默认false
             self.KeepImageLogin = params.get("KeepImageLogin")
         if params.get("SystemDisk.DiskType"):
             self.SystemDisk_DiskType = params.get("SystemDisk.DiskType")
-        if params.get("SystemDisk.ResizeType"):
-            self.SystemDisk_ResizeType = params.get("SystemDisk.ResizeType")
-        if params.get("UserData"):
-            self.UserData = params.get("UserData")
 
 
 class CreateImageRequest(AbstractModel):
@@ -3632,6 +3622,53 @@ class CopySnapshotRequest(AbstractModel):
             self.DestinationSnapshotDesc = params.get("DestinationSnapshotDesc")
 
 
+class ExportImageRequest(AbstractModel):
+    """ExportImage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建导出镜像任务
+        :param ImageId: 自定义镜像ID
+        :type PathPrefix: String
+        :param Ks3Bucket: 镜像导出的目标bucket地址（需与镜像同地域，否则报错）
+        :type PathPrefix: String
+        :param ObjectName: 镜像导出后的文件名前缀，有效值：1-30个字符，支持文字、数字
+        :type PathPrefix: String
+        :param ImageExportType: 镜像文件的导出格式，有效值：RAW、VHD、QCOW2、VDI和VMDK。未填，则默认为RAW
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.Ks3Bucket = None
+        self.ObjectName = None
+        self.ImageExportType = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("Ks3Bucket"):
+            self.Ks3Bucket = params.get("Ks3Bucket")
+        if params.get("ObjectName"):
+            self.ObjectName = params.get("ObjectName")
+        if params.get("ImageExportType"):
+            self.ImageExportType = params.get("ImageExportType")
+
+
+class CancelImageExportRequest(AbstractModel):
+    """CancelImageExport请求参数结构体
+    """
+
+    def __init__(self):
+        r"""取消导出镜像任务
+        :param ImageId: 正在导出的镜像ID
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+
+
 class PreMigrateInstanceRequest(AbstractModel):
     """PreMigrateInstance请求参数结构体
     """
@@ -4389,3 +4426,5 @@ class ModifyMountTargetRequest(AbstractModel):
             self.MountTargetId = params.get("MountTargetId")
         if params.get("AccessGroupId"):
             self.AccessGroupId = params.get("AccessGroupId")
+
+

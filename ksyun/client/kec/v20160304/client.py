@@ -2308,6 +2308,52 @@ class KecClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def ExportImage(self, request):
+        """创建导出镜像任务
+        :param request: Request instance for ExportImage.
+        :type request: :class:`ksyun.client.kec.v20160304.models.ExportImageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ExportImage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CancelImageExport(self, request):
+        """取消导出镜像任务
+        :param request: Request instance for CancelImageExport.
+        :type request: :class:`ksyun.client.kec.v20160304.models.CancelImageExportRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CancelImageExport", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def PreMigrateInstance(self, request):
         """创建预迁移
         :param request: Request instance for PreMigrateInstance.
@@ -2422,6 +2468,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def CreateSnapshot(self, request):
         """创建文件系统快照
         :param request: Request instance for CreateSnapshot.
@@ -2443,6 +2490,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def UpdateSnapshot(self, request):
         """修改文件系统快照
@@ -2466,6 +2514,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def DeleteSnapshot(self, request):
         """删除文件系统快照
         :param request: Request instance for DeleteSnapshot.
@@ -2487,6 +2536,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def RevertSnapshot(self, request):
         """文件系统快照回滚
@@ -2510,6 +2560,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def DescribeSnapshotList(self, request):
         """查询文件系统的快照信息
         :param request: Request instance for DescribeSnapshotList.
@@ -2531,6 +2582,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def CreateSnapshotPolicy(self, request):
         """创建文件系统自动快照策略
@@ -2554,6 +2606,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def UpdateSnapshotPolicy(self, request):
         """修改文件系统自动快照策略
         :param request: Request instance for UpdateSnapshotPolicy.
@@ -2575,6 +2628,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def DeleteSnapshotPolicy(self, request):
         """删除文件系统自动快照策略
@@ -2598,6 +2652,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def ApplySnapshotPolicy(self, request):
         """文件系统关联自动快照策略
         :param request: Request instance for ApplySnapshotPolicy.
@@ -2619,6 +2674,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def CancelSnapshotPolicy(self, request):
         """文件系统移除自动快照策略
@@ -2642,6 +2698,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def DescribeSnapshotPolicyList(self, request):
         """获取文件系统自动快照策略列表
         :param request: Request instance for DescribeSnapshotPolicyList.
@@ -2663,6 +2720,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def ModifyRecycleBinAttribute(self, request):
         """修改回收站信息
@@ -2686,6 +2744,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def DescribeAccessGroups(self, request):
         """查询权限组信息
         :param request: Request instance for DescribeAccessGroups.
@@ -2707,6 +2766,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def CreateAccessGroup(self, request):
         """创建权限组
@@ -2730,6 +2790,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def ModifyAccessGroup(self, request):
         """修改权限组
         :param request: Request instance for ModifyAccessGroup.
@@ -2751,6 +2812,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def DeleteAccessGroup(self, request):
         """删除权限组
@@ -2774,6 +2836,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def DescribeAccessRules(self, request):
         """查询权限组规则列表
         :param request: Request instance for DescribeAccessRules.
@@ -2795,6 +2858,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def CreateAccessRule(self, request):
         """创建权限组规则
@@ -2818,6 +2882,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def ModifyAccessRule(self, request):
         """修改权限组规则
         :param request: Request instance for ModifyAccessRule.
@@ -2839,6 +2904,7 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
 
     def DeleteAccessRule(self, request):
         """删除权限组规则
@@ -2862,6 +2928,7 @@ class KecClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def ModifyMountTarget(self, request):
         """修改文件系统挂载点
         :param request: Request instance for ModifyMountTarget.
@@ -2883,3 +2950,5 @@ class KecClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+

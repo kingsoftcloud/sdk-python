@@ -60,11 +60,17 @@ class GetTotalSizeRequest(AbstractModel):
         :type PathPrefix: String
         :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
         :type PathPrefix: String
+        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/。
+
+
+仅设置了目录配额的目录支持查询目录使用量及已用Inodes数量随时间变化趋势
+        :type PathPrefix: String
         """
         self.FileSystemId = None
         self.StartTime = None
         self.EndTime = None
         self.Interval = None
+        self.DirPath = None
 
     def _deserialize(self, params):
         if params.get("FileSystemId"):
@@ -75,6 +81,8 @@ class GetTotalSizeRequest(AbstractModel):
             self.EndTime = params.get("EndTime")
         if params.get("Interval"):
             self.Interval = params.get("Interval")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
 
 
 class GetInodeCountRequest(AbstractModel):
@@ -91,11 +99,17 @@ class GetInodeCountRequest(AbstractModel):
         :type PathPrefix: String
         :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d；（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
         :type PathPrefix: String
+        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/。
+
+
+仅设置了目录配额的目录支持查询目录使用量及已用Inodes数量随时间变化趋势
+        :type PathPrefix: String
         """
         self.FileSystemId = None
         self.StartTime = None
         self.EndTime = None
         self.Interval = None
+        self.DirPath = None
 
     def _deserialize(self, params):
         if params.get("FileSystemId"):
@@ -106,6 +120,8 @@ class GetInodeCountRequest(AbstractModel):
             self.EndTime = params.get("EndTime")
         if params.get("Interval"):
             self.Interval = params.get("Interval")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
 
 
 class GetCapacityAvailableRequest(AbstractModel):
@@ -186,7 +202,10 @@ class GetLatencyWriteRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
         :type PathPrefix: String
-        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。
+
+
+该参数仅支持专属集群以及西北1（庆阳）公共集群，且白名单开放。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -227,7 +246,10 @@ class GetLatencyReadRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
         :type PathPrefix: String
-        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。
+
+
+该参数仅支持专属集群以及西北1（庆阳）公共集群，且白名单开放。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -268,7 +290,10 @@ class GetIopsWriteRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
         :type PathPrefix: String
-        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。
+
+
+该参数仅支持专属集群以及西北1（庆阳）公共集群，且白名单开放。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -309,7 +334,10 @@ class GetIopsReadRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
         :type PathPrefix: String
-        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。
+
+
+该参数仅支持专属集群以及西北1（庆阳）公共集群，且白名单开放。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -350,7 +378,10 @@ class GetBandwidthWriteRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
         :type PathPrefix: String
-        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。
+
+
+该参数仅支持专属集群以及西北1（庆阳）公共集群，且白名单开放。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -391,7 +422,10 @@ class GetBandwidthReadRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientNm: POSIX客户端的挂载信息。拼接规则为：Ip:ClientId，如：10.0.0.1:1000018。请参见查询文件系统POSIX客户端信息。
         :type PathPrefix: String
-        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。该参数仅支持华北3（呼和浩特）地域，且仅支持专属集群。
+        :param VpcIp: NFS客户端的VpcIp。若您需要查询NFS客户端级的统计项，可根据VpcIp筛选。支持Ipv4，如：10.0.0.1。请参见查询文件系统NFS客户端信息。
+
+
+该参数仅支持专属集群以及西北1（庆阳）公共集群，且白名单开放。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -517,9 +551,31 @@ class UpdateDirQuotaRequest(AbstractModel):
         :type PathPrefix: String
         :param FileSystemName: 文件系统名称，名称最大长度63字节
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1. 性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同；2. 容量Ⅰ型/容量Ⅱ型/标准型，必须与原目录相同；3. 已设置目录配额的目录，才允许修改目录配额。
+        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1. 性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同；2. 容量Ⅰ型/容量Ⅱ型/标准型，必须与原目录相同；3. 为已设置目录配额的目录，才允许修改目录配额。
         :type PathPrefix: String
-        :param LogicalHardThreshold: 容量硬阈值，不可超过文件系统容量配额，单位：Bytes
+        :param LogicalCapacityType: 容量配额的设置方式，若不传，则默认为limit。参数取值：
+
+none：无设置，该条目录配额不进行容量设置。仅KPFS性能型支持。
+
+statistics：仅统计，设置后将统计该目录容量情况但不限制容量。仅KPFS性能型支持。
+
+limit：限制类型，设置后将统计该目录容量情况且限制容量。KPFS容量型、标准型、性能型均支持。
+        :type PathPrefix: String
+        :param LogicalHardThreshold: 容量硬阈值，正整数，不可超过文件系统容量配额，仅LogicalCapacityType取值为limit时支持设置该参数。
+
+单位：Bytes。
+        :type PathPrefix: Long
+        :param LogicalInodesType: Inodes配额的设置方式，若不传，则默认为none，仅KPFS性能型支持。参数取值：
+
+none：无设置
+
+statistics：仅统计，设置后将统计该目录Inodes情况但不限制Inodes。
+
+limit：限制类型，设置后将统计该目录Inodes情况且限制Inodes。
+        :type PathPrefix: String
+        :param LogicalHardInodes: Inodes硬阈值，正整数。仅LogicalInodesTypee取值为limit时支持设置该参数。仅KPFS性能型支持。
+
+单位：个。
         :type PathPrefix: Long
         """
         self.FileSystemId = None
@@ -527,7 +583,10 @@ class UpdateDirQuotaRequest(AbstractModel):
         self.ClusterName = None
         self.FileSystemName = None
         self.DirPath = None
+        self.LogicalCapacityType = None
         self.LogicalHardThreshold = None
+        self.LogicalInodesType = None
+        self.LogicalHardInodes = None
 
     def _deserialize(self, params):
         if params.get("FileSystemId"):
@@ -540,8 +599,14 @@ class UpdateDirQuotaRequest(AbstractModel):
             self.FileSystemName = params.get("FileSystemName")
         if params.get("DirPath"):
             self.DirPath = params.get("DirPath")
+        if params.get("LogicalCapacityType"):
+            self.LogicalCapacityType = params.get("LogicalCapacityType")
         if params.get("LogicalHardThreshold"):
             self.LogicalHardThreshold = params.get("LogicalHardThreshold")
+        if params.get("LogicalInodesType"):
+            self.LogicalInodesType = params.get("LogicalInodesType")
+        if params.get("LogicalHardInodes"):
+            self.LogicalHardInodes = params.get("LogicalHardInodes")
 
 
 class CreateDirQuotaRequest(AbstractModel):
@@ -560,7 +625,30 @@ class CreateDirQuotaRequest(AbstractModel):
         :type PathPrefix: String
         :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1.性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同；2.容量Ⅰ型/容量Ⅱ型/标准型，若目录不存在，接口会自动创建新目录；3.性能Ⅰ型/性能Ⅱ型，不支持为非空目录新增配额；4.无法为文件系统根目录设置配额，仅支持子目录；5.支持为各级目录设置配额，并且嵌套配额均取最小值作为该目录的阈值。比如：设置/dir配额为1MB，设置/dir/subdir配额为10MB，那么实际使用时会递归地向上查询，确保当前目录用量满足每一级目录的配额设置。
         :type PathPrefix: String
-        :param LogicalHardThreshold: 容量硬阈值，不可超过文件系统容量配额。单位：Bytes。
+        :param LogicalCapacityType: 容量配额的设置方式，若不传，则默认为limit。参数取值：
+
+none：无设置，该条目录配额不进行容量设置。仅KPFS性能型支持。
+
+statistics：仅统计，设置后将统计该目录容量情况但不限制容量。仅KPFS性能型支持。
+
+limit：限制类型，设置后将统计该目录容量情况且限制容量。KPFS容量型、标准型、性能型均支持。
+        :type PathPrefix: String
+        :param LogicalHardThreshold: 容量硬阈值，正整数，不可超过文件系统容量配额，仅LogicalCapacityType取值为limit时支持设置该参数。
+
+单位：Bytes。
+        :type PathPrefix: Long
+        :param LogicalInodesType: Inodes配额的设置方式，若不传，则默认为none，仅KPFS性能型支持。参数取值：
+
+none：无设置
+
+statistics：仅统计，设置后将统计该目录Inodes情况但不限制Inodes。
+
+limit：限制类型，设置后将统计该目录Inodes情况且限制Inodes。
+        :type PathPrefix: String
+        :param LogicalHardInodes: Inodes硬阈值，正整数。仅LogicalInodesTypee取值为limit时支持设置该参数。仅KPFS性能型支持。
+
+单位：个。
+
         :type PathPrefix: Long
         """
         self.FileSystemId = None
@@ -568,7 +656,10 @@ class CreateDirQuotaRequest(AbstractModel):
         self.ClusterName = None
         self.FileSystemName = None
         self.DirPath = None
+        self.LogicalCapacityType = None
         self.LogicalHardThreshold = None
+        self.LogicalInodesType = None
+        self.LogicalHardInodes = None
 
     def _deserialize(self, params):
         if params.get("FileSystemId"):
@@ -581,8 +672,14 @@ class CreateDirQuotaRequest(AbstractModel):
             self.FileSystemName = params.get("FileSystemName")
         if params.get("DirPath"):
             self.DirPath = params.get("DirPath")
+        if params.get("LogicalCapacityType"):
+            self.LogicalCapacityType = params.get("LogicalCapacityType")
         if params.get("LogicalHardThreshold"):
             self.LogicalHardThreshold = params.get("LogicalHardThreshold")
+        if params.get("LogicalInodesType"):
+            self.LogicalInodesType = params.get("LogicalInodesType")
+        if params.get("LogicalHardInodes"):
+            self.LogicalHardInodes = params.get("LogicalHardInodes")
 
 
 class DescribeSubDirListRequest(AbstractModel):

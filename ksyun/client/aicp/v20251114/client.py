@@ -422,3 +422,348 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def CreateMemoryCollection(self, request):
+        """创建记忆库
+        :param request: Request instance for CreateMemoryCollection.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.CreateMemoryCollectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateMemoryCollection", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetMemoryCollection(self, request):
+        """查询记忆库详情
+        :param request: Request instance for GetMemoryCollection.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetMemoryCollectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetMemoryCollection", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ListMemoryCollections(self, request):
+        """批量查询记忆库详情
+        :param request: Request instance for ListMemoryCollections.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ListMemoryCollectionsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListMemoryCollections", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteMemoryCollection(self, request):
+        """删除记忆库
+        :param request: Request instance for DeleteMemoryCollection.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DeleteMemoryCollectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteMemoryCollection", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetMemoryBaseService(self, request):
+        """查询记忆库服务状态
+        :param request: Request instance for GetMemoryBaseService.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetMemoryBaseServiceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetMemoryBaseService", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ActivateMemoryBaseService(self, request):
+        """开通记忆库服务
+        :param request: Request instance for ActivateMemoryBaseService.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ActivateMemoryBaseServiceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ActivateMemoryBaseService", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def UpdateMemoryCollection(self, request):
+        """修改记忆库信息
+        :param request: Request instance for UpdateMemoryCollection.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.UpdateMemoryCollectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateMemoryCollection", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteMcpServer(self, request):
+        """删除自定义MCP服务
+        :param request: Request instance for DeleteMcpServer.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DeleteMcpServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteMcpServer", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyMcpServer(self, request):
+        """修改自定义MCP服务
+        :param request: Request instance for ModifyMcpServer.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ModifyMcpServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyMcpServer", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateMcpServer(self, request):
+        """创建自定义MCP服务
+        :param request: Request instance for CreateMcpServer.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.CreateMcpServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateMcpServer", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMcpServers(self, request):
+        """查询自定义MCP服务
+        :param request: Request instance for DescribeMcpServers.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMcpServersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMcpServers", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMcpOfficialServers(self, request):
+        """查询MCP官方服务
+        :param request: Request instance for DescribeMcpOfficialServers.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMcpOfficialServersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMcpOfficialServers", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeactivateMcpOfficialServer(self, request):
+        """取消MCP官方服务
+        :param request: Request instance for DeactivateMcpOfficialServer.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DeactivateMcpOfficialServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeactivateMcpOfficialServer", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ActivateMcpOfficialServer(self, request):
+        """激活MCP官方服务
+        :param request: Request instance for ActivateMcpOfficialServer.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ActivateMcpOfficialServerRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ActivateMcpOfficialServer", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMcpSquares(self, request):
+        """查询MCP广场
+        :param request: Request instance for DescribeMcpSquares.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMcpSquaresRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMcpSquares", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

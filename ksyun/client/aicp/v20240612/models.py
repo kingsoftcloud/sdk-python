@@ -174,6 +174,7 @@ class SaveNotebookImageRequest(AbstractModel):
         :param NamespacePermission: 命名空间权限，Public-公有 / Private-私有
         :type PathPrefix: String
         :param ImageRepo: 镜像仓库
+>长度为2-30位,支持填写小写英文字母、数字、分隔符"_"和"-"(分隔符不能在首位或末位)
         :type PathPrefix: String
         :param ImageVersion: 版本号
         :type PathPrefix: String
@@ -1126,7 +1127,7 @@ class EnableApikeyStatusRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""启用KSCC API Key
+        r"""启用 API Key
         :param KeyId: API Key的ID
         :type PathPrefix: String
         :param Status: 启禁用状态：1启用，2禁用
@@ -1220,9 +1221,9 @@ class DescribeModelsRequest(AbstractModel):
         :type PathPrefix: Int
         :param MaxResults: 分页页长，最大100
         :type PathPrefix: Int
-        :param ModelCategory: 模型类别筛选项
+        :param ModelCategory: 模型类别筛选项，如"文本模型"。
         :type PathPrefix: Filter
-        :param Provider: 模型供应商
+        :param Provider: 模型供应商，如"Qwen"。
         :type PathPrefix: Filter
         :param ContextLength: 模型上下文长度
 1 - 128k及以下
@@ -1331,6 +1332,8 @@ class DescribeApikeysRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param KeyId: 按apiKeyId 查询
         :type PathPrefix: Filter
+        :param ExcludeTypes: 需要排除的key 类型：1- kscc key。
+        :type PathPrefix: Filter
         """
         self.Marker = None
         self.MaxResults = None
@@ -1339,6 +1342,7 @@ class DescribeApikeysRequest(AbstractModel):
         self.Namekeyword = None
         self.DefaultKey = None
         self.KeyId = None
+        self.ExcludeTypes = None
 
     def _deserialize(self, params):
         if params.get("Marker"):
@@ -1355,6 +1359,8 @@ class DescribeApikeysRequest(AbstractModel):
             self.DefaultKey = params.get("DefaultKey")
         if params.get("KeyId"):
             self.KeyId = params.get("KeyId")
+        if params.get("ExcludeTypes"):
+            self.ExcludeTypes = params.get("ExcludeTypes")
 
 
 class QueryTokenDataRequest(AbstractModel):
@@ -2220,6 +2226,27 @@ class DescribeResourcePoolInstancesRequest(AbstractModel):
             self.Filter = params.get("Filter")
 
 
+class EnableKpfsComponentRequest(AbstractModel):
+    """EnableKpfsComponent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开启安装kpfs组件
+        :param ResourcePoolId: 资源组id
+        :type PathPrefix: String
+        :param FileSystemId: 文件系统id
+        :type PathPrefix: String
+        """
+        self.ResourcePoolId = None
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
 class CreateInferenceEndpointRequest(AbstractModel):
     """CreateInferenceEndpoint请求参数结构体
     """
@@ -2508,5 +2535,272 @@ class DescribeQueuesRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+
+
+class CreateQueueRequest(AbstractModel):
+    """CreateQueue请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建资源组队列
+        :param ResourcePoolId: 资源池ID
+        :type PathPrefix: String
+        :param QueueName: 允许小写字母、数字、"."、"-",以字母、数字开头和结尾 且"-"和"."不可相邻, 长度 1-64
+        :type PathPrefix: String
+        :param Capability: 资源配额，GPU、CPU、内存等
+        :type PathPrefix: Object
+        :param AllowBorrowing: 是否允许向其他队列借资源
+        :type PathPrefix: Boolean
+        :param Description: 队列描述, 长度最大200
+        :type PathPrefix: String
+        :param AccessList: 访问控制列表（子账号权限信息）
+        :type PathPrefix: Array
+        :param WorkloadType: 支持负载类型，默认不传表示不限制使用类型 
+- Notebook（开发任务）
+- TrainJob（训练任务）
+- Inference（推理任务）
+- DataJob（数据处理任务）
+        :type PathPrefix: Array
+        """
+        self.ResourcePoolId = None
+        self.QueueName = None
+        self.Capability = None
+        self.AllowBorrowing = None
+        self.Description = None
+        self.AccessList = None
+        self.WorkloadType = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("QueueName"):
+            self.QueueName = params.get("QueueName")
+        if params.get("Capability"):
+            self.Capability = params.get("Capability")
+        if params.get("AllowBorrowing"):
+            self.AllowBorrowing = params.get("AllowBorrowing")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("AccessList"):
+            self.AccessList = params.get("AccessList")
+        if params.get("WorkloadType"):
+            self.WorkloadType = params.get("WorkloadType")
+
+
+class ModifyQueueRequest(AbstractModel):
+    """ModifyQueue请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改资源组队列
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param Capability: 资源配额，不传该字段表示不修改，若传入，则CPU、Memory、GPUInfos会全量覆盖
+        :type PathPrefix: Object
+        :param AllowBorrowing: 是否允许向其他队列借资源，不传该字段表示不修改
+        :type PathPrefix: Boolean
+        :param Description: 队列描述，不传该字段表示不修改
+        :type PathPrefix: String
+        :param AccessList: 访问控制列表，若传入会进行全量覆盖式修改。传入空数组代表清理全部已授权子用户
+        :type PathPrefix: Array
+        :param WorkloadType: 支持负载类型，不传该字段表示不修改，传空数组表示修改为不限制 
+- Notebook（开发任务）
+- TrainJob（训练任务）
+- Inference（推理任务）
+- DataJob（数据处理任务）
+        :type PathPrefix: Array
+        """
+        self.QueueId = None
+        self.Capability = None
+        self.AllowBorrowing = None
+        self.Description = None
+        self.AccessList = None
+        self.WorkloadType = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("Capability"):
+            self.Capability = params.get("Capability")
+        if params.get("AllowBorrowing"):
+            self.AllowBorrowing = params.get("AllowBorrowing")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("AccessList"):
+            self.AccessList = params.get("AccessList")
+        if params.get("WorkloadType"):
+            self.WorkloadType = params.get("WorkloadType")
+
+
+class DeleteQueueRequest(AbstractModel):
+    """DeleteQueue请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除队列接口
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        """
+        self.QueueId = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+
+
+class AddQueueAccessUserRequest(AbstractModel):
+    """AddQueueAccessUser请求参数结构体
+    """
+
+    def __init__(self):
+        r"""添加队列成员
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param SubAccountId: 子账号ID
+        :type PathPrefix: String
+        :param Permission: 权限类型，有效值：
+- writer，管理员
+- reader，队列成员
+        :type PathPrefix: String
+        """
+        self.QueueId = None
+        self.SubAccountId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("SubAccountId"):
+            self.SubAccountId = params.get("SubAccountId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class RemoveQueueAccessUserRequest(AbstractModel):
+    """RemoveQueueAccessUser请求参数结构体
+    """
+
+    def __init__(self):
+        r"""移出队列成员
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param SubAccountId: 子账号ID
+        :type PathPrefix: String
+        """
+        self.QueueId = None
+        self.SubAccountId = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("SubAccountId"):
+            self.SubAccountId = params.get("SubAccountId")
+
+
+class DescribeModelTypesRequest(AbstractModel):
+    """DescribeModelTypes请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型类别
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class EnableEndpointQuotaLimitRequest(AbstractModel):
+    """EnableEndpointQuotaLimit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开启配额限制
+        :param EndpointId: 接入点ID
+        :type PathPrefix: String
+        :param QuotaLimitCycle: 限额周期：
+daily, weekly, monthly, custom
+        :type PathPrefix: String
+        :param CustomCycle: 自定义周期，当QuotaLimitCycle为custom时必传
+        :type PathPrefix: Int
+        :param QuotaLimitAmount: 限额数量
+        :type PathPrefix: Long
+        """
+        self.EndpointId = None
+        self.QuotaLimitCycle = None
+        self.CustomCycle = None
+        self.QuotaLimitAmount = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+        if params.get("QuotaLimitCycle"):
+            self.QuotaLimitCycle = params.get("QuotaLimitCycle")
+        if params.get("CustomCycle"):
+            self.CustomCycle = params.get("CustomCycle")
+        if params.get("QuotaLimitAmount"):
+            self.QuotaLimitAmount = params.get("QuotaLimitAmount")
+
+
+class DisableEndpointQuotaLimitRequest(AbstractModel):
+    """DisableEndpointQuotaLimit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""关闭配额限制
+        :param EndpointId: 接入点ID
+        :type PathPrefix: String
+        :param QuotaLimitCycle: 限额周期：
+daily, weekly, monthly, custom
+        :type PathPrefix: String
+        :param CustomCycle: 自定义周期，QuotaLimitCycle为custom时必填
+        :type PathPrefix: String
+        :param QuotaLimitAmount: 限额数量
+        :type PathPrefix: String
+        """
+        self.EndpointId = None
+        self.QuotaLimitCycle = None
+        self.CustomCycle = None
+        self.QuotaLimitAmount = None
+
+    def _deserialize(self, params):
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+        if params.get("QuotaLimitCycle"):
+            self.QuotaLimitCycle = params.get("QuotaLimitCycle")
+        if params.get("CustomCycle"):
+            self.CustomCycle = params.get("CustomCycle")
+        if params.get("QuotaLimitAmount"):
+            self.QuotaLimitAmount = params.get("QuotaLimitAmount")
+
+
+class GetQueueMemberRequest(AbstractModel):
+    """GetQueueMember请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询队列子用户资源使用信息
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param SubAccountId: 子账号ID
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 单次调用可返回的最大条目数量。可选范围5-1000
+        :type PathPrefix: Int
+        """
+        self.QueueId = None
+        self.SubAccountId = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("SubAccountId"):
+            self.SubAccountId = params.get("SubAccountId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
 
 

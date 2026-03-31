@@ -305,7 +305,7 @@ class AbstractClient(object):
         options = {'IsPostJson': True}
         body = self.call(action, params, options)
         response = json.loads(body)
-        if "Error" not in response:
+        if "Error" not in response or not response["Error"]:
             return body
         else:
             code = response["Error"]["Code"]

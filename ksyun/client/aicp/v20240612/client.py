@@ -353,29 +353,6 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def GetInferencePods(self, request):
-        """查询推理服务pod列表
-        :param request: Request instance for GetInferencePods.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.GetInferencePodsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetInferencePods", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def GetInferenceLogs(self, request):
         """查询推理服务日志
         :param request: Request instance for GetInferenceLogs.
@@ -499,6 +476,98 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("GetInferenceAutoScaleStrategy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyTerminatePolicy(self, request):
+        """修改队列关停策略
+        :param request: Request instance for ModifyTerminatePolicy.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyTerminatePolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyTerminatePolicy", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeTerminatePolicy(self, request):
+        """查询队列关停策略
+        :param request: Request instance for DescribeTerminatePolicy.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTerminatePolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTerminatePolicy", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateTerminatePolicy(self, request):
+        """创建队列关停策略
+        :param request: Request instance for CreateTerminatePolicy.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateTerminatePolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateTerminatePolicy", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteTerminatePolicy(self, request):
+        """删除队列关停策略
+        :param request: Request instance for DeleteTerminatePolicy.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteTerminatePolicyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteTerminatePolicy", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1925,6 +1994,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("GetQueueMember", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeInferencePods(self, request):
+        """查询模型在线服务Pod列表
+        :param request: Request instance for DescribeInferencePods.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeInferencePodsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInferencePods", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

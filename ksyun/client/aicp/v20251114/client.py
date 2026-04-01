@@ -767,3 +767,72 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def GetMcpOfficialServerDetail(self, request):
+        """查询MCP官方服务详情
+        :param request: Request instance for GetMcpOfficialServerDetail.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetMcpOfficialServerDetailRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetMcpOfficialServerDetail", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetMcpServerDetail(self, request):
+        """查询自定义MCP服务详情
+        :param request: Request instance for GetMcpServerDetail.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetMcpServerDetailRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetMcpServerDetail", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetMcpSquareDetail(self, request):
+        """查询MCP广场详情
+        :param request: Request instance for GetMcpSquareDetail.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetMcpSquareDetailRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetMcpSquareDetail", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

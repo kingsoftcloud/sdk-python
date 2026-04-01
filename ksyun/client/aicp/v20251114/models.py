@@ -898,3 +898,51 @@ class DescribeMcpSquaresRequest(AbstractModel):
             self.NameKeyword = params.get("NameKeyword")
 
 
+class GetMcpOfficialServerDetailRequest(AbstractModel):
+    """GetMcpOfficialServerDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询MCP官方服务详情
+        :param McpServerId: MCP服务ID
+        :type PathPrefix: String
+        """
+        self.McpServerId = None
+
+    def _deserialize(self, params):
+        if params.get("McpServerId"):
+            self.McpServerId = params.get("McpServerId")
+
+
+class GetMcpServerDetailRequest(AbstractModel):
+    """GetMcpServerDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询自定义MCP服务详情
+        :param McpServerId: MCP服务ID
+        :type PathPrefix: String
+        """
+        self.McpServerId = None
+
+    def _deserialize(self, params):
+        if params.get("McpServerId"):
+            self.McpServerId = params.get("McpServerId")
+
+
+class GetMcpSquareDetailRequest(AbstractModel):
+    """GetMcpSquareDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询MCP广场详情
+        :param McpServerId: MCP服务ID
+        :type PathPrefix: String
+        """
+        self.McpServerId = None
+
+    def _deserialize(self, params):
+        if params.get("McpServerId"):
+            self.McpServerId = params.get("McpServerId")
+
+

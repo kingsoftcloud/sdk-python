@@ -65,11 +65,11 @@ class ModifyStorageConfigRequest(AbstractModel):
 
     def __init__(self):
         r"""修改存储配置
-        :param StorageConfigId: 存储配置Id
+        :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
         :param StorageConfigName: 存储配置名称, 1-64个字符，允许字母 中文 数字 - _ . / ( )
         :type PathPrefix: String
-        :param Description: 存储配置描述
+        :param Description: 存储配置存储配置描述
         :type PathPrefix: String
         :param MountPath: 挂载路径, 不能覆盖关键系统目录，包括：/、/bin、/sbin、/usr、/etc、/proc、/sys、/home等，子目录可以
         :type PathPrefix: String
@@ -959,27 +959,6 @@ class GetInferenceModelsRequest(AbstractModel):
         return
 
 
-class GetInferencePodsRequest(AbstractModel):
-    """GetInferencePods请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询推理服务pod列表
-        :param InferenceId: 推理服务ID
-        :type PathPrefix: String
-        :param State: Pod状态（Pending，Running，Failed，Succeeded，Stopped，Unknown）
-        :type PathPrefix: String
-        """
-        self.InferenceId = None
-        self.State = None
-
-    def _deserialize(self, params):
-        if params.get("InferenceId"):
-            self.InferenceId = params.get("InferenceId")
-        if params.get("State"):
-            self.State = params.get("State")
-
-
 class GetInferenceLogsRequest(AbstractModel):
     """GetInferenceLogs请求参数结构体
     """
@@ -1104,6 +1083,139 @@ class GetInferenceAutoScaleStrategyRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("InferenceId"):
             self.InferenceId = params.get("InferenceId")
+
+
+class ModifyTerminatePolicyRequest(AbstractModel):
+    """ModifyTerminatePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改队列关停策略
+        :param Name: 名称。若不传入则保持原值
+        :type PathPrefix: String
+        :param InstanceIds: 资源ID列表，当 TerminatePolicyType = WhiteList时，可传。若不传入则保持原值，传入则覆盖式修改
+        :type PathPrefix: Array
+        :param UseRatePolicy: 资源利用率配置，TerminatePolicyType = ResourceUseRate 可传
+        :type PathPrefix: Object
+        :param TerminatePolicyId: 关停策略ID
+        :type PathPrefix: String
+        """
+        self.Name = None
+        self.InstanceIds = None
+        self.UseRatePolicy = None
+        self.TerminatePolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+        if params.get("UseRatePolicy"):
+            self.UseRatePolicy = params.get("UseRatePolicy")
+        if params.get("TerminatePolicyId"):
+            self.TerminatePolicyId = params.get("TerminatePolicyId")
+
+
+class DescribeTerminatePolicyRequest(AbstractModel):
+    """DescribeTerminatePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询队列关停策略
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param TerminatePolicyId: 关停策略ID
+        :type PathPrefix: Filter
+        :param CreateUser: 创建者ID
+        :type PathPrefix: String
+        :param Filter: 过滤器
+        :type PathPrefix: Filter
+        :param PageSize: 单页查询数
+        :type PathPrefix: Int
+        :param Page: 页数
+        :type PathPrefix: Int
+        """
+        self.QueueId = None
+        self.TerminatePolicyId = None
+        self.CreateUser = None
+        self.Filter = None
+        self.PageSize = None
+        self.Page = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("TerminatePolicyId"):
+            self.TerminatePolicyId = params.get("TerminatePolicyId")
+        if params.get("CreateUser"):
+            self.CreateUser = params.get("CreateUser")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+
+
+class CreateTerminatePolicyRequest(AbstractModel):
+    """CreateTerminatePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建队列关停策略
+        :param Name: 名称
+        :type PathPrefix: String
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param TerminatePolicyType: 关停策略类型
+	- ResourceUseRate 资源使用率
+	- WhiteList 白名单
+
+        :type PathPrefix: String
+        :param TerminatePolicyTarget: 策略对象
+	- Notebook 开发任务
+        :type PathPrefix: String
+        :param InstanceIds: 资源ID列表，当 TerminatePolicyType = WhiteList时，可为空
+        :type PathPrefix: Array
+        :param UseRatePolicy: 资源利用率配置，TerminatePolicyType = ResourceUseRate 必传
+        :type PathPrefix: Object
+        """
+        self.Name = None
+        self.QueueId = None
+        self.TerminatePolicyType = None
+        self.TerminatePolicyTarget = None
+        self.InstanceIds = None
+        self.UseRatePolicy = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("TerminatePolicyType"):
+            self.TerminatePolicyType = params.get("TerminatePolicyType")
+        if params.get("TerminatePolicyTarget"):
+            self.TerminatePolicyTarget = params.get("TerminatePolicyTarget")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
+        if params.get("UseRatePolicy"):
+            self.UseRatePolicy = params.get("UseRatePolicy")
+
+
+class DeleteTerminatePolicyRequest(AbstractModel):
+    """DeleteTerminatePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除队列关停策略
+        :param TerminatePolicyId: 关停策略ID
+        :type PathPrefix: String
+        """
+        self.TerminatePolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("TerminatePolicyId"):
+            self.TerminatePolicyId = params.get("TerminatePolicyId")
 
 
 class StopNotebookSavingImageRequest(AbstractModel):
@@ -2263,12 +2375,15 @@ class CreateInferenceEndpointRequest(AbstractModel):
         :type PathPrefix: Object
         :param ModelId: ModelId 模型名称
         :type PathPrefix: String
+        :param QuotaLimit: 限额
+        :type PathPrefix: Object
         """
         self.EndpointName = None
         self.ProjectId = None
         self.ModelName = None
         self.RateLimit_ = None
         self.ModelId = None
+        self.QuotaLimit = None
 
     def _deserialize(self, params):
         if params.get("EndpointName"):
@@ -2281,6 +2396,8 @@ class CreateInferenceEndpointRequest(AbstractModel):
             self.RateLimit_ = params.get("RateLimit ")
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
+        if params.get("QuotaLimit"):
+            self.QuotaLimit = params.get("QuotaLimit")
 
 
 class DescribeInferenceEndpointsRequest(AbstractModel):
@@ -2798,6 +2915,37 @@ class GetQueueMemberRequest(AbstractModel):
             self.QueueId = params.get("QueueId")
         if params.get("SubAccountId"):
             self.SubAccountId = params.get("SubAccountId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class DescribeInferencePodsRequest(AbstractModel):
+    """DescribeInferencePods请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型在线服务Pod列表
+        :param InferenceId: 推理任务ID
+        :type PathPrefix: String
+        :param Filter: 过滤器
+        :type PathPrefix: Filter
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 单次调用返回最大条目个数
+        :type PathPrefix: Int
+        """
+        self.InferenceId = None
+        self.Filter = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
         if params.get("Page"):
             self.Page = params.get("Page")
         if params.get("PageSize"):

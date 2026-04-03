@@ -76,6 +76,7 @@ class MonitorClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def GetPrometheusToken(self, request):
         """获取 Prometheus 访问Token
         :param request: Request instance for GetPrometheusToken.
@@ -98,6 +99,7 @@ class MonitorClient(AbstractClient):
             else:
                 raise KsyunSDKException(message=str(e))
 
+
     def PutDefaultEventPolicy(self, request):
         """设置默认事件告警策略
         :param request: Request instance for PutDefaultEventPolicy.
@@ -119,3 +121,5 @@ class MonitorClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+

@@ -1156,3 +1156,5 @@ class PostgresqlClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+

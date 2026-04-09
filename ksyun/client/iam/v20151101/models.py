@@ -942,18 +942,6 @@ class UpdateProjectInfoRequest(AbstractModel):
             self.ProjectDesc = params.get("ProjectDesc")
 
 
-class GetAccountAllProjectListRequest(AbstractModel):
-    """GetAccountAllProjectList请求参数结构体
-    """
-
-    def __init__(self):
-        r"""获取主/子用户项目列表
-        """
-
-    def _deserialize(self, params):
-        return
-
-
 class UpdateInstanceProjectIdRequest(AbstractModel):
     """UpdateInstanceProjectId请求参数结构体
     """
@@ -1577,5 +1565,26 @@ class GetEffectivePoliciesRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("MaxItems"):
             self.MaxItems = params.get("MaxItems")
+
+
+class BatchUpdateInstanceProjectIdRequest(AbstractModel):
+    """BatchUpdateInstanceProjectId请求参数结构体
+    """
+
+    def __init__(self):
+        r"""批量更新实例项目
+        :param ProjectId: 项目ID
+        :type PathPrefix: Int
+        :param InstanceIds: 实例IDs []string
+        :type PathPrefix: Array
+        """
+        self.ProjectId = None
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
 
 

@@ -882,29 +882,6 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def GetAccountAllProjectList(self, request):
-        """获取主/子用户项目列表
-        :param request: Request instance for GetAccountAllProjectList.
-        :type request: :class:`ksyun.client.iam.v20151101.models.GetAccountAllProjectListRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("GetAccountAllProjectList", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def UpdateInstanceProjectId(self, request):
         """更新实例项目
         :param request: Request instance for UpdateInstanceProjectId.
@@ -1501,3 +1478,28 @@ class IamClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+
+    def BatchUpdateInstanceProjectId(self, request):
+        """批量更新实例项目
+        :param request: Request instance for BatchUpdateInstanceProjectId.
+        :type request: :class:`ksyun.client.iam.v20151101.models.BatchUpdateInstanceProjectIdRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BatchUpdateInstanceProjectId", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

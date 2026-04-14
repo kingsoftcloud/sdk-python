@@ -1256,3 +1256,24 @@ class CreateDataFlowRequest(AbstractModel):
             self.Description = params.get("Description")
 
 
+class SetFileSystemResourceProtectRequest(AbstractModel):
+    """SetFileSystemResourceProtect请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置文件系统实例删除保护
+        :param FileSystemIds: 
+        :type PathPrefix: Array
+        :param IsProtection: 
+        :type PathPrefix: Boolean
+        """
+        self.FileSystemIds = None
+        self.IsProtection = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemIds"):
+            self.FileSystemIds = params.get("FileSystemIds")
+        if params.get("IsProtection"):
+            self.IsProtection = params.get("IsProtection")
+
+

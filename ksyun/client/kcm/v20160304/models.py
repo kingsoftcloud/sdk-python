@@ -76,11 +76,17 @@ class ModifyCertificateRequest(AbstractModel):
         :type PathPrefix: String
         :param PublicKey: 公钥
         :type PathPrefix: String
+        :param SslCertificateId: ssl证书id
+        :type PathPrefix: String
+        :param Description: 描述
+        :type PathPrefix: String
         """
         self.CertificateId = None
         self.CertificateName = None
         self.PrivateKey = None
         self.PublicKey = None
+        self.SslCertificateId = None
+        self.Description = None
 
     def _deserialize(self, params):
         if params.get("CertificateId"):
@@ -91,6 +97,10 @@ class ModifyCertificateRequest(AbstractModel):
             self.PrivateKey = params.get("PrivateKey")
         if params.get("PublicKey"):
             self.PublicKey = params.get("PublicKey")
+        if params.get("SslCertificateId"):
+            self.SslCertificateId = params.get("SslCertificateId")
+        if params.get("Description"):
+            self.Description = params.get("Description")
 
 
 class DescribeCertificatesRequest(AbstractModel):
@@ -390,5 +400,26 @@ class GetCertificateDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("CertificateId"):
             self.CertificateId = params.get("CertificateId")
+
+
+class DescribeCompanyRequest(AbstractModel):
+    """DescribeCompany请求参数结构体
+    """
+
+    def __init__(self):
+        r"""联系人列表
+        :param Page: 
+        :type PathPrefix: Int
+        :param PageSize: 
+        :type PathPrefix: Int
+        """
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
 
 

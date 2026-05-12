@@ -15,7 +15,7 @@ class Bill_unionClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("QueryInstanceConsume", params, "application/json")
+            body = self.call_judge("QueryInstanceConsume", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -144,3 +144,5 @@ class Bill_unionClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+

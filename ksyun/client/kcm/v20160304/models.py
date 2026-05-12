@@ -402,6 +402,47 @@ class GetCertificateDetailRequest(AbstractModel):
             self.CertificateId = params.get("CertificateId")
 
 
+class ExtendCertificateRequest(AbstractModel):
+    """ExtendCertificate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""证书延期
+        :param CertificateId: 旧证书ID
+        :type PathPrefix: String
+        :param CertificateCode: 证书代码
+        :type PathPrefix: String
+        :param YearLength: 证书年限，最长续费1年
+        :type PathPrefix: Int
+        :param DomainCount: 域名数量，最小值为1
+        :type PathPrefix: Int
+        :param WildcardCount: 通配符域名数量，最小值为0
+        :type PathPrefix: Int
+        :param BillType: 计费方式：801 一次性预付费 805 一次性后付费  不填默认值为：805 一次性后付费
+        :type PathPrefix: Int
+        """
+        self.CertificateId = None
+        self.CertificateCode = None
+        self.YearLength = None
+        self.DomainCount = None
+        self.WildcardCount = None
+        self.BillType = None
+
+    def _deserialize(self, params):
+        if params.get("CertificateId"):
+            self.CertificateId = params.get("CertificateId")
+        if params.get("CertificateCode"):
+            self.CertificateCode = params.get("CertificateCode")
+        if params.get("YearLength"):
+            self.YearLength = params.get("YearLength")
+        if params.get("DomainCount"):
+            self.DomainCount = params.get("DomainCount")
+        if params.get("WildcardCount"):
+            self.WildcardCount = params.get("WildcardCount")
+        if params.get("BillType"):
+            self.BillType = params.get("BillType")
+
+
 class DescribeCompanyRequest(AbstractModel):
     """DescribeCompany请求参数结构体
     """

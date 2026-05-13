@@ -64,7 +64,6 @@ class DescribeClustersRequest(AbstractModel):
         :param ClusterIds: 集群ID
         :type PathPrefix: Array
         :param MaxResults: 值范围0-50
-默认值：10
         :type PathPrefix: Int
         :param Marker: 分页参数
 游标起始位置，每次查询返回

@@ -154,7 +154,7 @@ class DescribeUserTokenUsageRequest(AbstractModel):
         :type PathPrefix: String
         :param UserName: 用户邮箱前缀，不传则不过滤用户
         :type PathPrefix: String
-        :param Department: 部门全路径（需要带所有父部门，例如：xx公司/xx事业部/研发部），不传则不过滤部门
+        :param Department: 部门名称或路径，不传则不过滤部门
         :type PathPrefix: String
         """
         self.StartTime = None
@@ -427,5 +427,48 @@ class DeleteUserQuotaRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("UserName"):
             self.UserName = params.get("UserName")
+
+
+class DescribeSharedOrganizationTreeRequest(AbstractModel):
+    """DescribeSharedOrganizationTree请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询企业部门组织树，包含父子部门关系和AI启用状态。
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DescribeSharedUserPointUsageRequest(AbstractModel):
+    """DescribeSharedUserPointUsage请求参数结构体
+    """
+
+    def __init__(self):
+        r"""按时间范围查询用户积分和费用消耗用量，可按用户或部门过滤。
+        :param StartTime: 开始时间，格式：yyyy-MM-dd HH:mm:ss
+        :type PathPrefix: String
+        :param EndTime: 结束时间，格式：yyyy-MM-dd HH:mm:ss
+        :type PathPrefix: String
+        :param UserName: 用户名，不传则不过滤用户
+        :type PathPrefix: String
+        :param Department: 部门名称或路径，不传则不过滤部门
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.UserName = None
+        self.Department = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+        if params.get("Department"):
+            self.Department = params.get("Department")
 
 

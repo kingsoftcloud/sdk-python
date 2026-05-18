@@ -445,3 +445,49 @@ class KsccClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DescribeSharedOrganizationTree(self, request):
+        """查询企业部门组织树，包含父子部门关系和AI启用状态。
+        :param request: Request instance for DescribeSharedOrganizationTree.
+        :type request: :class:`ksyun.client.kscc.v1.models.DescribeSharedOrganizationTreeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSharedOrganizationTree", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeSharedUserPointUsage(self, request):
+        """按时间范围查询用户积分和费用消耗用量，可按用户或部门过滤。
+        :param request: Request instance for DescribeSharedUserPointUsage.
+        :type request: :class:`ksyun.client.kscc.v1.models.DescribeSharedUserPointUsageRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeSharedUserPointUsage", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

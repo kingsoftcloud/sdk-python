@@ -37,6 +37,8 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: Array
         :param Roles: 角色资源配置信息
         :type PathPrefix: Array
+        :param HoldingTimeMinutes: 实例保留时长（分钟）
+        :type PathPrefix: Int
         """
         self.TrainJobName = None
         self.Description = None
@@ -51,6 +53,7 @@ class CreateTrainJobRequest(AbstractModel):
         self.SupportTensorboard = None
         self.StorageConfigs = None
         self.Roles = None
+        self.HoldingTimeMinutes = None
 
     def _deserialize(self, params):
         if params.get("TrainJobName"):
@@ -79,6 +82,8 @@ class CreateTrainJobRequest(AbstractModel):
             self.StorageConfigs = params.get("StorageConfigs")
         if params.get("Roles"):
             self.Roles = params.get("Roles")
+        if params.get("HoldingTimeMinutes"):
+            self.HoldingTimeMinutes = params.get("HoldingTimeMinutes")
 
 
 class DescribeTrainJobsRequest(AbstractModel):

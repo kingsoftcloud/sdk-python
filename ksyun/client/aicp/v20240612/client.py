@@ -8,6 +8,29 @@ class AicpClient(AbstractClient):
     _apiVersion = '2024-06-12'
     _endpoint = 'aicp.api.ksyun.com'
     _service = 'aicp'
+    def CreateResourcePool(self, request):
+        """创建资源池
+        :param request: Request instance for CreateResourcePool.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateResourcePoolRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateResourcePool", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def CreateStorageConfig(self, request):
         """创建存储配置
         :param request: Request instance for CreateStorageConfig.
@@ -200,6 +223,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("CreateNotebook", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def EnableKlog(self, request):
+        """开启或者关闭klog服务
+        :param request: Request instance for EnableKlog.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.EnableKlogRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("EnableKlog", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -453,6 +499,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeNotebookLog", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyComponents(self, request):
+        """修改资源池控件
+        :param request: Request instance for ModifyComponents.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyComponentsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyComponents", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -1618,29 +1687,6 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def UpdateInferenceEndpoint(self, request):
-        """创建接入点
-        :param request: Request instance for UpdateInferenceEndpoint.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.UpdateInferenceEndpointRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("UpdateInferenceEndpoint", params, "application/json")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def StartInferenceEndpoint(self, request):
         """开启接入点
         :param request: Request instance for StartInferenceEndpoint.
@@ -2017,6 +2063,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeInferencePods", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyResourcePool(self, request):
+        """修改资源组
+        :param request: Request instance for ModifyResourcePool.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyResourcePoolRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyResourcePool", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

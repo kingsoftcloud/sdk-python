@@ -1,5 +1,71 @@
 from ksyun.common.abstract_model import AbstractModel
 
+class CreateResourcePoolRequest(AbstractModel):
+    """CreateResourcePool请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建资源池
+        :param ResourcePoolName: 资源组名称
+        :type PathPrefix: String
+        :param Description: 描述
+        :type PathPrefix: String
+        :param VpcId: 虚拟私有网络ID
+        :type PathPrefix: String
+        :param ResourcePoolType: 资源组类型
+        :type PathPrefix: String
+        :param ClusterId: 集群ID
+        :type PathPrefix: String
+        :param EnableKPFSPerformance: 开启性能型KPFS
+        :type PathPrefix: Boolean
+        :param FileSystemId: 文件系统id
+        :type PathPrefix: String
+        :param EnableKlog: 开启Klog
+        :type PathPrefix: String
+        :param LogProjectName: Klog工程名
+        :type PathPrefix: String
+        :param Overallocate: 配额超发
+        :type PathPrefix: Boolean
+        :param Components: 组件
+        :type PathPrefix: Array
+        """
+        self.ResourcePoolName = None
+        self.Description = None
+        self.VpcId = None
+        self.ResourcePoolType = None
+        self.ClusterId = None
+        self.EnableKPFSPerformance = None
+        self.FileSystemId = None
+        self.EnableKlog = None
+        self.LogProjectName = None
+        self.Overallocate = None
+        self.Components = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolName"):
+            self.ResourcePoolName = params.get("ResourcePoolName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("VpcId"):
+            self.VpcId = params.get("VpcId")
+        if params.get("ResourcePoolType"):
+            self.ResourcePoolType = params.get("ResourcePoolType")
+        if params.get("ClusterId"):
+            self.ClusterId = params.get("ClusterId")
+        if params.get("EnableKPFSPerformance"):
+            self.EnableKPFSPerformance = params.get("EnableKPFSPerformance")
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("EnableKlog"):
+            self.EnableKlog = params.get("EnableKlog")
+        if params.get("LogProjectName"):
+            self.LogProjectName = params.get("LogProjectName")
+        if params.get("Overallocate"):
+            self.Overallocate = params.get("Overallocate")
+        if params.get("Components"):
+            self.Components = params.get("Components")
+
+
 class CreateStorageConfigRequest(AbstractModel):
     """CreateStorageConfig请求参数结构体
     """
@@ -27,6 +93,9 @@ class CreateStorageConfigRequest(AbstractModel):
         :type PathPrefix: String
         :param Sk: 访问密钥Secret,除性能型KPFS外，其余存储类型均需要填写
         :type PathPrefix: String
+        :param Prefetch: 开启预取
+> 当选择的文件系统是容量型/标准型KPFS时,可设置开启预取，开启后能提升连续读性能，但可能降低随机读性能。
+        :type PathPrefix: Boolean
         """
         self.StorageConfigName = None
         self.Description = None
@@ -37,6 +106,7 @@ class CreateStorageConfigRequest(AbstractModel):
         self.Users = None
         self.Ak = None
         self.Sk = None
+        self.Prefetch = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigName"):
@@ -57,6 +127,8 @@ class CreateStorageConfigRequest(AbstractModel):
             self.Ak = params.get("Ak")
         if params.get("Sk"):
             self.Sk = params.get("Sk")
+        if params.get("Prefetch"):
+            self.Prefetch = params.get("Prefetch")
 
 
 class ModifyStorageConfigRequest(AbstractModel):
@@ -81,6 +153,9 @@ class ModifyStorageConfigRequest(AbstractModel):
         :type PathPrefix: String
         :param Sk: 访问密钥Secret,对于KPFS类型的存储配置,需要用户自行保证AK/SK的有效性
         :type PathPrefix: String
+        :param Prefetch: 开启预取
+> 当选择的文件系统是容量型/标准型KPFS时,可设置开启预取，开启后能提升连续读性能，但可能降低随机读性能。
+        :type PathPrefix: Boolean
         """
         self.StorageConfigId = None
         self.StorageConfigName = None
@@ -90,6 +165,7 @@ class ModifyStorageConfigRequest(AbstractModel):
         self.Users = None
         self.Ak = None
         self.Sk = None
+        self.Prefetch = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigId"):
@@ -108,6 +184,8 @@ class ModifyStorageConfigRequest(AbstractModel):
             self.Ak = params.get("Ak")
         if params.get("Sk"):
             self.Sk = params.get("Sk")
+        if params.get("Prefetch"):
+            self.Prefetch = params.get("Prefetch")
 
 
 class DescribeStorageConfigsRequest(AbstractModel):
@@ -567,6 +645,32 @@ class CreateNotebookRequest(AbstractModel):
             self.AllocationId = params.get("AllocationId")
         if params.get("RunOnCPU"):
             self.RunOnCPU = params.get("RunOnCPU")
+
+
+class EnableKlogRequest(AbstractModel):
+    """EnableKlog请求参数结构体
+    """
+
+    def __init__(self):
+        r"""开启或者关闭klog服务
+        :param ResourcePoolId: 资源组ID
+        :type PathPrefix: String
+        :param EnableKlog: 是否开启klog
+        :type PathPrefix: Boolean
+        :param LogProjectName: 日志工程名
+        :type PathPrefix: String
+        """
+        self.ResourcePoolId = None
+        self.EnableKlog = None
+        self.LogProjectName = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("EnableKlog"):
+            self.EnableKlog = params.get("EnableKlog")
+        if params.get("LogProjectName"):
+            self.LogProjectName = params.get("LogProjectName")
 
 
 class CreateImageRequest(AbstractModel):
@@ -1069,6 +1173,28 @@ class DescribeNotebookLogRequest(AbstractModel):
             self.TailLines = params.get("TailLines")
 
 
+class ModifyComponentsRequest(AbstractModel):
+    """ModifyComponents请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改资源池控件
+        :param ResourcePoolId: 	
+资源池ID
+        :type PathPrefix: String
+        :param Components: 安装组件列表
+        :type PathPrefix: Array
+        """
+        self.ResourcePoolId = None
+        self.Components = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("Components"):
+            self.Components = params.get("Components")
+
+
 class GetInferenceAutoScaleStrategyRequest(AbstractModel):
     """GetInferenceAutoScaleStrategy请求参数结构体
     """
@@ -1493,7 +1619,7 @@ class QueryTokenDataRequest(AbstractModel):
         :type PathPrefix: String
         :param Keyword: 搜索关键词
         :type PathPrefix: String
-        :param GroupBy: 分组字段：model、keyId
+        :param GroupBy: 分组字段：model、keyId、endpointId
         :type PathPrefix: String
         :param ReasoningType: 推理类型：normal-在线，batch-批量，web-在线体验，为空表示全部。
         :type PathPrefix: String
@@ -1502,6 +1628,14 @@ class QueryTokenDataRequest(AbstractModel):
         :param ModelName: 模型名称
 - 当按照模型分组时，Keyword优先，Keyword为空再以该字段筛选
 - 当按照APIKEY分组时，该字段始终生效
+        :type PathPrefix: String
+        :param SortField: 排序字段
+InputToken、OutputToken、TotalToken
+        :type PathPrefix: String
+        :param SortOrder: asc desc
+与SortField配合
+        :type PathPrefix: String
+        :param KeyId: APIKEY ID，响应数据需按APIKEY 筛选时需要
         :type PathPrefix: String
         """
         self.StartTimestamp = None
@@ -1514,6 +1648,9 @@ class QueryTokenDataRequest(AbstractModel):
         self.ReasoningType = None
         self.Marker = None
         self.ModelName = None
+        self.SortField = None
+        self.SortOrder = None
+        self.KeyId = None
 
     def _deserialize(self, params):
         if params.get("StartTimestamp"):
@@ -1536,6 +1673,12 @@ class QueryTokenDataRequest(AbstractModel):
             self.Marker = params.get("Marker")
         if params.get("ModelName"):
             self.ModelName = params.get("ModelName")
+        if params.get("SortField"):
+            self.SortField = params.get("SortField")
+        if params.get("SortOrder"):
+            self.SortOrder = params.get("SortOrder")
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
 
 
 class DisableApikeyStatusRequest(AbstractModel):
@@ -1947,15 +2090,20 @@ class ModifyTrainJobRequest(AbstractModel):
  - kaic-normal 中优先级
  - kaic-low 低优先级
         :type PathPrefix: String
+        :param HoldingTimeMinutes: 实例保留时长（分钟）
+        :type PathPrefix: Int
         """
         self.TrainJobId = None
         self.Priority = None
+        self.HoldingTimeMinutes = None
 
     def _deserialize(self, params):
         if params.get("TrainJobId"):
             self.TrainJobId = params.get("TrainJobId")
         if params.get("Priority"):
             self.Priority = params.get("Priority")
+        if params.get("HoldingTimeMinutes"):
+            self.HoldingTimeMinutes = params.get("HoldingTimeMinutes")
 
 
 class DescribeTrainJobPodLogsRequest(AbstractModel):
@@ -2462,42 +2610,6 @@ class EnableEndpointRateLimitRequest(AbstractModel):
             self.RateLimit = params.get("RateLimit")
 
 
-class UpdateInferenceEndpointRequest(AbstractModel):
-    """UpdateInferenceEndpoint请求参数结构体
-    """
-
-    def __init__(self):
-        r"""创建接入点
-        :param EndpointName: 推理接入点名称
-        :type PathPrefix: String
-        :param ProjectId: 项目制Id
-        :type PathPrefix: String
-        :param ModelName: 默认绑定的模型名称
-        :type PathPrefix: String
-        :param RateLimit : 接入点限流配置
-        :type PathPrefix: Object
-        :param EndpointId: 
-        :type PathPrefix: String
-        """
-        self.EndpointName = None
-        self.ProjectId = None
-        self.ModelName = None
-        self.RateLimit_ = None
-        self.EndpointId = None
-
-    def _deserialize(self, params):
-        if params.get("EndpointName"):
-            self.EndpointName = params.get("EndpointName")
-        if params.get("ProjectId"):
-            self.ProjectId = params.get("ProjectId")
-        if params.get("ModelName"):
-            self.ModelName = params.get("ModelName")
-        if params.get("RateLimit "):
-            self.RateLimit_ = params.get("RateLimit ")
-        if params.get("EndpointId"):
-            self.EndpointId = params.get("EndpointId")
-
-
 class StartInferenceEndpointRequest(AbstractModel):
     """StartInferenceEndpoint请求参数结构体
     """
@@ -2950,5 +3062,31 @@ class DescribeInferencePodsRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("PageSize"):
             self.PageSize = params.get("PageSize")
+
+
+class ModifyResourcePoolRequest(AbstractModel):
+    """ModifyResourcePool请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改资源组
+        :param ResourcePoolId: 资源组ID
+        :type PathPrefix: String
+        :param ResourcePoolName: 资源组名称
+        :type PathPrefix: String
+        :param Overallocate: 配额超发
+        :type PathPrefix: Boolean
+        """
+        self.ResourcePoolId = None
+        self.ResourcePoolName = None
+        self.Overallocate = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("ResourcePoolName"):
+            self.ResourcePoolName = params.get("ResourcePoolName")
+        if params.get("Overallocate"):
+            self.Overallocate = params.get("Overallocate")
 
 

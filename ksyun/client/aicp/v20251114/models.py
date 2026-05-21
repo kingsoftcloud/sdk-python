@@ -378,34 +378,32 @@ class CreateMemorySdkRequest(AbstractModel):
 
     def __init__(self):
         r"""向指定记忆库写入记忆
-        :param Namespace: 
+        :param AgentId: 运行时Agent id，标签
         :type PathPrefix: String
-        :param UserId: 
+        :param SessionId: 对话ID，区分多个对话
         :type PathPrefix: String
-        :param AgentId: 
+        :param SceneId: 场景ID，用来区分各个场景，提供精细化记忆提取策略
+可选：
+"_sys_work_assistant"、"_sys_travel_assistant"、"_sys_ai_chat_assistant"、"_sys_coding_assistant"、 "_sys_general"
         :type PathPrefix: String
-        :param SessionId: 
+        :param DataType: input对应的数据类型
         :type PathPrefix: String
-        :param SceneId: 
-        :type PathPrefix: String
-        :param DataType: 
-        :type PathPrefix: String
-        :param Data: 
+        :param Data: 原始数据内容
         :type PathPrefix: Object
+        :param AgentUserId: 与Agent交互的用户唯一标识
+        :type PathPrefix: String
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
         """
-        self.Namespace = None
-        self.UserId = None
         self.AgentId = None
         self.SessionId = None
         self.SceneId = None
         self.DataType = None
         self.Data = None
+        self.AgentUserId = None
+        self.MemoryCollectionId = None
 
     def _deserialize(self, params):
-        if params.get("Namespace"):
-            self.Namespace = params.get("Namespace")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
         if params.get("AgentId"):
             self.AgentId = params.get("AgentId")
         if params.get("SessionId"):
@@ -416,6 +414,10 @@ class CreateMemorySdkRequest(AbstractModel):
             self.DataType = params.get("DataType")
         if params.get("Data"):
             self.Data = params.get("Data")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
 
 
 class QueryMemorySdkRequest(AbstractModel):
@@ -424,27 +426,30 @@ class QueryMemorySdkRequest(AbstractModel):
 
     def __init__(self):
         r"""从记忆库检索记忆
-        :param Namespace: 
+        :param Query: 查询文本
+
         :type PathPrefix: String
-        :param UserId: 
+        :param SceneId: 场景ID，用来区分各个场景，提供精细化记忆提取策略
+可选：
+"_sys_work_assistant"、"_sys_travel_assistant"、"_sys_ai_chat_assistant"、"_sys_coding_assistant"、 "_sys_general"
         :type PathPrefix: String
-        :param Query: 
-        :type PathPrefix: String
-        :param SceneId: 
-        :type PathPrefix: String
-        :param OccurredAfter: 
+        :param OccurredAfter: 记忆事实发生时间（毫秒），左边界
         :type PathPrefix: Long
-        :param OccurredBefore: 
+        :param OccurredBefore: 记忆事实发生时间（毫秒），右边界
         :type PathPrefix: Long
-        :param Mode: 
+        :param Mode: 检索方式：default（默认，性能型）、agentic（效果型）
         :type PathPrefix: String
-        :param ReturnCitations: 
+        :param ReturnCitations: 是否返回记忆关联的原始数据
         :type PathPrefix: Boolean
-        :param Limit: 
+        :param Limit: 返回数量限制
         :type PathPrefix: Int
+        :param SceneIds: 场景ID列表
+        :type PathPrefix: Array
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param AgentUserId: 与Agent交互的用户唯一标识
+        :type PathPrefix: String
         """
-        self.Namespace = None
-        self.UserId = None
         self.Query = None
         self.SceneId = None
         self.OccurredAfter = None
@@ -452,12 +457,11 @@ class QueryMemorySdkRequest(AbstractModel):
         self.Mode = None
         self.ReturnCitations = None
         self.Limit = None
+        self.SceneIds = None
+        self.MemoryCollectionId = None
+        self.AgentUserId = None
 
     def _deserialize(self, params):
-        if params.get("Namespace"):
-            self.Namespace = params.get("Namespace")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
         if params.get("Query"):
             self.Query = params.get("Query")
         if params.get("SceneId"):
@@ -472,6 +476,12 @@ class QueryMemorySdkRequest(AbstractModel):
             self.ReturnCitations = params.get("ReturnCitations")
         if params.get("Limit"):
             self.Limit = params.get("Limit")
+        if params.get("SceneIds"):
+            self.SceneIds = params.get("SceneIds")
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
 
 
 class CreateMemoryCollectionRequest(AbstractModel):
@@ -944,5 +954,183 @@ class GetMcpSquareDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("McpServerId"):
             self.McpServerId = params.get("McpServerId")
+
+
+class ListSessionsRequest(AbstractModel):
+    """ListSessions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询会话列表
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param AgentUserId: 与Agent交互的用户唯一标识
+        :type PathPrefix: String
+        :param Query: 查询会话内容
+        :type PathPrefix: String
+        :param Page: 起始页码
+        :type PathPrefix: Int
+        :param PageSize: 页大小
+        :type PathPrefix: Int
+        :param CreatedAfter: 毫秒级时间戳
+        :type PathPrefix: Int
+        :param CreatedBefore: 毫秒级时间戳
+        :type PathPrefix: Int
+        """
+        self.MemoryCollectionId = None
+        self.AgentUserId = None
+        self.Query = None
+        self.Page = None
+        self.PageSize = None
+        self.CreatedAfter = None
+        self.CreatedBefore = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+        if params.get("Query"):
+            self.Query = params.get("Query")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("CreatedAfter"):
+            self.CreatedAfter = params.get("CreatedAfter")
+        if params.get("CreatedBefore"):
+            self.CreatedBefore = params.get("CreatedBefore")
+
+
+class AddSessionRequest(AbstractModel):
+    """AddSession请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建记忆会话
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class QueryMemoryCollectionMetricsRequest(AbstractModel):
+    """QueryMemoryCollectionMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询指定记忆库的监控指标时间序列数据
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间，unix秒级时间戳
+        :type PathPrefix: Long
+        :param EndTime: 结束时间，unix秒级时间戳
+        :type PathPrefix: Long
+        """
+        self.MemoryCollectionId = None
+        self.StartTime = None
+        self.EndTime = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+
+
+class QuerySessionMemoriesRequest(AbstractModel):
+    """QuerySessionMemories请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询会话记忆
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param SessionId: 对话ID，区分多个对话
+        :type PathPrefix: String
+        """
+        self.MemoryCollectionId = None
+        self.SessionId = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+
+
+class RetrieveHistoriesRequest(AbstractModel):
+    """RetrieveHistories请求参数结构体
+    """
+
+    def __init__(self):
+        r"""知识库检索历史记录
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param Page: 页码（1-1000，默认 1）
+        :type PathPrefix: Int
+        :param Limit: 每页条数（1-100，默认 20）
+        :type PathPrefix: Int
+        """
+        self.DatasetId = None
+        self.Page = None
+        self.Limit = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+
+
+class ReindexDocumentsRequest(AbstractModel):
+    """ReindexDocuments请求参数结构体
+    """
+
+    def __init__(self):
+        r"""重索引知识库文档
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param DocumentIds: 文档 ID 列表
+        :type PathPrefix: Array
+        """
+        self.DatasetId = None
+        self.DocumentIds = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("DocumentIds"):
+            self.DocumentIds = params.get("DocumentIds")
+
+
+class ModifyDocumentStatusRequest(AbstractModel):
+    """ModifyDocumentStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改知识库文档状态
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param DocumentId: 文档 ID
+        :type PathPrefix: String
+        :param Status: 文档状态：enable（启用）/ disable（禁用）
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.DocumentId = None
+        self.Status = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("DocumentId"):
+            self.DocumentId = params.get("DocumentId")
+        if params.get("Status"):
+            self.Status = params.get("Status")
 
 

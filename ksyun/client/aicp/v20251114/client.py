@@ -836,3 +836,164 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def ListSessions(self, request):
+        """查询会话列表
+        :param request: Request instance for ListSessions.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ListSessionsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListSessions", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def AddSession(self, request):
+        """创建记忆会话
+        :param request: Request instance for AddSession.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.AddSessionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddSession", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def QueryMemoryCollectionMetrics(self, request):
+        """查询指定记忆库的监控指标时间序列数据
+        :param request: Request instance for QueryMemoryCollectionMetrics.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QueryMemoryCollectionMetricsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryMemoryCollectionMetrics", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def QuerySessionMemories(self, request):
+        """查询会话记忆
+        :param request: Request instance for QuerySessionMemories.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QuerySessionMemoriesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QuerySessionMemories", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RetrieveHistories(self, request):
+        """知识库检索历史记录
+        :param request: Request instance for RetrieveHistories.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.RetrieveHistoriesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RetrieveHistories", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ReindexDocuments(self, request):
+        """重索引知识库文档
+        :param request: Request instance for ReindexDocuments.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ReindexDocumentsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ReindexDocuments", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyDocumentStatus(self, request):
+        """修改知识库文档状态
+        :param request: Request instance for ModifyDocumentStatus.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ModifyDocumentStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyDocumentStatus", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

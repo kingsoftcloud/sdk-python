@@ -124,6 +124,51 @@ class GetInodeCountRequest(AbstractModel):
             self.DirPath = params.get("DirPath")
 
 
+class DescribeFileSystemClientInfoRequest(AbstractModel):
+    """DescribeFileSystemClientInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询文件系统POSIX客户端信息
+        :param FileSystemId: 文件系统实例ID
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组，仅容量Ⅰ型、容量Ⅱ型、标准型支持，精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中的角色，仅容量Ⅰ型、容量Ⅱ型、标准型支持，精确匹配。
+
+consumer：代表消费者，即缓存组中的--no-sharing节点
+
+provider：代表提供者
+        :type PathPrefix: String
+        :param HostNamePrefix: 客户端对应的主机名称前缀。
+        :type PathPrefix: String
+        :param PageSize: 页码。默认为1。
+        :type PathPrefix: Int
+        :param PageNum: 分页大小。默认为10。
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.HostNamePrefix = None
+        self.PageSize = None
+        self.PageNum = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("HostNamePrefix"):
+            self.HostNamePrefix = params.get("HostNamePrefix")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+
+
 class GetCapacityAvailableRequest(AbstractModel):
     """GetCapacityAvailable请求参数结构体
     """
@@ -1275,5 +1320,302 @@ class SetFileSystemResourceProtectRequest(AbstractModel):
             self.FileSystemIds = params.get("FileSystemIds")
         if params.get("IsProtection"):
             self.IsProtection = params.get("IsProtection")
+
+
+class GetRemoteCachePutLatencyRequest(AbstractModel):
+    """GetRemoteCachePutLatency请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分布式缓存组的分布式缓存发送数据延迟
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d。
+（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组。精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中角色。精确匹配。
+• consumer：代表消费者，即缓存组中的--no-sharing节点
+• provider：代表提供者
+
+        :type PathPrefix: String
+        :param ClientNm: 客户端挂载信息。拼接规则为：HostName:MountPoint，如：vm10-0-0-116:/datapoint。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.ClientNm = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+
+
+class GetRemoteCacheGetLatencyRequest(AbstractModel):
+    """GetRemoteCacheGetLatency请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分布式缓存组的分布式缓存读数据延迟
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d。
+（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组。精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中角色。精确匹配。
+• consumer：代表消费者，即缓存组中的--no-sharing节点
+• provider：代表提供者
+
+        :type PathPrefix: String
+        :param ClientNm: 客户端挂载信息。拼接规则为：HostName:MountPoint，如：vm10-0-0-116:/datapoint。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.ClientNm = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+
+
+class GetRemoteCachePutThroughputRequest(AbstractModel):
+    """GetRemoteCachePutThroughput请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分布式缓存组的分布式缓存发送数据吞吐
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d。
+（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组。精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中角色。精确匹配。
+• consumer：代表消费者，即缓存组中的--no-sharing节点
+• provider：代表提供者
+
+        :type PathPrefix: String
+        :param ClientNm: 客户端挂载信息。拼接规则为：HostName:MountPoint，如：vm10-0-0-116:/datapoint。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.ClientNm = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+
+
+class GetRemoteCacheGetThroughputRequest(AbstractModel):
+    """GetRemoteCacheGetThroughput请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分布式缓存组的分布式缓存读数据吞吐量
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d。
+（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组。精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中角色。精确匹配。
+• consumer：代表消费者，即缓存组中的--no-sharing节点
+• provider：代表提供者
+        :type PathPrefix: String
+        :param ClientNm: 客户端挂载信息。拼接规则为：HostName:MountPoint，如：vm10-0-0-116:/datapoint。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.ClientNm = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+
+
+class GetRemoteCacheIOPSSendRequest(AbstractModel):
+    """GetRemoteCacheIOPSSend请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分布式缓存组的分布式缓存发送数据请求数
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d。
+（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组。精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中角色。精确匹配。
+• consumer：代表消费者，即缓存组中的--no-sharing节点
+• provider：代表提供者
+        :type PathPrefix: String
+        :param ClientNm: 客户端挂载信息。拼接规则为：HostName:MountPoint，如：vm10-0-0-116:/datapoint。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.ClientNm = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
+
+
+class GetRemoteCacheIOPSGetRequest(AbstractModel):
+    """GetRemoteCacheIOPSGet请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分布式缓存组的分布式缓存读数据请求数
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param StartTime: 监控数据开始时间。格式为：时间戳，如：1732204800。
+        :type PathPrefix: String
+        :param EndTime: 监控数据截止时间。格式为：时间戳，如：1734797100。
+        :type PathPrefix: String
+        :param Interval: 监控数据统计颗粒度。有效值：1m、5m、10m、1h、1d。
+（EndTime-StartTime）/ Interval 必须 ≤ 6000，否则接口会拦截报错。
+        :type PathPrefix: String
+        :param CacheGroup: 客户端所在缓存组。精确匹配。
+        :type PathPrefix: String
+        :param CacheGroupRole: 客户端所在缓存组中角色。精确匹配。
+• consumer：代表消费者，即缓存组中的--no-sharing节点
+• provider：代表提供者
+        :type PathPrefix: String
+        :param ClientNm: 客户端挂载信息。拼接规则为：HostName:MountPoint，如：vm10-0-0-116:/datapoin
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.CacheGroup = None
+        self.CacheGroupRole = None
+        self.ClientNm = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("CacheGroup"):
+            self.CacheGroup = params.get("CacheGroup")
+        if params.get("CacheGroupRole"):
+            self.CacheGroupRole = params.get("CacheGroupRole")
+        if params.get("ClientNm"):
+            self.ClientNm = params.get("ClientNm")
 
 

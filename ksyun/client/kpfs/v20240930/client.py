@@ -77,6 +77,29 @@ class KpfsClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DescribeFileSystemClientInfo(self, request):
+        """查询文件系统POSIX客户端信息
+        :param request: Request instance for DescribeFileSystemClientInfo.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.DescribeFileSystemClientInfoRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeFileSystemClientInfo", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def GetCapacityAvailable(self, request):
         """文件系统可用容量
         :param request: Request instance for GetCapacityAvailable.
@@ -752,6 +775,144 @@ class KpfsClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("SetFileSystemResourceProtect", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetRemoteCachePutLatency(self, request):
+        """分布式缓存组的分布式缓存发送数据延迟
+        :param request: Request instance for GetRemoteCachePutLatency.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.GetRemoteCachePutLatencyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRemoteCachePutLatency", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetRemoteCacheGetLatency(self, request):
+        """分布式缓存组的分布式缓存读数据延迟
+        :param request: Request instance for GetRemoteCacheGetLatency.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.GetRemoteCacheGetLatencyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRemoteCacheGetLatency", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetRemoteCachePutThroughput(self, request):
+        """分布式缓存组的分布式缓存发送数据吞吐
+        :param request: Request instance for GetRemoteCachePutThroughput.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.GetRemoteCachePutThroughputRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRemoteCachePutThroughput", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetRemoteCacheGetThroughput(self, request):
+        """分布式缓存组的分布式缓存读数据吞吐量
+        :param request: Request instance for GetRemoteCacheGetThroughput.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.GetRemoteCacheGetThroughputRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRemoteCacheGetThroughput", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetRemoteCacheIOPSSend(self, request):
+        """分布式缓存组的分布式缓存发送数据请求数
+        :param request: Request instance for GetRemoteCacheIOPSSend.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.GetRemoteCacheIOPSSendRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRemoteCacheIOPSSend", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetRemoteCacheIOPSGet(self, request):
+        """分布式缓存组的分布式缓存读数据请求数
+        :param request: Request instance for GetRemoteCacheIOPSGet.
+        :type request: :class:`ksyun.client.kpfs.v20240930.models.GetRemoteCacheIOPSGetRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetRemoteCacheIOPSGet", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

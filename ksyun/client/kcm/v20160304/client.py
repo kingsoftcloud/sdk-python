@@ -199,7 +199,7 @@ class KcmClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("ListCertificates", params, "application/json")
+            body = self.call_judge("ListCertificates", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

@@ -43,6 +43,6 @@ class CommonClient(AbstractClient):
         if credential is None or region is None or version is None or service is None:
             raise KsyunSDKException("CommonClient Parameter Error, "
                                     "credential region version service all required.")
-        self._apiVersion = version
-        self._service = service
+        self._apiVersion = version.strip()
+        self._service = service.strip()
         super(CommonClient, self).__init__(credential, region, profile)

@@ -133,13 +133,13 @@ class AbstractClient(object):
         if not (options and options.get("IsPostJson")):
             params = copy.deepcopy(self._fix_params(params))
         else:
-            uri_params['Action'] = action[0].upper() + action[1:]
-            uri_params['Version'] = self._apiVersion
+            uri_params['Action'] = (action[0].upper() + action[1:]).strip()
+            uri_params['Version'] = self._apiVersion.strip()
 
 
-        params['Service'] = self._service
-        params['Action'] = action[0].upper() + action[1:]
-        params['Version'] = self._apiVersion
+        params['Service'] = self._service.strip()
+        params['Action'] = (action[0].upper() + action[1:]).strip()
+        params['Version'] = self._apiVersion.strip()
         params['SdkVersion'] = self._sdkVersion
 
         if self.region:

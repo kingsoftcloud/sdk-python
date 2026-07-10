@@ -32,6 +32,27 @@ class DescribeAlertingResourcesRequest(AbstractModel):
             self.EndTime = params.get("EndTime")
 
 
+class ListGrafanaInstancesRequest(AbstractModel):
+    """ListGrafanaInstances请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看 Grafana 实例列表
+        :param PageIndex: 页号，起始值：1
+        :type PathPrefix: Int
+        :param PageSize: 每页显示的数据行数。
+        :type PathPrefix: Int
+        """
+        self.PageIndex = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("PageIndex"):
+            self.PageIndex = params.get("PageIndex")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
 class DescribeSystemEventAttributesRequest(AbstractModel):
     """DescribeSystemEventAttributes请求参数结构体
     """

@@ -280,8 +280,20 @@ storage_bond
         :param NetworkCardPriority: 网卡的优先级，仅支持VPC-RoCE和RoCE-VPC(仅对白名单用户生效)
         :type PathPrefix: String
         :param FileSystemId: 文件系统id
+- 说明：仅机型支持存储RoCE且所选镜像支持挂载文件存储时支持传入该参数。传入该参数代表仅支持创建文件系统所在存储RoCE集群内的裸金属服务器。
         :type PathPrefix: String
         :param PosixAclId: 访问授权规则id
+- 说明：仅机型支持存储RoCE且所选镜像支持挂载文件存储时支持传入该参数。
+        :type PathPrefix: String
+        :param CustomInstallConfig: 客户自定义配置
+        :type PathPrefix: Filter
+        :param DeleteProtection:     释义：实例删除保护属性，指定是否支持通过控制台或API删除实例。
+    有效值：
+    ◦ support：开启实例删除保护。
+    ◦ unsupport（默认）：关闭实例删除保护。
+    示例值：unsupport
+        :type PathPrefix: String
+        :param UltraServerSn: UltraServer序列号
         :type PathPrefix: String
         """
         self.HostType = None
@@ -353,6 +365,9 @@ storage_bond
         self.NetworkCardPriority = None
         self.FileSystemId = None
         self.PosixAclId = None
+        self.CustomInstallConfig = None
+        self.DeleteProtection = None
+        self.UltraServerSn = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -493,6 +508,12 @@ storage_bond
             self.FileSystemId = params.get("FileSystemId")
         if params.get("PosixAclId"):
             self.PosixAclId = params.get("PosixAclId")
+        if params.get("CustomInstallConfig"):
+            self.CustomInstallConfig = params.get("CustomInstallConfig")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
+        if params.get("UltraServerSn"):
+            self.UltraServerSn = params.get("UltraServerSn")
 
 
 class StartEpcRequest(AbstractModel):
@@ -656,9 +677,13 @@ eth8x_bond、storage_bond
         :param NetworkCardPriority: 网卡的优先级，仅支持VPC-RoCE和RoCE-VPC(仅对白名单用户生效)
         :type PathPrefix: String
         :param FileSystemId: 文件系统id
+- 说明：仅机型支持存储RoCE且所选镜像支持挂载文件存储时支持传入该参数。传入该参数代表仅支持创建文件系统所在存储RoCE集群内的裸金属服务器。
         :type PathPrefix: String
         :param PosixAclId: 访问授权规则id
+- 说明：仅机型支持存储RoCE且所选镜像支持挂载文件存储时支持传入该参数。
         :type PathPrefix: String
+        :param CustomInstallConfig: 客户自定义装机参数配置
+        :type PathPrefix: Filter
         """
         self.HostId = None
         self.ImageId = None
@@ -695,6 +720,7 @@ eth8x_bond、storage_bond
         self.NetworkCardPriority = None
         self.FileSystemId = None
         self.PosixAclId = None
+        self.CustomInstallConfig = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -767,6 +793,8 @@ eth8x_bond、storage_bond
             self.FileSystemId = params.get("FileSystemId")
         if params.get("PosixAclId"):
             self.PosixAclId = params.get("PosixAclId")
+        if params.get("CustomInstallConfig"):
+            self.CustomInstallConfig = params.get("CustomInstallConfig")
 
 
 class ModifySecurityGroupRequest(AbstractModel):
@@ -899,7 +927,7 @@ class CreateImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""CreateImage
+        r"""创建自定义镜像
         :param HostId: 裸金属服务器资源ID
         :type PathPrefix: String
         :param ImageName: 镜像名称
@@ -908,11 +936,14 @@ class CreateImageRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageInitialization: 裸金属服务器自定义镜像初始化选项:Initialization|Uninitialized
         :type PathPrefix: String
+        :param Description: 镜像描述
+        :type PathPrefix: String
         """
         self.HostId = None
         self.ImageName = None
         self.ImageMode = None
         self.ImageInitialization = None
+        self.Description = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -923,6 +954,8 @@ class CreateImageRequest(AbstractModel):
             self.ImageMode = params.get("ImageMode")
         if params.get("ImageInitialization"):
             self.ImageInitialization = params.get("ImageInitialization")
+        if params.get("Description"):
+            self.Description = params.get("Description")
 
 
 class ModifyImageRequest(AbstractModel):
@@ -1178,11 +1211,17 @@ class ModifyEpcRequest(AbstractModel):
         :type PathPrefix: String
         :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
+        :param DeleteProtection:     实例删除保护属性，指定是否支持通过控制台或API删除实例。
+    有效值：
+    ◦ support：开启实例删除保护。
+    ◦ unsupport：关闭实例删除保护。
+        :type PathPrefix: String
         """
         self.HostId = None
         self.HostName = None
         self.Description = None
         self.ClientToken = None
+        self.DeleteProtection = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -1193,6 +1232,8 @@ class ModifyEpcRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("ClientToken"):
             self.ClientToken = params.get("ClientToken")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
 
 
 class ModifyRemoteManagementRequest(AbstractModel):
@@ -1528,7 +1569,7 @@ class CreateProcessRequest(AbstractModel):
         :type PathPrefix: String
         :param Type: 操作类型,有效值:fix
         :type PathPrefix: String
-        :param Confirm: 确认是否操作 有效值：0,1
+        :param Confirm: 是否允许重启 0允许1不允许
         :type PathPrefix: String
         :param ProcessSource: 工单来源，0:客户 1：售后代提
         :type PathPrefix: Int
@@ -2414,8 +2455,14 @@ windows创建时，只支持非bond模式。
         :param NetworkCardPriority: 网卡的优先级，仅支持VPC-RoCE和RoCE-VPC(仅对白名单用户生效)
         :type PathPrefix: String
         :param FileSystemId: 文件系统id
+- 说明：仅机型支持存储RoCE且所选镜像支持挂载文件存储时支持传入该参数。传入该参数代表仅支持创建文件系统所在存储RoCE集群内的裸金属服务器。
         :type PathPrefix: String
         :param PosixAclId: 访问授权规则id
+- 说明：仅机型支持存储RoCE且所选镜像支持挂载文件存储时支持传入该参数。
+        :type PathPrefix: String
+        :param CustomInstallConfig: 客户自定义装机参数配置
+        :type PathPrefix: Filter
+        :param UltraServerSn: UltraServer序列号
         :type PathPrefix: String
         """
         self.HostType = None
@@ -2481,6 +2528,8 @@ windows创建时，只支持非bond模式。
         self.NetworkCardPriority = None
         self.FileSystemId = None
         self.PosixAclId = None
+        self.CustomInstallConfig = None
+        self.UltraServerSn = None
 
     def _deserialize(self, params):
         if params.get("HostType"):
@@ -2609,6 +2658,10 @@ windows创建时，只支持非bond模式。
             self.FileSystemId = params.get("FileSystemId")
         if params.get("PosixAclId"):
             self.PosixAclId = params.get("PosixAclId")
+        if params.get("CustomInstallConfig"):
+            self.CustomInstallConfig = params.get("CustomInstallConfig")
+        if params.get("UltraServerSn"):
+            self.UltraServerSn = params.get("UltraServerSn")
 
 
 class DescribeUseHotStandbyRecordsRequest(AbstractModel):
@@ -2655,12 +2708,37 @@ class DescribeGpuRoceTopologyRequest(AbstractModel):
         r"""查询拓扑结构接口
         :param SpineName: Spine名称
         :type PathPrefix: String
+        :param LeafName: leaf交换机名称
+        :type PathPrefix: String
+        :param HostId: 服务器实例ID
+        :type PathPrefix: String
+        :param Sn: 服务器sn
+        :type PathPrefix: String
+        :param RoceCluster: Roce集群名称
+        :type PathPrefix: String
+        :param SRoceCluster: SRoce集群名称
+        :type PathPrefix: String
         """
         self.SpineName = None
+        self.LeafName = None
+        self.HostId = None
+        self.Sn = None
+        self.RoceCluster = None
+        self.SRoceCluster = None
 
     def _deserialize(self, params):
         if params.get("SpineName"):
             self.SpineName = params.get("SpineName")
+        if params.get("LeafName"):
+            self.LeafName = params.get("LeafName")
+        if params.get("HostId"):
+            self.HostId = params.get("HostId")
+        if params.get("Sn"):
+            self.Sn = params.get("Sn")
+        if params.get("RoceCluster"):
+            self.RoceCluster = params.get("RoceCluster")
+        if params.get("SRoceCluster"):
+            self.SRoceCluster = params.get("SRoceCluster")
 
 
 class ModifyProcessRequest(AbstractModel):
@@ -2857,7 +2935,7 @@ E2LWQxOWU0ZWYwYjk2YSwwN2M4YThiZi0zMThmLTQxNjctYWVhNi1kMTllNGVmMGI5NmEsMjAyMC0wNS
 有效值：fix
         :type PathPrefix: String
         :param Confirm: 确认是否重启
-有效值：0禁止重启，1可以重启
+有效值：1禁止重启，0可以重启
         :type PathPrefix: String
         :param ProcessSource: 工单来源，0：客户自己提 1：售后代提
 默认值：0
@@ -4359,5 +4437,723 @@ class DescribeUserDataRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("HostId"):
             self.HostId = params.get("HostId")
+
+
+class CreateLaunchTemplateRequest(AbstractModel):
+    """CreateLaunchTemplate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建一个实例启动模板
+        :param ChargeType: 计费方式，包年包月Monthly，按日月结Daily
+有效值：
+• Monthly
+• Daily
+        :type PathPrefix: String
+        :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省
+        :type PathPrefix: Int
+        :param AvailabilityZone: 实例所属的可用区ID
+示例值：cn-beijing-6a
+        :type PathPrefix: String
+        :param HostType: 实例的机型
+        :type PathPrefix: String
+        :param NetworkInterfaceMode: 网卡模式
+有效值：
+• bond4：bond模式
+• single：非bond模式
+• dual：双网卡模式
+说明：windows创建时，只支持非bond模式。
+        :type PathPrefix: String
+        :param BondAttribute: bond名称
+有效值： bond0|bond1
+默认值：bond0
+        :type PathPrefix: String
+        :param ImageId: 启动实例时使用的镜像ID
+可通过 DescribeImages 查询可以使用的镜像资源
+        :type PathPrefix: String
+        :param GpuImageDriverId: GPU的驱动版本
+        :type PathPrefix: String
+        :param Raid: 数据盘Raid级别,和数据盘的数量直接相关
+有效值：
+• Jbod：直连模式
+• Raid1：数据盘数量必须是2的倍数
+• Raid5：数据盘的数量必须大于等于3
+• Raid10：数据盘数量必须是4的倍数
+• Raid50：数据盘的数量必须大于6且是2的倍数
+• SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+说明：Raid与RaidId必填其一，RaidId优先级高
+        :type PathPrefix: String
+        :param RaidId: Raid模板Id
+        :type PathPrefix: String
+        :param DataDiskMount: 是否对数据盘进行磁盘挂载
+有效值：
+• support：开启
+• unsupport：关闭
+默认值：support
+        :type PathPrefix: String
+        :param SystemFileType: 系统盘文件格式(NTFS仅支持windows)
+有效值：EXT4|XFS|NTFS
+默认值：EXT4
+        :type PathPrefix: String
+        :param DataFileType: 数据盘文件格式(NTFS仅支持windows)
+有效值：EXT4|XFS|NTFS
+默认值：XFS
+        :type PathPrefix: String
+        :param DataDiskCatalogue: 数据盘目录
+有效值：
+/DATA/disk：在系统的DATA目录下，系统里展示内容如/DATA/disk1，/DATA/disk2
+/data：在系统的根目录下，系统里展示内容从/data1开始，如/data1，/data2默认值：/DATA/disk
+        :type PathPrefix: String
+        :param DataDiskCatalogueSuffix: 数据盘目录后缀属性
+有效值：
+NoSuffix ：不使用后缀，只有在数据盘有一块的时候，可以使用此参数
+NaturalNumber：后缀从1底层的整数
+NaturalNumberFromZero：后缀从0递增的整数默认值：NaturalNumber
+        :type PathPrefix: String
+        :param NvmeDataFileType: NVME数据盘类型
+有效值：
+EXT4
+XFS
+        :type PathPrefix: String
+        :param NvmeDataDiskCatalogue: NVME数据盘目录
+        :type PathPrefix: String
+        :param NvmeDataDiskCatalogueSuffix: NVME数据盘目录后缀属性
+        :type PathPrefix: String
+        :param SubnetId: 主网卡子网ID
+        :type PathPrefix: String
+        :param SecurityGroupId: 主网卡安全组ID，一个裸金属服务器最多可以支持5个安全组
+        :type PathPrefix: Filter
+        :param ExtensionSubnetId: 从网卡的子网ID
+        :type PathPrefix: String
+        :param ExtensionSecurityGroupId: 辅网卡安全组ID，一个裸金属服务器最多可以支持5个安全组
+        :type PathPrefix: Filter
+        :param AddressBandWidth: 弹性IP的带宽
+        :type PathPrefix: String
+        :param LineId: 弹性IP的链路类型的ID
+        :type PathPrefix: String
+        :param BandWidthShareId: 共享带宽ID
+        :type PathPrefix: String
+        :param AddressChargeType: 弹性IP的计费类型
+        :type PathPrefix: String
+        :param AddressPurchaseTime: 购买时长，只有购买包年包月弹性IP时不可缺省
+        :type PathPrefix: Int
+        :param AddressProjectId: 弹性IP项目的ID
+        :type PathPrefix: String
+        :param LaunchTemplateName: 实例启动模板名称。取值：
+• 不能以数字、中划线、下划线开头。
+• 只能包含中文、字母、数字、下划线和中划线。
+• 长度限制为1 ~ 128个字符。
+• 暂不支持特殊字符。
+示例值：testLaunchTemplateName
+        :type PathPrefix: String
+        :param VersionDescription: 实例启动模板描述。长度为1~255个英文或中文字符。
+示例值：testVersionDescription
+        :type PathPrefix: String
+        :param HostName: 实例名称
+默认值：ksc_epc
+
+        :type PathPrefix: String
+        :param Description: 实例描述信息
+        :type PathPrefix: String
+        :param ComputerName: 计算机系统内名称
+        :type PathPrefix: String
+        :param HostNameStartNo: 实例起始值
+示例值：1
+        :type PathPrefix: Int
+        :param ComputerNameStartNo: 计算机名称起始值
+示例值：1
+        :type PathPrefix: Int
+        :param ProjectId: 项目的ID
+        :type PathPrefix: String
+        :param KeyId: 密钥ID
+        :type PathPrefix: String
+        :param PasswordInherit: 是否使用镜像预设的密码和密钥
+有效值：
+• support：开启
+• unsupport：关闭
+默认值：unsupport
+        :type PathPrefix: String
+        :param CloudMonitorAgent: 云监控
+• classic：经典版
+• no：不开启
+默认值：no
+        :type PathPrefix: String
+        :param ContainerAgent: 容器引擎组件类型
+默认值：unsupport
+        :type PathPrefix: String
+        :param ZoneId: 创建pdns所需参数
+        :type PathPrefix: String
+        :param ZoneType: 创建pdns所需参数
+示例值：A
+        :type PathPrefix: String
+        :param StorageRoceNetworkCardName: 存储网卡名称，有效值：
+eth8x_bond
+storage_bond
+        :type PathPrefix: String
+        :param UserData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。不填则默认为空。
+示例值：ZWNobyBoZWxsbyBlY3Mh
+        :type PathPrefix: String
+        """
+        self.ChargeType = None
+        self.PurchaseTime = None
+        self.AvailabilityZone = None
+        self.HostType = None
+        self.NetworkInterfaceMode = None
+        self.BondAttribute = None
+        self.ImageId = None
+        self.GpuImageDriverId = None
+        self.Raid = None
+        self.RaidId = None
+        self.DataDiskMount = None
+        self.SystemFileType = None
+        self.DataFileType = None
+        self.DataDiskCatalogue = None
+        self.DataDiskCatalogueSuffix = None
+        self.NvmeDataFileType = None
+        self.NvmeDataDiskCatalogue = None
+        self.NvmeDataDiskCatalogueSuffix = None
+        self.SubnetId = None
+        self.SecurityGroupId = None
+        self.ExtensionSubnetId = None
+        self.ExtensionSecurityGroupId = None
+        self.AddressBandWidth = None
+        self.LineId = None
+        self.BandWidthShareId = None
+        self.AddressChargeType = None
+        self.AddressPurchaseTime = None
+        self.AddressProjectId = None
+        self.LaunchTemplateName = None
+        self.VersionDescription = None
+        self.HostName = None
+        self.Description = None
+        self.ComputerName = None
+        self.HostNameStartNo = None
+        self.ComputerNameStartNo = None
+        self.ProjectId = None
+        self.KeyId = None
+        self.PasswordInherit = None
+        self.CloudMonitorAgent = None
+        self.ContainerAgent = None
+        self.ZoneId = None
+        self.ZoneType = None
+        self.StorageRoceNetworkCardName = None
+        self.UserData = None
+
+    def _deserialize(self, params):
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
+        if params.get("AvailabilityZone"):
+            self.AvailabilityZone = params.get("AvailabilityZone")
+        if params.get("HostType"):
+            self.HostType = params.get("HostType")
+        if params.get("NetworkInterfaceMode"):
+            self.NetworkInterfaceMode = params.get("NetworkInterfaceMode")
+        if params.get("BondAttribute"):
+            self.BondAttribute = params.get("BondAttribute")
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("GpuImageDriverId"):
+            self.GpuImageDriverId = params.get("GpuImageDriverId")
+        if params.get("Raid"):
+            self.Raid = params.get("Raid")
+        if params.get("RaidId"):
+            self.RaidId = params.get("RaidId")
+        if params.get("DataDiskMount"):
+            self.DataDiskMount = params.get("DataDiskMount")
+        if params.get("SystemFileType"):
+            self.SystemFileType = params.get("SystemFileType")
+        if params.get("DataFileType"):
+            self.DataFileType = params.get("DataFileType")
+        if params.get("DataDiskCatalogue"):
+            self.DataDiskCatalogue = params.get("DataDiskCatalogue")
+        if params.get("DataDiskCatalogueSuffix"):
+            self.DataDiskCatalogueSuffix = params.get("DataDiskCatalogueSuffix")
+        if params.get("NvmeDataFileType"):
+            self.NvmeDataFileType = params.get("NvmeDataFileType")
+        if params.get("NvmeDataDiskCatalogue"):
+            self.NvmeDataDiskCatalogue = params.get("NvmeDataDiskCatalogue")
+        if params.get("NvmeDataDiskCatalogueSuffix"):
+            self.NvmeDataDiskCatalogueSuffix = params.get("NvmeDataDiskCatalogueSuffix")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("SecurityGroupId"):
+            self.SecurityGroupId = params.get("SecurityGroupId")
+        if params.get("ExtensionSubnetId"):
+            self.ExtensionSubnetId = params.get("ExtensionSubnetId")
+        if params.get("ExtensionSecurityGroupId"):
+            self.ExtensionSecurityGroupId = params.get("ExtensionSecurityGroupId")
+        if params.get("AddressBandWidth"):
+            self.AddressBandWidth = params.get("AddressBandWidth")
+        if params.get("LineId"):
+            self.LineId = params.get("LineId")
+        if params.get("BandWidthShareId"):
+            self.BandWidthShareId = params.get("BandWidthShareId")
+        if params.get("AddressChargeType"):
+            self.AddressChargeType = params.get("AddressChargeType")
+        if params.get("AddressPurchaseTime"):
+            self.AddressPurchaseTime = params.get("AddressPurchaseTime")
+        if params.get("AddressProjectId"):
+            self.AddressProjectId = params.get("AddressProjectId")
+        if params.get("LaunchTemplateName"):
+            self.LaunchTemplateName = params.get("LaunchTemplateName")
+        if params.get("VersionDescription"):
+            self.VersionDescription = params.get("VersionDescription")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ComputerName"):
+            self.ComputerName = params.get("ComputerName")
+        if params.get("HostNameStartNo"):
+            self.HostNameStartNo = params.get("HostNameStartNo")
+        if params.get("ComputerNameStartNo"):
+            self.ComputerNameStartNo = params.get("ComputerNameStartNo")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+        if params.get("PasswordInherit"):
+            self.PasswordInherit = params.get("PasswordInherit")
+        if params.get("CloudMonitorAgent"):
+            self.CloudMonitorAgent = params.get("CloudMonitorAgent")
+        if params.get("ContainerAgent"):
+            self.ContainerAgent = params.get("ContainerAgent")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("ZoneType"):
+            self.ZoneType = params.get("ZoneType")
+        if params.get("StorageRoceNetworkCardName"):
+            self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
+
+
+class CreateLaunchTemplateVersionRequest(AbstractModel):
+    """CreateLaunchTemplateVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建一个实例启动模板的版本
+        :param ChargeType: 计费方式，包年包月Monthly，按日月结Daily
+有效值：
+• Monthly
+• Daily
+        :type PathPrefix: String
+        :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省
+        :type PathPrefix: Int
+        :param AvailabilityZone: 实例所属的可用区ID
+示例值：cn-beijing-6a
+        :type PathPrefix: String
+        :param HostType: 实例的机型
+        :type PathPrefix: String
+        :param NetworkInterfaceMode: 网卡模式
+有效值：
+• bond4：bond模式
+• single：非bond模式
+• dual：双网卡模式
+说明：windows创建时，只支持非bond模式。
+        :type PathPrefix: String
+        :param BondAttribute: bond名称
+有效值： bond0|bond1
+默认值：bond0
+        :type PathPrefix: String
+        :param ImageId: 启动实例时使用的镜像ID
+可通过 DescribeImages 查询可以使用的镜像资源
+        :type PathPrefix: String
+        :param GpuImageDriverId: GPU的驱动版本
+        :type PathPrefix: String
+        :param Raid: 数据盘Raid级别,和数据盘的数量直接相关
+有效值：
+• Jbod：直连模式
+• Raid1：数据盘数量必须是2的倍数
+• Raid5：数据盘的数量必须大于等于3
+• Raid10：数据盘数量必须是4的倍数
+• Raid50：数据盘的数量必须大于6且是2的倍数
+• SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场景
+说明：Raid与RaidId必填其一，RaidId优先级高
+        :type PathPrefix: String
+        :param RaidId: Raid模板Id
+        :type PathPrefix: String
+        :param DataDiskMount: 是否对数据盘进行磁盘挂载
+有效值：
+• support：开启
+• unsupport：关闭
+默认值：support
+        :type PathPrefix: String
+        :param SystemFileType: 系统盘文件格式(NTFS仅支持windows)
+有效值：EXT4|XFS|NTFS
+默认值：EXT4
+        :type PathPrefix: String
+        :param DataFileType: 数据盘文件格式(NTFS仅支持windows)
+有效值：EXT4|XFS|NTFS
+默认值：XFS
+        :type PathPrefix: String
+        :param DataDiskCatalogue: 数据盘目录
+有效值：
+• /DATA/disk：在系统的DATA目录下，系统里展示内容如/DATA/disk1，/DATA/disk2
+• /data：在系统的根目录下，系统里展示内容从/data1开始，如/data1，/data2
+默认值：/DATA/disk
+        :type PathPrefix: String
+        :param DataDiskCatalogueSuffix: 数据盘目录后缀属性
+有效值：
+• NoSuffix ：不使用后缀，只有在数据盘有一块的时候，可以使用此参数
+• NaturalNumber：后缀从1底层的整数
+• NaturalNumberFromZero：后缀从0递增的整数
+默认值：NaturalNumber
+        :type PathPrefix: String
+        :param NvmeDataFileType: NVME数据盘类型
+有效值：
+• EXT4
+• XFS
+        :type PathPrefix: String
+        :param NvmeDataDiskCatalogue: NVME数据盘目录
+        :type PathPrefix: String
+        :param NvmeDataDiskCatalogueSuffix: NVME数据盘目录后缀属性
+        :type PathPrefix: String
+        :param SubnetId: 主网卡子网ID
+        :type PathPrefix: String
+        :param ExtensionSecurityGroupId: 辅网卡安全组ID，一个裸金属服务器最多可以支持5个安全组
+        :type PathPrefix: Filter
+        :param AddressBandWidth: 弹性IP的带宽
+        :type PathPrefix: String
+        :param LineId: 弹性IP的链路类型的ID
+        :type PathPrefix: String
+        :param BandWidthShareId: 共享带宽ID
+        :type PathPrefix: String
+        :param AddressChargeType: 弹性IP的计费类型
+        :type PathPrefix: String
+        :param AddressPurchaseTime: 购买时长，只有购买包年包月弹性IP时不可缺省
+        :type PathPrefix: Int
+        :param AddressProjectId: 弹性IP项目的ID
+        :type PathPrefix: String
+        :param LaunchTemplateId: 启动模板ID。
+说明：必须指定LaunchTemplateId以确定模板。
+示例值：fa3f52fe-b002-4305-9a75-f0d58ee8ce39
+        :type PathPrefix: String
+        :param VersionDescription: 实例启动模板描述。长度为1~255个英文或中文字符。
+示例值：testVersionDescription
+        :type PathPrefix: String
+        :param HostName: 实例名称
+默认值：ksc_epc
+        :type PathPrefix: String
+        :param Description: 实例描述信息
+        :type PathPrefix: String
+        :param ComputerName: 计算机系统内名称
+        :type PathPrefix: String
+        :param HostNameStartNo: 实例起始值
+示例值：1
+        :type PathPrefix: Int
+        :param ComputerNameStartNo: 计算机名称起始值
+示例值：1
+        :type PathPrefix: Int
+        :param ProjectId: 项目的ID
+        :type PathPrefix: String
+        :param KeyId: 密钥ID
+        :type PathPrefix: String
+        :param PasswordInherit: 是否使用镜像预设的密码和密钥
+有效值：
+• support：开启
+• unsupport：关闭
+默认值：unsupport
+        :type PathPrefix: String
+        :param CloudMonitorAgent: 云监控
+• classic：经典版
+• no：不开启
+默认值：no
+        :type PathPrefix: String
+        :param ContainerAgent: 容器引擎组件类型
+默认值：unsupport
+        :type PathPrefix: String
+        :param ZoneId: 创建pdns所需参数
+        :type PathPrefix: String
+        :param ZoneType: 创建pdns所需参数
+示例值：A
+        :type PathPrefix: String
+        :param StorageRoceNetworkCardName: 存储网卡名称，有效值：
+eth8x_bond
+storage_bond
+        :type PathPrefix: String
+        :param UserData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。不填则默认为空。
+示例值：ZWNobyBoZWxsbyBlY3Mh
+        :type PathPrefix: String
+        """
+        self.ChargeType = None
+        self.PurchaseTime = None
+        self.AvailabilityZone = None
+        self.HostType = None
+        self.NetworkInterfaceMode = None
+        self.BondAttribute = None
+        self.ImageId = None
+        self.GpuImageDriverId = None
+        self.Raid = None
+        self.RaidId = None
+        self.DataDiskMount = None
+        self.SystemFileType = None
+        self.DataFileType = None
+        self.DataDiskCatalogue = None
+        self.DataDiskCatalogueSuffix = None
+        self.NvmeDataFileType = None
+        self.NvmeDataDiskCatalogue = None
+        self.NvmeDataDiskCatalogueSuffix = None
+        self.SubnetId = None
+        self.ExtensionSecurityGroupId = None
+        self.AddressBandWidth = None
+        self.LineId = None
+        self.BandWidthShareId = None
+        self.AddressChargeType = None
+        self.AddressPurchaseTime = None
+        self.AddressProjectId = None
+        self.LaunchTemplateId = None
+        self.VersionDescription = None
+        self.HostName = None
+        self.Description = None
+        self.ComputerName = None
+        self.HostNameStartNo = None
+        self.ComputerNameStartNo = None
+        self.ProjectId = None
+        self.KeyId = None
+        self.PasswordInherit = None
+        self.CloudMonitorAgent = None
+        self.ContainerAgent = None
+        self.ZoneId = None
+        self.ZoneType = None
+        self.StorageRoceNetworkCardName = None
+        self.UserData = None
+
+    def _deserialize(self, params):
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
+        if params.get("AvailabilityZone"):
+            self.AvailabilityZone = params.get("AvailabilityZone")
+        if params.get("HostType"):
+            self.HostType = params.get("HostType")
+        if params.get("NetworkInterfaceMode"):
+            self.NetworkInterfaceMode = params.get("NetworkInterfaceMode")
+        if params.get("BondAttribute"):
+            self.BondAttribute = params.get("BondAttribute")
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("GpuImageDriverId"):
+            self.GpuImageDriverId = params.get("GpuImageDriverId")
+        if params.get("Raid"):
+            self.Raid = params.get("Raid")
+        if params.get("RaidId"):
+            self.RaidId = params.get("RaidId")
+        if params.get("DataDiskMount"):
+            self.DataDiskMount = params.get("DataDiskMount")
+        if params.get("SystemFileType"):
+            self.SystemFileType = params.get("SystemFileType")
+        if params.get("DataFileType"):
+            self.DataFileType = params.get("DataFileType")
+        if params.get("DataDiskCatalogue"):
+            self.DataDiskCatalogue = params.get("DataDiskCatalogue")
+        if params.get("DataDiskCatalogueSuffix"):
+            self.DataDiskCatalogueSuffix = params.get("DataDiskCatalogueSuffix")
+        if params.get("NvmeDataFileType"):
+            self.NvmeDataFileType = params.get("NvmeDataFileType")
+        if params.get("NvmeDataDiskCatalogue"):
+            self.NvmeDataDiskCatalogue = params.get("NvmeDataDiskCatalogue")
+        if params.get("NvmeDataDiskCatalogueSuffix"):
+            self.NvmeDataDiskCatalogueSuffix = params.get("NvmeDataDiskCatalogueSuffix")
+        if params.get("SubnetId"):
+            self.SubnetId = params.get("SubnetId")
+        if params.get("ExtensionSecurityGroupId"):
+            self.ExtensionSecurityGroupId = params.get("ExtensionSecurityGroupId")
+        if params.get("AddressBandWidth"):
+            self.AddressBandWidth = params.get("AddressBandWidth")
+        if params.get("LineId"):
+            self.LineId = params.get("LineId")
+        if params.get("BandWidthShareId"):
+            self.BandWidthShareId = params.get("BandWidthShareId")
+        if params.get("AddressChargeType"):
+            self.AddressChargeType = params.get("AddressChargeType")
+        if params.get("AddressPurchaseTime"):
+            self.AddressPurchaseTime = params.get("AddressPurchaseTime")
+        if params.get("AddressProjectId"):
+            self.AddressProjectId = params.get("AddressProjectId")
+        if params.get("LaunchTemplateId"):
+            self.LaunchTemplateId = params.get("LaunchTemplateId")
+        if params.get("VersionDescription"):
+            self.VersionDescription = params.get("VersionDescription")
+        if params.get("HostName"):
+            self.HostName = params.get("HostName")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ComputerName"):
+            self.ComputerName = params.get("ComputerName")
+        if params.get("HostNameStartNo"):
+            self.HostNameStartNo = params.get("HostNameStartNo")
+        if params.get("ComputerNameStartNo"):
+            self.ComputerNameStartNo = params.get("ComputerNameStartNo")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+        if params.get("PasswordInherit"):
+            self.PasswordInherit = params.get("PasswordInherit")
+        if params.get("CloudMonitorAgent"):
+            self.CloudMonitorAgent = params.get("CloudMonitorAgent")
+        if params.get("ContainerAgent"):
+            self.ContainerAgent = params.get("ContainerAgent")
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("ZoneType"):
+            self.ZoneType = params.get("ZoneType")
+        if params.get("StorageRoceNetworkCardName"):
+            self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
+        if params.get("UserData"):
+            self.UserData = params.get("UserData")
+
+
+class DescribeLaunchTemplatesRequest(AbstractModel):
+    """DescribeLaunchTemplates请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例启动模板
+        :param NextToken: 分页查询凭证，用于标记分页的位置，初次调用该接口时无需设置。下次查询时，取值为上一次API调用返回的NextToken参数值。
+示例值：--
+        :type PathPrefix: String
+        :param MaxResults: 分页查询时设置的每页行数：
+最大值：100
+默认值：10
+        :type PathPrefix: Int
+        :param LaunchTemplateId: 实例启动模板ID，最多支持10个ID。
+• 参数 - N：表示实例启动模板的序号。
+• 多个ID之间用&分隔。
+示例值：LaunchTemplateIds.1=fa3f52fe-b002-4305-9a75-f0d58ee8ce39&LaunchTemplateIds.2=fa3f52fe-b002-4305-9a75-f0d58ee8ce39
+        :type PathPrefix: Filter
+        """
+        self.NextToken = None
+        self.MaxResults = None
+        self.LaunchTemplateId = None
+
+    def _deserialize(self, params):
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("LaunchTemplateId"):
+            self.LaunchTemplateId = params.get("LaunchTemplateId")
+
+
+class DescribeLaunchTemplateVersionsRequest(AbstractModel):
+    """DescribeLaunchTemplateVersions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询实例启动模板版本
+        :param LaunchTemplateId: 实例启动模板的 ID。
+说明：必须指定LaunchTemplateId以确定模板。
+示例值：fa3f52fe-b002-4305-9a75-f0d58ee8ce39
+        :type PathPrefix: String
+        :param DefaultVersion: 是否查询默认版本不传则查询所有版本取值：
+• true：查询默认版本。
+• false：不查询默认版本。
+示例值：true
+        :type PathPrefix: Boolean
+        :param LaunchTemplateVersion: 实例启动模板版本，最多支持10个。
+• 参数 - N：表示实例启动模板版本。
+• 多个版本之间用&分隔。
+示例值：LaunchTemplateVersions.1=1&LaunchTemplateVersions.2=2
+        :type PathPrefix: Filter
+        :param NextToken: 分页查询凭证，用于标记分页的位置，初次调用该接口时无需设置。下次查询时，取值为上一次API调用返回的NextToken参数值。
+示例值：--
+        :type PathPrefix: String
+        :param MaxResults: 分页查询时设置的每页行数：
+• 最大值：100
+• 默认值：10
+示例值：10
+        :type PathPrefix: Int
+        """
+        self.LaunchTemplateId = None
+        self.DefaultVersion = None
+        self.LaunchTemplateVersion = None
+        self.NextToken = None
+        self.MaxResults = None
+
+    def _deserialize(self, params):
+        if params.get("LaunchTemplateId"):
+            self.LaunchTemplateId = params.get("LaunchTemplateId")
+        if params.get("DefaultVersion"):
+            self.DefaultVersion = params.get("DefaultVersion")
+        if params.get("LaunchTemplateVersion"):
+            self.LaunchTemplateVersion = params.get("LaunchTemplateVersion")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+
+
+class ModifyTemplateDefaultVersionRequest(AbstractModel):
+    """ModifyTemplateDefaultVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改实例启动模板的默认版本
+        :param LaunchTemplateId: 实例启动模板ID。
+示例值：1eef0353-eb57-4271-8e71-bf334d60567e
+说明：必须指定LaunchTemplateId以确定模板。
+        :type PathPrefix: String
+        :param DefaultVersionNumber: 设置为默认版本的启动模板版本号
+示例值：2
+        :type PathPrefix: Int
+        """
+        self.LaunchTemplateId = None
+        self.DefaultVersionNumber = None
+
+    def _deserialize(self, params):
+        if params.get("LaunchTemplateId"):
+            self.LaunchTemplateId = params.get("LaunchTemplateId")
+        if params.get("DefaultVersionNumber"):
+            self.DefaultVersionNumber = params.get("DefaultVersionNumber")
+
+
+class DeleteLaunchTemplateRequest(AbstractModel):
+    """DeleteLaunchTemplate请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除一个实例启动模板
+        :param LaunchTemplateId: 实例启动模板ID。
+示例值：1eef0353-eb57-4271-8e71-bf334d60567e
+说明：必须指定LaunchTemplateId以确定模板。
+        :type PathPrefix: String
+        """
+        self.LaunchTemplateId = None
+
+    def _deserialize(self, params):
+        if params.get("LaunchTemplateId"):
+            self.LaunchTemplateId = params.get("LaunchTemplateId")
+
+
+class DeleteLaunchTemplateVersionRequest(AbstractModel):
+    """DeleteLaunchTemplateVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除一个实例启动模板的版本
+        :param LaunchTemplateId: 实例启动模板ID。
+示例值：1eef0353-eb57-4271-8e71-bf334d60567e
+说明：必须指定LaunchTemplateId以确定模板。
+        :type PathPrefix: String
+        :param LaunchTemplateVersion: 实例启动模板版本号。
+• 参数 -N：表示版本的序号，N的取值范围1～29。
+• 多个版本号之间用&分隔。
+示例值：2
+        :type PathPrefix: Filter
+        """
+        self.LaunchTemplateId = None
+        self.LaunchTemplateVersion = None
+
+    def _deserialize(self, params):
+        if params.get("LaunchTemplateId"):
+            self.LaunchTemplateId = params.get("LaunchTemplateId")
+        if params.get("LaunchTemplateVersion"):
+            self.LaunchTemplateVersion = params.get("LaunchTemplateVersion")
 
 

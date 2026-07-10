@@ -491,6 +491,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DescribeNotebookEvents(self, request):
+        """查询开发任务事件列表
+        :param request: Request instance for DescribeNotebookEvents.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeNotebookEventsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeNotebookEvents", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DescribeNotebookLog(self, request):
         """查看开发机的pod日志
         :param request: Request instance for DescribeNotebookLog.
@@ -790,29 +813,6 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def CreateApikey(self, request):
-        """创建API Key
-        :param request: Request instance for CreateApikey.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateApikeyRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("CreateApikey", params, "application/json")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def GetModelDetail(self, request):
         """查询模型详情
         :param request: Request instance for GetModelDetail.
@@ -821,29 +821,6 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("GetModelDetail", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
-    def DescribeApikeys(self, request):
-        """查询API Key列表（分页）
-        :param request: Request instance for DescribeApikeys.
-        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeApikeysRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("DescribeApikeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2086,6 +2063,98 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("ModifyResourcePool", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeInferenceAndPodEvents(self, request):
+        """查询模型在线服务及Pod事件列表
+        :param request: Request instance for DescribeInferenceAndPodEvents.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeInferenceAndPodEventsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeInferenceAndPodEvents", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeTrainJobAndPodEvents(self, request):
+        """查询训练任务及Pod事件列表
+        :param request: Request instance for DescribeTrainJobAndPodEvents.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTrainJobAndPodEventsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTrainJobAndPodEvents", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeFineTuneJobAndPodEvents(self, request):
+        """查询模型微调任务及Pod事件列表
+        :param request: Request instance for DescribeFineTuneJobAndPodEvents.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeFineTuneJobAndPodEventsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeFineTuneJobAndPodEvents", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeTerminateStopRecords(self, request):
+        """查询清理策略记录列表
+        :param request: Request instance for DescribeTerminateStopRecords.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeTerminateStopRecordsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeTerminateStopRecords", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

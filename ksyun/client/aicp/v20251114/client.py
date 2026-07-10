@@ -997,3 +997,187 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def GetApiDetail(self, request):
+        """查询云产品OpenAPI详情
+        :param request: Request instance for GetApiDetail.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetApiDetailRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetApiDetail", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetApiOverview(self, request):
+        """查询云产品OpenAPI概览列表
+        :param request: Request instance for GetApiOverview.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetApiOverviewRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetApiOverview", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetProductList(self, request):
+        """查询云产品列表
+        :param request: Request instance for GetProductList.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.GetProductListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetProductList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMcpRuntimeMetrics(self, request):
+        """查询MCP运行监控（只有部署方式为代码方式部署的MCP才有）
+        :param request: Request instance for DescribeMcpRuntimeMetrics.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMcpRuntimeMetricsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMcpRuntimeMetrics", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def QueryMcpMetrics(self, request):
+        """查询MCP服务调用监控信息
+        :param request: Request instance for QueryMcpMetrics.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QueryMcpMetricsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryMcpMetrics", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeKnowledgeTokenMonitor(self, request):
+        """查看知识库模型用量监控信息
+        :param request: Request instance for DescribeKnowledgeTokenMonitor.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeKnowledgeTokenMonitorRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeKnowledgeTokenMonitor", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeKnowledgeStorageMonitor(self, request):
+        """查看知识库存储用量监控信息
+        :param request: Request instance for DescribeKnowledgeStorageMonitor.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeKnowledgeStorageMonitorRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeKnowledgeStorageMonitor", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMcpRuntimeLogs(self, request):
+        """查看MCP运行时日志
+        :param request: Request instance for DescribeMcpRuntimeLogs.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMcpRuntimeLogsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMcpRuntimeLogs", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

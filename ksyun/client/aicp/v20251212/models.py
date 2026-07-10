@@ -22,6 +22,8 @@ class CreateTrainJobRequest(AbstractModel):
         :param Framework: 训练框架	，有效值：
 - pytorch
 - tensorflow
+- custom
+- ray
         :type PathPrefix: String
         :param AccessType: 权限配置-可见范围
         :type PathPrefix: String
@@ -39,6 +41,16 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: Array
         :param HoldingTimeMinutes: 实例保留时长（分钟）
         :type PathPrefix: Int
+        :param EnableDeviceHealthCheck: 是否开启算力健康检测(只对pytorch框架生效)
+        :type PathPrefix: Boolean
+        :param DeviceHealthCheckConfig: 算力健康检测配置，pytorch框架下且EnableDeviceHealthCheck=true时生效
+        :type PathPrefix: Object
+        :param RuntimeEnv: 运行时环境配置（仅ray框架有效），必须是json字符串，且长度最大5000字符
+        :type PathPrefix: String
+        :param EntryPointCommand: ray框架下运行命令,当框架为ray时不能为空，其他框架忽略该参数
+        :type PathPrefix: String
+        :param UseIdleResource: 是否使用闲时资源，仅当所属队列开启借用AllowBorrowing时，支持开启
+        :type PathPrefix: Boolean
         """
         self.TrainJobName = None
         self.Description = None
@@ -54,6 +66,11 @@ class CreateTrainJobRequest(AbstractModel):
         self.StorageConfigs = None
         self.Roles = None
         self.HoldingTimeMinutes = None
+        self.EnableDeviceHealthCheck = None
+        self.DeviceHealthCheckConfig = None
+        self.RuntimeEnv = None
+        self.EntryPointCommand = None
+        self.UseIdleResource = None
 
     def _deserialize(self, params):
         if params.get("TrainJobName"):
@@ -84,6 +101,16 @@ class CreateTrainJobRequest(AbstractModel):
             self.Roles = params.get("Roles")
         if params.get("HoldingTimeMinutes"):
             self.HoldingTimeMinutes = params.get("HoldingTimeMinutes")
+        if params.get("EnableDeviceHealthCheck"):
+            self.EnableDeviceHealthCheck = params.get("EnableDeviceHealthCheck")
+        if params.get("DeviceHealthCheckConfig"):
+            self.DeviceHealthCheckConfig = params.get("DeviceHealthCheckConfig")
+        if params.get("RuntimeEnv"):
+            self.RuntimeEnv = params.get("RuntimeEnv")
+        if params.get("EntryPointCommand"):
+            self.EntryPointCommand = params.get("EntryPointCommand")
+        if params.get("UseIdleResource"):
+            self.UseIdleResource = params.get("UseIdleResource")
 
 
 class DescribeTrainJobsRequest(AbstractModel):
@@ -106,6 +133,8 @@ class DescribeTrainJobsRequest(AbstractModel):
         :type PathPrefix: String
         :param QueueId: 队列ID
         :type PathPrefix: String
+        :param UseIdleResource: 是否使用闲时资源
+        :type PathPrefix: Boolean
         :param SortKey: 排序关键字
         :type PathPrefix: String
         :param Sort: 排序方式
@@ -118,6 +147,7 @@ class DescribeTrainJobsRequest(AbstractModel):
         self.TrainJobName = None
         self.GPUType = None
         self.QueueId = None
+        self.UseIdleResource = None
         self.SortKey = None
         self.Sort = None
 
@@ -136,6 +166,8 @@ class DescribeTrainJobsRequest(AbstractModel):
             self.GPUType = params.get("GPUType")
         if params.get("QueueId"):
             self.QueueId = params.get("QueueId")
+        if params.get("UseIdleResource"):
+            self.UseIdleResource = params.get("UseIdleResource")
         if params.get("SortKey"):
             self.SortKey = params.get("SortKey")
         if params.get("Sort"):

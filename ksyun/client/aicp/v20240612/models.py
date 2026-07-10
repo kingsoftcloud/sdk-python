@@ -573,6 +573,8 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param RunOnCPU: 仅调度到CPU节点。当GPUNumber为空或值为0时此值有效
         :type PathPrefix: String
+        :param AutoSaveConfig: 自动保存镜像配置
+        :type PathPrefix: Object
         """
         self.NotebookName = None
         self.Description = None
@@ -597,6 +599,7 @@ class CreateNotebookRequest(AbstractModel):
         self.EnablePublicNetworkSSH = None
         self.AllocationId = None
         self.RunOnCPU = None
+        self.AutoSaveConfig = None
 
     def _deserialize(self, params):
         if params.get("NotebookName"):
@@ -645,6 +648,8 @@ class CreateNotebookRequest(AbstractModel):
             self.AllocationId = params.get("AllocationId")
         if params.get("RunOnCPU"):
             self.RunOnCPU = params.get("RunOnCPU")
+        if params.get("AutoSaveConfig"):
+            self.AutoSaveConfig = params.get("AutoSaveConfig")
 
 
 class EnableKlogRequest(AbstractModel):
@@ -1147,6 +1152,36 @@ class GetWebIdeUrlRequest(AbstractModel):
             self.ExpirationMinute = params.get("ExpirationMinute")
 
 
+class DescribeNotebookEventsRequest(AbstractModel):
+    """DescribeNotebookEvents请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询开发任务事件列表
+        :param NotebookId: 开发任务ID
+        :type PathPrefix: String
+        :param Sort: 排序字段，默认DESC
+- DESC 倒序
+- ASC 正序
+        :type PathPrefix: String
+        :param SortKey: 排序字段，默认 LastSeen
+- LastSeen 最后出现时间
+- FirstSeen 首次出现时间
+        :type PathPrefix: String
+        """
+        self.NotebookId = None
+        self.Sort = None
+        self.SortKey = None
+
+    def _deserialize(self, params):
+        if params.get("NotebookId"):
+            self.NotebookId = params.get("NotebookId")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+        if params.get("SortKey"):
+            self.SortKey = params.get("SortKey")
+
+
 class DescribeNotebookLogRequest(AbstractModel):
     """DescribeNotebookLog请求参数结构体
     """
@@ -1397,12 +1432,30 @@ class ModifyApikeyRequest(AbstractModel):
         :type PathPrefix: Array
         :param AllAssociatedModel: 是否全选
         :type PathPrefix: Boolean
+        :param AllowEndpoints: 接入点列表
+        :type PathPrefix: Array
+        :param AllAssociatedProjectResources: 项目下所有资源全选
+        :type PathPrefix: Boolean
+        :param AllAssociatedEndpoint: 接入点全选
+        :type PathPrefix: Boolean
+        :param LowPriceModels: 低价池(标准池)模型名称列表
+        :type PathPrefix: Array
+        :param HighPriceModels: 高价池模型名称列表
+        :type PathPrefix: Array
+        :param AllowedIps: IP白名单列表，有值则启用白名单
+        :type PathPrefix: Array
         """
         self.KeyId = None
         self.Name = None
         self.Description = None
         self.AssociatedModelIds = None
         self.AllAssociatedModel = None
+        self.AllowEndpoints = None
+        self.AllAssociatedProjectResources = None
+        self.AllAssociatedEndpoint = None
+        self.LowPriceModels = None
+        self.HighPriceModels = None
+        self.AllowedIps = None
 
     def _deserialize(self, params):
         if params.get("KeyId"):
@@ -1415,6 +1468,18 @@ class ModifyApikeyRequest(AbstractModel):
             self.AssociatedModelIds = params.get("AssociatedModelIds")
         if params.get("AllAssociatedModel"):
             self.AllAssociatedModel = params.get("AllAssociatedModel")
+        if params.get("AllowEndpoints"):
+            self.AllowEndpoints = params.get("AllowEndpoints")
+        if params.get("AllAssociatedProjectResources"):
+            self.AllAssociatedProjectResources = params.get("AllAssociatedProjectResources")
+        if params.get("AllAssociatedEndpoint"):
+            self.AllAssociatedEndpoint = params.get("AllAssociatedEndpoint")
+        if params.get("LowPriceModels"):
+            self.LowPriceModels = params.get("LowPriceModels")
+        if params.get("HighPriceModels"):
+            self.HighPriceModels = params.get("HighPriceModels")
+        if params.get("AllowedIps"):
+            self.AllowedIps = params.get("AllowedIps")
 
 
 class ActivateApiServiceRequest(AbstractModel):
@@ -1459,9 +1524,9 @@ class DescribeModelsRequest(AbstractModel):
         :type PathPrefix: Int
         :param MaxResults: 分页页长，最大100
         :type PathPrefix: Int
-        :param ModelCategory: 模型类别筛选项，如"文本模型"。
+        :param ModelCategory: 模型类别筛选项
         :type PathPrefix: Filter
-        :param Provider: 模型供应商，如"Qwen"。
+        :param Provider: 模型供应商
         :type PathPrefix: Filter
         :param ContextLength: 模型上下文长度
 1 - 128k及以下
@@ -1470,6 +1535,12 @@ class DescribeModelsRequest(AbstractModel):
         :type PathPrefix: Filter
         :param ModelName: 模型名称关键词
         :type PathPrefix: String
+        :param Capabilities: 模型能力筛选项
+        :type PathPrefix: Filter
+        :param Status: 模型状态筛选：0-初始化，1-在线，2-下线，3-已废弃，4-灰度在线
+        :type PathPrefix: Int
+        :param ContextLengthRanges: 模型上下文长度区间筛选 例如:"32-128","256-1024"
+        :type PathPrefix: Filter
         """
         self.Marker = None
         self.MaxResults = None
@@ -1477,6 +1548,9 @@ class DescribeModelsRequest(AbstractModel):
         self.Provider = None
         self.ContextLength = None
         self.ModelName = None
+        self.Capabilities = None
+        self.Status = None
+        self.ContextLengthRanges = None
 
     def _deserialize(self, params):
         if params.get("Marker"):
@@ -1491,47 +1565,12 @@ class DescribeModelsRequest(AbstractModel):
             self.ContextLength = params.get("ContextLength")
         if params.get("ModelName"):
             self.ModelName = params.get("ModelName")
-
-
-class CreateApikeyRequest(AbstractModel):
-    """CreateApikey请求参数结构体
-    """
-
-    def __init__(self):
-        r"""创建API Key
-        :param Name: API Key 名称
-        :type PathPrefix: String
-        :param Description: API Key 描述
-        :type PathPrefix: String
-        :param ProjectId: 项目ID
-        :type PathPrefix: Long
-        :param AssociatedModelIds: 关联的模型列表
-        :type PathPrefix: Array
-        :param AllAssociatedModel: 是否全选
-        :type PathPrefix: Boolean
-        :param AllowedIps: IP白名单，空数组表示不设置白名单
-        :type PathPrefix: Array
-        """
-        self.Name = None
-        self.Description = None
-        self.ProjectId = None
-        self.AssociatedModelIds = None
-        self.AllAssociatedModel = None
-        self.AllowedIps = None
-
-    def _deserialize(self, params):
-        if params.get("Name"):
-            self.Name = params.get("Name")
-        if params.get("Description"):
-            self.Description = params.get("Description")
-        if params.get("ProjectId"):
-            self.ProjectId = params.get("ProjectId")
-        if params.get("AssociatedModelIds"):
-            self.AssociatedModelIds = params.get("AssociatedModelIds")
-        if params.get("AllAssociatedModel"):
-            self.AllAssociatedModel = params.get("AllAssociatedModel")
-        if params.get("AllowedIps"):
-            self.AllowedIps = params.get("AllowedIps")
+        if params.get("Capabilities"):
+            self.Capabilities = params.get("Capabilities")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("ContextLengthRanges"):
+            self.ContextLengthRanges = params.get("ContextLengthRanges")
 
 
 class GetModelDetailRequest(AbstractModel):
@@ -1548,57 +1587,6 @@ class GetModelDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
-
-
-class DescribeApikeysRequest(AbstractModel):
-    """DescribeApikeys请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询API Key列表（分页）
-        :param Marker: 分页页码，从1开始
-        :type PathPrefix: Int
-        :param MaxResults: 每页条数，最多100
-        :type PathPrefix: Int
-        :param AssociatedModelId: 通过模型查关联的API Key
-        :type PathPrefix: Filter
-        :param Status: 按状态过滤查询
-        :type PathPrefix: Filter
-        :param Namekeyword: 名称搜索关键词
-        :type PathPrefix: String
-        :param DefaultKey: 是否默认只查默认Key
-        :type PathPrefix: Boolean
-        :param KeyId: 按apiKeyId 查询
-        :type PathPrefix: Filter
-        :param ExcludeTypes: 需要排除的key 类型：1- kscc key。
-        :type PathPrefix: Filter
-        """
-        self.Marker = None
-        self.MaxResults = None
-        self.AssociatedModelId = None
-        self.Status = None
-        self.Namekeyword = None
-        self.DefaultKey = None
-        self.KeyId = None
-        self.ExcludeTypes = None
-
-    def _deserialize(self, params):
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-        if params.get("AssociatedModelId"):
-            self.AssociatedModelId = params.get("AssociatedModelId")
-        if params.get("Status"):
-            self.Status = params.get("Status")
-        if params.get("Namekeyword"):
-            self.Namekeyword = params.get("Namekeyword")
-        if params.get("DefaultKey"):
-            self.DefaultKey = params.get("DefaultKey")
-        if params.get("KeyId"):
-            self.KeyId = params.get("KeyId")
-        if params.get("ExcludeTypes"):
-            self.ExcludeTypes = params.get("ExcludeTypes")
 
 
 class QueryTokenDataRequest(AbstractModel):
@@ -2694,12 +2682,15 @@ class DescribeResourcePoolInstanceTasksRequest(AbstractModel):
         :type PathPrefix: Int
         :param Page: 页码
         :type PathPrefix: Int
+        :param UseIdleResource: 是否使用闲时资源
+        :type PathPrefix: Boolean
         """
         self.ResourcePoolId = None
         self.InstanceId = None
         self.TaskType = None
         self.PageSize = None
         self.Page = None
+        self.UseIdleResource = None
 
     def _deserialize(self, params):
         if params.get("ResourcePoolId"):
@@ -2712,6 +2703,8 @@ class DescribeResourcePoolInstanceTasksRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
         if params.get("Page"):
             self.Page = params.get("Page")
+        if params.get("UseIdleResource"):
+            self.UseIdleResource = params.get("UseIdleResource")
 
 
 class SetKcrPersonalTokenRequest(AbstractModel):
@@ -3088,5 +3081,144 @@ class ModifyResourcePoolRequest(AbstractModel):
             self.ResourcePoolName = params.get("ResourcePoolName")
         if params.get("Overallocate"):
             self.Overallocate = params.get("Overallocate")
+
+
+class DescribeInferenceAndPodEventsRequest(AbstractModel):
+    """DescribeInferenceAndPodEvents请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型在线服务及Pod事件列表
+        :param InferenceId: 推理服务ID
+        :type PathPrefix: String
+        :param PodNames: Pod名称列表，不传则查询所有Pod事件
+        :type PathPrefix: Array
+        :param SortKey: 排序关键字
+        :type PathPrefix: String
+        :param Sort: 排序方式
+        :type PathPrefix: String
+        """
+        self.InferenceId = None
+        self.PodNames = None
+        self.SortKey = None
+        self.Sort = None
+
+    def _deserialize(self, params):
+        if params.get("InferenceId"):
+            self.InferenceId = params.get("InferenceId")
+        if params.get("PodNames"):
+            self.PodNames = params.get("PodNames")
+        if params.get("SortKey"):
+            self.SortKey = params.get("SortKey")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+
+
+class DescribeTrainJobAndPodEventsRequest(AbstractModel):
+    """DescribeTrainJobAndPodEvents请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询训练任务及Pod事件列表
+        :param TrainJobId: 训练任务ID
+        :type PathPrefix: String
+        :param PodNames: Pod名称列表，不传则查询所有Pod事件
+        :type PathPrefix: Array
+        :param SortKey: 排序关键字
+        :type PathPrefix: String
+        :param Sort: 排序方式
+        :type PathPrefix: String
+        """
+        self.TrainJobId = None
+        self.PodNames = None
+        self.SortKey = None
+        self.Sort = None
+
+    def _deserialize(self, params):
+        if params.get("TrainJobId"):
+            self.TrainJobId = params.get("TrainJobId")
+        if params.get("PodNames"):
+            self.PodNames = params.get("PodNames")
+        if params.get("SortKey"):
+            self.SortKey = params.get("SortKey")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+
+
+class DescribeFineTuneJobAndPodEventsRequest(AbstractModel):
+    """DescribeFineTuneJobAndPodEvents请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型微调任务及Pod事件列表
+        :param FineTuneJobId: 微调任务ID
+        :type PathPrefix: String
+        :param PodNames: Pod名称列表，不传则查询所有Pod事件
+        :type PathPrefix: Array
+        :param SortKey: 排序关键字
+        :type PathPrefix: String
+        :param Sort: 排序方式
+        :type PathPrefix: String
+        """
+        self.FineTuneJobId = None
+        self.PodNames = None
+        self.SortKey = None
+        self.Sort = None
+
+    def _deserialize(self, params):
+        if params.get("FineTuneJobId"):
+            self.FineTuneJobId = params.get("FineTuneJobId")
+        if params.get("PodNames"):
+            self.PodNames = params.get("PodNames")
+        if params.get("SortKey"):
+            self.SortKey = params.get("SortKey")
+        if params.get("Sort"):
+            self.Sort = params.get("Sort")
+
+
+class DescribeTerminateStopRecordsRequest(AbstractModel):
+    """DescribeTerminateStopRecords请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询清理策略记录列表
+        :param QueueId: 队列ID，与TerminatePolicyIds、NotebookIds不能同时为空
+        :type PathPrefix: String
+        :param TerminatePolicyIds: 关停策略ID列表，与QueueId、NotebookIds不能同时为空
+        :type PathPrefix: Array
+        :param NotebookIds: 任务ID列表，与QueueId、TerminatePolicyIds不能同时为空
+        :type PathPrefix: Array
+        :param StartTime: 查询开始时间，格式：yyyy-MM-dd HH:mm:ss
+        :type PathPrefix: String
+        :param EndTime: 查询结束时间，格式：yyyy-MM-dd HH:mm:ss
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        """
+        self.QueueId = None
+        self.TerminatePolicyIds = None
+        self.NotebookIds = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("TerminatePolicyIds"):
+            self.TerminatePolicyIds = params.get("TerminatePolicyIds")
+        if params.get("NotebookIds"):
+            self.NotebookIds = params.get("NotebookIds")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
 
 

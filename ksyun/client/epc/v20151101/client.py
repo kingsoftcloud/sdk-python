@@ -239,7 +239,7 @@ class EpcClient(AbstractClient):
 
 
     def CreateImage(self, request):
-        """CreateImage
+        """创建自定义镜像
         :param request: Request instance for CreateImage.
         :type request: :class:`ksyun.client.epc.v20151101.models.CreateImageRequest`
         """
@@ -2385,6 +2385,167 @@ class EpcClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeUserData", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateLaunchTemplate(self, request):
+        """创建一个实例启动模板
+        :param request: Request instance for CreateLaunchTemplate.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateLaunchTemplateRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateLaunchTemplate", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateLaunchTemplateVersion(self, request):
+        """创建一个实例启动模板的版本
+        :param request: Request instance for CreateLaunchTemplateVersion.
+        :type request: :class:`ksyun.client.epc.v20151101.models.CreateLaunchTemplateVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateLaunchTemplateVersion", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeLaunchTemplates(self, request):
+        """查询实例启动模板
+        :param request: Request instance for DescribeLaunchTemplates.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeLaunchTemplatesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeLaunchTemplates", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeLaunchTemplateVersions(self, request):
+        """查询实例启动模板版本
+        :param request: Request instance for DescribeLaunchTemplateVersions.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DescribeLaunchTemplateVersionsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeLaunchTemplateVersions", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyTemplateDefaultVersion(self, request):
+        """修改实例启动模板的默认版本
+        :param request: Request instance for ModifyTemplateDefaultVersion.
+        :type request: :class:`ksyun.client.epc.v20151101.models.ModifyTemplateDefaultVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyTemplateDefaultVersion", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteLaunchTemplate(self, request):
+        """删除一个实例启动模板
+        :param request: Request instance for DeleteLaunchTemplate.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteLaunchTemplateRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteLaunchTemplate", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteLaunchTemplateVersion(self, request):
+        """删除一个实例启动模板的版本
+        :param request: Request instance for DeleteLaunchTemplateVersion.
+        :type request: :class:`ksyun.client.epc.v20151101.models.DeleteLaunchTemplateVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteLaunchTemplateVersion", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

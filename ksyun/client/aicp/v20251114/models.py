@@ -281,6 +281,8 @@ class ModifyKnowledgeBaseRequest(AbstractModel):
         :type PathPrefix: String
         :param RetrievalModel: 检索模型（选填）
         :type PathPrefix: Object
+        :param ComputeUnit: 计算资源数
+        :type PathPrefix: Int
         """
         self.DatasetId = None
         self.Name = None
@@ -288,6 +290,7 @@ class ModifyKnowledgeBaseRequest(AbstractModel):
         self.EmbeddingModelProvider = None
         self.EmbeddingModel = None
         self.RetrievalModel = None
+        self.ComputeUnit = None
 
     def _deserialize(self, params):
         if params.get("DatasetId"):
@@ -302,6 +305,8 @@ class ModifyKnowledgeBaseRequest(AbstractModel):
             self.EmbeddingModel = params.get("EmbeddingModel")
         if params.get("RetrievalModel"):
             self.RetrievalModel = params.get("RetrievalModel")
+        if params.get("ComputeUnit"):
+            self.ComputeUnit = params.get("ComputeUnit")
 
 
 class DescribeKnowledgeBaseRequest(AbstractModel):
@@ -358,10 +363,19 @@ class CreateKnowledgeBaseRequest(AbstractModel):
         :type PathPrefix: String
         :param RetrievalModel: 检索模型配置
         :type PathPrefix: Object
+        :param ComputeUnit: 计算资源数
+        :type PathPrefix: Int
+        :param ProjectId: 项目ID
+        :type PathPrefix: String
+        :param ChargeType: 计费方式
+        :type PathPrefix: String
         """
         self.Name = None
         self.IndexingTechnique = None
         self.RetrievalModel = None
+        self.ComputeUnit = None
+        self.ProjectId = None
+        self.ChargeType = None
 
     def _deserialize(self, params):
         if params.get("Name"):
@@ -370,6 +384,12 @@ class CreateKnowledgeBaseRequest(AbstractModel):
             self.IndexingTechnique = params.get("IndexingTechnique")
         if params.get("RetrievalModel"):
             self.RetrievalModel = params.get("RetrievalModel")
+        if params.get("ComputeUnit"):
+            self.ComputeUnit = params.get("ComputeUnit")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
 
 
 class CreateMemorySdkRequest(AbstractModel):
@@ -394,6 +414,9 @@ class CreateMemorySdkRequest(AbstractModel):
         :type PathPrefix: String
         :param MemoryCollectionId: 记忆库ID
         :type PathPrefix: String
+        :param Flush: 强制提取记忆
+> true: 强制当前seesion下的原始对话切分并提取记忆，false: 走默认流程
+        :type PathPrefix: Boolean
         """
         self.AgentId = None
         self.SessionId = None
@@ -402,6 +425,7 @@ class CreateMemorySdkRequest(AbstractModel):
         self.Data = None
         self.AgentUserId = None
         self.MemoryCollectionId = None
+        self.Flush = None
 
     def _deserialize(self, params):
         if params.get("AgentId"):
@@ -418,6 +442,8 @@ class CreateMemorySdkRequest(AbstractModel):
             self.AgentUserId = params.get("AgentUserId")
         if params.get("MemoryCollectionId"):
             self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("Flush"):
+            self.Flush = params.get("Flush")
 
 
 class QueryMemorySdkRequest(AbstractModel):
@@ -497,15 +523,35 @@ class CreateMemoryCollectionRequest(AbstractModel):
         :param Description: 记忆库描述；
 200位，允许字母、中文、数字、顿号、-、_、\、/、(、)、.、空格
         :type PathPrefix: String
+        :param LongTermConfiguration: 
+        :type PathPrefix: Object
+        :param MemoryType: 记忆库类型：1-基础版，2-专业版，3-企业版
+        :type PathPrefix: String
+        :param ProjectId: 项目ID
+        :type PathPrefix: String
+        :param ChargeType: 计费方式
+        :type PathPrefix: String
         """
         self.Name = None
         self.Description = None
+        self.LongTermConfiguration = None
+        self.MemoryType = None
+        self.ProjectId = None
+        self.ChargeType = None
 
     def _deserialize(self, params):
         if params.get("Name"):
             self.Name = params.get("Name")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("LongTermConfiguration"):
+            self.LongTermConfiguration = params.get("LongTermConfiguration")
+        if params.get("MemoryType"):
+            self.MemoryType = params.get("MemoryType")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
 
 
 class GetMemoryCollectionRequest(AbstractModel):
@@ -641,10 +687,13 @@ class UpdateMemoryCollectionRequest(AbstractModel):
 40位，允许字母、中文、数字、顿号、-、_、
 .、\、/、(、)
         :type PathPrefix: String
+        :param LongTermConfiguration: 
+        :type PathPrefix: Object
         """
         self.MemoryCollectionId = None
         self.Description = None
         self.Name = None
+        self.LongTermConfiguration = None
 
     def _deserialize(self, params):
         if params.get("MemoryCollectionId"):
@@ -653,6 +702,8 @@ class UpdateMemoryCollectionRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("Name"):
             self.Name = params.get("Name")
+        if params.get("LongTermConfiguration"):
+            self.LongTermConfiguration = params.get("LongTermConfiguration")
 
 
 class DeleteMcpServerRequest(AbstractModel):
@@ -1132,5 +1183,234 @@ class ModifyDocumentStatusRequest(AbstractModel):
             self.DocumentId = params.get("DocumentId")
         if params.get("Status"):
             self.Status = params.get("Status")
+
+
+class GetApiDetailRequest(AbstractModel):
+    """GetApiDetail请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询云产品OpenAPI详情
+        :param ApiService: 服务名称（必填）
+        :type PathPrefix: String
+        :param ApiName: API名称（必填）
+        :type PathPrefix: String
+        :param ApiVersion: 版本号（必填）
+        :type PathPrefix: String
+        """
+        self.ApiService = None
+        self.ApiName = None
+        self.ApiVersion = None
+
+    def _deserialize(self, params):
+        if params.get("ApiService"):
+            self.ApiService = params.get("ApiService")
+        if params.get("ApiName"):
+            self.ApiName = params.get("ApiName")
+        if params.get("ApiVersion"):
+            self.ApiVersion = params.get("ApiVersion")
+
+
+class GetApiOverviewRequest(AbstractModel):
+    """GetApiOverview请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询云产品OpenAPI概览列表
+        :param ApiService: 服务名称（必填）
+        :type PathPrefix: String
+        :param ApiVersion: 版本号，不填则查询所有版本
+        :type PathPrefix: String
+        """
+        self.ApiService = None
+        self.ApiVersion = None
+
+    def _deserialize(self, params):
+        if params.get("ApiService"):
+            self.ApiService = params.get("ApiService")
+        if params.get("ApiVersion"):
+            self.ApiVersion = params.get("ApiVersion")
+
+
+class GetProductListRequest(AbstractModel):
+    """GetProductList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询云产品列表
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DescribeMcpRuntimeMetricsRequest(AbstractModel):
+    """DescribeMcpRuntimeMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询MCP运行监控（只有部署方式为代码方式部署的MCP才有）
+        :param McpServerId: MCP服务ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间（Unix时间戳，秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间（Unix时间戳，秒）
+        :type PathPrefix: Long
+        :param Interval: 聚合周期（秒），不传由后端自动计算
+        :type PathPrefix: Int
+        """
+        self.McpServerId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+
+    def _deserialize(self, params):
+        if params.get("McpServerId"):
+            self.McpServerId = params.get("McpServerId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+
+
+class QueryMcpMetricsRequest(AbstractModel):
+    """QueryMcpMetrics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询MCP服务调用监控信息
+        :param StartTime: 开始时间（Unix时间戳，秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间（Unix时间戳，秒）
+        :type PathPrefix: Long
+        :param Interval: 聚合步长（秒），允许值：30, 60, 300, 600, 1800, 3600
+        :type PathPrefix: Int
+        :param McpType: MCP类型：Official / Custom
+        :type PathPrefix: String
+        :param McpServerId: MCP服务ID
+        :type PathPrefix: String
+        """
+        self.StartTime = None
+        self.EndTime = None
+        self.Interval = None
+        self.McpType = None
+        self.McpServerId = None
+
+    def _deserialize(self, params):
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Interval"):
+            self.Interval = params.get("Interval")
+        if params.get("McpType"):
+            self.McpType = params.get("McpType")
+        if params.get("McpServerId"):
+            self.McpServerId = params.get("McpServerId")
+
+
+class DescribeKnowledgeTokenMonitorRequest(AbstractModel):
+    """DescribeKnowledgeTokenMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看知识库模型用量监控信息
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间戳（秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间戳（秒）
+        :type PathPrefix: Long
+        :param Granularity: 聚合粒度：minute / hour / day
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Granularity = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+
+
+class DescribeKnowledgeStorageMonitorRequest(AbstractModel):
+    """DescribeKnowledgeStorageMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看知识库存储用量监控信息
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间戳（秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间戳（秒）
+        :type PathPrefix: Long
+        :param Granularity: 聚合粒度：minute / hour / day
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Granularity = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+
+
+class DescribeMcpRuntimeLogsRequest(AbstractModel):
+    """DescribeMcpRuntimeLogs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看MCP运行时日志
+        :param McpServerId: MCP服务ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间（Unix时间戳，秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间（Unix时间戳，秒）
+        :type PathPrefix: Long
+        :param Keyword: 关键词搜索
+        :type PathPrefix: String
+        :param Page: 页码，默认1
+        :type PathPrefix: Int
+        :param Limit: 每页条数，默认100，最大5000
+        :type PathPrefix: Int
+        """
+        self.McpServerId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Keyword = None
+        self.Page = None
+        self.Limit = None
+
+    def _deserialize(self, params):
+        if params.get("McpServerId"):
+            self.McpServerId = params.get("McpServerId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Keyword"):
+            self.Keyword = params.get("Keyword")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
 
 

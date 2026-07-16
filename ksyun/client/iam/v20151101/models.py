@@ -1588,3 +1588,19 @@ class BatchUpdateInstanceProjectIdRequest(AbstractModel):
             self.InstanceIds = params.get("InstanceIds")
 
 
+class SendEmailCodeRequest(AbstractModel):
+    """SendEmailCode请求参数结构体
+    """
+
+    def __init__(self):
+        r"""发送子用户邮箱验证码
+        :param UserName: 子用户用户名
+        :type PathPrefix: String
+        """
+        self.UserName = None
+
+    def _deserialize(self, params):
+        if params.get("UserName"):
+            self.UserName = params.get("UserName")
+
+

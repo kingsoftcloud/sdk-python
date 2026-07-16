@@ -1503,3 +1503,26 @@ class IamClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def SendEmailCode(self, request):
+        """发送子用户邮箱验证码
+        :param request: Request instance for SendEmailCode.
+        :type request: :class:`ksyun.client.iam.v20151101.models.SendEmailCodeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SendEmailCode", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

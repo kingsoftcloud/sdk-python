@@ -28,6 +28,12 @@ class CreateResourcePoolRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param Components: 组件
         :type PathPrefix: Array
+        :param EnableVolume: 是否支持挂载云盘, true代表开启
+        :type PathPrefix: Boolean
+        :param VolumeChargeType: 云盘计费方式，有效值：
+- HourlyInstantSettlement（后付费，按小时实时结算）
+- Daily（后付费，按日月结）
+        :type PathPrefix: String
         """
         self.ResourcePoolName = None
         self.Description = None
@@ -40,6 +46,8 @@ class CreateResourcePoolRequest(AbstractModel):
         self.LogProjectName = None
         self.Overallocate = None
         self.Components = None
+        self.EnableVolume = None
+        self.VolumeChargeType = None
 
     def _deserialize(self, params):
         if params.get("ResourcePoolName"):
@@ -64,6 +72,10 @@ class CreateResourcePoolRequest(AbstractModel):
             self.Overallocate = params.get("Overallocate")
         if params.get("Components"):
             self.Components = params.get("Components")
+        if params.get("EnableVolume"):
+            self.EnableVolume = params.get("EnableVolume")
+        if params.get("VolumeChargeType"):
+            self.VolumeChargeType = params.get("VolumeChargeType")
 
 
 class CreateStorageConfigRequest(AbstractModel):
@@ -378,6 +390,8 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageRegistryId: 第三方镜像配置ID
         :type PathPrefix: String
+        :param AutoSaveConfig: 自动保存镜像配置
+        :type PathPrefix: Object
         """
         self.NotebookId = None
         self.NotebookName = None
@@ -404,6 +418,7 @@ class ModifyNotebookRequest(AbstractModel):
         self.ImageSource = None
         self.ImageRepoId = None
         self.ImageRegistryId = None
+        self.AutoSaveConfig = None
 
     def _deserialize(self, params):
         if params.get("NotebookId"):
@@ -456,6 +471,8 @@ class ModifyNotebookRequest(AbstractModel):
             self.ImageRepoId = params.get("ImageRepoId")
         if params.get("ImageRegistryId"):
             self.ImageRegistryId = params.get("ImageRegistryId")
+        if params.get("AutoSaveConfig"):
+            self.AutoSaveConfig = params.get("AutoSaveConfig")
 
 
 class DeleteNotebookRequest(AbstractModel):
@@ -466,12 +483,17 @@ class DeleteNotebookRequest(AbstractModel):
         r"""删除开发任务
         :param NotebookId: 开发任务ID
         :type PathPrefix: String
+        :param VolumeReclaimPolicy: 云盘回收策略，有效值：delete、reclaim（保留）
+        :type PathPrefix: String
         """
         self.NotebookId = None
+        self.VolumeReclaimPolicy = None
 
     def _deserialize(self, params):
         if params.get("NotebookId"):
             self.NotebookId = params.get("NotebookId")
+        if params.get("VolumeReclaimPolicy"):
+            self.VolumeReclaimPolicy = params.get("VolumeReclaimPolicy")
 
 
 class DescribeNotebooksRequest(AbstractModel):
@@ -492,6 +514,8 @@ class DescribeNotebooksRequest(AbstractModel):
         :type PathPrefix: Filter
         :param QueueId: 队列ID
         :type PathPrefix: String
+        :param EnableVolume: 是否支持挂载云盘
+        :type PathPrefix: Boolean
         """
         self.NotebookId = None
         self.Name = None
@@ -499,6 +523,7 @@ class DescribeNotebooksRequest(AbstractModel):
         self.PageSize = None
         self.Filter = None
         self.QueueId = None
+        self.EnableVolume = None
 
     def _deserialize(self, params):
         if params.get("NotebookId"):
@@ -513,6 +538,8 @@ class DescribeNotebooksRequest(AbstractModel):
             self.Filter = params.get("Filter")
         if params.get("QueueId"):
             self.QueueId = params.get("QueueId")
+        if params.get("EnableVolume"):
+            self.EnableVolume = params.get("EnableVolume")
 
 
 class CreateNotebookRequest(AbstractModel):
@@ -575,6 +602,10 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param AutoSaveConfig: 自动保存镜像配置
         :type PathPrefix: Object
+        :param EnableVolume: 是否挂载云盘
+        :type PathPrefix: Boolean
+        :param VolumeConfig: 云盘配置，当EnableVolume=true时必传
+        :type PathPrefix: Object
         """
         self.NotebookName = None
         self.Description = None
@@ -600,6 +631,8 @@ class CreateNotebookRequest(AbstractModel):
         self.AllocationId = None
         self.RunOnCPU = None
         self.AutoSaveConfig = None
+        self.EnableVolume = None
+        self.VolumeConfig = None
 
     def _deserialize(self, params):
         if params.get("NotebookName"):
@@ -650,6 +683,10 @@ class CreateNotebookRequest(AbstractModel):
             self.RunOnCPU = params.get("RunOnCPU")
         if params.get("AutoSaveConfig"):
             self.AutoSaveConfig = params.get("AutoSaveConfig")
+        if params.get("EnableVolume"):
+            self.EnableVolume = params.get("EnableVolume")
+        if params.get("VolumeConfig"):
+            self.VolumeConfig = params.get("VolumeConfig")
 
 
 class EnableKlogRequest(AbstractModel):
@@ -1573,6 +1610,72 @@ class DescribeModelsRequest(AbstractModel):
             self.ContextLengthRanges = params.get("ContextLengthRanges")
 
 
+class CreateApikeyRequest(AbstractModel):
+    """CreateApikey请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建API Key
+        :param Name: API Key 名称
+        :type PathPrefix: String
+        :param Description: API Key 描述
+        :type PathPrefix: String
+        :param ProjectId: 项目ID
+        :type PathPrefix: Long
+        :param AssociatedModelIds: 关联的模型列表
+        :type PathPrefix: Array
+        :param AllAssociatedModel: 是否全选
+        :type PathPrefix: Boolean
+        :param AllowedIps: IP白名单，空数组表示不设置白名单
+        :type PathPrefix: Array
+        :param AllowEndpoints: 允许的接入点列表
+        :type PathPrefix: Array
+        :param AllAssociatedEndpoint: 是否全选接入点
+        :type PathPrefix: Boolean
+        :param AllAssociatedProjectResources: 是否项目下资源全选
+        :type PathPrefix: Boolean
+        :param LowPriceModels: 低价池(标准池)模型名称列表
+        :type PathPrefix: Array
+        :param HighPriceModels: 高价池模型名称列表
+        :type PathPrefix: Array
+        """
+        self.Name = None
+        self.Description = None
+        self.ProjectId = None
+        self.AssociatedModelIds = None
+        self.AllAssociatedModel = None
+        self.AllowedIps = None
+        self.AllowEndpoints = None
+        self.AllAssociatedEndpoint = None
+        self.AllAssociatedProjectResources = None
+        self.LowPriceModels = None
+        self.HighPriceModels = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("AssociatedModelIds"):
+            self.AssociatedModelIds = params.get("AssociatedModelIds")
+        if params.get("AllAssociatedModel"):
+            self.AllAssociatedModel = params.get("AllAssociatedModel")
+        if params.get("AllowedIps"):
+            self.AllowedIps = params.get("AllowedIps")
+        if params.get("AllowEndpoints"):
+            self.AllowEndpoints = params.get("AllowEndpoints")
+        if params.get("AllAssociatedEndpoint"):
+            self.AllAssociatedEndpoint = params.get("AllAssociatedEndpoint")
+        if params.get("AllAssociatedProjectResources"):
+            self.AllAssociatedProjectResources = params.get("AllAssociatedProjectResources")
+        if params.get("LowPriceModels"):
+            self.LowPriceModels = params.get("LowPriceModels")
+        if params.get("HighPriceModels"):
+            self.HighPriceModels = params.get("HighPriceModels")
+
+
 class GetModelDetailRequest(AbstractModel):
     """GetModelDetail请求参数结构体
     """
@@ -1587,6 +1690,61 @@ class GetModelDetailRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
+
+
+class DescribeApikeysRequest(AbstractModel):
+    """DescribeApikeys请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询API Key列表（分页）
+        :param Marker: 分页页码，从1开始
+        :type PathPrefix: Int
+        :param MaxResults: 每页条数，最多100
+        :type PathPrefix: Int
+        :param AssociatedModelId: 通过模型查关联的API Key
+        :type PathPrefix: Filter
+        :param Status: 按状态过滤查询
+        :type PathPrefix: Filter
+        :param Namekeyword: 名称搜索关键词
+        :type PathPrefix: String
+        :param DefaultKey: 是否默认只查默认Key
+        :type PathPrefix: Boolean
+        :param SelfCreated: 是否筛选创建用户
+- true 筛选我创建的
+- false 不筛选
+        :type PathPrefix: Boolean
+        :param SortOrder: 排序顺序
+- asc 按照创建时间升序排列
+- 其他情况 按照创建时间降序排列
+        :type PathPrefix: String
+        """
+        self.Marker = None
+        self.MaxResults = None
+        self.AssociatedModelId = None
+        self.Status = None
+        self.Namekeyword = None
+        self.DefaultKey = None
+        self.SelfCreated = None
+        self.SortOrder = None
+
+    def _deserialize(self, params):
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("AssociatedModelId"):
+            self.AssociatedModelId = params.get("AssociatedModelId")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("Namekeyword"):
+            self.Namekeyword = params.get("Namekeyword")
+        if params.get("DefaultKey"):
+            self.DefaultKey = params.get("DefaultKey")
+        if params.get("SelfCreated"):
+            self.SelfCreated = params.get("SelfCreated")
+        if params.get("SortOrder"):
+            self.SortOrder = params.get("SortOrder")
 
 
 class QueryTokenDataRequest(AbstractModel):
@@ -2398,6 +2556,8 @@ class DescribeResourcePoolsRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 一个或者多个过滤器
         :type PathPrefix: Filter
+        :param EnableVolume: 是否支持挂载云盘
+        :type PathPrefix: Boolean
         """
         self.Sort = None
         self.Page = None
@@ -2406,6 +2566,7 @@ class DescribeResourcePoolsRequest(AbstractModel):
         self.Component = None
         self.ResourcePoolId = None
         self.Filter = None
+        self.EnableVolume = None
 
     def _deserialize(self, params):
         if params.get("Sort"):
@@ -2422,6 +2583,8 @@ class DescribeResourcePoolsRequest(AbstractModel):
             self.ResourcePoolId = params.get("ResourcePoolId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("EnableVolume"):
+            self.EnableVolume = params.get("EnableVolume")
 
 
 class DescribeResourcePoolInstancesRequest(AbstractModel):
@@ -3220,5 +3383,148 @@ class DescribeTerminateStopRecordsRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("PageSize"):
             self.PageSize = params.get("PageSize")
+
+
+class GetAccountBillRulesRequest(AbstractModel):
+    """GetAccountBillRules请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取用户报价规则
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class CreateUsageDownloadTaskRequest(AbstractModel):
+    """CreateUsageDownloadTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建查询用量任务
+        :param StartTimestamp: 查询任务数据起始时间（UTC Unix 时间戳，单位：秒），需校验：StartTimestamp≤EndTimestamp
+
+        :type PathPrefix: Long
+        :param EndTimestamp: 查询任务数据结束时间（UTC Unix 时间戳，单位：秒），需校验：EndTimestamp ≤ 当前时间；EndTimestamp - StartTimestamp ≤ 604800（最大时间跨度7天）
+        :type PathPrefix: Long
+        :param Filter: 
+        :type PathPrefix: Object
+        """
+        self.StartTimestamp = None
+        self.EndTimestamp = None
+        self.Filter = None
+
+    def _deserialize(self, params):
+        if params.get("StartTimestamp"):
+            self.StartTimestamp = params.get("StartTimestamp")
+        if params.get("EndTimestamp"):
+            self.EndTimestamp = params.get("EndTimestamp")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+
+
+class GetUsageDownloadTaskRequest(AbstractModel):
+    """GetUsageDownloadTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""下载查询用量任务
+        :param TaskId: 导出任务ID
+        :type PathPrefix: String
+        """
+        self.TaskId = None
+
+    def _deserialize(self, params):
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+
+
+class AddStorageConfigAccessRequest(AbstractModel):
+    """AddStorageConfigAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""存储配置添加权限用户
+        :param StorageConfigId: 存储配置ID
+        :type PathPrefix: String
+        :param UserId: 要添加的子用户ID
+        :type PathPrefix: String
+        :param SharedGroupId: 要添加的权限组ID
+        :type PathPrefix: String
+        :param Permission: 权限类型, kpfs用户权限：[admin 创建者or主账号, writer 管理员（只读）, writer_mnt_w 管理员（读写）, reader 普通成员（只读）, reader_mnt_w 普通成员（读写）] ks3用户权限：[admin 创建者or主账号, writer 管理员（只读）, reader 普通成员（只读）]
+        :type PathPrefix: String
+        """
+        self.StorageConfigId = None
+        self.UserId = None
+        self.SharedGroupId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class ModifyStorageConfigAccessRoleRequest(AbstractModel):
+    """ModifyStorageConfigAccessRole请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改存储配置用户/权限组权限
+        :param StorageConfigId: 存储配置ID
+        :type PathPrefix: String
+        :param UserId: 要移除权限组的子账号ID
+        :type PathPrefix: String
+        :param SharedGroupId: 要移除权限的权限组ID
+        :type PathPrefix: String
+        :param Permission: 权限类型, kpfs用户权限：[admin 创建者or主账号, writer 管理员（只读）, writer_mnt_w 管理员（读写）, reader 普通成员（只读）, reader_mnt_w 普通成员（读写）] ks3用户权限：[admin 创建者or主账号, writer 管理员（只读）, reader 普通成员（只读）]
+        :type PathPrefix: String
+        """
+        self.StorageConfigId = None
+        self.UserId = None
+        self.SharedGroupId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class RemoveStorageConfigAccessRequest(AbstractModel):
+    """RemoveStorageConfigAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""移除成员/权限组权限
+        :param StorageConfigId: 存储配置ID
+        :type PathPrefix: String
+        :param UserId: 子用户ID（要被移除的子用户ID）
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID（要被移除权限的权限组ID）
+        :type PathPrefix: String
+        """
+        self.StorageConfigId = None
+        self.UserId = None
+        self.SharedGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("StorageConfigId"):
+            self.StorageConfigId = params.get("StorageConfigId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
 
 

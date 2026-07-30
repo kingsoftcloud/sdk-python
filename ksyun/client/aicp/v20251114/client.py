@@ -1181,3 +1181,72 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DescribeMemoryTokenMonitor(self, request):
+        """查看记忆库模型用量监控信息
+        :param request: Request instance for DescribeMemoryTokenMonitor.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMemoryTokenMonitorRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMemoryTokenMonitor", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMemoryStorageMonitor(self, request):
+        """查看记忆库存储用量监控信息
+        :param request: Request instance for DescribeMemoryStorageMonitor.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMemoryStorageMonitorRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMemoryStorageMonitor", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ListMemories(self, request):
+        """记忆列表信息
+        :param request: Request instance for ListMemories.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ListMemoriesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListMemories", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

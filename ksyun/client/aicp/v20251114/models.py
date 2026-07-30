@@ -1414,3 +1414,144 @@ class DescribeMcpRuntimeLogsRequest(AbstractModel):
             self.Limit = params.get("Limit")
 
 
+class DescribeMemoryTokenMonitorRequest(AbstractModel):
+    """DescribeMemoryTokenMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看记忆库模型用量监控信息
+        :param MemoryId: 记忆库 ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间戳（秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间戳（秒）
+        :type PathPrefix: Long
+        :param Granularity: 聚合粒度：minute / hour / day
+        :type PathPrefix: String
+        """
+        self.MemoryId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Granularity = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryId"):
+            self.MemoryId = params.get("MemoryId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+
+
+class DescribeMemoryStorageMonitorRequest(AbstractModel):
+    """DescribeMemoryStorageMonitor请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看记忆库存储用量监控信息
+        :param MemoryId: 记忆库 ID
+        :type PathPrefix: String
+        :param StartTime: 开始时间戳（秒）
+        :type PathPrefix: Long
+        :param EndTime: 结束时间戳（秒）
+        :type PathPrefix: Long
+        :param Granularity: 聚合粒度：minute / hour / day
+        :type PathPrefix: String
+        """
+        self.MemoryId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Granularity = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryId"):
+            self.MemoryId = params.get("MemoryId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("Granularity"):
+            self.Granularity = params.get("Granularity")
+
+
+class ListMemoriesRequest(AbstractModel):
+    """ListMemories请求参数结构体
+    """
+
+    def __init__(self):
+        r"""记忆列表信息
+        :param MemoryCollectionId: 记忆库 ID
+        :type PathPrefix: String
+        :param AgentUserId: 查询的用户ID
+        :type PathPrefix: String
+        :param TopicId: 主题 ID
+        :type PathPrefix: String
+        :param Query: 查询关键字
+        :type PathPrefix: String
+        :param Page: 分页参数——页码  默认1
+        :type PathPrefix: Long
+        :param PageSize: 分页参数——每页条数，默认10
+        :type PathPrefix: Long
+        :param SortBy: 排序字段，默认 记忆创建时间
+枚举值:
+created_at  记忆创建时间
+occurred_start  事件开始时间
+occurred_end  事件结束时间
+updated_at  记忆更新时间
+        :type PathPrefix: String
+        :param SortOrder: 排序方向，默认 desc
+枚举值:
+asc  升序
+desc  降序
+        :type PathPrefix: String
+        :param CreatedAfter: 记忆创建时间下界（ms，闭区间）：仅返回创建时间 >= 该值的记忆，值须 >= 0
+        :type PathPrefix: Long
+        :param CreatedBefore: 记忆创建时间上界（ms，开区间）：仅返回创建时间 < 该值的记忆，值须 >= 0
+        :type PathPrefix: Long
+        :param OccurredAfter: 事件时间下界（ms，闭区间）：仅返回事件时间 >= 该值的记忆，值须 >= 0
+        :type PathPrefix: Long
+        :param OccurredBefore: 事件时间上界（ms，开区间）：仅返回事件时间 < 该值的记忆，值须 >= 0
+        :type PathPrefix: Long
+        """
+        self.MemoryCollectionId = None
+        self.AgentUserId = None
+        self.TopicId = None
+        self.Query = None
+        self.Page = None
+        self.PageSize = None
+        self.SortBy = None
+        self.SortOrder = None
+        self.CreatedAfter = None
+        self.CreatedBefore = None
+        self.OccurredAfter = None
+        self.OccurredBefore = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+        if params.get("TopicId"):
+            self.TopicId = params.get("TopicId")
+        if params.get("Query"):
+            self.Query = params.get("Query")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("SortBy"):
+            self.SortBy = params.get("SortBy")
+        if params.get("SortOrder"):
+            self.SortOrder = params.get("SortOrder")
+        if params.get("CreatedAfter"):
+            self.CreatedAfter = params.get("CreatedAfter")
+        if params.get("CreatedBefore"):
+            self.CreatedBefore = params.get("CreatedBefore")
+        if params.get("OccurredAfter"):
+            self.OccurredAfter = params.get("OccurredAfter")
+        if params.get("OccurredBefore"):
+            self.OccurredBefore = params.get("OccurredBefore")
+
+

@@ -813,6 +813,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def CreateApikey(self, request):
+        """创建API Key
+        :param request: Request instance for CreateApikey.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateApikeyRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateApikey", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def GetModelDetail(self, request):
         """查询模型详情
         :param request: Request instance for GetModelDetail.
@@ -821,6 +844,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("GetModelDetail", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeApikeys(self, request):
+        """查询API Key列表（分页）
+        :param request: Request instance for DescribeApikeys.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeApikeysRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeApikeys", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -2155,6 +2201,144 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeTerminateStopRecords", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetAccountBillRules(self, request):
+        """获取用户报价规则
+        :param request: Request instance for GetAccountBillRules.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.GetAccountBillRulesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetAccountBillRules", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateUsageDownloadTask(self, request):
+        """创建查询用量任务
+        :param request: Request instance for CreateUsageDownloadTask.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateUsageDownloadTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateUsageDownloadTask", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetUsageDownloadTask(self, request):
+        """下载查询用量任务
+        :param request: Request instance for GetUsageDownloadTask.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.GetUsageDownloadTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetUsageDownloadTask", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def AddStorageConfigAccess(self, request):
+        """存储配置添加权限用户
+        :param request: Request instance for AddStorageConfigAccess.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.AddStorageConfigAccessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddStorageConfigAccess", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyStorageConfigAccessRole(self, request):
+        """修改存储配置用户/权限组权限
+        :param request: Request instance for ModifyStorageConfigAccessRole.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyStorageConfigAccessRoleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyStorageConfigAccessRole", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RemoveStorageConfigAccess(self, request):
+        """移除成员/权限组权限
+        :param request: Request instance for RemoveStorageConfigAccess.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.RemoveStorageConfigAccessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemoveStorageConfigAccess", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

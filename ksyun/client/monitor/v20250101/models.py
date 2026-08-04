@@ -175,6 +175,40 @@ class ListAlarmEffectInstanceRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
 
 
+class QueryRangeRequest(AbstractModel):
+    """QueryRange请求参数结构体
+    """
+
+    def __init__(self):
+        r"""执行 PromQL/MetricsQL 查询监控数据
+        :param Query: MetricsQL 表达式。
+        :type PathPrefix: String
+        :param Start: 开始时间。
+> 用于 Query 评估的时间范围的起始时间戳
+        :type PathPrefix: Int
+        :param End: 结束时间。
+
+> 用于 Query 评估的时间范围的结束时间戳，如果未设置 end，则 end 会自动设置为当前时间
+        :type PathPrefix: Int
+        :param Step: 区间查询必须返回的数据点之间的间隔。
+        :type PathPrefix: Int
+        """
+        self.Query = None
+        self.Start = None
+        self.End = None
+        self.Step = None
+
+    def _deserialize(self, params):
+        if params.get("Query"):
+            self.Query = params.get("Query")
+        if params.get("Start"):
+            self.Start = params.get("Start")
+        if params.get("End"):
+            self.End = params.get("End")
+        if params.get("Step"):
+            self.Step = params.get("Step")
+
+
 class GetPrometheusTokenRequest(AbstractModel):
     """GetPrometheusToken请求参数结构体
     """

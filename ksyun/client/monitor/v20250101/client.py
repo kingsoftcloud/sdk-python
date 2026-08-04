@@ -100,6 +100,29 @@ class MonitorClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def QueryRange(self, request):
+        """执行 PromQL/MetricsQL 查询监控数据
+        :param request: Request instance for QueryRange.
+        :type request: :class:`ksyun.client.monitor.v20250101.models.QueryRangeRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryRange", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def GetPrometheusToken(self, request):
         """获取 Prometheus 访问Token
         :param request: Request instance for GetPrometheusToken.

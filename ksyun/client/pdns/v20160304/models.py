@@ -439,12 +439,21 @@ class CreateZoneRecordRequest(AbstractModel):
         :type PathPrefix: Int
         :param RecordValue: 记录值
         :type PathPrefix: String
+        :param Priority: 优先级，Type = MX，SRV，必传
+        :type PathPrefix: Int
+        :param Weight: 权重，Type = SRV，必传
+        :type PathPrefix: Int
+        :param Port: 端口，Type = SRV，必传
+        :type PathPrefix: Int
         """
         self.ZoneId = None
         self.RecordName = None
         self.Type = None
         self.RecordTtl = None
         self.RecordValue = None
+        self.Priority = None
+        self.Weight = None
+        self.Port = None
 
     def _deserialize(self, params):
         if params.get("ZoneId"):
@@ -457,6 +466,12 @@ class CreateZoneRecordRequest(AbstractModel):
             self.RecordTtl = params.get("RecordTtl")
         if params.get("RecordValue"):
             self.RecordValue = params.get("RecordValue")
+        if params.get("Priority"):
+            self.Priority = params.get("Priority")
+        if params.get("Weight"):
+            self.Weight = params.get("Weight")
+        if params.get("Port"):
+            self.Port = params.get("Port")
 
 
 class DeleteZoneRecordRequest(AbstractModel):
@@ -538,10 +553,16 @@ class DescribeZoneRecordRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 解析记录的主机记录筛选
         :type PathPrefix: Filter
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        :param NextToken: 获取另一页返回结果的 token
+        :type PathPrefix: String
         """
         self.ZoneId = None
         self.RecordId = None
         self.Filter = None
+        self.MaxResults = None
+        self.NextToken = None
 
     def _deserialize(self, params):
         if params.get("ZoneId"):
@@ -550,6 +571,10 @@ class DescribeZoneRecordRequest(AbstractModel):
             self.RecordId = params.get("RecordId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
 
 
 class UnbindFdZoneVpcRequest(AbstractModel):

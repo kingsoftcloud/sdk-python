@@ -5,9 +5,7 @@ class DescribeFileSystemListRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""文件系统列表查询
-        :param Region: 文件系统所在地域，不传则返回所有地域下文件系统。
-        :type PathPrefix: String
+        r"""查询文件系统列表
         :param FileSystemName: 文件系统名称前缀，模糊查询。
         :type PathPrefix: String
         :param FileSystemIds: 文件系统的实例ID清单，支持批量查询，FileSystemId 以逗号分隔。
@@ -21,7 +19,6 @@ class DescribeFileSystemListRequest(AbstractModel):
         :param PageSize: 分页大小。默认为10。
         :type PathPrefix: Int
         """
-        self.Region = None
         self.FileSystemName = None
         self.FileSystemIds = None
         self.StoreClasses = None
@@ -30,8 +27,6 @@ class DescribeFileSystemListRequest(AbstractModel):
         self.PageSize = None
 
     def _deserialize(self, params):
-        if params.get("Region"):
-            self.Region = params.get("Region")
         if params.get("FileSystemName"):
             self.FileSystemName = params.get("FileSystemName")
         if params.get("FileSystemIds"):
@@ -167,6 +162,140 @@ provider：代表提供者
             self.PageSize = params.get("PageSize")
         if params.get("PageNum"):
             self.PageNum = params.get("PageNum")
+
+
+class DescribeFileSystemFileListRequest(AbstractModel):
+    """DescribeFileSystemFileList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询文件系统文件列表
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param Dir: 需要以/开头，且/需要做encode。默认搜索根目录。
+        :type PathPrefix: String
+        :param FileName: 当前目录下需要搜索的文件前缀。
+        :type PathPrefix: String
+        :param PageNum: 页码。默认为1。
+        :type PathPrefix: Long
+        :param PageSize: 分页。默认为10。
+        :type PathPrefix: Long
+        """
+        self.FileSystemId = None
+        self.Dir = None
+        self.FileName = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("Dir"):
+            self.Dir = params.get("Dir")
+        if params.get("FileName"):
+            self.FileName = params.get("FileName")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class RenewFileSystemRequest(AbstractModel):
+    """RenewFileSystem请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统续费
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param PurchaseTime: 购买时长。有效值：1~60，单位：月。
+        :type PathPrefix: Long
+        """
+        self.FileSystemId = None
+        self.PurchaseTime = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
+
+
+class UpgradeFileSystemRequest(AbstractModel):
+    """UpgradeFileSystem请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统扩容
+        :param FileSystemId: 文件系统的实例ID。
+        :type PathPrefix: String
+        :param Capacity: 文件系统扩容后容量，单位：TiB。
+        :type PathPrefix: Long
+        """
+        self.FileSystemId = None
+        self.Capacity = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("Capacity"):
+            self.Capacity = params.get("Capacity")
+
+
+class CreateFileSystemRequest(AbstractModel):
+    """CreateFileSystem请求参数结构体
+    """
+
+    def __init__(self):
+        r"""文件系统创建
+        :param FileSystemName: 文件系统名称。容量Ⅰ型/容量Ⅱ型/标准型限制：小写字母开头，仅可包含小写字母、数字与连线符'-'，长度3-40个字符，不可以连线符'-'结尾。性能Ⅰ型/性能Ⅱ型限制：小写字母开头，仅可包含小写字母、数字与连线符'_'，长度3-40个字符，不可以下划线'_'结尾。
+        :type PathPrefix: String
+        :param Region: 文件系统所在地域。
+        :type PathPrefix: String
+        :param AvailZone: 文件系统所在可用区，需与Region参数配合使用。
+        :type PathPrefix: String
+        :param ChargeType: 文件系统计费类型。monthly（预付费，包年包月）、dailySettlement（后付费，按量付费）。
+        :type PathPrefix: String
+        :param PurchaseTime: 文件系统购买时长，仅购买包年包月时需填写。有效值：1~60，单位：月。
+        :type PathPrefix: Long
+        :param StoreClass: 文件系统存储类型。KPFS-capacity（容量Ⅰ型）、KPFS-capacity2（容量Ⅱ型）、KPFS-standard（标准型）、KPFS-P-S01（性能Ⅰ型）、KPFS-P-S02（性能Ⅱ型）。
+        :type PathPrefix: String
+        :param Capacity: 文件系统购买容量。单位TiB。有效值：容量Ⅰ型 20~102400；容量Ⅱ型 20~102400；标准型 10~102400；性能Ⅰ型 10~102400；性能Ⅱ型 10~102400。
+        :type PathPrefix: Long
+        :param ChunkSize: 条带块大小，仅性能Ⅰ型、性能Ⅱ型需填写。单位：Byte。枚举值：4096（4KB，小文件友好型）、32768（32KB，均衡型）、65536（64KB，大文件友好型）。
+        :type PathPrefix: Long
+        :param ClusterCode: 存储池Code，为集群的唯一标识，仅性能Ⅰ型、性能Ⅱ型需填写。
+        :type PathPrefix: String
+        """
+        self.FileSystemName = None
+        self.Region = None
+        self.AvailZone = None
+        self.ChargeType = None
+        self.PurchaseTime = None
+        self.StoreClass = None
+        self.Capacity = None
+        self.ChunkSize = None
+        self.ClusterCode = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemName"):
+            self.FileSystemName = params.get("FileSystemName")
+        if params.get("Region"):
+            self.Region = params.get("Region")
+        if params.get("AvailZone"):
+            self.AvailZone = params.get("AvailZone")
+        if params.get("ChargeType"):
+            self.ChargeType = params.get("ChargeType")
+        if params.get("PurchaseTime"):
+            self.PurchaseTime = params.get("PurchaseTime")
+        if params.get("StoreClass"):
+            self.StoreClass = params.get("StoreClass")
+        if params.get("Capacity"):
+            self.Capacity = params.get("Capacity")
+        if params.get("ChunkSize"):
+            self.ChunkSize = params.get("ChunkSize")
+        if params.get("ClusterCode"):
+            self.ClusterCode = params.get("ClusterCode")
 
 
 class GetCapacityAvailableRequest(AbstractModel):
@@ -495,27 +624,170 @@ class GetBandwidthReadRequest(AbstractModel):
             self.VpcIp = params.get("VpcIp")
 
 
+class DeletePerformanceOnePosixAclRequest(AbstractModel):
+    """DeletePerformanceOnePosixAcl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除POSIX协议访问授权
+        :param PosixAclId: 待删除POSIX访问授权规则ID
+        :type PathPrefix: String
+        """
+        self.PosixAclId = None
+
+    def _deserialize(self, params):
+        if params.get("PosixAclId"):
+            self.PosixAclId = params.get("PosixAclId")
+
+
+class UpdatePerformanceOnePosixAclRequest(AbstractModel):
+    """UpdatePerformanceOnePosixAcl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改POSIX协议访问授权
+        :param PosixAclId: POSIX访问授权规则ID
+        :type PathPrefix: String
+        :param FileSystemList: 文件系统数组，支持批量绑定文件系统
+        :type PathPrefix: Array
+        :param AutoMount: 是否自动挂载；true自动挂载，false手动挂载
+        :type PathPrefix: Boolean
+        :param Ips: 允许访问的客户端IP列表，授权白名单
+        :type PathPrefix: Array
+        :param Desc: 该POSIX授权规则自定义描述
+        :type PathPrefix: String
+        """
+        self.PosixAclId = None
+        self.FileSystemList = None
+        self.AutoMount = None
+        self.Ips = None
+        self.Desc = None
+
+    def _deserialize(self, params):
+        if params.get("PosixAclId"):
+            self.PosixAclId = params.get("PosixAclId")
+        if params.get("FileSystemList"):
+            self.FileSystemList = params.get("FileSystemList")
+        if params.get("AutoMount"):
+            self.AutoMount = params.get("AutoMount")
+        if params.get("Ips"):
+            self.Ips = params.get("Ips")
+        if params.get("Desc"):
+            self.Desc = params.get("Desc")
+
+
+class DescribePerformanceOnePosixAclListRequest(AbstractModel):
+    """DescribePerformanceOnePosixAclList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询POSIX协议访问授权列表
+        :param FileSystemId: 文件系统实例ID，筛选条件，非必填
+        :type PathPrefix: String
+        :param FileSystemName: 文件系统名称，筛选条件，非必填
+        :type PathPrefix: String
+        :param Ip: 授权IP，模糊筛选条件，非必填
+        :type PathPrefix: String
+        :param PageNum: 分页页码，默认1
+        :type PathPrefix: Int
+        :param PageSize: 分页每页条数，默认10
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.FileSystemName = None
+        self.Ip = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("FileSystemName"):
+            self.FileSystemName = params.get("FileSystemName")
+        if params.get("Ip"):
+            self.Ip = params.get("Ip")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class SetPerformanceOnePosixAclRequest(AbstractModel):
+    """SetPerformanceOnePosixAcl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新建POSIX协议访问授权
+        :param FileSystemList: 文件系统数组，支持批量绑定文件系统
+        :type PathPrefix: Array
+        :param AutoMount: 是否自动挂载；true自动挂载，false手动挂载
+        :type PathPrefix: Boolean
+        :param Ips: 允许访问的客户端IP列表，授权白名单
+        :type PathPrefix: Array
+        :param Desc: 该POSIX授权规则自定义描述
+        :type PathPrefix: String
+        """
+        self.FileSystemList = None
+        self.AutoMount = None
+        self.Ips = None
+        self.Desc = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemList"):
+            self.FileSystemList = params.get("FileSystemList")
+        if params.get("AutoMount"):
+            self.AutoMount = params.get("AutoMount")
+        if params.get("Ips"):
+            self.Ips = params.get("Ips")
+        if params.get("Desc"):
+            self.Desc = params.get("Desc")
+
+
 class DescribeDirQuotaListRequest(AbstractModel):
     """DescribeDirQuotaList请求参数结构体
     """
 
     def __init__(self):
         r"""查询目录配额列表
-        :param FileSystemId: 文件系统的实例ID。性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 文件系统的实例ID
+
+性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+
+容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型，取值：KPFS-capacity（容量Ⅰ型）、KPFS-capacity2（容量Ⅱ型）、KPFS-standard（标准型）、KPFS-P-S01（性能Ⅰ型）、KPFS-P-S02（性能Ⅱ型）。
+        :param StoreClass: 存储类型，取值：
+
+KPFS-capacity（容量Ⅰ型）
+
+KPFS-capacity2（容量Ⅱ型）
+
+KPFS-standard（标准型）
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
         :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
         :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录路径模糊查询关键字，支持中间路径的模糊匹配，比如，存在目录配额/dir/subdir，查询关键字为subdir，那么会返回/dir/subdir的目录配额信息。注意：若不传入该参数，则返回文件系统下的目录配额列表。
+        :param DirPath: 目录路径模糊查询关键字，支持中间路径的模糊匹配，比如，存在目录配额/dir/subdir，查询关键字为subdir，那么会返回/dir/subdir的目录配额信息。
+
+注意：若不传入该参数，则返回文件系统下的目录配额列表。
         :type PathPrefix: String
-        :param FuzzySearch: 是否模糊查询，默认 true；精确查询时，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。
+        :param FuzzySearch: 是否模糊查询，默认 true；精确查询时，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/×××/。
         :type PathPrefix: Boolean
-        :param PageSize: 分页大小。默认为10。
+        :param PageSize: 页码。默认为1。
         :type PathPrefix: Int
-        :param PageNum: 页码。默认为1。
+        :param PageNum: 分页大小。默认为10。
         :type PathPrefix: Int
         """
         self.FileSystemId = None
@@ -552,15 +824,45 @@ class DeleteDirQuotaRequest(AbstractModel):
 
     def __init__(self):
         r"""删除目录配额
-        :param FileSystemId: 文件系统的实例ID。性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：1. 通过文件系统ID(FileSystemId)；2. 输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：1. 通过文件系统ID(FileSystemId)；2. 输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 文件系统的实例ID
+
+性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+
+容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填
         :type PathPrefix: String
-        :param StoreClass: 存储类型
+        :param StoreClass: 存储类型，取值：
+
+KPFS-capacity（容量Ⅰ型）
+
+KPFS-capacity2（容量Ⅱ型）
+
+KPFS-standard（标准型）
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取
+        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
-        :param FileSystemName: 文件系统名称，名称最大长度63字节
+        :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/
+        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/
+
+注意：
+
+性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同。
+
+容量Ⅰ型/容量Ⅱ型/标准型，必须与原目录相同。
+
+已设置目录配额的目录，才允许删除目录配额。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -588,15 +890,45 @@ class UpdateDirQuotaRequest(AbstractModel):
 
     def __init__(self):
         r"""修改目录配额
-        :param FileSystemId: 文件系统的实例ID。性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：1. 通过文件系统ID(FileSystemId)；2. 输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：1. 通过文件系统ID(FileSystemId)；2. 输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 文件系统的实例ID
+
+性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+
+容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型
+        :param StoreClass: 存储类型，取值：
+
+KPFS-capacity（容量Ⅰ型）
+
+KPFS-capacity2（容量Ⅱ型）
+
+KPFS-standard（标准型）
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取
+        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
-        :param FileSystemName: 文件系统名称，名称最大长度63字节
+        :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1. 性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同；2. 容量Ⅰ型/容量Ⅱ型/标准型，必须与原目录相同；3. 为已设置目录配额的目录，才允许修改目录配额。
+        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/
+
+注意：
+
+性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同。
+
+容量Ⅰ型/容量Ⅱ型/标准型，必须与原目录相同。
+
+为已设置目录配额的目录，才允许修改目录配额。
         :type PathPrefix: String
         :param LogicalCapacityType: 容量配额的设置方式，若不传，则默认为limit。参数取值：
 
@@ -620,7 +952,7 @@ limit：限制类型，设置后将统计该目录Inodes情况且限制Inodes。
         :type PathPrefix: String
         :param LogicalHardInodes: Inodes硬阈值，正整数。仅LogicalInodesTypee取值为limit时支持设置该参数。仅KPFS性能型支持。
 
-单位：个。
+单位：个
         :type PathPrefix: Long
         """
         self.FileSystemId = None
@@ -660,15 +992,49 @@ class CreateDirQuotaRequest(AbstractModel):
 
     def __init__(self):
         r"""新建目录配额
-        :param FileSystemId: 文件系统的实例ID。性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 文件系统的实例ID
+
+性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+
+容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型，取值：KPFS-capacity（容量Ⅰ型）、KPFS-capacity2（容量Ⅱ型）、KPFS-standard（标准型）、KPFS-P-S01（性能Ⅰ型）、KPFS-P-S02（性能Ⅱ型）。
+        :param StoreClass: 存储类型，取值：
+
+KPFS-capacity（容量Ⅰ型）
+
+KPFS-capacity2（容量Ⅱ型）
+
+KPFS-standard（标准型）
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
         :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
         :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1.性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同；2.容量Ⅰ型/容量Ⅱ型/标准型，若目录不存在，接口会自动创建新目录；3.性能Ⅰ型/性能Ⅱ型，不支持为非空目录新增配额；4.无法为文件系统根目录设置配额，仅支持子目录；5.支持为各级目录设置配额，并且嵌套配额均取最小值作为该目录的阈值。比如：设置/dir配额为1MB，设置/dir/subdir配额为10MB，那么实际使用时会递归地向上查询，确保当前目录用量满足每一级目录的配额设置。
+        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/
+
+注意：
+
+性能Ⅰ型/性能Ⅱ型存储池、文件系统名称、目录完整路径不允许修改，必须与原目录相同。
+
+容量Ⅰ型/容量Ⅱ型/标准型，若目录不存在，接口会自动创建新目录。
+
+性能Ⅰ型/性能Ⅱ型，不支持为非空目录新增配额。
+
+无法为文件系统根目录设置配额，仅支持子目录。
+
+支持为各级目录设置配额，并且嵌套配额均取最小值作为该目录的阈值。比如：设置/dir配额为1MB，设置/dir/subdir配额为10MB，那么实际使用时会递归地向上查询，确保当前目录用量满足每一级目录的配额设置
         :type PathPrefix: String
         :param LogicalCapacityType: 容量配额的设置方式，若不传，则默认为limit。参数取值：
 
@@ -732,22 +1098,38 @@ class DescribeSubDirListRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询文件系统或特定目录的子目录列表
-        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+        r"""查询文件系统目录列表
+        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)。
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型 取值：KPFS-P-S01（性能Ⅰ型）KPFS-P-S02（性能Ⅱ型）。
+        :param StoreClass: 存储类型 取值：
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
+        :param ClusterName: 存储池名称，
+
+从控制台>文件系统详情>资源池获取
         :type PathPrefix: String
         :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/；文件系统传入：/；目录传入路径：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/；目录最大深度255层，根目录是第一层。
+        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/
+
+文件系统传入：/
+
+目录传入路径：dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/
+
+目录最大深度255层，根目录是第一层
         :type PathPrefix: String
-        :param Name: 目录名称
+        :param Name: 目录名称，支持模糊匹配。
         :type PathPrefix: String
-        :param PageNum: 当前页码，最小值1，无上限
+        :param PageNum: 页码。默认为1。
         :type PathPrefix: Int
-        :param PageSize: 每页数量，默认值1000，最小值1，最大值1000
+        :param PageSize: 分页大小。默认为1000，取值范围1-1000。
         :type PathPrefix: Int
         """
         self.FileSystemId = None
@@ -784,15 +1166,33 @@ class DeleteDirRequest(AbstractModel):
 
     def __init__(self):
         r"""删除文件系统目录
-        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)。
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型 取值：KPFS-P-S01（性能Ⅰ型）KPFS-P-S02（性能Ⅱ型）。
+        :param StoreClass: 存储类型 取值：
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
+        :param ClusterName: 存储池名称，
+
+从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
-        :param FileSystemName: 文件系统名称，名称最大长度63字节。
+        :param FileSystemName: 文件系统名称，名称最大长度63字节
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1.存储池、文件系统名称、目录完整路径不允许修改；2.必须与原目录相同；3.若目录中有文件，无法删除。
+        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/。
+
+注意：
+
+存储池、文件系统名称、目录完整路径不允许修改
+
+必须与原目录相同。
+
+若目录中有文件，无法删除。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -820,21 +1220,57 @@ class UpdateDirRequest(AbstractModel):
 
     def __init__(self):
         r"""修改文件系统目录
-        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)。
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型 取值：KPFS-P-S01（性能Ⅰ型）KPFS-P-S02（性能Ⅱ型）。
+        :param StoreClass: 存储类型 取值：
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
+        :param ClusterName: 存储池名称，
+
+从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
-        :param FileSystemName: 文件系统名称，名称最大长度63字节。
+        :param FileSystemName: 文件系统名称，名称最大长度63字节
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。注意：1.存储池、文件系统名称、目录完整路径不允许修改；2.必须与原目录相同。
+        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/。
+
+注意：
+
+存储池、文件系统名称、目录完整路径不允许修改。
+
+必须与原目录相同。
         :type PathPrefix: String
-        :param FileSysPosixPermission: 文件读写权限，格式:十位二进制表示法。备注：默认为755 (-rwxr-xr-x)，拥有者有读、写、执行权限；而属组用户和其他用户只有读、执行权限。
+        :param FileSysPosixPermission: 文件读写权限，格式:十位二进制表示法。
+
+备注：
+
+默认为755 (-rwxr-xr-x)，拥有者有读、写、执行权限；而属组用户和其他用户只有读、执行权限。
         :type PathPrefix: Int
-        :param FileSysOwnerUserId: 文件所属用户的id。备注：设置为0时，为root权限。注意：所属用户的id和所属用户的用户组id须同时修改。
+        :param FileSysOwnerUserId: 文件所属用户的id。
+
+备注：
+
+设置为0时，为root权限。
+
+注意：
+
+所属用户的id和所属用户的用户组id须同时修改。
         :type PathPrefix: Int
-        :param FileSysOwnerGroupId: 文件所属用户的用户组id。备注：设置为0时，为root权限。注意：所属用户的id和所属用户的用户组id须同时修改。
+        :param FileSysOwnerGroupId: 文件所属用户的用户组id。
+
+备注：
+
+设置为0时，为root权限。
+
+注意：
+
+所属用户的id和所属用户的用户组id须同时修改。
         :type PathPrefix: Int
         """
         self.FileSystemId = None
@@ -871,21 +1307,67 @@ class CreateDirRequest(AbstractModel):
 
     def __init__(self):
         r"""新建文件系统目录
-        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：1.通过文件系统ID(FileSystemId)；2.输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)。
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型 取值：KPFS-P-S01（性能Ⅰ型）KPFS-P-S02（性能Ⅱ型）。
+        :param StoreClass: 存储类型 取值：
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
+        :param ClusterName: 存储池名称，
+
+从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
         :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。限制：1.创建目录的上一层目录必须存在，系统不会自动创建，不存在则报错: $path dose not exist；2.若目录中包含/，系统会自动用/将目录分层，报错信息同上。补充说明：针对目录名称的限制如下：字节长度1-254字节；不允许使用 /；不能设置为.和..。针对完整路径(文件系统名:/dir)：最大1024字节。
+        :param DirPath: 目录完整路径，格式 dir/xxx 或 /dir/××× 或 dir/×××/或/dir/×××/。
+
+限制：
+
+创建目录的上一层目录必须存在，系统不会自动创建，不存在则报错: $path dose not exist。
+
+若目录中包含/，系统会自动用/将目录分层，报错信息同上。
+
+补充说明：
+
+针对目录名称的限制如下：
+
+不能超过255字节（UTF8编码）。
+
+不能创建/和隐藏目录。
+
+针对完整路径(文件系统名:/dir)：最大4091字节（UTF8编码）。最大支持255层。
         :type PathPrefix: String
-        :param FileSysOwnerUserId: 文件所属用户的id，不可设置负数。有效值范围：0-（不校验范围）。备注：设置为0时，为root权限。UID和GID必须同时配置，或皆不配置。否则会报错。
+        :param FileSysOwnerUserId: 文件所属用户的id，不可设置负数。
+
+有效值范围：0- （不校验范围）。
+
+备注：
+
+设置为0时，为root权限。
+
+UID和GID必须同时配置，或皆不配置。否则会报错。
         :type PathPrefix: Int
-        :param FileSysOwnerGroupId: 文件所属用户的用户组id，不可设置负数。有效值范围：0- (不校验范围）。备注：设置为0时，为root权限。UID和GID必须同时配置，或皆不配置。否则会报错。
+        :param FileSysOwnerGroupId: 文件所属用户的用户组id，不可设置负数。
+
+有效值范围：0- (不校验范围）。
+
+备注：
+
+设置为0时，为root权限。
+
+UID和GID必须同时配置，或皆不配置。否则会报错。
         :type PathPrefix: Int
-        :param FileSysPosixPermission: 文件读写权限，格式:十位二进制表示法。备注：默认为755 (-rwxr-xr-x)，拥有者有读、写、执行权限；而属组用户和其他用户只有读、执行权限。
+        :param FileSysPosixPermission: 文件读写权限，格式:十位二进制表示法。
+
+备注：
+
+默认为755 (-rwxr-xr-x)，拥有者有读、写、执行权限；而属组用户和其他用户只有读、执行权限。
         :type PathPrefix: Int
         """
         self.FileSystemId = None
@@ -922,15 +1404,37 @@ class DescribeDirQuotaRequest(AbstractModel):
 
     def __init__(self):
         r"""查询指定目录配额
-        :param FileSystemId: 文件系统的实例ID。性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：1. 通过文件系统ID(FileSystemId)；2. 输入文件系统完整信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：1. 通过文件系统ID(FileSystemId)；2. 输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
+        :param FileSystemId: 文件系统的实例ID
+
+性能Ⅰ型/性能Ⅱ型指定文件系统支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，文件系统信息，存储类型(StoreClass) + 存储池名称(ClusterName) + 文件系统名称(FileSystemName)同时必填。
+
+容量Ⅰ型/容量Ⅱ型/标准型支持2种方式，建议择一使用：
+
+通过文件系统ID(FileSystemId)
+
+输入文件系统完整信息，存储类型(StoreClass) + 文件系统名称(FileSystemName)同时必填。
         :type PathPrefix: String
-        :param StoreClass: 存储类型
+        :param StoreClass: 存储类型，取值：
+
+KPFS-capacity（容量Ⅰ型）
+
+KPFS-capacity2（容量Ⅱ型）
+
+KPFS-standard（标准型）
+
+KPFS-P-S01（性能Ⅰ型）
+
+KPFS-P-S02（性能Ⅱ型）
         :type PathPrefix: String
-        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取
+        :param ClusterName: 存储池名称，从控制台>文件系统详情>资源池获取。
         :type PathPrefix: String
-        :param FileSystemName: 文件系统名称，名称最大长度63字节
+        :param FileSystemName: 文件系统名称，名称最大长度63字节。
         :type PathPrefix: String
-        :param DirPath: 目录完整路径，格式：dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/
+        :param DirPath: 目录完整路径，格式：dir/xxx或 /dir/xxx 或 dir/xxx/或/dir/×××/，匹配到 /dir/xxx/。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -952,6 +1456,794 @@ class DescribeDirQuotaRequest(AbstractModel):
             self.DirPath = params.get("DirPath")
 
 
+class DeleteFileSystemRequest(AbstractModel):
+    """DeleteFileSystem请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除文件系统
+        :param FileSystemId: 文件系统实例ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class AddPerformanceOnePosixAclIpRequest(AbstractModel):
+    """AddPerformanceOnePosixAclIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""添加POSIX协议访问授权IP
+        :param PosixAclId: POSIX访问授权规则ID
+        :type PathPrefix: String
+        :param Ip: 授权IP，支持单个/逗号分隔批量，单次最多100个IP
+        :type PathPrefix: String
+        """
+        self.PosixAclId = None
+        self.Ip = None
+
+    def _deserialize(self, params):
+        if params.get("PosixAclId"):
+            self.PosixAclId = params.get("PosixAclId")
+        if params.get("Ip"):
+            self.Ip = params.get("Ip")
+
+
+class RemovePerformanceOnePosixAclIpRequest(AbstractModel):
+    """RemovePerformanceOnePosixAclIp请求参数结构体
+    """
+
+    def __init__(self):
+        r"""移除POSIX协议访问授权IP
+        :param PosixAclId: POSIX访问授权规则ID
+        :type PathPrefix: String
+        :param Ip: 待移除IP，支持单个/逗号分隔批量，单次最多100个IP；移除后无IP则自动删除授权规则
+        :type PathPrefix: String
+        """
+        self.PosixAclId = None
+        self.Ip = None
+
+    def _deserialize(self, params):
+        if params.get("PosixAclId"):
+            self.PosixAclId = params.get("PosixAclId")
+        if params.get("Ip"):
+            self.Ip = params.get("Ip")
+
+
+class GetDataMigrateTaskProgressRequest(AbstractModel):
+    """GetDataMigrateTaskProgress请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取数据流转任务进度
+        :param TaskId: 数据流动任务ID
+        :type PathPrefix: String
+        """
+        self.TaskId = None
+
+    def _deserialize(self, params):
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+
+
+class DescribeDataMigrateTaskListRequest(AbstractModel):
+    """DescribeDataMigrateTaskList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取数据流转任务列表
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param TaskIds: 数据流动任务ID清单，以逗号分隔，支持批量精确检索
+        :type PathPrefix: String
+        :param TaskName: 数据流动任务名称，模糊检索
+        :type PathPrefix: String
+        :param TaskType: 数据流动任务类型，有效值：export：导出
+        :type PathPrefix: String
+        :param DirPath: 目录路径，模糊检索 /aaa/bbb/
+        :type PathPrefix: String
+        :param Bucket: 存储桶名称，模糊检索
+        :type PathPrefix: String
+        :param BucketPrefix: 存储桶前缀，模糊检索/aaa/bbb/
+        :type PathPrefix: String
+        :param PageNum: 页码，默认为1
+        :type PathPrefix: Int
+        :param PageSize: 分页大小，默认为10
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.TaskIds = None
+        self.TaskName = None
+        self.TaskType = None
+        self.DirPath = None
+        self.Bucket = None
+        self.BucketPrefix = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("TaskIds"):
+            self.TaskIds = params.get("TaskIds")
+        if params.get("TaskName"):
+            self.TaskName = params.get("TaskName")
+        if params.get("TaskType"):
+            self.TaskType = params.get("TaskType")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("Bucket"):
+            self.Bucket = params.get("Bucket")
+        if params.get("BucketPrefix"):
+            self.BucketPrefix = params.get("BucketPrefix")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class StartDataMigrateTaskRequest(AbstractModel):
+    """StartDataMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启动数据流转任务
+        :param TaskId: 数据流动任务ID
+        :type PathPrefix: String
+        """
+        self.TaskId = None
+
+    def _deserialize(self, params):
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+
+
+class StopDataMigrateTaskRequest(AbstractModel):
+    """StopDataMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""停止数据流转任务
+        :param TaskId: 数据流动任务ID
+        :type PathPrefix: String
+        """
+        self.TaskId = None
+
+    def _deserialize(self, params):
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+
+
+class DeleteDataMigrateTaskRequest(AbstractModel):
+    """DeleteDataMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除数据流转任务
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param TaskIds: 数据流动任务ID清单，以逗号分隔，支持批量删除
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.TaskIds = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("TaskIds"):
+            self.TaskIds = params.get("TaskIds")
+
+
+class UpdateDataMigrateTaskRequest(AbstractModel):
+    """UpdateDataMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改数据流转任务
+        :param TaskId: 数据流动任务ID
+        :type PathPrefix: String
+        :param TaskName: 数据流动任务名称，支持1-63字符，仅允许字母、数字和下划线 '_'，必须以字母开头。
+        :type PathPrefix: String
+        :param DirPath: 完整目录路径，1~950字节，格式：/dir/test/，目录必须存在
+        :type PathPrefix: String
+        :param Description: 数据流动策略描述
+        :type PathPrefix: String
+        :param BandWidthLimit: 带宽限制，单位MB/s，默认为0，不限制。有效值范围：0~{文件系统吞吐峰值}MB/s，0表示不限制
+        :type PathPrefix: Int
+        :param CleanSourceFile: 迁移完成后，是否删除源的数据。有效值：true，false（默认值）
+        :type PathPrefix: Boolean
+        :param ExportTaskPeriodEnabled: 数据流动任务状态，支持周期性任务立即或稍后启用，有效值：on：启用，off：禁用（默认值）
+        :type PathPrefix: String
+        :param ExportTaskPeriodConfig: 仅导出周期任务需要设置
+        :type PathPrefix: Object
+        """
+        self.TaskId = None
+        self.TaskName = None
+        self.DirPath = None
+        self.Description = None
+        self.BandWidthLimit = None
+        self.CleanSourceFile = None
+        self.ExportTaskPeriodEnabled = None
+        self.ExportTaskPeriodConfig = None
+
+    def _deserialize(self, params):
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+        if params.get("TaskName"):
+            self.TaskName = params.get("TaskName")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("BandWidthLimit"):
+            self.BandWidthLimit = params.get("BandWidthLimit")
+        if params.get("CleanSourceFile"):
+            self.CleanSourceFile = params.get("CleanSourceFile")
+        if params.get("ExportTaskPeriodEnabled"):
+            self.ExportTaskPeriodEnabled = params.get("ExportTaskPeriodEnabled")
+        if params.get("ExportTaskPeriodConfig"):
+            self.ExportTaskPeriodConfig = params.get("ExportTaskPeriodConfig")
+
+
+class CreateDataMigrateTaskRequest(AbstractModel):
+    """CreateDataMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建数据流转任务
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param TaskName: 数据流动任务名称，支持1-63字符，仅允许字母、数字和下划线 '_'，必须以字母开头。
+        :type PathPrefix: String
+        :param TaskType: 数据流动任务类型，有效值：export：导出（从KPFS迁移数据到KS3）
+        :type PathPrefix: String
+        :param BucketConfig: 金山云对象存储KS3配置
+        :type PathPrefix: Object
+        :param DirPath: 完整目录路径，1~950字节，格式：/dir/test/，目录必须存在
+        :type PathPrefix: String
+        :param Description: 数据流动策略描述
+        :type PathPrefix: String
+        :param BandWidthLimit: 带宽限制，单位MB/s，默认为0，不限制。有效值范围：0~{文件系统吞吐峰值      }MB/s，0表示不限制
+        :type PathPrefix: Int
+        :param CleanSourceFile: 迁移完成后，是否删除源的数据。有效值：true，false（默认值）
+        :type PathPrefix: Boolean
+        :param ExportTaskPeriodEnabled: 数据流动任务状态，支持周期性任务立即或稍后启用，有效值：on：启用，off：禁用（默认值）
+        :type PathPrefix: String
+        :param ExportTaskPeriodConfig: 仅导出周期任务需要设置
+        :type PathPrefix: Object
+        """
+        self.FileSystemId = None
+        self.TaskName = None
+        self.TaskType = None
+        self.BucketConfig = None
+        self.DirPath = None
+        self.Description = None
+        self.BandWidthLimit = None
+        self.CleanSourceFile = None
+        self.ExportTaskPeriodEnabled = None
+        self.ExportTaskPeriodConfig = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("TaskName"):
+            self.TaskName = params.get("TaskName")
+        if params.get("TaskType"):
+            self.TaskType = params.get("TaskType")
+        if params.get("BucketConfig"):
+            self.BucketConfig = params.get("BucketConfig")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("BandWidthLimit"):
+            self.BandWidthLimit = params.get("BandWidthLimit")
+        if params.get("CleanSourceFile"):
+            self.CleanSourceFile = params.get("CleanSourceFile")
+        if params.get("ExportTaskPeriodEnabled"):
+            self.ExportTaskPeriodEnabled = params.get("ExportTaskPeriodEnabled")
+        if params.get("ExportTaskPeriodConfig"):
+            self.ExportTaskPeriodConfig = params.get("ExportTaskPeriodConfig")
+
+
+class DescribeClientInstallInfoRequest(AbstractModel):
+    """DescribeClientInstallInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询文件系统POSIX客户端安装包信息
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class ManageDataFlowTaskRequest(AbstractModel):
+    """ManageDataFlowTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""变更数据流动任务
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        :param TaskId: 数据流动任务ID。
+        :type PathPrefix: String
+        :param Operation: • 停止：pause，运行中状态的任务，支持停止，停止后变为暂停状态。
+• 恢复：resume，暂停状态的任务，支持恢复，恢复后变为运行中状态
+• 取消: cancel，运行中、暂停、等待状态的任务，支持取消，取消后变为完成状态
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+        self.TaskId = None
+        self.Operation = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+        if params.get("Operation"):
+            self.Operation = params.get("Operation")
+
+
+class CreateDataFlowStrategyRequest(AbstractModel):
+    """CreateDataFlowStrategy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建数据流动策略
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyName: 数据流动策略名称，最大64字符。
+        :type PathPrefix: String
+        :param StrategyType: 数据流动策略类型
+• 若为KPFS-P1存储池类型，有效值：import 导入。
+• 若为KPFS-P2存储池类型，有效值：import 导入、export 导出。
+        :type PathPrefix: String
+        :param Bind: 数据流动是否启用绑定目录关系，启用绑定目录关系后文件侧的文件会和对象侧的文件进行关联，可以支持仅元数据加载、订阅模式。仅KPFS-P1存储池类型支持。
+• false：默认值，表示禁用。
+• true：启用绑定目录关系。
+        :type PathPrefix: String
+        :param DataLoadingMode: 数据导入加载模式，仅import导入策略可设置。
+• 若为KPFS-P1存储池类型，有效值
+    ◦ data_and_metadata - 元数据+数据加载。
+    ◦ metadata_only - 仅元数据加载。仅当Bind为true时可支持。
+• 若为KPFS-P2存储池类型，有效值
+    ◦ demand - 按需加载（即仅元数据加载）。
+    ◦ preload-预加载（即元数据+数据加载）。
+        :type PathPrefix: String
+        :param DirPath: 文件系统目录完整绝对路径，若不设置，则代表整个文件系统。
+• 支持中英文字母、特殊字符不做限制，且不允许出现连续的/，必须以/开头和结尾。
+• KPFS文件系统目录不能与其它导入策略存在重复。
+• KPFS文件系统目录要求必须存在。
+• 当Bind为true时，目录必须为空，且不能与其他导入策略的目录存在嵌套（如/dir/、/dir/subdir）。
+        :type PathPrefix: String
+        :param Bucket: KS3 Bucket名称，必须与KPFS实例在相同地域，3~63个字符，只能包含小写字母、数字和连字符（-），且不能以连字符（-）开头或结尾。
+        :type PathPrefix: String
+        :param BucketPrefix: KS3 Bucket前缀，若不设置，则代表整个存储桶。
+• 1~1023个字符，不能包含"@"、“..”"@base@"和"@style@"。
+• KS3存储桶前缀不能与其它任务存在重复。
+        :type PathPrefix: String
+        :param DuplicateProcess: 同名文件处理方式。仅KPFS-P1存储池类型支持。
+• skip：跳过，默认值。
+• overwrite：覆盖。
+• diff：比较，保留最后修改时间最新的文件。
+        :type PathPrefix: String
+        :param Subscribe: 是否立即订阅。仅当Bind为true时可支持。仅KPFS-P1存储池类型支持。
+• cancel：默认值，表示取消订阅。
+• activate：表示开启订阅。
+        :type PathPrefix: String
+        :param CleanSourceFile: 导出完成后，是否删除源的数据，仅export导出策略可设置。仅KPFS-P2存储池类型支持。
+• true：删除数据
+• false：不删除，默认值。
+        :type PathPrefix: Boolean
+        :param BandWidthLimit: 导入/导出任务的执行速率，仅KPFS-P2存储池类型支持。
+• low：业务优先，默认值。
+• mid：均衡。
+• high：导入优先。
+        :type PathPrefix: String
+        :param ArchiveRule: 数据流动导出策略的过滤规则，仅export导出策略可设置。仅KPFS-P2存储池类型支持。默认值0，有效值0-365。
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.StrategyName = None
+        self.StrategyType = None
+        self.Bind = None
+        self.DataLoadingMode = None
+        self.DirPath = None
+        self.Bucket = None
+        self.BucketPrefix = None
+        self.DuplicateProcess = None
+        self.Subscribe = None
+        self.CleanSourceFile = None
+        self.BandWidthLimit = None
+        self.ArchiveRule = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyName"):
+            self.StrategyName = params.get("StrategyName")
+        if params.get("StrategyType"):
+            self.StrategyType = params.get("StrategyType")
+        if params.get("Bind"):
+            self.Bind = params.get("Bind")
+        if params.get("DataLoadingMode"):
+            self.DataLoadingMode = params.get("DataLoadingMode")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("Bucket"):
+            self.Bucket = params.get("Bucket")
+        if params.get("BucketPrefix"):
+            self.BucketPrefix = params.get("BucketPrefix")
+        if params.get("DuplicateProcess"):
+            self.DuplicateProcess = params.get("DuplicateProcess")
+        if params.get("Subscribe"):
+            self.Subscribe = params.get("Subscribe")
+        if params.get("CleanSourceFile"):
+            self.CleanSourceFile = params.get("CleanSourceFile")
+        if params.get("BandWidthLimit"):
+            self.BandWidthLimit = params.get("BandWidthLimit")
+        if params.get("ArchiveRule"):
+            self.ArchiveRule = params.get("ArchiveRule")
+
+
+class DescribeDataFlowTaskListRequest(AbstractModel):
+    """DescribeDataFlowTaskList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看数据流动任务
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+
+
+class ActivateDataFlowTaskRequest(AbstractModel):
+    """ActivateDataFlowTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启动数据流动导入任务
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+
+
+class DeleteDataFlowStrategyRequest(AbstractModel):
+    """DeleteDataFlowStrategy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除数据流动策略
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+
+
+class DescribeDataFlowStrategyListRequest(AbstractModel):
+    """DescribeDataFlowStrategyList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建数据流动列表
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID
+        :type PathPrefix: String
+        :param PageNum: 页码。默认为1。
+        :type PathPrefix: Int
+        :param PageSize: 分页大小。默认为10。取值范围1-1000。
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class CleanRecycledFilesRequest(AbstractModel):
+    """CleanRecycledFiles请求参数结构体
+    """
+
+    def __init__(self):
+        r"""清空回收站数据
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class DeleteCleanRecycledFilesRequest(AbstractModel):
+    """DeleteCleanRecycledFiles请求参数结构体
+    """
+
+    def __init__(self):
+        r"""清空回收站文件
+        :param FileSystemId: 
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class DeleteRecycleBinConfigRequest(AbstractModel):
+    """DeleteRecycleBinConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除回收站配置
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class DeleteRecycledFileListRequest(AbstractModel):
+    """DeleteRecycledFileList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除回收站配置
+        :param FileSystemId: 
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class GetRecycleBinConfigRequest(AbstractModel):
+    """GetRecycleBinConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取回收站配置
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class SetRecycleBinConfigRequest(AbstractModel):
+    """SetRecycleBinConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置回收站配置
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param Enabled: 回收站状态
+• on：启用回收站
+• off：关闭回收站
+        :type PathPrefix: String
+        :param ExpireTime: 回收站中文件的保留时间。若启用回收站，则必传
+• 容量型&标准型限制1-30天
+• 性能型限制1-720小时
+        :type PathPrefix: Int
+        :param ExpireType: 过期时间类型
+• DAY：天
+• HOUR:小时（仅性能型支持）
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.Enabled = None
+        self.ExpireTime = None
+        self.ExpireType = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("Enabled"):
+            self.Enabled = params.get("Enabled")
+        if params.get("ExpireTime"):
+            self.ExpireTime = params.get("ExpireTime")
+        if params.get("ExpireType"):
+            self.ExpireType = params.get("ExpireType")
+
+
+class DescribeRecycledFileListRequest(AbstractModel):
+    """DescribeRecycledFileList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看回收站中文件
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param RecycledPath: • 容量型/标准型：支持按路径关键字进行搜索
+• 性能型：支持根据文件所在回收站目录搜索
+        :type PathPrefix: String
+        :param PageNum: 分页大小，默认1
+        :type PathPrefix: Int
+        :param PageSize: 分页起始位置，默认1000。取值范围：1-1000
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.RecycledPath = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("RecycledPath"):
+            self.RecycledPath = params.get("RecycledPath")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class DeleteRecycledFilesRequest(AbstractModel):
+    """DeleteRecycledFiles请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除回收站中文件
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param RecycledPath: 回收站的相对地址，仅性能型支持
+        :type PathPrefix: String
+        :param Files: 文件信息
+        :type PathPrefix: Array
+        :param Inodes: 文件Inode值数据，该参数与Position参数二选一，仅容量型/标准型支持
+        :type PathPrefix: Array
+        """
+        self.FileSystemId = None
+        self.RecycledPath = None
+        self.Files = None
+        self.Inodes = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("RecycledPath"):
+            self.RecycledPath = params.get("RecycledPath")
+        if params.get("Files"):
+            self.Files = params.get("Files")
+        if params.get("Inodes"):
+            self.Inodes = params.get("Inodes")
+
+
+class RestoreRecycledFilesRequest(AbstractModel):
+    """RestoreRecycledFiles请求参数结构体
+    """
+
+    def __init__(self):
+        r"""恢复回收站中文件
+        :param FileSystemId: 文件系统ID
+        :type PathPrefix: String
+        :param RecycledPath: 回收站的相对地址，仅性能型支持
+        :type PathPrefix: String
+        :param Files: 文件信息
+        :type PathPrefix: Array
+        :param Inodes: 文件Inode值数据，该参数与Position参数二选一，仅容量型/标准型支持
+
+        :type PathPrefix: Array
+        """
+        self.FileSystemId = None
+        self.RecycledPath = None
+        self.Files = None
+        self.Inodes = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("RecycledPath"):
+            self.RecycledPath = params.get("RecycledPath")
+        if params.get("Files"):
+            self.Files = params.get("Files")
+        if params.get("Inodes"):
+            self.Inodes = params.get("Inodes")
+
+
+class DescribeClusterInfoRequest(AbstractModel):
+    """DescribeClusterInfo请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询可用存储集群信息
+        :param Region: 查询对应地域下支持的存储池类型。
+        :type PathPrefix: String
+        :param AvailZone: 可用区，需与地域参数配合使用。
+        :type PathPrefix: String
+        :param StoreClass: 文件系统存储类型。
+        :type PathPrefix: String
+        :param SRoceCluster: 存储RoCE集群名称，仅性能Ⅰ型、性能Ⅱ型支持。传入后返回对应集群下的存储集群信息。
+        :type PathPrefix: String
+        :param StorePoolType: 存储池类型。
+        :type PathPrefix: String
+        """
+        self.Region = None
+        self.AvailZone = None
+        self.StoreClass = None
+        self.SRoceCluster = None
+        self.StorePoolType = None
+
+    def _deserialize(self, params):
+        if params.get("Region"):
+            self.Region = params.get("Region")
+        if params.get("AvailZone"):
+            self.AvailZone = params.get("AvailZone")
+        if params.get("StoreClass"):
+            self.StoreClass = params.get("StoreClass")
+        if params.get("SRoceCluster"):
+            self.SRoceCluster = params.get("SRoceCluster")
+        if params.get("StorePoolType"):
+            self.StorePoolType = params.get("StorePoolType")
+
+
 class UpdatePerformanceNfsAclIpRequest(AbstractModel):
     """UpdatePerformanceNfsAclIp请求参数结构体
     """
@@ -960,7 +2252,7 @@ class UpdatePerformanceNfsAclIpRequest(AbstractModel):
         r"""编辑NFS访问授权客户端
         :param NfsAclId: 访问授权ID。
         :type PathPrefix: String
-        :param Ips: 授权IP配置列表，单次最多编辑20个。
+        :param Ips: 授权IP列表，单次最多编辑20个。
         :type PathPrefix: Array
         """
         self.NfsAclId = None
@@ -981,7 +2273,7 @@ class RemovePerformanceNfsAclClientRequest(AbstractModel):
         r"""删除NFS访问授权客户端
         :param NfsAclId: 访问授权ID。
         :type PathPrefix: String
-        :param Ips: 授权IP列表，为计算节点的私网IP，单次最多删除100个。支持IP（示例：10.0.0.1,10.0.0.2）和网段（示例：10.0.0.1/24）
+        :param Ips: 授权IP列表，单次最多删除100个。支持IP和网段格式。
         :type PathPrefix: Array
         """
         self.NfsAclId = None
@@ -1002,7 +2294,7 @@ class AddPerformanceNfsAclClientRequest(AbstractModel):
         r"""添加NFS访问授权客户端
         :param NfsAclId: 访问授权ID。
         :type PathPrefix: String
-        :param Ips: 授权IP列表，为计算节点的私网IP，单次最多添加100个。
+        :param Ips: 授权IP列表（计算节点私网IP，单次最多100个）。
         :type PathPrefix: Array
         """
         self.NfsAclId = None
@@ -1039,11 +2331,11 @@ class SetPerformanceOneNfsAclRequest(AbstractModel):
         r"""新建NFS协议访问授权
         :param FileSystemId: 文件系统的实例ID。
         :type PathPrefix: String
-        :param ExportPath: 共享目录路径。格式：整个文件系统：不传或传/；子目录：支持格式 dir/xxx 或 /dir/xxx 或 dir/xxx/ 或 /dir/xxx/。
+        :param ExportPath: 共享目录路径。格式：整个文件系统不传或传/；子目录支持dir/xxx、/dir/xxx、dir/xxx/、/dir/xxx/。
         :type PathPrefix: String
-        :param Ips: 授权IP列表，为计算节点的私网IP，单次最多添加100个。
+        :param Ips: 授权IP列表（计算节点私网IP，单次最多100个）。
         :type PathPrefix: Array
-        :param Desc: 规则描述信息。0-63字符。
+        :param Desc: 规则描述信息，0-63字符。
         :type PathPrefix: String
         """
         self.FileSystemId = None
@@ -1073,9 +2365,9 @@ class DescribePerformanceOneNfsAclListRequest(AbstractModel):
         :param NfsAclId: 规则ID。
         :type PathPrefix: String
         :param PageNum: 页码。默认为1。
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         :param PageSize: 分页大小。默认为10。
-        :type PathPrefix: Int
+        :type PathPrefix: Long
         """
         self.FileSystemName = None
         self.NfsAclId = None
@@ -1129,187 +2421,18 @@ class DescribeFileSystemNfsClientInfoRequest(AbstractModel):
             self.Version = params.get("Version")
 
 
-class DeleteDataFlowRequest(AbstractModel):
-    """DeleteDataFlow请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用于删除数据流动，仅未运行的数据流动支持删除
-        :param FileSystemId: 文件系统ID
-        :type PathPrefix: String
-        :param DataFlowId: 数据流动ID
-        :type PathPrefix: String
-        """
-        self.FileSystemId = None
-        self.DataFlowId = None
-
-    def _deserialize(self, params):
-        if params.get("FileSystemId"):
-            self.FileSystemId = params.get("FileSystemId")
-        if params.get("DataFlowId"):
-            self.DataFlowId = params.get("DataFlowId")
-
-
-class DescribeDataFlowTasksRequest(AbstractModel):
-    """DescribeDataFlowTasks请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用于查询数据流动任务
-        :param FileSystemId: 文件系统ID。
-        :type PathPrefix: String
-        :param DataFlowId: 数据流动ID。
-        :type PathPrefix: String
-        :param TaskIds: 数据流动任务ID，逗号分割。
-        :type PathPrefix: String
-        :param PageSize: 分页大小，默认为10。
-        :type PathPrefix: Int
-        :param PageNum: 页码，默认为1。
-        :type PathPrefix: Int
-        """
-        self.FileSystemId = None
-        self.DataFlowId = None
-        self.TaskIds = None
-        self.PageSize = None
-        self.PageNum = None
-
-    def _deserialize(self, params):
-        if params.get("FileSystemId"):
-            self.FileSystemId = params.get("FileSystemId")
-        if params.get("DataFlowId"):
-            self.DataFlowId = params.get("DataFlowId")
-        if params.get("TaskIds"):
-            self.TaskIds = params.get("TaskIds")
-        if params.get("PageSize"):
-            self.PageSize = params.get("PageSize")
-        if params.get("PageNum"):
-            self.PageNum = params.get("PageNum")
-
-
-class DescribeDataFlowsRequest(AbstractModel):
-    """DescribeDataFlows请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用于查询数据流动
-        :param FileSystemId: 文件系统ID。
-        :type PathPrefix: String
-        :param DataFlowId: 数据流动ID。
-        :type PathPrefix: String
-        :param PageSize: 分页大小，默认为10。
-        :type PathPrefix: Int
-        :param PageNum: 页码，默认为1。
-        :type PathPrefix: Int
-        """
-        self.FileSystemId = None
-        self.DataFlowId = None
-        self.PageSize = None
-        self.PageNum = None
-
-    def _deserialize(self, params):
-        if params.get("FileSystemId"):
-            self.FileSystemId = params.get("FileSystemId")
-        if params.get("DataFlowId"):
-            self.DataFlowId = params.get("DataFlowId")
-        if params.get("PageSize"):
-            self.PageSize = params.get("PageSize")
-        if params.get("PageNum"):
-            self.PageNum = params.get("PageNum")
-
-
-class CreateDataFlowTaskRequest(AbstractModel):
-    """CreateDataFlowTask请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用于为某个数据流动绑定关系创建一个数据流动任务
-        :param DataFlowId: 数据流动ID。
-        :type PathPrefix: String
-        :param TaskAction: 数据流动任务类型，当前仅支持import。import：将KS3 Bucket的BucketPrefix下数据导入至KPFS DirPath下。
-        :type PathPrefix: String
-        :param SrcDirectory: 数据的源目录，为数据流动绑定关系中BucketPrefix下的相对路径。• 1~1023个字符，不能包含"@"、“..”"@base@"和"@style@"，必须以/开头，不允许以/结尾。
-        :type PathPrefix: String
-        :param DstDirectory: 数据的目标目录，为数据流动绑定关系中DirPath下的相对路径。
-• 必须以/开头，不允许以/结尾。
-• KPFS文件系统子目录要求必须存在。
-        :type PathPrefix: String
-        :param EntryList: 数据流动任务执行源目录下的文件清单，一个元素代表一个文件名称，限制单次调用最多64KB，采用JSON格式。若文件清单内存在源目录下不存在的文件，迁移时会忽略。任务要同步的源数据为：BucketPrefix+SrcDirectory+EntryList；任务同步到目标的数据路径为：DirPath+DstDirectory+EntryList
-        :type PathPrefix: Array
-        :param Bandwidth: 数据流动任务带宽上限。带宽：MB/s，默认300MB/s。取值范围：300-1500MB/s。
-        :type PathPrefix: Int
-        """
-        self.DataFlowId = None
-        self.TaskAction = None
-        self.SrcDirectory = None
-        self.DstDirectory = None
-        self.EntryList = None
-        self.Bandwidth = None
-
-    def _deserialize(self, params):
-        if params.get("DataFlowId"):
-            self.DataFlowId = params.get("DataFlowId")
-        if params.get("TaskAction"):
-            self.TaskAction = params.get("TaskAction")
-        if params.get("SrcDirectory"):
-            self.SrcDirectory = params.get("SrcDirectory")
-        if params.get("DstDirectory"):
-            self.DstDirectory = params.get("DstDirectory")
-        if params.get("EntryList"):
-            self.EntryList = params.get("EntryList")
-        if params.get("Bandwidth"):
-            self.Bandwidth = params.get("Bandwidth")
-
-
-class CreateDataFlowRequest(AbstractModel):
-    """CreateDataFlow请求参数结构体
-    """
-
-    def __init__(self):
-        r"""用于创建一个KPFS文件系统与KS3对象存储的数据流动绑定关系
-        :param Name: 数据流动名称，最大64字符。
-        :type PathPrefix: String
-        :param FileSystemId: KPFS文件系统ID。
-        :type PathPrefix: String
-        :param DirPath: KPFS文件系统目录完整绝对路径。• 若不设置，默认/，代表整个文件系统。必须以/开头，不允许以/结尾。• KPFS文件系统目录要求必须存在。• KPFS文件系统目录不能与其它数据流动规则存在重复。
-        :type PathPrefix: String
-        :param Bucket: KS3 Bucket名称，必须与KPFS实例在相同地域，3~63个字符，只能包含小写字母、数字和连字符（-），且不能以连字符（-）开头或结尾。
-        :type PathPrefix: String
-        :param BucketPrefix: KS3 Bucket前缀。• 若不设置，代表整个存储桶。• 1~1023个字符，不能包含"@"、“..”"@base@"和"@style@"。• KS3存储桶前缀不能与其它数据流动规则存在重复。
-        :type PathPrefix: String
-        :param Description: 描述信息。
-        :type PathPrefix: String
-        """
-        self.Name = None
-        self.FileSystemId = None
-        self.DirPath = None
-        self.Bucket = None
-        self.BucketPrefix = None
-        self.Description = None
-
-    def _deserialize(self, params):
-        if params.get("Name"):
-            self.Name = params.get("Name")
-        if params.get("FileSystemId"):
-            self.FileSystemId = params.get("FileSystemId")
-        if params.get("DirPath"):
-            self.DirPath = params.get("DirPath")
-        if params.get("Bucket"):
-            self.Bucket = params.get("Bucket")
-        if params.get("BucketPrefix"):
-            self.BucketPrefix = params.get("BucketPrefix")
-        if params.get("Description"):
-            self.Description = params.get("Description")
-
-
 class SetFileSystemResourceProtectRequest(AbstractModel):
     """SetFileSystemResourceProtect请求参数结构体
     """
 
     def __init__(self):
-        r"""设置文件系统实例删除保护
-        :param FileSystemIds: 
+        r"""设置文件系统删除保护
+        :param FileSystemIds: 待修改实例保护的文件系统实例ID列表
         :type PathPrefix: Array
-        :param IsProtection: 
+        :param IsProtection: 是否打开资源保护，默认不开启
+• TRUE ：表示开启资源删除保护
+• FALSE（默认）：表示不开启资源删除保护
+
         :type PathPrefix: Boolean
         """
         self.FileSystemIds = None
@@ -1320,6 +2443,340 @@ class SetFileSystemResourceProtectRequest(AbstractModel):
             self.FileSystemIds = params.get("FileSystemIds")
         if params.get("IsProtection"):
             self.IsProtection = params.get("IsProtection")
+
+
+class DescribeFileDeletePolicyListRequest(AbstractModel):
+    """DescribeFileDeletePolicyList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看列表-删除策略
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param DeletePolicyStatus: • 已生效：Enabled
+• 已禁用：Disabled
+• 已失效：Expired
+        :type PathPrefix: String
+        :param DirPath: 目录绝对路径
+        :type PathPrefix: String
+        :param FileDeletePolicyId: 文件删除策略ID，中间用“,”隔开，注意：URL参数中如果存在此类特殊符号，需要使用URLEncoder来进行编码
+        :type PathPrefix: Array
+        :param PageNum: 当前页码，默认值1
+        :type PathPrefix: Int
+        :param PageSize: 每页数量，值范围：1-1000，默认值：1000
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.DeletePolicyStatus = None
+        self.DirPath = None
+        self.FileDeletePolicyId = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("DeletePolicyStatus"):
+            self.DeletePolicyStatus = params.get("DeletePolicyStatus")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("FileDeletePolicyId"):
+            self.FileDeletePolicyId = params.get("FileDeletePolicyId")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class EnableFileDeletePolicyRequest(AbstractModel):
+    """EnableFileDeletePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""启用-删除策略
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param FileDeletePolicyId: 文件删除策略ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.FileDeletePolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("FileDeletePolicyId"):
+            self.FileDeletePolicyId = params.get("FileDeletePolicyId")
+
+
+class DisableFileDeletePolicyRequest(AbstractModel):
+    """DisableFileDeletePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""禁用-删除策略
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param FileDeletePolicyId: 文件删除策略ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.FileDeletePolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("FileDeletePolicyId"):
+            self.FileDeletePolicyId = params.get("FileDeletePolicyId")
+
+
+class DescribeFileDeletePolicyRequest(AbstractModel):
+    """DescribeFileDeletePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看-删除策略详情
+        :param FileDeletePolicyId: 文件删除策略ID
+        :type PathPrefix: String
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        """
+        self.FileDeletePolicyId = None
+        self.FileSystemId = None
+
+    def _deserialize(self, params):
+        if params.get("FileDeletePolicyId"):
+            self.FileDeletePolicyId = params.get("FileDeletePolicyId")
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+
+
+class DeleteFileDeletePolicyRequest(AbstractModel):
+    """DeleteFileDeletePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除-删除策略
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param FileDeletePolicyId: 文件删除策略ID
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.FileDeletePolicyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("FileDeletePolicyId"):
+            self.FileDeletePolicyId = params.get("FileDeletePolicyId")
+
+
+class UpdateFileDeletePolicyRequest(AbstractModel):
+    """UpdateFileDeletePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改删除策略
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param FileDeletePolicyId: 文件删除策略ID
+        :type PathPrefix: String
+        :param FileDeletePolicyName: 文件删除策略名称
+格式要求：允许字符长度:1-63，允许包含一下字符:数字 字母 + = . @ _ -，不能以 . 字符开头
+        :type PathPrefix: String
+        :param ExecutionType: 执行类型
+有效值：
+• 周期执行：CycleExecution
+• 立即执行：ImmediateExecution
+• 默认：CycleExecution
+        :type PathPrefix: String
+        :param FrequencyUnit: 文件删除策略执行频率。
+有效值：
+• day：按天
+• week：按周
+• month：按月
+        :type PathPrefix: String
+        :param IndexOfFrequency: 文件删除策略执行日期。
+• 按天不传
+• 按周（必传） （1-7  可多选）
+• 按月（必传）（1-30）[1，2，3，4，5]
+        :type PathPrefix: Array
+        :param FrequencyTimePoints: 文件删除策略定期执行时间点，只支持小时（整点）
+        :type PathPrefix: Array
+        :param FileNameRule: 文件名过滤规则
+        :type PathPrefix: Object
+        :param FileSizeRule: 文件大小过滤规则
+        :type PathPrefix: Object
+        :param TimeRuleParameters: 时间参数
+        :type PathPrefix: Array
+        :param Description: 文件删除策略备注信息
+（限制）:允许字符长度:0-63，允许包含以下字符:数字 字母 中文 + = . @ _ -
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.FileDeletePolicyId = None
+        self.FileDeletePolicyName = None
+        self.ExecutionType = None
+        self.FrequencyUnit = None
+        self.IndexOfFrequency = None
+        self.FrequencyTimePoints = None
+        self.FileNameRule = None
+        self.FileSizeRule = None
+        self.TimeRuleParameters = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("FileDeletePolicyId"):
+            self.FileDeletePolicyId = params.get("FileDeletePolicyId")
+        if params.get("FileDeletePolicyName"):
+            self.FileDeletePolicyName = params.get("FileDeletePolicyName")
+        if params.get("ExecutionType"):
+            self.ExecutionType = params.get("ExecutionType")
+        if params.get("FrequencyUnit"):
+            self.FrequencyUnit = params.get("FrequencyUnit")
+        if params.get("IndexOfFrequency"):
+            self.IndexOfFrequency = params.get("IndexOfFrequency")
+        if params.get("FrequencyTimePoints"):
+            self.FrequencyTimePoints = params.get("FrequencyTimePoints")
+        if params.get("FileNameRule"):
+            self.FileNameRule = params.get("FileNameRule")
+        if params.get("FileSizeRule"):
+            self.FileSizeRule = params.get("FileSizeRule")
+        if params.get("TimeRuleParameters"):
+            self.TimeRuleParameters = params.get("TimeRuleParameters")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class CreateFileDeletePolicyRequest(AbstractModel):
+    """CreateFileDeletePolicy请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新建-删除策略
+        :param FileSystemId: 文件系统的实例ID
+        :type PathPrefix: String
+        :param FileDeletePolicyName: 文件删除策略名称
+格式要求：允许字符长度:1-63，允许包含一下字符:数字 字母 + = . @ _ -，不能以 . 字符开头
+        :type PathPrefix: String
+        :param DirPath: 目录绝对路径
+        :type PathPrefix: String
+        :param ExecutionType: 执行类型
+有效值：
+• 周期执行：CycleExecution
+• 立即执行：ImmediateExecution
+• 默认：CycleExecution
+        :type PathPrefix: String
+        :param FrequencyUnit: 文件删除策略执行频率。
+有效值：
+• day：按天
+• week：按周
+• month：按月
+        :type PathPrefix: String
+        :param IndexOfFrequency: 文件删除策略执行日期。
+• 按天不传
+• 按周（必传） （1-7  可多选）
+• 按月（必传）（1-30 可多选）
+        :type PathPrefix: Array
+        :param FrequencyTimePoints: 文件删除策略定期执行时间点，只支持小时（整点）
+        :type PathPrefix: Array
+        :param FileNameRule: 文件名过滤规则
+        :type PathPrefix: Object
+        :param FileSizeRule: 文件大小过滤规则
+        :type PathPrefix: Object
+        :param TimeRuleParameters: 时间参数
+        :type PathPrefix: Array
+        :param Description: 文件删除策略备注信息
+（限制）:允许字符长度:0-63，允许包含以下字符:数字 字母 中文 + = . @ _ -
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.FileDeletePolicyName = None
+        self.DirPath = None
+        self.ExecutionType = None
+        self.FrequencyUnit = None
+        self.IndexOfFrequency = None
+        self.FrequencyTimePoints = None
+        self.FileNameRule = None
+        self.FileSizeRule = None
+        self.TimeRuleParameters = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("FileDeletePolicyName"):
+            self.FileDeletePolicyName = params.get("FileDeletePolicyName")
+        if params.get("DirPath"):
+            self.DirPath = params.get("DirPath")
+        if params.get("ExecutionType"):
+            self.ExecutionType = params.get("ExecutionType")
+        if params.get("FrequencyUnit"):
+            self.FrequencyUnit = params.get("FrequencyUnit")
+        if params.get("IndexOfFrequency"):
+            self.IndexOfFrequency = params.get("IndexOfFrequency")
+        if params.get("FrequencyTimePoints"):
+            self.FrequencyTimePoints = params.get("FrequencyTimePoints")
+        if params.get("FileNameRule"):
+            self.FileNameRule = params.get("FileNameRule")
+        if params.get("FileSizeRule"):
+            self.FileSizeRule = params.get("FileSizeRule")
+        if params.get("TimeRuleParameters"):
+            self.TimeRuleParameters = params.get("TimeRuleParameters")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+
+
+class DescribeDataFlowStrategySubscribeRequest(AbstractModel):
+    """DescribeDataFlowStrategySubscribe请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看数据流动订阅记录
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+
+
+class ManageDataFlowStrategySubscribeRequest(AbstractModel):
+    """ManageDataFlowStrategySubscribe请求参数结构体
+    """
+
+    def __init__(self):
+        r"""管理数据流动订阅
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        :param Operation: • activate：开启数据流动订阅，仅Subscribe为to_be_subscribed时支持
+• cancel：取消数据流动订阅，仅Subscribe为subscribing时支持
+
+        :type PathPrefix: String
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+        self.Operation = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+        if params.get("Operation"):
+            self.Operation = params.get("Operation")
 
 
 class GetRemoteCachePutLatencyRequest(AbstractModel):
@@ -1617,5 +3074,216 @@ class GetRemoteCacheIOPSGetRequest(AbstractModel):
             self.CacheGroupRole = params.get("CacheGroupRole")
         if params.get("ClientNm"):
             self.ClientNm = params.get("ClientNm")
+
+
+class DescribeDataFlowStrategySubscribeFailedRequest(AbstractModel):
+    """DescribeDataFlowStrategySubscribeFailed请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查看数据流动订阅失败事件
+        :param FileSystemId: 文件系统ID。
+        :type PathPrefix: String
+        :param StrategyId: 数据流动策略ID。
+        :type PathPrefix: String
+        :param SubscribeId: 订阅ID。
+        :type PathPrefix: String
+        :param StartTime: 获取失败列表起始时间,取值：yyyy-MM-dd HH:mm:ss
+        :type PathPrefix: String
+        :param EndTime: 获取失败列表结束时间,取值：yyyy-MM-dd HH:mm:ss
+查看最新的订阅失败，入参：endTime:--
+        :type PathPrefix: String
+        :param PageNum: 页码。默认为1。
+        :type PathPrefix: Int
+        :param PageSize: 分页大小。默认为10。取值范围1-1000。
+        :type PathPrefix: Int
+        """
+        self.FileSystemId = None
+        self.StrategyId = None
+        self.SubscribeId = None
+        self.StartTime = None
+        self.EndTime = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("FileSystemId"):
+            self.FileSystemId = params.get("FileSystemId")
+        if params.get("StrategyId"):
+            self.StrategyId = params.get("StrategyId")
+        if params.get("SubscribeId"):
+            self.SubscribeId = params.get("SubscribeId")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class ManageMigrateTaskRequest(AbstractModel):
+    """ManageMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""管理迁移任务
+        :param TaskId: 数据迁移任务ID。
+        :type PathPrefix: String
+        :param Operation: 任务操作。pause：暂停任务（仅运行中支持）；resume：恢复任务（仅已暂停、异常中断支持）；close：关闭任务（仅运行中、异常中断支持）；delete：删除任务（仅已关闭、已完成、异常中断支持）；re_execute：重新执行任务（仅已完成支持）。
+        :type PathPrefix: String
+        """
+        self.TaskId = None
+        self.Operation = None
+
+    def _deserialize(self, params):
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+        if params.get("Operation"):
+            self.Operation = params.get("Operation")
+
+
+class DescribeMigrateTasksRequest(AbstractModel):
+    """DescribeMigrateTasks请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询迁移任务列表
+        :param RuleId: 数据迁移规则ID。
+        :type PathPrefix: String
+        :param TaskId: 数据迁移任务ID。
+        :type PathPrefix: String
+        :param PageSize: 分页大小，默认为10。
+        :type PathPrefix: Long
+        :param PageNum: 页码，默认为1。
+        :type PathPrefix: Long
+        """
+        self.RuleId = None
+        self.TaskId = None
+        self.PageSize = None
+        self.PageNum = None
+
+    def _deserialize(self, params):
+        if params.get("RuleId"):
+            self.RuleId = params.get("RuleId")
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+
+
+class CreateMigrateTaskRequest(AbstractModel):
+    """CreateMigrateTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建迁移任务
+        :param RuleId: 任务id（数据迁移规则ID）。
+        :type PathPrefix: String
+        :param SrcDirectory: 数据源存储下的相对路径（为数据迁移绑定关系中数据源存储目录或前缀下的相对路径）。若数据源存储为KS3，则限制为：1~1023个字符，不能包含"@"、".."、"@base@"和"@style@"，必须以/开头，不允许以/结尾。若数据源存储为KPFS，则必须以/开头，不允许以/结尾，且KPFS文件系统子目录要求必须存在。
+        :type PathPrefix: String
+        :param DstDirectory: 数据目标存储下的相对路径（为数据迁移绑定关系中数据目标存储目录或前缀下的相对路径）。若数据目标存储为KS3，则限制为：1~1023个字符，不能包含"@"、".."、"@base@"和"@style@"，必须以/开头，不允许以/结尾。若数据目标存储为KPFS，则必须以/开头，不允许以/结尾，且KPFS文件系统子目录要求必须存在。
+        :type PathPrefix: String
+        :param EntryList: 64KB，采用JSON格式。该参数仅数据源存储为KS3，数据目标存储为KPFS时支持。
+若文件清单内存在源存储下不存在的文件，迁移时会忽略。
+• 任务要同步的源数据为：BucketPrefix+SrcDirectory+EntryList
+• 任务同步到目标的数据路径为：DirPath+DstDirectory+EntryList
+        :type PathPrefix: Array
+        """
+        self.RuleId = None
+        self.SrcDirectory = None
+        self.DstDirectory = None
+        self.EntryList = None
+
+    def _deserialize(self, params):
+        if params.get("RuleId"):
+            self.RuleId = params.get("RuleId")
+        if params.get("SrcDirectory"):
+            self.SrcDirectory = params.get("SrcDirectory")
+        if params.get("DstDirectory"):
+            self.DstDirectory = params.get("DstDirectory")
+        if params.get("EntryList"):
+            self.EntryList = params.get("EntryList")
+
+
+class DeleteMigrateRuleRequest(AbstractModel):
+    """DeleteMigrateRule请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除迁移规则
+        :param RuleId: 数据迁移规则ID。
+        :type PathPrefix: String
+        """
+        self.RuleId = None
+
+    def _deserialize(self, params):
+        if params.get("RuleId"):
+            self.RuleId = params.get("RuleId")
+
+
+class DescribeMigrateRulesRequest(AbstractModel):
+    """DescribeMigrateRules请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询迁移规则列表
+        :param RuleId: 数据迁移规则ID。
+        :type PathPrefix: String
+        :param Region: 地域信息。
+        :type PathPrefix: String
+        :param PageSize: 分页大小，默认为10。
+        :type PathPrefix: Long
+        :param PageNum: 页码，默认为1。
+        :type PathPrefix: Long
+        """
+        self.RuleId = None
+        self.Region = None
+        self.PageSize = None
+        self.PageNum = None
+
+    def _deserialize(self, params):
+        if params.get("RuleId"):
+            self.RuleId = params.get("RuleId")
+        if params.get("Region"):
+            self.Region = params.get("Region")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+
+
+class CreateMigrateRuleRequest(AbstractModel):
+    """CreateMigrateRule请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建迁移规则
+        :param Name: 数据迁移名称，最大64字符。
+        :type PathPrefix: String
+        :param Region: 地域信息。
+        :type PathPrefix: String
+        :param SrcData: 数据源存储。数据源存储与数据目标存储必须在相同Region。
+        :type PathPrefix: Object
+        :param DstData: 数据目标存储。数据源存储与数据目标存储必须在相同Region。
+        :type PathPrefix: Object
+        """
+        self.Name = None
+        self.Region = None
+        self.SrcData = None
+        self.DstData = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Region"):
+            self.Region = params.get("Region")
+        if params.get("SrcData"):
+            self.SrcData = params.get("SrcData")
+        if params.get("DstData"):
+            self.DstData = params.get("DstData")
 
 

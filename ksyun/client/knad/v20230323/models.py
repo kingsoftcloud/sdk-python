@@ -447,24 +447,3 @@ class GetKnadPolicyRequest(AbstractModel):
             self.KnadId = params.get("KnadId")
 
 
-class InsertEipsRequest(AbstractModel):
-    """InsertEips请求参数结构体
-    """
-
-    def __init__(self):
-        r"""增量绑定eip
-        :param KnadId: 
-        :type PathPrefix: String
-        :param Ip: 高防实例绑定的eip列表
-        :type PathPrefix: Array
-        """
-        self.KnadId = None
-        self.Ip = None
-
-    def _deserialize(self, params):
-        if params.get("KnadId"):
-            self.KnadId = params.get("KnadId")
-        if params.get("Ip"):
-            self.Ip = params.get("Ip")
-
-

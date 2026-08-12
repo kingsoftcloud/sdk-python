@@ -268,7 +268,7 @@ class KnadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("GetZoneList", params, "application/json")
+            body = self.call_judge("GetZoneList", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -337,7 +337,7 @@ class KnadClient(AbstractClient):
         """
         try:
             params = request._serialize()
-            body = self.call_judge("GetBlockLocations", params, "application/json")
+            body = self.call_judge("GetBlockLocations", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body
@@ -376,24 +376,3 @@ class KnadClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def InsertEips(self, request):
-        """增量绑定eip
-        :param request: Request instance for InsertEips.
-        :type request: :class:`ksyun.client.knad.v20230323.models.InsertEipsRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("InsertEips", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))

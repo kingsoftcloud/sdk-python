@@ -72,6 +72,7 @@ class CreateEpcRequest(AbstractModel):
         :param Raid: 数据盘Raid，和机型的数据盘的数量相关 
 有效值：
 - Jbod：直连模式
+- Raid0：数据盘数量必须大于等于1
 - Raid1：数据盘数量必须是2的倍数
 - Raid5：数据盘的数量必须大于等于3
 - Raid10：数据盘数量必须是4的倍数
@@ -259,7 +260,7 @@ storage_bond
 类型： String
 是否必填：否
         :type PathPrefix: String
-        :param UserData: base64编码后的自定义脚本
+        :param UserData: base64编码后的脚本
         :type PathPrefix: String
         :param StorageRoceNetworkInterfaceMode: 存储RoCE网卡bond模式
 有效值：
@@ -270,7 +271,7 @@ storage_bond
         :type PathPrefix: String
         :param SRoceCluster: 存储RoCE集群名称
         :type PathPrefix: String
-        :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。
+        :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过32KB。
 不填则默认为空。
         :type PathPrefix: String
         :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
@@ -608,7 +609,10 @@ dual：双网卡模式
 - no：不开启
         :type PathPrefix: String
         :param Raid: 数据盘Raid级别,和数据盘的数量直接相关 
-有效值：  Raid1：数据盘数量必须是2的倍数
+有效值：
+Jbod：直连模式
+Raid0：数据盘数量必须大于等于1  
+Raid1：数据盘数量必须是2的倍数
 Raid5：数据盘的数量必须大于等于3
 Raid10：数据盘数量必须是4的倍数
 Raid50：数据盘的数量必须大于6且是2的倍数
@@ -668,7 +672,8 @@ SRaid0：单盘SRaid0无限制，仅针对大数据业务自身有冗余的场�
         :param StorageRoceNetworkCardName: RoCE存储卡名称，仅支持
 eth8x_bond、storage_bond
         :type PathPrefix: String
-        :param UserDefinedData: 自定义脚本
+        :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过32KB。
+不填则默认为空。
         :type PathPrefix: String
         :param ClientToken: 由客户端生成的本次请求的不超过64个ASCII字符唯一标识，同一个ClientToken支持幂等
         :type PathPrefix: String
@@ -938,12 +943,15 @@ class CreateImageRequest(AbstractModel):
         :type PathPrefix: String
         :param Description: 镜像描述
         :type PathPrefix: String
+        :param ProjectId: 项目制ID
+        :type PathPrefix: String
         """
         self.HostId = None
         self.ImageName = None
         self.ImageMode = None
         self.ImageInitialization = None
         self.Description = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("HostId"):
@@ -956,6 +964,8 @@ class CreateImageRequest(AbstractModel):
             self.ImageInitialization = params.get("ImageInitialization")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class ModifyImageRequest(AbstractModel):
@@ -1379,27 +1389,6 @@ class ResetPasswordRequest(AbstractModel):
             self.HostId = params.get("HostId")
         if params.get("Password"):
             self.Password = params.get("Password")
-
-
-class ModifyHyperThreadingRequest(AbstractModel):
-    """ModifyHyperThreading请求参数结构体
-    """
-
-    def __init__(self):
-        r"""修改超线程
-        :param HostId: 裸金属服务器资源ID
-        :type PathPrefix: String
-        :param HyperThreadingStatus: 超线程状态，start|stop
-        :type PathPrefix: String
-        """
-        self.HostId = None
-        self.HyperThreadingStatus = None
-
-    def _deserialize(self, params):
-        if params.get("HostId"):
-            self.HostId = params.get("HostId")
-        if params.get("HyperThreadingStatus"):
-            self.HyperThreadingStatus = params.get("HyperThreadingStatus")
 
 
 class AssociateClusterRequest(AbstractModel):
@@ -1879,7 +1868,7 @@ class CopyImageRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""复制镜像
+        r"""复制镜像接口
         :param DestinationName: 镜像名称
         :type PathPrefix: String
         :param ImageId: 自定义镜像ID
@@ -1888,11 +1877,14 @@ class CopyImageRequest(AbstractModel):
         :type PathPrefix: String
         :param CopyTag: 是否复制Tag,yes|no
         :type PathPrefix: String
+        :param ProjectId: 项目制ID
+        :type PathPrefix: String
         """
         self.DestinationName = None
         self.ImageId = None
         self.DestinationRegion = None
         self.CopyTag = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("DestinationName"):
@@ -1903,6 +1895,8 @@ class CopyImageRequest(AbstractModel):
             self.DestinationRegion = params.get("DestinationRegion")
         if params.get("CopyTag"):
             self.CopyTag = params.get("CopyTag")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class DescribeEpcRaidAttributesRequest(AbstractModel):
@@ -2280,6 +2274,8 @@ class BatchCreateEpcRequest(AbstractModel):
         :type PathPrefix: String
         :param Raid: 数据盘Raid，和数据盘的数量相关 
 有效值：
+- Jbod：直连模式
+- Raid0：数据盘数量必须大于等于1
 - Raid1：数据盘数量必须是2的倍数
 - Raid5：数据盘的数量必须大于等于3
 - Raid10：数据盘数量必须是4的倍数
@@ -2760,11 +2756,17 @@ class ModifyProcessRequest(AbstractModel):
         :type PathPrefix: String
         :param Content: 工单内容
         :type PathPrefix: String
+        :param AuthorizeCableReplace: 是否允许换线是否允许换线，只允许从不允许换线调整到允许换线
+        :type PathPrefix: String
+        :param Description: 变更描述信息
+        :type PathPrefix: String
         """
         self.OperationProcessId = None
         self.Confirm = None
         self.Status = None
         self.Content = None
+        self.AuthorizeCableReplace = None
+        self.Description = None
 
     def _deserialize(self, params):
         if params.get("OperationProcessId"):
@@ -2775,6 +2777,10 @@ class ModifyProcessRequest(AbstractModel):
             self.Status = params.get("Status")
         if params.get("Content"):
             self.Content = params.get("Content")
+        if params.get("AuthorizeCableReplace"):
+            self.AuthorizeCableReplace = params.get("AuthorizeCableReplace")
+        if params.get("Description"):
+            self.Description = params.get("Description")
 
 
 class ConfirmProcessRequest(AbstractModel):
@@ -4476,6 +4482,7 @@ class CreateLaunchTemplateRequest(AbstractModel):
         :param Raid: 数据盘Raid级别,和数据盘的数量直接相关
 有效值：
 • Jbod：直连模式
+• Raid0：数据盘数量必须大于等于1
 • Raid1：数据盘数量必须是2的倍数
 • Raid5：数据盘的数量必须大于等于3
 • Raid10：数据盘数量必须是4的倍数
@@ -4590,8 +4597,12 @@ XFS
 eth8x_bond
 storage_bond
         :type PathPrefix: String
-        :param UserData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。不填则默认为空。
+        :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过32KB。
+不填则默认为空。
+
 示例值：ZWNobyBoZWxsbyBlY3Mh
+        :type PathPrefix: String
+        :param UserData: base64编码后的脚本
         :type PathPrefix: String
         """
         self.ChargeType = None
@@ -4637,6 +4648,7 @@ storage_bond
         self.ZoneId = None
         self.ZoneType = None
         self.StorageRoceNetworkCardName = None
+        self.UserDefinedData = None
         self.UserData = None
 
     def _deserialize(self, params):
@@ -4726,6 +4738,8 @@ storage_bond
             self.ZoneType = params.get("ZoneType")
         if params.get("StorageRoceNetworkCardName"):
             self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
+        if params.get("UserDefinedData"):
+            self.UserDefinedData = params.get("UserDefinedData")
         if params.get("UserData"):
             self.UserData = params.get("UserData")
 
@@ -4767,6 +4781,7 @@ class CreateLaunchTemplateVersionRequest(AbstractModel):
         :param Raid: 数据盘Raid级别,和数据盘的数量直接相关
 有效值：
 • Jbod：直连模式
+• Raid0：数据盘数量必须大于等于1
 • Raid1：数据盘数量必须是2的倍数
 • Raid5：数据盘的数量必须大于等于3
 • Raid10：数据盘数量必须是4的倍数
@@ -4875,7 +4890,11 @@ class CreateLaunchTemplateVersionRequest(AbstractModel):
 eth8x_bond
 storage_bond
         :type PathPrefix: String
-        :param UserData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过16KB。不填则默认为空。
+        :param UserData: base64编码后的脚本
+        :type PathPrefix: String
+        :param UserDefinedData: 实例自定义数据。设置的自定义数据必须经过Base64编码，且Base64编码前的自定义数据大小不能超过32KB。
+不填则默认为空。
+
 示例值：ZWNobyBoZWxsbyBlY3Mh
         :type PathPrefix: String
         """
@@ -4921,6 +4940,7 @@ storage_bond
         self.ZoneType = None
         self.StorageRoceNetworkCardName = None
         self.UserData = None
+        self.UserDefinedData = None
 
     def _deserialize(self, params):
         if params.get("ChargeType"):
@@ -5007,6 +5027,8 @@ storage_bond
             self.StorageRoceNetworkCardName = params.get("StorageRoceNetworkCardName")
         if params.get("UserData"):
             self.UserData = params.get("UserData")
+        if params.get("UserDefinedData"):
+            self.UserDefinedData = params.get("UserDefinedData")
 
 
 class DescribeLaunchTemplatesRequest(AbstractModel):

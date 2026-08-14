@@ -1250,3 +1250,95 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DeleteMemory(self, request):
+        """根据记忆ID删除已有记忆
+        :param request: Request instance for DeleteMemory.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DeleteMemoryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteMemory", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def UpdateMemory(self, request):
+        """更新记忆信息
+        :param request: Request instance for UpdateMemory.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.UpdateMemoryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateMemory", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def QueryMemoryHistory(self, request):
+        """查询记忆变更历史记录
+        :param request: Request instance for QueryMemoryHistory.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QueryMemoryHistoryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryMemoryHistory", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ListTopics(self, request):
+        """查询瀚海topic列表
+        :param request: Request instance for ListTopics.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.ListTopicsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListTopics", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

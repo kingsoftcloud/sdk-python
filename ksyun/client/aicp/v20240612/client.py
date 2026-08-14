@@ -2216,6 +2216,213 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def CreateAccessGroup(self, request):
+        """创建星流权限组
+        :param request: Request instance for CreateAccessGroup.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateAccessGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateAccessGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyAccessGroup(self, request):
+        """修改星流权限组
+        :param request: Request instance for ModifyAccessGroup.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyAccessGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAccessGroup", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeAccessGroups(self, request):
+        """查询星流权限组
+        :param request: Request instance for DescribeAccessGroups.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeAccessGroupsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAccessGroups", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeAccessGroupAssociatedPermission(self, request):
+        """查询权限组关联权限
+        :param request: Request instance for DescribeAccessGroupAssociatedPermission.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeAccessGroupAssociatedPermissionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeAccessGroupAssociatedPermission", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteAccessGroup(self, request):
+        """删除星流权限组
+        :param request: Request instance for DeleteAccessGroup.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteAccessGroupRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAccessGroup", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def AddAccessGroupMembers(self, request):
+        """添加权限组成员
+        :param request: Request instance for AddAccessGroupMembers.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.AddAccessGroupMembersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddAccessGroupMembers", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RemoveAccessGroupMembers(self, request):
+        """移除权限组成员
+        :param request: Request instance for RemoveAccessGroupMembers.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.RemoveAccessGroupMembersRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemoveAccessGroupMembers", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyAccessGroupMemberRole(self, request):
+        """修改权限组成员角色
+        :param request: Request instance for ModifyAccessGroupMemberRole.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyAccessGroupMemberRoleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyAccessGroupMemberRole", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteAccessGroupAssociatedPermission(self, request):
+        """删除权限组关联权限
+        :param request: Request instance for DeleteAccessGroupAssociatedPermission.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteAccessGroupAssociatedPermissionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteAccessGroupAssociatedPermission", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def GetAccountBillRules(self, request):
         """获取用户报价规则
         :param request: Request instance for GetAccountBillRules.
@@ -2339,6 +2546,75 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("RemoveStorageConfigAccess", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CheckKlogServiceStatus(self, request):
+        """获取Klog服务状态
+        :param request: Request instance for CheckKlogServiceStatus.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CheckKlogServiceStatusRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CheckKlogServiceStatus", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateLogPoolConfig(self, request):
+        """创建日志池投递配置
+        :param request: Request instance for CreateLogPoolConfig.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateLogPoolConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateLogPoolConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteLogPoolConfig(self, request):
+        """删除日志池投递配置
+        :param request: Request instance for DeleteLogPoolConfig.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteLogPoolConfigRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteLogPoolConfig", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

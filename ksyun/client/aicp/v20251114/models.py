@@ -1555,3 +1555,97 @@ desc  降序
             self.OccurredBefore = params.get("OccurredBefore")
 
 
+class DeleteMemoryRequest(AbstractModel):
+    """DeleteMemory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""根据记忆ID删除已有记忆
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param MemoryId: 记忆ID
+        :type PathPrefix: String
+        :param AgentUserId: 用户ID
+        :type PathPrefix: String
+        """
+        self.MemoryCollectionId = None
+        self.MemoryId = None
+        self.AgentUserId = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("MemoryId"):
+            self.MemoryId = params.get("MemoryId")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+
+
+class UpdateMemoryRequest(AbstractModel):
+    """UpdateMemory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新记忆信息
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param MemoryId: 记忆ID
+        :type PathPrefix: String
+        :param Content: 记忆内容
+        :type PathPrefix: String
+        :param AgentUserId: 用户ID
+        :type PathPrefix: String
+        """
+        self.MemoryCollectionId = None
+        self.MemoryId = None
+        self.Content = None
+        self.AgentUserId = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("MemoryId"):
+            self.MemoryId = params.get("MemoryId")
+        if params.get("Content"):
+            self.Content = params.get("Content")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+
+
+class QueryMemoryHistoryRequest(AbstractModel):
+    """QueryMemoryHistory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询记忆变更历史记录
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param MemoryId: 记忆ID
+        :type PathPrefix: String
+        """
+        self.MemoryCollectionId = None
+        self.MemoryId = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("MemoryId"):
+            self.MemoryId = params.get("MemoryId")
+
+
+class ListTopicsRequest(AbstractModel):
+    """ListTopics请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询瀚海topic列表
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        """
+        self.MemoryCollectionId = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+
+

@@ -184,15 +184,28 @@ class ModifyModelAccessRequest(AbstractModel):
         :type PathPrefix: String
         :param Users: 用户访问权限列表
         :type PathPrefix: Array
+        :param ModelPermission: 模型权限，枚举值：
+- Public，公开可见
+- Private，仅自己可见
+- Specified，指定范围
+        :type PathPrefix: String
+        :param SharedGroupList: 权限组共享列表（若传入，会进行全量覆盖式修改）
+        :type PathPrefix: Array
         """
         self.ModelId = None
         self.Users = None
+        self.ModelPermission = None
+        self.SharedGroupList = None
 
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
         if params.get("Users"):
             self.Users = params.get("Users")
+        if params.get("ModelPermission"):
+            self.ModelPermission = params.get("ModelPermission")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
 
 
 class CreateModelAndVersionRequest(AbstractModel):
@@ -219,6 +232,13 @@ class CreateModelAndVersionRequest(AbstractModel):
         :type PathPrefix: String
         :param Users: 用户访问权限列表
         :type PathPrefix: Array
+        :param ModelPermission: 模型权限，枚举值：
+- Public，公开可见
+- Private，仅自己可见
+- Specified，指定范围（默认）
+        :type PathPrefix: String
+        :param SharedGroupList: 权限组共享列表
+        :type PathPrefix: Array
         """
         self.ModelName = None
         self.ModelDescription = None
@@ -229,6 +249,8 @@ class CreateModelAndVersionRequest(AbstractModel):
         self.Format = None
         self.Framework = None
         self.Users = None
+        self.ModelPermission = None
+        self.SharedGroupList = None
 
     def _deserialize(self, params):
         if params.get("ModelName"):
@@ -249,6 +271,10 @@ class CreateModelAndVersionRequest(AbstractModel):
             self.Framework = params.get("Framework")
         if params.get("Users"):
             self.Users = params.get("Users")
+        if params.get("ModelPermission"):
+            self.ModelPermission = params.get("ModelPermission")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
 
 
 class ModifyModelRequest(AbstractModel):

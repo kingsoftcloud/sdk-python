@@ -606,29 +606,6 @@ class EpcClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
-    def ModifyHyperThreading(self, request):
-        """修改超线程
-        :param request: Request instance for ModifyHyperThreading.
-        :type request: :class:`ksyun.client.epc.v20151101.models.ModifyHyperThreadingRequest`
-        """
-        try:
-            params = request._serialize()
-            body = self.call_judge("ModifyHyperThreading", params, "application/x-www-form-urlencoded")
-            response = json.loads(body)
-            if "Error" not in response:
-                return body
-            else:
-                code = response["Error"]["Code"]
-                message = response["Error"]["Message"]
-                req_id = response["RequestId"]
-                raise KsyunSDKException(code, message, req_id)
-        except Exception as e:
-            if isinstance(e, KsyunSDKException):
-                raise
-            else:
-                raise KsyunSDKException(message=str(e))
-
-
     def AssociateCluster(self, request):
         """AssociateCluster
         :param request: Request instance for AssociateCluster.
@@ -1021,7 +998,7 @@ class EpcClient(AbstractClient):
 
 
     def CopyImage(self, request):
-        """复制镜像
+        """复制镜像接口
         :param request: Request instance for CopyImage.
         :type request: :class:`ksyun.client.epc.v20151101.models.CopyImageRequest`
         """

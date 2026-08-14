@@ -101,13 +101,19 @@ class CreateStorageConfigRequest(AbstractModel):
         :type PathPrefix: Object
         :param Users: 子账号权限信息列表
         :type PathPrefix: Array
+        :param DatasetPermission: 存储配置权限，枚举值：
+- Private，私有
+- Specified，指定范围（默认）
+指定范围权限下，权限取决于Users和SharedGroupList
+        :type PathPrefix: String
+        :param SharedGroupList: 权限组共享列表，DatasetPermission为Specified时，Users或SharedGroupList至少传一个
+        :type PathPrefix: Array
+        :param Prefetch: 开启预取。当选择的文件系统是容量型/标准型KPFS时,可设置开启预取，开启后能提升连续读性能，但可能降低随机读性能。
+        :type PathPrefix: Boolean
         :param Ak: 访问密钥ID,除性能型KPFS外，其余存储类型均需要填写
         :type PathPrefix: String
         :param Sk: 访问密钥Secret,除性能型KPFS外，其余存储类型均需要填写
         :type PathPrefix: String
-        :param Prefetch: 开启预取
-> 当选择的文件系统是容量型/标准型KPFS时,可设置开启预取，开启后能提升连续读性能，但可能降低随机读性能。
-        :type PathPrefix: Boolean
         """
         self.StorageConfigName = None
         self.Description = None
@@ -116,9 +122,11 @@ class CreateStorageConfigRequest(AbstractModel):
         self.KpfsInfo = None
         self.Ks3Info = None
         self.Users = None
+        self.DatasetPermission = None
+        self.SharedGroupList = None
+        self.Prefetch = None
         self.Ak = None
         self.Sk = None
-        self.Prefetch = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigName"):
@@ -135,12 +143,16 @@ class CreateStorageConfigRequest(AbstractModel):
             self.Ks3Info = params.get("Ks3Info")
         if params.get("Users"):
             self.Users = params.get("Users")
+        if params.get("DatasetPermission"):
+            self.DatasetPermission = params.get("DatasetPermission")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
+        if params.get("Prefetch"):
+            self.Prefetch = params.get("Prefetch")
         if params.get("Ak"):
             self.Ak = params.get("Ak")
         if params.get("Sk"):
             self.Sk = params.get("Sk")
-        if params.get("Prefetch"):
-            self.Prefetch = params.get("Prefetch")
 
 
 class ModifyStorageConfigRequest(AbstractModel):
@@ -161,13 +173,19 @@ class ModifyStorageConfigRequest(AbstractModel):
         :type PathPrefix: Object
         :param Users: 子账号权限信息列表（若传入，会进行全量覆盖式修改）
         :type PathPrefix: Array
+        :param DatasetPermission: 存储配置权限，枚举值：
+- Private，私有
+- Specified，指定范围。不传表示不修改
+指定范围权限下，权限取决于Users和SharedGroupList
+        :type PathPrefix: String
+        :param SharedGroupList: 权限组共享列表（若传入，会进行全量覆盖式修改）
+        :type PathPrefix: Array
+        :param Prefetch: 开启预取。当选择的文件系统是容量型/标准型KPFS时,可设置开启预取，开启后能提升连续读性能，但可能降低随机读性能。
+        :type PathPrefix: Boolean
         :param Ak: 访问密钥ID,对于KPFS类型的存储配置,需要用户自行保证AK/SK的有效性
         :type PathPrefix: String
         :param Sk: 访问密钥Secret,对于KPFS类型的存储配置,需要用户自行保证AK/SK的有效性
         :type PathPrefix: String
-        :param Prefetch: 开启预取
-> 当选择的文件系统是容量型/标准型KPFS时,可设置开启预取，开启后能提升连续读性能，但可能降低随机读性能。
-        :type PathPrefix: Boolean
         """
         self.StorageConfigId = None
         self.StorageConfigName = None
@@ -175,9 +193,11 @@ class ModifyStorageConfigRequest(AbstractModel):
         self.MountPath = None
         self.Ks3Info = None
         self.Users = None
+        self.DatasetPermission = None
+        self.SharedGroupList = None
+        self.Prefetch = None
         self.Ak = None
         self.Sk = None
-        self.Prefetch = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigId"):
@@ -192,12 +212,16 @@ class ModifyStorageConfigRequest(AbstractModel):
             self.Ks3Info = params.get("Ks3Info")
         if params.get("Users"):
             self.Users = params.get("Users")
+        if params.get("DatasetPermission"):
+            self.DatasetPermission = params.get("DatasetPermission")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
+        if params.get("Prefetch"):
+            self.Prefetch = params.get("Prefetch")
         if params.get("Ak"):
             self.Ak = params.get("Ak")
         if params.get("Sk"):
             self.Sk = params.get("Sk")
-        if params.get("Prefetch"):
-            self.Prefetch = params.get("Prefetch")
 
 
 class DescribeStorageConfigsRequest(AbstractModel):
@@ -392,6 +416,8 @@ class ModifyNotebookRequest(AbstractModel):
         :type PathPrefix: String
         :param AutoSaveConfig: 自动保存镜像配置
         :type PathPrefix: Object
+        :param Envs: 环境变量列表（全量替换）
+        :type PathPrefix: Array
         """
         self.NotebookId = None
         self.NotebookName = None
@@ -419,6 +445,7 @@ class ModifyNotebookRequest(AbstractModel):
         self.ImageRepoId = None
         self.ImageRegistryId = None
         self.AutoSaveConfig = None
+        self.Envs = None
 
     def _deserialize(self, params):
         if params.get("NotebookId"):
@@ -473,6 +500,8 @@ class ModifyNotebookRequest(AbstractModel):
             self.ImageRegistryId = params.get("ImageRegistryId")
         if params.get("AutoSaveConfig"):
             self.AutoSaveConfig = params.get("AutoSaveConfig")
+        if params.get("Envs"):
+            self.Envs = params.get("Envs")
 
 
 class DeleteNotebookRequest(AbstractModel):
@@ -606,6 +635,8 @@ class CreateNotebookRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param VolumeConfig: 云盘配置，当EnableVolume=true时必传
         :type PathPrefix: Object
+        :param Envs: 环境变量列表
+        :type PathPrefix: Array
         """
         self.NotebookName = None
         self.Description = None
@@ -633,6 +664,7 @@ class CreateNotebookRequest(AbstractModel):
         self.AutoSaveConfig = None
         self.EnableVolume = None
         self.VolumeConfig = None
+        self.Envs = None
 
     def _deserialize(self, params):
         if params.get("NotebookName"):
@@ -687,6 +719,8 @@ class CreateNotebookRequest(AbstractModel):
             self.EnableVolume = params.get("EnableVolume")
         if params.get("VolumeConfig"):
             self.VolumeConfig = params.get("VolumeConfig")
+        if params.get("Envs"):
+            self.Envs = params.get("Envs")
 
 
 class EnableKlogRequest(AbstractModel):
@@ -741,8 +775,15 @@ class CreateImageRequest(AbstractModel):
         :type PathPrefix: String
         :param Password: 密码，当ImageType=Official不能为空
         :type PathPrefix: String
-        :param ImagePermission: 镜像权限
+        :param ImagePermission: 镜像权限，枚举值：
+- Public，公开可见
+- Private，仅自己可见
+- Specified，指定范围
         :type PathPrefix: String
+        :param AccessList: 用户权限列表
+        :type PathPrefix: Array
+        :param SharedGroupList: 权限组共享列表
+        :type PathPrefix: Array
         """
         self.ImageName = None
         self.Description = None
@@ -755,6 +796,8 @@ class CreateImageRequest(AbstractModel):
         self.UserName = None
         self.Password = None
         self.ImagePermission = None
+        self.AccessList = None
+        self.SharedGroupList = None
 
     def _deserialize(self, params):
         if params.get("ImageName"):
@@ -779,6 +822,10 @@ class CreateImageRequest(AbstractModel):
             self.Password = params.get("Password")
         if params.get("ImagePermission"):
             self.ImagePermission = params.get("ImagePermission")
+        if params.get("AccessList"):
+            self.AccessList = params.get("AccessList")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
 
 
 class DeleteImageRequest(AbstractModel):
@@ -807,12 +854,21 @@ class ModifyImageRequest(AbstractModel):
         :type PathPrefix: String
         :param ImageName: 镜像名称
         :type PathPrefix: String
-        :param ImagePermission: 镜像权限
+        :param ImagePermission: 镜像权限，枚举值：
+- Public，公开可见
+- Private，仅自己可见
+- Specified，指定范围。不传表示不修改
         :type PathPrefix: String
+        :param AccessList: 用户权限列表（若传入，会进行全量覆盖式修改）
+        :type PathPrefix: Array
+        :param SharedGroupList: 权限组共享列表（若传入，会进行全量覆盖式修改）
+        :type PathPrefix: Array
         """
         self.ImageId = None
         self.ImageName = None
         self.ImagePermission = None
+        self.AccessList = None
+        self.SharedGroupList = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
@@ -821,6 +877,10 @@ class ModifyImageRequest(AbstractModel):
             self.ImageName = params.get("ImageName")
         if params.get("ImagePermission"):
             self.ImagePermission = params.get("ImagePermission")
+        if params.get("AccessList"):
+            self.AccessList = params.get("AccessList")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
 
 
 class DescribeImagesRequest(AbstractModel):
@@ -2938,7 +2998,9 @@ class CreateQueueRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param Description: 队列描述, 长度最大200
         :type PathPrefix: String
-        :param AccessList: 访问控制列表（子账号权限信息）
+        :param AccessList: 访问控制列表（子账号权限信息）。同一角色（writer管理员/reader成员）只能来自 AccessList 或 SharedGroupList 其中之一，不能同时来自两者
+        :type PathPrefix: Array
+        :param SharedGroupList: 权限组共享列表。同一角色（writer管理员/reader成员）只能来自 AccessList 或 SharedGroupList 其中之一，不能同时来自两者
         :type PathPrefix: Array
         :param WorkloadType: 支持负载类型，默认不传表示不限制使用类型 
 - Notebook（开发任务）
@@ -2953,6 +3015,7 @@ class CreateQueueRequest(AbstractModel):
         self.AllowBorrowing = None
         self.Description = None
         self.AccessList = None
+        self.SharedGroupList = None
         self.WorkloadType = None
 
     def _deserialize(self, params):
@@ -2968,6 +3031,8 @@ class CreateQueueRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("AccessList"):
             self.AccessList = params.get("AccessList")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
         if params.get("WorkloadType"):
             self.WorkloadType = params.get("WorkloadType")
 
@@ -2986,7 +3051,9 @@ class ModifyQueueRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param Description: 队列描述，不传该字段表示不修改
         :type PathPrefix: String
-        :param AccessList: 访问控制列表，若传入会进行全量覆盖式修改。传入空数组代表清理全部已授权子用户
+        :param AccessList: 访问控制列表，若传入会进行全量覆盖式修改。传入空数组代表清理全部已授权子用户。同一角色（writer管理员/reader成员）只能来自 AccessList 或 SharedGroupList 其中之一，不能同时来自两者
+        :type PathPrefix: Array
+        :param SharedGroupList: 权限组共享列表（若传入，会进行全量覆盖式修改）。同一角色（writer管理员/reader成员）只能来自 AccessList 或 SharedGroupList 其中之一，不能同时来自两者
         :type PathPrefix: Array
         :param WorkloadType: 支持负载类型，不传该字段表示不修改，传空数组表示修改为不限制 
 - Notebook（开发任务）
@@ -3000,6 +3067,7 @@ class ModifyQueueRequest(AbstractModel):
         self.AllowBorrowing = None
         self.Description = None
         self.AccessList = None
+        self.SharedGroupList = None
         self.WorkloadType = None
 
     def _deserialize(self, params):
@@ -3013,6 +3081,8 @@ class ModifyQueueRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("AccessList"):
             self.AccessList = params.get("AccessList")
+        if params.get("SharedGroupList"):
+            self.SharedGroupList = params.get("SharedGroupList")
         if params.get("WorkloadType"):
             self.WorkloadType = params.get("WorkloadType")
 
@@ -3385,6 +3455,227 @@ class DescribeTerminateStopRecordsRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
 
 
+class CreateAccessGroupRequest(AbstractModel):
+    """CreateAccessGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建星流权限组
+        :param AccessGroupName: 权限组名称，1-64位，支持中文、字母、数字和_-./()
+        :type PathPrefix: String
+        :param AccessGroupDescription: 权限组描述，最长200字符
+        :type PathPrefix: String
+        :param Users: 成员列表
+        :type PathPrefix: Array
+        """
+        self.AccessGroupName = None
+        self.AccessGroupDescription = None
+        self.Users = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupName"):
+            self.AccessGroupName = params.get("AccessGroupName")
+        if params.get("AccessGroupDescription"):
+            self.AccessGroupDescription = params.get("AccessGroupDescription")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+
+
+class ModifyAccessGroupRequest(AbstractModel):
+    """ModifyAccessGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改星流权限组
+        :param AccessGroupId: 权限组ID，36位，字母/数字/-
+        :type PathPrefix: String
+        :param AccessGroupName: 权限组名称，1-64位，支持中文、字母、数字和_-./()。不传表示不修改
+        :type PathPrefix: String
+        :param AccessGroupDescription: 权限组描述，最长200字符。不传表示不修改；
+        :type PathPrefix: String
+        :param Users: 成员列表（全量替换）。不传(null)表示不修改；传空列表表示清空；传非空列表表示全量替换
+        :type PathPrefix: Array
+        """
+        self.AccessGroupId = None
+        self.AccessGroupName = None
+        self.AccessGroupDescription = None
+        self.Users = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("AccessGroupName"):
+            self.AccessGroupName = params.get("AccessGroupName")
+        if params.get("AccessGroupDescription"):
+            self.AccessGroupDescription = params.get("AccessGroupDescription")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+
+
+class DescribeAccessGroupsRequest(AbstractModel):
+    """DescribeAccessGroups请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询星流权限组
+        :param AccessGroupId: 权限组ID，支持传入多个，按权限组ID筛选
+        :type PathPrefix: Filter
+        :param Filter: 过滤器，按权限组名称筛选，Name有效值：access-group-name
+        :type PathPrefix: Filter
+        :param Page: 页码，默认1
+        :type PathPrefix: Int
+        :param PageSize: 每页数量，范围5-1000，默认20
+        :type PathPrefix: Int
+        """
+        self.AccessGroupId = None
+        self.Filter = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("Filter"):
+            self.Filter = params.get("Filter")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class DescribeAccessGroupAssociatedPermissionRequest(AbstractModel):
+    """DescribeAccessGroupAssociatedPermission请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询权限组关联权限
+        :param AccessGroupId: 权限组ID，36位
+        :type PathPrefix: String
+        :param ResourceType: 资源类型，枚举值：
+- Queue，队列
+- Dataset，存储配置
+- Image，镜像
+- Model，模型
+- ImageRegistry，第三方镜像配置
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+        self.ResourceType = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("ResourceType"):
+            self.ResourceType = params.get("ResourceType")
+
+
+class DeleteAccessGroupRequest(AbstractModel):
+    """DeleteAccessGroup请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除星流权限组
+        :param AccessGroupId: 权限组ID，36位
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+
+
+class AddAccessGroupMembersRequest(AbstractModel):
+    """AddAccessGroupMembers请求参数结构体
+    """
+
+    def __init__(self):
+        r"""添加权限组成员
+        :param AccessGroupId: 权限组ID，36位
+        :type PathPrefix: String
+        :param Users: 待添加成员列表，至少1项
+        :type PathPrefix: Array
+        """
+        self.AccessGroupId = None
+        self.Users = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("Users"):
+            self.Users = params.get("Users")
+
+
+class RemoveAccessGroupMembersRequest(AbstractModel):
+    """RemoveAccessGroupMembers请求参数结构体
+    """
+
+    def __init__(self):
+        r"""移除权限组成员
+        :param AccessGroupId: 权限组ID，36位
+        :type PathPrefix: String
+        :param UserIds: 待移除的子账号ID列表，至少1项
+        :type PathPrefix: Array
+        """
+        self.AccessGroupId = None
+        self.UserIds = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("UserIds"):
+            self.UserIds = params.get("UserIds")
+
+
+class ModifyAccessGroupMemberRoleRequest(AbstractModel):
+    """ModifyAccessGroupMemberRole请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改权限组成员角色
+        :param AccessGroupId: 权限组ID，36位
+        :type PathPrefix: String
+        :param UserId: 目标子账号ID
+        :type PathPrefix: String
+        :param Permission: 新角色，枚举值：
+- writer，管理员
+- reader，普通成员
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+        self.UserId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class DeleteAccessGroupAssociatedPermissionRequest(AbstractModel):
+    """DeleteAccessGroupAssociatedPermission请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除权限组关联权限
+        :param AccessGroupId: 权限组ID
+        :type PathPrefix: String
+        :param AssociatedResourceId: 关联资源ID，与AssociatedPermissionId二选一；
+        :type PathPrefix: String
+        """
+        self.AccessGroupId = None
+        self.AssociatedResourceId = None
+
+    def _deserialize(self, params):
+        if params.get("AccessGroupId"):
+            self.AccessGroupId = params.get("AccessGroupId")
+        if params.get("AssociatedResourceId"):
+            self.AssociatedResourceId = params.get("AssociatedResourceId")
+
+
 class GetAccountBillRulesRequest(AbstractModel):
     """GetAccountBillRules请求参数结构体
     """
@@ -3406,7 +3697,7 @@ class CreateUsageDownloadTaskRequest(AbstractModel):
         :param StartTimestamp: 查询任务数据起始时间（UTC Unix 时间戳，单位：秒），需校验：StartTimestamp≤EndTimestamp
 
         :type PathPrefix: Long
-        :param EndTimestamp: 查询任务数据结束时间（UTC Unix 时间戳，单位：秒），需校验：EndTimestamp ≤ 当前时间；EndTimestamp - StartTimestamp ≤ 604800（最大时间跨度7天）
+        :param EndTimestamp: 查询任务数据结束时间（UTC Unix 时间戳，单位：秒），需校验：EndTimestamp ≤ 当前时间；EndTimestamp - StartTimestamp ≤ 86400（最大时间跨度1天）
         :type PathPrefix: Long
         :param Filter: 
         :type PathPrefix: Object
@@ -3526,5 +3817,92 @@ class RemoveStorageConfigAccessRequest(AbstractModel):
             self.UserId = params.get("UserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
+
+
+class CheckKlogServiceStatusRequest(AbstractModel):
+    """CheckKlogServiceStatus请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Klog服务状态
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class CreateLogPoolConfigRequest(AbstractModel):
+    """CreateLogPoolConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建日志池投递配置
+        :param ProjectName: 日志工程名
+        :type PathPrefix: String
+        :param LogPoolName: 日志池名称
+        :type PathPrefix: String
+        :param ModelName: 模型名称,与接入点id二选一传入
+        :type PathPrefix: String
+        :param EndpointId: 接入点id,与模型名称二选一传入
+        :type PathPrefix: String
+        :param Region: 
+        :type PathPrefix: String
+        """
+        self.ProjectName = None
+        self.LogPoolName = None
+        self.ModelName = None
+        self.EndpointId = None
+        self.Region = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectName"):
+            self.ProjectName = params.get("ProjectName")
+        if params.get("LogPoolName"):
+            self.LogPoolName = params.get("LogPoolName")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+        if params.get("Region"):
+            self.Region = params.get("Region")
+
+
+class DeleteLogPoolConfigRequest(AbstractModel):
+    """DeleteLogPoolConfig请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除日志池投递配置
+        :param ProjectName: 日志工程名称
+        :type PathPrefix: String
+        :param LogPoolName: 日志池名称
+        :type PathPrefix: String
+        :param ModelName: 模型名称,与接入点id二选一传入
+        :type PathPrefix: String
+        :param EndpointId: 	
+接入点id,与模型名称二选一传入
+
+
+        :type PathPrefix: String
+        :param Region: 
+        :type PathPrefix: String
+        """
+        self.ProjectName = None
+        self.LogPoolName = None
+        self.ModelName = None
+        self.EndpointId = None
+        self.Region = None
+
+    def _deserialize(self, params):
+        if params.get("ProjectName"):
+            self.ProjectName = params.get("ProjectName")
+        if params.get("LogPoolName"):
+            self.LogPoolName = params.get("LogPoolName")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("EndpointId"):
+            self.EndpointId = params.get("EndpointId")
+        if params.get("Region"):
+            self.Region = params.get("Region")
 
 

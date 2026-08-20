@@ -828,3 +828,45 @@ class CreateEndPointRequest(AbstractModel):
             self.IpConfig = params.get("IpConfig")
 
 
+class BatchCreateZoneRecordRequest(AbstractModel):
+    """BatchCreateZoneRecord请求参数结构体
+    """
+
+    def __init__(self):
+        r"""批量新增ZoneRecord
+        :param ZoneId: zone的id
+        :type PathPrefix: String
+        :param RecordSet: zone的解析记录Record
+        :type PathPrefix: Array
+        """
+        self.ZoneId = None
+        self.RecordSet = None
+
+    def _deserialize(self, params):
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("RecordSet"):
+            self.RecordSet = params.get("RecordSet")
+
+
+class BatchDeleteZoneRecordRequest(AbstractModel):
+    """BatchDeleteZoneRecord请求参数结构体
+    """
+
+    def __init__(self):
+        r"""批量删除ZoneRecord
+        :param ZoneId: zone的id
+        :type PathPrefix: String
+        :param RecordIds: zone的解析记录RecordId,可以批量，最多50个
+        :type PathPrefix: Array
+        """
+        self.ZoneId = None
+        self.RecordIds = None
+
+    def _deserialize(self, params):
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("RecordIds"):
+            self.RecordIds = params.get("RecordIds")
+
+

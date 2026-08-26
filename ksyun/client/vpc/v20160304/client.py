@@ -3042,3 +3042,212 @@ class VpcClient(AbstractClient):
                 raise
             else:
                 raise KsyunSDKException(message=str(e))
+
+
+    def AssociateEip(self, request):
+        """Nat绑定EIP
+        :param request: Request instance for AssociateEip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.AssociateEipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AssociateEip", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DisassociateEip(self, request):
+        """Nat解绑EIP
+        :param request: Request instance for DisassociateEip.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DisassociateEipRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DisassociateEip", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateNetworkPath(self, request):
+        """创建路径分析
+        :param request: Request instance for CreateNetworkPath.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreateNetworkPathRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateNetworkPath", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteNetworkPath(self, request):
+        """删除路径分析
+        :param request: Request instance for DeleteNetworkPath.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeleteNetworkPathRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteNetworkPath", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeNetworkPath(self, request):
+        """查询路径分析
+        :param request: Request instance for DescribeNetworkPath.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeNetworkPathRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeNetworkPath", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreatePathTask(self, request):
+        """查询路径分析任务
+        :param request: Request instance for CreatePathTask.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.CreatePathTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreatePathTask", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeletePathTask(self, request):
+        """删除路径分析任务
+        :param request: Request instance for DeletePathTask.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DeletePathTaskRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeletePathTask", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribePathTasks(self, request):
+        """查询路径分析任务
+        :param request: Request instance for DescribePathTasks.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.DescribePathTasksRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribePathTasks", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyNetworkPathName(self, request):
+        """修改路径分析名称
+        :param request: Request instance for ModifyNetworkPathName.
+        :type request: :class:`ksyun.client.vpc.v20160304.models.ModifyNetworkPathNameRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyNetworkPathName", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

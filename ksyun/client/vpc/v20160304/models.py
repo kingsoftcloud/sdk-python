@@ -14,11 +14,17 @@ class CreateVpcRequest(AbstractModel):
         :type PathPrefix: Boolean
         :param Ipv6CidrBlock: Ipv6CidrBlock指定ipv6网段创建vpc，只有当ProvidedIpv6CidrBlock = true时生效，该参数可不传，不传则随机分配ipv6网段
         :type PathPrefix: String
+        :param VpcIpv6CidrBlock: 分配给Vpc的IPv6网段。只有在ProvidedIpv6CidrBlock=true和Ipv6CidrBlock值有效时生效。
+        :type PathPrefix: String
+        :param IsDefault: 是否默认VPC
+        :type PathPrefix: Boolean
         """
         self.VpcName = None
         self.CidrBlock = None
         self.ProvidedIpv6CidrBlock = None
         self.Ipv6CidrBlock = None
+        self.VpcIpv6CidrBlock = None
+        self.IsDefault = None
 
     def _deserialize(self, params):
         if params.get("VpcName"):
@@ -29,6 +35,10 @@ class CreateVpcRequest(AbstractModel):
             self.ProvidedIpv6CidrBlock = params.get("ProvidedIpv6CidrBlock")
         if params.get("Ipv6CidrBlock"):
             self.Ipv6CidrBlock = params.get("Ipv6CidrBlock")
+        if params.get("VpcIpv6CidrBlock"):
+            self.VpcIpv6CidrBlock = params.get("VpcIpv6CidrBlock")
+        if params.get("IsDefault"):
+            self.IsDefault = params.get("IsDefault")
 
 
 class DeleteVpcRequest(AbstractModel):
@@ -59,10 +69,13 @@ class DescribeVpcsRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
+        :param ProvidedIpv6CidrBlock: 是否支持IPv6网段
+        :type PathPrefix: Boolean
         """
         self.VpcId = None
         self.MaxResults = None
         self.NextToken = None
+        self.ProvidedIpv6CidrBlock = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -71,6 +84,8 @@ class DescribeVpcsRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+        if params.get("ProvidedIpv6CidrBlock"):
+            self.ProvidedIpv6CidrBlock = params.get("ProvidedIpv6CidrBlock")
 
 
 class CreateSubnetRequest(AbstractModel):
@@ -105,6 +120,8 @@ class CreateSubnetRequest(AbstractModel):
         :type PathPrefix: String
         :param VisitInternet: 裸金属子网是否支持公网访问，false: 禁止公网访问的子网，true:允许公网访问的子网，默认为true
         :type PathPrefix: Boolean
+        :param Ipv6CidrBlock: 开启ipv6,支持指定ipv6网段，创建ipv6网段
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.SubnetName = None
@@ -119,6 +136,7 @@ class CreateSubnetRequest(AbstractModel):
         self.SecondaryCidrId = None
         self.AvailabilityZone = None
         self.VisitInternet = None
+        self.Ipv6CidrBlock = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -147,6 +165,8 @@ class CreateSubnetRequest(AbstractModel):
             self.AvailabilityZone = params.get("AvailabilityZone")
         if params.get("VisitInternet"):
             self.VisitInternet = params.get("VisitInternet")
+        if params.get("Ipv6CidrBlock"):
+            self.Ipv6CidrBlock = params.get("Ipv6CidrBlock")
 
 
 class DeleteSubnetRequest(AbstractModel):
@@ -538,10 +558,13 @@ class CreateSecurityGroupRequest(AbstractModel):
         :type PathPrefix: String
         :param Description: 安全组的描述
         :type PathPrefix: String
+        :param SecurityGroupType: 安全组类型。可选值：other（普通安全组），global（全局安全组）
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.SecurityGroupName = None
         self.Description = None
+        self.SecurityGroupType = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -550,6 +573,8 @@ class CreateSecurityGroupRequest(AbstractModel):
             self.SecurityGroupName = params.get("SecurityGroupName")
         if params.get("Description"):
             self.Description = params.get("Description")
+        if params.get("SecurityGroupType"):
+            self.SecurityGroupType = params.get("SecurityGroupType")
 
 
 class DeleteSecurityGroupRequest(AbstractModel):
@@ -579,6 +604,7 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
         :param SecurityGroupId: 安全组的ID
         :type PathPrefix: String
         :param CidrBlock: 安全组规则的网段
+安全组规则的网段和授权安全组ID只能存在一个
         :type PathPrefix: String
         :param Direction: 安全组规则方向，in为入站规则，out为出站规则
         :type PathPrefix: String
@@ -598,6 +624,9 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
         :type PathPrefix: Int
         :param Policy: 访问权限
         :type PathPrefix: String
+        :param AuthorizedSecurityGroupId: 授权安全组ID
+授权安全组ID和安全组规则的网段只能存在一个
+        :type PathPrefix: String
         """
         self.Description = None
         self.SecurityGroupId = None
@@ -611,6 +640,7 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
         self.RuleTag = None
         self.Priority = None
         self.Policy = None
+        self.AuthorizedSecurityGroupId = None
 
     def _deserialize(self, params):
         if params.get("Description"):
@@ -637,6 +667,8 @@ class AuthorizeSecurityGroupEntryRequest(AbstractModel):
             self.Priority = params.get("Priority")
         if params.get("Policy"):
             self.Policy = params.get("Policy")
+        if params.get("AuthorizedSecurityGroupId"):
+            self.AuthorizedSecurityGroupId = params.get("AuthorizedSecurityGroupId")
 
 
 class RevokeSecurityGroupEntryRequest(AbstractModel):
@@ -700,23 +732,33 @@ class CreateNatRequest(AbstractModel):
         :param VpcId: Vpc的ID
         :type PathPrefix: String
         :param NatLineId: Nat的线路ID
+> Nat1.0参数
         :type PathPrefix: String
         :param BandWidth: Nat的带宽
+> Nat1.0参数,且对应Nat1.0 必传
         :type PathPrefix: Int
         :param NatName: Nat的名称
         :type PathPrefix: String
         :param NatType: Nat的类型，目前只支持public
         :type PathPrefix: String
         :param NatIpNumber: Nat的IP数量
+> Nat1.0参数
         :type PathPrefix: Int
         :param NatMode: Nat的映射范围
         :type PathPrefix: String
         :param ProjectId: 项目的ID
         :type PathPrefix: String
         :param ChargeType: Nat的计费类型
+> Nat1.0参数，当创建Nat2.0时可不传,2.0仅支持`HourlyInstantSettlement`
         :type PathPrefix: String
         :param PurchaseTime: 购买时长，计费类型为包年包月时不可缺省。
         :type PathPrefix: Int
+        :param NatVersion: Nat版本
+可选值：
+- 1.0
+- 2.0
+> 2.0具有机房限制，并非全机房支持，具体咨询客服了解
+        :type PathPrefix: String
         """
         self.VpcId = None
         self.NatLineId = None
@@ -728,6 +770,7 @@ class CreateNatRequest(AbstractModel):
         self.ProjectId = None
         self.ChargeType = None
         self.PurchaseTime = None
+        self.NatVersion = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
@@ -750,6 +793,8 @@ class CreateNatRequest(AbstractModel):
             self.ChargeType = params.get("ChargeType")
         if params.get("PurchaseTime"):
             self.PurchaseTime = params.get("PurchaseTime")
+        if params.get("NatVersion"):
+            self.NatVersion = params.get("NatVersion")
 
 
 class DeleteNatRequest(AbstractModel):
@@ -790,6 +835,8 @@ class DescribeNatsRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
+        :param NatVersion: Nat版本，可选值:1.0,2.0
+        :type PathPrefix: String
         """
         self.ProjectId = None
         self.NatId = None
@@ -799,6 +846,7 @@ class DescribeNatsRequest(AbstractModel):
         self.TagKV = None
         self.MaxResults = None
         self.NextToken = None
+        self.NatVersion = None
 
     def _deserialize(self, params):
         if params.get("ProjectId"):
@@ -817,6 +865,8 @@ class DescribeNatsRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+        if params.get("NatVersion"):
+            self.NatVersion = params.get("NatVersion")
 
 
 class AssociateNatRequest(AbstractModel):
@@ -1128,11 +1178,14 @@ class DescribeNetworkInterfacesRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
+        :param VisitInternet: 是否访问公网
+        :type PathPrefix: Boolean
         """
         self.NetworkInterfaceId = None
         self.Filter = None
         self.MaxResults = None
         self.NextToken = None
+        self.VisitInternet = None
 
     def _deserialize(self, params):
         if params.get("NetworkInterfaceId"):
@@ -1143,6 +1196,8 @@ class DescribeNetworkInterfacesRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+        if params.get("VisitInternet"):
+            self.VisitInternet = params.get("VisitInternet")
 
 
 class DescribeSubnetAvailableAddressesRequest(AbstractModel):
@@ -1436,15 +1491,25 @@ class CreateDirectConnectGatewayRequest(AbstractModel):
         :type PathPrefix: String
         :param DirectConnectGatewayName: 边界网关的名称
         :type PathPrefix: String
+        :param ProjectId: 项目制Id。
+        :type PathPrefix: String
+        :param AutoPublishSystemRoute: 是否自动发布系统路由
+        :type PathPrefix: Boolean
         """
         self.VpcId = None
         self.DirectConnectGatewayName = None
+        self.ProjectId = None
+        self.AutoPublishSystemRoute = None
 
     def _deserialize(self, params):
         if params.get("VpcId"):
             self.VpcId = params.get("VpcId")
         if params.get("DirectConnectGatewayName"):
             self.DirectConnectGatewayName = params.get("DirectConnectGatewayName")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
+        if params.get("AutoPublishSystemRoute"):
+            self.AutoPublishSystemRoute = params.get("AutoPublishSystemRoute")
 
 
 class DeleteDirectConnectGatewayRequest(AbstractModel):
@@ -2037,15 +2102,20 @@ class AddNatIpRequest(AbstractModel):
         :type PathPrefix: String
         :param AddNumber: 新增的NAT IP数量，每个NAT的IP数量不得超过20个，否则无法添加
         :type PathPrefix: Int
+        :param NatIp: 指定IP申请
+        :type PathPrefix: String
         """
         self.NatId = None
         self.AddNumber = None
+        self.NatIp = None
 
     def _deserialize(self, params):
         if params.get("NatId"):
             self.NatId = params.get("NatId")
         if params.get("AddNumber"):
             self.AddNumber = params.get("AddNumber")
+        if params.get("NatIp"):
+            self.NatIp = params.get("NatIp")
 
 
 class DeleteNatIpRequest(AbstractModel):
@@ -2095,25 +2165,15 @@ class DescribeIpv6PublicIpAddressesRequest(AbstractModel):
         :type PathPrefix: Filter
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
-        :param MaxResults: 单次调用可返回的最大条目数量
-        :type PathPrefix: Int
-        :param NextToken: 获取另一页返回结果的 token.
-        :type PathPrefix: String
         """
         self.Ipv6PublicIpAddressId = None
         self.Filter = None
-        self.MaxResults = None
-        self.NextToken = None
 
     def _deserialize(self, params):
         if params.get("Ipv6PublicIpAddressId"):
             self.Ipv6PublicIpAddressId = params.get("Ipv6PublicIpAddressId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-        if params.get("NextToken"):
-            self.NextToken = params.get("NextToken")
 
 
 class DescribeIpv6NetworkInterfacesRequest(AbstractModel):
@@ -2591,20 +2651,20 @@ class CreateNatRateLimitRequest(AbstractModel):
         :type PathPrefix: String
         :param BandwidthLimit: 出网带宽限速
         :type PathPrefix: Int
-        :param inBandwidthLimit: 入网带宽限速
+        :param InBandwidthLimit: 入网带宽限速
         :type PathPrefix: Int
         """
         self.NetworkInterfaceId = None
         self.BandwidthLimit = None
-        self.inBandwidthLimit = None
+        self.InBandwidthLimit = None
 
     def _deserialize(self, params):
         if params.get("NetworkInterfaceId"):
             self.NetworkInterfaceId = params.get("NetworkInterfaceId")
         if params.get("BandwidthLimit"):
             self.BandwidthLimit = params.get("BandwidthLimit")
-        if params.get("inBandwidthLimit"):
-            self.inBandwidthLimit = params.get("inBandwidthLimit")
+        if params.get("InBandwidthLimit"):
+            self.InBandwidthLimit = params.get("InBandwidthLimit")
 
 
 class DescribeNatRateLimitRequest(AbstractModel):
@@ -2617,15 +2677,25 @@ class DescribeNatRateLimitRequest(AbstractModel):
         :type PathPrefix: String
         :param Filter: 筛选Filter
         :type PathPrefix: Filter
+        :param NextToken: 获取另一页返回结果的 token.
+        :type PathPrefix: String
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
         """
         self.NatId = None
         self.Filter = None
+        self.NextToken = None
+        self.MaxResults = None
 
     def _deserialize(self, params):
         if params.get("NatId"):
             self.NatId = params.get("NatId")
         if params.get("Filter"):
             self.Filter = params.get("Filter")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
 
 
 class ModifyNatRateLimitRequest(AbstractModel):
@@ -3223,7 +3293,7 @@ class BatchModifyNatRateLimitRequest(AbstractModel):
     def __init__(self):
         r"""批量修改Nat限速
         :param BandwidthLimit: 出向带宽限速
-        :type PathPrefix: String
+        :type PathPrefix: Int
         :param InBandwidthLimit: 入向带宽限速
         :type PathPrefix: Int
         :param NatRateLimitId: Nat网卡限速规则ID
@@ -3378,7 +3448,7 @@ class QueryNatTopVifMonitorRequest(AbstractModel):
         :type PathPrefix: String
         :param InstanceType: 查询实例类型，不填默认是kec，epc/kec
         :type PathPrefix: String
-        :param ip: ip
+        :param Ip: ip
         :type PathPrefix: String
         """
         self.NatId = None
@@ -3386,7 +3456,7 @@ class QueryNatTopVifMonitorRequest(AbstractModel):
         self.EndTime = None
         self.SortType = None
         self.InstanceType = None
-        self.ip = None
+        self.Ip = None
 
     def _deserialize(self, params):
         if params.get("NatId"):
@@ -3399,8 +3469,8 @@ class QueryNatTopVifMonitorRequest(AbstractModel):
             self.SortType = params.get("SortType")
         if params.get("InstanceType"):
             self.InstanceType = params.get("InstanceType")
-        if params.get("ip"):
-            self.ip = params.get("ip")
+        if params.get("Ip"):
+            self.Ip = params.get("Ip")
 
 
 class ModifyNatIpStatusRequest(AbstractModel):
@@ -3658,5 +3728,222 @@ class CreateFlowLogRequest(AbstractModel):
             self.WindowTime = params.get("WindowTime")
         if params.get("Description"):
             self.Description = params.get("Description")
+
+
+class AssociateEipRequest(AbstractModel):
+    """AssociateEip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""Nat绑定EIP
+        :param NatId: 要绑定EIP的NAT2.0的ID
+> NAT2.0的ID才可调用
+        :type PathPrefix: String
+        :param FloatingIpIds: 需要绑定至NAT的EIP ID
+> 多个EIP需要使用同一种链路
+        :type PathPrefix: Filter
+        """
+        self.NatId = None
+        self.FloatingIpIds = None
+
+    def _deserialize(self, params):
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
+        if params.get("FloatingIpIds"):
+            self.FloatingIpIds = params.get("FloatingIpIds")
+
+
+class DisassociateEipRequest(AbstractModel):
+    """DisassociateEip请求参数结构体
+    """
+
+    def __init__(self):
+        r"""Nat解绑EIP
+        :param NatId: 要解绑EIP的NAT ID
+> NAT2.0的ID才可调用
+        :type PathPrefix: String
+        :param FloatingIpIds: 要解绑的EIP ID
+        :type PathPrefix: Filter
+        """
+        self.NatId = None
+        self.FloatingIpIds = None
+
+    def _deserialize(self, params):
+        if params.get("NatId"):
+            self.NatId = params.get("NatId")
+        if params.get("FloatingIpIds"):
+            self.FloatingIpIds = params.get("FloatingIpIds")
+
+
+class CreateNetworkPathRequest(AbstractModel):
+    """CreateNetworkPath请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建路径分析
+        :param SourceId: 源信息ID
+        :type PathPrefix: String
+        :param SourceType: 源类型 可选值:KEC,EIP,External_IP
+        :type PathPrefix: String
+        :param SourceIp: 源信息IP
+        :type PathPrefix: String
+        :param PathName: 路径分析名称
+        :type PathPrefix: String
+        :param TargetId: 目的信息ID
+        :type PathPrefix: String
+        :param TargetType: 目的类型，可选值:KEC,EIP,External_IP,Private_SLB,Public_SLB
+        :type PathPrefix: String
+        :param TargetIp: 目的信息IP
+        :type PathPrefix: String
+        :param PublicPort: 端口
+        :type PathPrefix: Int
+        :param Protocol: 协议，可选值:tcp,udp,icmp
+        :type PathPrefix: String
+        """
+        self.SourceId = None
+        self.SourceType = None
+        self.SourceIp = None
+        self.PathName = None
+        self.TargetId = None
+        self.TargetType = None
+        self.TargetIp = None
+        self.PublicPort = None
+        self.Protocol = None
+
+    def _deserialize(self, params):
+        if params.get("SourceId"):
+            self.SourceId = params.get("SourceId")
+        if params.get("SourceType"):
+            self.SourceType = params.get("SourceType")
+        if params.get("SourceIp"):
+            self.SourceIp = params.get("SourceIp")
+        if params.get("PathName"):
+            self.PathName = params.get("PathName")
+        if params.get("TargetId"):
+            self.TargetId = params.get("TargetId")
+        if params.get("TargetType"):
+            self.TargetType = params.get("TargetType")
+        if params.get("TargetIp"):
+            self.TargetIp = params.get("TargetIp")
+        if params.get("PublicPort"):
+            self.PublicPort = params.get("PublicPort")
+        if params.get("Protocol"):
+            self.Protocol = params.get("Protocol")
+
+
+class DeleteNetworkPathRequest(AbstractModel):
+    """DeleteNetworkPath请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除路径分析
+        :param PathId: 路径分析ID
+        :type PathPrefix: String
+        """
+        self.PathId = None
+
+    def _deserialize(self, params):
+        if params.get("PathId"):
+            self.PathId = params.get("PathId")
+
+
+class DescribeNetworkPathRequest(AbstractModel):
+    """DescribeNetworkPath请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询路径分析
+        :param PathId: 路径分析ID
+        :type PathPrefix: Filter
+        """
+        self.PathId = None
+
+    def _deserialize(self, params):
+        if params.get("PathId"):
+            self.PathId = params.get("PathId")
+
+
+class CreatePathTaskRequest(AbstractModel):
+    """CreatePathTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询路径分析任务
+        :param PathId: 路径分析ID
+        :type PathPrefix: String
+        """
+        self.PathId = None
+
+    def _deserialize(self, params):
+        if params.get("PathId"):
+            self.PathId = params.get("PathId")
+
+
+class DeletePathTaskRequest(AbstractModel):
+    """DeletePathTask请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除路径分析任务
+        :param PathTaskId: 路径分析任务ID
+        :type PathPrefix: String
+        """
+        self.PathTaskId = None
+
+    def _deserialize(self, params):
+        if params.get("PathTaskId"):
+            self.PathTaskId = params.get("PathTaskId")
+
+
+class DescribePathTasksRequest(AbstractModel):
+    """DescribePathTasks请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询路径分析任务
+        :param PathId: 路径分析ID
+        :type PathPrefix: Filter
+        :param PathTaskId: 路径分析任务ID
+        :type PathPrefix: Filter
+        :param NextToken: 获取另一页返回结果的 token
+        :type PathPrefix: String
+        :param MaxResults: 单次调用可返回的最大条目数量
+        :type PathPrefix: Int
+        """
+        self.PathId = None
+        self.PathTaskId = None
+        self.NextToken = None
+        self.MaxResults = None
+
+    def _deserialize(self, params):
+        if params.get("PathId"):
+            self.PathId = params.get("PathId")
+        if params.get("PathTaskId"):
+            self.PathTaskId = params.get("PathTaskId")
+        if params.get("NextToken"):
+            self.NextToken = params.get("NextToken")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+
+
+class ModifyNetworkPathNameRequest(AbstractModel):
+    """ModifyNetworkPathName请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改路径分析名称
+        :param PathId: 路径分析ID
+        :type PathPrefix: String
+        :param PathName: 路径分析名称
+        :type PathPrefix: String
+        """
+        self.PathId = None
+        self.PathName = None
+
+    def _deserialize(self, params):
+        if params.get("PathId"):
+            self.PathId = params.get("PathId")
+        if params.get("PathName"):
+            self.PathName = params.get("PathName")
 
 

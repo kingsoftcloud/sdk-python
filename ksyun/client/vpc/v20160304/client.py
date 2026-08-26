@@ -2079,7 +2079,7 @@ class VpcClient(AbstractClient):
 
 
     def CreateNatRateLimit(self, request):
-        """CreateNatRateLimit
+        """创建网关流控限速
         :param request: Request instance for CreateNatRateLimit.
         :type request: :class:`ksyun.client.vpc.v20160304.models.CreateNatRateLimitRequest`
         """
@@ -2102,7 +2102,7 @@ class VpcClient(AbstractClient):
 
 
     def DescribeNatRateLimit(self, request):
-        """DescribeNatRateLimit
+        """查询网关来访IP流控带宽
         :param request: Request instance for DescribeNatRateLimit.
         :type request: :class:`ksyun.client.vpc.v20160304.models.DescribeNatRateLimitRequest`
         """

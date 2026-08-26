@@ -16,15 +16,12 @@ class CreateVpcRequest(AbstractModel):
         :type PathPrefix: String
         :param VpcIpv6CidrBlock: 分配给Vpc的IPv6网段。只有在ProvidedIpv6CidrBlock=true和Ipv6CidrBlock值有效时生效。
         :type PathPrefix: String
-        :param IsDefault: 是否默认VPC
-        :type PathPrefix: Boolean
         """
         self.VpcName = None
         self.CidrBlock = None
         self.ProvidedIpv6CidrBlock = None
         self.Ipv6CidrBlock = None
         self.VpcIpv6CidrBlock = None
-        self.IsDefault = None
 
     def _deserialize(self, params):
         if params.get("VpcName"):
@@ -37,8 +34,6 @@ class CreateVpcRequest(AbstractModel):
             self.Ipv6CidrBlock = params.get("Ipv6CidrBlock")
         if params.get("VpcIpv6CidrBlock"):
             self.VpcIpv6CidrBlock = params.get("VpcIpv6CidrBlock")
-        if params.get("IsDefault"):
-            self.IsDefault = params.get("IsDefault")
 
 
 class DeleteVpcRequest(AbstractModel):
@@ -2646,7 +2641,7 @@ class CreateNatRateLimitRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""CreateNatRateLimit
+        r"""创建网关流控限速
         :param NetworkInterfaceId: 网卡ID
         :type PathPrefix: String
         :param BandwidthLimit: 出网带宽限速
@@ -2672,7 +2667,7 @@ class DescribeNatRateLimitRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""DescribeNatRateLimit
+        r"""查询网关来访IP流控带宽
         :param NatId: Nat的ID
         :type PathPrefix: String
         :param Filter: 筛选Filter

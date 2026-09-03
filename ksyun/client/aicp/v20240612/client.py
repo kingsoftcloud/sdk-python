@@ -2124,6 +2124,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def DescribeResourcePoolInstanceSpecs(self, request):
+        """查询资源组节点配置
+        :param request: Request instance for DescribeResourcePoolInstanceSpecs.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DescribeResourcePoolInstanceSpecsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeResourcePoolInstanceSpecs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DescribeInferenceAndPodEvents(self, request):
         """查询模型在线服务及Pod事件列表
         :param request: Request instance for DescribeInferenceAndPodEvents.
@@ -2615,6 +2638,75 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DeleteLogPoolConfig", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def AddImageAccess(self, request):
+        """为用户/权限组添加镜像权限
+        :param request: Request instance for AddImageAccess.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.AddImageAccessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddImageAccess", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyImageAccessRole(self, request):
+        """修改用户/权限组镜像权限
+        :param request: Request instance for ModifyImageAccessRole.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ModifyImageAccessRoleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyImageAccessRole", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RemoveImageAccess(self, request):
+        """移除用户/权限组镜像权限
+        :param request: Request instance for RemoveImageAccess.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.RemoveImageAccessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemoveImageAccess", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

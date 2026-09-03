@@ -1112,6 +1112,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def QueryMemoryCollectionSkills(self, request):
+        """查询记忆库匹配策略技能
+        :param request: Request instance for QueryMemoryCollectionSkills.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QueryMemoryCollectionSkillsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryMemoryCollectionSkills", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DescribeKnowledgeTokenMonitor(self, request):
         """查看知识库模型用量监控信息
         :param request: Request instance for DescribeKnowledgeTokenMonitor.
@@ -1320,13 +1343,128 @@ class AicpClient(AbstractClient):
 
 
     def ListTopics(self, request):
-        """查询瀚海topic列表
+        """查询topic列表
         :param request: Request instance for ListTopics.
         :type request: :class:`ksyun.client.aicp.v20251114.models.ListTopicsRequest`
         """
         try:
             params = request._serialize()
             body = self.call_judge("ListTopics", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def UpdateDocumentMetadata(self, request):
+        """更新文档元数据
+        :param request: Request instance for UpdateDocumentMetadata.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.UpdateDocumentMetadataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateDocumentMetadata", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteMetadata(self, request):
+        """删除知识库元数据
+        :param request: Request instance for DeleteMetadata.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DeleteMetadataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteMetadata", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def UpdateMetadata(self, request):
+        """更新知识库元数据
+        :param request: Request instance for UpdateMetadata.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.UpdateMetadataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateMetadata", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateMetadata(self, request):
+        """新建知识库元数据
+        :param request: Request instance for CreateMetadata.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.CreateMetadataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateMetadata", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeMetadata(self, request):
+        """查询知识库元数据
+        :param request: Request instance for DescribeMetadata.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeMetadataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeMetadata", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

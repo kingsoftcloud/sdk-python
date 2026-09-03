@@ -284,3 +284,72 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def AddModelAccess(self, request):
+        """为用户/权限组添加模型权限
+        :param request: Request instance for AddModelAccess.
+        :type request: :class:`ksyun.client.aicp.v20251212.models.AddModelAccessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddModelAccess", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ModifyModelAccessRole(self, request):
+        """修改用户/权限组模型权限
+        :param request: Request instance for ModifyModelAccessRole.
+        :type request: :class:`ksyun.client.aicp.v20251212.models.ModifyModelAccessRoleRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ModifyModelAccessRole", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RemoveModelAccess(self, request):
+        """移除用户/权限组模型权限
+        :param request: Request instance for RemoveModelAccess.
+        :type request: :class:`ksyun.client.aicp.v20251212.models.RemoveModelAccessRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemoveModelAccess", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+

@@ -273,7 +273,7 @@ class ModifyKnowledgeBaseRequest(AbstractModel):
         :type PathPrefix: String
         :param Name: 知识库名称（选填）
         :type PathPrefix: String
-        :param IndexingTechnique: 索引方式（选填）
+        :param IndexingTechnique: 索引方式（选填）：intelligence_fast
         :type PathPrefix: String
         :param EmbeddingModelProvider: 嵌入模型提供商（选填）
         :type PathPrefix: String
@@ -359,7 +359,7 @@ class CreateKnowledgeBaseRequest(AbstractModel):
         r"""创建知识库
         :param Name: 知识库名称（1-40 字符，不可重名）
         :type PathPrefix: String
-        :param IndexingTechnique: 索引方式：intelligence / intelligence_fast / high_quality / economy
+        :param IndexingTechnique: 索引方式：intelligence_fast
         :type PathPrefix: String
         :param RetrievalModel: 检索模型配置
         :type PathPrefix: Object
@@ -1311,6 +1311,22 @@ class QueryMcpMetricsRequest(AbstractModel):
             self.McpServerId = params.get("McpServerId")
 
 
+class QueryMemoryCollectionSkillsRequest(AbstractModel):
+    """QueryMemoryCollectionSkills请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询记忆库匹配策略技能
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        """
+        self.MemoryCollectionId = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+
+
 class DescribeKnowledgeTokenMonitorRequest(AbstractModel):
     """DescribeKnowledgeTokenMonitor请求参数结构体
     """
@@ -1638,7 +1654,7 @@ class ListTopicsRequest(AbstractModel):
     """
 
     def __init__(self):
-        r"""查询瀚海topic列表
+        r"""查询topic列表
         :param MemoryCollectionId: 记忆库ID
         :type PathPrefix: String
         """
@@ -1647,5 +1663,116 @@ class ListTopicsRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("MemoryCollectionId"):
             self.MemoryCollectionId = params.get("MemoryCollectionId")
+
+
+class UpdateDocumentMetadataRequest(AbstractModel):
+    """UpdateDocumentMetadata请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新文档元数据
+        :param DatasetId: 知识库ID
+        :type PathPrefix: String
+        :param OperationData: 操作的文档元数据
+        :type PathPrefix: Array
+        """
+        self.DatasetId = None
+        self.OperationData = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("OperationData"):
+            self.OperationData = params.get("OperationData")
+
+
+class DeleteMetadataRequest(AbstractModel):
+    """DeleteMetadata请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除知识库元数据
+        :param DatasetId: 知识库ID
+        :type PathPrefix: String
+        :param MetadataId: 元数据ID
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.MetadataId = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("MetadataId"):
+            self.MetadataId = params.get("MetadataId")
+
+
+class UpdateMetadataRequest(AbstractModel):
+    """UpdateMetadata请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新知识库元数据
+        :param DatasetId: 知识库ID
+        :type PathPrefix: String
+        :param MetadataId: 元数据ID
+        :type PathPrefix: String
+        :param Name: 元数据名称
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.MetadataId = None
+        self.Name = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("MetadataId"):
+            self.MetadataId = params.get("MetadataId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+
+
+class CreateMetadataRequest(AbstractModel):
+    """CreateMetadata请求参数结构体
+    """
+
+    def __init__(self):
+        r"""新建知识库元数据
+        :param DatasetId: 知识库ID
+        :type PathPrefix: String
+        :param Name: 元数据名称
+        :type PathPrefix: String
+        :param Type: 元数据类型
+string  number  time  array[number]  array[string]
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.Name = None
+        self.Type = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Type"):
+            self.Type = params.get("Type")
+
+
+class DescribeMetadataRequest(AbstractModel):
+    """DescribeMetadata请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询知识库元数据
+        :param DatasetId: 知识库ID
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
 
 

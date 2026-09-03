@@ -34,6 +34,8 @@ class CreateResourcePoolRequest(AbstractModel):
 - HourlyInstantSettlement（后付费，按小时实时结算）
 - Daily（后付费，按日月结）
         :type PathPrefix: String
+        :param ProjectId: 项目制ID
+        :type PathPrefix: String
         """
         self.ResourcePoolName = None
         self.Description = None
@@ -48,6 +50,7 @@ class CreateResourcePoolRequest(AbstractModel):
         self.Components = None
         self.EnableVolume = None
         self.VolumeChargeType = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("ResourcePoolName"):
@@ -76,6 +79,8 @@ class CreateResourcePoolRequest(AbstractModel):
             self.EnableVolume = params.get("EnableVolume")
         if params.get("VolumeChargeType"):
             self.VolumeChargeType = params.get("VolumeChargeType")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class CreateStorageConfigRequest(AbstractModel):
@@ -1541,6 +1546,8 @@ class ModifyApikeyRequest(AbstractModel):
         :type PathPrefix: Array
         :param AllowedIps: IP白名单列表，有值则启用白名单
         :type PathPrefix: Array
+        :param ProjectId: 项目制ID
+        :type PathPrefix: String
         """
         self.KeyId = None
         self.Name = None
@@ -1553,6 +1560,7 @@ class ModifyApikeyRequest(AbstractModel):
         self.LowPriceModels = None
         self.HighPriceModels = None
         self.AllowedIps = None
+        self.ProjectId = None
 
     def _deserialize(self, params):
         if params.get("KeyId"):
@@ -1577,6 +1585,8 @@ class ModifyApikeyRequest(AbstractModel):
             self.HighPriceModels = params.get("HighPriceModels")
         if params.get("AllowedIps"):
             self.AllowedIps = params.get("AllowedIps")
+        if params.get("ProjectId"):
+            self.ProjectId = params.get("ProjectId")
 
 
 class ActivateApiServiceRequest(AbstractModel):
@@ -2992,8 +3002,20 @@ class CreateQueueRequest(AbstractModel):
         :type PathPrefix: String
         :param QueueName: 允许小写字母、数字、"."、"-",以字母、数字开头和结尾 且"-"和"."不可相邻, 长度 1-64
         :type PathPrefix: String
-        :param Capability: 资源配额，GPU、CPU、内存等
+        :param QueueType: 队列类型：
+- normal，普通队列
+- physical，物理队列
+普通队列必填 Capability；物理队列必填 NodeSelectType 和 NodeSpec
+        :type PathPrefix: String
+        :param NodeSelectType: 节点选择类型：
+- random，随机分配
+- specify，指定节点分配
+仅当队列为物理队列类型时有效
+        :type PathPrefix: String
+        :param Capability: 资源配额，GPU、CPU、内存等。普通队列必填，物理队列非必填
         :type PathPrefix: Object
+        :param NodeSpec: 物理队列节点规格信息，仅当 QueueType 为 physical 时有效。同一队列内同一 HostType 只能配置一项
+        :type PathPrefix: Array
         :param AllowBorrowing: 是否允许向其他队列借资源
         :type PathPrefix: Boolean
         :param Description: 队列描述, 长度最大200
@@ -3011,7 +3033,10 @@ class CreateQueueRequest(AbstractModel):
         """
         self.ResourcePoolId = None
         self.QueueName = None
+        self.QueueType = None
+        self.NodeSelectType = None
         self.Capability = None
+        self.NodeSpec = None
         self.AllowBorrowing = None
         self.Description = None
         self.AccessList = None
@@ -3023,8 +3048,14 @@ class CreateQueueRequest(AbstractModel):
             self.ResourcePoolId = params.get("ResourcePoolId")
         if params.get("QueueName"):
             self.QueueName = params.get("QueueName")
+        if params.get("QueueType"):
+            self.QueueType = params.get("QueueType")
+        if params.get("NodeSelectType"):
+            self.NodeSelectType = params.get("NodeSelectType")
         if params.get("Capability"):
             self.Capability = params.get("Capability")
+        if params.get("NodeSpec"):
+            self.NodeSpec = params.get("NodeSpec")
         if params.get("AllowBorrowing"):
             self.AllowBorrowing = params.get("AllowBorrowing")
         if params.get("Description"):
@@ -3061,6 +3092,13 @@ class ModifyQueueRequest(AbstractModel):
 - Inference（推理任务）
 - DataJob（数据处理任务）
         :type PathPrefix: Array
+        :param NodeSpec: 物理队列节点规格信息，不传该字段表示不修改。仅物理队列有效，同一队列内同一 HostType 只能配置一项
+        :type PathPrefix: Array
+        :param NodeSelectType: 节点选择类型：
+- random，随机分配
+- specify，指定节点分配
+不传该字段表示不修改，仅物理队列有效。变更时需同时传入 NodeSpec
+        :type PathPrefix: String
         """
         self.QueueId = None
         self.Capability = None
@@ -3069,6 +3107,8 @@ class ModifyQueueRequest(AbstractModel):
         self.AccessList = None
         self.SharedGroupList = None
         self.WorkloadType = None
+        self.NodeSpec = None
+        self.NodeSelectType = None
 
     def _deserialize(self, params):
         if params.get("QueueId"):
@@ -3085,6 +3125,10 @@ class ModifyQueueRequest(AbstractModel):
             self.SharedGroupList = params.get("SharedGroupList")
         if params.get("WorkloadType"):
             self.WorkloadType = params.get("WorkloadType")
+        if params.get("NodeSpec"):
+            self.NodeSpec = params.get("NodeSpec")
+        if params.get("NodeSelectType"):
+            self.NodeSelectType = params.get("NodeSelectType")
 
 
 class DeleteQueueRequest(AbstractModel):
@@ -3314,6 +3358,38 @@ class ModifyResourcePoolRequest(AbstractModel):
             self.ResourcePoolName = params.get("ResourcePoolName")
         if params.get("Overallocate"):
             self.Overallocate = params.get("Overallocate")
+
+
+class DescribeResourcePoolInstanceSpecsRequest(AbstractModel):
+    """DescribeResourcePoolInstanceSpecs请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询资源组节点配置
+        :param ResourcePoolId: 资源组ID
+        :type PathPrefix: String
+        :param GPUModel: GPU型号筛选：
+- 不传：返回所有节点规格
+- 空字符串：返回非GPU（CPU）节点规格
+- 具体型号：返回指定GPU型号的节点规格
+        :type PathPrefix: String
+        :param OnlyCPU: 是否仅返回CPU节点规格：
+- true：仅返回非GPU节点规格
+- false或不传：返回所有节点规格
+优先级高于 GPUModel
+        :type PathPrefix: Boolean
+        """
+        self.ResourcePoolId = None
+        self.GPUModel = None
+        self.OnlyCPU = None
+
+    def _deserialize(self, params):
+        if params.get("ResourcePoolId"):
+            self.ResourcePoolId = params.get("ResourcePoolId")
+        if params.get("GPUModel"):
+            self.GPUModel = params.get("GPUModel")
+        if params.get("OnlyCPU"):
+            self.OnlyCPU = params.get("OnlyCPU")
 
 
 class DescribeInferenceAndPodEventsRequest(AbstractModel):
@@ -3743,7 +3819,16 @@ class AddStorageConfigAccessRequest(AbstractModel):
         :type PathPrefix: String
         :param SharedGroupId: 要添加的权限组ID
         :type PathPrefix: String
-        :param Permission: 权限类型, kpfs用户权限：[admin 创建者or主账号, writer 管理员（只读）, writer_mnt_w 管理员（读写）, reader 普通成员（只读）, reader_mnt_w 普通成员（读写）] ks3用户权限：[admin 创建者or主账号, writer 管理员（只读）, reader 普通成员（只读）]
+        :param Permission: 权限类型
+KPFS存储配置权限枚举值：
+- writer_mnt_w 管理员（读写）
+- writer 管理员（只读）
+- reader_mnt_w 普通成员（读写）
+- reader普通成员（只读）
+
+KS3存储配置权限枚举值：
+- writer 管理员
+- reader普通成员
         :type PathPrefix: String
         """
         self.StorageConfigId = None
@@ -3774,7 +3859,16 @@ class ModifyStorageConfigAccessRoleRequest(AbstractModel):
         :type PathPrefix: String
         :param SharedGroupId: 要移除权限的权限组ID
         :type PathPrefix: String
-        :param Permission: 权限类型, kpfs用户权限：[admin 创建者or主账号, writer 管理员（只读）, writer_mnt_w 管理员（读写）, reader 普通成员（只读）, reader_mnt_w 普通成员（读写）] ks3用户权限：[admin 创建者or主账号, writer 管理员（只读）, reader 普通成员（只读）]
+        :param Permission: 权限类型
+KPFS存储配置权限枚举值：
+- writer_mnt_w 管理员（读写）
+- writer 管理员（只读）
+- reader_mnt_w 普通成员（读写）
+- reader普通成员（只读）
+
+KS3存储配置权限枚举值：
+- writer 管理员
+- reader普通成员
         :type PathPrefix: String
         """
         self.StorageConfigId = None
@@ -3904,5 +3998,97 @@ class DeleteLogPoolConfigRequest(AbstractModel):
             self.EndpointId = params.get("EndpointId")
         if params.get("Region"):
             self.Region = params.get("Region")
+
+
+class AddImageAccessRequest(AbstractModel):
+    """AddImageAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""为用户/权限组添加镜像权限
+        :param ImageId: 镜像ID
+        :type PathPrefix: String
+        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param Permission: 镜像访问权限，有效值：
+- writer 管理员
+- reader 普通成员
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.UserId = None
+        self.SharedGroupId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class ModifyImageAccessRoleRequest(AbstractModel):
+    """ModifyImageAccessRole请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改用户/权限组镜像权限
+        :param ImageId: 镜像ID
+        :type PathPrefix: String
+        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param Permission: 镜像访问权限，有效值：
+- writer 管理员
+- reader 普通成员
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.UserId = None
+        self.SharedGroupId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class RemoveImageAccessRequest(AbstractModel):
+    """RemoveImageAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""移除用户/权限组镜像权限
+        :param ImageId: 镜像ID
+        :type PathPrefix: String
+        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        """
+        self.ImageId = None
+        self.UserId = None
+        self.SharedGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("ImageId"):
+            self.ImageId = params.get("ImageId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
 
 

@@ -51,6 +51,8 @@ class CreateTrainJobRequest(AbstractModel):
         :type PathPrefix: String
         :param UseIdleResource: 是否使用闲时资源，仅当所属队列开启借用AllowBorrowing时，支持开启
         :type PathPrefix: Boolean
+        :param EnableRDMADepsCheck: 是否开启RDMA依赖包检测（只对pytorch框架生效）
+        :type PathPrefix: Boolean
         """
         self.TrainJobName = None
         self.Description = None
@@ -71,6 +73,7 @@ class CreateTrainJobRequest(AbstractModel):
         self.RuntimeEnv = None
         self.EntryPointCommand = None
         self.UseIdleResource = None
+        self.EnableRDMADepsCheck = None
 
     def _deserialize(self, params):
         if params.get("TrainJobName"):
@@ -111,6 +114,8 @@ class CreateTrainJobRequest(AbstractModel):
             self.EntryPointCommand = params.get("EntryPointCommand")
         if params.get("UseIdleResource"):
             self.UseIdleResource = params.get("UseIdleResource")
+        if params.get("EnableRDMADepsCheck"):
+            self.EnableRDMADepsCheck = params.get("EnableRDMADepsCheck")
 
 
 class DescribeTrainJobsRequest(AbstractModel):
@@ -504,5 +509,97 @@ class DescribeFormatAndFrameworksRequest(AbstractModel):
 
     def _deserialize(self, params):
         return
+
+
+class AddModelAccessRequest(AbstractModel):
+    """AddModelAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""为用户/权限组添加模型权限
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param Permission: 模型访问权限，有效值：
+- writer 管理员
+- reader 普通成员
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+        self.UserId = None
+        self.SharedGroupId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class ModifyModelAccessRoleRequest(AbstractModel):
+    """ModifyModelAccessRole请求参数结构体
+    """
+
+    def __init__(self):
+        r"""修改用户/权限组模型权限
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param Permission: 模型访问权限，有效值：
+- writer 管理员
+- reader 普通成员
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+        self.UserId = None
+        self.SharedGroupId = None
+        self.Permission = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
+        if params.get("Permission"):
+            self.Permission = params.get("Permission")
+
+
+class RemoveModelAccessRequest(AbstractModel):
+    """RemoveModelAccess请求参数结构体
+    """
+
+    def __init__(self):
+        r"""移除用户/权限组模型权限
+        :param ModelId: 模型ID
+        :type PathPrefix: String
+        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
+        :type PathPrefix: String
+        """
+        self.ModelId = None
+        self.UserId = None
+        self.SharedGroupId = None
+
+    def _deserialize(self, params):
+        if params.get("ModelId"):
+            self.ModelId = params.get("ModelId")
+        if params.get("UserId"):
+            self.UserId = params.get("UserId")
+        if params.get("SharedGroupId"):
+            self.SharedGroupId = params.get("SharedGroupId")
 
 

@@ -813,6 +813,52 @@ class PdnsClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def SetPdnsDeleteProtection(self, request):
+        """设置私有Zone删除保护
+        :param request: Request instance for SetPdnsDeleteProtection.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.SetPdnsDeleteProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetPdnsDeleteProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def SetPdnsModifyProtection(self, request):
+        """设置私有Zone修改保护
+        :param request: Request instance for SetPdnsModifyProtection.
+        :type request: :class:`ksyun.client.pdns.v20160304.models.SetPdnsModifyProtectionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("SetPdnsModifyProtection", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def BatchCreateZoneRecord(self, request):
         """批量新增ZoneRecord
         :param request: Request instance for BatchCreateZoneRecord.

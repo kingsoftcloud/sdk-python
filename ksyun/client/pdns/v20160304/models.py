@@ -301,11 +301,23 @@ class CreatePdnsZoneRequest(AbstractModel):
         :param ChargeType: 有效值：
 TrafficMonthly：按量付费（流量月结）。
         :type PathPrefix: String
+        :param ProxyPattern: 内网 Zone的子域名递归解析代理模式
+有效值：
+AUTHORITY：当前Zone未开启递归解析代理（创建默认值）
+RECURSIVE：当前Zone开启递归解析代理
+        :type PathPrefix: String
+        :param DeleteProtection: 是否开启删除保护on/off
+        :type PathPrefix: String
+        :param ModifyProtection: 是否开启修改保护on/off
+        :type PathPrefix: String
         """
         self.ZoneName = None
         self.ZoneTtl = None
         self.ProjectId = None
         self.ChargeType = None
+        self.ProxyPattern = None
+        self.DeleteProtection = None
+        self.ModifyProtection = None
 
     def _deserialize(self, params):
         if params.get("ZoneName"):
@@ -316,6 +328,12 @@ TrafficMonthly：按量付费（流量月结）。
             self.ProjectId = params.get("ProjectId")
         if params.get("ChargeType"):
             self.ChargeType = params.get("ChargeType")
+        if params.get("ProxyPattern"):
+            self.ProxyPattern = params.get("ProxyPattern")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
+        if params.get("ModifyProtection"):
+            self.ModifyProtection = params.get("ModifyProtection")
 
 
 class ModifyPdnsZoneRequest(AbstractModel):
@@ -328,15 +346,23 @@ class ModifyPdnsZoneRequest(AbstractModel):
         :type PathPrefix: String
         :param ZoneTtl: TTL
         :type PathPrefix: Int
+        :param ProxyPattern: 内网Zone的子域名递归解析代理模式
+有效值：
+AUTHORITY：当前Zone未开启递归解析代理
+RECURSIVE：当前Zone开启递归解析代理
+        :type PathPrefix: String
         """
         self.ZoneId = None
         self.ZoneTtl = None
+        self.ProxyPattern = None
 
     def _deserialize(self, params):
         if params.get("ZoneId"):
             self.ZoneId = params.get("ZoneId")
         if params.get("ZoneTtl"):
             self.ZoneTtl = params.get("ZoneTtl")
+        if params.get("ProxyPattern"):
+            self.ProxyPattern = params.get("ProxyPattern")
 
 
 class DeletePdnsZoneRequest(AbstractModel):
@@ -367,10 +393,13 @@ class DescribePdnsZonesRequest(AbstractModel):
         :type PathPrefix: Int
         :param NextToken: 获取另一页返回结果的 token.
         :type PathPrefix: String
+        :param ZoneName: ZoneName查询
+        :type PathPrefix: Filter
         """
         self.Filter = None
         self.MaxResults = None
         self.NextToken = None
+        self.ZoneName = None
 
     def _deserialize(self, params):
         if params.get("Filter"):
@@ -379,6 +408,8 @@ class DescribePdnsZonesRequest(AbstractModel):
             self.MaxResults = params.get("MaxResults")
         if params.get("NextToken"):
             self.NextToken = params.get("NextToken")
+        if params.get("ZoneName"):
+            self.ZoneName = params.get("ZoneName")
 
 
 class BindZoneVpcRequest(AbstractModel):
@@ -826,6 +857,48 @@ class CreateEndPointRequest(AbstractModel):
             self.Description = params.get("Description")
         if params.get("IpConfig"):
             self.IpConfig = params.get("IpConfig")
+
+
+class SetPdnsDeleteProtectionRequest(AbstractModel):
+    """SetPdnsDeleteProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置私有Zone删除保护
+        :param ZoneId: Zone的ID
+        :type PathPrefix: String
+        :param DeleteProtection: 是否开启删除保护on/off
+        :type PathPrefix: String
+        """
+        self.ZoneId = None
+        self.DeleteProtection = None
+
+    def _deserialize(self, params):
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("DeleteProtection"):
+            self.DeleteProtection = params.get("DeleteProtection")
+
+
+class SetPdnsModifyProtectionRequest(AbstractModel):
+    """SetPdnsModifyProtection请求参数结构体
+    """
+
+    def __init__(self):
+        r"""设置私有Zone修改保护
+        :param ZoneId: Zone的ID
+        :type PathPrefix: String
+        :param ModifyProtection: 是否开启修改保护on/off
+        :type PathPrefix: String
+        """
+        self.ZoneId = None
+        self.ModifyProtection = None
+
+    def _deserialize(self, params):
+        if params.get("ZoneId"):
+            self.ZoneId = params.get("ZoneId")
+        if params.get("ModifyProtection"):
+            self.ModifyProtection = params.get("ModifyProtection")
 
 
 class BatchCreateZoneRecordRequest(AbstractModel):

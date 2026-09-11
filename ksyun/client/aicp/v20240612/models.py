@@ -4492,3 +4492,35 @@ class RemoveImageAccessRequest(AbstractModel):
             self.SharedGroupId = params.get("SharedGroupId")
 
 
+class DescribeNotebookTimeLineRequest(AbstractModel):
+    """DescribeNotebookTimeLine请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询开发任务生命周期时间线
+        :param NotebookId: 开发任务ID
+        :type PathPrefix: String
+        """
+        self.NotebookId = None
+
+    def _deserialize(self, params):
+        if params.get("NotebookId"):
+            self.NotebookId = params.get("NotebookId")
+
+
+class DescribeTrainJobTimeLineRequest(AbstractModel):
+    """DescribeTrainJobTimeLine请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询训练任务生命周期时间线
+        :param TrainJobId: 训练任务ID
+        :type PathPrefix: String
+        """
+        self.TrainJobId = None
+
+    def _deserialize(self, params):
+        if params.get("TrainJobId"):
+            self.TrainJobId = params.get("TrainJobId")
+
+

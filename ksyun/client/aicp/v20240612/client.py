@@ -2101,6 +2101,328 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def ListSkillVersions(self, request):
+        """skill版本列表
+        :param request: Request instance for ListSkillVersions.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ListSkillVersionsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListSkillVersions", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetSkill(self, request):
+        """获取skill
+        :param request: Request instance for GetSkill.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.GetSkillRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetSkill", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ListSkills(self, request):
+        """skill 列表
+        :param request: Request instance for ListSkills.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ListSkillsRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListSkills", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ListSkillSpaces(self, request):
+        """skill空间列表
+        :param request: Request instance for ListSkillSpaces.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ListSkillSpacesRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListSkillSpaces", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def ListSkillsBySkillSpace(self, request):
+        """分页获取skill空间下的skill
+        :param request: Request instance for ListSkillsBySkillSpace.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.ListSkillsBySkillSpaceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("ListSkillsBySkillSpace", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateSkill(self, request):
+        """创建skill
+        :param request: Request instance for CreateSkill.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateSkillRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSkill", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateSkillVersion(self, request):
+        """创建skill版本
+        :param request: Request instance for CreateSkillVersion.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateSkillVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSkillVersion", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetSkillUploadUrl(self, request):
+        """获取skill上传ks3地址
+        :param request: Request instance for GetSkillUploadUrl.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.GetSkillUploadUrlRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetSkillUploadUrl", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteSkillVersion(self, request):
+        """删除skill版本
+        :param request: Request instance for DeleteSkillVersion.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteSkillVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSkillVersion", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteSkill(self, request):
+        """删除skill
+        :param request: Request instance for DeleteSkill.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteSkillRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSkill", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def UpdateSkillSpaceSkillVersion(self, request):
+        """更新skill空间中skill的版本
+        :param request: Request instance for UpdateSkillSpaceSkillVersion.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.UpdateSkillSpaceSkillVersionRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("UpdateSkillSpaceSkillVersion", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def RemoveSkillFromSpace(self, request):
+        """从skill空间中移除skill
+        :param request: Request instance for RemoveSkillFromSpace.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.RemoveSkillFromSpaceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("RemoveSkillFromSpace", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DeleteSkillSpace(self, request):
+        """删除skill空间
+        :param request: Request instance for DeleteSkillSpace.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.DeleteSkillSpaceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DeleteSkillSpace", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateSkillSpace(self, request):
+        """创建skill空间
+        :param request: Request instance for CreateSkillSpace.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.CreateSkillSpaceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSkillSpace", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def ModifyResourcePool(self, request):
         """修改资源组
         :param request: Request instance for ModifyResourcePool.
@@ -2124,6 +2446,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def GetSkillDownloadUrl(self, request):
+        """获取Skill版本下载地址
+        :param request: Request instance for GetSkillDownloadUrl.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.GetSkillDownloadUrlRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetSkillDownloadUrl", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DescribeResourcePoolInstanceSpecs(self, request):
         """查询资源组节点配置
         :param request: Request instance for DescribeResourcePoolInstanceSpecs.
@@ -2132,6 +2477,29 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeResourcePoolInstanceSpecs", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def AddSkillsToSkillSpace(self, request):
+        """添加skill到skill空间
+        :param request: Request instance for AddSkillsToSkillSpace.
+        :type request: :class:`ksyun.client.aicp.v20240612.models.AddSkillsToSkillSpaceRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("AddSkillsToSkillSpace", params, "application/x-www-form-urlencoded")
             response = json.loads(body)
             if "Error" not in response:
                 return body

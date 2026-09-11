@@ -462,3 +462,15 @@ class UpdateSandboxInstanceRequest(AbstractModel):
             self.Timeout = params.get("Timeout")
 
 
+class DeleteImageCacheRequest(AbstractModel):
+    """DeleteImageCache请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除镜像缓存
+        """
+
+    def _deserialize(self, params):
+        return
+
+

@@ -3030,6 +3030,8 @@ class CreateQueueRequest(AbstractModel):
 - Inference（推理任务）
 - DataJob（数据处理任务）
         :type PathPrefix: Array
+        :param ResourceReservation: 资源预留配置。不传或 Enabled=false 表示不开启资源预留
+        :type PathPrefix: Object
         """
         self.ResourcePoolId = None
         self.QueueName = None
@@ -3042,6 +3044,7 @@ class CreateQueueRequest(AbstractModel):
         self.AccessList = None
         self.SharedGroupList = None
         self.WorkloadType = None
+        self.ResourceReservation = None
 
     def _deserialize(self, params):
         if params.get("ResourcePoolId"):
@@ -3066,6 +3069,8 @@ class CreateQueueRequest(AbstractModel):
             self.SharedGroupList = params.get("SharedGroupList")
         if params.get("WorkloadType"):
             self.WorkloadType = params.get("WorkloadType")
+        if params.get("ResourceReservation"):
+            self.ResourceReservation = params.get("ResourceReservation")
 
 
 class ModifyQueueRequest(AbstractModel):
@@ -3099,6 +3104,8 @@ class ModifyQueueRequest(AbstractModel):
 - specify，指定节点分配
 不传该字段表示不修改，仅物理队列有效。变更时需同时传入 NodeSpec
         :type PathPrefix: String
+        :param ResourceReservation: 资源预留配置。不传或 Enabled=false 表示不开启资源预留)
+        :type PathPrefix: Object
         """
         self.QueueId = None
         self.Capability = None
@@ -3109,6 +3116,7 @@ class ModifyQueueRequest(AbstractModel):
         self.WorkloadType = None
         self.NodeSpec = None
         self.NodeSelectType = None
+        self.ResourceReservation = None
 
     def _deserialize(self, params):
         if params.get("QueueId"):
@@ -3129,6 +3137,8 @@ class ModifyQueueRequest(AbstractModel):
             self.NodeSpec = params.get("NodeSpec")
         if params.get("NodeSelectType"):
             self.NodeSelectType = params.get("NodeSelectType")
+        if params.get("ResourceReservation"):
+            self.ResourceReservation = params.get("ResourceReservation")
 
 
 class DeleteQueueRequest(AbstractModel):
@@ -3334,6 +3344,354 @@ class DescribeInferencePodsRequest(AbstractModel):
             self.PageSize = params.get("PageSize")
 
 
+class ListSkillVersionsRequest(AbstractModel):
+    """ListSkillVersions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""skill版本列表
+        :param SkillId: skill 名称
+        :type PathPrefix: String
+        :param PageNumber: 页号
+        :type PathPrefix: Int
+        :param PageSize: 页大小
+        :type PathPrefix: Int
+        """
+        self.SkillId = None
+        self.PageNumber = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class GetSkillRequest(AbstractModel):
+    """GetSkill请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取skill
+        :param SkillId: skill id
+        :type PathPrefix: String
+        """
+        self.SkillId = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+
+
+class ListSkillsRequest(AbstractModel):
+    """ListSkills请求参数结构体
+    """
+
+    def __init__(self):
+        r"""skill 列表
+        :param SkillId: skill id
+        :type PathPrefix: String
+        :param Name: skill 名称
+        :type PathPrefix: String
+        :param Status: skill 状态
+
+枚举：
+CREATING 创建中
+AVAILABLE 可用
+UNAVAILABLE 不可用
+UPDATING 更新中
+DELETING 删除中
+
+
+        :type PathPrefix: String
+        :param PageNumber: 页号
+        :type PathPrefix: Int
+        :param PageSize: 页大小
+        :type PathPrefix: Int
+        """
+        self.SkillId = None
+        self.Name = None
+        self.Status = None
+        self.PageNumber = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class ListSkillSpacesRequest(AbstractModel):
+    """ListSkillSpaces请求参数结构体
+    """
+
+    def __init__(self):
+        r"""skill空间列表
+        :param SkillspaceId: skill 空间id
+        :type PathPrefix: String
+        :param Name: skill 空间名称
+        :type PathPrefix: String
+        :param PageNumber: 页号
+        :type PathPrefix: Int
+        :param PageSize: 页大小
+        :type PathPrefix: Int
+        """
+        self.SkillspaceId = None
+        self.Name = None
+        self.PageNumber = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("SkillspaceId"):
+            self.SkillspaceId = params.get("SkillspaceId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class ListSkillsBySkillSpaceRequest(AbstractModel):
+    """ListSkillsBySkillSpace请求参数结构体
+    """
+
+    def __init__(self):
+        r"""分页获取skill空间下的skill
+        :param SkillspaceId: skill 空间id
+        :type PathPrefix: String
+        :param PageNumber: 页号
+        :type PathPrefix: Int
+        :param PageSize: 页大小
+        :type PathPrefix: Int
+        """
+        self.SkillspaceId = None
+        self.PageNumber = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("SkillspaceId"):
+            self.SkillspaceId = params.get("SkillspaceId")
+        if params.get("PageNumber"):
+            self.PageNumber = params.get("PageNumber")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class CreateSkillRequest(AbstractModel):
+    """CreateSkill请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建skill
+        :param SourceType: skill 来源，填KS3则从KS3读取
+        :type PathPrefix: String
+        :param SourceUrl: skill数据源url，ks3地址
+
+
+        :type PathPrefix: String
+        :param SkillSpaces: 加入的skill 空间id列表
+        :type PathPrefix: Array
+        """
+        self.SourceType = None
+        self.SourceUrl = None
+        self.SkillSpaces = None
+
+    def _deserialize(self, params):
+        if params.get("SourceType"):
+            self.SourceType = params.get("SourceType")
+        if params.get("SourceUrl"):
+            self.SourceUrl = params.get("SourceUrl")
+        if params.get("SkillSpaces"):
+            self.SkillSpaces = params.get("SkillSpaces")
+
+
+class CreateSkillVersionRequest(AbstractModel):
+    """CreateSkillVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建skill版本
+        :param SourceType: KS3：直接从ks3读取
+        :type PathPrefix: String
+        :param SourceUrl: skill数据源url，ks3地址
+
+
+        :type PathPrefix: String
+        :param SkillSpaces: 加入的skill空间id列表
+        :type PathPrefix: Array
+        """
+        self.SourceType = None
+        self.SourceUrl = None
+        self.SkillSpaces = None
+
+    def _deserialize(self, params):
+        if params.get("SourceType"):
+            self.SourceType = params.get("SourceType")
+        if params.get("SourceUrl"):
+            self.SourceUrl = params.get("SourceUrl")
+        if params.get("SkillSpaces"):
+            self.SkillSpaces = params.get("SkillSpaces")
+
+
+class GetSkillUploadUrlRequest(AbstractModel):
+    """GetSkillUploadUrl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取skill上传ks3地址
+        :param FileName: skill压缩包的文件名称
+        :type PathPrefix: String
+        :param SkillName: skill 名称
+        :type PathPrefix: String
+        """
+        self.FileName = None
+        self.SkillName = None
+
+    def _deserialize(self, params):
+        if params.get("FileName"):
+            self.FileName = params.get("FileName")
+        if params.get("SkillName"):
+            self.SkillName = params.get("SkillName")
+
+
+class DeleteSkillVersionRequest(AbstractModel):
+    """DeleteSkillVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除skill版本
+        :param SkillId: skill id
+        :type PathPrefix: String
+        :param VersionId: skill 版本id
+        :type PathPrefix: String
+        """
+        self.SkillId = None
+        self.VersionId = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+        if params.get("VersionId"):
+            self.VersionId = params.get("VersionId")
+
+
+class DeleteSkillRequest(AbstractModel):
+    """DeleteSkill请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除skill
+        :param SkillId: skill id
+        :type PathPrefix: String
+        """
+        self.SkillId = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+
+
+class UpdateSkillSpaceSkillVersionRequest(AbstractModel):
+    """UpdateSkillSpaceSkillVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新skill空间中skill的版本
+        :param SpaceId: skill 空间id
+        :type PathPrefix: String
+        :param SkillId: skill id
+        :type PathPrefix: String
+        :param VersionName: skill 版本名称
+        :type PathPrefix: String
+        """
+        self.SpaceId = None
+        self.SkillId = None
+        self.VersionName = None
+
+    def _deserialize(self, params):
+        if params.get("SpaceId"):
+            self.SpaceId = params.get("SpaceId")
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+        if params.get("VersionName"):
+            self.VersionName = params.get("VersionName")
+
+
+class RemoveSkillFromSpaceRequest(AbstractModel):
+    """RemoveSkillFromSpace请求参数结构体
+    """
+
+    def __init__(self):
+        r"""从skill空间中移除skill
+        :param SpaceId: skill 空间id
+        :type PathPrefix: String
+        :param SkillId: skill id
+        :type PathPrefix: String
+        """
+        self.SpaceId = None
+        self.SkillId = None
+
+    def _deserialize(self, params):
+        if params.get("SpaceId"):
+            self.SpaceId = params.get("SpaceId")
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+
+
+class DeleteSkillSpaceRequest(AbstractModel):
+    """DeleteSkillSpace请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除skill空间
+        :param SkillSpaceId: skill 空间id
+        :type PathPrefix: String
+        """
+        self.SkillSpaceId = None
+
+    def _deserialize(self, params):
+        if params.get("SkillSpaceId"):
+            self.SkillSpaceId = params.get("SkillSpaceId")
+
+
+class CreateSkillSpaceRequest(AbstractModel):
+    """CreateSkillSpace请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建skill空间
+        :param Name: skill 空间名称
+        :type PathPrefix: String
+        :param Description: skill 空间描述
+        :type PathPrefix: String
+        :param Skills: skill 空间内的skill
+id列表
+        :type PathPrefix: Array
+        """
+        self.Name = None
+        self.Description = None
+        self.Skills = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("Skills"):
+            self.Skills = params.get("Skills")
+
+
 class ModifyResourcePoolRequest(AbstractModel):
     """ModifyResourcePool请求参数结构体
     """
@@ -3358,6 +3716,27 @@ class ModifyResourcePoolRequest(AbstractModel):
             self.ResourcePoolName = params.get("ResourcePoolName")
         if params.get("Overallocate"):
             self.Overallocate = params.get("Overallocate")
+
+
+class GetSkillDownloadUrlRequest(AbstractModel):
+    """GetSkillDownloadUrl请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Skill版本下载地址
+        :param SkillId: skill 的id
+        :type PathPrefix: String
+        :param VersionId: skill 版本的id
+        :type PathPrefix: String
+        """
+        self.SkillId = None
+        self.VersionId = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+        if params.get("VersionId"):
+            self.VersionId = params.get("VersionId")
 
 
 class DescribeResourcePoolInstanceSpecsRequest(AbstractModel):
@@ -3390,6 +3769,27 @@ class DescribeResourcePoolInstanceSpecsRequest(AbstractModel):
             self.GPUModel = params.get("GPUModel")
         if params.get("OnlyCPU"):
             self.OnlyCPU = params.get("OnlyCPU")
+
+
+class AddSkillsToSkillSpaceRequest(AbstractModel):
+    """AddSkillsToSkillSpace请求参数结构体
+    """
+
+    def __init__(self):
+        r"""添加skill到skill空间
+        :param SkillSpaceId: skill 空间id
+        :type PathPrefix: String
+        :param Skills: 
+        :type PathPrefix: Object
+        """
+        self.SkillSpaceId = None
+        self.Skills = None
+
+    def _deserialize(self, params):
+        if params.get("SkillSpaceId"):
+            self.SkillSpaceId = params.get("SkillSpaceId")
+        if params.get("Skills"):
+            self.Skills = params.get("Skills")
 
 
 class DescribeInferenceAndPodEventsRequest(AbstractModel):

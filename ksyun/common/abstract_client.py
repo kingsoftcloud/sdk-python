@@ -133,13 +133,13 @@ class AbstractClient(object):
         if not (options and options.get("IsPostJson")):
             params = copy.deepcopy(self._fix_params(params))
         else:
-            uri_params['Action'] = (action[0].upper() + action[1:]).strip()
-            uri_params['Version'] = self._apiVersion.strip()
+            uri_params['Action'] = action[0].upper() + action[1:]
+            uri_params['Version'] = self._apiVersion
 
 
-        params['Service'] = self._service.strip()
-        params['Action'] = (action[0].upper() + action[1:]).strip()
-        params['Version'] = self._apiVersion.strip()
+        params['Service'] = self._service
+        params['Action'] = action[0].upper() + action[1:]
+        params['Version'] = self._apiVersion
         params['SdkVersion'] = self._sdkVersion
 
         if self.region:
@@ -305,7 +305,7 @@ class AbstractClient(object):
         options = {'IsPostJson': True}
         body = self.call(action, params, options)
         response = json.loads(body)
-        if "Error" not in response or not response["Error"]:
+        if "Error" not in response:
             return body
         else:
             code = response["Error"]["Code"]
@@ -318,6 +318,53 @@ class AbstractClient(object):
             return self.call_json(action, params)
         else:
             return self.call(action, params, options)
+
+    def call_stream(self, action, params, content_type):
+        """Yield one parsed SSE event at a time and close the connection on exit."""
+        request_path = self.profile.httpProfile.path if self.profile.httpProfile.path else self._requestPath
+        req = RequestInternal(self._get_endpoint(), self.profile.httpProfile.reqMethod, request_path)
+        options = {'IsPostJson': True} if self.profile.httpProfile.reqMethod == "POST" and 'application/json' in content_type else None
+        self._build_req_inter(action, params, req, options)
+        req.header['Accept'] = 'text/event-stream'
+        req.header['Cache-Control'] = 'no-cache'
+        response = self.request.send_stream_request(req)
+        if response.status_code < 200 or response.status_code > 299:
+            try:
+                body = response.text
+            finally:
+                response.close()
+            raise KsyunSDKException("ServerNetworkError", "HTTP {0}: {1}".format(response.status_code, body))
+        response_type = response.headers.get('Content-Type', '')
+        if response_type.split(';', 1)[0].strip().lower() != 'text/event-stream':
+            response.close()
+            raise KsyunSDKException("ClientNetworkError", "Invalid SSE Content-Type: {0}".format(response_type or 'missing'))
+
+        def events():
+            event = {'data': []}
+            try:
+                for raw_line in response.iter_lines(decode_unicode=True):
+                    line = raw_line.decode('utf-8') if isinstance(raw_line, bytes) else raw_line
+                    if line == '':
+                        if event['data'] or len(event) > 1:
+                            event['data'] = '\n'.join(event['data'])
+                            yield event
+                        event = {'data': []}
+                        continue
+                    if not line or line.startswith(':'):
+                        continue
+                    field, separator, value = line.partition(':')
+                    if separator and value.startswith(' '):
+                        value = value[1:]
+                    if field == 'data':
+                        event['data'].append(value)
+                    elif field in ('event', 'id', 'retry'):
+                        event[field] = value
+                if event['data'] or len(event) > 1:
+                    event['data'] = '\n'.join(event['data'])
+                    yield event
+            finally:
+                response.close()
+        return events()
 
     def set_stream_logger(self, stream=None, level=logging.DEBUG, log_format=None):
         """

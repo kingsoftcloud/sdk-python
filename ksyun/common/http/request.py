@@ -44,7 +44,7 @@ class ProxyConnection(object):
                 self.proxy = {"https": proxy}
         self.request_length = 0
 
-    def request(self, method, url, body=None, headers={}, auth=None):
+    def request(self, method, url, body=None, headers={}, auth=None, stream=False):
         self.request_length = 0
         headers.setdefault("Host", self.request_host)
         return requests.request(method=method,
@@ -54,7 +54,8 @@ class ProxyConnection(object):
                                 proxies=self.proxy,
                                 verify=self.certification,
                                 timeout=self.timeout,
-                                auth=auth)
+                                auth=auth,
+                                stream=stream)
 
 
 class ApiRequest(object):
@@ -116,7 +117,7 @@ class ApiRequest(object):
     def set_debug(self, debug):
         self.debug = debug
 
-    def _request(self, req_inter):
+    def _request(self, req_inter, stream=False):
         if self.keep_alive:
             req_inter.header["Connection"] = "Keep-Alive"
         if self.debug:
@@ -125,11 +126,11 @@ class ApiRequest(object):
         if req_inter.method == 'GET':
             # For GET requests, parameters are in the query string (req_inter.data)
             req_inter_url = self._build_url(self.host, req_inter.uri, req_inter.data)
-            return self.conn.request(req_inter.method, req_inter_url, None, req_inter.header, req_inter.auth)
+            return self.conn.request(req_inter.method, req_inter_url, None, req_inter.header, req_inter.auth, stream)
         elif req_inter.method == 'POST' or req_inter.method == 'PUT' or req_inter.method == 'DELETE':
             # For POST/PUT/DELETE, use uri_params for query string if present
             req_inter_url = self._build_url(self.host, req_inter.uri, req_inter.uri_params if req_inter.uri_params else None)
-            return self.conn.request(req_inter.method, req_inter_url, req_inter.data, req_inter.header, req_inter.auth)
+            return self.conn.request(req_inter.method, req_inter_url, req_inter.data, req_inter.header, req_inter.auth, stream)
         else:
             raise KsyunSDKException("ClientParamsError", 'Method only support (GET, POST, PUT, DELETE)')
 
@@ -142,6 +143,13 @@ class ApiRequest(object):
             self.response_size = len(resp_inter.data)
             logger.debug("GetResponse %s" % resp_inter)
             return resp_inter
+        except Exception as e:
+            raise KsyunSDKException("ClientNetworkError", str(e))
+
+    def send_stream_request(self, req_inter):
+        """Return the live requests.Response without buffering its body."""
+        try:
+            return self._request(req_inter, stream=True)
         except Exception as e:
             raise KsyunSDKException("ClientNetworkError", str(e))
 

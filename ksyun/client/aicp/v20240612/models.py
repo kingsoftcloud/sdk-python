@@ -36,6 +36,8 @@ class CreateResourcePoolRequest(AbstractModel):
         :type PathPrefix: String
         :param ProjectId: 项目制ID
         :type PathPrefix: String
+        :param VolumeQuota: 资源组云盘配额（Gi），范围[20, 10000000]，EnableVolume为true时必填
+        :type PathPrefix: Int
         """
         self.ResourcePoolName = None
         self.Description = None
@@ -51,6 +53,7 @@ class CreateResourcePoolRequest(AbstractModel):
         self.EnableVolume = None
         self.VolumeChargeType = None
         self.ProjectId = None
+        self.VolumeQuota = None
 
     def _deserialize(self, params):
         if params.get("ResourcePoolName"):
@@ -81,6 +84,8 @@ class CreateResourcePoolRequest(AbstractModel):
             self.VolumeChargeType = params.get("VolumeChargeType")
         if params.get("ProjectId"):
             self.ProjectId = params.get("ProjectId")
+        if params.get("VolumeQuota"):
+            self.VolumeQuota = params.get("VolumeQuota")
 
 
 class CreateStorageConfigRequest(AbstractModel):
@@ -1544,10 +1549,11 @@ class ModifyApikeyRequest(AbstractModel):
         :type PathPrefix: Array
         :param HighPriceModels: 高价池模型名称列表
         :type PathPrefix: Array
-        :param AllowedIps: IP白名单列表，有值则启用白名单
+        :param OffpeakModels: 闲时模型名称列表
         :type PathPrefix: Array
-        :param ProjectId: 项目制ID
-        :type PathPrefix: String
+        :param CostQuotas: 金额配额
+缺省/空数组=不动金额配额
+        :type PathPrefix: Array
         """
         self.KeyId = None
         self.Name = None
@@ -1559,8 +1565,8 @@ class ModifyApikeyRequest(AbstractModel):
         self.AllAssociatedEndpoint = None
         self.LowPriceModels = None
         self.HighPriceModels = None
-        self.AllowedIps = None
-        self.ProjectId = None
+        self.OffpeakModels = None
+        self.CostQuotas = None
 
     def _deserialize(self, params):
         if params.get("KeyId"):
@@ -1583,10 +1589,10 @@ class ModifyApikeyRequest(AbstractModel):
             self.LowPriceModels = params.get("LowPriceModels")
         if params.get("HighPriceModels"):
             self.HighPriceModels = params.get("HighPriceModels")
-        if params.get("AllowedIps"):
-            self.AllowedIps = params.get("AllowedIps")
-        if params.get("ProjectId"):
-            self.ProjectId = params.get("ProjectId")
+        if params.get("OffpeakModels"):
+            self.OffpeakModels = params.get("OffpeakModels")
+        if params.get("CostQuotas"):
+            self.CostQuotas = params.get("CostQuotas")
 
 
 class ActivateApiServiceRequest(AbstractModel):
@@ -1595,14 +1601,10 @@ class ActivateApiServiceRequest(AbstractModel):
 
     def __init__(self):
         r"""开通模型API服务
-        :param Status: 状态：1 表示开通服务
-        :type PathPrefix: String
         """
-        self.Status = None
 
     def _deserialize(self, params):
-        if params.get("Status"):
-            self.Status = params.get("Status")
+        return
 
 
 class DeleteApikeyRequest(AbstractModel):
@@ -1708,6 +1710,10 @@ class CreateApikeyRequest(AbstractModel):
         :type PathPrefix: Array
         :param HighPriceModels: 高价池模型名称列表
         :type PathPrefix: Array
+        :param OffpeakModels: 闲时调用模型列表，modelId
+        :type PathPrefix: Array
+        :param CostQuotas: 金额配额
+        :type PathPrefix: Array
         """
         self.Name = None
         self.Description = None
@@ -1720,6 +1726,8 @@ class CreateApikeyRequest(AbstractModel):
         self.AllAssociatedProjectResources = None
         self.LowPriceModels = None
         self.HighPriceModels = None
+        self.OffpeakModels = None
+        self.CostQuotas = None
 
     def _deserialize(self, params):
         if params.get("Name"):
@@ -1744,6 +1752,10 @@ class CreateApikeyRequest(AbstractModel):
             self.LowPriceModels = params.get("LowPriceModels")
         if params.get("HighPriceModels"):
             self.HighPriceModels = params.get("HighPriceModels")
+        if params.get("OffpeakModels"):
+            self.OffpeakModels = params.get("OffpeakModels")
+        if params.get("CostQuotas"):
+            self.CostQuotas = params.get("CostQuotas")
 
 
 class GetModelDetailRequest(AbstractModel):
@@ -1817,107 +1829,6 @@ class DescribeApikeysRequest(AbstractModel):
             self.SortOrder = params.get("SortOrder")
 
 
-class QueryTokenDataRequest(AbstractModel):
-    """QueryTokenData请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询模型API token用量
-        :param StartTimestamp: 开始时间，毫秒时间戳
-        :type PathPrefix: Long
-        :param EndTimestamp: 截止时间，毫秒时间戳
-        :type PathPrefix: Long
-        :param LastKey: 分页用的游标，表示上次已经获取到的数据，当前请求可以取上次返回结果的LastKey，首页时不传
-        :type PathPrefix: String
-        :param MaxResults: 分页页长，最大10000
-        :type PathPrefix: Int
-        :param ModelKeyword: model 搜索关键词
-        :type PathPrefix: String
-        :param Keyword: 搜索关键词
-        :type PathPrefix: String
-        :param GroupBy: 分组字段：model、keyId、endpointId
-        :type PathPrefix: String
-        :param ReasoningType: 推理类型：normal-在线，batch-批量，web-在线体验，为空表示全部。
-        :type PathPrefix: String
-        :param Marker: 页码，从1开始。
-        :type PathPrefix: Int
-        :param ModelName: 模型名称
-- 当按照模型分组时，Keyword优先，Keyword为空再以该字段筛选
-- 当按照APIKEY分组时，该字段始终生效
-        :type PathPrefix: String
-        :param SortField: 排序字段
-InputToken、OutputToken、TotalToken
-        :type PathPrefix: String
-        :param SortOrder: asc desc
-与SortField配合
-        :type PathPrefix: String
-        :param KeyId: APIKEY ID，响应数据需按APIKEY 筛选时需要
-        :type PathPrefix: String
-        """
-        self.StartTimestamp = None
-        self.EndTimestamp = None
-        self.LastKey = None
-        self.MaxResults = None
-        self.ModelKeyword = None
-        self.Keyword = None
-        self.GroupBy = None
-        self.ReasoningType = None
-        self.Marker = None
-        self.ModelName = None
-        self.SortField = None
-        self.SortOrder = None
-        self.KeyId = None
-
-    def _deserialize(self, params):
-        if params.get("StartTimestamp"):
-            self.StartTimestamp = params.get("StartTimestamp")
-        if params.get("EndTimestamp"):
-            self.EndTimestamp = params.get("EndTimestamp")
-        if params.get("LastKey"):
-            self.LastKey = params.get("LastKey")
-        if params.get("MaxResults"):
-            self.MaxResults = params.get("MaxResults")
-        if params.get("ModelKeyword"):
-            self.ModelKeyword = params.get("ModelKeyword")
-        if params.get("Keyword"):
-            self.Keyword = params.get("Keyword")
-        if params.get("GroupBy"):
-            self.GroupBy = params.get("GroupBy")
-        if params.get("ReasoningType"):
-            self.ReasoningType = params.get("ReasoningType")
-        if params.get("Marker"):
-            self.Marker = params.get("Marker")
-        if params.get("ModelName"):
-            self.ModelName = params.get("ModelName")
-        if params.get("SortField"):
-            self.SortField = params.get("SortField")
-        if params.get("SortOrder"):
-            self.SortOrder = params.get("SortOrder")
-        if params.get("KeyId"):
-            self.KeyId = params.get("KeyId")
-
-
-class DisableApikeyStatusRequest(AbstractModel):
-    """DisableApikeyStatus请求参数结构体
-    """
-
-    def __init__(self):
-        r"""禁用API Key
-        :param KeyId: API Key的ID
-        :type PathPrefix: String
-        :param Status: 启禁用状态：1启用，2禁用
-        :type PathPrefix: String
-        """
-        self.KeyId = None
-        self.Status = None
-
-    def _deserialize(self, params):
-        if params.get("KeyId"):
-            self.KeyId = params.get("KeyId")
-        if params.get("Status"):
-            self.Status = params.get("Status")
-
-
 class GetApiServiceRequest(AbstractModel):
     """GetApiService请求参数结构体
     """
@@ -1964,14 +1875,10 @@ class StopBatchInferenceJobRequest(AbstractModel):
 
     def __init__(self):
         r"""终止批量推理任务
-        :param BatchId: 
-        :type PathPrefix: String
         """
-        self.BatchId = None
 
     def _deserialize(self, params):
-        if params.get("BatchId"):
-            self.BatchId = params.get("BatchId")
+        return
 
 
 class CreateBatchInferenceJobRequest(AbstractModel):
@@ -1980,74 +1887,10 @@ class CreateBatchInferenceJobRequest(AbstractModel):
 
     def __init__(self):
         r"""创建批量推理任务
-        :param JobName: 
-        :type PathPrefix: String
-        :param JobDesc: 
-        :type PathPrefix: String
-        :param ApikeyId: 
-        :type PathPrefix: String
-        :param Model: 模型名，如：deepseek-r1-0528
-        :type PathPrefix: String
-        :param ExecuteTimeoutMs: 
-        :type PathPrefix: Long
-        :param InputDataType: 文件类型：user_ks3 用户ks3;upload_ks3 上传文件
-        :type PathPrefix: String
-        :param Ks3Region: 
-        :type PathPrefix: String
-        :param Ks3Ak: 
-        :type PathPrefix: String
-        :param Ks3Sk: 
-        :type PathPrefix: String
-        :param InBucket: 
-        :type PathPrefix: String
-        :param OutBucket: 
-        :type PathPrefix: String
-        :param InObjectName: 
-        :type PathPrefix: String
-        :param OutObjectName: 
-        :type PathPrefix: String
         """
-        self.JobName = None
-        self.JobDesc = None
-        self.ApikeyId = None
-        self.Model = None
-        self.ExecuteTimeoutMs = None
-        self.InputDataType = None
-        self.Ks3Region = None
-        self.Ks3Ak = None
-        self.Ks3Sk = None
-        self.InBucket = None
-        self.OutBucket = None
-        self.InObjectName = None
-        self.OutObjectName = None
 
     def _deserialize(self, params):
-        if params.get("JobName"):
-            self.JobName = params.get("JobName")
-        if params.get("JobDesc"):
-            self.JobDesc = params.get("JobDesc")
-        if params.get("ApikeyId"):
-            self.ApikeyId = params.get("ApikeyId")
-        if params.get("Model"):
-            self.Model = params.get("Model")
-        if params.get("ExecuteTimeoutMs"):
-            self.ExecuteTimeoutMs = params.get("ExecuteTimeoutMs")
-        if params.get("InputDataType"):
-            self.InputDataType = params.get("InputDataType")
-        if params.get("Ks3Region"):
-            self.Ks3Region = params.get("Ks3Region")
-        if params.get("Ks3Ak"):
-            self.Ks3Ak = params.get("Ks3Ak")
-        if params.get("Ks3Sk"):
-            self.Ks3Sk = params.get("Ks3Sk")
-        if params.get("InBucket"):
-            self.InBucket = params.get("InBucket")
-        if params.get("OutBucket"):
-            self.OutBucket = params.get("OutBucket")
-        if params.get("InObjectName"):
-            self.InObjectName = params.get("InObjectName")
-        if params.get("OutObjectName"):
-            self.OutObjectName = params.get("OutObjectName")
+        return
 
 
 class ModifyBatchInferenceJobRequest(AbstractModel):
@@ -2091,7 +1934,7 @@ class DescribeBatchInferenceJobsRequest(AbstractModel):
         :param Status: 按状态过滤查询
 init、queuing、running、terminated、completed、failed、timeout
         :type PathPrefix: Filter
-        :param BatchId: 
+        :param BatchId: 批次ID
         :type PathPrefix: String
         """
         self.Marker = None
@@ -2119,14 +1962,10 @@ class DeleteBatchInferenceJobRequest(AbstractModel):
 
     def __init__(self):
         r"""删除批量推理任务
-        :param BatchId: 
-        :type PathPrefix: String
         """
-        self.BatchId = None
 
     def _deserialize(self, params):
-        if params.get("BatchId"):
-            self.BatchId = params.get("BatchId")
+        return
 
 
 class EnableModelsRequest(AbstractModel):
@@ -2135,14 +1974,10 @@ class EnableModelsRequest(AbstractModel):
 
     def __init__(self):
         r"""开通模型，支持批量
-        :param ModelIds: 
-        :type PathPrefix: Array
         """
-        self.ModelIds = None
 
     def _deserialize(self, params):
-        if params.get("ModelIds"):
-            self.ModelIds = params.get("ModelIds")
+        return
 
 
 class DescribeModelQuotasRequest(AbstractModel):
@@ -2198,22 +2033,6 @@ class EnableOverFreeLimitRequest(AbstractModel):
 
     def __init__(self):
         r"""免费配额用完后禁用对应模型
-        :param ModelIds: 
-        :type PathPrefix: Array
-        """
-        self.ModelIds = None
-
-    def _deserialize(self, params):
-        if params.get("ModelIds"):
-            self.ModelIds = params.get("ModelIds")
-
-
-class DisableOverFreeLimitRequest(AbstractModel):
-    """DisableOverFreeLimit请求参数结构体
-    """
-
-    def __init__(self):
-        r"""即免费配额用完后继续使用计费配额
         :param ModelIds: 
         :type PathPrefix: Array
         """
@@ -3206,6 +3025,315 @@ class RemoveQueueAccessUserRequest(AbstractModel):
             self.SubAccountId = params.get("SubAccountId")
 
 
+class CreateAgentProductRequest(AbstractModel):
+    """CreateAgentProduct请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建Agent商品
+        :param Name: 
+        :type PathPrefix: String
+        :param Description: 
+        :type PathPrefix: String
+        :param ClientToken: 
+        :type PathPrefix: String
+        :param Framework: 
+        :type PathPrefix: String
+        :param DeploymentType: 
+        :type PathPrefix: String
+        :param CodeConfig: 
+        :type PathPrefix: Object
+        :param ContainerConfig: 
+        :type PathPrefix: Object
+        :param Resource: 
+        :type PathPrefix: Object
+        :param Scaling: 
+        :type PathPrefix: Object
+        :param Storage: 
+        :type PathPrefix: Object
+        :param KS3MountConfig: 
+        :type PathPrefix: Object
+        :param SessionAffinity: 
+        :type PathPrefix: Object
+        :param Network: 
+        :type PathPrefix: Object
+        :param Access: 
+        :type PathPrefix: Object
+        :param Advanced: 
+        :type PathPrefix: Object
+        :param ComponentConfig: 
+        :type PathPrefix: Object
+        :param UiConfig: 
+        :type PathPrefix: Object
+        :param DeployMode: 
+        :type PathPrefix: String
+        :param MemoryConfig: 
+        :type PathPrefix: Object
+        :param AutoPay: 
+        :type PathPrefix: Boolean
+        """
+        self.Name = None
+        self.Description = None
+        self.ClientToken = None
+        self.Framework = None
+        self.DeploymentType = None
+        self.CodeConfig = None
+        self.ContainerConfig = None
+        self.Resource = None
+        self.Scaling = None
+        self.Storage = None
+        self.KS3MountConfig = None
+        self.SessionAffinity = None
+        self.Network = None
+        self.Access = None
+        self.Advanced = None
+        self.ComponentConfig = None
+        self.UiConfig = None
+        self.DeployMode = None
+        self.MemoryConfig = None
+        self.AutoPay = None
+
+    def _deserialize(self, params):
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
+        if params.get("Framework"):
+            self.Framework = params.get("Framework")
+        if params.get("DeploymentType"):
+            self.DeploymentType = params.get("DeploymentType")
+        if params.get("CodeConfig"):
+            self.CodeConfig = params.get("CodeConfig")
+        if params.get("ContainerConfig"):
+            self.ContainerConfig = params.get("ContainerConfig")
+        if params.get("Resource"):
+            self.Resource = params.get("Resource")
+        if params.get("Scaling"):
+            self.Scaling = params.get("Scaling")
+        if params.get("Storage"):
+            self.Storage = params.get("Storage")
+        if params.get("KS3MountConfig"):
+            self.KS3MountConfig = params.get("KS3MountConfig")
+        if params.get("SessionAffinity"):
+            self.SessionAffinity = params.get("SessionAffinity")
+        if params.get("Network"):
+            self.Network = params.get("Network")
+        if params.get("Access"):
+            self.Access = params.get("Access")
+        if params.get("Advanced"):
+            self.Advanced = params.get("Advanced")
+        if params.get("ComponentConfig"):
+            self.ComponentConfig = params.get("ComponentConfig")
+        if params.get("UiConfig"):
+            self.UiConfig = params.get("UiConfig")
+        if params.get("DeployMode"):
+            self.DeployMode = params.get("DeployMode")
+        if params.get("MemoryConfig"):
+            self.MemoryConfig = params.get("MemoryConfig")
+        if params.get("AutoPay"):
+            self.AutoPay = params.get("AutoPay")
+
+
+class ListAgentsRequest(AbstractModel):
+    """ListAgents请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Agent列表
+        :param Page: 
+        :type PathPrefix: Int
+        :param PageSize: 
+        :type PathPrefix: Int
+        :param Name: 
+        :type PathPrefix: String
+        :param Id: 
+        :type PathPrefix: String
+        :param Status: 
+        :type PathPrefix: String
+        :param Framework: 
+        :type PathPrefix: String
+        """
+        self.Page = None
+        self.PageSize = None
+        self.Name = None
+        self.Id = None
+        self.Status = None
+        self.Framework = None
+
+    def _deserialize(self, params):
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Id"):
+            self.Id = params.get("Id")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("Framework"):
+            self.Framework = params.get("Framework")
+
+
+class GetAgentRequest(AbstractModel):
+    """GetAgent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Agent详情
+        :param AgentId: 
+        :type PathPrefix: String
+        """
+        self.AgentId = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+
+
+class UpdateAgentRequest(AbstractModel):
+    """UpdateAgent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新Agent
+        """
+
+    def _deserialize(self, params):
+        return
+
+
+class DeleteAgentRequest(AbstractModel):
+    """DeleteAgent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除Agent
+        :param AgentId: 
+        :type PathPrefix: String
+        """
+        self.AgentId = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+
+
+class ListVersionsRequest(AbstractModel):
+    """ListVersions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""列出版本历史
+        :param AgentId: 
+        :type PathPrefix: String
+        :param Page: 
+        :type PathPrefix: Int
+        :param PageSize: 
+        :type PathPrefix: Int
+        """
+        self.AgentId = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class RollbackVersionRequest(AbstractModel):
+    """RollbackVersion请求参数结构体
+    """
+
+    def __init__(self):
+        r"""回滚到指定版本
+        :param AgentId: 
+        :type PathPrefix: String
+        :param TargetVersionId: 
+        :type PathPrefix: String
+        :param TargetTag: 
+        :type PathPrefix: String
+        """
+        self.AgentId = None
+        self.TargetVersionId = None
+        self.TargetTag = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("TargetVersionId"):
+            self.TargetVersionId = params.get("TargetVersionId")
+        if params.get("TargetTag"):
+            self.TargetTag = params.get("TargetTag")
+
+
+class RunAgentRequest(AbstractModel):
+    """RunAgent请求参数结构体
+    """
+
+    def __init__(self):
+        r"""调用 Agent
+        :param AgentId: 
+        :type PathPrefix: String
+        :param Messages: 
+        :type PathPrefix: Array
+        :param SessionId: 
+        :type PathPrefix: String
+        :param Model: 
+        :type PathPrefix: String
+        :param Stream: 
+        :type PathPrefix: Boolean
+        :param Background: 
+        :type PathPrefix: Boolean
+        :param ApiFormat: 
+        :type PathPrefix: String
+        :param ResponsesInput: 
+        :type PathPrefix: String
+        :param PreviousResponseId: 
+        :type PathPrefix: String
+        :param InvocationId: 
+        :type PathPrefix: String
+        """
+        self.AgentId = None
+        self.Messages = None
+        self.SessionId = None
+        self.Model = None
+        self.Stream = None
+        self.Background = None
+        self.ApiFormat = None
+        self.ResponsesInput = None
+        self.PreviousResponseId = None
+        self.InvocationId = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("Messages"):
+            self.Messages = params.get("Messages")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("Model"):
+            self.Model = params.get("Model")
+        if params.get("Stream"):
+            self.Stream = params.get("Stream")
+        if params.get("Background"):
+            self.Background = params.get("Background")
+        if params.get("ApiFormat"):
+            self.ApiFormat = params.get("ApiFormat")
+        if params.get("ResponsesInput"):
+            self.ResponsesInput = params.get("ResponsesInput")
+        if params.get("PreviousResponseId"):
+            self.PreviousResponseId = params.get("PreviousResponseId")
+        if params.get("InvocationId"):
+            self.InvocationId = params.get("InvocationId")
+
+
 class DescribeModelTypesRequest(AbstractModel):
     """DescribeModelTypes请求参数结构体
     """
@@ -3342,6 +3470,115 @@ class DescribeInferencePodsRequest(AbstractModel):
             self.Page = params.get("Page")
         if params.get("PageSize"):
             self.PageSize = params.get("PageSize")
+
+
+class CreateSessionRequest(AbstractModel):
+    """CreateSession请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建Session
+        :param Tags: 
+        :type PathPrefix: Object
+        :param AgentId: 
+        :type PathPrefix: String
+        :param SessionId: 
+        :type PathPrefix: String
+        :param ExpiresHours: 
+        :type PathPrefix: Int
+        """
+        self.Tags = None
+        self.AgentId = None
+        self.SessionId = None
+        self.ExpiresHours = None
+
+    def _deserialize(self, params):
+        if params.get("Tags"):
+            self.Tags = params.get("Tags")
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("ExpiresHours"):
+            self.ExpiresHours = params.get("ExpiresHours")
+
+
+class GetSessionRequest(AbstractModel):
+    """GetSession请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Session
+        :param SessionId: 
+        :type PathPrefix: String
+        :param Id: 
+        :type PathPrefix: String
+        """
+        self.SessionId = None
+        self.Id = None
+
+    def _deserialize(self, params):
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("Id"):
+            self.Id = params.get("Id")
+
+
+class ListSessionsRequest(AbstractModel):
+    """ListSessions请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Session列表
+        :param TagFilters: 
+        :type PathPrefix: Object
+        :param TagMatch: 
+        :type PathPrefix: String
+        :param AgentId: 
+        :type PathPrefix: String
+        :param Page: 
+        :type PathPrefix: Int
+        :param PageSize: 
+        :type PathPrefix: Int
+        """
+        self.TagFilters = None
+        self.TagMatch = None
+        self.AgentId = None
+        self.Page = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("TagFilters"):
+            self.TagFilters = params.get("TagFilters")
+        if params.get("TagMatch"):
+            self.TagMatch = params.get("TagMatch")
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
+class DeleteSessionRequest(AbstractModel):
+    """DeleteSession请求参数结构体
+    """
+
+    def __init__(self):
+        r"""删除Session
+        :param SessionId: 
+        :type PathPrefix: String
+        :param Id: 
+        :type PathPrefix: String
+        """
+        self.SessionId = None
+        self.Id = None
+
+    def _deserialize(self, params):
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("Id"):
+            self.Id = params.get("Id")
 
 
 class ListSkillVersionsRequest(AbstractModel):
@@ -3544,6 +3781,18 @@ class CreateSkillVersionRequest(AbstractModel):
             self.SkillSpaces = params.get("SkillSpaces")
 
 
+class GetSkillVersionTreeRequest(AbstractModel):
+    """GetSkillVersionTree请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取skill 版本树
+        """
+
+    def _deserialize(self, params):
+        return
+
+
 class GetSkillUploadUrlRequest(AbstractModel):
     """GetSkillUploadUrl请求参数结构体
     """
@@ -3584,6 +3833,32 @@ class DeleteSkillVersionRequest(AbstractModel):
             self.SkillId = params.get("SkillId")
         if params.get("VersionId"):
             self.VersionId = params.get("VersionId")
+
+
+class UpdateSkillRequest(AbstractModel):
+    """UpdateSkill请求参数结构体
+    """
+
+    def __init__(self):
+        r"""更新skill
+        :param SkillId: 
+        :type PathPrefix: String
+        :param Name: 
+        :type PathPrefix: String
+        :param Description: 
+        :type PathPrefix: String
+        """
+        self.SkillId = None
+        self.Name = None
+        self.Description = None
+
+    def _deserialize(self, params):
+        if params.get("SkillId"):
+            self.SkillId = params.get("SkillId")
+        if params.get("Name"):
+            self.Name = params.get("Name")
+        if params.get("Description"):
+            self.Description = params.get("Description")
 
 
 class DeleteSkillRequest(AbstractModel):
@@ -3656,6 +3931,22 @@ class DeleteSkillSpaceRequest(AbstractModel):
     def __init__(self):
         r"""删除skill空间
         :param SkillSpaceId: skill 空间id
+        :type PathPrefix: String
+        """
+        self.SkillSpaceId = None
+
+    def _deserialize(self, params):
+        if params.get("SkillSpaceId"):
+            self.SkillSpaceId = params.get("SkillSpaceId")
+
+
+class GetSkillSpaceRequest(AbstractModel):
+    """GetSkillSpace请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取skill空间
+        :param SkillSpaceId: 
         :type PathPrefix: String
         """
         self.SkillSpaceId = None
@@ -3846,37 +4137,6 @@ class DescribeTrainJobAndPodEventsRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("TrainJobId"):
             self.TrainJobId = params.get("TrainJobId")
-        if params.get("PodNames"):
-            self.PodNames = params.get("PodNames")
-        if params.get("SortKey"):
-            self.SortKey = params.get("SortKey")
-        if params.get("Sort"):
-            self.Sort = params.get("Sort")
-
-
-class DescribeFineTuneJobAndPodEventsRequest(AbstractModel):
-    """DescribeFineTuneJobAndPodEvents请求参数结构体
-    """
-
-    def __init__(self):
-        r"""查询模型微调任务及Pod事件列表
-        :param FineTuneJobId: 微调任务ID
-        :type PathPrefix: String
-        :param PodNames: Pod名称列表，不传则查询所有Pod事件
-        :type PathPrefix: Array
-        :param SortKey: 排序关键字
-        :type PathPrefix: String
-        :param Sort: 排序方式
-        :type PathPrefix: String
-        """
-        self.FineTuneJobId = None
-        self.PodNames = None
-        self.SortKey = None
-        self.Sort = None
-
-    def _deserialize(self, params):
-        if params.get("FineTuneJobId"):
-            self.FineTuneJobId = params.get("FineTuneJobId")
         if params.get("PodNames"):
             self.PodNames = params.get("PodNames")
         if params.get("SortKey"):
@@ -4164,6 +4424,174 @@ class GetAccountBillRulesRequest(AbstractModel):
         return
 
 
+class ResumeRunRequest(AbstractModel):
+    """ResumeRun请求参数结构体
+    """
+
+    def __init__(self):
+        r"""断点续跑任务
+        :param AgentId: 
+        :type PathPrefix: String
+        :param SessionId: 
+        :type PathPrefix: String
+        :param RunId: 
+        :type PathPrefix: String
+        :param CheckpointId: 
+        :type PathPrefix: String
+        :param ResumeAttemptId: 
+        :type PathPrefix: String
+        :param InvocationId: 
+        :type PathPrefix: String
+        :param Stream: 
+        :type PathPrefix: Boolean
+        :param Background: 
+        :type PathPrefix: Boolean
+        :param Model: 
+        :type PathPrefix: String
+        :param ResumeInstructionEnabled: 
+        :type PathPrefix: Boolean
+        :param ResumeInstruction: 
+        :type PathPrefix: String
+        """
+        self.AgentId = None
+        self.SessionId = None
+        self.RunId = None
+        self.CheckpointId = None
+        self.ResumeAttemptId = None
+        self.InvocationId = None
+        self.Stream = None
+        self.Background = None
+        self.Model = None
+        self.ResumeInstructionEnabled = None
+        self.ResumeInstruction = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("RunId"):
+            self.RunId = params.get("RunId")
+        if params.get("CheckpointId"):
+            self.CheckpointId = params.get("CheckpointId")
+        if params.get("ResumeAttemptId"):
+            self.ResumeAttemptId = params.get("ResumeAttemptId")
+        if params.get("InvocationId"):
+            self.InvocationId = params.get("InvocationId")
+        if params.get("Stream"):
+            self.Stream = params.get("Stream")
+        if params.get("Background"):
+            self.Background = params.get("Background")
+        if params.get("Model"):
+            self.Model = params.get("Model")
+        if params.get("ResumeInstructionEnabled"):
+            self.ResumeInstructionEnabled = params.get("ResumeInstructionEnabled")
+        if params.get("ResumeInstruction"):
+            self.ResumeInstruction = params.get("ResumeInstruction")
+
+
+class ListSessionMessagesRequest(AbstractModel):
+    """ListSessionMessages请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取session消息列表
+        :param AgentId: 
+        :type PathPrefix: String
+        :param SessionId: 
+        :type PathPrefix: String
+        :param AfterSeqId: 
+        :type PathPrefix: Int
+        :param BeforeSeqId: 
+        :type PathPrefix: Int
+        :param CursorSource: 
+        :type PathPrefix: String
+        :param HistoryEpoch: 
+        :type PathPrefix: String
+        :param SnapshotSeqId: 
+        :type PathPrefix: Int
+        :param Limit: 
+        :type PathPrefix: Int
+        :param IncludeReasoning: 
+        :type PathPrefix: Boolean
+        :param IncludeToolEvents: 
+        :type PathPrefix: Boolean
+        :param IncludeAttachments: 
+        :type PathPrefix: Boolean
+        """
+        self.AgentId = None
+        self.SessionId = None
+        self.AfterSeqId = None
+        self.BeforeSeqId = None
+        self.CursorSource = None
+        self.HistoryEpoch = None
+        self.SnapshotSeqId = None
+        self.Limit = None
+        self.IncludeReasoning = None
+        self.IncludeToolEvents = None
+        self.IncludeAttachments = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("AfterSeqId"):
+            self.AfterSeqId = params.get("AfterSeqId")
+        if params.get("BeforeSeqId"):
+            self.BeforeSeqId = params.get("BeforeSeqId")
+        if params.get("CursorSource"):
+            self.CursorSource = params.get("CursorSource")
+        if params.get("HistoryEpoch"):
+            self.HistoryEpoch = params.get("HistoryEpoch")
+        if params.get("SnapshotSeqId"):
+            self.SnapshotSeqId = params.get("SnapshotSeqId")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+        if params.get("IncludeReasoning"):
+            self.IncludeReasoning = params.get("IncludeReasoning")
+        if params.get("IncludeToolEvents"):
+            self.IncludeToolEvents = params.get("IncludeToolEvents")
+        if params.get("IncludeAttachments"):
+            self.IncludeAttachments = params.get("IncludeAttachments")
+
+
+class CancelRunRequest(AbstractModel):
+    """CancelRun请求参数结构体
+    """
+
+    def __init__(self):
+        r"""暂停/取消后台任务或恢复任务
+        :param AgentId: 
+        :type PathPrefix: String
+        :param SessionId: 
+        :type PathPrefix: String
+        :param InvocationId: 
+        :type PathPrefix: String
+        :param ScopeId: 
+        :type PathPrefix: String
+        :param ClientToken: 
+        :type PathPrefix: String
+        """
+        self.AgentId = None
+        self.SessionId = None
+        self.InvocationId = None
+        self.ScopeId = None
+        self.ClientToken = None
+
+    def _deserialize(self, params):
+        if params.get("AgentId"):
+            self.AgentId = params.get("AgentId")
+        if params.get("SessionId"):
+            self.SessionId = params.get("SessionId")
+        if params.get("InvocationId"):
+            self.InvocationId = params.get("InvocationId")
+        if params.get("ScopeId"):
+            self.ScopeId = params.get("ScopeId")
+        if params.get("ClientToken"):
+            self.ClientToken = params.get("ClientToken")
+
+
 class CreateUsageDownloadTaskRequest(AbstractModel):
     """CreateUsageDownloadTask请求参数结构体
     """
@@ -4215,7 +4643,7 @@ class AddStorageConfigAccessRequest(AbstractModel):
         r"""存储配置添加权限用户
         :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
-        :param UserId: 要添加的子用户ID
+        :param KsyunUserId: 要添加的子用户ID
         :type PathPrefix: String
         :param SharedGroupId: 要添加的权限组ID
         :type PathPrefix: String
@@ -4232,15 +4660,15 @@ KS3存储配置权限枚举值：
         :type PathPrefix: String
         """
         self.StorageConfigId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
         self.Permission = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigId"):
             self.StorageConfigId = params.get("StorageConfigId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
         if params.get("Permission"):
@@ -4255,7 +4683,7 @@ class ModifyStorageConfigAccessRoleRequest(AbstractModel):
         r"""修改存储配置用户/权限组权限
         :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
-        :param UserId: 要移除权限组的子账号ID
+        :param KsyunUserId: 要移除权限组的子账号ID
         :type PathPrefix: String
         :param SharedGroupId: 要移除权限的权限组ID
         :type PathPrefix: String
@@ -4272,15 +4700,15 @@ KS3存储配置权限枚举值：
         :type PathPrefix: String
         """
         self.StorageConfigId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
         self.Permission = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigId"):
             self.StorageConfigId = params.get("StorageConfigId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
         if params.get("Permission"):
@@ -4295,20 +4723,20 @@ class RemoveStorageConfigAccessRequest(AbstractModel):
         r"""移除成员/权限组权限
         :param StorageConfigId: 存储配置ID
         :type PathPrefix: String
-        :param UserId: 子用户ID（要被移除的子用户ID）
+        :param KsyunUserId: 子用户ID（要被移除的子用户ID）
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID（要被移除权限的权限组ID）
         :type PathPrefix: String
         """
         self.StorageConfigId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
 
     def _deserialize(self, params):
         if params.get("StorageConfigId"):
             self.StorageConfigId = params.get("StorageConfigId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
 
@@ -4408,7 +4836,7 @@ class AddImageAccessRequest(AbstractModel):
         r"""为用户/权限组添加镜像权限
         :param ImageId: 镜像ID
         :type PathPrefix: String
-        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :param KsyunUserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
@@ -4418,15 +4846,15 @@ class AddImageAccessRequest(AbstractModel):
         :type PathPrefix: String
         """
         self.ImageId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
         self.Permission = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
         if params.get("Permission"):
@@ -4441,7 +4869,7 @@ class ModifyImageAccessRoleRequest(AbstractModel):
         r"""修改用户/权限组镜像权限
         :param ImageId: 镜像ID
         :type PathPrefix: String
-        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :param KsyunUserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
@@ -4451,15 +4879,15 @@ class ModifyImageAccessRoleRequest(AbstractModel):
         :type PathPrefix: String
         """
         self.ImageId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
         self.Permission = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
         if params.get("Permission"):
@@ -4474,22 +4902,43 @@ class RemoveImageAccessRequest(AbstractModel):
         r"""移除用户/权限组镜像权限
         :param ImageId: 镜像ID
         :type PathPrefix: String
-        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :param KsyunUserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         """
         self.ImageId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
 
     def _deserialize(self, params):
         if params.get("ImageId"):
             self.ImageId = params.get("ImageId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
+
+
+class RemovePhysicalQueueInstancesRequest(AbstractModel):
+    """RemovePhysicalQueueInstances请求参数结构体
+    """
+
+    def __init__(self):
+        r"""从物理队列移除指定节点接口
+        :param QueueId: 队列ID
+        :type PathPrefix: String
+        :param InstanceIds: 待移除的实例ID列表，至少一个；重复 ID 自动去重
+        :type PathPrefix: Array
+        """
+        self.QueueId = None
+        self.InstanceIds = None
+
+    def _deserialize(self, params):
+        if params.get("QueueId"):
+            self.QueueId = params.get("QueueId")
+        if params.get("InstanceIds"):
+            self.InstanceIds = params.get("InstanceIds")
 
 
 class DescribeNotebookTimeLineRequest(AbstractModel):
@@ -4522,5 +4971,48 @@ class DescribeTrainJobTimeLineRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("TrainJobId"):
             self.TrainJobId = params.get("TrainJobId")
+
+
+class GetComponentObservabilityOverviewRequest(AbstractModel):
+    """GetComponentObservabilityOverview请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取Agent组件可观测概览
+        :param ComponentType: 
+        :type PathPrefix: String
+        :param StartTime: 
+        :type PathPrefix: Int
+        :param EndTime: 
+        :type PathPrefix: Int
+        :param IntervalSeconds: 
+        :type PathPrefix: Int
+        """
+        self.ComponentType = None
+        self.StartTime = None
+        self.EndTime = None
+        self.IntervalSeconds = None
+
+    def _deserialize(self, params):
+        if params.get("ComponentType"):
+            self.ComponentType = params.get("ComponentType")
+        if params.get("StartTime"):
+            self.StartTime = params.get("StartTime")
+        if params.get("EndTime"):
+            self.EndTime = params.get("EndTime")
+        if params.get("IntervalSeconds"):
+            self.IntervalSeconds = params.get("IntervalSeconds")
+
+
+class ListComponentStatsRequest(AbstractModel):
+    """ListComponentStats请求参数结构体
+    """
+
+    def __init__(self):
+        r"""获取组件Stats
+        """
+
+    def _deserialize(self, params):
+        return
 
 

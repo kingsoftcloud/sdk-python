@@ -519,7 +519,7 @@ class AddModelAccessRequest(AbstractModel):
         r"""为用户/权限组添加模型权限
         :param ModelId: 模型ID
         :type PathPrefix: String
-        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :param KsyunUserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
@@ -529,15 +529,15 @@ class AddModelAccessRequest(AbstractModel):
         :type PathPrefix: String
         """
         self.ModelId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
         self.Permission = None
 
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
         if params.get("Permission"):
@@ -552,7 +552,7 @@ class ModifyModelAccessRoleRequest(AbstractModel):
         r"""修改用户/权限组模型权限
         :param ModelId: 模型ID
         :type PathPrefix: String
-        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :param KsyunUserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
@@ -562,15 +562,15 @@ class ModifyModelAccessRoleRequest(AbstractModel):
         :type PathPrefix: String
         """
         self.ModelId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
         self.Permission = None
 
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
         if params.get("Permission"):
@@ -585,20 +585,20 @@ class RemoveModelAccessRequest(AbstractModel):
         r"""移除用户/权限组模型权限
         :param ModelId: 模型ID
         :type PathPrefix: String
-        :param UserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
+        :param KsyunUserId: 用户ID，与 SharedGroupId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         :param SharedGroupId: 权限组ID，与 UserId 二选一，不可同时为空或同时非空
         :type PathPrefix: String
         """
         self.ModelId = None
-        self.UserId = None
+        self.KsyunUserId = None
         self.SharedGroupId = None
 
     def _deserialize(self, params):
         if params.get("ModelId"):
             self.ModelId = params.get("ModelId")
-        if params.get("UserId"):
-            self.UserId = params.get("UserId")
+        if params.get("KsyunUserId"):
+            self.KsyunUserId = params.get("KsyunUserId")
         if params.get("SharedGroupId"):
             self.SharedGroupId = params.get("SharedGroupId")
 

@@ -462,15 +462,143 @@ class UpdateSandboxInstanceRequest(AbstractModel):
             self.Timeout = params.get("Timeout")
 
 
+class CreateImageCacheRequest(AbstractModel):
+    """CreateImageCache请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建镜像缓存
+        :param ImageConfigs: 镜像配置列表，支持批量多镜像；每个元素对应一条缓存记录，单镜像也需使用数组
+        :type PathPrefix: Filter
+        """
+        self.ImageConfigs = None
+
+    def _deserialize(self, params):
+        if params.get("ImageConfigs"):
+            self.ImageConfigs = params.get("ImageConfigs")
+
+
+class GetImageCacheListRequest(AbstractModel):
+    """GetImageCacheList请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询镜像缓存列表
+        :param Scope: 列表范围：custom（自定义镜像缓存）或 public（公共镜像目录）
+        :type PathPrefix: String
+        :param ImageCacheId: 按镜像缓存ID进行包含式模糊查询
+        :type PathPrefix: String
+        :param Image: 按镜像地址过滤
+        :type PathPrefix: String
+        :param Description: 按镜像描述进行包含式模糊查询
+        :type PathPrefix: String
+        :param Status: 按镜像缓存状态过滤（底层暂不支持，待支持后生效）
+        :type PathPrefix: String
+        :param PageNum: 页码，从1开始
+        :type PathPrefix: Int
+        :param PageSize: 每页数量，范围1-100
+        :type PathPrefix: Int
+        """
+        self.Scope = None
+        self.ImageCacheId = None
+        self.Image = None
+        self.Description = None
+        self.Status = None
+        self.PageNum = None
+        self.PageSize = None
+
+    def _deserialize(self, params):
+        if params.get("Scope"):
+            self.Scope = params.get("Scope")
+        if params.get("ImageCacheId"):
+            self.ImageCacheId = params.get("ImageCacheId")
+        if params.get("Image"):
+            self.Image = params.get("Image")
+        if params.get("Description"):
+            self.Description = params.get("Description")
+        if params.get("Status"):
+            self.Status = params.get("Status")
+        if params.get("PageNum"):
+            self.PageNum = params.get("PageNum")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+
+
 class DeleteImageCacheRequest(AbstractModel):
     """DeleteImageCache请求参数结构体
     """
 
     def __init__(self):
         r"""删除镜像缓存
+        :param ImageCacheId: 镜像缓存记录ID
+        :type PathPrefix: String
         """
+        self.ImageCacheId = None
 
     def _deserialize(self, params):
-        return
+        if params.get("ImageCacheId"):
+            self.ImageCacheId = params.get("ImageCacheId")
+
+
+class CreateSandboxInstanceCommitRequest(AbstractModel):
+    """CreateSandboxInstanceCommit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""创建沙箱镜像提交任务
+        :param InstanceId: 沙箱实例ID
+        :type PathPrefix: String
+        :param Image: 目标镜像完整地址，包含仓库、名称和Tag
+        :type PathPrefix: String
+        :param RegistryUsername: 目标仓库用户名，必须与RegistryPassword同时提供或同时省略
+        :type PathPrefix: String
+        :param RegistryPassword: 目标仓库密码，仅用于此次请求，不写入数据库或响应
+        :type PathPrefix: String
+        :param Pause: 提交期间是否暂停容器，默认true
+        :type PathPrefix: Boolean
+        :param TimeoutSeconds: KCI提交任务超时秒数，范围60-7200，默认1800
+        :type PathPrefix: Int
+        """
+        self.InstanceId = None
+        self.Image = None
+        self.RegistryUsername = None
+        self.RegistryPassword = None
+        self.Pause = None
+        self.TimeoutSeconds = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("Image"):
+            self.Image = params.get("Image")
+        if params.get("RegistryUsername"):
+            self.RegistryUsername = params.get("RegistryUsername")
+        if params.get("RegistryPassword"):
+            self.RegistryPassword = params.get("RegistryPassword")
+        if params.get("Pause"):
+            self.Pause = params.get("Pause")
+        if params.get("TimeoutSeconds"):
+            self.TimeoutSeconds = params.get("TimeoutSeconds")
+
+
+class GetSandboxInstanceCommitRequest(AbstractModel):
+    """GetSandboxInstanceCommit请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询沙箱镜像提交任务
+        :param InstanceId: 沙箱实例ID
+        :type PathPrefix: String
+        :param TaskId: 提交任务ID
+        :type PathPrefix: String
+        """
+        self.InstanceId = None
+        self.TaskId = None
+
+    def _deserialize(self, params):
+        if params.get("InstanceId"):
+            self.InstanceId = params.get("InstanceId")
+        if params.get("TaskId"):
+            self.TaskId = params.get("TaskId")
 
 

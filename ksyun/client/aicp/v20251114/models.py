@@ -230,11 +230,14 @@ class ImportDocumentsRequest(AbstractModel):
         :type PathPrefix: String
         :param Ks3Path: 文件路径（AddType=ks3 时必填）
         :type PathPrefix: Array
+        :param SecurityProcessingEnabled: 是否开启入库前敏感信息处理
+        :type PathPrefix: Boolean
         """
         self.DatasetId = None
         self.Data = None
         self.AddType = None
         self.Ks3Path = None
+        self.SecurityProcessingEnabled = None
 
     def _deserialize(self, params):
         if params.get("DatasetId"):
@@ -245,6 +248,8 @@ class ImportDocumentsRequest(AbstractModel):
             self.AddType = params.get("AddType")
         if params.get("Ks3Path"):
             self.Ks3Path = params.get("Ks3Path")
+        if params.get("SecurityProcessingEnabled"):
+            self.SecurityProcessingEnabled = params.get("SecurityProcessingEnabled")
 
 
 class DeleteKnowledgeBaseRequest(AbstractModel):
@@ -1571,6 +1576,73 @@ desc  降序
             self.OccurredBefore = params.get("OccurredBefore")
 
 
+class QueryAgenticMemoryRequest(AbstractModel):
+    """QueryAgenticMemory请求参数结构体
+    """
+
+    def __init__(self):
+        r"""记忆Agentic检索
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param AgentUserId: 用户ID
+        :type PathPrefix: String
+        :param Query: 搜索的内容
+>= 1 字符
+<= 512 字符
+        :type PathPrefix: String
+        :param SceneId: 场景ID   默认值:
+_sys_general
+        :type PathPrefix: String
+        :param OccurredAfter: 信息发生时间范围（毫秒）  包含
+        :type PathPrefix: Long
+        :param OccurredBefore: 信息发生时间范围（毫秒）  不包含
+        :type PathPrefix: Long
+        :param ReturnCitations: 是否返回记忆关联的原始数据  默认值:
+false
+        :type PathPrefix: Boolean
+        :param Limit: 返回数量限制  默认值:
+20
+>= 1
+<= 200
+        :type PathPrefix: Int
+        :param MaxSteps: 最大检索次数  
+>= 1
+<= 5
+默认值:
+2
+        :type PathPrefix: Int
+        """
+        self.MemoryCollectionId = None
+        self.AgentUserId = None
+        self.Query = None
+        self.SceneId = None
+        self.OccurredAfter = None
+        self.OccurredBefore = None
+        self.ReturnCitations = None
+        self.Limit = None
+        self.MaxSteps = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+        if params.get("Query"):
+            self.Query = params.get("Query")
+        if params.get("SceneId"):
+            self.SceneId = params.get("SceneId")
+        if params.get("OccurredAfter"):
+            self.OccurredAfter = params.get("OccurredAfter")
+        if params.get("OccurredBefore"):
+            self.OccurredBefore = params.get("OccurredBefore")
+        if params.get("ReturnCitations"):
+            self.ReturnCitations = params.get("ReturnCitations")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+        if params.get("MaxSteps"):
+            self.MaxSteps = params.get("MaxSteps")
+
+
 class DeleteMemoryRequest(AbstractModel):
     """DeleteMemory请求参数结构体
     """
@@ -1774,5 +1846,133 @@ class DescribeMetadataRequest(AbstractModel):
     def _deserialize(self, params):
         if params.get("DatasetId"):
             self.DatasetId = params.get("DatasetId")
+
+
+class QueryAgenticMemoryStreamRequest(AbstractModel):
+    """QueryAgenticMemoryStream请求参数结构体
+    """
+
+    def __init__(self):
+        r"""记忆Agentic检索-流式
+        :param MemoryCollectionId: 记忆库ID
+        :type PathPrefix: String
+        :param AgentUserId: 用户ID
+
+        :type PathPrefix: String
+        :param Query: 查询文本
+
+        :type PathPrefix: String
+        :param Limit: 返回数量限制(1-200)
+
+        :type PathPrefix: Int
+        :param SceneId: 场景ID
+        :type PathPrefix: String
+        :param ReturnCitations: 是否返回记忆关联的原始数据
+
+        :type PathPrefix: Boolean
+        :param OccurredAfter: 信息发生时间范围（毫秒）（包含）
+        :type PathPrefix: Int
+        :param OccurredBefore: 信息发生时间范围（毫秒）（不包含）
+        :type PathPrefix: Int
+        :param MaxSteps: 最大检索次数（1 - 5）
+
+        :type PathPrefix: Int
+        """
+        self.MemoryCollectionId = None
+        self.AgentUserId = None
+        self.Query = None
+        self.Limit = None
+        self.SceneId = None
+        self.ReturnCitations = None
+        self.OccurredAfter = None
+        self.OccurredBefore = None
+        self.MaxSteps = None
+
+    def _deserialize(self, params):
+        if params.get("MemoryCollectionId"):
+            self.MemoryCollectionId = params.get("MemoryCollectionId")
+        if params.get("AgentUserId"):
+            self.AgentUserId = params.get("AgentUserId")
+        if params.get("Query"):
+            self.Query = params.get("Query")
+        if params.get("Limit"):
+            self.Limit = params.get("Limit")
+        if params.get("SceneId"):
+            self.SceneId = params.get("SceneId")
+        if params.get("ReturnCitations"):
+            self.ReturnCitations = params.get("ReturnCitations")
+        if params.get("OccurredAfter"):
+            self.OccurredAfter = params.get("OccurredAfter")
+        if params.get("OccurredBefore"):
+            self.OccurredBefore = params.get("OccurredBefore")
+        if params.get("MaxSteps"):
+            self.MaxSteps = params.get("MaxSteps")
+
+
+class DescribeStructuredDataRequest(AbstractModel):
+    """DescribeStructuredData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询知识库结构化文档数据
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param DocumentId: 文档 ID
+        :type PathPrefix: String
+        :param Page: 页码
+        :type PathPrefix: Int
+        :param PageSize: 每页数量
+        :type PathPrefix: Int
+        :param SearchColumn: 指定列查询，与 SearchValue 成对使用
+        :type PathPrefix: String
+        :param SearchValue: 查询列数据
+        :type PathPrefix: String
+        """
+        self.DatasetId = None
+        self.DocumentId = None
+        self.Page = None
+        self.PageSize = None
+        self.SearchColumn = None
+        self.SearchValue = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("DocumentId"):
+            self.DocumentId = params.get("DocumentId")
+        if params.get("Page"):
+            self.Page = params.get("Page")
+        if params.get("PageSize"):
+            self.PageSize = params.get("PageSize")
+        if params.get("SearchColumn"):
+            self.SearchColumn = params.get("SearchColumn")
+        if params.get("SearchValue"):
+            self.SearchValue = params.get("SearchValue")
+
+
+class BatchModifyStructuredDataRequest(AbstractModel):
+    """BatchModifyStructuredData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""批量编辑结构化文档数据
+        :param DatasetId: 知识库 ID
+        :type PathPrefix: String
+        :param DocumentId: 文档 ID
+        :type PathPrefix: String
+        :param Items: 仅提交当前页有效修改的行，一次最多 100 条
+        :type PathPrefix: Array
+        """
+        self.DatasetId = None
+        self.DocumentId = None
+        self.Items = None
+
+    def _deserialize(self, params):
+        if params.get("DatasetId"):
+            self.DatasetId = params.get("DatasetId")
+        if params.get("DocumentId"):
+            self.DocumentId = params.get("DocumentId")
+        if params.get("Items"):
+            self.Items = params.get("Items")
 
 

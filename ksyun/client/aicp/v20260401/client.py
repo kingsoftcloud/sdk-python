@@ -261,6 +261,52 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def CreateImageCache(self, request):
+        """创建镜像缓存
+        :param request: Request instance for CreateImageCache.
+        :type request: :class:`ksyun.client.aicp.v20260401.models.CreateImageCacheRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateImageCache", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetImageCacheList(self, request):
+        """查询镜像缓存列表
+        :param request: Request instance for GetImageCacheList.
+        :type request: :class:`ksyun.client.aicp.v20260401.models.GetImageCacheListRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetImageCacheList", params, "application/x-www-form-urlencoded")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DeleteImageCache(self, request):
         """删除镜像缓存
         :param request: Request instance for DeleteImageCache.
@@ -269,6 +315,52 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DeleteImageCache", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def CreateSandboxInstanceCommit(self, request):
+        """创建沙箱镜像提交任务
+        :param request: Request instance for CreateSandboxInstanceCommit.
+        :type request: :class:`ksyun.client.aicp.v20260401.models.CreateSandboxInstanceCommitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("CreateSandboxInstanceCommit", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def GetSandboxInstanceCommit(self, request):
+        """查询沙箱镜像提交任务
+        :param request: Request instance for GetSandboxInstanceCommit.
+        :type request: :class:`ksyun.client.aicp.v20260401.models.GetSandboxInstanceCommitRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("GetSandboxInstanceCommit", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

@@ -1273,6 +1273,29 @@ class AicpClient(AbstractClient):
                 raise KsyunSDKException(message=str(e))
 
 
+    def QueryAgenticMemory(self, request):
+        """记忆Agentic检索
+        :param request: Request instance for QueryAgenticMemory.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QueryAgenticMemoryRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryAgenticMemory", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
     def DeleteMemory(self, request):
         """根据记忆ID删除已有记忆
         :param request: Request instance for DeleteMemory.
@@ -1465,6 +1488,83 @@ class AicpClient(AbstractClient):
         try:
             params = request._serialize()
             body = self.call_judge("DescribeMetadata", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def QueryAgenticMemoryStreamStream(self, request):
+        """记忆Agentic检索-流式（SSE 流式响应）
+
+        返回事件迭代器；退出迭代或关闭生成器会主动断开连接。
+        """
+        params = request._serialize()
+        return self.call_stream("QueryAgenticMemoryStream", params, "application/json")
+
+    def QueryAgenticMemoryStream(self, request):
+        """记忆Agentic检索-流式
+        :param request: Request instance for QueryAgenticMemoryStream.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.QueryAgenticMemoryStreamRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("QueryAgenticMemoryStream", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def DescribeStructuredData(self, request):
+        """查询知识库结构化文档数据
+        :param request: Request instance for DescribeStructuredData.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.DescribeStructuredDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("DescribeStructuredData", params, "application/json")
+            response = json.loads(body)
+            if "Error" not in response:
+                return body
+            else:
+                code = response["Error"]["Code"]
+                message = response["Error"]["Message"]
+                req_id = response["RequestId"]
+                raise KsyunSDKException(code, message, req_id)
+        except Exception as e:
+            if isinstance(e, KsyunSDKException):
+                raise
+            else:
+                raise KsyunSDKException(message=str(e))
+
+
+    def BatchModifyStructuredData(self, request):
+        """批量编辑结构化文档数据
+        :param request: Request instance for BatchModifyStructuredData.
+        :type request: :class:`ksyun.client.aicp.v20251114.models.BatchModifyStructuredDataRequest`
+        """
+        try:
+            params = request._serialize()
+            body = self.call_judge("BatchModifyStructuredData", params, "application/json")
             response = json.loads(body)
             if "Error" not in response:
                 return body

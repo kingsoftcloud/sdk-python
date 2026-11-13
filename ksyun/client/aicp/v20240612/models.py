@@ -1829,6 +1829,86 @@ class DescribeApikeysRequest(AbstractModel):
             self.SortOrder = params.get("SortOrder")
 
 
+class QueryTokenDataRequest(AbstractModel):
+    """QueryTokenData请求参数结构体
+    """
+
+    def __init__(self):
+        r"""查询模型API token用量
+        :param StartTimestamp: 开始时间，毫秒时间戳
+        :type PathPrefix: Long
+        :param EndTimestamp: 截止时间，毫秒时间戳
+        :type PathPrefix: Long
+        :param LastKey: 分页用的游标，表示上次已经获取到的数据，当前请求可以取上次返回结果的LastKey，首页时不传
+        :type PathPrefix: String
+        :param MaxResults: 分页页长，最大10000
+        :type PathPrefix: Int
+        :param ModelKeyword: model 搜索关键词
+        :type PathPrefix: String
+        :param Keyword: 搜索关键词
+        :type PathPrefix: String
+        :param GroupBy: 分组字段：model、keyId、endpointId
+        :type PathPrefix: String
+        :param ReasoningType: 推理类型：normal-在线，batch-批量，web-在线体验，为空表示全部。
+        :type PathPrefix: String
+        :param Marker: 页码，从1开始。
+        :type PathPrefix: Int
+        :param ModelName: 模型名称
+- 当按照模型分组时，Keyword优先，Keyword为空再以该字段筛选
+- 当按照APIKEY分组时，该字段始终生效
+        :type PathPrefix: String
+        :param SortField: 排序字段
+InputToken、OutputToken、TotalToken
+        :type PathPrefix: String
+        :param SortOrder: asc desc
+与SortField配合
+        :type PathPrefix: String
+        :param KeyId: APIKEY ID，响应数据需按APIKEY 筛选时需要
+        :type PathPrefix: String
+        """
+        self.StartTimestamp = None
+        self.EndTimestamp = None
+        self.LastKey = None
+        self.MaxResults = None
+        self.ModelKeyword = None
+        self.Keyword = None
+        self.GroupBy = None
+        self.ReasoningType = None
+        self.Marker = None
+        self.ModelName = None
+        self.SortField = None
+        self.SortOrder = None
+        self.KeyId = None
+
+    def _deserialize(self, params):
+        if params.get("StartTimestamp"):
+            self.StartTimestamp = params.get("StartTimestamp")
+        if params.get("EndTimestamp"):
+            self.EndTimestamp = params.get("EndTimestamp")
+        if params.get("LastKey"):
+            self.LastKey = params.get("LastKey")
+        if params.get("MaxResults"):
+            self.MaxResults = params.get("MaxResults")
+        if params.get("ModelKeyword"):
+            self.ModelKeyword = params.get("ModelKeyword")
+        if params.get("Keyword"):
+            self.Keyword = params.get("Keyword")
+        if params.get("GroupBy"):
+            self.GroupBy = params.get("GroupBy")
+        if params.get("ReasoningType"):
+            self.ReasoningType = params.get("ReasoningType")
+        if params.get("Marker"):
+            self.Marker = params.get("Marker")
+        if params.get("ModelName"):
+            self.ModelName = params.get("ModelName")
+        if params.get("SortField"):
+            self.SortField = params.get("SortField")
+        if params.get("SortOrder"):
+            self.SortOrder = params.get("SortOrder")
+        if params.get("KeyId"):
+            self.KeyId = params.get("KeyId")
+
+
 class GetApiServiceRequest(AbstractModel):
     """GetApiService请求参数结构体
     """
